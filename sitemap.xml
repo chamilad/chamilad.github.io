@@ -1,27 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http:///blog/2014/04/22/a-sample-post/</loc>
+        <loc>http://chamilad.github.io/blog/2014/06/10/what-to-expect/</loc>
+        <lastmod>2014-06-10T14:56:36+05:30</lastmod>
+    </url>
+    <url>
+        <loc>http://chamilad.github.io/archives/</loc>
+        <lastmod>2014-06-10T14:56:36+05:30</lastmod>
+    </url>
+    <url>
+        <loc>http://chamilad.github.io/blog/archives/</loc>
+        <lastmod>2014-06-10T14:56:36+05:30</lastmod>
+    </url>
+    <url>
+        <loc>http://chamilad.github.io/blog/</loc>
+        <lastmod>2014-06-10T14:56:36+05:30</lastmod>
+    </url>
+    <url>
+        <loc>http://chamilad.github.io/robots.txt</loc>
         <lastmod>2014-06-10T14:36:54+05:30</lastmod>
     </url>
     <url>
-        <loc>http:///archives/</loc>
-        <lastmod>2014-06-10T14:36:54+05:30</lastmod>
-    </url>
-    <url>
-        <loc>http:///blog/archives/</loc>
-        <lastmod>2014-06-10T14:36:54+05:30</lastmod>
-    </url>
-    <url>
-        <loc>http:///blog/</loc>
-        <lastmod>2014-06-10T14:36:54+05:30</lastmod>
-    </url>
-    <url>
-        <loc>http:///robots.txt</loc>
-        <lastmod>2014-06-10T14:36:54+05:30</lastmod>
-    </url>
-    <url>
-        <loc>http:///</loc>
-        <lastmod>2014-06-10T14:36:54+05:30</lastmod>
+        <loc>http://chamilad.github.io/</loc>
+        <lastmod>2014-06-10T14:56:36+05:30</lastmod>
     </url>
 </urlset>
