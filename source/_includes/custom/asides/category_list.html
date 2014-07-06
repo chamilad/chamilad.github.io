@@ -1,0 +1,18 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body><section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    {% for category in site.categories %}
+    {% capture category_url %}{{ site.category_dir }}/{{ category | 
+first | slugize | downcase | replace:' ','-' | append:'/index.html'}}{% 
+endcapture %}
+    <a class="list-group-item {% if category_url == page.url %}active{% endif %}" href="http://kaworu.github.io/octopress/downloads/code/%7B%7B%20root_url%20%7C%20append:%27/%27%20%7C%20append:category_url%20%7D%7D">
+        <span class="badge">{{ category | last | size }}</span>
+        {{ category | first }}
+      </a>
+    {% endfor %}
+  </div>
+</section>
+</body></html>

@@ -2,13 +2,34 @@
 layout: default
 ---
 
-<article class="page">
-    <div class="entry-content">{{ content }}</div>
+<article role="article">
+  {% if page.title %}
+  <header>
+    <div class="jumbotron">
+      {% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}
+    </div>
+    {% if page.date %}<p class="meta">{% include post/date.html %}{{ time }}</p>{% endif %}
+  </header>
+  {% endif %}
+  {{ content }}
 </article>
-
 {% if site.disqus_short_name and page.comments == true %}
-<section id="comment">
-    <h1 class="title">Comments</h1>
+  <section>
+    <h1>Comments</h1>
     <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
-</section>
+  </section>
 {% endif %}
+
+{% comment %}
+  Sidebars need to be fixed
+
+{% unless page.sidebar == false %}
+<aside class="sidebar">
+  {% if site.page_asides.size %}
+    {% include_array page_asides %}
+  {% else %}
+    {% include_array default_asides %}
+  {% endif %}
+</aside>
+{% endunless %}
+{% endcomment %}
