@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: axis2 | nuts!]]></title>
+  <link href="http://chamilad.github.io/blog/categories/axis2/atom.xml" rel="self"/>
+  <link href="http://chamilad.github.io/"/>
+  <updated>2014-07-06T23:04:16+05:30</updated>
+  <id>http://chamilad.github.io/</id>
+  <author>
+    <name><![CDATA[chamila de alwis]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Creating a Web Service using Apache Axis2 [No IDE]]]></title>
+    <link href="http://chamilad.github.io/blog/2014/07/01/creating-a-web-service-using-apache-axis2-no-ide/"/>
+    <updated>2014-07-01T16:38:50+05:30</updated>
+    <id>http://chamilad.github.io/blog/2014/07/01/creating-a-web-service-using-apache-axis2-no-ide</id>
+    <content type="html"><![CDATA[<h1>Outline</h1>
+
+<ol>
+<li>Pre-requisites</li>
+<li>Deploying Axis2</li>
+<li>Writing the service class</li>
+<li>Deploying the service</li>
+<li>Verification</li>
+</ol>
+
+
+<h1>Pre-requisites</h1>
+
+<p>We need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let&rsquo;s use Tomcat as a container. So in the following order</p>
+
+<ol>
+<li>Download and install JDK7</li>
+<li>Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn&rsquo;t being supported by Eclipse, so let&rsquo;s go with v7)</li>
+<li>Download and install AXis2 on Tomcat</li>
+</ol>
+
+
+<h2>JDK7</h2>
+
+<p>Download and extract the JDK tarball.</p>
+
+<p><code>bash
+wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/7u60-b19/jdk-7u60-linux-x64.tar.gz
+tar zxvf jdk-7u60-linux-x64.tar.gz
+</code>
+Add and modify the following lines in ~/.profile or /etc/profile (for system wide application) to add <code>JAVA_HOME</code> environment variable and it&rsquo;s bin folder to <code>$PATH</code>.</p>
+
+<p><code>bash
+export JAVA_HOME=/path/to/jdk/extraction
+export PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+</code></p>
+
+<p>Refresh the terminal session and check if Java is working</p>
+
+<p><code>bash
+source ~/.profile
+java -version
+</code></p>
+
+<h2>Tomcat 7</h2>
+
+<p>You could install tomcat through <code>apt-get</code> or manually.</p>
+
+<p><code>bash
+sudo apt-get install tomcat7
+</code></p>
+
+<p>Or download and set paths manually.</p>
+
+<p><code>bash
+wget http://supergsego.com/apache/tomcat/tomcat-7/v7.0.54/bin/apache-tomcat-7.0.54.tar.gz
+tar zxvf apache-tomcat-7.0.54.tar.gz
+mv apache-tomcat-7.0.54 ~/dev/
+</code></p>
+
+<p>Add the <code>$CATALINA_HOME</code> env var to the bash profile.</p>
+
+<p><code>bash
+vi ~/.profile
+</code></p>
+
+<p>Prepend the following line before exporting the $PATH.</p>
+
+<p><code>bash
+export CATALINA_HOME=$HOME/dev/apache-tomcat-7.0.54
+</code></p>
+
+<p>Server start/stop can be done by the scripts in the <code>$CATALINA_HOME/bin</code> folder.</p>
+
+<p><code>bash
+cd $CATALINA_HOME
+./bin/startup.sh
+</code></p>
+
+<h1>Deploying Axis2</h1>
+
+<p>Download Axis2 WAR distribution and copy the web archive file to the tomcat webapps root.</p>
+
+<p><code>bash
+wget http://apache.tradebit.com/pub//axis/axis2/java/core/1.6.2/axis2-1.6.2-war.zip
+unzip axis2-1.6.2-war.zip -d axis2-war
+cp axis2-war/axis2.war $CATALINA_HOME/webapps/
+cd $CATALINA_HOME/bin
+./shutdown.sh
+./startup.sh
+</code></p>
+
+<p>In the browser go to <a href="http://localhost:8080/axis2">http://localhost:8080/axis2</a>. Axis2 welcome page should appear.</p>
+
+<h1>The Service</h1>
+
+<p>An Axis2 archive (of <code>.aar</code> extension) has a certain directory structure not so different from a Web Archive.</p>
+
+<p>``` bash Axis2 Archive Directory Structure start:1 linenos:false mark:4,9
+.
+├── SimpleService</p>
+
+<pre><code>└─── META-INF
+  └─── services.xml
+└── com
+  └─── chamiladealwis
+    └─── ws
+      └─── service
+        └─── SimpleService.java
+</code></pre>
+
+<p>```</p>
+
+<p>META-INF folder contains the services descriptor file. The other is the binary which implements the service.</p>
+
+<p>The service class itself is a plain old Java class which exposes the services it offers through public methods. My simple service would be the following.</p>
+
+<p>``` java SimpleService.java
+package com.chamiladealwis.ws.service;</p>
+
+<p>public class SimpleService
+{</p>
+
+<pre><code>public int add(int num1, int num2)
+{
+    return num1+num2;
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p><code>SimpleService</code> offers just one service  named <code>add</code> which accepts two Integer parameters and returns the sum of them as an Integer.</p>
+
+<p>Now this service needs a service descriptor which exposes the service class to Axis2 when asked.</p>
+
+<p>``` xml services.xml mark:3
+<service></p>
+
+<pre><code>&lt;parameter name="ServiceClass" locked="false"&gt;
+    com.chamiladealwis.ws.service.SimpleService
+&lt;/parameter&gt;
+&lt;operation name="sayHello"&gt;
+    &lt;messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" /&gt;
+&lt;/operation&gt;
+</code></pre>
+
+<p></service>
+<code>``
+A parameter named</code>ServiceClass<code>is defined with value</code>com.chamiladealwis.ws.service.SimpleService` which the FQN of the Java class we just wrote.</p>
+
+<p>Now compile sources, create the Axis2 archive and deploy it in the Axis Server.</p>
+
+<p>``` bash</p>
+
+<h1>go to the root dir and compile the sources</h1>
+
+<p>javac com/chamiladealwis/ws/service/*.java</p>
+
+<h1>create the archive file</h1>
+
+<p>jar cvf SimpleService.aar *</p>
+
+<h1>copy the archive over to the Axis2 web root</h1>
+
+<p>cp SimpleService.aar $CATALINE_HOME/webapps/axis2/WEB-INF/services/</p>
+
+<h1>restart tomcat</h1>
+
+<p>cd $CATALINA_HOME/bin
+./shutdown.sh
+./startup.sh
+```</p>
+
+<p>Browse to <a href="http://localhost:8080/axis2/services/listServices">http://localhost:8080/axis2/services/listServices</a> in your browser and you will see <code>SimpleService</code> being listed as an availble service with <code>add</code> as an operation.</p>
+
+<p>Click on the link to <code>SimpleService</code> to view the WSDL file which will describe the service and it&rsquo;s operation in an abstracted XML interpretation that can be used to create clients in any language to consume the service.</p>
+
+<h1>The Client</h1>
+
+<p>The client code has to make use of a &ldquo;Stub&rdquo; of the service which will act as a proxy and a communication agent. Axis2 binary distribution includes tools which can generate the Java stub using the WSDL file as the source.</p>
+
+<p>Download the Axis2 binary distribution, extract it and set <code>AXIS2_HOME</code> environment variable to its root. Add <code>$AXIS2_HOME</code> to <code>$PATH</code>.</p>
+
+<p><code>bash
+wget http://apache.spinellicreations.com//axis/axis2/java/core/1.6.2/axis2-1.6.2-bin.zip
+unzip axis2-1.6.2-bin.zip
+pwd
+</code></p>
+
+<p>Add the <code>$AXIS2_HOME</code> variable before <code>export PATH</code> line and modify <code>$PATH</code> to include <code>$AXIS2_HOME/bin</code>.</p>
+
+<p><code>bash
+export AXIS2_HOME=/path/to/axis2/binary/folder
+export PATH="$PATH:$AXIS2_HOME/bin"
+</code></p>
+
+<p>Now refresh terminal by sourcing the .profile file.</p>
+
+<p><code>bash
+source ~/.profile
+echo $AXIS2_HOME
+</code></p>
+
+<p>Copy the WSDL path of the <code>SimpleService</code>, go to the directory you&rsquo;re going to create your client code and execute the following.</p>
+
+<p><code>bash
+./wsdl2java.sh -uri WSDL_PATH_OF_THE_SIMPLESERVICE -o client
+</code></p>
+
+<p>The WSDL path would be something similar to <code>http://localhost:8080/axis2/services/SimpleService?wsdl</code>.</p>
+
+<p>This will create the Java stub and the CallbackHandler classes. The CallbackHandler class can be extended to implement custom success and error callback executions. The Stub is the class of main importance here. It contains the Request and Response types of the operations available from the Service it was generated from and the skeletol methods that call to the target endpoint once invoked. We will use these members to call our simple service.</p>
+
+<p>```java SimpleServiceClient.java
+package com.chamiladealwis.ws.client;</p>
+
+<p>import java.rmi.RemoteException;</p>
+
+<p>import org.apache.axis2.AxisFault;</p>
+
+<p>import com.chamiladealwis.ws.client.SimpleServiceStub.Add;
+import com.chamiladealwis.ws.client.SimpleServiceStub.AddResponse;</p>
+
+<p>public class SimpleClient
+{</p>
+
+<pre><code>public static void main(String[] args) 
+{
+    try 
+    {
+        // Create the Stub object
+        SimpleServiceStub serviceStub = new SimpleServiceStub();
+
+        // Create the Request object. The request class is autogenerated
+        // as an inner class of the Stub class.
+        Add addReq = new Add();
+
+        // Set parameters
+        addReq.setNum1(4);
+        addReq.setNum2(8);
+
+        // Invoke method and get response as a response object
+        AddResponse response = serviceStub.add(addReq);
+
+        // Response object's get_return() returns the return of the remote 
+        // method
+        int sum = response.get_return();
+        System.out.println("Sum : " + sum);
+    } 
+    catch (AxisFault e) 
+    {
+        e.printStackTrace();
+    } 
+    catch (RemoteException e) 
+    {
+        e.printStackTrace();
+    }        
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>Let&rsquo;s go through the client code.</p>
+
+<p>Consuming an operation available through a Web Service consists of following steps.</p>
+
+<ol>
+<li>Create an object of the stub. All method calls will be invoked through this object.
+<code>java
+SimpleServiceStub serviceStub = new SimpleServiceStub();
+</code></li>
+<li>Create the request object. This will have methods to add input parameters to the request.
+<code>java
+Add addReq = new Add();
+addReq.setNum1(4);
+addReq.setNum2(8);
+</code></li>
+<li>Invoke and the operation method. The operation method will be invoked through the stub object and the invocation accepts a parameter of type of request object.
+<code>java
+serviceStub.add(addReq);
+</code></li>
+<li>Catch the response object. The invocation will return the response object mainly containing the value returned by the operation.
+<code>java
+AddResponse response = serviceStub.add(addReq);
+</code></li>
+<li>Extract the return value. By calling <code>get_return()</code> of the response object the return value can be extracted.
+<code>java
+int sum = response.get_return();
+</code></li>
+</ol>
+
+
+<p>As you see it&rsquo;s pretty straightforward, although there are couple of things to keep in mind.</p>
+
+<ol>
+<li>You have to regenerate the client stubs everytime you change most of the server code (obviously).</li>
+<li>It&rsquo;s good to check if the service has been properly deployed by going to the services page and checking the WSDL generation.</li>
+<li>This was a <em>simple</em> client with <em>simple</em> input and output types. When complex types are involved there are some standards to be practiced. Be mindful that Web Services operate on a language and platform agnostic environment.</li>
+<li><em>You will not be writing web services and clients this way most of the time!</em> But that&rsquo;s a topic for another post :)</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

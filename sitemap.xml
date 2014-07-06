@@ -1,27 +1,549 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
-    <url>
-        <loc>http://chamilad.github.io/blog/2014/06/10/what-to-expect/</loc>
-        <lastmod>2014-06-10T15:06:25+05:30</lastmod>
-    </url>
-    <url>
-        <loc>http://chamilad.github.io/archives/</loc>
-        <lastmod>2014-06-10T15:06:25+05:30</lastmod>
-    </url>
-    <url>
-        <loc>http://chamilad.github.io/blog/archives/</loc>
-        <lastmod>2014-06-10T15:06:25+05:30</lastmod>
-    </url>
-    <url>
-        <loc>http://chamilad.github.io/blog/</loc>
-        <lastmod>2014-06-10T15:06:25+05:30</lastmod>
-    </url>
-    <url>
-        <loc>http://chamilad.github.io/robots.txt</loc>
-        <lastmod>2014-06-10T15:06:25+05:30</lastmod>
-    </url>
-    <url>
-        <loc>http://chamilad.github.io/</loc>
-        <lastmod>2014-06-10T15:06:25+05:30</lastmod>
-    </url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  
+  <url>
+    <loc>http://chamilad.github.io/blog/2014/07/01/creating-a-web-service-using-apache-axis2-no-ide/</loc>
+    <lastmod>2014-07-01T16:38:50+05:30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/blog/2014/06/10/what-to-expect/</loc>
+    <lastmod>2014-06-10T14:52:58+05:30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  
+  <url>
+    <loc>http://chamilad.github.io/404.html</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/about.html</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/components.html</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/css.html</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/customize.html</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/getting-started.html</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/archives/</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/blog/</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/blog/archives/</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/about/</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/javascript.html</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/migration.html</loc>
+    <lastmod>2014-07-06T23:04:16+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/js/tests/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/test_standalone.html</loc>
+    <lastmod>2013-07-10T15:11:1373449276Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/test_underscore/index.html</loc>
+    <lastmod>2013-07-11T14:09:1373531985Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/test.html</loc>
+    <lastmod>2013-07-10T15:11:1373449276Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore/index.html</loc>
+    <lastmod>2013-01-30T07:43:1359512028Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/underscore.string/test/test_standalone.html</loc>
+    <lastmod>2013-07-10T15:11:1373449276Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/underscore.string/test/test_underscore/index.html</loc>
+    <lastmod>2013-07-11T14:09:1373531985Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/underscore.string/test/test.html</loc>
+    <lastmod>2013-07-10T15:11:1373449276Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt/node_modules/colors/example.html</loc>
+    <lastmod>2013-07-26T11:06:1374816967Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt/node_modules/underscore.string/test/test_standalone.html</loc>
+    <lastmod>2013-07-10T15:11:1373449276Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt/node_modules/underscore.string/test/test_underscore/temp_tests.html</loc>
+    <lastmod>2013-07-10T16:01:1373452312Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt/node_modules/underscore.string/test/test_underscore/test.html</loc>
+    <lastmod>2013-07-10T16:01:1373452312Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt/node_modules/underscore.string/test/test.html</loc>
+    <lastmod>2013-07-10T15:11:1373449276Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-jscs-checker/node_modules/jscs/node_modules/esprima/index.html</loc>
+    <lastmod>2013-05-17T20:21:1368802298Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-jscs-checker/node_modules/jscs/node_modules/esprima/doc/index.html</loc>
+    <lastmod>2013-05-17T20:21:1368802298Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-jscs-checker/node_modules/jscs/node_modules/vow-fs/node_modules/node-uuid/test/test.html</loc>
+    <lastmod>2012-01-03T07:47:1325557066Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-jscs-checker/node_modules/jscs/node_modules/colors/example.html</loc>
+    <lastmod>2011-12-09T18:05:1323434120Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-sed/node_modules/replace/node_modules/nomnom/node_modules/underscore/index.html</loc>
+    <lastmod>2013-01-30T07:43:1359512028Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-sed/node_modules/replace/node_modules/colors/example.html</loc>
+    <lastmod>2011-09-25T18:35:1316955909Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-qunit/node_modules/grunt-lib-phantomjs/node_modules/phantomjs/node_modules/request/node_modules/node-uuid/test/test.html</loc>
+    <lastmod>2013-08-17T18:19:1376743775Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-html-validation/node_modules/colors/example.html</loc>
+    <lastmod>2013-07-26T11:06:1374816967Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-html-validation/node_modules/request/node_modules/node-uuid/test/test.html</loc>
+    <lastmod>2013-08-17T18:19:1376743775Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-html-validation/node_modules/w3cjs/example/demo.html</loc>
+    <lastmod>2013-09-12T09:36:1378958770Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-html-validation/node_modules/w3cjs/node_modules/superagent/node_modules/reduce-component/test/index.html</loc>
+    <lastmod>2012-11-08T11:17:1352353651Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-html-validation/node_modules/w3cjs/node_modules/superagent/node_modules/formidable/test/tools/base64.html</loc>
+    <lastmod>2013-04-23T04:02:1366669961Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-html-validation/node_modules/w3cjs/node_modules/superagent/docs/tail.html</loc>
+    <lastmod>2013-09-18T06:22:1379465546Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-html-validation/node_modules/w3cjs/node_modules/superagent/docs/head.html</loc>
+    <lastmod>2013-09-18T06:22:1379465546Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-csscomb/node_modules/csscomb/node_modules/vow-fs/node_modules/node-uuid/test/test.html</loc>
+    <lastmod>2012-01-03T07:47:1325557066Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-watch/node_modules/tiny-lr/node_modules/faye-websocket/examples/sse.html</loc>
+    <lastmod>2013-02-14T13:18:1360828128Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-watch/node_modules/tiny-lr/node_modules/faye-websocket/examples/ws.html</loc>
+    <lastmod>2013-02-14T13:18:1360828128Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-watch/node_modules/tiny-lr/node_modules/qs/test/browser/index.html</loc>
+    <lastmod>2012-11-15T01:16:1352922398Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-connect/node_modules/connect/lib/public/directory.html</loc>
+    <lastmod>2013-12-11T13:16:1386747972Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-connect/node_modules/connect/lib/public/error.html</loc>
+    <lastmod>2013-12-11T13:16:1386747972Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-less/node_modules/less/test/data/page.html</loc>
+    <lastmod>2014-02-08T22:22:1391878337Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-less/node_modules/less/test/sourcemaps/index.html</loc>
+    <lastmod>2014-02-08T22:22:1391878337Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-less/node_modules/less/tmp/browser/test-runner-main.html</loc>
+    <lastmod>2014-02-08T22:22:1391878337Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-less/node_modules/less/node_modules/request/node_modules/node-uuid/test/test.html</loc>
+    <lastmod>2013-08-17T18:19:1376743775Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/console-browserify/test/static/index.html</loc>
+    <lastmod>2013-01-27T10:59:1359264587Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/htmlparser2/test/Documents/Attributes.html</loc>
+    <lastmod>2013-06-23T15:05:1371980142Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/htmlparser2/test/Documents/Basic.html</loc>
+    <lastmod>2013-06-23T15:05:1371980142Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/underscore/index.html</loc>
+    <lastmod>2013-01-30T07:43:1359512028Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/test/yui/index.html</loc>
+    <lastmod>2014-01-04T03:15:1388785502Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/test/jasmine/SpecRunnerDos.html</loc>
+    <lastmod>2014-01-04T03:15:1388785502Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/test/jasmine/SpecRunner.html</loc>
+    <lastmod>2014-01-04T03:15:1388785502Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/test/qunit/headless.html</loc>
+    <lastmod>2014-01-04T03:15:1388785502Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/test/qunit/logs.html</loc>
+    <lastmod>2014-01-04T03:15:1388785502Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/test/qunit/async.html</loc>
+    <lastmod>2014-01-04T03:15:1388785502Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/test/qunit/index.html</loc>
+    <lastmod>2014-01-04T03:15:1388785502Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/test/mocha/lib/reporters/templates/style.html</loc>
+    <lastmod>2014-01-16T04:40:1389827433Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/test/mocha/lib/reporters/templates/script.html</loc>
+    <lastmod>2014-01-16T04:40:1389827433Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/test/mocha/lib/template.html</loc>
+    <lastmod>2014-01-16T04:40:1389827433Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/node_modules/sauce-tunnel/node_modules/request/node_modules/node-uuid/test/test.html</loc>
+    <lastmod>2013-08-17T18:19:1376743775Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/node_modules/colors/example.html</loc>
+    <lastmod>2013-07-26T11:06:1374816967Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/node_modules/grunt-saucelabs/node_modules/request/node_modules/node-uuid/test/test.html</loc>
+    <lastmod>2013-08-17T18:19:1376743775Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/jumbotron/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/blog/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/non-responsive/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/navbar-fixed-top/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/signin/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/offcanvas/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/starter-template/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/theme/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/jumbotron-narrow/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/carousel/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/cover/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/navbar-static-top/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/sticky-footer/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/sticky-footer-navbar/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/justified-nav/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/grid/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/dashboard/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/navbar/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
 </urlset>
