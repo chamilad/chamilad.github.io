@@ -4,7 +4,7 @@
   <title><![CDATA[Category: web services | nuts!]]></title>
   <link href="http://chamilad.github.io/blog/categories/web-services/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2014-07-06T23:04:16+05:30</updated>
+  <updated>2014-07-06T23:52:21+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -286,7 +286,7 @@ import com.chamiladealwis.ws.client.SimpleServiceStub.AddResponse;</p>
 
 <p>Consuming an operation available through a Web Service consists of following steps.</p>
 
-<ol>
+<ul>
 <li>Create an object of the stub. All method calls will be invoked through this object.
 <code>java
 SimpleServiceStub serviceStub = new SimpleServiceStub();
@@ -309,7 +309,7 @@ AddResponse response = serviceStub.add(addReq);
 <code>java
 int sum = response.get_return();
 </code></li>
-</ol>
+</ul>
 
 
 <p>As you see it&rsquo;s pretty straightforward, although there are couple of things to keep in mind.</p>
