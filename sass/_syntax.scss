@@ -96,12 +96,14 @@ p, li {
     @extend .mono;
     display: inline-block;
     white-space: no-wrap;
-    background: $code-bg-color !important;
-    font-size: .8em;
-    color: $base1 !important;
+    /*background: $code-bg-color !important;*/
+    background: #DEDEDE !important;
+    font-size: .7em;
+    /*color: $base1 !important;*/
+    color: #9F3C3C !important;
     border: none;
     @include border-radius(.4em);
-    padding: 0 .3em;
+    padding: 0 .2em;
     margin: -1px 0;
   }
   pre code { font-size: 1em !important; background: none; border: none; }
@@ -206,7 +208,7 @@ pre, .highlight, .gist-highlight {
   &::-webkit-scrollbar-thumb:horizontal { background: $solar-scroll-thumb;  -webkit-border-radius: 4px; border-radius: 4px }
 }
 
-.highlight code { 
+.highlight code {
   @extend .pre-code; background: #000;
 }
 figure.code {

@@ -253,25 +253,25 @@ Let's go through the client code.
 
 Consuming an operation available through a Web Service consists of following steps.
 
-1. Create an object of the stub. All method calls will be invoked through this object.
++ Create an object of the stub. All method calls will be invoked through this object.
 ```java
 SimpleServiceStub serviceStub = new SimpleServiceStub();
 ```
-2. Create the request object. This will have methods to add input parameters to the request.
++ Create the request object. This will have methods to add input parameters to the request.
 ```java
 Add addReq = new Add();
 addReq.setNum1(4);
 addReq.setNum2(8);
 ```
-3. Invoke and the operation method. The operation method will be invoked through the stub object and the invocation accepts a parameter of type of request object. 
++ Invoke and the operation method. The operation method will be invoked through the stub object and the invocation accepts a parameter of type of request object. 
 ```java
 serviceStub.add(addReq);
 ```
-4. Catch the response object. The invocation will return the response object mainly containing the value returned by the operation. 
++ Catch the response object. The invocation will return the response object mainly containing the value returned by the operation. 
 ```java
 AddResponse response = serviceStub.add(addReq);
 ```
-5. Extract the return value. By calling `get_return()` of the response object the return value can be extracted. 
++ Extract the return value. By calling `get_return()` of the response object the return value can be extracted. 
 ```java
 int sum = response.get_return();
 ```
