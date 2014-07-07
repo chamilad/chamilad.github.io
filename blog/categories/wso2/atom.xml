@@ -4,7 +4,7 @@
   <title><![CDATA[Category: wso2 | nuts!]]></title>
   <link href="http://chamilad.github.io/blog/categories/wso2/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2014-07-07T13:46:49+05:30</updated>
+  <updated>2014-07-07T21:52:01+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -24,13 +24,61 @@
 
 <blockquote><p>Keep in mind that this post will keep getting updated till I go through every sample.</p></blockquote>
 
+<h1>Sample 50</h1>
+
+<p>The synapse configuration file that is shipped with 4.8.1 has an error where asterisks are missing from a filter mediater regex. Therefore execution of the main sequence stops after failing to match any <code>To</code> SOAP headers.</p>
+
+<h2>Fix</h2>
+
+<p>Change the following line in <code>&lt;ESB_HOME&gt;/repository/samples/synapse_sample_50.xml</code> to include the asterisks.</p>
+
+<p><code>xml
+&lt;filter source="get-property('To')" regex="./StockQuote."&gt;
+</code>
+The modified line should be as follows.</p>
+
+<p><code>xml
+&lt;filter source="get-property('To')" regex=".*/StockQuote.*"&gt;
+</code></p>
+
 <h1>Sample 57</h1>
 
-<p>TODO</p>
+<p>In ESB 4.8.1 running this sample would not result in the expected outcome and would throw an error similar to the following.</p>
+
+<p><code>
+org.apache.synapse.SynapseException: A LoadBalanceEventHandler has not been
+specified in the axis2.xml file for the domain apache.axis2.application.domain
+at
+org.apache.synapse.core.axis2.Axis2LoadBalanceMembershipHandler.setConfigurationContext(Axis2LoadBalanceMembershipHandler.java:77)
+</code></p>
+
+<p>The reason for this is the incompatibility between the clustering mechanisms used in ESB 4.8.1 (HazelCast) and the sample Axis2 server (Apache Tribes) it ships with.</p>
+
+<h2>Fix</h2>
+
+<p>As <a href="http://wso2-oxygen-tank.10903.n7.nabble.com/Dev-Running-ESB-sample-57-td89484.html">this</a> email thread mentions this can be overcome by getting ESB 4.7.0 where the same clustering implementation is used that of the Axis2 server.</p>
 
 <h1>Sample 60, 61, 62</h1>
 
-<p>TODO</p>
+<p>In ESB 4.8.1 the synapse configuration files for the samples 60, 61, and 62 are missing and the configurations that are on the sample pages are errorneous.
+For an example in sample #61 the mentioned configuration refers to a property named <code>EP_LIST</code> while there&rsquo;s no external registry resource or inline defined property that is of the name EP_LIST.</p>
+
+<p>```xml
+<send></p>
+
+<pre><code>&lt;endpoint&gt;
+    &lt;recipientlist&gt;
+        &lt;endpoints value="{get-property('EP_LIST')}" max-cache="20" /&gt;
+    &lt;/recipientlist&gt;
+&lt;/endpoint&gt;
+</code></pre>
+
+<p></send>
+```</p>
+
+<h2>Fix</h2>
+
+<p>However these synapse configuration files are present in the 4.7.0 release and they can be used to start the 4.8.1 ESB with the desired configuration.</p>
 
 <h1>Sample 152</h1>
 
@@ -72,6 +120,8 @@ at java.lang.Thread.run(Thread.java:722)
 <p><ConfigurationFile>${carbon.home}/repository/conf/axis2/axis2.xml</ConfigurationFile>                                                                                                                         <br/>
 <ConfigurationFile>${carbon.home}/repository/conf/axis2/axis2_nhttp.xml</ConfigurationFile>
 ```</p>
+
+<h2>Fix</h2>
 
 <p>To make the sample #152 run properly revert this change.</p>
 ]]></content>

@@ -4,7 +4,7 @@
   <title><![CDATA[nuts!]]></title>
   <link href="http://chamilad.github.io/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2014-07-07T13:46:49+05:30</updated>
+  <updated>2014-07-07T21:52:01+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -24,19 +24,78 @@
 
 <blockquote><p>Keep in mind that this post will keep getting updated till I go through every sample.</p></blockquote>
 
+<h1>Sample 50</h1>
+
+<p>The synapse configuration file that is shipped with 4.8.1 has an error where asterisks are missing from a filter mediater regex. Therefore execution of the main sequence stops after failing to match any <code>To</code> SOAP headers.</p>
+
+<h2>Fix</h2>
+
+<p>Change the following line in <code>&lt;ESB_HOME&gt;/repository/samples/synapse_sample_50.xml</code> to include the asterisks.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter</span> <span class="na">source=</span><span class="s">&quot;get-property(&#39;To&#39;)&quot;</span> <span class="na">regex=</span><span class="s">&quot;./StockQuote.&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The modified line should be as follows.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter</span> <span class="na">source=</span><span class="s">&quot;get-property(&#39;To&#39;)&quot;</span> <span class="na">regex=</span><span class="s">&quot;.*/StockQuote.*&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h1>Sample 57</h1>
 
-<p>TODO</p>
+<p>In ESB 4.8.1 running this sample would not result in the expected outcome and would throw an error similar to the following.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>org.apache.synapse.SynapseException: A LoadBalanceEventHandler has not been
+</span><span class='line'>specified in the axis2.xml file for the domain apache.axis2.application.domain
+</span><span class='line'>at
+</span><span class='line'>org.apache.synapse.core.axis2.Axis2LoadBalanceMembershipHandler.setConfigurationContext(Axis2LoadBalanceMembershipHandler.java:77)
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The reason for this is the incompatibility between the clustering mechanisms used in ESB 4.8.1 (HazelCast) and the sample Axis2 server (Apache Tribes) it ships with.</p>
+
+<h2>Fix</h2>
+
+<p>As <a href="http://wso2-oxygen-tank.10903.n7.nabble.com/Dev-Running-ESB-sample-57-td89484.html">this</a> email thread mentions this can be overcome by getting ESB 4.7.0 where the same clustering implementation is used that of the Axis2 server.</p>
 
 <h1>Sample 60, 61, 62</h1>
 
-<p>TODO</p>
+<p>In ESB 4.8.1 the synapse configuration files for the samples 60, 61, and 62 are missing and the configurations that are on the sample pages are errorneous.
+For an example in sample #61 the mentioned configuration refers to a property named <code>EP_LIST</code> while there&rsquo;s no external registry resource or inline defined property that is of the name EP_LIST.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;send&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;endpoint&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;recipientlist&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;endpoints</span> <span class="na">value=</span><span class="s">&quot;{get-property(&#39;EP_LIST&#39;)}&quot;</span> <span class="na">max-cache=</span><span class="s">&quot;20&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/recipientlist&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/endpoint&gt;</span>
+</span><span class='line'><span class="nt">&lt;/send&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Fix</h2>
+
+<p>However these synapse configuration files are present in the 4.7.0 release and they can be used to start the 4.8.1 ESB with the desired configuration.</p>
 
 <h1>Sample 152</h1>
 
 <p>You would probably get an error while trying to execute the client like the following.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -52,7 +111,7 @@
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[2014-07-07 13:28:09,060] ERROR - ServerWorker Error processing POST request 
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>[2014-07-07 13:28:09,060] ERROR - ServerWorker Error processing POST request
 </span><span class='line'>java.lang.NullPointerException: Tenant domain has not been set in CarbonContext
 </span><span class='line'>    at org.wso2.carbon.caching.impl.CacheManagerFactoryImpl.getCacheManager(CacheManagerFactoryImpl.java:79)
 </span><span class='line'>    at org.wso2.carbon.security.pox.POXSecurityHandler.getPOXCache(POXSecurityHandler.java:383)
@@ -67,7 +126,8 @@
 </span><span class='line'>    at org.apache.axis2.transport.base.threads.NativeWorkerPool$1.run(NativeWorkerPool.java:172)
 </span><span class='line'>    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
 </span><span class='line'>    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
-</span><span class='line'>    at java.lang.Thread.run(Thread.java:722)</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>    at java.lang.Thread.run(Thread.java:722)
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>While I can&rsquo;t exactly pinpoint the cause of the error this happens due to the way we execute the samples. If you directly executed the sample #152 chances are that you wouldn&rsquo;t come across this. But if you started with a sample before #101 you&rsquo;d probably get this.</p>
@@ -84,6 +144,8 @@
 </span><span class='line'><span class="nt">&lt;ConfigurationFile&gt;</span>${carbon.home}/repository/conf/axis2/axis2_nhttp.xml<span class="nt">&lt;/ConfigurationFile&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<h2>Fix</h2>
 
 <p>To make the sample #152 run properly revert this change.</p>
 ]]></content>
