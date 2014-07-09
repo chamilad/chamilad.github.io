@@ -4,7 +4,7 @@
   <title><![CDATA[nuts!]]></title>
   <link href="http://chamilad.github.io/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2014-07-07T21:52:01+05:30</updated>
+  <updated>2014-07-09T22:29:33+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Wireshark Crashing in Ubuntu]]></title>
+    <link href="http://chamilad.github.io/blog/2014/07/09/wireshark-crashing-in-ubuntu/"/>
+    <updated>2014-07-09T22:25:05+05:30</updated>
+    <id>http://chamilad.github.io/blog/2014/07/09/wireshark-crashing-in-ubuntu</id>
+    <content type="html"><![CDATA[<p>If you have customized your ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu 14.04 and found the solution to be disabling overlay scrollbars that come as the default.</p>
+
+<p>To do this simply add an environment variable called LIBOVERLAY_SCROLLBAR with value 0.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">LIBOVERLAY_SCROLLBAR</span><span class="o">=</span>0
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[WSO2 ESB Sample Screw Ups]]></title>
