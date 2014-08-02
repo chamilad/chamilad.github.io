@@ -3,7 +3,7 @@ layout: post
 title: "Securing a Web Service with WSO2 ESB"
 date: 2014-07-18 23:17:46 +0530
 comments: true
-categories: [WSO2, ESB, Web Services]
+categories: [WSO2, ESB, Web Services, Security]
 ---
 
 WSO2 Enterprise Service Bus is one of the [best performing implementations](http://blog.samisa.org/2014/02/wso2-esb-performance-round-75.html) for the Enterprise market. In this article I will briefly go through what it takes to secure an unsecured backend web service using WSO2 ESB as a mediator. 
