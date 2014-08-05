@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>what to expect - nuts!</title>
+  <title>PPPOE on VirtualBox - nuts!</title>
   <meta name="author" content="chamila de alwis">
 
    
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://chamilad.github.io/blog/2014/06/10/what-to-expect">
+  <link rel="canonical" href="http://chamilad.github.io/blog/2014/08/05/pppoe-on-virtualbox">
   <link href="/favicon.png" rel="icon">
   <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
@@ -83,7 +83,7 @@
 
   <header>
   <div class="jumbotron">
-    What to Expect
+    PPPOE on VirtualBox
 	<h5>
 
 
@@ -96,18 +96,39 @@
   
 
 
-<i class="icon-calendar-empty"></i> <time datetime="2014-06-10T14:52:58+05:30" pubdate data-updated="true">Jun 10<sup>th</sup>, 2014</time></h5>
+<i class="icon-calendar-empty"></i> <time datetime="2014-08-05T23:08:34+05:30" pubdate data-updated="true">Aug 5<sup>th</sup>, 2014</time></h5>
   </div>
 </header>
   <div class="row-fluid">
     <div class="span12">
-      <p>You&rsquo;ll find here, everyday bits and pieces of technical know-how, workarounds and fixes for common issues that I&rsquo;m assuming I&rsquo;d forget in a few hours.</p>
+      <p>A quick note!</p>
 
-<p>Basically this would serve me as my technical blog.</p>
+<p>If your internet connection comes as a PPPOE connection and it can&rsquo;t be selected on the drop down list when &ldquo;Bridged network&rdquo; is selected on Network tab of the VM settings in VirtualBox. You can create a host-only network and configure a static ip for eth0 on the guest OS to make it accessible to outside.</p>
 
-<p>A coder&rsquo;s journel.</p>
+<p>A host-only network virtualizes the network interface of the host OS and uses it as a loopback device to enable guest OS to communicate on their network and with the host<a href="https://www.virtualbox.org/manual/ch06.html">[1]</a>.</p>
 
-<p>Allons-y!</p>
+<p>Go to VirtualBox preferences (Ctrl + G) and navigate to the Network tab. Click on the &ldquo;Host-Only network&rdquo; tab and add a new host-only network. On the dialog that comes, go to the &ldquo;DHCP Server&rdquo; tab and disable it. VirtualBox provides its own DHCP server so the guest OS are able to use it, but if you want a consistent IP disabling it is the best course. Note down the IP address of the host-only network and its netmask. You might want to restart the networking service on the host os. Issue an <code>ifconfig -a</code> and you will see the virtual loopback device being listed.</p>
+
+<p>Go to your VM&rsquo;s settings and navigate to the &ldquo;Network&rdquo; tab. On the network adaptor you&rsquo;re going to use as the connection to the network, select &ldquo;Host-Only adaptor&rdquo; as the networking type to attach to. Then select the host-only network device we created in the VirtualBox preferences. Select &ldquo;Allow All&rdquo; for &ldquo;Promiscuous Mode&rdquo;.</p>
+
+<p>Start your VM and login as a super user. Define<a href="https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually">[2]</a><a href="http://www.putorius.net/2012/10/how-to-configure-static-ip-address-in.html">[3]</a> the network interface you attached to the Host-Only network with a static IP in the network of the host-only network. Point the gateway to the IP address of the host-only network. Restart the network service and your guest OS will have an IP which is accessible from the host.</p>
+
+<p><strong>Note</strong>: If you come across any issues when restarting the network service with an error message containing &ldquo;file exists&rdquo; it&rsquo;s possible that network devices and their mappings to network device names have been jumbled. Best course to take is to delete the rules file and reboot the machine to regenerate it. This issue is likely to occur in Ubuntu distributions before 12.04 or in RedHat distributions<a href="http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/">[4]</a>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo rm -rv /etc/udev/rules.d/70-persistant-*
+</span><span class='line'>sudo reboot
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>[1] &ndash; <a href="https://www.virtualbox.org/manual/ch06.html">https://www.virtualbox.org/manual/ch06.html</a></p>
+
+<p>[2] &ndash; <a href="https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually">https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually</a></p>
+
+<p>[3] &ndash; <a href="http://www.putorius.net/2012/10/how-to-configure-static-ip-address-in.html">http://www.putorius.net/2012/10/how-to-configure-static-ip-address-in.html</a></p>
+
+<p>[4] &ndash; <a href="http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/">http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/</a></p>
 
     </div>
   </div>
@@ -126,7 +147,7 @@
 
 
 
-  <a href="/blog/categories/misc/"><span class="badge">misc</span></a>
+  <a href="/blog/categories/virtualization/"><span class="badge">virtualization</span></a>
 
 
 
@@ -160,8 +181,8 @@
       <div class="span12">
         <p class="meta">
           
+            <a class="basic-alignment left" href="/blog/2014/07/19/consuming-a-service-secured-by-wso2-esb/" title="Previous Post: Consuming a Service Secured by WSO2 ESB">&laquo; Consuming a Service Secured by WSO2 ESB</a>
           
-            <a class="basic-alignment right" href="/blog/2014/07/01/creating-a-web-service-using-apache-axis2-no-ide/" title="Next Post: Creating a Web Service using Apache Axis2 [No IDE]">Creating a Web Service using Apache Axis2 [No IDE] &raquo;</a>
           
         </p>
       </div>
@@ -199,8 +220,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://chamilad.github.io/blog/2014/06/10/what-to-expect/';
-        var disqus_url = 'http://chamilad.github.io/blog/2014/06/10/what-to-expect/';
+        var disqus_identifier = 'http://chamilad.github.io/blog/2014/08/05/pppoe-on-virtualbox/';
+        var disqus_url = 'http://chamilad.github.io/blog/2014/08/05/pppoe-on-virtualbox/';
         var disqus_script = 'embed.js';
       
     (function () {
