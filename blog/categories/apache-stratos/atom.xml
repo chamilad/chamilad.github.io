@@ -4,7 +4,7 @@
   <title><![CDATA[Category: apache stratos | nuts!]]></title>
   <link href="http://chamilad.github.io/blog/categories/apache-stratos/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2014-10-17T18:09:28+05:30</updated>
+  <updated>2014-10-20T12:51:58+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -58,7 +58,7 @@
 </ol>
 
 
-<p>When the cartridge agent starts, after repository based artifact management is done it publishes the InstanceActivatedEvent to the <code>/instance/status</code> topic. The health statistics publishing job starts after the InstanceActivatedEvent is published. The interval at which the health statistics publishing job works can be adjusted by specifying <code>stats.notifier.interval</code> property of the cartridge agent. By default this is set to 15 seconds.</p>
+<p>The Cartridge Agent publishes several events to the message broker after it starts, two key events being the InstanceStartedEvent and the InstanceActivatedEvent. The InstanceStartedEvent is published after the Topology is confirmed as consistent. The InstanceActivatedEvent is published after the InstanceStartedEvent, but this can happen in two code paths. If there is no repository based artifact management to be done, the InstanceActivatedEvent will be published immediately by the CartridgeAgent. If the Cartridge Agent has to wait for the ArtifactUpdatedEvent to start managing the artifacts related to a repository, the InstanceActivatedEvent will be published after the artifacts are synchronized to the instance. These events are published from the Cartridge Agent to the <code>/instance/status</code> topic in the message broker. In both cases the health statistics publishing job starts after the InstanceActivatedEvent is published. The interval at which the health statistics publishing job works can be adjusted by specifying <code>stats.notifier.interval</code> property of the cartridge agent. By default this is set to 15 seconds.</p>
 
 <p>The health statistics are published with the stream name <code>cartridge_agent_health_stats</code>. The stream definition contains only the payload data and the types of the added payload data are as follows.</p>
 
