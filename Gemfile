@@ -18,6 +18,8 @@ group :development do
   gem 'directory_watcher', '1.4.1'
   gem 'kramdown'
   gem 'coderay'
+  gem 'execjs'
+  gem 'therubyracer', :platforms => :ruby
 end
 
 gem 'sinatra', '~> 1.4.2'
