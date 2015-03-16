@@ -8,8 +8,11 @@ published: false
 ---
 
 #Introduction
+Apache Stratos is getting ready to release the alpha release for 4.1.0 version, which brings together a bundle of exciting features. Among them is the support for Containers, on top of Kubernetes and Docker, and Application Grouping.
 
-#Working with the Python Cartridge Agent
+The cartridge agent which used to be implemented in Java is now changed to a Python implementation, with extensibility and usability in non-Java environments being major intentions. The intention of this blog post is to explain the detailed changes of how the cartridge agent is configured and how to troubleshoot it.
+
+The python agent is deployed as a zip file which is executed by the Python interpreter. The supported Python version is 2.7.
 
 ##Building
 ###Checkout source
@@ -24,14 +27,7 @@ The Python cartridge agent source is in `components/org.apache.stratos.python.ca
 
 `org.apache.stratos.python.cartridge.agent/cartridgeagent/cartridgeagent` contains the source of the agent while `org.apache.stratos.python.cartridge.agent/cartridgeagent/tests` contains the unit tests.
 
-To get the deployable cartridge agent zip file, build the Stratos project. You can find the assembled zip file inside `products/python-cartridge-agent/target` as `apache-stratos-python-cartridge-agent-4.1.0-SNAPSHOT.zip`.
 
-```bash
-git clone https://github.com/apache/stratos.git
-cd stratos
-mvn clean install
-ls -l products/python-cartridge-agent/target
-```
 
 ##Configuration
 The Python cartridge agent is configured by the configuration file at `<AGENT_HOME>/agent.conf`. From this file, the parameters like the message broker details, thrift receiver details, monitoring server details etc can be configured. In the case of VM's Puppet will handle setting the values in this file, while in the Kubernete's based container scenario, the Docker entrypoint script will handle setting values.
@@ -89,6 +85,16 @@ The configuration options for the Python agent are as follows.
 * extension.tenant.unsubscribed         =tenant-unsubscribed.sh
 
 This is basically the content in the `agent.conf` file. Values for the parameters that have no default value should be provided by the calling party, since the cartridge agent will not start otherwise.
+
+##Building the artifact
+To get the deployable cartridge agent zip file, build the Stratos project. You can find the assembled zip file inside `products/python-cartridge-agent/target` as `apache-stratos-python-cartridge-agent-4.1.0-SNAPSHOT.zip`.
+
+```bash
+git clone https://github.com/apache/stratos.git
+cd stratos
+mvn clean install
+ls -l products/python-cartridge-agent/target
+```
 
 ##Creating a Docker image
 
