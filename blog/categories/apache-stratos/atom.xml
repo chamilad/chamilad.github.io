@@ -4,7 +4,7 @@
   <title><![CDATA[Category: apache stratos | nuts!]]></title>
   <link href="http://chamilad.github.io/blog/categories/apache-stratos/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2015-03-17T06:06:17+05:30</updated>
+  <updated>2015-03-17T06:17:56+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Apache Stratos Cartridge Agent: Instance Configuration by Puppet]]></title>
+    <link href="http://chamilad.github.io/blog/2015/03/17/apache-stratos-cartridge-agent-instance-configuration-by-puppet/"/>
+    <updated>2015-03-17T05:43:48+05:30</updated>
+    <id>http://chamilad.github.io/blog/2015/03/17/apache-stratos-cartridge-agent-instance-configuration-by-puppet</id>
+    <content type="html"><![CDATA[<blockquote><p>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you&rsquo;ve missed the memo, why not start from the <a href="http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-contract/">first article</a></p></blockquote>
+
+<h1>A Walk-through</h1>
+
+<p>With the introductory knowledge on the major tasks a Cartridge Agent should fulfill, let&rsquo;s take a walk along a typical Cartridge Agent life cycle. For this scenario, let&rsquo;s take in to consideration the life cycle of a Cartridge Agent inside a PHP cartridge instance. The PHP cartridge is a single-tenant cartridge, which basically means that for each subscription (for each tenant) a new instance will be spawned. It will require to copy the web artifacts from a specified remote repository and keep running until unsubscribed.</p>
+
+<h2>Configuration</h2>
+
+<p>Let&rsquo;s first start with the configuration phase of the instance. This happens outside the actual life cycle of the Cartridge Agent.</p>
+
+<p>Currently in Apache Stratos, the instance configuration is managed through Puppet modules. When each instance is started, <code>/root/bin/init.sh</code> script will be executed, which starts a Puppet agent run. The Puppet agent will retrieve the</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Apache Stratos Cartridge Agent: Day 0]]></title>
@@ -22,7 +41,7 @@
 
 <h1>Role of the Cartridge Agent</h1>
 
-<p>When the instances are spawned in Apache Stratos a few requirements that the particular instance should fulfill. It should</p>
+<p>When the instances are spawned in Apache Stratos, there are a few requirements that the particular instance should fulfill. It should</p>
 
 <ol>
 <li>Listen to the message broker events that are intended to it and publish events notifying any listening parties of its current state (STARTED|ACTIVATED|MAINTENANCE_MODE etc)</li>
