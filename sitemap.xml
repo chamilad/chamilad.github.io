@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://chamilad.github.io/blog/2015/03/17/apache-stratos-cartridge-agent-contract/</loc>
+    <lastmod>2015-03-17T04:25:03+05:30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://chamilad.github.io/blog/2014/10/10/thrift-communication-in-apache-stratos/</loc>
     <lastmod>2014-10-10T15:33:51+05:30</lastmod>
     <priority>0.8</priority>
@@ -53,111 +59,135 @@
   
   <url>
     <loc>http://chamilad.github.io/404.html</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://chamilad.github.io/assets/bootstrap/docs/about.html</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://chamilad.github.io/assets/bootstrap/docs/components.html</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://chamilad.github.io/assets/bootstrap/docs/css.html</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://chamilad.github.io/assets/bootstrap/docs/customize.html</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://chamilad.github.io/assets/bootstrap/docs/getting-started.html</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/blog/</loc>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://chamilad.github.io/</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
-    <loc>http://chamilad.github.io/blog/</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
     <loc>http://chamilad.github.io/assets/bootstrap/docs/</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>http://chamilad.github.io/blog/archives/</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://chamilad.github.io/archives/</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/blog/archives/</loc>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://chamilad.github.io/about/</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://chamilad.github.io/assets/bootstrap/docs/javascript.html</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://chamilad.github.io/assets/bootstrap/docs/migration.html</loc>
-    <lastmod>2014-10-20T12:51:58+05:30</lastmod>
+    <lastmod>2015-03-17T06:02:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   
   <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/js/tests/index.html</loc>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/non-responsive/index.html</loc>
     <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/jumbotron/index.html</loc>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/justified-nav/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/navbar-static-top/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/sticky-footer-navbar/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/grid/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/starter-template/index.html</loc>
     <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
     <priority>0.6</priority>
   </url>
@@ -169,13 +199,31 @@
   </url>
   
   <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/non-responsive/index.html</loc>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/navbar-fixed-top/index.html</loc>
     <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/navbar-fixed-top/index.html</loc>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/cover/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/jumbotron/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/navbar/index.html</loc>
+    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/dashboard/index.html</loc>
     <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
     <priority>0.6</priority>
   </url>
@@ -193,7 +241,7 @@
   </url>
   
   <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/starter-template/index.html</loc>
+    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/jumbotron-narrow/index.html</loc>
     <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
     <priority>0.6</priority>
   </url>
@@ -205,25 +253,7 @@
   </url>
   
   <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/jumbotron-narrow/index.html</loc>
-    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/carousel/index.html</loc>
-    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/cover/index.html</loc>
-    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/navbar-static-top/index.html</loc>
     <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
     <priority>0.6</priority>
   </url>
@@ -235,31 +265,7 @@
   </url>
   
   <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/sticky-footer-navbar/index.html</loc>
-    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/justified-nav/index.html</loc>
-    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/grid/index.html</loc>
-    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/dashboard/index.html</loc>
-    <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://chamilad.github.io/assets/bootstrap/docs/examples/navbar/index.html</loc>
+    <loc>http://chamilad.github.io/assets/bootstrap/js/tests/index.html</loc>
     <lastmod>2014-06-11T18:25:1402491310Z</lastmod>
     <priority>0.6</priority>
   </url>
