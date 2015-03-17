@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cartridge agent | nuts!]]></title>
   <link href="http://chamilad.github.io/blog/categories/cartridge-agent/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2015-03-17T10:07:11+05:30</updated>
+  <updated>2015-03-17T10:18:27+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -18,7 +18,7 @@
     <link href="http://chamilad.github.io/blog/2015/03/17/apache-stratos-cartridge-agent-contract/"/>
     <updated>2015-03-17T04:25:03+05:30</updated>
     <id>http://chamilad.github.io/blog/2015/03/17/apache-stratos-cartridge-agent-contract</id>
-    <content type="html"><![CDATA[<p>As the first post of a series of comprehensive guide to the Apache Stratos Cartridge Agent, let&rsquo;s look at the Cartridge Agent contract. Keep tuned in and expect more detailed explanations on the instance and Cartridge Agent configuration, workflow different Cartridge Agent implementations, their configurations and newly introduced plugin system in the Python implementation.</p>
+    <content type="html"><![CDATA[<p>As the first post of a series of comprehensive guide to the Apache Stratos Cartridge Agent, let&rsquo;s look at the Cartridge Agent contract. Keep tuned in and expect more detailed explanations on the instance and Cartridge Agent configuration, workflow, different Cartridge Agent implementations, their configurations and newly introduced plugin system in the Python implementation.</p>
 
 <h1>Role of the Cartridge Agent</h1>
 
