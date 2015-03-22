@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cartridge agent | nuts!]]></title>
   <link href="http://chamilad.github.io/blog/categories/cartridge-agent/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2015-03-21T23:47:23+05:30</updated>
+  <updated>2015-03-22T17:55:16+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -12,6 +12,115 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2]]></title>
+    <link href="http://chamilad.github.io/blog/2015/03/21/apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/"/>
+    <updated>2015-03-21T23:25:09+05:30</updated>
+    <id>http://chamilad.github.io/blog/2015/03/21/apache-stratos-cartridge-agent-instance-configuration-by-puppet-2</id>
+    <content type="html"><![CDATA[<blockquote><p>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you&rsquo;ve missed the memo, why not start from the <a href="http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-contract/">first article</a>?</p></blockquote>
+
+<p>One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the [last article])(<a href="http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-instance-configuration-by-puppet/">http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-instance-configuration-by-puppet/</a>), Puppet can be used to install, configure and start the Cartridge Agent. In this article, we will discuss how this is done in detail.</p>
+
+<h1>Configurations</h1>
+
+<p>The Cartridge Agent needs several parameters to start functioning correctly.</p>
+
+<ol>
+<li>Message broker IP address and port</li>
+<li>Complex Event Processor IP address and port</li>
+<li>Application path (for repository based cartridges)</li>
+</ol>
+
+
+<p>In addition to these parameters, there are several others which might be crucial to Cartridge Agent life cycle, based on different scenarios. However, at minimum, it needs the details of the above mentioned parameters to successfully function.</p>
+
+<p>For orchestration in the VM scenario, we provide these values to Puppet, which in turn will configure the Cartridge Agent accordingly.</p>
+
+<h2>base.pp</h2>
+
+<p>The purpose of the <code>base.pp</code> in <code>/etc/puppet/manifests/nodes/</code> folder is to serve as a super node definition which can be inherited by service type node definitions. It contains a list of variables that can be used by any module that inherits it. As of Stratos 4.1.0 release the contents of the <code>base.pp</code> file looks like as follows. The variables are pretty much self explanatory.</p>
+
+<p>```puppet
+node &lsquo;base&rsquo; {</p>
+
+<p>  #essential variables
+  $package_repo         = &lsquo;<a href="http://10.4.128.7">http://10.4.128.7</a>&rsquo;
+  $local_package_dir    = &lsquo;/mnt/packs&rsquo;
+  $mb_url               = &lsquo;tcp://127.0.0.1:1883&rsquo;
+  $mb_type              = &lsquo;activemq&rsquo; #in wso2 mb case, value should be &lsquo;wso2mb&rsquo;
+  $cep_ip               = &lsquo;127.0.0.1&rsquo;
+  $cep_port             = &lsquo;7711&rsquo;
+  $cep_username         =&lsquo;admin&rsquo;
+  $cep_password         =&lsquo;admin&rsquo;
+  $truststore_password  = &lsquo;wso2carbon&rsquo;
+  $java_distribution    = &lsquo;jdk-7u51-linux-x64.tar.gz&rsquo;
+  $java_name            = &lsquo;jdk1.7.0_51&rsquo;
+  $member_type_ip       = &lsquo;private&rsquo;
+  $lb_httpPort          = &lsquo;80&rsquo;
+  $lb_httpsPort         = &lsquo;443&rsquo;
+  $tomcat_version       = &lsquo;7.0.52&rsquo;
+  $enable_log_publisher = &lsquo;false&rsquo;
+  $bam_ip               = &lsquo;127.0.0.1&rsquo;
+  $bam_port             = &lsquo;7611&rsquo;
+  $bam_secure_port      = &lsquo;7711&rsquo;
+  $bam_username         = &lsquo;admin&rsquo;
+  $bam_password         = &lsquo;admin&rsquo;
+  $metadata_service_url = &lsquo;<a href="https://127.0.0.1:9443">https://127.0.0.1:9443</a>&rsquo;</p>
+
+<p>  require stratos_base
+}
+```</p>
+
+<p>The <code>base.pp</code> file should be modified to include proper values when the Puppet master is configured.</p>
+
+<h2>Cartridge Agent modules</h2>
+
+<p>Apache Stratos 4.1.0 ships with two implementations of the Cartridge Agent, default Java agent and a Python based agent. The respective Puppet modules for these implementations are <code>agent</code> and <code>python_agent</code> inside <code>/etc/puppet/modules</code> folder.</p>
+
+<p>Both modules have a similar flow of execution, where there are separate steps to,</p>
+
+<ol>
+<li>Copy the Cartridge Agent distribution from the Puppet master to the instance</li>
+<li>Copy templates reflecting configuration files, Cartridge Agent extensions and plugins, and configure parameters as given by <code>base.pp</code> and calling modules</li>
+<li>Start Cartridge Agent</li>
+</ol>
+
+
+<p>If a calling module (the module which includes the Cartridge Agent module, typically a service type like PHP) needs to override a value provided through base.pp it can do so by assigning the new value to the variable at the time of Puppet module inclusion.</p>
+
+<h3>Cartridge Agent Extensions and Plugins</h3>
+
+<p>In addition to <a href="http://code.chamiladealwis.com/2015/03/17/apache-stratos-cartridge-agent-contract/">what the Cartridge Agent does as a generic agent to all services</a>, each service can make use of extensions, and in the Python implementation, plugins to add additional behavior to it. We will go in to more details about the extensions and plugins in a separate article, however you only need to be aware of them as being executed for specified events that are processed by the Cartridge Agent. For example, you can have an extension that can be specified to be executed, when an ArtifactUpdatedEvent is processed by the Cartridge Agent.</p>
+
+<p>For each service that includes the Puppet module for a certain implementation of the Cartridge Agent, it can specify a list of extensions and plugins that should be copied over to the Cartridge Agent. For example, this is how the PHP module specifies the list of plugins and extensions that should be included in the Cartridge Agent, when the running service is PHP.</p>
+
+<p>```puppet
+  $custom_agent_templates = [&lsquo;extensions/artifacts-updated.sh&rsquo;]
+  $custom_plugins = [&lsquo;plugins/PhpServerStarterPlugin.py&rsquo;, &lsquo;plugins/PhpServerStarterPlugin.yapsy-plugin&rsquo;]
+  class {&lsquo;python_agent&rsquo;:</p>
+
+<pre><code>custom_templates =&gt; $custom_agent_templates,
+custom_plugins =&gt; $custom_plugins,
+module=&gt;'php'
+</code></pre>
+
+<p>  }
+```</p>
+
+<p>While the Cartridge Agent is executing, these specified extensions and plugins will be executed when their respective events are processed.</p>
+
+<p>As mentioned above, it is the responsibility of the Cartridge Agent to start the respective services related to the spawned Cartridge. This is also done using a Cartridge Agent plugin (Python implementation) or an extension (Java implementation).</p>
+
+<h1>Conclusion for Configuration</h1>
+
+<p>By the end of this article, we should be aware of the details of the configuration needed by the Cartridge Agent. At least, that was my intention. If you feel like I&rsquo;ve missed a crucial explanation, feel free to drop a comment.</p>
+
+<p>As of now, Apache Stratos only supports Puppet as a configuration tool for Cartridge instances. However in the future releases, it will also be possible use Chef, or another similar tool as a replacement for Puppet.</p>
+
+<p>From this point onwards, we will start on the details of the Cartridge Agent life cycle execution. For that we will first go through a typical work flow of a PHP Cartridge instance&hellip;. in the next article!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Apache Stratos Cartridge Agent: Instance Configuration by Puppet 1]]></title>

@@ -50,6 +50,10 @@
     
         <li class="active"><a href="/index.html">Home</a></li>
     
+        <li ><a href="/about">About</a></li>
+    
+        <li ><a href="/archives">Archive</a></li>
+    
 </ul>
 
 <ul class="nav pull-right">
@@ -95,6 +99,186 @@
 
 <div class="blog-index">
   
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2015-03-21T23:25:09+05:30" pubdate data-updated="true">Mar 21<sup>st</sup>, 2015</time></h5>
+          <div class="row-fluid">
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/apache-stratos/"><span class="badge">apache stratos</span></a>
+          
+          <a href="/blog/categories/cartridge-agent/"><span class="badge">cartridge agent</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2015/03/21/apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/">Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2</a></h1>
+      <blockquote><p>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you&rsquo;ve missed the memo, why not start from the <a href="http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-contract/">first article</a>?</p></blockquote>
+
+<p>One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the [last article])(<a href="http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-instance-configuration-by-puppet/">http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-instance-configuration-by-puppet/</a>), Puppet can be used to install, configure and start the Cartridge Agent. In this article, we will discuss how this is done in detail.</p>
+
+<h1>Configurations</h1>
+
+<p>The Cartridge Agent needs several parameters to start functioning correctly.</p>
+
+<ol>
+<li>Message broker IP address and port</li>
+<li>Complex Event Processor IP address and port</li>
+<li>Application path (for repository based cartridges)</li>
+</ol>
+
+
+<p>In addition to these parameters, there are several others which might be crucial to Cartridge Agent life cycle, based on different scenarios. However, at minimum, it needs the details of the above mentioned parameters to successfully function.</p>
+
+<p>For orchestration in the VM scenario, we provide these values to Puppet, which in turn will configure the Cartridge Agent accordingly.</p>
+
+<h2>base.pp</h2>
+
+<p>The purpose of the <code>base.pp</code> in <code>/etc/puppet/manifests/nodes/</code> folder is to serve as a super node definition which can be inherited by service type node definitions. It contains a list of variables that can be used by any module that inherits it. As of Stratos 4.1.0 release the contents of the <code>base.pp</code> file looks like as follows. The variables are pretty much self explanatory.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="kd">node</span> <span class="s1">&#39;base&#39;</span> <span class="p">{</span><span class="c-Singleline"></span>
+</span><span class='line'>
+</span><span class='line'><span class="c-Singleline">  #essential variables</span>
+</span><span class='line'>  <span class="nv">$package_repo</span>         <span class="o">=</span> <span class="s1">&#39;http://10.4.128.7&#39;</span>
+</span><span class='line'>  <span class="nv">$local_package_dir</span>    <span class="o">=</span> <span class="s1">&#39;/mnt/packs&#39;</span>
+</span><span class='line'>  <span class="nv">$mb_url</span>               <span class="o">=</span> <span class="s1">&#39;tcp://127.0.0.1:1883&#39;</span>
+</span><span class='line'>  <span class="nv">$mb_type</span>              <span class="o">=</span> <span class="s1">&#39;activemq&#39;</span><span class="c-Singleline"> #in wso2 mb case, value should be &#39;wso2mb&#39;</span>
+</span><span class='line'>  <span class="nv">$cep_ip</span>               <span class="o">=</span> <span class="s1">&#39;127.0.0.1&#39;</span>
+</span><span class='line'>  <span class="nv">$cep_port</span>             <span class="o">=</span> <span class="s1">&#39;7711&#39;</span>
+</span><span class='line'>  <span class="nv">$cep_username</span>         <span class="o">=</span><span class="s1">&#39;admin&#39;</span>
+</span><span class='line'>  <span class="nv">$cep_password</span>         <span class="o">=</span><span class="s1">&#39;admin&#39;</span>
+</span><span class='line'>  <span class="nv">$truststore_password</span>  <span class="o">=</span> <span class="s1">&#39;wso2carbon&#39;</span>
+</span><span class='line'>  <span class="nv">$java_distribution</span>    <span class="o">=</span> <span class="s1">&#39;jdk-7u51-linux-x64.tar.gz&#39;</span>
+</span><span class='line'>  <span class="nv">$java_name</span>            <span class="o">=</span> <span class="s1">&#39;jdk1.7.0_51&#39;</span>
+</span><span class='line'>  <span class="nv">$member_type_ip</span>       <span class="o">=</span> <span class="s1">&#39;private&#39;</span>
+</span><span class='line'>  <span class="nv">$lb_httpPort</span>          <span class="o">=</span> <span class="s1">&#39;80&#39;</span>
+</span><span class='line'>  <span class="nv">$lb_httpsPort</span>         <span class="o">=</span> <span class="s1">&#39;443&#39;</span>
+</span><span class='line'>  <span class="nv">$tomcat_version</span>       <span class="o">=</span> <span class="s1">&#39;7.0.52&#39;</span>
+</span><span class='line'>  <span class="nv">$enable_log_publisher</span> <span class="o">=</span> <span class="s1">&#39;false&#39;</span>
+</span><span class='line'>  <span class="nv">$bam_ip</span>               <span class="o">=</span> <span class="s1">&#39;127.0.0.1&#39;</span>
+</span><span class='line'>  <span class="nv">$bam_port</span>             <span class="o">=</span> <span class="s1">&#39;7611&#39;</span>
+</span><span class='line'>  <span class="nv">$bam_secure_port</span>      <span class="o">=</span> <span class="s1">&#39;7711&#39;</span>
+</span><span class='line'>  <span class="nv">$bam_username</span>         <span class="o">=</span> <span class="s1">&#39;admin&#39;</span>
+</span><span class='line'>  <span class="nv">$bam_password</span>         <span class="o">=</span> <span class="s1">&#39;admin&#39;</span>
+</span><span class='line'>  <span class="nv">$metadata_service_url</span> <span class="o">=</span> <span class="s1">&#39;https://127.0.0.1:9443&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kn">require</span> <span class="nc">stratos_base</span>
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>base.pp</code> file should be modified to include proper values when the Puppet master is configured.</p>
+
+<h2>Cartridge Agent modules</h2>
+
+<p>Apache Stratos 4.1.0 ships with two implementations of the Cartridge Agent, default Java agent and a Python based agent. The respective Puppet modules for these implementations are <code>agent</code> and <code>python_agent</code> inside <code>/etc/puppet/modules</code> folder.</p>
+
+<p>Both modules have a similar flow of execution, where there are separate steps to,</p>
+
+<ol>
+<li>Copy the Cartridge Agent distribution from the Puppet master to the instance</li>
+<li>Copy templates reflecting configuration files, Cartridge Agent extensions and plugins, and configure parameters as given by <code>base.pp</code> and calling modules</li>
+<li>Start Cartridge Agent</li>
+</ol>
+
+
+<p>If a calling module (the module which includes the Cartridge Agent module, typically a service type like PHP) needs to override a value provided through base.pp it can do so by assigning the new value to the variable at the time of Puppet module inclusion.</p>
+
+<h3>Cartridge Agent Extensions and Plugins</h3>
+
+<p>In addition to <a href="http://code.chamiladealwis.com/2015/03/17/apache-stratos-cartridge-agent-contract/">what the Cartridge Agent does as a generic agent to all services</a>, each service can make use of extensions, and in the Python implementation, plugins to add additional behavior to it. We will go in to more details about the extensions and plugins in a separate article, however you only need to be aware of them as being executed for specified events that are processed by the Cartridge Agent. For example, you can have an extension that can be specified to be executed, when an ArtifactUpdatedEvent is processed by the Cartridge Agent.</p>
+
+<p>For each service that includes the Puppet module for a certain implementation of the Cartridge Agent, it can specify a list of extensions and plugins that should be copied over to the Cartridge Agent. For example, this is how the PHP module specifies the list of plugins and extensions that should be included in the Cartridge Agent, when the running service is PHP.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='puppet'><span class='line'>  <span class="nv">$custom_agent_templates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;extensions/artifacts-updated.sh&#39;</span><span class="p">]</span>
+</span><span class='line'>  <span class="nv">$custom_plugins</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;plugins/PhpServerStarterPlugin.py&#39;</span><span class="p">,</span> <span class="s1">&#39;plugins/PhpServerStarterPlugin.yapsy-plugin&#39;</span><span class="p">]</span>
+</span><span class='line'>  <span class="nc">class</span> <span class="p">{</span><span class="s1">&#39;python_agent&#39;</span><span class="p">:</span>
+</span><span class='line'>    <span class="nt">custom_templates</span> <span class="p">=&gt;</span> <span class="nv">$custom_agent_templates</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">custom_plugins</span> <span class="p">=&gt;</span> <span class="nv">$custom_plugins</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">module</span><span class="p">=&gt;</span><span class="s1">&#39;php&#39;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>While the Cartridge Agent is executing, these specified extensions and plugins will be executed when their respective events are processed.</p>
+
+<p>As mentioned above, it is the responsibility of the Cartridge Agent to start the respective services related to the spawned Cartridge. This is also done using a Cartridge Agent plugin (Python implementation) or an extension (Java implementation).</p>
+
+<h1>Conclusion for Configuration</h1>
+
+<p>By the end of this article, we should be aware of the details of the configuration needed by the Cartridge Agent. At least, that was my intention. If you feel like I&rsquo;ve missed a crucial explanation, feel free to drop a comment.</p>
+
+<p>As of now, Apache Stratos only supports Puppet as a configuration tool for Cartridge instances. However in the future releases, it will also be possible use Chef, or another similar tool as a replacement for Puppet.</p>
+
+<p>From this point onwards, we will start on the details of the Cartridge Agent life cycle execution. For that we will first go through a typical work flow of a PHP Cartridge instance&hellip;. in the next article!</p>
+
+      
+      
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
   
   
     <article>
@@ -1935,60 +2119,10 @@ For an example in sample #61 the mentioned configuration refers to a property na
 
     </article>
     
-    <hr>
-    
-  
-  
-    <article>
-      
-
-  <div class="row-fluid">
-    <div class="span2 post-meta">
-	  <h5 class="date-time">
-
-
-
-
-
-
-
-
-  
-
-
-<i class="icon-calendar-empty"></i> <time datetime="2014-06-10T14:52:58+05:30" pubdate data-updated="true">Jun 10<sup>th</sup>, 2014</time></h5>
-          <div class="row-fluid">
-          
-          </div>
-          
-          <div class="row-fluid">
-          
-          <a href="/blog/categories/misc/"><span class="badge">misc</span></a>
-          
-          </div>
-          
-    </div>
-    <div class="span10 post-container">
-      <h1 class="link"><a href="/blog/2014/06/10/what-to-expect/">what to expect</a></h1>
-      <p>You&rsquo;ll find here, everyday bits and pieces of technical know-how, workarounds and fixes for common issues that I&rsquo;m assuming I&rsquo;d forget in a few hours.</p>
-
-<p>Basically this would serve me as my technical blog.</p>
-
-<p>A coder&rsquo;s journel.</p>
-
-<p>Allons-y!</p>
-
-      
-      
-    </div>
-  </div>
-
-
-
-    </article>
-    
   
   <div class="pagination">
+    
+    <a class="prev" href="2">&larr; Older</a>
     
 
     
