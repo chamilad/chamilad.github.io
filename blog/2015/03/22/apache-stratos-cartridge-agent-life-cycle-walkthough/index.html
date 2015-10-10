@@ -143,11 +143,11 @@
 
 <h2>Created</h2>
 
-<p>When the application is deployed after creating the Cluster Monitors for each cluster of Cartridges, Cloud Controller issues instance creation requests to the IaaS via JClouds. The instance state at the moment is &ldquo;CREATED&rdquo;.</p>
+<p>When the application is deployed after creating the Cluster Monitors for each cluster of Cartridges, Cloud Controller issues instance creation requests to the IaaS via JClouds. The instance state at the moment is <code>CREATED</code>.</p>
 
 <h2>Initialized</h2>
 
-<p>When the instance creation is complete, the IP addresses are assigned, and the instance starts execution, the status changes to &ldquo;INITIALIZED&rdquo;. The init scripts are executed and the Puppet agent downloads and applies the related Puppet manifests to the instance. Puppet is also responsible for starting the Cartridge Agent process. In the earlier releases, Puppet additionally started the service processes, for example Tomcat server etc. However, in the new release it is the responsibility of the Cartridge Agent to check and start the service processes. To achieve this, a Cartridge Agent plugin has to be written which will start the process.</p>
+<p>When the instance creation is complete, the IP addresses are assigned, and the instance starts execution, the status changes to <code>INITIALIZED</code>. The init scripts are executed and the Puppet agent downloads and applies the related Puppet manifests to the instance. Puppet is also responsible for starting the Cartridge Agent process. In the earlier releases, Puppet additionally started the service processes, for example Tomcat server etc. However, in the new release it is the responsibility of the Cartridge Agent to check and start the service processes. To achieve this, a Cartridge Agent plugin has to be written which will start the process.</p>
 
 <p>The reason to move the responsibility of starting the service to the Cartridge Agent was to make sure that the services would not be starting without artifact distribution succeeding for repository based Cartridge types such as Tomcat, PHP or WSO2 Identity Server. For example, for a Tomcat instance, starting the Tomcat server without the repository artifacts not cloned in to the <code>webapps</code> folder, does not make any sense. Therefore, the service should not be up and the Cartridge Agent will not be publishing the InstanceActivatedEvent to the message broker.</p>
 
@@ -190,7 +190,7 @@
 
 <p>The instance can now go to either Pending Termination state if the application is undeployed. This is called a graceful shutdown flow, where the status of the instance switches from Active->Pending Termination->Obsolete->Terminated one after the other.</p>
 
-<p>However, an instance can be directly classified as obsolete too, as described by the <a href="http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-contract/">the first pods</a> of this post series. If it fails to post health statistics events to the Complext Event Processor for more than 60 seconds, it will be classified as an obsolete instance and will be queued up for termination.</p>
+<p>However, an instance can be directly classified as obsolete too, as described by the <a href="http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-contract/">the first post</a> of this post series. If it fails to post health statistics events to the Complext Event Processor for more than 60 seconds, it will be classified as an obsolete instance and will be queued up for termination.</p>
 
 <p>When an instance reaches the Pending Termination queue, an <code>InstanceCleanupMemberEvent</code> will be published to the message broker. The relevant instance picks up this event and does the necessary cleanup operations and subsequently publishes that it is ready to be terminated by publishing <code>InstanceReadyToShutdownEvent</code> to the message broker. When that happens it will be moved up to the obsolete queue.</p>
 
