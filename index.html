@@ -1,0 +1,1767 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>nuts!</title>
+  <meta name="author" content="chamila de alwis">
+
+   
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://chamilad.github.io">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="nuts!" type="application/atom+xml">
+  <script src="/js/jquery.js"></script>
+  <script src="/js/bootstrap-collapse.js"></script>
+  <script src="/js/modernizr-2.0.js"></script>
+  <script src="/js/octopress.js" type="text/javascript"></script>
+  <script src="/js/application.js"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <div class="navbar navbar-inverse navbar-static-top">
+  	<div class="navbar-inner">
+  	  <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="fui-menu-24"></span>
+        </a>
+  	  	<div class="nav-collapse collapse navbar-responsive-collapse" style="height:0;">
+  	      <ul class="nav">
+    
+        <li class="active"><a href="/index.html">Home</a></li>
+    
+</ul>
+
+<ul class="nav pull-right">
+    
+    <li><a href="http://github.com/chamilad" title="Github Profile"><i class="icon-github-sign social-navbar"></i></a></li>
+    
+    
+    
+    <li><a href="http://linkedin.com/in/chamiladealwis" title="Linkedin Profile"><i class="icon-linkedin-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://twitter.com/chamilad" title="Twitter Profile"><i class="icon-twitter-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://plus.google.com/102488741988320223009" title="Google+ Profile"><i class="icon-google-plus-sign social-navbar"></i></a></li>
+    
+    
+    
+
+    
+</ul>
+
+  	    </div>
+  	  </div>
+  	</div>
+  </div>
+  <div class="container" id="main">
+      <div class="row-fluid">
+        <div id="content">
+          <div class="jumbotron">
+  <div class="container">
+    
+      nuts!
+    
+    <h3 class="tagline">
+      
+        For the night is dark and I&#8217;d probably forget this by tomorrow
+      
+    </h3>
+  </div>
+</div>
+
+
+<div class="blog-index">
+  
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2014-10-10T15:33:51+05:30" pubdate data-updated="true">Oct 10<sup>th</sup>, 2014</time></h5>
+          <div class="row-fluid">
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/apache-stratos/"><span class="badge">apache stratos</span></a>
+          
+          <a href="/blog/categories/thrift/"><span class="badge">thrift</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2014/10/10/thrift-communication-in-apache-stratos/">Thrift Communication in Apache Stratos</a></h1>
+      <h1>Thrift Streaming Basics in WSO2 Carbon</h1>
+
+<p>In Stratos, data publishing over Thrift is done via streaming. It uses WSO2 Carbon&rsquo;s Data Bridge to serialize data in to a stream and publish to a given Ip address and a Port. The use of DataBridge is explained <a href="http://wso2.com/library/articles/2012/07/creating-custom-agents-publish-events-bamcep/">here</a>.</p>
+
+<h2>Stream Definition</h2>
+
+<p>In order to publish data as a stream, the definition of the particular stream should be defined first. This is achieved using the <code>org.wso2.carbon.databridge.commons.StreamDefinition</code> class. The list of attributes that will be written to the stream is defined using a StreamDefinition object to be assigned to a particular DataPublisher.</p>
+
+<p>One notable aspect of the StreamDefinition class is the three separate attribute list for metaData, correlationData and payloadData in that order. This separation of the attributes is a logical divide which doesn&rsquo;t have any significant meaning on the server side when it comes to WSO2 CEP and WSO2 BAM. It is available for the publisher to make sense of the various types of data that are being published and then later analyzed. This scenario in the WSO2 CEP context is explained <a href="http://stackoverflow.com/questions/26033755/what-is-meta-data-correlation-data-and-payload-data-in-wso2-cep">here</a>.</p>
+
+<p>A StreamDefinition should minimally have a stream ID and a stream name. Additionally a nickname, and a description can be added. The stream ID is generated by the receiver when the StreamDefinition is associated with a particular connection. This constitutes of the stream name and the stream version. When publishing data this stream ID is used to retrieve the stream definition at the receiver&rsquo;s end. In fact the first two attributes to be published when publishing data are the stream ID of <code>STRING</code> type and the timestamp of the event in milliseconds of type <code>LONG</code>.</p>
+
+<p>The attributes describing the data that is published have to added to the StreamDefinition <em>in the order they are to be published</em>. The order is important in a data stream because it is bound to the way the data is read from the receiver&rsquo;s side.</p>
+
+<p>For each attribute added, the type of the data should be defined. WSO2 DataBridge provides readable attribute types that represents the <a href="http://thrift-tutorial.readthedocs.org/en/latest/thrift-types.html">type system in Thrift</a>, as <code>INT</code>, <code>LONG</code>, <code>FLOAT</code>, <code>DOUBLE</code>, <code>STRING</code> and <code>BOOL</code>.</p>
+
+<h2>Data</h2>
+
+<p>Data are written in to the stream as Events. <code>org.wso2.carbon.databridge.commons.Event</code> object stores the data for a particular event and when the time comes to actually serialize the data in to the wire, <code>org.wso2.carbon.databridge.agent.thrift.internal.utils.ThriftEventConverter</code> adds all the data together and assigns proper Thrift types to each data. This logic is implemented in the Carbon platform&rsquo;s DataBridge.</p>
+
+<h1>Usage Scenarios</h1>
+
+<p>Apache Stratos publishes data over Thrift in two scenarios. Both scenarios are involved with managing cartridges based on their performance. Cartridge Agent initiates and manages streaming of data from the cartridge to the monitoring server/complex event processing server. The addresses and the credentials of the data aggregation servers should be provided from Stratos to the cartridge agent.</p>
+
+<h2>Health Statistics Publishing</h2>
+
+<p><img src="/images/post_resource/thrift/healthstats.jpg"></p>
+
+<p>Health statistics of a particular cartridge instance is used by a real time processing engine to declare events that manage the cartridge life cycle. For example based on the memory load and the CPU usage, CEP can publish events that the AutoScaling picks up and accordingly spawn new instances. Another example is the AutoScaler terminating faulty cartridges based on events published by the CEP when health statistics publishing stops for a certain period of timeout. The role of the AutoScaler along with a CEP is described <a href="https://cwiki.apache.org/confluence/display/STRATOS/4.1.0+Auto-scaler">here</a>.</p>
+
+<p>Following values should be passed to the Cartridge Agent via the Puppet Configuration, which includes these values as system properties when the Cartridge Agent starts up. They are then used to establish the connection and publish the data to the Thrift receiver.</p>
+
+<ol>
+<li>Ip address (<code>thrift.receiver.ip</code>)</li>
+<li>Port (<code>thrift.receiver.port</code>) &ndash; 7711 is the default value</li>
+<li>Username(<code>thrift.server.admin.username</code>)</li>
+<li>Password(<code>thrift.server.admin.password</code>)</li>
+</ol>
+
+
+<p>The Cartridge Agent publishes several events to the message broker after it starts, two key events being the InstanceStartedEvent and the InstanceActivatedEvent. The InstanceStartedEvent is published after the Topology is confirmed as consistent. The InstanceActivatedEvent is published after the InstanceStartedEvent, but this can happen in two code paths. If there is no repository based artifact management to be done, the InstanceActivatedEvent will be published immediately by the CartridgeAgent. If the Cartridge Agent has to wait for the ArtifactUpdatedEvent to start managing the artifacts related to a repository, the InstanceActivatedEvent will be published after the artifacts are synchronized to the instance. These events are published from the Cartridge Agent to the <code>/instance/status</code> topic in the message broker. In both cases the health statistics publishing job starts after the InstanceActivatedEvent is published. The interval at which the health statistics publishing job works can be adjusted by specifying <code>stats.notifier.interval</code> property of the cartridge agent. By default this is set to 15 seconds.</p>
+
+<p>The health statistics are published with the stream name <code>cartridge_agent_health_stats</code>. The stream definition contains only the payload data and the types of the added payload data are as follows.</p>
+
+<ol>
+<li>&ldquo;cluster_id&rdquo;           => STRING</li>
+<li>&ldquo;network_partition_id&rdquo; => STRING</li>
+<li>&ldquo;member_id&rdquo;            => STRING</li>
+<li>&ldquo;partition_id&rdquo;         => STRING</li>
+<li>&ldquo;health_description&rdquo;   => STRING</li>
+<li>&ldquo;value&rdquo;                => DOUBLE</li>
+</ol>
+
+
+<p>Two types of health statistics are published by the cartridge agent, percentage of free memory, and the load average of the CPU. <code>health_description</code> field uses values <code>memory_consumption</code> and <code>load_average</code> respectively for these two readings.</p>
+
+<p>Health statistics publishing can be disabled by setting <code>cep.stats.publisher.enabled</code> property of the Cartridge agent to <code>false</code>.</p>
+
+<h2>Log Publishing</h2>
+
+<p><img src="/images/post_resource/thrift/logs.jpg"></p>
+
+<p>The application logs are published to a monitoring server by the cartridge agent for data analysis. For this the property <code>enable.data.publisher</code> should be set to <code>true</code>.</p>
+
+<p>The log publishing thread starts as soon as the cartridge agent initialization is complete. For it to connect to the Thrift receiver following fields have to be passed to the Cartridge Agent.</p>
+
+<ol>
+<li>Ip address (<code>monitoring.server.ip</code>)</li>
+<li>Port (<code>monitoring.server.port</code>)</li>
+<li>Secure Port (<code>monitoring.server.secure.port</code>)</li>
+<li>Username (<code>monitoring.server.admin.username</code>)</li>
+<li>Password (<code>monitoring.server.admin.password</code>)</li>
+</ol>
+
+
+<p>The stream definition for the log publishing is as follows. Note that one metaData attribute is added to the definition by the publisher. This contains the member ID of the particular instance that is publishing the data.</p>
+
+<h4>MetaData</h4>
+
+<ol>
+<li>&ldquo;memberId&rdquo;   => STRING</li>
+</ol>
+
+
+<h4>PayloadData</h4>
+
+<ol>
+<li>&ldquo;tenantID&rdquo;   => STRING</li>
+<li>&ldquo;serverName&rdquo; => STRING</li>
+<li>&ldquo;appName&rdquo;    => STRING</li>
+<li>&ldquo;logTime&rdquo;    => LONG</li>
+<li>&ldquo;priority&rdquo;   => STRING</li>
+<li>&ldquo;message&rdquo;    => STRING</li>
+<li>&ldquo;logger&rdquo;     => STRING</li>
+<li>&ldquo;ip&rdquo;         => STRING</li>
+<li>&ldquo;instance&rdquo;   => STRING</li>
+<li>&ldquo;stacktrace&rdquo; => STRING</li>
+</ol>
+
+
+<p>The log publisher stream is defined with the name of format <code>logs.{tenantId}.{cartridgeAlias}.yyyy.MM.dd</code>.</p>
+
+<p>For each of the log that is mentioned under <code>log.file.paths</code> parameter a separate <code>org.apache.stratos.cartridge.agent.data.publisher.log.FileBasedLogPublisher</code> thread is started.</p>
+
+<p>The FileBasedLogPublisher scans the log file for new lines and for each new line added, publishes a new Event to the Thrift receiver. Therefore there is no defined interval for the log publisher naturally.</p>
+
+      
+      
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2014-08-05T23:08:34+05:30" pubdate data-updated="true">Aug 5<sup>th</sup>, 2014</time></h5>
+          <div class="row-fluid">
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/virtualization/"><span class="badge">virtualization</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2014/08/05/pppoe-on-virtualbox/">PPPOE on VirtualBox</a></h1>
+      <p>A quick note!</p>
+
+<p>If your internet connection comes as a PPPOE connection and it can&rsquo;t be selected on the drop down list when &ldquo;Bridged network&rdquo; is selected on Network tab of the VM settings in VirtualBox. You can create a host-only network and configure a static ip for eth0 on the guest OS to make it accessible to outside.</p>
+
+<p>A host-only network virtualizes the network interface of the host OS and uses it as a loopback device to enable guest OS to communicate on their network and with the host<a href="https://www.virtualbox.org/manual/ch06.html">[1]</a>.</p>
+
+<p>Go to VirtualBox preferences (Ctrl + G) and navigate to the Network tab. Click on the &ldquo;Host-Only network&rdquo; tab and add a new host-only network. On the dialog that comes, go to the &ldquo;DHCP Server&rdquo; tab and disable it. VirtualBox provides its own DHCP server so the guest OS are able to use it, but if you want a consistent IP disabling it is the best course. Note down the IP address of the host-only network and its netmask. You might want to restart the networking service on the host os. Issue an <code>ifconfig -a</code> and you will see the virtual loopback device being listed.</p>
+
+<p>Go to your VM&rsquo;s settings and navigate to the &ldquo;Network&rdquo; tab. On the network adaptor you&rsquo;re going to use as the connection to the network, select &ldquo;Host-Only adaptor&rdquo; as the networking type to attach to. Then select the host-only network device we created in the VirtualBox preferences. Select &ldquo;Allow All&rdquo; for &ldquo;Promiscuous Mode&rdquo;.</p>
+
+<p>Start your VM and login as a super user. Define<a href="https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually">[2]</a><a href="http://www.putorius.net/2012/10/how-to-configure-static-ip-address-in.html">[3]</a> the network interface you attached to the Host-Only network with a static IP in the network of the host-only network. Point the gateway to the IP address of the host-only network. Restart the network service and your guest OS will have an IP which is accessible from the host.</p>
+
+<p><strong>Note</strong>: If you come across any issues when restarting the network service with an error message containing &ldquo;file exists&rdquo; it&rsquo;s possible that network devices and their mappings to network device names have been jumbled. Best course to take is to delete the rules file and reboot the machine to regenerate it. This issue is likely to occur in Ubuntu distributions before 12.04 or in RedHat distributions<a href="http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/">[4]</a>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo rm -rv /etc/udev/rules.d/70-persistant-*
+</span><span class='line'>sudo reboot
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>[1] &ndash; <a href="https://www.virtualbox.org/manual/ch06.html">https://www.virtualbox.org/manual/ch06.html</a></p>
+
+<p>[2] &ndash; <a href="https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually">https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually</a></p>
+
+<p>[3] &ndash; <a href="http://www.putorius.net/2012/10/how-to-configure-static-ip-address-in.html">http://www.putorius.net/2012/10/how-to-configure-static-ip-address-in.html</a></p>
+
+<p>[4] &ndash; <a href="http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/">http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/</a></p>
+
+      
+      
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2014-07-19T18:27:13+05:30" pubdate data-updated="true">Jul 19<sup>th</sup>, 2014</time></h5>
+          <div class="row-fluid">
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/esb/"><span class="badge">esb</span></a>
+          
+          <a href="/blog/categories/security/"><span class="badge">security</span></a>
+          
+          <a href="/blog/categories/web-services/"><span class="badge">web services</span></a>
+          
+          <a href="/blog/categories/wso2/"><span class="badge">wso2</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2014/07/19/consuming-a-service-secured-by-wso2-esb/">Consuming a Service Secured by WSO2 ESB</a></h1>
+      <p>In the <a href="http://code.chamiladealwis.com/blog/2014/07/18/securing-a-web-service-with-wso2-esb/">last post</a> I explained the steps needed, although somewhat minimal, to secure an unsecured backend service with WSO2 ESB. In this post I will continue on to the client side of the communication explaining the minimal client needed to communicate with the secure proxy service we created and take a peak at the action going on under the hood.</p>
+
+<h1>UsernameToken</h1>
+
+<p>Before we dive in to the client side code let&rsquo;s take a look at the WS-Policy for the UsernameToken security we applied to our service.</p>
+
+<p>Login to the WSO2 ESB <a href="https://localhost:9443/carbon">Management console</a> and go to the Proxy service we created. In the &ldquo;Quality of Service Configuration&rdquo; section there is a link to &ldquo;Policies&rdquo;. Go to it and click in the &ldquo;Edit Policy&rdquo; button in front of the SOAP12Binding sub section.</p>
+
+<p>What we are interested here is the content inside the <code>&lt;sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"&gt;</code> tag. This describes the authentication policy that is applied to the proxy service. Since we applied UsernameToken the content will be similar to the following.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;sp:SignedSupportingTokens</span> <span class="na">xmlns:sp=</span><span class="s">&quot;http://schemas.xmlsoap.org/ws/2005/07/securitypolicy&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;wsp:Policy&gt;</span>
+</span><span class='line'>       <span class="nt">&lt;sp:UsernameToken</span> <span class="na">sp:IncludeToken=</span><span class="s">&quot;http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient&quot;</span><span class="nt">&gt;&lt;/sp:UsernameToken&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/wsp:Policy&gt;</span>
+</span><span class='line'> <span class="nt">&lt;/sp:SignedSupportingTokens&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This policy is embedded in the WSDL of the secured proxy service we created so the consuming party can derive the security demands of the service from it.</p>
+
+<h1>Writing the Java Client</h1>
+
+<p>To access the secure proxy service the following requirements should be satisfied.</p>
+
+<ol>
+<li>The server certificate should be added to the trust store.</li>
+<li>Axis2 modules and libraries of Apache Rampart and its dependencies should be provided</li>
+<li>The username and the password for the account which is granted access to the proxy service should be provided.</li>
+</ol>
+
+
+<h2>Adding the certificate to the trust store</h2>
+
+<p>As you might be aware in HTTPS the server has to provide a self-signed or CA signed certificate for its secure communication and the client has to add that certificate as trusted to its trust store. WSO2Carbon products come with a self-signed certificate and you can add that certificate to your trust store to initiate secure communication. For demo purposes we&rsquo;ll use the same trust store that WSO2 ESB uses so you will not be needing to extract and import the certificate to your own trust store.</p>
+
+<p>In case you&rsquo;re using your own trust store, <a href="http://udaraliyanage.wordpress.com/2014/06/14/convert-wso2carbon-jks-into-pem-format-extract-certificate-and-private-key/">this article</a> by Udara Liyanage describes how to extract the server certificate from the keystore. After the certificate is extracted add it to your trust store. For this you can use the keytool command as follows.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>keytool -import -alias wso2_esb_server -file /path/to/server-certificate-file.crt -keystore /path/to/trust-store.jks -storepass truststorepassword
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can use your own trust store and set the path to the keystore file in the code or you can use the Java runtime trust store which is located in <code>$JRE_HOME/lib/security</code>.</p>
+
+<p>To verify that the certificate was added you can grep the list of certificates in the trust store.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>keytool -list -keystore /path/to/trust-store.jks -storepass truststorepassword <span class="p">|</span> grep wso2_esb_server
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Apache Rampart</h2>
+
+<p>Apache Rampart handles the security aspects in Axis2 and is needed to make use of WS-Security.</p>
+
+<p><a href="http://axis.apache.org/axis2/java/rampart/download.html">Download Rampart</a> and extract the zip file.</p>
+
+<p>Inside the lib folder the rampart library and its dependencies are contained. Inside the modules folder rampart and rahas Axis2 modules are contained. Rampart libraries should be available in the Classpath of the Java client we are going to execute while the Rampart Axis2 modules should be available in an Axis2 repository.</p>
+
+<p><a href="http://wso2.com/library/tutorials/axis2-repository/">An Axis2 repository</a> consist of the following folder structure.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>└── repository
+</span><span class='line'>    ├── modules
+</span><span class='line'>    ├── services
+</span><span class='line'>    └── conf
+</span><span class='line'>       └── axis2.xml
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you&rsquo;ve downloaded and extracted Axis2 to be used as a standalone Axis2 server then you can use that location. Copy the module archive (.mar) files from the extracted rampart folder to the repository/modules folder.</p>
+
+<p>In the client code we will be engaging the Rampart module to handle the WS-Security headers.</p>
+
+<h2>Client Code</h2>
+
+<p>Assuming the service and the operations described in the <a href="http://code.chamiladealwis.com/blog/2014/07/01/creating-a-web-service-using-apache-axis2-no-ide/">&ldquo;Creating a Web Service using Apache Axis2&rdquo;</a> article the following Java client can be used to access the secured proxy service.</p>
+
+<p>Create the Stub and the CallbackHandler classes using the <code>wsdl2java</code> tool as described in the above mentioned article. You must use the WSDL of the secured proxy service for source generation. Then code the client as follows. Replace <code>ESB_HOME</code> and <code>AXIS2_HOME</code> with your own locations.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">chamiladealwis</span><span class="o">.</span><span class="na">ws</span><span class="o">.</span><span class="na">client</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.rmi.RemoteException</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.axis2.context.ConfigurationContext</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.axis2.context.ConfigurationContextFactory</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleServiceSecureClient</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// set trust store path and password. </span>
+</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;javax.net.ssl.trustStore&quot;</span><span class="o">,</span>
+</span><span class='line'>                    <span class="s">&quot;ESB_HOME/repository/resources/security/client-truststore.jks&quot;</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;javax.net.ssl.trustStorePassword&quot;</span><span class="o">,</span> <span class="s">&quot;wso2carbon&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// create the configuration context from an axis repository. </span>
+</span><span class='line'>            <span class="n">ConfigurationContext</span> <span class="n">ctx</span> <span class="o">=</span>
+</span><span class='line'>                                   <span class="n">ConfigurationContextFactory</span><span class="o">.</span><span class="na">createConfigurationContextFromFileSystem</span><span class="o">(</span><span class="s">&quot;AXIS2_HOME/repository&quot;</span><span class="o">,</span><span class="kc">null</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">SimpleServiceExampleProxyStub</span> <span class="n">secureStub</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleServiceExampleProxyStub</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// set username and password to access the service</span>
+</span><span class='line'>            <span class="n">secureStub</span><span class="o">.</span><span class="na">_getServiceClient</span><span class="o">().</span><span class="na">getOptions</span><span class="o">().</span><span class="na">setUserName</span><span class="o">(</span><span class="s">&quot;admin&quot;</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">secureStub</span><span class="o">.</span><span class="na">_getServiceClient</span><span class="o">().</span><span class="na">getOptions</span><span class="o">().</span><span class="na">setPassword</span><span class="o">(</span><span class="s">&quot;admin&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// engage rampart module to set WS-Security headers.</span>
+</span><span class='line'>            <span class="n">secureStub</span><span class="o">.</span><span class="na">_getServiceClient</span><span class="o">().</span><span class="na">engageModule</span><span class="o">(</span><span class="s">&quot;rampart&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// execute remote call</span>
+</span><span class='line'>            <span class="n">SimpleServiceExampleProxyStub</span><span class="o">.</span><span class="na">Add</span> <span class="n">addReq</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleServiceExampleProxyStub</span><span class="o">.</span><span class="na">Add</span><span class="o">();</span>
+</span><span class='line'>            <span class="n">addReq</span><span class="o">.</span><span class="na">setNum1</span><span class="o">(</span><span class="mi">45</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">addReq</span><span class="o">.</span><span class="na">setNum2</span><span class="o">(</span><span class="mi">53</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">SimpleServiceExampleProxyStub</span><span class="o">.</span><span class="na">AddResponse</span> <span class="n">addResponse</span> <span class="o">=</span> <span class="n">secureStub</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">addReq</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Response received : &quot;</span> <span class="o">+</span> <span class="n">addResponse</span><span class="o">.</span><span class="na">get_return</span><span class="o">());</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">RemoteException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We have used the trust store that WSO2 ESB uses so we will not have to import the certificate used by the server.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;javax.net.ssl.trustStore&quot;</span><span class="o">,</span>
+</span><span class='line'>        <span class="s">&quot;ESB_HOME/repository/resources/security/client-truststore.jks&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;javax.net.ssl.trustStorePassword&quot;</span><span class="o">,</span> <span class="s">&quot;wso2carbon&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The ConfigurationContext is generated from the repository location. We have copied the Rampart and Rahas Axis2 modules to this repository to be used when later engageModule(&ldquo;rampart&rdquo;) is called.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">ConfigurationContext</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">ConfigurationContextFactory</span><span class="o">.</span><span class="na">createConfigurationContextFromFileSystem</span><span class="o">(</span><span class="s">&quot;AXIS2_HOME/repository&quot;</span><span class="o">,</span><span class="kc">null</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">SimpleServiceExampleProxyStub</span> <span class="n">secureStub</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleServiceExampleProxyStub</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">....</span>
+</span><span class='line'><span class="n">secureStub</span><span class="o">.</span><span class="na">_getServiceClient</span><span class="o">().</span><span class="na">engageModule</span><span class="o">(</span><span class="s">&quot;rampart&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The username and the password to the account that is allowed to use the secured proxy service is included.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">secureStub</span><span class="o">.</span><span class="na">_getServiceClient</span><span class="o">().</span><span class="na">getOptions</span><span class="o">().</span><span class="na">setUserName</span><span class="o">(</span><span class="s">&quot;admin&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">secureStub</span><span class="o">.</span><span class="na">_getServiceClient</span><span class="o">().</span><span class="na">getOptions</span><span class="o">().</span><span class="na">setPassword</span><span class="o">(</span><span class="s">&quot;admin&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that this code works with SOAP messages and WS-* standards. If you want to use the REST communication method use the following code. This code does not make use of Rampart module since authentication is done using HTTP Authorization header (Basic auth mechanism since we&rsquo;ve used UsernameToken policy in our proxy service).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">chamiladealwis</span><span class="o">.</span><span class="na">ws</span><span class="o">.</span><span class="na">client</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.rmi.RemoteException</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.axis2.Constants</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.axis2.transport.http.HTTPConstants</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.axis2.transport.http.HttpTransportProperties</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.axis2.transport.http.HttpTransportProperties.Authenticator</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleServiceSecureClient</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;javax.net.ssl.trustStore&quot;</span><span class="o">,</span>
+</span><span class='line'>                    <span class="s">&quot;/home/chamilad/dev/wso2esb-4.8.1/repository/resources/security/client-truststore.jks&quot;</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;javax.net.ssl.trustStorePassword&quot;</span><span class="o">,</span> <span class="s">&quot;wso2carbon&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">SimpleServiceExampleProxyStub</span> <span class="n">secureStub</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleServiceExampleProxyStub</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// set credentials to the secure proxy service</span>
+</span><span class='line'>            <span class="n">HttpTransportProperties</span><span class="o">.</span><span class="na">Authenticator</span> <span class="n">authenticator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Authenticator</span><span class="o">();</span>
+</span><span class='line'>            <span class="n">authenticator</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">&quot;admin&quot;</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">authenticator</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">&quot;admin&quot;</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">secureStub</span><span class="o">.</span><span class="na">_getServiceClient</span><span class="o">().</span><span class="na">getOptions</span><span class="o">().</span><span class="na">setProperty</span><span class="o">(</span><span class="n">HTTPConstants</span><span class="o">.</span><span class="na">AUTHENTICATE</span><span class="o">,</span> <span class="n">authenticator</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">secureStub</span><span class="o">.</span><span class="na">_getServiceClient</span><span class="o">().</span><span class="na">getOptions</span><span class="o">().</span><span class="na">setProperty</span><span class="o">(</span><span class="n">Constants</span><span class="o">.</span><span class="na">Configuration</span><span class="o">.</span><span class="na">ENABLE_REST</span><span class="o">,</span> <span class="n">Constants</span><span class="o">.</span><span class="na">VALUE_TRUE</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// execute remote call</span>
+</span><span class='line'>            <span class="n">SimpleServiceExampleProxyStub</span><span class="o">.</span><span class="na">Add</span> <span class="n">addReq</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleServiceExampleProxyStub</span><span class="o">.</span><span class="na">Add</span><span class="o">();</span>
+</span><span class='line'>            <span class="n">addReq</span><span class="o">.</span><span class="na">setNum1</span><span class="o">(</span><span class="mi">45</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">addReq</span><span class="o">.</span><span class="na">setNum2</span><span class="o">(</span><span class="mi">53</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">SimpleServiceExampleProxyStub</span><span class="o">.</span><span class="na">AddResponse</span> <span class="n">addResponse</span> <span class="o">=</span> <span class="n">secureStub</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">addReq</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Response received : &quot;</span> <span class="o">+</span> <span class="n">addResponse</span><span class="o">.</span><span class="na">get_return</span><span class="o">());</span>
+</span><span class='line'>        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">RemoteException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now get the backend service and the WSO2 ESB running and execute the client to see the results. If you use Wireshark or TCPMon you will observe that the communication between the client and the ESB is encrypted and thus not visible to outsiders while the communication between the ESB and the backend service is unencrypted.</p>
+
+<h2>&ldquo;Unable to engage module : rampart&rdquo;</h2>
+
+<p>If you get an error with the message &ldquo;Unable to engage module : rampart&rdquo; it is most likely because Axis2 cannot find the Rampart module archive files. Verify the following and try again.</p>
+
+<ul>
+<li>See that the repository location specified when creating the ConfigurationContext contains rampart<em>.mar and rahas</em>.mar files in the modules folder.</li>
+<li>Check the Classpath locations to verify that rampart*.jar files are available.</li>
+</ul>
+
+
+<h1>Action Under the Hood</h1>
+
+<p>Let us investigate the SOAP/REST messages that are used to communicate with the secured proxy service.</p>
+
+<p>I used <a href="http://www.charlesproxy.com/documentation/proxying/ssl-proxying/">Charles Proxy</a> to capture the encrypted communication between the client and the ESB. For some reason (I&rsquo;m guessing <a href="http://vincent.bernat.im/en/blog/2011-ssl-perfect-forward-secrecy.html">this</a> to be the reason, but this is still to be verified. The cipher suite mentioned in the Server Hello packet is TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA.) Wireshark couldn&rsquo;t decrypt the captured packets even when the server&rsquo;s private key was provided. Charles Proxy can make use of SSL Proxying in which it produces its own certificates based on its root certificate to communicate as a man in the middle. Charles&#8217; root certificate should be added to the trust store that is used in our client.</p>
+
+<p>The SOAP message that is sent from our client consists of the following SOAP header.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;soapenv:Header&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;wsse:Security</span> <span class="na">xmlns:wsse=</span><span class="s">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd&quot;</span> <span class="na">xmlns:wsu=</span><span class="s">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd&quot;</span> <span class="na">soapenv:mustUnderstand=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;wsu:Timestamp</span> <span class="na">wsu:Id=</span><span class="s">&quot;TS-1&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;wsu:Created&gt;</span>2014-08-02T09:00:56.439Z<span class="nt">&lt;/wsu:Created&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;wsu:Expires&gt;</span>2014-08-02T09:05:56.439Z<span class="nt">&lt;/wsu:Expires&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/wsu:Timestamp&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;wsse:UsernameToken</span> <span class="na">wsu:Id=</span><span class="s">&quot;UsernameToken-2&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;wsse:Username&gt;</span>admin<span class="nt">&lt;/wsse:Username&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;wsse:Password</span> <span class="na">Type=</span><span class="s">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText&quot;</span><span class="nt">&gt;</span>admin<span class="nt">&lt;/wsse:Password&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/wsse:UsernameToken&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/wsse:Security&gt;</span>
+</span><span class='line'><span class="nt">&lt;/soapenv:Header&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice the username and the password fields? Yes, the password is sent in plaint text over HTTPS therefore if somehow HTTPS is compromised the password will be visible. To overcome this the WS-Policy for WS-Security can be <a href="http://soasecurity.org/2014/03/19/securing-a-proxy-service-in-wso2-esb-1-1-using-hash-passwords-in-username-token">modified to use a password digest</a> instead of a plain text password.</p>
+
+<p>The function of <code>&lt;wsu:Timestamp&gt;</code>, which in short is to prevent replay attacks, is best described <a href="http://hasini-gunasinghe.blogspot.com/2012/02/timestamp-in-ws-security-to-mitigate.html">here</a>.</p>
+
+<p>WSO2 ESB will process and strip the WSSE:Security header from the message to forward it to the backend service. When the response comes from the backend service ESB will add the related WS-Security headers to the outgoing message.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;soapenv:Header&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;wsse:Security</span> <span class="na">xmlns:wsse=</span><span class="s">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd&quot;</span> <span class="na">soapenv:mustUnderstand=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;wsu:Timestamp</span> <span class="na">xmlns:wsu=</span><span class="s">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd&quot;</span> <span class="na">wsu:Id=</span><span class="s">&quot;Timestamp-26&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;wsu:Created&gt;</span>2014-08-02T09:00:56.704Z<span class="nt">&lt;/wsu:Created&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;wsu:Expires&gt;</span>2014-08-02T09:05:56.704Z<span class="nt">&lt;/wsu:Expires&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/wsu:Timestamp&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/wsse:Security&gt;</span>
+</span><span class='line'><span class="nt">&lt;/soapenv:Header&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you used REST instead of SOAP you will see the following HTTP headers in the outgoing message from your client.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>POST /services/SimpleServiceSecureExampleProxy.SimpleServiceSecureExampleProxyHttpsSoap12Endpoint HTTP/1.1
+</span><span class='line'>Content-Type: application/xml; charset=UTF-8
+</span><span class='line'>SOAPAction: urn:getItemsAvailable
+</span><span class='line'>User-Agent: Axis2
+</span><span class='line'>Transfer-Encoding: chunked
+</span><span class='line'>Host: hostname:8243
+</span><span class='line'>Authorization: Basic YWRtaW46YWRtaW4=
+</span><span class='line'>Content-Length: 101
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;ns1:add</span> <span class="na">xmlns:ns1=</span><span class="s">&quot;http://client.ws.chamiladealwis.com&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;ns1:num1&gt;</span>45<span class="nt">&lt;/ns1:itemName&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;ns1:num2&gt;</span>53<span class="nt">&lt;/ns1:clarkName&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ns1:add&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note the HTTP &ldquo;Authorization&rdquo; header and the value &ldquo;Basic&rdquo;. The value after &ldquo;Basic&rdquo; is the base64 encoded string containing the username:password. You can decrypt the encoded string to verify this using any <a href="http://www5.rptea.com/base64/">online tool</a>.</p>
+
+<p>There are many policies that can be used to secure a proxy service, and UsernameToken is just the simplest form. More complex policies involve defining custom password callback handlers to refer to resources like federated identity to authenticate server calls. UsernameToken deals with plain text passwords so it should be only used for development purposes and not for production.</p>
+
+      
+      
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2014-07-18T23:17:46+05:30" pubdate data-updated="true">Jul 18<sup>th</sup>, 2014</time></h5>
+          <div class="row-fluid">
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/esb/"><span class="badge">esb</span></a>
+          
+          <a href="/blog/categories/security/"><span class="badge">security</span></a>
+          
+          <a href="/blog/categories/web-services/"><span class="badge">web services</span></a>
+          
+          <a href="/blog/categories/wso2/"><span class="badge">wso2</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2014/07/18/securing-a-web-service-with-wso2-esb/">Securing a Web Service with WSO2 ESB</a></h1>
+      <p>WSO2 Enterprise Service Bus is one of the <a href="http://blog.samisa.org/2014/02/wso2-esb-performance-round-75.html">best performing implementations</a> for the Enterprise market. In this article I will briefly go through what it takes to secure an unsecured backend web service using WSO2 ESB as a mediator.</p>
+
+<p>Security in Web Services is covered by the WS-Security standard. There are <a href="http://docs.oasis-open.org/ws-sx/security-policy/examples/ws-sp-usecases-examples-cd-01.html">various policies</a> such as simple username and password authentication and PKI certificates that can be used to secure a Web Service. The policy that will be used is described using the WS-Policy standard.</p>
+
+<p>WSDL of the secured service will have the WS-Security policy embedded and the consumer will be able to filter out the WS-Security policy from it to implement the client side security demands.</p>
+
+<p>For this example we will be using the basic UsernameToken with Plain Text password policy which is supported right out of the box by WSO2 ESB. Note that this policy is recommended only for pre-production environments because the password is communicated in plain text. WSO2 ESB supports by default twenty security scenarios and you can always customize the policy to your liking.</p>
+
+<h1>Pre-requisites</h1>
+
+<ol>
+<li>Unsecured backend service</li>
+<li>WSO2 ESB (4.8.1 is used in this article)</li>
+</ol>
+
+
+<h2>Backend Service</h2>
+
+<p>For demo purposes get a simple Web Service running. Refer to my earlier post, <a href="http://code.chamiladealwis.com/blog/2014/07/01/creating-a-web-service-using-apache-axis2-no-ide/">Creating a Web Service using Apache Axis2</a>, for help.</p>
+
+<h2>Setting up WSO2 ESB</h2>
+
+<p><a href="http://wso2.com/products/enterprise-service-bus/">Download</a> WSO2 ESB and extract it. Go to its <code>bin</code> folder and execute <code>wso2server.sh</code>. After it is executed go to the <a href="https://localhost:9443/carbon">management console</a> and log in. The default username and password is <code>admin</code>.</p>
+
+<h1>Creating the Proxy Service</h1>
+
+<p>We will create a proxy service for the backend service and then secure it with the UsernameToken policy.</p>
+
+<p>Go to the ESB <a href="https://localhost:9443/carbon">management console</a> and add a proxy service by clicking on &ldquo;Proxy Service&rdquo; under Services->Add menu of the Main tab.</p>
+
+<p><img src="/images/post_resource/esb-new-proxy.jpg"></p>
+
+<p>Choose either &ldquo;Pass Through Proxy&rdquo; or &ldquo;WSDL Based Proxy&rdquo;. Fill the details according to the following</p>
+
+<h2>Pass Through Proxy</h2>
+
+<p><img src="/images/post_resource/esb-pass-through-options.jpg"></p>
+
+<ul>
+<li><p>Proxy Service Name &ndash; Enter an identifying name for the Proxy service you&rsquo;re creating.</p></li>
+<li><p>Target Endpoint &ndash; Select &ldquo;Enter URL&rdquo;. &ldquo;Pick From Registry&rdquo; option allows you to select the endpoint stored as a resource on the configuration registry or the governance registry. We will be entering the endpoint URL by hand.</p></li>
+<li><p>Target URL &ndash; Copy the URL of the backend service. This will be the WSDL url on the Axis2 service you created without the <code>?wsdl</code> string at the end.</p></li>
+<li><p>On the &ldquo;Publish WSDL Options&rdquo; select &ldquo;Specify source URL&rdquo; for &ldquo;Publishing WSDL&rdquo;</p></li>
+<li><p>WSDL URI &ndash; Enter the WSDL URL for the backend service. Click on &ldquo;Test URI&rdquo; to test the connection.</p></li>
+</ul>
+
+
+<p>Click Next.</p>
+
+<h2>WSDL Proxy</h2>
+
+<p><img src="/images/post_resource/esb-wdl-based-options.jpg"></p>
+
+<ul>
+<li><p>Proxy Service Name &ndash; Enter an identifying name for the Proxy service you&rsquo;re creating.</p></li>
+<li><p>WSDL URI &ndash; The URI of the WSDL of the backend service.</p></li>
+<li><p>WSDL Service &ndash; This is the service name that is used in the WSDL as the identifier for the service. In the WSDL document this is the value for the attribute <code>name</code> in the <code>wsdl:service</code> tag.</p></li>
+<li><p>WSDL Port &ndash; This is the endpoint that you&rsquo;re going to use for the proxy service. Normally three types of ports are exposed for a service. Those are</p>
+
+<ul>
+<li>SOAP1.1 Endpoint &ndash; ServiceNameHttpSoap11Endpoint</li>
+<li>SOAP1.2 Endpoint &ndash; ServiceNameHttpSOap12Endpoint</li>
+<li>HTTP REST Endpoint &ndash; ServiceNameHttpEndpoint</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Use either SOAP 1.1 or SOAP 1.2 endpoint as the port. You can find the names under the <code>&lt;wsdl:service&gt;-&gt;&lt;wsdl:port&gt;</code> tags.</p>
+
+<p>Click Next.</p>
+
+<p>Your proxy service will be created. WSO2 ESB has a tool called &ldquo;Try It&rdquo; which can be used as a test tool for Web Services. <a href="https://localhost:9443/carbon/service-mgt/index.jsp?region=region1&amp;item=services_list_menu">Service list page</a> will have a link to the &ldquo;Try It&rdquo; console in front of each service. Test the proxy service you just created to verify that we can go ahead to the securing phase.</p>
+
+<p>At this point you have an unsecured proxy service that does basically nothing as a mediator to the backend service. We need to secure the service with UsernameToken policy so that the ESB will handle security aspects and only pass SOAP messages back and forth to the backend service sans the WS-Security.</p>
+
+<h1>Securing the Proxy Service</h1>
+
+<p>If you list the services of the ESB you will see that the proxy service you created just now is marked as unsecured, with the unlocked padlock as the icon.</p>
+
+<p><img src="/images/post_resource/esb-unsecured-proxy.jpg"></p>
+
+<p>Click on that icon to secure the service. Select &ldquo;Yes&rdquo; in the next page and you will be presented with the policy types that WSO2 ESB supports right out of the box.</p>
+
+<p><img src="/images/post_resource/esb-secure-service-options.jpg"></p>
+
+<p>Select &ldquo;UsernameToken&rdquo; and click Next.</p>
+
+<p>Select the user groups that are allowed to use the service. In this case select admin.</p>
+
+<p><img src="/images/post_resource/esb-secure-users-options.jpg"></p>
+
+<p>Voilà! You have secured your proxy service. Run &ldquo;Try It&rdquo; again and enter the username and the password (in this case admin:admin) to consume the service. If you try to consume the service without entering the proper user credentials you will be presented with an AxisFault.</p>
+
+<p>If you check the WSDL of the secured proxy service you will observe the embedded WS-Policy describing the WS-Security policy (UsernameToken in our case) in the top most part of the WSDL document. If you wish to edit this policy you can do so by selecting &ldquo;Edit Policy&rdquo; in the Policies page of the Proxy Service. I will go to details of customized policies in another article.</p>
+
+<p>In the next article I will elaborate on how to code a client to consume the secured proxy service and how UsernameToken policy is represented in the WS-Security headers.</p>
+
+      
+      
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2014-07-09T22:25:05+05:30" pubdate data-updated="true">Jul 9<sup>th</sup>, 2014</time></h5>
+          <div class="row-fluid">
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/ubuntu/"><span class="badge">ubuntu</span></a>
+          
+          <a href="/blog/categories/wireshark/"><span class="badge">wireshark</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2014/07/09/wireshark-crashing-in-ubuntu/">Wireshark Crashing in Ubuntu</a></h1>
+      <p>If you have customized your ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu 14.04 and found the solution to be disabling overlay scrollbars that come as the default.</p>
+
+<p>To do this simply add an environment variable called LIBOVERLAY_SCROLLBAR with value 0.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">LIBOVERLAY_SCROLLBAR</span><span class="o">=</span>0
+</span></code></pre></td></tr></table></div></figure>
+
+
+      
+      
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2014-07-07T12:26:35+05:30" pubdate data-updated="true">Jul 7<sup>th</sup>, 2014</time></h5>
+          <div class="row-fluid">
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/esb/"><span class="badge">esb</span></a>
+          
+          <a href="/blog/categories/wso2/"><span class="badge">wso2</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2014/07/07/wso2-esb-sample-screw-ups/">WSO2 ESB Sample Screw Ups</a></h1>
+      <p>We all know the feeling when we follow every instruction of a sample page to the letter and the results turn out to be a total <del>clusterf..</del> disaster.</p>
+
+<p>Well, let me try to easy some of the pain by listing the following probable fixes and workarounds for the 100-odd samples of the renowned <a href="http://wso2.com/products/enterprise-service-bus/">WSO2 Enterprise Service Bus</a>.</p>
+
+<blockquote><p>Keep in mind that this post will keep getting updated till I go through every sample.</p></blockquote>
+
+<h1>Sample 50</h1>
+
+<p>The synapse configuration file that is shipped with 4.8.1 has an error where asterisks are missing from a filter mediater regex. Therefore execution of the main sequence stops after failing to match any <code>To</code> SOAP headers.</p>
+
+<h2>Fix</h2>
+
+<p>Change the following line in <code>&lt;ESB_HOME&gt;/repository/samples/synapse_sample_50.xml</code> to include the asterisks.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter</span> <span class="na">source=</span><span class="s">&quot;get-property(&#39;To&#39;)&quot;</span> <span class="na">regex=</span><span class="s">&quot;./StockQuote.&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The modified line should be as follows.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter</span> <span class="na">source=</span><span class="s">&quot;get-property(&#39;To&#39;)&quot;</span> <span class="na">regex=</span><span class="s">&quot;.*/StockQuote.*&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Sample 57</h1>
+
+<p>In ESB 4.8.1 running this sample would not result in the expected outcome and would throw an error similar to the following.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>org.apache.synapse.SynapseException: A LoadBalanceEventHandler has not been
+</span><span class='line'>specified in the axis2.xml file for the domain apache.axis2.application.domain
+</span><span class='line'>at
+</span><span class='line'>org.apache.synapse.core.axis2.Axis2LoadBalanceMembershipHandler.setConfigurationContext(Axis2LoadBalanceMembershipHandler.java:77)
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The reason for this is the incompatibility between the clustering mechanisms used in ESB 4.8.1 (HazelCast) and the sample Axis2 server (Apache Tribes) it ships with.</p>
+
+<h2>Fix</h2>
+
+<p>As <a href="http://wso2-oxygen-tank.10903.n7.nabble.com/Dev-Running-ESB-sample-57-td89484.html">this</a> email thread mentions this can be overcome by getting ESB 4.7.0 where the same clustering implementation is used that of the Axis2 server.</p>
+
+<h1>Sample 60, 61, 62</h1>
+
+<p>In ESB 4.8.1 the synapse configuration files for the samples 60, 61, and 62 are missing and the configurations that are on the sample pages are errorneous.
+For an example in sample #61 the mentioned configuration refers to a property named <code>EP_LIST</code> while there&rsquo;s no external registry resource or inline defined property that is of the name EP_LIST.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;send&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;endpoint&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;recipientlist&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;endpoints</span> <span class="na">value=</span><span class="s">&quot;{get-property(&#39;EP_LIST&#39;)}&quot;</span> <span class="na">max-cache=</span><span class="s">&quot;20&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/recipientlist&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/endpoint&gt;</span>
+</span><span class='line'><span class="nt">&lt;/send&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Fix</h2>
+
+<p>However these synapse configuration files are present in the 4.7.0 release and they can be used to start the 4.8.1 ESB with the desired configuration.</p>
+
+<h1>Sample 152</h1>
+
+<p>You would probably get an error while trying to execute the client like the following.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>[2014-07-07 13:28:09,060] ERROR - ServerWorker Error processing POST request
+</span><span class='line'>java.lang.NullPointerException: Tenant domain has not been set in CarbonContext
+</span><span class='line'>    at org.wso2.carbon.caching.impl.CacheManagerFactoryImpl.getCacheManager(CacheManagerFactoryImpl.java:79)
+</span><span class='line'>    at org.wso2.carbon.security.pox.POXSecurityHandler.getPOXCache(POXSecurityHandler.java:383)
+</span><span class='line'>    at org.wso2.carbon.security.pox.POXSecurityHandler.invoke(POXSecurityHandler.java:179)
+</span><span class='line'>    at org.apache.axis2.engine.Phase.invokeHandler(Phase.java:340)
+</span><span class='line'>    at org.apache.axis2.engine.Phase.invoke(Phase.java:313)
+</span><span class='line'>    at org.apache.axis2.engine.AxisEngine.invoke(AxisEngine.java:261)
+</span><span class='line'>    at org.apache.axis2.engine.AxisEngine.receive(AxisEngine.java:167)
+</span><span class='line'>    at org.apache.axis2.transport.http.HTTPTransportUtils.processHTTPPostRequest(HTTPTransportUtils.java:172)
+</span><span class='line'>    at org.apache.synapse.transport.nhttp.ServerWorker.processEntityEnclosingMethod(ServerWorker.java:459)
+</span><span class='line'>    at org.apache.synapse.transport.nhttp.ServerWorker.run(ServerWorker.java:279)
+</span><span class='line'>    at org.apache.axis2.transport.base.threads.NativeWorkerPool$1.run(NativeWorkerPool.java:172)
+</span><span class='line'>    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+</span><span class='line'>    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+</span><span class='line'>    at java.lang.Thread.run(Thread.java:722)
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>While I can&rsquo;t exactly pinpoint the cause of the error this happens due to the way we execute the samples. If you directly executed the sample #152 chances are that you wouldn&rsquo;t come across this. But if you started with a sample before #101 you&rsquo;d probably get this.</p>
+
+<p>At sample #101 you have to enable the NHTTP configuration for Carbon. Non-Blocking HTTP is required to enable WS-ReliableMessaging so that the source can call the Web Service destination asynchronously.</p>
+
+<p>You are instructed to enable NHTTP configuration by editing the <code>carbon.xml</code> file in <code>&lt;ESB_HOME&gt;/repository/conf/</code>.</p>
+
+<figure class='code'><figcaption><span>carbon.xml start:253</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="c">&lt;!-- You are instructed to comment this line and enable the next one to enable NHTTP --&gt;</span>
+</span><span class='line'><span class="nt">&lt;ConfigurationFile&gt;</span>${carbon.home}/repository/conf/axis2/axis2.xml<span class="nt">&lt;/ConfigurationFile&gt;</span>
+</span><span class='line'><span class="nt">&lt;ConfigurationFile&gt;</span>${carbon.home}/repository/conf/axis2/axis2_nhttp.xml<span class="nt">&lt;/ConfigurationFile&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Fix</h2>
+
+<p>To make the sample #152 run properly revert this change.</p>
+
+      
+      
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2014-07-01T16:38:50+05:30" pubdate data-updated="true">Jul 1<sup>st</sup>, 2014</time></h5>
+          <div class="row-fluid">
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/axis2/"><span class="badge">axis2</span></a>
+          
+          <a href="/blog/categories/web-services/"><span class="badge">web services</span></a>
+          
+          <a href="/blog/categories/wso2/"><span class="badge">wso2</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2014/07/01/creating-a-web-service-using-apache-axis2-no-ide/">Creating a Web Service using Apache Axis2 [No IDE]</a></h1>
+      <h1>Outline</h1>
+
+<ol>
+<li>Pre-requisites</li>
+<li>Deploying Axis2</li>
+<li>Writing the service class</li>
+<li>Deploying the service</li>
+<li>Verification</li>
+</ol>
+
+
+<h1>Pre-requisites</h1>
+
+<p>We need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let&rsquo;s use Tomcat as a container. So in the following order</p>
+
+<ol>
+<li>Download and install JDK7</li>
+<li>Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn&rsquo;t being supported by Eclipse, so let&rsquo;s go with v7)</li>
+<li>Download and install AXis2 on Tomcat</li>
+</ol>
+
+
+<h2>JDK7</h2>
+
+<p>Download and extract the JDK tarball.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget --no-check-certificate --no-cookies --header <span class="s2">&quot;Cookie: oraclelicense=accept-securebackup-cookie&quot;</span> http://download.oracle.com/otn-pub/java/jdk/7u60-b19/jdk-7u60-linux-x64.tar.gz
+</span><span class='line'>tar zxvf jdk-7u60-linux-x64.tar.gz
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Add and modify the following lines in ~/.profile or /etc/profile (for system wide application) to add <code>JAVA_HOME</code> environment variable and it&rsquo;s bin folder to <code>$PATH</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/path/to/jdk/extraction
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HOME</span>/bin:<span class="nv">$JAVA_HOME</span>/bin
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Refresh the terminal session and check if Java is working</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.profile
+</span><span class='line'>java -version
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tomcat 7</h2>
+
+<p>You could install tomcat through <code>apt-get</code> or manually.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install tomcat7
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or download and set paths manually.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget http://supergsego.com/apache/tomcat/tomcat-7/v7.0.54/bin/apache-tomcat-7.0.54.tar.gz
+</span><span class='line'>tar zxvf apache-tomcat-7.0.54.tar.gz
+</span><span class='line'>mv apache-tomcat-7.0.54 ~/dev/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Add the <code>$CATALINA_HOME</code> env var to the bash profile.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vi ~/.profile
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Prepend the following line before exporting the $PATH.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">CATALINA_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/dev/apache-tomcat-7.0.54
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Server start/stop can be done by the scripts in the <code>$CATALINA_HOME/bin</code> folder.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> <span class="nv">$CATALINA_HOME</span>
+</span><span class='line'>./bin/startup.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Deploying Axis2</h1>
+
+<p>Download Axis2 WAR distribution and copy the web archive file to the tomcat webapps root.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget http://apache.tradebit.com/pub//axis/axis2/java/core/1.6.2/axis2-1.6.2-war.zip
+</span><span class='line'>unzip axis2-1.6.2-war.zip -d axis2-war
+</span><span class='line'>cp axis2-war/axis2.war <span class="nv">$CATALINA_HOME</span>/webapps/
+</span><span class='line'><span class="nb">cd</span> <span class="nv">$CATALINA_HOME</span>/bin
+</span><span class='line'>./shutdown.sh
+</span><span class='line'>./startup.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In the browser go to <a href="http://localhost:8080/axis2">http://localhost:8080/axis2</a>. Axis2 welcome page should appear.</p>
+
+<h1>The Service</h1>
+
+<p>An Axis2 archive (of <code>.aar</code> extension) has a certain directory structure not so different from a Web Archive.</p>
+
+<figure class='code'><figcaption><span>Axis2 Archive Directory Structure start:1 linenos:false mark:4,9</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>.
+</span><span class='line'>├── SimpleService
+</span><span class='line'>    └─── META-INF
+</span><span class='line'>      └─── services.xml
+</span><span class='line'>    └── com
+</span><span class='line'>      └─── chamiladealwis
+</span><span class='line'>        └─── ws
+</span><span class='line'>          └─── service
+</span><span class='line'>            └─── SimpleService.java
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>META-INF folder contains the services descriptor file. The other is the binary which implements the service.</p>
+
+<p>The service class itself is a plain old Java class which exposes the services it offers through public methods. My simple service would be the following.</p>
+
+<figure class='code'><figcaption><span>SimpleService.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">chamiladealwis</span><span class="o">.</span><span class="na">ws</span><span class="o">.</span><span class="na">service</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleService</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">num1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">num2</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">num1</span><span class="o">+</span><span class="n">num2</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>SimpleService</code> offers just one service  named <code>add</code> which accepts two Integer parameters and returns the sum of them as an Integer.</p>
+
+<p>Now this service needs a service descriptor which exposes the service class to Axis2 when asked.</p>
+
+<figure class='code'><figcaption><span>services.xml mark:3</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;service&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;parameter</span> <span class="na">name=</span><span class="s">&quot;ServiceClass&quot;</span> <span class="na">locked=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        com.chamiladealwis.ws.service.SimpleService
+</span><span class='line'>    <span class="nt">&lt;/parameter&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;operation</span> <span class="na">name=</span><span class="s">&quot;sayHello&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;messageReceiver</span> <span class="na">class=</span><span class="s">&quot;org.apache.axis2.rpc.receivers.RPCMessageReceiver&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/operation&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/service&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A parameter named <code>ServiceClass</code> is defined with value <code>com.chamiladealwis.ws.service.SimpleService</code> which the FQN of the Java class we just wrote.</p>
+
+<p>Now compile sources, create the Axis2 archive and deploy it in the Axis Server.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># go to the root dir and compile the sources</span>
+</span><span class='line'>javac com/chamiladealwis/ws/service/*.java
+</span><span class='line'>
+</span><span class='line'><span class="c"># create the archive file</span>
+</span><span class='line'>jar cvf SimpleService.aar *
+</span><span class='line'>
+</span><span class='line'><span class="c"># copy the archive over to the Axis2 web root</span>
+</span><span class='line'>cp SimpleService.aar <span class="nv">$CATALINE_HOME</span>/webapps/axis2/WEB-INF/services/
+</span><span class='line'>
+</span><span class='line'><span class="c"># restart tomcat</span>
+</span><span class='line'><span class="nb">cd</span> <span class="nv">$CATALINA_HOME</span>/bin
+</span><span class='line'>./shutdown.sh
+</span><span class='line'>./startup.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Browse to <a href="http://localhost:8080/axis2/services/listServices">http://localhost:8080/axis2/services/listServices</a> in your browser and you will see <code>SimpleService</code> being listed as an availble service with <code>add</code> as an operation.</p>
+
+<p>Click on the link to <code>SimpleService</code> to view the WSDL file which will describe the service and it&rsquo;s operation in an abstracted XML interpretation that can be used to create clients in any language to consume the service.</p>
+
+<h1>The Client</h1>
+
+<p>The client code has to make use of a &ldquo;Stub&rdquo; of the service which will act as a proxy and a communication agent. Axis2 binary distribution includes tools which can generate the Java stub using the WSDL file as the source.</p>
+
+<p>Download the Axis2 binary distribution, extract it and set <code>AXIS2_HOME</code> environment variable to its root. Add <code>$AXIS2_HOME</code> to <code>$PATH</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget http://apache.spinellicreations.com//axis/axis2/java/core/1.6.2/axis2-1.6.2-bin.zip
+</span><span class='line'>unzip axis2-1.6.2-bin.zip
+</span><span class='line'><span class="nb">pwd</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Add the <code>$AXIS2_HOME</code> variable before <code>export PATH</code> line and modify <code>$PATH</code> to include <code>$AXIS2_HOME/bin</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">AXIS2_HOME</span><span class="o">=</span>/path/to/axis2/binary/folder
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;$PATH:$AXIS2_HOME/bin&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now refresh terminal by sourcing the .profile file.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.profile
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$AXIS2_HOME</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Copy the WSDL path of the <code>SimpleService</code>, go to the directory you&rsquo;re going to create your client code and execute the following.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>./wsdl2java.sh -uri WSDL_PATH_OF_THE_SIMPLESERVICE -o client
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The WSDL path would be something similar to <code>http://localhost:8080/axis2/services/SimpleService?wsdl</code>.</p>
+
+<p>This will create the Java stub and the CallbackHandler classes. The CallbackHandler class can be extended to implement custom success and error callback executions. The Stub is the class of main importance here. It contains the Request and Response types of the operations available from the Service it was generated from and the skeletol methods that call to the target endpoint once invoked. We will use these members to call our simple service.</p>
+
+<figure class='code'><figcaption><span>SimpleServiceClient.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">chamiladealwis</span><span class="o">.</span><span class="na">ws</span><span class="o">.</span><span class="na">client</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.rmi.RemoteException</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.axis2.AxisFault</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">com.chamiladealwis.ws.client.SimpleServiceStub.Add</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">com.chamiladealwis.ws.client.SimpleServiceStub.AddResponse</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClient</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>        <span class="k">try</span>
+</span><span class='line'>        <span class="o">{</span>
+</span><span class='line'>            <span class="c1">// Create the Stub object</span>
+</span><span class='line'>            <span class="n">SimpleServiceStub</span> <span class="n">serviceStub</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleServiceStub</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// Create the Request object. The request class is autogenerated</span>
+</span><span class='line'>            <span class="c1">// as an inner class of the Stub class.</span>
+</span><span class='line'>            <span class="n">Add</span> <span class="n">addReq</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Add</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// Set parameters</span>
+</span><span class='line'>            <span class="n">addReq</span><span class="o">.</span><span class="na">setNum1</span><span class="o">(</span><span class="mi">4</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">addReq</span><span class="o">.</span><span class="na">setNum2</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// Invoke method and get response as a response object</span>
+</span><span class='line'>            <span class="n">AddResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">serviceStub</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">addReq</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// Response object&#39;s get_return() returns the return of the remote </span>
+</span><span class='line'>            <span class="c1">// method</span>
+</span><span class='line'>            <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">get_return</span><span class="o">();</span>
+</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Sum : &quot;</span> <span class="o">+</span> <span class="n">sum</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="k">catch</span> <span class="o">(</span><span class="n">AxisFault</span> <span class="n">e</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">{</span>
+</span><span class='line'>            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="k">catch</span> <span class="o">(</span><span class="n">RemoteException</span> <span class="n">e</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">{</span>
+</span><span class='line'>            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&rsquo;s go through the client code.</p>
+
+<p>Consuming an operation available through a Web Service consists of following steps.</p>
+
+<ul>
+<li>Create an object of the stub. All method calls will be invoked through this object.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">SimpleServiceStub</span> <span class="n">serviceStub</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleServiceStub</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Create the request object. This will have methods to add input parameters to the request.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Add</span> <span class="n">addReq</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Add</span><span class="o">();</span>
+</span><span class='line'><span class="n">addReq</span><span class="o">.</span><span class="na">setNum1</span><span class="o">(</span><span class="mi">4</span><span class="o">);</span>
+</span><span class='line'><span class="n">addReq</span><span class="o">.</span><span class="na">setNum2</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Invoke and the operation method. The operation method will be invoked through the stub object and the invocation accepts a parameter of type of request object.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">serviceStub</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">addReq</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Catch the response object. The invocation will return the response object mainly containing the value returned by the operation.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">AddResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">serviceStub</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">addReq</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Extract the return value. By calling <code>get_return()</code> of the response object the return value can be extracted.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">get_return</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you see it&rsquo;s pretty straightforward, although there are couple of things to keep in mind.</p>
+
+<ol>
+<li>You have to regenerate the client stubs everytime you change most of the server code (obviously).</li>
+<li>It&rsquo;s good to check if the service has been properly deployed by going to the services page and checking the WSDL generation.</li>
+<li>This was a <em>simple</em> client with <em>simple</em> input and output types. When complex types are involved there are some standards to be practiced. Be mindful that Web Services operate on a language and platform agnostic environment.</li>
+<li><em>You will not be writing web services and clients this way most of the time!</em> But that&rsquo;s a topic for another post :)</li>
+</ol>
+
+
+      
+      
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2014-06-10T14:52:58+05:30" pubdate data-updated="true">Jun 10<sup>th</sup>, 2014</time></h5>
+          <div class="row-fluid">
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/misc/"><span class="badge">misc</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2014/06/10/what-to-expect/">what to expect</a></h1>
+      <p>You&rsquo;ll find here, everyday bits and pieces of technical know-how, workarounds and fixes for common issues that I&rsquo;m assuming I&rsquo;d forget in a few hours.</p>
+
+<p>Basically this would serve me as my technical blog.</p>
+
+<p>A coder&rsquo;s journel.</p>
+
+<p>Allons-y!</p>
+
+      
+      
+    </div>
+  </div>
+
+
+
+    </article>
+    
+  
+  <div class="pagination">
+    
+
+    
+  </div>
+</div>
+
+
+        </div>
+      </div>
+      <div class="row-fluid">
+        <footer class="footer-page" role="contentinfo">
+          <p>
+  Copyright &copy; 2014 - chamila de alwis -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> - Theme by <a href="http://alexgaribay.com">Alex Garibay</a>
+</p>
+
+
+        </footer>
+      </div>
+  </div>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'chamila-01';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

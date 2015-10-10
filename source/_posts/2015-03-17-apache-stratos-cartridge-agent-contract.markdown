@@ -7,11 +7,11 @@ categories: [Apache Stratos, Cartridge Agent]
 author: Chamila de Alwis
 ---
 
-As the first post of a series of comprehensive guide to the Apache Stratos Cartridge Agent, let's look at the Cartridge Agent contract. Keep tuned in and expect more detailed explanations on the instance and Cartridge Agent configuration, workflow different Cartridge Agent implementations, their configurations and newly introduced plugin system in the Python implementation.
+As the first post of a series of comprehensive guide to the Apache Stratos Cartridge Agent, let's look at the Cartridge Agent contract. Keep tuned in and expect more detailed explanations on the instance and Cartridge Agent configuration, workflow, different Cartridge Agent implementations, their configurations and newly introduced plugin system in the Python implementation.
 
 # Role of the Cartridge Agent
 
-When the instances are spawned in Apache Stratos a few requirements that the particular instance should fulfill. It should
+When the instances are spawned in Apache Stratos, there are a few requirements that the particular instance should fulfill. It should
 
 1. Listen to the message broker events that are intended to it and publish events notifying any listening parties of its current state (STARTED|ACTIVATED|MAINTENANCE_MODE etc)
 2. Check if the intended ports of the instance are active or not and publish the status accordingly

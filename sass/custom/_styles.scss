@@ -1,1 +1,68 @@
-// Add your custom styling here.
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+h1{
+    font-size:2em;
+}
+
+a:hover{
+    text-shadow:0px 0px 6px rgba(30,30,30,0.4);
+}
+
+.entry-title{
+    color:black;
+    text-shadow:0px 0px 6px rgba(30,30,30,0.4);
+    font-size:2.1em;
+}
+
+.entry-title a:hover{
+    color: #660000;
+}
+
+article p{
+    text-align:justify;
+}
+
+h1, h2, h3, h4, h5 {
+    color:#666;
+}
+
+#content .blog-index article{
+    border-top:4px solid #969696;
+}
+
+body>nav fieldset[role=search]{
+    padding-top:10px;
+}
+
+body>header{
+    padding-bottom: 50px;
+}
+
+article h2{
+    padding-top: 0.3em;
+}
+
+blockquote{
+    color:#999;
+}
+
+code{
+    font-family: 'Source Code Pro' ;
+}
+
+body{
+    max-width:880px;
+}
+
+body>header h1{
+    max-width:500px;
+    position:initial;
+}
+
+body>nav ul{
+    padding-top:1em;
+}
+
+body>header h2{
+    width:500px;
+}

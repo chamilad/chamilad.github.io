@@ -4,7 +4,7 @@
 
 url: http://chamilad.github.io
 title: nuts!
-subtitle: For the night is dark and I'd probably forget this by tomorrow
+subtitle: Ramblings on Cloud Computing, Middleware and Beer
 author: chamila de alwis
 simple_search: https://www.google.com/search
 description:
@@ -116,3 +116,7 @@ linkedin_user: chamiladealwis
 navigation:
 - text: Home
   url: /index.html
+- text: About
+  url: /about
+- text: Archive
+  url: /archives

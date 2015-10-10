@@ -1,16 +1,6 @@
-<div class="jumbotron">
-  <div class="container">
-    {% if site.title %}
-      {{ site.title }}
-    {% else %}
-      Hi. I'm {{ site.author }}.
-    {% endif %}
-    <h3 class="tagline">
-      {% if site.subtitle %}
-        {{ site.subtitle }}
-      {% else %}
-         Here are some thoughts of mine.
-      {% endif %}
-    </h3>
-  </div>
-</div>
+<hgroup>
+  <h2>{{ site.title }}</h2>
+  {% if site.subtitle %}
+    <h1>{{ site.subtitle }}</h1>
+  {% endif %}
+</hgroup>
