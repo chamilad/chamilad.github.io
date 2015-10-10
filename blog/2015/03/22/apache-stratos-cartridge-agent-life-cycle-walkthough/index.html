@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Apache Stratos Cartridge Agent: Life Cycle Walkthough - nuts!</title>
+  <meta name="author" content="chamila de alwis">
+
+  
+  <meta name="description" content="This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you&rsquo;ve missed the memo, why not start from the first &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://chamilad.github.io/blog/2015/03/22/apache-stratos-cartridge-agent-life-cycle-walkthough">
+  <link href="/favicon.ico" rel="icon">
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="nuts!" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header role="banner"><hgroup>
+  <h2>nuts!</h2>
+  
+    <h1>Ramblings on Cloud Computing, Middleware and Beer</h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation">
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:chamilad.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Apache Stratos Cartridge Agent: Life Cycle Walkthough</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-03-22T17:48:56+05:30" pubdate data-updated="true">Mar 22<sup>nd</sup>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><blockquote><p>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you&rsquo;ve missed the memo, why not start from the <a href="http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-contract/">first article</a>?</p></blockquote>
+
+<p>The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onwards, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting. In this article we will discuss in detail, in which order these tasks are performed.</p>
+
+<h1>Setup</h1>
+
+<p>For our walkthrough let&rsquo;s take an application with a single PHP cartridge. The Puppet manifest for this PHP cartridge is distributed with Stratos source. The application will only consist of this cartridge. Following is the deployed application view of the Single PHP Cartridge Application.</p>
+
+<p><img src="/images/post_resource/stratos/php-app-dep.png"></p>
+
+<h2>Deploying the Application</h2>
+
+<p>The sample scripts and artifacts for our scenario is available in the <code>samples</code> folder of the Stratos source. You can deploy this sample in any one of the available IaaS options including the Mock IaaS that is available in Stratos for developer testing purposes. Following is how it can be deployed in the Mock IaaS.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># navigate to the sample application folder</span>
+</span><span class='line'><span class="nb">cd</span> &lt;STRATOS_SOURCE&gt;/samples/applications/single-cartridge/scripts/mock
+</span><span class='line'><span class="c"># run deploy script</span>
+</span><span class='line'>./deploy.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>However the Mock IaaS does not involve the Cartridge Agent execution, and therefore is a bit irrelevant in our scenario. You can deploy the same application in OpenStack or Amazon EC2 to witness the Cartridge Agent execution. You can even use Docker on Kubernetes and deploy a Kubernetes cluster to deploy this Single PHP Cartridge application.</p>
+
+<h2>What to Look For</h2>
+
+<p>The steps that are explained here can be observed by looking at several sources. The Cartridge Agent logs and the Stratos log are the primary sources where published and received logs can be viewed. The Java Cartridge Agent logs are located in <code>/var/logs/apache-stratos/cartridge-agent.log</code> and the full Python Cartridge Agent logs can be located in the <code>/tmp/agent.screen.log</code>. The Python Cartridge Agent additionally has two other logs, <code>agent.log</code> which log the configured log level, <code>INFO</code> being the default, and the <code>error.log</code> which only log <code>ERROR</code> level logs. These two can be found in the Python Cartridge Agent home, by default in <code>/mnt/apache-stratos-python-cartridge-agent-4.1.0/</code>.</p>
+
+<h2>Reference Image</h2>
+
+<p>Most events that occur in a successful execution cycle of the Cartridge Agent is illustrated as a <a href="https://cwiki.apache.org/confluence/download/attachments/42567880/Cartridge%20Agent%20Lifecycle.png?api=v2">flow chart</a>. This does not include the failure scenarios and some multi-threaded executions are not properly illustrated, due to the limited nature of showing such details in a flow chart. However it is a good reference point to understand the Cartridge Agent life cycle in a sequential manner.</p>
+
+<h1>Instance States</h1>
+
+<p>An instance goes through a set of states during its life cylce. These states determine the behavior of the instance as well as other components in Stratos, when taking decisions about the instance. Following are the states that a spawned instance goes through during its life cycle.</p>
+
+<ol>
+<li>Created &ndash; Instance is created in the IaaS. But execution inside has not started.</li>
+<li>Initialized &ndash; The execution of processes have started in the instance. Now the init scripts have started executing and Puppet agent would probably be running. Cartridge Agent will also start while being in this state.</li>
+<li>Starting &ndash; The Cartridge Agent has published the InstanceStartedEvent for this instance</li>
+<li>Active &ndash; The Cartridge Agent has published InstanceActivatedEvent. This indicates that the services in the cartridge instance are working and accepting requests. The instance can now be consumed.</li>
+<li>Pending Termination &ndash; The instance is moved to a termination pending queue, where the graceful shutdown of the instance has been called for.</li>
+<li>Obsolete &ndash; If the instance was in the Pending Termination state, then the Cartridge Agent has published InstanceReadyToShutdownEvent. An instance can also end up in the Obsolete state directly from Starting, or Initialized states because of various reasons. The instances in the obsolete queue will be terminated eventually.</li>
+</ol>
+
+
+<p>The state transitions can also be seen from the reference image. Additionally, you can understand how the member state transition happens from the Autoscaler side by going through <a href="http://lahiruwrites.blogspot.com/2015/03/stratos-410-deveper-guide-autoscaler.html">this</a> article written by Lahiru Sandaruwan.</p>
+
+<p>With this knowledge at hand, let us dive in to the walkthrough right away.</p>
+
+<h2>Created</h2>
+
+<p>When the application is deployed after creating the Cluster Monitors for each cluster of Cartridges, Cloud Controller issues instance creation requests to the IaaS via JClouds. The instance state at the moment is &ldquo;CREATED&rdquo;.</p>
+
+<h2>Initialized</h2>
+
+<p>When the instance creation is complete, the IP addresses are assigned, and the instance starts execution, the status changes to &ldquo;INITIALIZED&rdquo;. The init scripts are executed and the Puppet agent downloads and applies the related Puppet manifests to the instance. Puppet is also responsible for starting the Cartridge Agent process. In the earlier releases, Puppet additionally started the service processes, for example Tomcat server etc. However, in the new release it is the responsibility of the Cartridge Agent to check and start the service processes. To achieve this, a Cartridge Agent plugin has to be written which will start the process.</p>
+
+<p>The reason to move the responsibility of starting the service to the Cartridge Agent was to make sure that the services would not be starting without artifact distribution succeeding for repository based Cartridge types such as Tomcat, PHP or WSO2 Identity Server. For example, for a Tomcat instance, starting the Tomcat server without the repository artifacts not cloned in to the <code>webapps</code> folder, does not make any sense. Therefore, the service should not be up and the Cartridge Agent will not be publishing the InstanceActivatedEvent to the message broker.</p>
+
+<p>Therefore for repository based Cartridge types, the service starter Cartridge Agent plugin should be mapped to the ArtifactsUpdatedEvent. If the Git clone operation performs successfully, the plugin will be executed and the service will be started. For non-repository based Cartridges such as MySQL, the service starter plugin can be mapped to InstanceStartedEvent.</p>
+
+<p>After the Cartridge Agent is started it will start listening to the following topics in the message broker.
+1. topology
+2. tenant
+3. instance/notifier
+4. application/signup
+5. domain/mapping</p>
+
+<p>For the Cartridge Agent to successfully continue it should populate itself an idea of the services deployed in Stratos and how they are distributed. This is called the Topology in Stratos. The Topology describes what services are deployed, how clusters and members are deployed under those services and the lifecycle states of the clusters and the members.</p>
+
+<p>The Topology information is distributed among Stratos components as a message broker event called the <code>CompleteTopologyEvent</code>. This is published every 60 seconds. The usual pattern for components to synchronize the Topology model is to receive the CompleteTopologyEvent only once and modify the topology based on the other events subsequently.</p>
+
+<p>Therefore, the Cartridge Agent should wait until it receives the first CompleteTopologyEvent. As mentioned before, this waiting will be at most 60 seconds.</p>
+
+<p>Just receiving the <code>CompleteTopologyEvent</code> is not sufficient. The Cartridge Agent should also verify that its instance is present in the Topology and the status of the instance is <code>INITIALIZED</code>. Usually, this will be the case when the first <code>CompleteTopologyEvent</code> is received, however there can be instance that it would be few minutes until the member is set to <code>INITIALIZED</code>. Cartridge Agent will also wait for that to happen.</p>
+
+<p>After the instance status becomes <code>INITIALIZED</code> and the message broker topic listeners are registered, the Cartridge Agent will publish <code>InstanceStartedEvent</code> to the <code>instance\status</code> topic. This changes the status of the instance from <code>INITIALIZED</code> to <code>STARTED</code>.</p>
+
+<h2>Started</h2>
+
+<p>When the instance status changes to this state, the Cartridge Agent&rsquo;s next responsibility, from Stratos point of view, is to go in to the <code>ACTIVATED</code> state. This status is achieved through two effective flows, based on the type of the instance.</p>
+
+<h3>Non-repo based instances</h3>
+
+<p>If the instance is for example a MySQL instance, there is no need for a repository to be cloned inside (for most cases). In this case (determined by the absence of <code>REPO_URL</code> in the payload) the Cartridge agent checks if the service ports (ex: MySQL ports) are running and immediately publishes the <code>InstanceActivatedEvent</code>.</p>
+
+<h3>Repo based instance</h3>
+
+<p>In our case, the PHP instance is a repository based instance, where for example, a PHP application hosted on GitHub can be pointed to. If the <code>REPO_URL</code> is present on the payload the Cartridge Agent will move on without publishing the <code>InstanceActivatedEvent</code>. For a repo based instance, Stratos Manager will publish a separate event named <code>ArtifactUpdatedEvent</code> which the Cartridge Agent responds to by cloning the specified Git repository to the specified path. After the artifact repository is cloned, the Cartridge Agent will check if the service ports (in our case if Apache Server ports) are up and publish <code>InstanceActivatedEvent</code>.</p>
+
+<h2>Activated</h2>
+
+<p>Once the instance reaches the <code>ACTIVATED</code> stage, the initial tasks of the Cartridge Agent are done. It will periodically update the artifact repository based on the configuration, and would react to any events received via the message broker.</p>
+
+<h2>Termination</h2>
+
+<p>The instance can now go to either Pending Termination state if the application is undeployed. This is called a graceful shutdown flow, where the status of the instance switches from Active->Pending Termination->Obsolete->Terminated one after the other.</p>
+
+<p>However, an instance can be directly classified as obsolete too, as described by the <a href="http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-contract/">the first pods</a> of this post series. If it fails to post health statistics events to the Complext Event Processor for more than 60 seconds, it will be classified as an obsolete instance and will be queued up for termination.</p>
+
+<p>When an instance reaches the Pending Termination queue, an <code>InstanceCleanupMemberEvent</code> will be published to the message broker. The relevant instance picks up this event and does the necessary cleanup operations and subsequently publishes that it is ready to be terminated by publishing <code>InstanceReadyToShutdownEvent</code> to the message broker. When that happens it will be moved up to the obsolete queue.</p>
+
+<p>There are timeout values for the instances to be in these queues. The default value for an instance to be in the pending termination member list is 30 minutes. If the relevant <code>InstanceReadyToShutdownEvent</code> doesn&rsquo;t get published within that timeout period, the instance will be automatically moved to the obsolete queue. If the member termination from the IaaS doesn&rsquo;t successfully complete within the default timeout value of 24 hours, it will be considered as an instance that cannot be terminated by Stratos and will be removed from the obsolete member list. The timeout values for these can be modified by modifying the <code>pendingTerminationMemberExpiryTimeout</code> and <code>obsoletedMemberExpiryTimeout</code> values respectively in the <code>&lt;STRATOS_HOME&gt;/repository/conf/autoscaler.xml</code> configuration file.</p>
+
+<h1>Recap</h1>
+
+<p>When the instance reaches its life time, so does this post series on the Apache Stratos Cartridge Agent. There are few minute details that have changed while this series was being compiled, however the overall information about the architecture and the function remains unchanged.</p>
+
+<p>As always, the best strategy to understand the function is to go through the code. You can checkout the source for Apache Stratos from <a href="https://github.com/apache/stratos">GitHub</a>. Any issues or clarifications you come across can be quickly resolved by going through the <a href="https://cwiki.apache.org/confluence/display/STRATOS">documentation</a>. You can also get help and communicate with the Apache Stratos community via the mailing list.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn"><a href="/about" title="About the author (Chamila de Alwis)" rel="author">Chamila de Alwis</a></span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-03-22T17:48:56+05:30" pubdate data-updated="true">Mar 22<sup>nd</sup>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category label label-primary' href='/blog/categories/apache-stratos/'>apache stratos</a> <a class='category label label-primary' href='/blog/categories/cartridge-agent/'>cartridge agent</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://chamilad.github.io/blog/2015/03/22/apache-stratos-cartridge-agent-life-cycle-walkthough/" data-via="chamilad" data-counturl="http://chamilad.github.io/blog/2015/03/22/apache-stratos-cartridge-agent-life-cycle-walkthough/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="small"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/03/21/apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/" title="Previous Post: Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2">&laquo; Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - chamila de alwis -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'chamila-01';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://chamilad.github.io/blog/2015/03/22/apache-stratos-cartridge-agent-life-cycle-walkthough/';
+        var disqus_url = 'http://chamilad.github.io/blog/2015/03/22/apache-stratos-cartridge-agent-life-cycle-walkthough/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
