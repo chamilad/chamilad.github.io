@@ -4,7 +4,7 @@
   <title><![CDATA[Category: apache stratos | nuts!]]></title>
   <link href="http://chamilad.github.io/blog/categories/apache-stratos/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2015-10-11T00:50:44+05:30</updated>
+  <updated>2015-10-11T20:30:13+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -12,6 +12,92 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Secure Message Broker Communication in Apache Stratos with Apache ActiveMQ]]></title>
+    <link href="http://chamilad.github.io/blog/2015/10/11/secure-message-broker-communication-in-apache-stratos/"/>
+    <updated>2015-10-11T00:55:36+05:30</updated>
+    <id>http://chamilad.github.io/blog/2015/10/11/secure-message-broker-communication-in-apache-stratos</id>
+    <content type="html"><![CDATA[<p>Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of communication between components such as the Cartridge Agent, Cloud Controller and the Autoscaler, as this allows a decoupled architecture for the components.</p>
+
+<p><img src="/images/post_resource/stratos/ca-overview.png"></p>
+
+<p>When it comes to message brokers, authentication is a crucial part of securing the communication channel since if left unsecured, anyone with access to the message broker can subscribe to the topics and listen to the communication between the components. This can expose sensitive data easily and the system would be compromised in no time. The purpose of this article is to explain how to engage Username and Password based authentication with Apache ActiveMQ in Stratos.</p>
+
+<h1>Securing ActiveMQ</h1>
+
+<p>ActiveMQ allows to add authentication and authorization through an extensible plugin system. For our purpose, the out of the box <code>SimpleAuthenticationPlugin</code> is more than enough as it allows us to define a username and a password with the list of user groups the particular user belongs to.</p>
+
+<p>To engage <code>SimpleAuthenticationPlugin</code> we have to add the following section before the <code>broker</code> tag closes, in <code>&lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml</code>.</p>
+
+<p>```xml
+<plugins></p>
+
+<pre><code>&lt;simpleAuthenticationPlugin&gt;
+    &lt;users&gt;
+        &lt;authenticationUser username="system" password="manager" groups="users,admins"/
+    &lt;/users&gt;
+&lt;/simpleAuthenticationPlugin&gt;
+</code></pre>
+
+<p></plugins>
+```</p>
+
+<p>As you can see we have introduced a user named <code>system</code> with password <code>manager</code> who belongs to groups <code>users</code> and <code>admins</code>. Since we have not allowed anonymous access, any subscriber or a publisher that connects to ActiveMQ should provide these credentials to successfully communicate. We can enable anonymous access by specifying the <code>allowAnonymousAccess</code> attribute on <code>simpleAuthenticationPlugin</code> to <code>true</code>.</p>
+
+<p>After the configuration file is saved, restart ActiveMQ.</p>
+
+<h1>Providing Credentials on Stratos</h1>
+
+<p>Within Stratos there are three configurations that we have to provide message broker credentials in to.</p>
+
+<h2>Stratos Components &ndash; Cloud Controller, Autoscaler, Stratos Manager</h2>
+
+<p>The ActiveMQ credentials for Stratos components can be provided by the <code>jndi.properties</code> file. Simply add the following two lines in the <code>&lt;STRATOS_HOME&gt;/repository/conf/jndi.properties</code> file.</p>
+
+<p><code>
+java.naming.security.principal=system
+java.naming.security.credentials=manager
+</code></p>
+
+<p><code>java.naming.security.principal</code> corresponds to the ActiveMQ username and <code>java.naming.security.credentials</code> contains the password.</p>
+
+<h2>Complex Event Processor</h2>
+
+<p>Based on the health statistics published from the instances via <a href="http://code.chamiladealwis.com/blog/2014/10/10/thrift-communication-in-apache-stratos/">Thrift</a>, the Complex Event Processor publishes several crucial messages to the message broker. This is done using a JMSOutputAdaptor. To configure the JMSOutputAdaptor to use ActiveMQ credentials, add the following entries inside the <code>outputEventAdaptor</code> tag, in the configuration file at   <code>&lt;STRATOS_HOME&gt;/repository/deployment/server/outputeventadaptors/JMSOutputAdaptor.xml</code></p>
+
+<p><code>xml
+&lt;property name="transport.jms.UserName"&gt;system&lt;/property&gt;
+&lt;property name="transport.jms.Password"&gt;manager&lt;/property&gt;
+</code></p>
+
+<h2>Cartridge Agent</h2>
+
+<p>The Python Cartridge Agent can be configured with ActiveMQ credentials by specifying the <code>mb.username</code> and <code>mb.password</code> options in the <code>agent.conf</code> file.</p>
+
+<p>To do this in a Docker image managed by Kubernetes, specify the following options in the Kubernetes Cluster Configuration JSON file, under the <code>property</code> array.</p>
+
+<p><code>json
+{
+  "name": "payload_parameter.MB_USERNAME",
+  "value": "system"
+},
+{
+  "name": "payload_parameter.MB_PASSWORD",
+  "value": "manager"
+}
+</code></p>
+
+<p>For a VM, these values can be specified in the <code>base.pp</code> manifest in the Puppet server.</p>
+
+<p><code>puppet
+$mb_username          = 'system'
+$mb_password          = 'manager'
+</code></p>
+
+<p>After the credentials are enabled and configured, if anonymous access is not allowed, no external user without the credentials will not be able to listen to the communication or publish messages on the message broker.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Apache Stratos Cartridge Agent: Life Cycle Walkthough]]></title>
@@ -432,119 +518,6 @@ node /php/ inherits base {</p>
 <p>Most cartridge types deal with a set of artifacts that are hosted on a remote repository, that should be copied over to the instance and executed on. For an example a PHP cartridge will require a remote repository location to copy the web artifacts from. It is the Cartridge Agent that performs this artifact management task. In addition to cloning from the remote repository, there are cases where the locally modified artifacts should be pushed to the remote repository. This is also carried out by the Cartridge Agent.</p>
 
 <p>It is the responsibility of the Cartridge Agent to manage all the tasks and make sure the instance goes through its intended life cycle. But, who configures and starts the Cartridge Agent? Keeping aside the philosophical overtone of that question, let&rsquo;s take a look at the instance configuration process in the next article before diving in to the Cartridge Agent life cycle itself.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Thrift Communication in Apache Stratos]]></title>
-    <link href="http://chamilad.github.io/blog/2014/10/10/thrift-communication-in-apache-stratos/"/>
-    <updated>2014-10-10T15:33:51+05:30</updated>
-    <id>http://chamilad.github.io/blog/2014/10/10/thrift-communication-in-apache-stratos</id>
-    <content type="html"><![CDATA[<h1>Thrift Streaming Basics in WSO2 Carbon</h1>
-
-<p>In Stratos, data publishing over Thrift is done via streaming. It uses WSO2 Carbon&rsquo;s Data Bridge to serialize data in to a stream and publish to a given Ip address and a Port. The use of DataBridge is explained <a href="http://wso2.com/library/articles/2012/07/creating-custom-agents-publish-events-bamcep/">here</a>.</p>
-
-<h2>Stream Definition</h2>
-
-<p>In order to publish data as a stream, the definition of the particular stream should be defined first. This is achieved using the <code>org.wso2.carbon.databridge.commons.StreamDefinition</code> class. The list of attributes that will be written to the stream is defined using a StreamDefinition object to be assigned to a particular DataPublisher.</p>
-
-<p>One notable aspect of the StreamDefinition class is the three separate attribute list for metaData, correlationData and payloadData in that order. This separation of the attributes is a logical divide which doesn&rsquo;t have any significant meaning on the server side when it comes to WSO2 CEP and WSO2 BAM. It is available for the publisher to make sense of the various types of data that are being published and then later analyzed. This scenario in the WSO2 CEP context is explained <a href="http://stackoverflow.com/questions/26033755/what-is-meta-data-correlation-data-and-payload-data-in-wso2-cep">here</a>.</p>
-
-<p>A StreamDefinition should minimally have a stream ID and a stream name. Additionally a nickname, and a description can be added. The stream ID is generated by the receiver when the StreamDefinition is associated with a particular connection. This constitutes of the stream name and the stream version. When publishing data this stream ID is used to retrieve the stream definition at the receiver&rsquo;s end. In fact the first two attributes to be published when publishing data are the stream ID of <code>STRING</code> type and the timestamp of the event in milliseconds of type <code>LONG</code>.</p>
-
-<p>The attributes describing the data that is published have to added to the StreamDefinition <em>in the order they are to be published</em>. The order is important in a data stream because it is bound to the way the data is read from the receiver&rsquo;s side.</p>
-
-<p>For each attribute added, the type of the data should be defined. WSO2 DataBridge provides readable attribute types that represents the <a href="http://thrift-tutorial.readthedocs.org/en/latest/thrift-types.html">type system in Thrift</a>, as <code>INT</code>, <code>LONG</code>, <code>FLOAT</code>, <code>DOUBLE</code>, <code>STRING</code> and <code>BOOL</code>.</p>
-
-<h2>Data</h2>
-
-<p>Data are written in to the stream as Events. <code>org.wso2.carbon.databridge.commons.Event</code> object stores the data for a particular event and when the time comes to actually serialize the data in to the wire, <code>org.wso2.carbon.databridge.agent.thrift.internal.utils.ThriftEventConverter</code> adds all the data together and assigns proper Thrift types to each data. This logic is implemented in the Carbon platform&rsquo;s DataBridge.</p>
-
-<h1>Usage Scenarios</h1>
-
-<p>Apache Stratos publishes data over Thrift in two scenarios. Both scenarios are involved with managing cartridges based on their performance. Cartridge Agent initiates and manages streaming of data from the cartridge to the monitoring server/complex event processing server. The addresses and the credentials of the data aggregation servers should be provided from Stratos to the cartridge agent.</p>
-
-<h2>Health Statistics Publishing</h2>
-
-<p><img src="/images/post_resource/thrift/healthstats.jpg"></p>
-
-<p>Health statistics of a particular cartridge instance is used by a real time processing engine to declare events that manage the cartridge life cycle. For example based on the memory load and the CPU usage, CEP can publish events that the AutoScaling picks up and accordingly spawn new instances. Another example is the AutoScaler terminating faulty cartridges based on events published by the CEP when health statistics publishing stops for a certain period of timeout. The role of the AutoScaler along with a CEP is described <a href="https://cwiki.apache.org/confluence/display/STRATOS/4.1.0+Auto-scaler">here</a>.</p>
-
-<p>Following values should be passed to the Cartridge Agent via the Puppet Configuration, which includes these values as system properties when the Cartridge Agent starts up. They are then used to establish the connection and publish the data to the Thrift receiver.</p>
-
-<ol>
-<li>Ip address (<code>thrift.receiver.ip</code>)</li>
-<li>Port (<code>thrift.receiver.port</code>) &ndash; 7711 is the default value</li>
-<li>Username(<code>thrift.server.admin.username</code>)</li>
-<li>Password(<code>thrift.server.admin.password</code>)</li>
-</ol>
-
-
-<p>The Cartridge Agent publishes several events to the message broker after it starts, two key events being the InstanceStartedEvent and the InstanceActivatedEvent. The InstanceStartedEvent is published after the Topology is confirmed as consistent. The InstanceActivatedEvent is published after the InstanceStartedEvent, but this can happen in two code paths. If there is no repository based artifact management to be done, the InstanceActivatedEvent will be published immediately by the CartridgeAgent. If the Cartridge Agent has to wait for the ArtifactUpdatedEvent to start managing the artifacts related to a repository, the InstanceActivatedEvent will be published after the artifacts are synchronized to the instance. These events are published from the Cartridge Agent to the <code>/instance/status</code> topic in the message broker. In both cases the health statistics publishing job starts after the InstanceActivatedEvent is published. The interval at which the health statistics publishing job works can be adjusted by specifying <code>stats.notifier.interval</code> property of the cartridge agent. By default this is set to 15 seconds.</p>
-
-<p>The health statistics are published with the stream name <code>cartridge_agent_health_stats</code>. The stream definition contains only the payload data and the types of the added payload data are as follows.</p>
-
-<ol>
-<li>&ldquo;cluster_id&rdquo;           => STRING</li>
-<li>&ldquo;network_partition_id&rdquo; => STRING</li>
-<li>&ldquo;member_id&rdquo;            => STRING</li>
-<li>&ldquo;partition_id&rdquo;         => STRING</li>
-<li>&ldquo;health_description&rdquo;   => STRING</li>
-<li>&ldquo;value&rdquo;                => DOUBLE</li>
-</ol>
-
-
-<p>Two types of health statistics are published by the cartridge agent, percentage of free memory, and the load average of the CPU. <code>health_description</code> field uses values <code>memory_consumption</code> and <code>load_average</code> respectively for these two readings.</p>
-
-<p>Health statistics publishing can be disabled by setting <code>cep.stats.publisher.enabled</code> property of the Cartridge agent to <code>false</code>.</p>
-
-<h2>Log Publishing</h2>
-
-<p><img src="/images/post_resource/thrift/logs.jpg"></p>
-
-<p>The application logs are published to a monitoring server by the cartridge agent for data analysis. For this the property <code>enable.data.publisher</code> should be set to <code>true</code>.</p>
-
-<p>The log publishing thread starts as soon as the cartridge agent initialization is complete. For it to connect to the Thrift receiver following fields have to be passed to the Cartridge Agent.</p>
-
-<ol>
-<li>Ip address (<code>monitoring.server.ip</code>)</li>
-<li>Port (<code>monitoring.server.port</code>)</li>
-<li>Secure Port (<code>monitoring.server.secure.port</code>)</li>
-<li>Username (<code>monitoring.server.admin.username</code>)</li>
-<li>Password (<code>monitoring.server.admin.password</code>)</li>
-</ol>
-
-
-<p>The stream definition for the log publishing is as follows. Note that one metaData attribute is added to the definition by the publisher. This contains the member ID of the particular instance that is publishing the data.</p>
-
-<h4>MetaData</h4>
-
-<ol>
-<li>&ldquo;memberId&rdquo;   => STRING</li>
-</ol>
-
-
-<h4>PayloadData</h4>
-
-<ol>
-<li>&ldquo;tenantID&rdquo;   => STRING</li>
-<li>&ldquo;serverName&rdquo; => STRING</li>
-<li>&ldquo;appName&rdquo;    => STRING</li>
-<li>&ldquo;logTime&rdquo;    => LONG</li>
-<li>&ldquo;priority&rdquo;   => STRING</li>
-<li>&ldquo;message&rdquo;    => STRING</li>
-<li>&ldquo;logger&rdquo;     => STRING</li>
-<li>&ldquo;ip&rdquo;         => STRING</li>
-<li>&ldquo;instance&rdquo;   => STRING</li>
-<li>&ldquo;stacktrace&rdquo; => STRING</li>
-</ol>
-
-
-<p>The log publisher stream is defined with the name of format <code>logs.{tenantId}.{cartridgeAlias}.yyyy.MM.dd</code>.</p>
-
-<p>For each of the log that is mentioned under <code>log.file.paths</code> parameter a separate <code>org.apache.stratos.cartridge.agent.data.publisher.log.FileBasedLogPublisher</code> thread is started.</p>
-
-<p>The FileBasedLogPublisher scans the log file for new lines and for each new line added, publishes a new Event to the Thrift receiver. Therefore there is no defined interval for the log publisher naturally.</p>
 ]]></content>
   </entry>
   

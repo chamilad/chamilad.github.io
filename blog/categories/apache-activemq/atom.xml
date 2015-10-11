@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: apache activemq | nuts!]]></title>
+  <link href="http://chamilad.github.io/blog/categories/apache-activemq/atom.xml" rel="self"/>
+  <link href="http://chamilad.github.io/"/>
+  <updated>2015-10-11T20:30:13+05:30</updated>
+  <id>http://chamilad.github.io/</id>
+  <author>
+    <name><![CDATA[chamila de alwis]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Secure Message Broker Communication in Apache Stratos with Apache ActiveMQ]]></title>
+    <link href="http://chamilad.github.io/blog/2015/10/11/secure-message-broker-communication-in-apache-stratos/"/>
+    <updated>2015-10-11T00:55:36+05:30</updated>
+    <id>http://chamilad.github.io/blog/2015/10/11/secure-message-broker-communication-in-apache-stratos</id>
+    <content type="html"><![CDATA[<p>Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of communication between components such as the Cartridge Agent, Cloud Controller and the Autoscaler, as this allows a decoupled architecture for the components.</p>
+
+<p><img src="/images/post_resource/stratos/ca-overview.png"></p>
+
+<p>When it comes to message brokers, authentication is a crucial part of securing the communication channel since if left unsecured, anyone with access to the message broker can subscribe to the topics and listen to the communication between the components. This can expose sensitive data easily and the system would be compromised in no time. The purpose of this article is to explain how to engage Username and Password based authentication with Apache ActiveMQ in Stratos.</p>
+
+<h1>Securing ActiveMQ</h1>
+
+<p>ActiveMQ allows to add authentication and authorization through an extensible plugin system. For our purpose, the out of the box <code>SimpleAuthenticationPlugin</code> is more than enough as it allows us to define a username and a password with the list of user groups the particular user belongs to.</p>
+
+<p>To engage <code>SimpleAuthenticationPlugin</code> we have to add the following section before the <code>broker</code> tag closes, in <code>&lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml</code>.</p>
+
+<p>```xml
+<plugins></p>
+
+<pre><code>&lt;simpleAuthenticationPlugin&gt;
+    &lt;users&gt;
+        &lt;authenticationUser username="system" password="manager" groups="users,admins"/
+    &lt;/users&gt;
+&lt;/simpleAuthenticationPlugin&gt;
+</code></pre>
+
+<p></plugins>
+```</p>
+
+<p>As you can see we have introduced a user named <code>system</code> with password <code>manager</code> who belongs to groups <code>users</code> and <code>admins</code>. Since we have not allowed anonymous access, any subscriber or a publisher that connects to ActiveMQ should provide these credentials to successfully communicate. We can enable anonymous access by specifying the <code>allowAnonymousAccess</code> attribute on <code>simpleAuthenticationPlugin</code> to <code>true</code>.</p>
+
+<p>After the configuration file is saved, restart ActiveMQ.</p>
+
+<h1>Providing Credentials on Stratos</h1>
+
+<p>Within Stratos there are three configurations that we have to provide message broker credentials in to.</p>
+
+<h2>Stratos Components &ndash; Cloud Controller, Autoscaler, Stratos Manager</h2>
+
+<p>The ActiveMQ credentials for Stratos components can be provided by the <code>jndi.properties</code> file. Simply add the following two lines in the <code>&lt;STRATOS_HOME&gt;/repository/conf/jndi.properties</code> file.</p>
+
+<p><code>
+java.naming.security.principal=system
+java.naming.security.credentials=manager
+</code></p>
+
+<p><code>java.naming.security.principal</code> corresponds to the ActiveMQ username and <code>java.naming.security.credentials</code> contains the password.</p>
+
+<h2>Complex Event Processor</h2>
+
+<p>Based on the health statistics published from the instances via <a href="http://code.chamiladealwis.com/blog/2014/10/10/thrift-communication-in-apache-stratos/">Thrift</a>, the Complex Event Processor publishes several crucial messages to the message broker. This is done using a JMSOutputAdaptor. To configure the JMSOutputAdaptor to use ActiveMQ credentials, add the following entries inside the <code>outputEventAdaptor</code> tag, in the configuration file at   <code>&lt;STRATOS_HOME&gt;/repository/deployment/server/outputeventadaptors/JMSOutputAdaptor.xml</code></p>
+
+<p><code>xml
+&lt;property name="transport.jms.UserName"&gt;system&lt;/property&gt;
+&lt;property name="transport.jms.Password"&gt;manager&lt;/property&gt;
+</code></p>
+
+<h2>Cartridge Agent</h2>
+
+<p>The Python Cartridge Agent can be configured with ActiveMQ credentials by specifying the <code>mb.username</code> and <code>mb.password</code> options in the <code>agent.conf</code> file.</p>
+
+<p>To do this in a Docker image managed by Kubernetes, specify the following options in the Kubernetes Cluster Configuration JSON file, under the <code>property</code> array.</p>
+
+<p><code>json
+{
+  "name": "payload_parameter.MB_USERNAME",
+  "value": "system"
+},
+{
+  "name": "payload_parameter.MB_PASSWORD",
+  "value": "manager"
+}
+</code></p>
+
+<p>For a VM, these values can be specified in the <code>base.pp</code> manifest in the Puppet server.</p>
+
+<p><code>puppet
+$mb_username          = 'system'
+$mb_password          = 'manager'
+</code></p>
+
+<p>After the credentials are enabled and configured, if anonymous access is not allowed, no external user without the credentials will not be able to listen to the communication or publish messages on the message broker.</p>
+]]></content>
+  </entry>
+  
+</feed>

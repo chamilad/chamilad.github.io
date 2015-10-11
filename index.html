@@ -9,7 +9,7 @@
   <meta name="author" content="chamila de alwis">
 
   
-  <meta name="description" content="This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you&rsquo;ve missed the memo, why not start from the first &hellip;">
+  <meta name="description" content="Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -62,6 +62,137 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/10/11/secure-message-broker-communication-in-apache-stratos/">Secure Message Broker Communication in Apache Stratos With Apache ActiveMQ</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-10-11T00:55:36+05:30" pubdate data-updated="true">Oct 11<sup>th</sup>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of communication between components such as the Cartridge Agent, Cloud Controller and the Autoscaler, as this allows a decoupled architecture for the components.</p>
+
+<p><img src="/images/post_resource/stratos/ca-overview.png"></p>
+
+<p>When it comes to message brokers, authentication is a crucial part of securing the communication channel since if left unsecured, anyone with access to the message broker can subscribe to the topics and listen to the communication between the components. This can expose sensitive data easily and the system would be compromised in no time. The purpose of this article is to explain how to engage Username and Password based authentication with Apache ActiveMQ in Stratos.</p>
+
+<h1>Securing ActiveMQ</h1>
+
+<p>ActiveMQ allows to add authentication and authorization through an extensible plugin system. For our purpose, the out of the box <code>SimpleAuthenticationPlugin</code> is more than enough as it allows us to define a username and a password with the list of user groups the particular user belongs to.</p>
+
+<p>To engage <code>SimpleAuthenticationPlugin</code> we have to add the following section before the <code>broker</code> tag closes, in <code>&lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;simpleAuthenticationPlugin&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;users&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;authenticationUser</span> <span class="na">username=</span><span class="s">&quot;system&quot;</span> <span class="na">password=</span><span class="s">&quot;manager&quot;</span> <span class="na">groups=</span><span class="s">&quot;users,admins&quot;</span><span class="err">/</span>
+</span><span class='line'>        <span class="err">&lt;/users</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/simpleAuthenticationPlugin&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plugins&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can see we have introduced a user named <code>system</code> with password <code>manager</code> who belongs to groups <code>users</code> and <code>admins</code>. Since we have not allowed anonymous access, any subscriber or a publisher that connects to ActiveMQ should provide these credentials to successfully communicate. We can enable anonymous access by specifying the <code>allowAnonymousAccess</code> attribute on <code>simpleAuthenticationPlugin</code> to <code>true</code>.</p>
+
+<p>After the configuration file is saved, restart ActiveMQ.</p>
+
+<h1>Providing Credentials on Stratos</h1>
+
+<p>Within Stratos there are three configurations that we have to provide message broker credentials in to.</p>
+
+<h2>Stratos Components &ndash; Cloud Controller, Autoscaler, Stratos Manager</h2>
+
+<p>The ActiveMQ credentials for Stratos components can be provided by the <code>jndi.properties</code> file. Simply add the following two lines in the <code>&lt;STRATOS_HOME&gt;/repository/conf/jndi.properties</code> file.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>java.naming.security.principal=system
+</span><span class='line'>java.naming.security.credentials=manager
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>java.naming.security.principal</code> corresponds to the ActiveMQ username and <code>java.naming.security.credentials</code> contains the password.</p>
+
+<h2>Complex Event Processor</h2>
+
+<p>Based on the health statistics published from the instances via <a href="http://code.chamiladealwis.com/blog/2014/10/10/thrift-communication-in-apache-stratos/">Thrift</a>, the Complex Event Processor publishes several crucial messages to the message broker. This is done using a JMSOutputAdaptor. To configure the JMSOutputAdaptor to use ActiveMQ credentials, add the following entries inside the <code>outputEventAdaptor</code> tag, in the configuration file at   <code>&lt;STRATOS_HOME&gt;/repository/deployment/server/outputeventadaptors/JMSOutputAdaptor.xml</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;transport.jms.UserName&quot;</span><span class="nt">&gt;</span>system<span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;transport.jms.Password&quot;</span><span class="nt">&gt;</span>manager<span class="nt">&lt;/property&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Cartridge Agent</h2>
+
+<p>The Python Cartridge Agent can be configured with ActiveMQ credentials by specifying the <code>mb.username</code> and <code>mb.password</code> options in the <code>agent.conf</code> file.</p>
+
+<p>To do this in a Docker image managed by Kubernetes, specify the following options in the Kubernetes Cluster Configuration JSON file, under the <code>property</code> array.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;payload_parameter.MB_USERNAME&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span>
+</span><span class='line'><span class="p">}</span><span class="err">,</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;payload_parameter.MB_PASSWORD&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;manager&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For a VM, these values can be specified in the <code>base.pp</code> manifest in the Puppet server.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="nv">$mb_username</span>          <span class="o">=</span> <span class="s1">&#39;system&#39;</span>
+</span><span class='line'><span class="nv">$mb_password</span>          <span class="o">=</span> <span class="s1">&#39;manager&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After the credentials are enabled and configured, if anonymous access is not allowed, no external user without the credentials will not be able to listen to the communication or publish messages on the message broker.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1469,171 +1600,6 @@
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">LIBOVERLAY_SCROLLBAR</span><span class="o">=</span>0
 </span></code></pre></td></tr></table></div></figure>
 
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/07/wso2-esb-sample-screw-ups/">WSO2 ESB Sample Screw Ups</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-07T12:26:35+05:30" pubdate data-updated="true">Jul 7<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We all know the feeling when we follow every instruction of a sample page to the letter and the results turn out to be a total <del>clusterf..</del> disaster.</p>
-
-<p>Well, let me try to easy some of the pain by listing the following probable fixes and workarounds for the 100-odd samples of the renowned <a href="http://wso2.com/products/enterprise-service-bus/">WSO2 Enterprise Service Bus</a>.</p>
-
-<blockquote><p>Keep in mind that this post will keep getting updated till I go through every sample.</p></blockquote>
-
-<h1>Sample 50</h1>
-
-<p>The synapse configuration file that is shipped with 4.8.1 has an error where asterisks are missing from a filter mediater regex. Therefore execution of the main sequence stops after failing to match any <code>To</code> SOAP headers.</p>
-
-<h2>Fix</h2>
-
-<p>Change the following line in <code>&lt;ESB_HOME&gt;/repository/samples/synapse_sample_50.xml</code> to include the asterisks.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter</span> <span class="na">source=</span><span class="s">&quot;get-property(&#39;To&#39;)&quot;</span> <span class="na">regex=</span><span class="s">&quot;./StockQuote.&quot;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The modified line should be as follows.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter</span> <span class="na">source=</span><span class="s">&quot;get-property(&#39;To&#39;)&quot;</span> <span class="na">regex=</span><span class="s">&quot;.*/StockQuote.*&quot;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h1>Sample 57</h1>
-
-<p>In ESB 4.8.1 running this sample would not result in the expected outcome and would throw an error similar to the following.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>org.apache.synapse.SynapseException: A LoadBalanceEventHandler has not been
-</span><span class='line'>specified in the axis2.xml file for the domain apache.axis2.application.domain
-</span><span class='line'>at
-</span><span class='line'>org.apache.synapse.core.axis2.Axis2LoadBalanceMembershipHandler.setConfigurationContext(Axis2LoadBalanceMembershipHandler.java:77)
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The reason for this is the incompatibility between the clustering mechanisms used in ESB 4.8.1 (HazelCast) and the sample Axis2 server (Apache Tribes) it ships with.</p>
-
-<h2>Fix</h2>
-
-<p>As <a href="http://wso2-oxygen-tank.10903.n7.nabble.com/Dev-Running-ESB-sample-57-td89484.html">this</a> email thread mentions this can be overcome by getting ESB 4.7.0 where the same clustering implementation is used that of the Axis2 server.</p>
-
-<h1>Sample 60, 61, 62</h1>
-
-<p>In ESB 4.8.1 the synapse configuration files for the samples 60, 61, and 62 are missing and the configurations that are on the sample pages are errorneous.
-For an example in sample #61 the mentioned configuration refers to a property named <code>EP_LIST</code> while there&rsquo;s no external registry resource or inline defined property that is of the name EP_LIST.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;send&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;endpoint&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;recipientlist&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;endpoints</span> <span class="na">value=</span><span class="s">&quot;{get-property(&#39;EP_LIST&#39;)}&quot;</span> <span class="na">max-cache=</span><span class="s">&quot;20&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/recipientlist&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/endpoint&gt;</span>
-</span><span class='line'><span class="nt">&lt;/send&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Fix</h2>
-
-<p>However these synapse configuration files are present in the 4.7.0 release and they can be used to start the 4.8.1 ESB with the desired configuration.</p>
-
-<h1>Sample 152</h1>
-
-<p>You would probably get an error while trying to execute the client like the following.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>[2014-07-07 13:28:09,060] ERROR - ServerWorker Error processing POST request
-</span><span class='line'>java.lang.NullPointerException: Tenant domain has not been set in CarbonContext
-</span><span class='line'>    at org.wso2.carbon.caching.impl.CacheManagerFactoryImpl.getCacheManager(CacheManagerFactoryImpl.java:79)
-</span><span class='line'>    at org.wso2.carbon.security.pox.POXSecurityHandler.getPOXCache(POXSecurityHandler.java:383)
-</span><span class='line'>    at org.wso2.carbon.security.pox.POXSecurityHandler.invoke(POXSecurityHandler.java:179)
-</span><span class='line'>    at org.apache.axis2.engine.Phase.invokeHandler(Phase.java:340)
-</span><span class='line'>    at org.apache.axis2.engine.Phase.invoke(Phase.java:313)
-</span><span class='line'>    at org.apache.axis2.engine.AxisEngine.invoke(AxisEngine.java:261)
-</span><span class='line'>    at org.apache.axis2.engine.AxisEngine.receive(AxisEngine.java:167)
-</span><span class='line'>    at org.apache.axis2.transport.http.HTTPTransportUtils.processHTTPPostRequest(HTTPTransportUtils.java:172)
-</span><span class='line'>    at org.apache.synapse.transport.nhttp.ServerWorker.processEntityEnclosingMethod(ServerWorker.java:459)
-</span><span class='line'>    at org.apache.synapse.transport.nhttp.ServerWorker.run(ServerWorker.java:279)
-</span><span class='line'>    at org.apache.axis2.transport.base.threads.NativeWorkerPool$1.run(NativeWorkerPool.java:172)
-</span><span class='line'>    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
-</span><span class='line'>    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
-</span><span class='line'>    at java.lang.Thread.run(Thread.java:722)
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>While I can&rsquo;t exactly pinpoint the cause of the error this happens due to the way we execute the samples. If you directly executed the sample #152 chances are that you wouldn&rsquo;t come across this. But if you started with a sample before #101 you&rsquo;d probably get this.</p>
-
-<p>At sample #101 you have to enable the NHTTP configuration for Carbon. Non-Blocking HTTP is required to enable WS-ReliableMessaging so that the source can call the Web Service destination asynchronously.</p>
-
-<p>You are instructed to enable NHTTP configuration by editing the <code>carbon.xml</code> file in <code>&lt;ESB_HOME&gt;/repository/conf/</code>.</p>
-
-<figure class='code'><figcaption><span>carbon.xml start:253</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="c">&lt;!-- You are instructed to comment this line and enable the next one to enable NHTTP --&gt;</span>
-</span><span class='line'><span class="nt">&lt;ConfigurationFile&gt;</span>${carbon.home}/repository/conf/axis2/axis2.xml<span class="nt">&lt;/ConfigurationFile&gt;</span>
-</span><span class='line'><span class="nt">&lt;ConfigurationFile&gt;</span>${carbon.home}/repository/conf/axis2/axis2_nhttp.xml<span class="nt">&lt;/ConfigurationFile&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Fix</h2>
-
-<p>To make the sample #152 run properly revert this change.</p>
 </div>
   
   
