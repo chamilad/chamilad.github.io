@@ -4,7 +4,7 @@
   <title><![CDATA[Category: apache activemq | nuts!]]></title>
   <link href="http://chamilad.github.io/blog/categories/apache-activemq/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2015-10-11T20:30:13+05:30</updated>
+  <updated>2015-11-16T23:33:50+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Support for ActiveMQ Master/Slave failover in Apache Stratos Cartridge Agent]]></title>
+    <link href="http://chamilad.github.io/blog/2015/11/16/support-for-activemq-master-slash-slave-failover-in-apache-stratos-cartridge-agent/"/>
+    <updated>2015-11-16T20:20:07+05:30</updated>
+    <id>http://chamilad.github.io/blog/2015/11/16/support-for-activemq-master-slash-slave-failover-in-apache-stratos-cartridge-agent</id>
+    <content type="html"><![CDATA[<p>In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to <a href="http://code.chamiladealwis.com/blog/2015/10/11/secure-message-broker-communication-in-apache-stratos/">secure the message broker communication</a>. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.</p>
+
+<p>ActiveMQ supports <a href="http://activemq.apache.org/clustering.html">various types of clustering patterns</a>. Out of these, <a href="http://activemq.apache.org/masterslave.html">Master/Slave</a> is a deployment pattern where the message store is replicated or shared between the clustered brokers. This makes it possible for a client to failover from the <code>master</code> to the <code>slave</code> in case the master broker goes down, and continue the communication without any data loss.</p>
+
+<p>Earlier, the Cartridge Agent implementation was in Java and the ActiveMQ client used in Apache Stratos allowed the failover transport to be used right out of the box, by using the <code>failover</code> transport in the JNDI configuration.</p>
+
+<p><code>properties
+connectionfactoryName=TopicConnectionFactory
+java.naming.provider.url=failover:(tcp://localhost:61617,tcp://localhost:61618,tcp://localhost:61619)?initialReconnectDelay=100
+java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory
+</code></p>
+
+<p>However when the Python implementation of the Cartridge Agent was done this support was not implemented initially. Therefore, it was only possible for Python Cartridge Agent to connect to only one given message broker making it a possible point of failure.</p>
+
+<p>However the upcoming 4.1.5 release contains the fix for the Python Cartridge Agent which enables it to accept a list of message brokers. This is provided via the <code>agent.conf</code> configuration file as follows.</p>
+
+<p><code>ini
+[agent]
+mb.urls                               =localhost:1885,localhost:1886,localhost:1887
+mb.username                           =system
+mb.password                           =manager
+mb.publisher.timeout                  =900
+</code></p>
+
+<p>The crucial change is from <code>mb.username</code> and <code>mb.password</code> to <code>mb.urls</code>. This will be a comma separated list of host:port values of the available broker list.</p>
+
+<p>When communicating with the message broker, the Python Cartridge Agent will go through the provided URL list and connect to the first broker that is available.</p>
+
+<p>The listening subscriber client will always make an effort to keep a connection to one of the brokers. i.e. when the connected broker goes down it will go through the message broker list and select the first available broker. If none of the provided message brokers are online, the subscribing client will keep retrying until one broker becomes available. This logic will separately execute for each topic subscription.</p>
+
+<p>The publishing client will publish the events to the first broker available. If none of the brokers are available it will keep retrying to publish the event, until the provided <code>mb.publisher.timeout</code> value is exceeded. The default value for this is 15 minutes. After that timeout, if the event is still unpublished, it will be dropped, and life moves on.</p>
+
+<p>Notice that it will be possible for the events to be published to one broker and intended consumers to be connected to another. However, if the Master/Slave deployment is done correctly data sharing happens without an issue and this situation shouldn&rsquo;t be of any concern.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Secure Message Broker Communication in Apache Stratos with Apache ActiveMQ]]></title>

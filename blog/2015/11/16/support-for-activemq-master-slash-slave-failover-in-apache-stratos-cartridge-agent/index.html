@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Support for ActiveMQ Master/Slave failover in Apache Stratos Cartridge Agent - nuts!</title>
+  <meta name="author" content="chamila de alwis">
+
+  
+  <meta name="description" content="In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://chamilad.github.io/blog/2015/11/16/support-for-activemq-master-slash-slave-failover-in-apache-stratos-cartridge-agent">
+  <link href="/favicon.ico" rel="icon">
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="nuts!" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header role="banner"><hgroup>
+  <h2>nuts!</h2>
+  
+    <h1>Ramblings on Cloud Computing, Middleware and Beer</h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation">
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:chamilad.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Support for ActiveMQ Master/Slave Failover in Apache Stratos Cartridge Agent</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-11-16T20:20:07+05:30" pubdate data-updated="true">Nov 16<sup>th</sup>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to <a href="http://code.chamiladealwis.com/blog/2015/10/11/secure-message-broker-communication-in-apache-stratos/">secure the message broker communication</a>. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.</p>
+
+<p>ActiveMQ supports <a href="http://activemq.apache.org/clustering.html">various types of clustering patterns</a>. Out of these, <a href="http://activemq.apache.org/masterslave.html">Master/Slave</a> is a deployment pattern where the message store is replicated or shared between the clustered brokers. This makes it possible for a client to failover from the <code>master</code> to the <code>slave</code> in case the master broker goes down, and continue the communication without any data loss.</p>
+
+<p>Earlier, the Cartridge Agent implementation was in Java and the ActiveMQ client used in Apache Stratos allowed the failover transport to be used right out of the box, by using the <code>failover</code> transport in the JNDI configuration.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="na">connectionfactoryName</span><span class="o">=</span><span class="s">TopicConnectionFactory</span>
+</span><span class='line'><span class="na">java.naming.provider.url</span><span class="o">=</span><span class="s">failover:(tcp://localhost:61617,tcp://localhost:61618,tcp://localhost:61619)?initialReconnectDelay=100</span>
+</span><span class='line'><span class="na">java.naming.factory.initial</span><span class="o">=</span><span class="s">org.apache.activemq.jndi.ActiveMQInitialContextFactory</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>However when the Python implementation of the Cartridge Agent was done this support was not implemented initially. Therefore, it was only possible for Python Cartridge Agent to connect to only one given message broker making it a possible point of failure.</p>
+
+<p>However the upcoming 4.1.5 release contains the fix for the Python Cartridge Agent which enables it to accept a list of message brokers. This is provided via the <code>agent.conf</code> configuration file as follows.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[agent]</span>
+</span><span class='line'><span class="na">mb.urls</span>                               <span class="o">=</span><span class="s">localhost:1885,localhost:1886,localhost:1887</span>
+</span><span class='line'><span class="na">mb.username</span>                           <span class="o">=</span><span class="s">system</span>
+</span><span class='line'><span class="na">mb.password</span>                           <span class="o">=</span><span class="s">manager</span>
+</span><span class='line'><span class="na">mb.publisher.timeout</span>                  <span class="o">=</span><span class="s">900</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The crucial change is from <code>mb.username</code> and <code>mb.password</code> to <code>mb.urls</code>. This will be a comma separated list of host:port values of the available broker list.</p>
+
+<p>When communicating with the message broker, the Python Cartridge Agent will go through the provided URL list and connect to the first broker that is available.</p>
+
+<p>The listening subscriber client will always make an effort to keep a connection to one of the brokers. i.e. when the connected broker goes down it will go through the message broker list and select the first available broker. If none of the provided message brokers are online, the subscribing client will keep retrying until one broker becomes available. This logic will separately execute for each topic subscription.</p>
+
+<p>The publishing client will publish the events to the first broker available. If none of the brokers are available it will keep retrying to publish the event, until the provided <code>mb.publisher.timeout</code> value is exceeded. The default value for this is 15 minutes. After that timeout, if the event is still unpublished, it will be dropped, and life moves on.</p>
+
+<p>Notice that it will be possible for the events to be published to one broker and intended consumers to be connected to another. However, if the Master/Slave deployment is done correctly data sharing happens without an issue and this situation shouldn&rsquo;t be of any concern.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn"><a href="/about" title="About the author (chamila de alwis)" rel="author">chamila de alwis</a></span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-11-16T20:20:07+05:30" pubdate data-updated="true">Nov 16<sup>th</sup>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category label label-primary' href='/blog/categories/apache-activemq/'>apache activemq</a> <a class='category label label-primary' href='/blog/categories/apache-stratos/'>apache stratos</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://chamilad.github.io/blog/2015/11/16/support-for-activemq-master-slash-slave-failover-in-apache-stratos-cartridge-agent/" data-via="chamilad" data-counturl="http://chamilad.github.io/blog/2015/11/16/support-for-activemq-master-slash-slave-failover-in-apache-stratos-cartridge-agent/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="small"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/10/11/secure-message-broker-communication-in-apache-stratos/" title="Previous Post: Secure Message Broker Communication in Apache Stratos with Apache ActiveMQ">&laquo; Secure Message Broker Communication in Apache Stratos with Apache ActiveMQ</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - chamila de alwis -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'chamila-01';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://chamilad.github.io/blog/2015/11/16/support-for-activemq-master-slash-slave-failover-in-apache-stratos-cartridge-agent/';
+        var disqus_url = 'http://chamilad.github.io/blog/2015/11/16/support-for-activemq-master-slash-slave-failover-in-apache-stratos-cartridge-agent/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

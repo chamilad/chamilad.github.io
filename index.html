@@ -9,7 +9,7 @@
   <meta name="author" content="chamila de alwis">
 
   
-  <meta name="description" content="Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of &hellip;">
+  <meta name="description" content="In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -62,6 +62,82 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/11/16/support-for-activemq-master-slash-slave-failover-in-apache-stratos-cartridge-agent/">Support for ActiveMQ Master/Slave Failover in Apache Stratos Cartridge Agent</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-11-16T20:20:07+05:30" pubdate data-updated="true">Nov 16<sup>th</sup>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to <a href="http://code.chamiladealwis.com/blog/2015/10/11/secure-message-broker-communication-in-apache-stratos/">secure the message broker communication</a>. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.</p>
+
+<p>ActiveMQ supports <a href="http://activemq.apache.org/clustering.html">various types of clustering patterns</a>. Out of these, <a href="http://activemq.apache.org/masterslave.html">Master/Slave</a> is a deployment pattern where the message store is replicated or shared between the clustered brokers. This makes it possible for a client to failover from the <code>master</code> to the <code>slave</code> in case the master broker goes down, and continue the communication without any data loss.</p>
+
+<p>Earlier, the Cartridge Agent implementation was in Java and the ActiveMQ client used in Apache Stratos allowed the failover transport to be used right out of the box, by using the <code>failover</code> transport in the JNDI configuration.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="na">connectionfactoryName</span><span class="o">=</span><span class="s">TopicConnectionFactory</span>
+</span><span class='line'><span class="na">java.naming.provider.url</span><span class="o">=</span><span class="s">failover:(tcp://localhost:61617,tcp://localhost:61618,tcp://localhost:61619)?initialReconnectDelay=100</span>
+</span><span class='line'><span class="na">java.naming.factory.initial</span><span class="o">=</span><span class="s">org.apache.activemq.jndi.ActiveMQInitialContextFactory</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>However when the Python implementation of the Cartridge Agent was done this support was not implemented initially. Therefore, it was only possible for Python Cartridge Agent to connect to only one given message broker making it a possible point of failure.</p>
+
+<p>However the upcoming 4.1.5 release contains the fix for the Python Cartridge Agent which enables it to accept a list of message brokers. This is provided via the <code>agent.conf</code> configuration file as follows.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[agent]</span>
+</span><span class='line'><span class="na">mb.urls</span>                               <span class="o">=</span><span class="s">localhost:1885,localhost:1886,localhost:1887</span>
+</span><span class='line'><span class="na">mb.username</span>                           <span class="o">=</span><span class="s">system</span>
+</span><span class='line'><span class="na">mb.password</span>                           <span class="o">=</span><span class="s">manager</span>
+</span><span class='line'><span class="na">mb.publisher.timeout</span>                  <span class="o">=</span><span class="s">900</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The crucial change is from <code>mb.username</code> and <code>mb.password</code> to <code>mb.urls</code>. This will be a comma separated list of host:port values of the available broker list.</p>
+
+<p>When communicating with the message broker, the Python Cartridge Agent will go through the provided URL list and connect to the first broker that is available.</p>
+
+<p>The listening subscriber client will always make an effort to keep a connection to one of the brokers. i.e. when the connected broker goes down it will go through the message broker list and select the first available broker. If none of the provided message brokers are online, the subscribing client will keep retrying until one broker becomes available. This logic will separately execute for each topic subscription.</p>
+
+<p>The publishing client will publish the events to the first broker available. If none of the brokers are available it will keep retrying to publish the event, until the provided <code>mb.publisher.timeout</code> value is exceeded. The default value for this is 15 minutes. After that timeout, if the event is still unpublished, it will be dropped, and life moves on.</p>
+
+<p>Notice that it will be possible for the events to be published to one broker and intended consumers to be connected to another. However, if the Master/Slave deployment is done correctly data sharing happens without an issue and this situation shouldn&rsquo;t be of any concern.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1557,49 +1633,6 @@
 <p>If you check the WSDL of the secured proxy service you will observe the embedded WS-Policy describing the WS-Security policy (UsernameToken in our case) in the top most part of the WSDL document. If you wish to edit this policy you can do so by selecting &ldquo;Edit Policy&rdquo; in the Policies page of the Proxy Service. I will go to details of customized policies in another article.</p>
 
 <p>In the next article I will elaborate on how to code a client to consume the secured proxy service and how UsernameToken policy is represented in the WS-Security headers.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/09/wireshark-crashing-in-ubuntu/">Wireshark Crashing in Ubuntu</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-09T22:25:05+05:30" pubdate data-updated="true">Jul 9<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you have customized your ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu 14.04 and found the solution to be disabling overlay scrollbars that come as the default.</p>
-
-<p>To do this simply add an environment variable called LIBOVERLAY_SCROLLBAR with value 0.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">LIBOVERLAY_SCROLLBAR</span><span class="o">=</span>0
-</span></code></pre></td></tr></table></div></figure>
-
 </div>
   
   

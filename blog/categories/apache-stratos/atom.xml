@@ -4,7 +4,7 @@
   <title><![CDATA[Category: apache stratos | nuts!]]></title>
   <link href="http://chamilad.github.io/blog/categories/apache-stratos/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2015-10-11T20:30:13+05:30</updated>
+  <updated>2015-11-16T23:33:50+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Support for ActiveMQ Master/Slave failover in Apache Stratos Cartridge Agent]]></title>
+    <link href="http://chamilad.github.io/blog/2015/11/16/support-for-activemq-master-slash-slave-failover-in-apache-stratos-cartridge-agent/"/>
+    <updated>2015-11-16T20:20:07+05:30</updated>
+    <id>http://chamilad.github.io/blog/2015/11/16/support-for-activemq-master-slash-slave-failover-in-apache-stratos-cartridge-agent</id>
+    <content type="html"><![CDATA[<p>In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to <a href="http://code.chamiladealwis.com/blog/2015/10/11/secure-message-broker-communication-in-apache-stratos/">secure the message broker communication</a>. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.</p>
+
+<p>ActiveMQ supports <a href="http://activemq.apache.org/clustering.html">various types of clustering patterns</a>. Out of these, <a href="http://activemq.apache.org/masterslave.html">Master/Slave</a> is a deployment pattern where the message store is replicated or shared between the clustered brokers. This makes it possible for a client to failover from the <code>master</code> to the <code>slave</code> in case the master broker goes down, and continue the communication without any data loss.</p>
+
+<p>Earlier, the Cartridge Agent implementation was in Java and the ActiveMQ client used in Apache Stratos allowed the failover transport to be used right out of the box, by using the <code>failover</code> transport in the JNDI configuration.</p>
+
+<p><code>properties
+connectionfactoryName=TopicConnectionFactory
+java.naming.provider.url=failover:(tcp://localhost:61617,tcp://localhost:61618,tcp://localhost:61619)?initialReconnectDelay=100
+java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory
+</code></p>
+
+<p>However when the Python implementation of the Cartridge Agent was done this support was not implemented initially. Therefore, it was only possible for Python Cartridge Agent to connect to only one given message broker making it a possible point of failure.</p>
+
+<p>However the upcoming 4.1.5 release contains the fix for the Python Cartridge Agent which enables it to accept a list of message brokers. This is provided via the <code>agent.conf</code> configuration file as follows.</p>
+
+<p><code>ini
+[agent]
+mb.urls                               =localhost:1885,localhost:1886,localhost:1887
+mb.username                           =system
+mb.password                           =manager
+mb.publisher.timeout                  =900
+</code></p>
+
+<p>The crucial change is from <code>mb.username</code> and <code>mb.password</code> to <code>mb.urls</code>. This will be a comma separated list of host:port values of the available broker list.</p>
+
+<p>When communicating with the message broker, the Python Cartridge Agent will go through the provided URL list and connect to the first broker that is available.</p>
+
+<p>The listening subscriber client will always make an effort to keep a connection to one of the brokers. i.e. when the connected broker goes down it will go through the message broker list and select the first available broker. If none of the provided message brokers are online, the subscribing client will keep retrying until one broker becomes available. This logic will separately execute for each topic subscription.</p>
+
+<p>The publishing client will publish the events to the first broker available. If none of the brokers are available it will keep retrying to publish the event, until the provided <code>mb.publisher.timeout</code> value is exceeded. The default value for this is 15 minutes. After that timeout, if the event is still unpublished, it will be dropped, and life moves on.</p>
+
+<p>Notice that it will be possible for the events to be published to one broker and intended consumers to be connected to another. However, if the Master/Slave deployment is done correctly data sharing happens without an issue and this situation shouldn&rsquo;t be of any concern.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Secure Message Broker Communication in Apache Stratos with Apache ActiveMQ]]></title>
@@ -473,51 +514,6 @@ node /php/ inherits base {</p>
 <p>Notice the node name being a regex? (The parent node, <code>base</code> defines a set of common variables that are useful to all or multiple Puppet modules, such as the Message Broker URL, Java distribution name etc). That is what gets matched to the Puppet agent certificate&rsquo;s hostname.</p>
 
 <p>Now that we have an overall understanding of the Puppet context in Stratos let&rsquo;s take a look at how Puppet configures and starts the services in a spawned instance&hellip;. in the next article!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Apache Stratos Cartridge Agent: Day 0]]></title>
-    <link href="http://chamilad.github.io/blog/2015/03/17/apache-stratos-cartridge-agent-contract/"/>
-    <updated>2015-03-17T04:25:03+05:30</updated>
-    <id>http://chamilad.github.io/blog/2015/03/17/apache-stratos-cartridge-agent-contract</id>
-    <content type="html"><![CDATA[<p>As the first post of a series of comprehensive guide to the Apache Stratos Cartridge Agent, let&rsquo;s look at the Cartridge Agent contract. Keep tuned in and expect more detailed explanations on the instance and Cartridge Agent configuration, workflow, different Cartridge Agent implementations, their configurations and newly introduced plugin system in the Python implementation.</p>
-
-<h1>Role of the Cartridge Agent</h1>
-
-<p>When the instances are spawned in Apache Stratos, there are a few requirements that the particular instance should fulfill. It should</p>
-
-<ol>
-<li>Listen to the message broker events that are intended to it and publish events notifying any listening parties of its current state (STARTED|ACTIVATED|MAINTENANCE_MODE etc)</li>
-<li>Check if the intended ports of the instance are active or not and publish the status accordingly</li>
-<li>Periodically check the health statistics of the instance and publish them to an expecting <a href="http://code.chamiladealwis.com/blog/2014/10/10/thrift-communication-in-apache-stratos/">Thrift compatible</a> Complex Event Processor</li>
-<li>Clone from and constantly update an artifact repository if specified</li>
-</ol>
-
-
-<p>It&rsquo;s obvious that there should be an independent common component in each instance that fulfills these requests. And just like that, we&rsquo;ve stated the case for the cartridge agent.</p>
-
-<h2>Message broker communication</h2>
-
-<p>Apache Stratos has a loosely-coupled component structure which executes the major communication bulk over a message broker. This enables any new component to join the chit-chat without disrupting the ongoing communication or without any impact on the configuration of the existing components. Any component can go silent and it wouldn&rsquo;t affect the communication channel. The communication happens via message broker <em>Events</em> and <em>Topics</em> in the common communication channel. Therefore each component should only be aware of the location (and sometimes the credentials) of the common communication channel, the message broker.</p>
-
-<p>The Cartridge Agent connects to the message broker, publishes its initial status and listens to the <em>topics</em> for any events that are important to it. We&rsquo;ll see what these events are and what their impact would be on the work flow of the agent in the walk through section.</p>
-
-<h2>Ports activity check</h2>
-
-<p>For each cartridge, a set of ports are defined in the cartridge definition. The intended services should run on these ports. The agent should determine if a the intended service is up or not before it can announce that it is ready to accept requests. It does so by checking if the specified ports are active or not.</p>
-
-<h2>Health statistics publishing</h2>
-
-<p>The Cloud is about Scale, and Scale is about Health. Apache Stratos auto-scaling feature takes care of the complex scaling requirements of the deployed services based on a number of parameters, on a number of levels. From the point of the instance, its contribution to the scaling effort should be to announce its health status to the decision making process.</p>
-
-<p>The agent does this by collecting the memory usage and the load average values of the running instance and publishing them to a real time Complex Event Processor via Apache Thrift protocol. (Why doesn&rsquo;t it use the broker channel? Well, it&rsquo;s too darn slow to begin with for a real time event to be <em>real time</em>. Hammer and the problem anyone?) It does this periodically, usually every 15 seconds. If an instance stops publishing health stats events and stays dark for more than 60 seconds, the Complex Event Processor considers that instance to be a hopeless case and announces that an instance has gone dark. The auto-scaler, upon receiving this announcement (an <em>Event</em> published on a <em>topic</em> as you might have guessed), issues orders to terminate the faulty instance and spawn a new instance to take the place of the fallen comrade.</p>
-
-<h2>Artifacts Distribution</h2>
-
-<p>Most cartridge types deal with a set of artifacts that are hosted on a remote repository, that should be copied over to the instance and executed on. For an example a PHP cartridge will require a remote repository location to copy the web artifacts from. It is the Cartridge Agent that performs this artifact management task. In addition to cloning from the remote repository, there are cases where the locally modified artifacts should be pushed to the remote repository. This is also carried out by the Cartridge Agent.</p>
-
-<p>It is the responsibility of the Cartridge Agent to manage all the tasks and make sure the instance goes through its intended life cycle. But, who configures and starts the Cartridge Agent? Keeping aside the philosophical overtone of that question, let&rsquo;s take a look at the instance configuration process in the next article before diving in to the Cartridge Agent life cycle itself.</p>
 ]]></content>
   </entry>
   

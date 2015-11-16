@@ -9,7 +9,7 @@
   <meta name="author" content="chamila de alwis">
 
   
-  <meta name="description" content="We all know the feeling when we follow every instruction of a sample page to the letter and the results turn out to be a total clusterf.. disaster. &hellip;">
+  <meta name="description" content="If you have customized your ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -62,6 +62,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/09/wireshark-crashing-in-ubuntu/">Wireshark Crashing in Ubuntu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-09T22:25:05+05:30" pubdate data-updated="true">Jul 9<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you have customized your ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu 14.04 and found the solution to be disabling overlay scrollbars that come as the default.</p>
+
+<p>To do this simply add an environment variable called LIBOVERLAY_SCROLLBAR with value 0.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">LIBOVERLAY_SCROLLBAR</span><span class="o">=</span>0
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
