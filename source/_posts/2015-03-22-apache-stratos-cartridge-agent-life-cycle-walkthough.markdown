@@ -50,10 +50,10 @@ The state transitions can also be seen from the reference image. Additionally, y
 With this knowledge at hand, let us dive in to the walkthrough right away. 
 
 ## Created
-When the application is deployed after creating the Cluster Monitors for each cluster of Cartridges, Cloud Controller issues instance creation requests to the IaaS via JClouds. The instance state at the moment is "CREATED". 
+When the application is deployed after creating the Cluster Monitors for each cluster of Cartridges, Cloud Controller issues instance creation requests to the IaaS via JClouds. The instance state at the moment is `CREATED`. 
 
 ## Initialized
-When the instance creation is complete, the IP addresses are assigned, and the instance starts execution, the status changes to "INITIALIZED". The init scripts are executed and the Puppet agent downloads and applies the related Puppet manifests to the instance. Puppet is also responsible for starting the Cartridge Agent process. In the earlier releases, Puppet additionally started the service processes, for example Tomcat server etc. However, in the new release it is the responsibility of the Cartridge Agent to check and start the service processes. To achieve this, a Cartridge Agent plugin has to be written which will start the process. 
+When the instance creation is complete, the IP addresses are assigned, and the instance starts execution, the status changes to `INITIALIZED`. The init scripts are executed and the Puppet agent downloads and applies the related Puppet manifests to the instance. Puppet is also responsible for starting the Cartridge Agent process. In the earlier releases, Puppet additionally started the service processes, for example Tomcat server etc. However, in the new release it is the responsibility of the Cartridge Agent to check and start the service processes. To achieve this, a Cartridge Agent plugin has to be written which will start the process. 
 
 The reason to move the responsibility of starting the service to the Cartridge Agent was to make sure that the services would not be starting without artifact distribution succeeding for repository based Cartridge types such as Tomcat, PHP or WSO2 Identity Server. For example, for a Tomcat instance, starting the Tomcat server without the repository artifacts not cloned in to the `webapps` folder, does not make any sense. Therefore, the service should not be up and the Cartridge Agent will not be publishing the InstanceActivatedEvent to the message broker. 
 
@@ -91,7 +91,7 @@ Once the instance reaches the `ACTIVATED` stage, the initial tasks of the Cartri
 ## Termination
 The instance can now go to either Pending Termination state if the application is undeployed. This is called a graceful shutdown flow, where the status of the instance switches from Active->Pending Termination->Obsolete->Terminated one after the other. 
 
-However, an instance can be directly classified as obsolete too, as described by the [the first pods](http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-contract/) of this post series. If it fails to post health statistics events to the Complext Event Processor for more than 60 seconds, it will be classified as an obsolete instance and will be queued up for termination. 
+However, an instance can be directly classified as obsolete too, as described by the [the first post](http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-contract/) of this post series. If it fails to post health statistics events to the Complext Event Processor for more than 60 seconds, it will be classified as an obsolete instance and will be queued up for termination. 
 
 When an instance reaches the Pending Termination queue, an `InstanceCleanupMemberEvent` will be published to the message broker. The relevant instance picks up this event and does the necessary cleanup operations and subsequently publishes that it is ready to be terminated by publishing `InstanceReadyToShutdownEvent` to the message broker. When that happens it will be moved up to the obsolete queue.
 

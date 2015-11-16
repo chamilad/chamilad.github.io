@@ -46,8 +46,11 @@ blockquote{
     color:#999;
 }
 
-code{
+p code, li code{
     font-family: 'Source Code Pro' ;
+    font-size: 12px;
+    background: #eee;
+    border-radius: 2px;
 }
 
 body{
