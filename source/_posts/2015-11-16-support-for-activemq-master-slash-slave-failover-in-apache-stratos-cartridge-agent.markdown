@@ -35,7 +35,7 @@ The crucial change is from `mb.username` and `mb.password` to `mb.urls`. This wi
 
 When communicating with the message broker, the Python Cartridge Agent will go through the provided URL list and connect to the first broker that is available. 
 
-The listening subscriber client will always make an effort to keep a connection to one of the brokers. i.e. when the connected broker goes down it will go through the message broker list and select the first available broker. If none of the provided message brokers are online, the subscribing client will keep retrying until one broker becomes available. This logic will separately execute for each topic subscription.
+The listening subscriber client will always make an effort to keep a connection to one of the brokers. i.e. if the connected broker goes down (the Python Cartridge Agent will periodically check if the connected message broker is in fact alive or not), it will go through the message broker list and select the first available broker. If none of the provided message brokers are online, the subscribing client will keep retrying until one broker becomes available. This logic will separately execute for each topic subscription.
 
 The publishing client will publish the events to the first broker available. If none of the brokers are available it will keep retrying to publish the event, until the provided `mb.publisher.timeout` value is exceeded. The default value for this is 15 minutes. After that timeout, if the event is still unpublished, it will be dropped, and life moves on. 
 
