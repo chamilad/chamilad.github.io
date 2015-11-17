@@ -4,7 +4,7 @@
   <title><![CDATA[nuts!]]></title>
   <link href="http://chamilad.github.io/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2015-11-16T23:39:42+05:30</updated>
+  <updated>2015-11-17T19:30:59+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -12,6 +12,139 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Creating a Simple ActiveMQ Master/Slave Setup]]></title>
+    <link href="http://chamilad.github.io/blog/2015/11/17/creating-a-simple-activemq-master-slash-slave-setup/"/>
+    <updated>2015-11-17T17:11:12+05:30</updated>
+    <id>http://chamilad.github.io/blog/2015/11/17/creating-a-simple-activemq-master-slash-slave-setup</id>
+    <content type="html"><![CDATA[<p>ActiveMQ is a high performing message broker, however if clustering is needed, it supports <a href="http://activemq.apache.org/clustering.html">a number of methods</a>. Out of these, the <a href="http://activemq.apache.org/masterslave.html">Master/Slave</a> is a pattern where the persistence layer is shared between multiple broker instances. A Single <code>Master</code> broker connects to the persistence, and the rest of the <code>Slave</code> brokers keep waiting to attain the lock on the persistence. If the Master node goes down the lock for the persistence is released and a Slave quickly acquires it, allowing a client to continue operation without any data loss. The clients should connect to the Master/Slave setup, using the <code>failover:</code> transport, or they should implement a manual failover mechanism to automatically connect to the next available broker when the first one goes down.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="na">connectionfactoryName</span><span class="o">=</span><span class="s">TopicConnectionFactory</span>
+</span><span class='line'><span class="na">java.naming.provider.url</span><span class="o">=</span><span class="s">failover:(tcp://localhost:61617,tcp://localhost:61618,tcp://localhost:61619)?initialReconnectDelay=100</span>
+</span><span class='line'><span class="na">java.naming.factory.initial</span><span class="o">=</span><span class="s">org.apache.activemq.jndi.ActiveMQInitialContextFactory</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>How to Setup a Master/Slave</h1>
+
+<p>Let&rsquo;s setup two broker instances in the same machine. The two instances will open different ports for the protocols, so there will be no conflicts. They will use the flat file based embedded KahaDB as the persistence layer and the two instances will share the KahaDB instance.</p>
+
+<h2>Creating Two Broker Instances</h2>
+
+<p>Unzip the ActiveMQ distribution to two places and offset port values in the second one to use different ports so that there will be no conflicts for ports used by the different protocol connectors. The places to change are in <code>&lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml</code> and <code>&lt;ACTIVEMQ_HOME&gt;/conf/jetty.xml</code>.</p>
+
+<figure class='code'><figcaption><span>activemq.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;transportConnectors&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!-- DOS protection, limit concurrent connections to 1000 and frame size to 100MB --&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&quot;openwire&quot;</span> <span class="na">uri=</span><span class="s">&quot;tcp://0.0.0.0:61626?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&quot;amqp&quot;</span> <span class="na">uri=</span><span class="s">&quot;amqp://0.0.0.0:5682?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&quot;stomp&quot;</span> <span class="na">uri=</span><span class="s">&quot;stomp://0.0.0.0:61623?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">uri=</span><span class="s">&quot;mqtt://0.0.0.0:1893?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&quot;ws&quot;</span> <span class="na">uri=</span><span class="s">&quot;ws://0.0.0.0:61624?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/transportConnectors&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>jetty.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;jettyPort&quot;</span> <span class="na">class=</span><span class="s">&quot;org.apache.activemq.web.WebConsolePort&quot;</span> <span class="na">init-method=</span><span class="s">&quot;start&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!-- the default port number for the web console --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;host&quot;</span> <span class="na">value=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;port&quot;</span> <span class="na">value=</span><span class="s">&quot;8171&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now let&rsquo;s point the KahaDB persistence to the same location. This will result in only one instance at a time being able to acquire the lock to the DB and when the lock is released the other instance will be able get it from the same location.</p>
+
+<p>Modify the <code>persistenceAdapter</code> tag inside <code>&lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml</code> as follows.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;persistenceAdapter&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;kahaDB</span> <span class="na">directory=</span><span class="s">&quot;/tmp/mq/kahadb&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/persistenceAdapter&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Do this change for both of the instances.</p>
+
+<p>Now, let&rsquo;s introduce the two instances to each other by adding a <code>networkConnector</code> pointing to each other. Add the following block to the <code>&lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml</code> after the <code>persistenceAdapter</code> block in the master.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;networkConnectors&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;networkConnector</span> <span class="na">uri=</span><span class="s">&quot;static:(tcp://localhost:61626)&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/networkConnectors&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Port <code>61626</code> is the OpenWire port in the Slave instance. Similarly add the same block in the Slave <code>activemq.xml</code> file, pointing to the Master&rsquo;s OpenWire port. Static discovery is used here to statically point to the existing broker instances.</p>
+
+<h2>Starting the instances</h2>
+
+<p>Now let&rsquo;s start the Master broker instance.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> &lt;ACTIVEMQ_HOME&gt;/bin
+</span><span class='line'>./activemq start
+</span><span class='line'><span class="c"># tail the logs just for the fun of it</span>
+</span><span class='line'>tail -100f ../data/activemq.log
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When observing the logs you will see some log entries similar to the following repeatedly appearing.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>2015-11-17 19:10:19,731 <span class="p">|</span> INFO  <span class="p">|</span> Establishing network connection from vm://localhost?async<span class="o">=</span><span class="nb">false</span><span class="p">&amp;</span><span class="nv">network</span><span class="o">=</span><span class="nb">true </span>to tcp://localhost:61626 <span class="p">|</span> org.apache.activemq.network.DiscoveryNetworkConnector <span class="p">|</span> ActiveMQ Task-61
+</span><span class='line'>2015-11-17 19:10:19,733 <span class="p">|</span> INFO  <span class="p">|</span> Connector vm://localhost started <span class="p">|</span> org.apache.activemq.broker.TransportConnector <span class="p">|</span> ActiveMQ Task-61
+</span><span class='line'>2015-11-17 19:10:19,736 <span class="p">|</span> INFO  <span class="p">|</span> localhost Shutting down <span class="p">|</span> org.apache.activemq.network.DemandForwardingBridgeSupport <span class="p">|</span> ActiveMQ BrokerService<span class="o">[</span>localhost<span class="o">]</span> Task-134
+</span><span class='line'>2015-11-17 19:10:19,738 <span class="p">|</span> INFO  <span class="p">|</span> localhost bridge to Unknown stopped <span class="p">|</span> org.apache.activemq.network.DemandForwardingBridgeSupport <span class="p">|</span> ActiveMQ BrokerService<span class="o">[</span>localhost<span class="o">]</span> Task-134
+</span><span class='line'>2015-11-17 19:10:19,739 <span class="p">|</span> INFO  <span class="p">|</span> Connector vm://localhost stopped <span class="p">|</span> org.apache.activemq.broker.TransportConnector <span class="p">|</span> ActiveMQ Task-61
+</span><span class='line'>2015-11-17 19:10:19,741 <span class="p">|</span> WARN  <span class="p">|</span> Could not start network bridge between: vm://localhost?async<span class="o">=</span><span class="nb">false</span><span class="p">&amp;</span><span class="nv">network</span><span class="o">=</span><span class="nb">true </span>and: tcp://localhost:61626 due to: Connection refused <span class="p">|</span> org.apache.activemq.network.DiscoveryNetworkConnector <span class="p">|</span> ActiveMQ Task-61
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is because we &ldquo;introduced&rdquo; the Slave broker to the Master broker and now it&rsquo;s looking for it.</p>
+
+<p>Now start the Slave broker and tail the logs. You will see a different set of logs appearing.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>2015-11-17 18:34:37,359 <span class="p">|</span> INFO  <span class="p">|</span> Database /tmp/mq/kahadb/lock is locked... waiting 10 seconds <span class="k">for </span>the database to be unlocked. Reason: java.io.IOException: File <span class="s1">&#39;/tmp/mq/kahadb/lock&#39;</span> could not be locked. <span class="p">|</span> org.apache.activemq.store.SharedFileLocker <span class="p">|</span> main
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is because the lock for the shared DB is already acquired by the Master broker. The Slave broker will not start until it is able to acquire the log for the DB. If you try to see which ports are open using the <code>netstat</code> command you will see that only the Master broker is up and running and ready to accept requests.</p>
+
+<p>Now if you connect to the broker setup using the <code>failover:</code> transport you will see that the client connected the Master broker. Create a queue and publish an event to the queue without consuming it. Now stop the Master broker. You will see the Slave broker acquiring the lock to the DB and become ready to accept requests. Start a consumer with the <code>failover</code> transport and observe it connecting to and retrieving the event (which was published to the Master broker) from the Slave broker. There was no data loss and the service didn&rsquo;t stop responding for more than a few moments which the Slave took to start up after acquiring the DB lock.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Support for ActiveMQ Master/Slave failover in Apache Stratos Cartridge Agent]]></title>

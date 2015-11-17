@@ -9,7 +9,7 @@
   <meta name="author" content="chamila de alwis">
 
   
-  <meta name="description" content="In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to &hellip;">
+  <meta name="description" content="ActiveMQ is a high performing message broker, however if clustering is needed, it supports a number of methods. Out of these, the Master/Slave is a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -62,6 +62,166 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/11/17/creating-a-simple-activemq-master-slash-slave-setup/">Creating a Simple ActiveMQ Master/Slave Setup</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-11-17T17:11:12+05:30" pubdate data-updated="true">Nov 17<sup>th</sup>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ActiveMQ is a high performing message broker, however if clustering is needed, it supports <a href="http://activemq.apache.org/clustering.html">a number of methods</a>. Out of these, the <a href="http://activemq.apache.org/masterslave.html">Master/Slave</a> is a pattern where the persistence layer is shared between multiple broker instances. A Single <code>Master</code> broker connects to the persistence, and the rest of the <code>Slave</code> brokers keep waiting to attain the lock on the persistence. If the Master node goes down the lock for the persistence is released and a Slave quickly acquires it, allowing a client to continue operation without any data loss. The clients should connect to the Master/Slave setup, using the <code>failover:</code> transport, or they should implement a manual failover mechanism to automatically connect to the next available broker when the first one goes down.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="na">connectionfactoryName</span><span class="o">=</span><span class="s">TopicConnectionFactory</span>
+</span><span class='line'><span class="na">java.naming.provider.url</span><span class="o">=</span><span class="s">failover:(tcp://localhost:61617,tcp://localhost:61618,tcp://localhost:61619)?initialReconnectDelay=100</span>
+</span><span class='line'><span class="na">java.naming.factory.initial</span><span class="o">=</span><span class="s">org.apache.activemq.jndi.ActiveMQInitialContextFactory</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>How to Setup a Master/Slave</h1>
+
+<p>Let&rsquo;s setup two broker instances in the same machine. The two instances will open different ports for the protocols, so there will be no conflicts. They will use the flat file based embedded KahaDB as the persistence layer and the two instances will share the KahaDB instance.</p>
+
+<h2>Creating Two Broker Instances</h2>
+
+<p>Unzip the ActiveMQ distribution to two places and offset port values in the second one to use different ports so that there will be no conflicts for ports used by the different protocol connectors. The places to change are in <code>&lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml</code> and <code>&lt;ACTIVEMQ_HOME&gt;/conf/jetty.xml</code>.</p>
+
+<figure class='code'><figcaption><span>activemq.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;transportConnectors&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!-- DOS protection, limit concurrent connections to 1000 and frame size to 100MB --&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&quot;openwire&quot;</span> <span class="na">uri=</span><span class="s">&quot;tcp://0.0.0.0:61626?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&quot;amqp&quot;</span> <span class="na">uri=</span><span class="s">&quot;amqp://0.0.0.0:5682?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&quot;stomp&quot;</span> <span class="na">uri=</span><span class="s">&quot;stomp://0.0.0.0:61623?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">uri=</span><span class="s">&quot;mqtt://0.0.0.0:1893?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&quot;ws&quot;</span> <span class="na">uri=</span><span class="s">&quot;ws://0.0.0.0:61624?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/transportConnectors&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>jetty.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;jettyPort&quot;</span> <span class="na">class=</span><span class="s">&quot;org.apache.activemq.web.WebConsolePort&quot;</span> <span class="na">init-method=</span><span class="s">&quot;start&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!-- the default port number for the web console --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;host&quot;</span> <span class="na">value=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;port&quot;</span> <span class="na">value=</span><span class="s">&quot;8171&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now let&rsquo;s point the KahaDB persistence to the same location. This will result in only one instance at a time being able to acquire the lock to the DB and when the lock is released the other instance will be able get it from the same location.</p>
+
+<p>Modify the <code>persistenceAdapter</code> tag inside <code>&lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml</code> as follows.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;persistenceAdapter&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;kahaDB</span> <span class="na">directory=</span><span class="s">&quot;/tmp/mq/kahadb&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/persistenceAdapter&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Do this change for both of the instances.</p>
+
+<p>Now, let&rsquo;s introduce the two instances to each other by adding a <code>networkConnector</code> pointing to each other. Add the following block to the <code>&lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml</code> after the <code>persistenceAdapter</code> block in the master.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;networkConnectors&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;networkConnector</span> <span class="na">uri=</span><span class="s">&quot;static:(tcp://localhost:61626)&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/networkConnectors&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Port <code>61626</code> is the OpenWire port in the Slave instance. Similarly add the same block in the Slave <code>activemq.xml</code> file, pointing to the Master&rsquo;s OpenWire port. Static discovery is used here to statically point to the existing broker instances.</p>
+
+<h2>Starting the instances</h2>
+
+<p>Now let&rsquo;s start the Master broker instance.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> &lt;ACTIVEMQ_HOME&gt;/bin
+</span><span class='line'>./activemq start
+</span><span class='line'><span class="c"># tail the logs just for the fun of it</span>
+</span><span class='line'>tail -100f ../data/activemq.log
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When observing the logs you will see some log entries similar to the following repeatedly appearing.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>2015-11-17 19:10:19,731 <span class="p">|</span> INFO  <span class="p">|</span> Establishing network connection from vm://localhost?async<span class="o">=</span><span class="nb">false</span><span class="p">&amp;</span><span class="nv">network</span><span class="o">=</span><span class="nb">true </span>to tcp://localhost:61626 <span class="p">|</span> org.apache.activemq.network.DiscoveryNetworkConnector <span class="p">|</span> ActiveMQ Task-61
+</span><span class='line'>2015-11-17 19:10:19,733 <span class="p">|</span> INFO  <span class="p">|</span> Connector vm://localhost started <span class="p">|</span> org.apache.activemq.broker.TransportConnector <span class="p">|</span> ActiveMQ Task-61
+</span><span class='line'>2015-11-17 19:10:19,736 <span class="p">|</span> INFO  <span class="p">|</span> localhost Shutting down <span class="p">|</span> org.apache.activemq.network.DemandForwardingBridgeSupport <span class="p">|</span> ActiveMQ BrokerService<span class="o">[</span>localhost<span class="o">]</span> Task-134
+</span><span class='line'>2015-11-17 19:10:19,738 <span class="p">|</span> INFO  <span class="p">|</span> localhost bridge to Unknown stopped <span class="p">|</span> org.apache.activemq.network.DemandForwardingBridgeSupport <span class="p">|</span> ActiveMQ BrokerService<span class="o">[</span>localhost<span class="o">]</span> Task-134
+</span><span class='line'>2015-11-17 19:10:19,739 <span class="p">|</span> INFO  <span class="p">|</span> Connector vm://localhost stopped <span class="p">|</span> org.apache.activemq.broker.TransportConnector <span class="p">|</span> ActiveMQ Task-61
+</span><span class='line'>2015-11-17 19:10:19,741 <span class="p">|</span> WARN  <span class="p">|</span> Could not start network bridge between: vm://localhost?async<span class="o">=</span><span class="nb">false</span><span class="p">&amp;</span><span class="nv">network</span><span class="o">=</span><span class="nb">true </span>and: tcp://localhost:61626 due to: Connection refused <span class="p">|</span> org.apache.activemq.network.DiscoveryNetworkConnector <span class="p">|</span> ActiveMQ Task-61
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is because we &ldquo;introduced&rdquo; the Slave broker to the Master broker and now it&rsquo;s looking for it.</p>
+
+<p>Now start the Slave broker and tail the logs. You will see a different set of logs appearing.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>2015-11-17 18:34:37,359 <span class="p">|</span> INFO  <span class="p">|</span> Database /tmp/mq/kahadb/lock is locked... waiting 10 seconds <span class="k">for </span>the database to be unlocked. Reason: java.io.IOException: File <span class="s1">&#39;/tmp/mq/kahadb/lock&#39;</span> could not be locked. <span class="p">|</span> org.apache.activemq.store.SharedFileLocker <span class="p">|</span> main
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is because the lock for the shared DB is already acquired by the Master broker. The Slave broker will not start until it is able to acquire the log for the DB. If you try to see which ports are open using the <code>netstat</code> command you will see that only the Master broker is up and running and ready to accept requests.</p>
+
+<p>Now if you connect to the broker setup using the <code>failover:</code> transport you will see that the client connected the Master broker. Create a queue and publish an event to the queue without consuming it. Now stop the Master broker. You will see the Slave broker acquiring the lock to the DB and become ready to accept requests. Start a consumer with the <code>failover</code> transport and observe it connecting to and retrieving the event (which was published to the Master broker) from the Slave broker. There was no data loss and the service didn&rsquo;t stop responding for more than a few moments which the Slave took to start up after acquiring the DB lock.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1501,138 +1661,6 @@
 <p>Note the HTTP &ldquo;Authorization&rdquo; header and the value &ldquo;Basic&rdquo;. The value after &ldquo;Basic&rdquo; is the base64 encoded string containing the username:password. You can decrypt the encoded string to verify this using any <a href="http://www5.rptea.com/base64/">online tool</a>.</p>
 
 <p>There are many policies that can be used to secure a proxy service, and UsernameToken is just the simplest form. More complex policies involve defining custom password callback handlers to refer to resources like federated identity to authenticate server calls. UsernameToken deals with plain text passwords so it should be only used for development purposes and not for production.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/18/securing-a-web-service-with-wso2-esb/">Securing a Web Service With WSO2 ESB</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-18T23:17:46+05:30" pubdate data-updated="true">Jul 18<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>WSO2 Enterprise Service Bus is one of the <a href="http://blog.samisa.org/2014/02/wso2-esb-performance-round-75.html">best performing implementations</a> for the Enterprise market. In this article I will briefly go through what it takes to secure an unsecured backend web service using WSO2 ESB as a mediator.</p>
-
-<p>Security in Web Services is covered by the WS-Security standard. There are <a href="http://docs.oasis-open.org/ws-sx/security-policy/examples/ws-sp-usecases-examples-cd-01.html">various policies</a> such as simple username and password authentication and PKI certificates that can be used to secure a Web Service. The policy that will be used is described using the WS-Policy standard.</p>
-
-<p>WSDL of the secured service will have the WS-Security policy embedded and the consumer will be able to filter out the WS-Security policy from it to implement the client side security demands.</p>
-
-<p>For this example we will be using the basic UsernameToken with Plain Text password policy which is supported right out of the box by WSO2 ESB. Note that this policy is recommended only for pre-production environments because the password is communicated in plain text. WSO2 ESB supports by default twenty security scenarios and you can always customize the policy to your liking.</p>
-
-<h1>Pre-requisites</h1>
-
-<ol>
-<li>Unsecured backend service</li>
-<li>WSO2 ESB (4.8.1 is used in this article)</li>
-</ol>
-
-
-<h2>Backend Service</h2>
-
-<p>For demo purposes get a simple Web Service running. Refer to my earlier post, <a href="http://code.chamiladealwis.com/blog/2014/07/01/creating-a-web-service-using-apache-axis2-no-ide/">Creating a Web Service using Apache Axis2</a>, for help.</p>
-
-<h2>Setting up WSO2 ESB</h2>
-
-<p><a href="http://wso2.com/products/enterprise-service-bus/">Download</a> WSO2 ESB and extract it. Go to its <code>bin</code> folder and execute <code>wso2server.sh</code>. After it is executed go to the <a href="https://localhost:9443/carbon">management console</a> and log in. The default username and password is <code>admin</code>.</p>
-
-<h1>Creating the Proxy Service</h1>
-
-<p>We will create a proxy service for the backend service and then secure it with the UsernameToken policy.</p>
-
-<p>Go to the ESB <a href="https://localhost:9443/carbon">management console</a> and add a proxy service by clicking on &ldquo;Proxy Service&rdquo; under Services->Add menu of the Main tab.</p>
-
-<p><img src="/images/post_resource/esb-new-proxy.jpg"></p>
-
-<p>Choose either &ldquo;Pass Through Proxy&rdquo; or &ldquo;WSDL Based Proxy&rdquo;. Fill the details according to the following</p>
-
-<h2>Pass Through Proxy</h2>
-
-<p><img src="/images/post_resource/esb-pass-through-options.jpg"></p>
-
-<ul>
-<li><p>Proxy Service Name &ndash; Enter an identifying name for the Proxy service you&rsquo;re creating.</p></li>
-<li><p>Target Endpoint &ndash; Select &ldquo;Enter URL&rdquo;. &ldquo;Pick From Registry&rdquo; option allows you to select the endpoint stored as a resource on the configuration registry or the governance registry. We will be entering the endpoint URL by hand.</p></li>
-<li><p>Target URL &ndash; Copy the URL of the backend service. This will be the WSDL url on the Axis2 service you created without the <code>?wsdl</code> string at the end.</p></li>
-<li><p>On the &ldquo;Publish WSDL Options&rdquo; select &ldquo;Specify source URL&rdquo; for &ldquo;Publishing WSDL&rdquo;</p></li>
-<li><p>WSDL URI &ndash; Enter the WSDL URL for the backend service. Click on &ldquo;Test URI&rdquo; to test the connection.</p></li>
-</ul>
-
-
-<p>Click Next.</p>
-
-<h2>WSDL Proxy</h2>
-
-<p><img src="/images/post_resource/esb-wdl-based-options.jpg"></p>
-
-<ul>
-<li><p>Proxy Service Name &ndash; Enter an identifying name for the Proxy service you&rsquo;re creating.</p></li>
-<li><p>WSDL URI &ndash; The URI of the WSDL of the backend service.</p></li>
-<li><p>WSDL Service &ndash; This is the service name that is used in the WSDL as the identifier for the service. In the WSDL document this is the value for the attribute <code>name</code> in the <code>wsdl:service</code> tag.</p></li>
-<li><p>WSDL Port &ndash; This is the endpoint that you&rsquo;re going to use for the proxy service. Normally three types of ports are exposed for a service. Those are</p>
-
-<ul>
-<li>SOAP1.1 Endpoint &ndash; ServiceNameHttpSoap11Endpoint</li>
-<li>SOAP1.2 Endpoint &ndash; ServiceNameHttpSOap12Endpoint</li>
-<li>HTTP REST Endpoint &ndash; ServiceNameHttpEndpoint</li>
-</ul>
-</li>
-</ul>
-
-
-<p>Use either SOAP 1.1 or SOAP 1.2 endpoint as the port. You can find the names under the <code>&lt;wsdl:service&gt;-&gt;&lt;wsdl:port&gt;</code> tags.</p>
-
-<p>Click Next.</p>
-
-<p>Your proxy service will be created. WSO2 ESB has a tool called &ldquo;Try It&rdquo; which can be used as a test tool for Web Services. <a href="https://localhost:9443/carbon/service-mgt/index.jsp?region=region1&amp;item=services_list_menu">Service list page</a> will have a link to the &ldquo;Try It&rdquo; console in front of each service. Test the proxy service you just created to verify that we can go ahead to the securing phase.</p>
-
-<p>At this point you have an unsecured proxy service that does basically nothing as a mediator to the backend service. We need to secure the service with UsernameToken policy so that the ESB will handle security aspects and only pass SOAP messages back and forth to the backend service sans the WS-Security.</p>
-
-<h1>Securing the Proxy Service</h1>
-
-<p>If you list the services of the ESB you will see that the proxy service you created just now is marked as unsecured, with the unlocked padlock as the icon.</p>
-
-<p><img src="/images/post_resource/esb-unsecured-proxy.jpg"></p>
-
-<p>Click on that icon to secure the service. Select &ldquo;Yes&rdquo; in the next page and you will be presented with the policy types that WSO2 ESB supports right out of the box.</p>
-
-<p><img src="/images/post_resource/esb-secure-service-options.jpg"></p>
-
-<p>Select &ldquo;UsernameToken&rdquo; and click Next.</p>
-
-<p>Select the user groups that are allowed to use the service. In this case select admin.</p>
-
-<p><img src="/images/post_resource/esb-secure-users-options.jpg"></p>
-
-<p>Voilà! You have secured your proxy service. Run &ldquo;Try It&rdquo; again and enter the username and the password (in this case admin:admin) to consume the service. If you try to consume the service without entering the proper user credentials you will be presented with an AxisFault.</p>
-
-<p>If you check the WSDL of the secured proxy service you will observe the embedded WS-Policy describing the WS-Security policy (UsernameToken in our case) in the top most part of the WSDL document. If you wish to edit this policy you can do so by selecting &ldquo;Edit Policy&rdquo; in the Policies page of the Proxy Service. I will go to details of customized policies in another article.</p>
-
-<p>In the next article I will elaborate on how to code a client to consume the secured proxy service and how UsernameToken policy is represented in the WS-Security headers.</p>
 </div>
   
   
