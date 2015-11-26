@@ -92,6 +92,6 @@ Now start the Slave broker and tail the logs. You will see a different set of lo
 
 ```
 
-This is because the lock for the shared DB is already acquired by the Master broker. The Slave broker will not start until it is able to acquire the log for the DB. If you try to see which ports are open using the `netstat` command you will see that only the Master broker is up and running and ready to accept requests. 
+This is because the lock for the shared DB is already acquired by the Master broker. The Slave broker will not start until it is able to acquire the lock for the DB. If you try to see which ports are open using the `netstat` command you will see that only the Master broker is up and running and ready to accept requests. 
 
 Now if you connect to the broker setup using the `failover:` transport you will see that the client connected the Master broker. Create a queue and publish an event to the queue without consuming it. Now stop the Master broker. You will see the Slave broker acquiring the lock to the DB and become ready to accept requests. Start a consumer with the `failover` transport and observe it connecting to and retrieving the event (which was published to the Master broker) from the Slave broker. There was no data loss and the service didn't stop responding for more than a few moments which the Slave took to start up after acquiring the DB lock. 
