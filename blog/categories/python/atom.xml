@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: python | nuts!]]></title>
+  <link href="http://chamilad.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://chamilad.github.io/"/>
+  <updated>2015-11-27T01:15:44+05:30</updated>
+  <id>http://chamilad.github.io/</id>
+  <author>
+    <name><![CDATA[chamila de alwis]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Timing out of long running methods in Python]]></title>
+    <link href="http://chamilad.github.io/blog/2015/11/26/timing-out-of-long-running-methods-in-python/"/>
+    <updated>2015-11-26T22:26:03+05:30</updated>
+    <id>http://chamilad.github.io/blog/2015/11/26/timing-out-of-long-running-methods-in-python</id>
+    <content type="html"><![CDATA[<p>Sometimes there are conditions under which a function call could not return in a needed time period and would cause unexpected behavior. For example, a file read could take more time than anticipated and leave the code execution without proper control over what to do when such a situation occurs. This can be worse if the said function call directs to an external library which we can&rsquo;t control.</p>
+
+<p>Python has a nifty module called <code>signal</code> which exposes <a href="https://en.wikipedia.org/wiki/Unix_signal#POSIX_signals">UNIX Signal</a> numbers and a way to register callbacks for each signal. Out of the UNIX Signals available, what interests us in this particular situation is the <a href="http://linux.die.net/man/2/alarm">SIGALRM</a> signal which allows us to sort of wind out an OS level alarm clock that would send a signal to the calling process after the set number of seconds. We can make use of this functionality (only in UNIX of course) to set a timeout before a function call with the possibility to hang or take unexpected durations to finish.</p>
+
+<p>```python
+import signal
+import time</p>
+
+<p>def timeout_handler(num, stack):</p>
+
+<pre><code>print("Received SIGALRM")
+raise Exception("FUBAR")
+</code></pre>
+
+<p>def long_function():</p>
+
+<pre><code>print("LEEEEROYYY JENKINSSSSS!!!")
+time.sleep(60)
+</code></pre>
+
+<p>signal.signal(signal.SIGALRM, timeout_handler)
+signal.alarm(10)</p>
+
+<p>try:</p>
+
+<pre><code>print("Before: %s" % time.strftime("%M:%S"))
+long_function()
+</code></pre>
+
+<p>except Exception as ex:</p>
+
+<pre><code>if "FUBAR" in ex:
+    print("Gotcha!")
+else:
+    print("We're gonna need a bigger boat!")
+</code></pre>
+
+<p>finally:</p>
+
+<pre><code>signal.alarm(0)
+print("After: %s" % time.strftime("%M:%S"))
+</code></pre>
+
+<p>```</p>
+
+<p>If you run this Python code, you will see an output similar to the following.</p>
+
+<p><code>
+Before: 22:10
+LEEEEROYYY JENKINSSSSS!!!
+Received SIGALRM
+Gotcha!
+After: 22:20
+</code></p>
+
+<p>Let us take a walk through the code.</p>
+
+<p>First let&rsquo;s look at the supposedly long running function. What this does is to simply wait for 60 seconds before continuing. This is to emulate a blocked file read, or a hung server connection.</p>
+
+<p>```python
+def long_function():</p>
+
+<pre><code>print("LEEEEROYYY JENKINSSSSS!!!")
+time.sleep(60)
+</code></pre>
+
+<p>```</p>
+
+<p>We need to tell the <code>signal</code> module to execute our own function when <code>SIGALRM</code> signal is received by the process. So let&rsquo;s first write a handler function.</p>
+
+<p>```python
+def timeout_handler(num, stack):</p>
+
+<pre><code>print("Received SIGALRM")
+raise Exception("FUBAR")
+</code></pre>
+
+<p>```</p>
+
+<p>Notice that in the <code>timeout_handler</code> function we are raising an exception. This is to make our decision making process a bit easier. More on that later. Now let&rsquo;s register this with the <code>SIGALRM</code> signal.</p>
+
+<p><code>python
+signal.signal(signal.SIGALRM, timeout_handler)
+</code></p>
+
+<p>Now when this Python process receives a <code>SIGALRM</code> signal, it will execute the <code>timeout_handler</code> function.</p>
+
+<p><code>signal.alarm(10)</code> tells the OS to send a <code>SIGALRM</code> after 10 seconds from this point onwards. After setting the alarm clock we invoke the long running function.</p>
+
+<p>```python
+signal.alarm(10)</p>
+
+<p>try:</p>
+
+<pre><code>print("Before: %s" % time.strftime("%M:%S"))
+long_function()
+</code></pre>
+
+<p>except Exception as ex:</p>
+
+<pre><code>if "FUBAR" in ex:
+    print("Gotcha!")
+else:
+    print("We're gonna need a bigger boat!")
+</code></pre>
+
+<p>finally:</p>
+
+<pre><code>signal.alarm(0)
+print("After: %s" % time.strftime("%M:%S"))
+</code></pre>
+
+<p>```</p>
+
+<p>10 seconds after invoking the <code>long_function</code>, the execution will be interrupted and <code>timeout_handler</code> function will raise the exception <code>FUBAR</code>. We are catching that at line 6 and based on that we can make a decision on what to do since our function with a possibility to hang has in fact seems to be hung and did not terminate in a healthy or unhealthy manner.</p>
+
+<p>Notice that we set the alarm to 0 seconds after all is done. That is to do one thing, cancel the previously set alarm (although in our case it <a href="https://media.giphy.com/media/Vuw9m5wXviFIQ/giphy.gif">doesn&rsquo;t even matter</a>).</p>
+
+<p>If we check the output of this program again, you will see that we received the <code>SIGALRM</code> exactly after 10 seconds.</p>
+
+<p><code>python
+Before: 22:10
+LEEEEROYYY JENKINSSSSS!!!
+Received SIGALRM
+Gotcha!
+After: 22:20
+</code></p>
+
+<p>Clear as a bell right?</p>
+
+<p>Let&rsquo;s do some tweaking. Let&rsquo;s not set the OS alarm clock. Let&rsquo;s send the signal ourselves.</p>
+
+<p>```python
+import signal
+import time
+import os</p>
+
+<p>def timeout_handler(num, stack):</p>
+
+<pre><code>print("Received SIGALRM [%s]" % num)
+raise Exception("FUBAR")
+</code></pre>
+
+<p>def long_function():</p>
+
+<pre><code>print("LEEEEROYYY JENKINSSSSS!!!")
+time.sleep(60)
+</code></pre>
+
+<p>print(&ldquo;PID: %s&rdquo; % os.getpid())
+signal.signal(signal.SIGALRM, timeout_handler)</p>
+
+<h1>signal.alarm(10)</h1>
+
+<p>try:</p>
+
+<pre><code>print("Before: %s" % time.strftime("%M:%S"))
+long_function()
+</code></pre>
+
+<p>except Exception as ex:</p>
+
+<pre><code>if "FUBAR" in ex:
+    print("Gotcha!")
+else:
+    print("We're gonna need a bigger boat!")
+</code></pre>
+
+<p>print(&ldquo;After: %s&rdquo; % time.strftime(&ldquo;%M:%S&rdquo;))
+```</p>
+
+<p>We have commented out the alarm clock setting in line 15 and in line 13 we have printed out the process ID of the Python process. We are going to send the <code>SIGALRM</code> signal using the <code>kill</code> command to that process ID.</p>
+
+<p>Open two terminals and run the above script in one terminal. Note the process ID and in the other terminal execute the following command.</p>
+
+<p><code>bash
+kill -14 {pid}
+</code></p>
+
+<p><code>14</code> is the integer number of the <code>SIGALRM</code> signal. Notice that the time duration between the start of the <code>long_function</code> call and the <code>FUBAR</code> exception differs based on the time we take to send the <code>SIGALRM</code> signal.</p>
+
+<p>One important fact to note when using <code>signal</code> module is that it doesn&rsquo;t work well in a multi-threaded flow. The callback has to be registered in main thread, and the alarm will also be received by the main thread. So if you&rsquo;re trying to match <code>signal</code> and <code>threading</code> modules together you&rsquo;ll frequently see the following exception being raised.</p>
+
+<p><code>
+signal only works in main thread
+</code></p>
+
+<p>Better thread down, or thread up and use a <code>Queue</code>.</p>
+]]></content>
+  </entry>
+  
+</feed>

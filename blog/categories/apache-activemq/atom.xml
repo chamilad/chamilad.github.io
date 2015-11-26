@@ -4,7 +4,7 @@
   <title><![CDATA[Category: apache activemq | nuts!]]></title>
   <link href="http://chamilad.github.io/blog/categories/apache-activemq/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2015-11-17T19:30:59+05:30</updated>
+  <updated>2015-11-27T01:15:44+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila de alwis]]></name>
@@ -118,7 +118,7 @@ cd &lt;ACTIVEMQ_HOME>/bin
 
 <p>```</p>
 
-<p>This is because the lock for the shared DB is already acquired by the Master broker. The Slave broker will not start until it is able to acquire the log for the DB. If you try to see which ports are open using the <code>netstat</code> command you will see that only the Master broker is up and running and ready to accept requests.</p>
+<p>This is because the lock for the shared DB is already acquired by the Master broker. The Slave broker will not start until it is able to acquire the lock for the DB. If you try to see which ports are open using the <code>netstat</code> command you will see that only the Master broker is up and running and ready to accept requests.</p>
 
 <p>Now if you connect to the broker setup using the <code>failover:</code> transport you will see that the client connected the Master broker. Create a queue and publish an event to the queue without consuming it. Now stop the Master broker. You will see the Slave broker acquiring the lock to the DB and become ready to accept requests. Start a consumer with the <code>failover</code> transport and observe it connecting to and retrieving the event (which was published to the Master broker) from the Slave broker. There was no data loss and the service didn&rsquo;t stop responding for more than a few moments which the Slave took to start up after acquiring the DB lock.</p>
 ]]></content>

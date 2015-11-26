@@ -30,6 +30,8 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
   
 
 </head>
@@ -210,7 +212,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This is because the lock for the shared DB is already acquired by the Master broker. The Slave broker will not start until it is able to acquire the log for the DB. If you try to see which ports are open using the <code>netstat</code> command you will see that only the Master broker is up and running and ready to accept requests.</p>
+<p>This is because the lock for the shared DB is already acquired by the Master broker. The Slave broker will not start until it is able to acquire the lock for the DB. If you try to see which ports are open using the <code>netstat</code> command you will see that only the Master broker is up and running and ready to accept requests.</p>
 
 <p>Now if you connect to the broker setup using the <code>failover:</code> transport you will see that the client connected the Master broker. Create a queue and publish an event to the queue without consuming it. Now stop the Master broker. You will see the Slave broker acquiring the lock to the DB and become ready to accept requests. Start a consumer with the <code>failover</code> transport and observe it connecting to and retrieving the event (which was published to the Master broker) from the Slave broker. There was no data loss and the service didn&rsquo;t stop responding for more than a few moments which the Slave took to start up after acquiring the DB lock.</p>
 </div>
@@ -264,6 +266,8 @@
       
         <a class="basic-alignment left" href="/blog/2015/11/16/support-for-activemq-master-slash-slave-failover-in-apache-stratos-cartridge-agent/" title="Previous Post: Support for ActiveMQ Master/Slave failover in Apache Stratos Cartridge Agent">&laquo; Support for ActiveMQ Master/Slave failover in Apache Stratos Cartridge Agent</a>
       
+      
+        <a class="basic-alignment right" href="/blog/2015/11/26/timing-out-of-long-running-methods-in-python/" title="next Post: Timing out of long running methods in Python">Timing out of long running methods in Python &raquo;</a>
       
     </p>
   </footer>
