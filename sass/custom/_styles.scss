@@ -71,10 +71,6 @@ p code, li code{
     padding-right: 6px;
 }
 
-body{
-    max-width:880px;
-}
-
 body>header h1{
     max-width:500px;
     position:initial;
@@ -98,4 +94,43 @@ body>header h2{
 
 .entry-title a, .entry-title, .entry-title a:hover, .entry-title a:visited{
     color: #333;
+}
+
+html{
+    background: #F8F8F8 none repeat scroll 0% 0%;
+}
+
+body{
+    max-width:880px;
+    background-color: #FFF;
+    padding: 10px 20px;
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+}
+
+article header p.meta {
+    border-bottom: 1px solid #efefef;
+    padding-top: 10px;
+}
+
+body > nav form .search:focus{
+    border-color: #F3F3F3;
+    box-shadow: 0px 0px 4px #E4E4E4, 0px 0px 3px #F0F0F0 inset;
+}
+
+
+header .meta .category {
+    border-radius: 3px;
+    padding: 2px 2px;
+    margin: 5px;
+    color: #A2A2A2;
+    text-decoration: none;
+    font-size: 11px;
+    text-transform: lowercase;
+    border-top: 1px solid #f8f8f8;
+}
+
+
+header .meta .categories{
+    float: right;
 }
