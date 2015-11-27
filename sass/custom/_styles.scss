@@ -9,7 +9,7 @@ a{
 }
 
 a:visited{
-    color: #333;
+    color: #666;
 }
 
 .entry-content a{
@@ -23,7 +23,7 @@ a:hover{
 }
 
 .entry-title{
-    color:black;
+    color: #666;
     font-family: "medium-content-sans-serif-font","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
     font-size:52px;
     font-weight: 700;
@@ -31,7 +31,7 @@ a:hover{
 }
 
 .entry-title a:hover{
-    color: black
+    color: #666
 }
 
 article p{
@@ -89,11 +89,11 @@ body>header h2{
     font-weight: 200;
     font-style: normal;
     font-size: 14px;
-    line-height: 21px;
+    line-height: 22px;
 }
 
 .entry-title a, .entry-title, .entry-title a:hover, .entry-title a:visited{
-    color: #333;
+    color: #666;
 }
 
 html{
@@ -130,7 +130,30 @@ header .meta .category {
     border-top: 1px solid #f8f8f8;
 }
 
+header .meta .category:hover {
+    border-radius: 12px;
+    border-top: 1px solid #ddd;
+}
+
 
 header .meta .categories{
     float: right;
+}
+
+header a{
+    text-decoration: none;
+}
+
+header .author{
+    text-transform: lowercase;
+    font-size: 10px;
+    padding-left: 10px;
+}
+
+header .author a{
+    color: inherit;
+}
+
+header .author a:hover{
+    color: #666;
 }

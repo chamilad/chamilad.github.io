@@ -234,14 +234,15 @@ figure.code {
   text-align: center;
   font-size: 13px;
   line-height: 2em;
-  text-shadow: #cbcccc 0 1px 0;
-  color: #474747;
+  /* text-shadow: #cbcccc 0 1px 0; */
+  color: #777;
   font-weight: normal;
   margin-bottom: 0;
   @include border-top-radius(5px);
   font-family: "Helvetica Neue", Arial, "Lucida Grande", "Lucida Sans Unicode", Lucida, sans-serif;
-  background: #aaaaaa image-url("code_bg.png") top repeat-x;
-  border: 1px solid #565656;
+  /* background: #aaaaaa image-url("code_bg.png") top repeat-x; */
+  background-image: linear-gradient(#ffffff,#f0f0f0 6%,#e5e5e5 90%,#dddddd);
+  /* border: 1px solid #565656; */
   border-top-color: #cbcbcb;
   border-left-color: #a5a5a5;
   border-right-color: #a5a5a5;
