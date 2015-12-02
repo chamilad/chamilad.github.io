@@ -4,7 +4,7 @@
   <title><![CDATA[nuts!]]></title>
   <link href="http://chamilad.github.io/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2015-12-02T00:36:10+05:30</updated>
+  <updated>2015-12-02T12:57:43+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila]]></name>
@@ -465,8 +465,8 @@
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugins&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;simpleAuthenticationPlugin&gt;</span>
 </span><span class='line'>        <span class="nt">&lt;users&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;authenticationUser</span> <span class="na">username=</span><span class="s">&quot;system&quot;</span> <span class="na">password=</span><span class="s">&quot;manager&quot;</span> <span class="na">groups=</span><span class="s">&quot;users,admins&quot;</span><span class="err">/</span>
-</span><span class='line'>        <span class="err">&lt;/users</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;authenticationUser</span> <span class="na">username=</span><span class="s">&quot;system&quot;</span> <span class="na">password=</span><span class="s">&quot;manager&quot;</span> <span class="na">groups=</span><span class="s">&quot;users,admins&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/users&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;/simpleAuthenticationPlugin&gt;</span>
 </span><span class='line'><span class="nt">&lt;/plugins&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
