@@ -9,7 +9,7 @@
   <meta name="author" content="chamila">
 
   
-  <meta name="description" content="Sometimes there are conditions under which a function call could not return in a needed time period and would cause unexpected behavior. For example &hellip;">
+  <meta name="description" content="A thread pool is not a new concept. It&rsquo;s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,88 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/12/10/breadpool-a-thread-pool-for-python/">BreadPool - a Thread Pool for Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-12-10T19:54:09+05:30" pubdate data-updated="true">Dec 10<sup>th</sup>, 2015</time> 
+  
+
+<span class="byline author vcard">Posted by <span class="fn"><a href="/about" title="About the author (chamila)" rel="author">chamila</a></span></span>
+ 
+
+<span class="categories">
+  
+    <a class='category label label-primary' href='/blog/categories/breadpool/'>breadpool</a> <a class='category label label-primary' href='/blog/categories/library/'>library</a> <a class='category label label-primary' href='/blog/categories/multithreading/'>multithreading</a> <a class='category label label-primary' href='/blog/categories/python/'>python</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A thread pool is not a new concept. It&rsquo;s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? Because the program wouldn&rsquo;t be starting threads as it sees fit and somehow reach the maximum thread number soon. Simply said thread pools allows us to limit the number of threads spawned by our program execution. Trust me, you don&rsquo;t want your code going to town spawning threads. It comes back to bite you in your behind, sooner than you think.</p>
+
+<p>Programming languages usually provide built in libraries implementing thread pools, however Python doesn&rsquo;t seem to have a pooling strategy for threads. It does however have a <a href="https://pymotw.com/2/multiprocessing/communication.html#process-pools">Process Pool</a> concept, where a set of workers can be used to submit a function, but that involves more complexities (ex: function&rsquo;s ability to be pickled or unpickled) than threads. It also involves processes, which differ drastically from threads when it comes to multi-threading requirements.</p>
+
+<p>However it&rsquo;s considerably easier in Python to write a simple thread pool implementation. All we really need is a thread safe blocking queue, a task interface, and a thread implementation which waits for tasks to appear on the blocking task queue. That is exactly why I decided to pack that all in to a single Python library called <a href="https://github.com/chamilad/breadpool">BreadPool</a>.</p>
+
+<p>In the past there were several instances where, for me, the need for a proper thread pool implementation came up without the time to dedicate write one from scratch. This would result in several thread pool implementations everywhere. It&rsquo;s better to have a thread pool implementation at a mere <code>pip install</code>.</p>
+
+<p>BreadPool can be installed from PyPI and used immediately.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>pip install breadpool
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">breadpool.pool</span> <span class="kn">import</span> <span class="n">ThreadPool</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">thread_pool</span> <span class="o">=</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">&quot;CustomThreadPool&quot;</span><span class="p">,</span> <span class="n">polling_timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will make sure that we will have a set of worker threads numbering no more than 5. You can refer more documentation on the project <a href="https://github.com/chamilad/breadpool">GitHub&rsquo;s README</a>.</p>
+
+<p>BreadPool also includes a scheduled task executor which would submit a given task to a given thread pool, repeatedly with a given time interval in between. It&rsquo;s supposed to be a thread safe way to schedule a certain task without rewriting your own scheduled executor for Python 2.7. It&rsquo;s designed with Java&rsquo;s ScheduledExecutor in mind, but still has a few more features to be desired.</p>
+
+<p>BreadPool doesn&rsquo;t depend on anything other than the Python 2.7 standard library, and will try to keep it that way in the future. So it doesn&rsquo;t drag anything unexpected in.</p>
+
+<p>The released version is <a href="https://pypi.python.org/pypi/breadpool/0.0.5">0.0.5</a>, and is licensed under Apache v2.0. Feel free to download and use BreadPool. The code base is small, and the work was short, but I figured it would save some time for you when it comes to worrying about thread pools.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1535,81 +1617,6 @@
 <p>For each of the log that is mentioned under <code>log.file.paths</code> parameter a separate <code>org.apache.stratos.cartridge.agent.data.publisher.log.FileBasedLogPublisher</code> thread is started.</p>
 
 <p>The FileBasedLogPublisher scans the log file for new lines and for each new line added, publishes a new Event to the Thrift receiver. Therefore there is no defined interval for the log publisher naturally.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/05/pppoe-on-virtualbox/">PPPOE on VirtualBox</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-05T23:08:34+05:30" pubdate data-updated="true">Aug 5<sup>th</sup>, 2014</time> 
-  
-
-<span class="byline author vcard">Posted by <span class="fn"><a href="/about" title="About the author (chamila)" rel="author">chamila</a></span></span>
- 
-
-<span class="categories">
-  
-    <a class='category label label-primary' href='/blog/categories/virtualization/'>virtualization</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A quick note!</p>
-
-<p>If your internet connection comes as a PPPOE connection and it can&rsquo;t be selected on the drop down list when &ldquo;Bridged network&rdquo; is selected on Network tab of the VM settings in VirtualBox. You can create a host-only network and configure a static ip for eth0 on the guest OS to make it accessible to outside.</p>
-
-<p>A host-only network virtualizes the network interface of the host OS and uses it as a loopback device to enable guest OS to communicate on their network and with the host<a href="https://www.virtualbox.org/manual/ch06.html">[1]</a>.</p>
-
-<p>Go to VirtualBox preferences (Ctrl + G) and navigate to the Network tab. Click on the &ldquo;Host-Only network&rdquo; tab and add a new host-only network. On the dialog that comes, go to the &ldquo;DHCP Server&rdquo; tab and disable it. VirtualBox provides its own DHCP server so the guest OS are able to use it, but if you want a consistent IP disabling it is the best course. Note down the IP address of the host-only network and its netmask. You might want to restart the networking service on the host os. Issue an <code>ifconfig -a</code> and you will see the virtual loopback device being listed.</p>
-
-<p>Go to your VM&rsquo;s settings and navigate to the &ldquo;Network&rdquo; tab. On the network adaptor you&rsquo;re going to use as the connection to the network, select &ldquo;Host-Only adaptor&rdquo; as the networking type to attach to. Then select the host-only network device we created in the VirtualBox preferences. Select &ldquo;Allow All&rdquo; for &ldquo;Promiscuous Mode&rdquo;.</p>
-
-<p>Start your VM and login as a super user. Define<a href="https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually">[2]</a><a href="http://www.putorius.net/2012/10/how-to-configure-static-ip-address-in.html">[3]</a> the network interface you attached to the Host-Only network with a static IP in the network of the host-only network. Point the gateway to the IP address of the host-only network. Restart the network service and your guest OS will have an IP which is accessible from the host.</p>
-
-<p><strong>Note</strong>: If you come across any issues when restarting the network service with an error message containing &ldquo;file exists&rdquo; it&rsquo;s possible that network devices and their mappings to network device names have been jumbled. Best course to take is to delete the rules file and reboot the machine to regenerate it. This issue is likely to occur in Ubuntu distributions before 12.04 or in RedHat distributions<a href="http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/">[4]</a>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo rm -rv /etc/udev/rules.d/70-persistant-*
-</span><span class='line'>sudo reboot
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>[1] &ndash; <a href="https://www.virtualbox.org/manual/ch06.html">https://www.virtualbox.org/manual/ch06.html</a></p>
-
-<p>[2] &ndash; <a href="https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually">https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually</a></p>
-
-<p>[3] &ndash; <a href="http://www.putorius.net/2012/10/how-to-configure-static-ip-address-in.html">http://www.putorius.net/2012/10/how-to-configure-static-ip-address-in.html</a></p>
-
-<p>[4] &ndash; <a href="http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/">http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/</a></p>
 </div>
   
   

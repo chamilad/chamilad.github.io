@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | nuts!]]></title>
   <link href="http://chamilad.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://chamilad.github.io/"/>
-  <updated>2015-12-02T12:57:43+05:30</updated>
+  <updated>2015-12-10T22:41:28+05:30</updated>
   <id>http://chamilad.github.io/</id>
   <author>
     <name><![CDATA[chamila]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[BreadPool - A Thread Pool for Python]]></title>
+    <link href="http://chamilad.github.io/blog/2015/12/10/breadpool-a-thread-pool-for-python/"/>
+    <updated>2015-12-10T19:54:09+05:30</updated>
+    <id>http://chamilad.github.io/blog/2015/12/10/breadpool-a-thread-pool-for-python</id>
+    <content type="html"><![CDATA[<p>A thread pool is not a new concept. It&rsquo;s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? Because the program wouldn&rsquo;t be starting threads as it sees fit and somehow reach the maximum thread number soon. Simply said thread pools allows us to limit the number of threads spawned by our program execution. Trust me, you don&rsquo;t want your code going to town spawning threads. It comes back to bite you in your behind, sooner than you think.</p>
+
+<p>Programming languages usually provide built in libraries implementing thread pools, however Python doesn&rsquo;t seem to have a pooling strategy for threads. It does however have a <a href="https://pymotw.com/2/multiprocessing/communication.html#process-pools">Process Pool</a> concept, where a set of workers can be used to submit a function, but that involves more complexities (ex: function&rsquo;s ability to be pickled or unpickled) than threads. It also involves processes, which differ drastically from threads when it comes to multi-threading requirements.</p>
+
+<p>However it&rsquo;s considerably easier in Python to write a simple thread pool implementation. All we really need is a thread safe blocking queue, a task interface, and a thread implementation which waits for tasks to appear on the blocking task queue. That is exactly why I decided to pack that all in to a single Python library called <a href="https://github.com/chamilad/breadpool">BreadPool</a>.</p>
+
+<p>In the past there were several instances where, for me, the need for a proper thread pool implementation came up without the time to dedicate write one from scratch. This would result in several thread pool implementations everywhere. It&rsquo;s better to have a thread pool implementation at a mere <code>pip install</code>.</p>
+
+<p>BreadPool can be installed from PyPI and used immediately.</p>
+
+<p><code>bash
+pip install breadpool
+</code></p>
+
+<p>```python
+from breadpool.pool import ThreadPool</p>
+
+<p>thread_pool = ThreadPool(5, &ldquo;CustomThreadPool&rdquo;, polling_timeout=1)
+```</p>
+
+<p>This will make sure that we will have a set of worker threads numbering no more than 5. You can refer more documentation on the project <a href="https://github.com/chamilad/breadpool">GitHub&rsquo;s README</a>.</p>
+
+<p>BreadPool also includes a scheduled task executor which would submit a given task to a given thread pool, repeatedly with a given time interval in between. It&rsquo;s supposed to be a thread safe way to schedule a certain task without rewriting your own scheduled executor for Python 2.7. It&rsquo;s designed with Java&rsquo;s ScheduledExecutor in mind, but still has a few more features to be desired.</p>
+
+<p>BreadPool doesn&rsquo;t depend on anything other than the Python 2.7 standard library, and will try to keep it that way in the future. So it doesn&rsquo;t drag anything unexpected in.</p>
+
+<p>The released version is <a href="https://pypi.python.org/pypi/breadpool/0.0.5">0.0.5</a>, and is licensed under Apache v2.0. Feel free to download and use BreadPool. The code base is small, and the work was short, but I figured it would save some time for you when it comes to worrying about thread pools.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Timing out of long running methods in Python]]></title>
