@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Log Aggregation on chamilad.github.io</title>
+    <link>https://chamilad.github.io/tags/log-aggregation/</link>
+    <description>Recent content in Log Aggregation on chamilad.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 19 Sep 2019 20:29:53 +0000</lastBuildDate>
+    
+	<atom:link href="https://chamilad.github.io/tags/log-aggregation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ElasticSearch on K8s: 01 — Basic Design</title>
+      <link>https://chamilad.github.io/post/2019-09-19_elasticsearch-on-k8s-01basic-design/</link>
+      <pubDate>Thu, 19 Sep 2019 20:29:53 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2019-09-19_elasticsearch-on-k8s-01basic-design/</guid>
+      <description>A design for a useful ELK deployment on K8s Log aggregation in a K8s environment is something I have lightly touched upon previously in multiple occasions. However setting up a minimal but a reliable log aggregation stack on top of K8s could quickly become an evolutionary process with each step improving on the previous one (and of course, everyone thinks they can do log aggregation before they actually start to do so).</description>
+    </item>
+    
+  </channel>
+</rss>

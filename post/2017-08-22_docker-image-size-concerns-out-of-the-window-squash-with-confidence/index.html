@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamilad.github.io/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/" />
+  <link rel="canonical" href="https://chamilad.github.io/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamilad.github.io\/"
+      },
+      "articleSection" : "post",
+      "name" : "Docker Image Size Concerns Out of the Window — Squash with Confidence",
+      "headline" : "Docker Image Size Concerns Out of the Window — Squash with Confidence",
+      "description" : "Docker is finally bringing Squash support\nFor a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use --no-cache flag while building. The layered structure of a Docker image would spook out a beginner.\nTypically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2017",
+      "datePublished": "2017-08-22 09:58:17.886 \x2b0000 UTC",
+      "dateModified" : "2017-08-22 09:58:17.886 \x2b0000 UTC",
+      "url" : "https:\/\/chamilad.github.io\/post\/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence\/",
+      "keywords" : [ "Docker","Squash","Containers", ]
+  }
+</script>
+<title>Docker Image Size Concerns Out of the Window — Squash with Confidence - chamilad.github.io</title>
+  <meta property="og:title" content="Docker Image Size Concerns Out of the Window — Squash with Confidence - chamilad.github.io" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Docker is finally bringing Squash support
+For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use --no-cache flag while building. The layered structure of a Docker image would spook out a beginner.
+Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamilad.github.io">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamilad.github.io/">chamilad.github.io</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Docker Image Size Concerns Out of the Window — Squash with Confidence</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2017-08-22 09:58:17 UTC">
+                22 Aug 2017
+              </time>
+              
+           </div>
+      
+      <div class="post-tags">
+
+<a class="subtitle is-6" href="/tags/docker">#Docker</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/squash">#Squash</a>
+  
+  | <a class="subtitle is-6" href="/tags/containers">#Containers</a>
+  
+
+</div>
+
+      
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+
+<p>Docker is finally bringing Squash support</p>
+
+<p>For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use <code>--no-cache</code> flag while building. The layered structure of a Docker image would spook out a beginner.</p>
+
+<p>Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved. However, it’s often the case that overlaying file systems can introduce unnecessary image sizes, especially when the same file system locations are edited in different layers.</p>
+
+<p>To get around the issues of image sizes, there were several recommended workarounds. You’d want to have all the <code>RUN</code> commands in a single instruction. You’d minimize the changes done to the same file locations in different instruction layers. There were even suggestions to copy all the files over a temporary HTTP server in to the Docker image during build time to minimize file changes, and we at WSO2 <a href="https://github.com/wso2-attic/dockerfiles">successfully did that too</a>, for WSO2 Dockerfiles, bringing the image size down the minimum possible with an Ubuntu base image.</p>
+
+<p>However, it quickly became apparent that these workarounds introduce quite a lot of noise to the core concern involving a Dockerfile, which is to build a Docker image from a Dockerfile descriptor. They would constantly require special scripts that do some kind of bootstrapping before the actual Docker build, which made it almost impossible for plain old Docker CLI commands to make use of the Dockerfiles. There was a clear compromise between readable Dockerfiles and size-efficient Dockerfiles. Also, being forced to use <code>--no-cache</code> always was a downer, since incremental builds took more time than actually needed.</p>
+
+<p><strong>Squashing</strong> images used to be a more of a hack-practice, that a lot of third-party tools would be available for. It would basically flatten all the layers by saving the images to a TAR file, and then reload the images. This would, most of the time, lose layer related metadata and would not always be consistent across platforms.</p>
+
+<p>Docker has finally introduced <code>--squash</code> option for the <code>build</code> command in the Experimental features. Having a vendor-supported way to reduce image sizes is a massive relief of a headache, that otherwise would be first part of any Docker related discussion. In most cases there seems to be around 40% reduction in the image sizes, which is not bad for an experimental feature.</p>
+
+<h4 id="enable-docker-experimental-mode">Enable Docker Experimental Mode</h4>
+
+<p>First, verify that Docker Daemon has experimental mode.</p>
+
+<pre><code>$ docker version
+Client:
+ Version:      17.05.0-ce
+ API version:  1.29
+ Go version:   go1.7.5
+ Git commit:   89658be
+ Built:        Thu May  4 22:10:54 2017
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      17.05.0-ce
+ API version:  1.29 (minimum version 1.12)
+ Go version:   go1.7.5
+ Git commit:   89658be
+ Built:        Thu May  4 22:10:54 2017
+ OS/Arch:      linux/amd64
+ Experimental: false
+</code></pre>
+
+<p>If <code>Experimental</code> is set to <code>false</code> , we have to enable it in the Daemon and restart it.</p>
+
+<p>To do this, create the file <code>/etc/docker/daemon.json</code> and add the following content.</p>
+
+<pre><code>{
+ “experimental”: true
+}
+</code></pre>
+
+<p>Then restart the Docker Daemon. The experiemental mode should now be set to <code>true</code> .</p>
+
+<pre><code>$ sudo systemctl restart docker.service
+$ docker version
+Client:
+ Version:      17.05.0-ce
+ API version:  1.29
+ Go version:   go1.7.5
+ Git commit:   89658be
+ Built:        Thu May  4 22:10:54 2017
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      17.05.0-ce
+ API version:  1.29 (minimum version 1.12)
+ Go version:   go1.7.5
+ Git commit:   89658be
+ Built:        Thu May  4 22:10:54 2017
+ OS/Arch:      linux/amd64
+ Experimental: true
+</code></pre>
+
+<h4 id="building-with-squash-option">Building with Squash Option</h4>
+
+<p>Now, <code>--squash</code> option is available for the <code>docker build</code> command.</p>
+
+<pre><code>docker build --squash -t chamilad/testdocker:0.1 .
+</code></pre>
+
+<p>If you inspect the resulting Docker image using the <code>docker history</code> command, you will see that although the layers are mentioned, their resulting sizes are <code>0B</code> and there is an additional layer with a comment similar to format <code>merge sha256:&lt;hash&gt; to &lt;hash&gt;</code> . This is all the previous layers (up to the parent image) being squashed to one layer. With the Union FS layers out of the question, the unified layer can then be used with less storage for the Docker image layers.</p>
+
+<hr />
+
+<p>Written on August 22, 2017 by chamila de alwis.</p>
+
+<p>Originally published on <a href="https://medium.com/@chamilad/docker-image-size-concerns-out-of-the-window-squash-with-confidence-796f7c48f5c6">Medium</a></p>
+
+        </div>
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/">Thinking of Moving Your WSO2 Deployment On to Kubernetes?</a></li>
+    
+    <li><a href="/post/2017-02-21_ballerina-with-container-support/">Ballerina with Container Support</a></li>
+    
+    <li><a href="/post/2016-02-09_running-wso2-products-on-kubernetes/">Running WSO2 Products on Kubernetes</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

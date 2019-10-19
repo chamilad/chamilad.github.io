@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevOps on chamilad.github.io</title>
+    <link>https://chamilad.github.io/tags/devops/</link>
+    <description>Recent content in DevOps on chamilad.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 25 Oct 2018 06:44:38 +0000</lastBuildDate>
+    
+	<atom:link href="https://chamilad.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A Primer on Observability for Dynamic Organizations — Part 2</title>
+      <link>https://chamilad.github.io/post/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</link>
+      <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</guid>
+      <description>What should an Observability Framework address? In the previous post, we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design. Let’s explore the possibility of a structured approach for designing observable systems.
+Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls Why should there be a structured approach? In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack.</description>
+    </item>
+    
+    <item>
+      <title>A Primer on Observability for Dynamic Organizations — Part 1</title>
+      <link>https://chamilad.github.io/post/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/</link>
+      <pubDate>Tue, 21 Aug 2018 04:29:46 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/</guid>
+      <description>A introduction to the buzzword and the rationale for implementing it What is Observability? Before we dive in to the waters, we need to define what observability is. Let’s go for some tweets first.
+Monitoring is for operating software/systems
+Instrumentation is for writing software
+Observability is for understanding systems
+&amp;mdash; Charity Majors (@mipsytipsy) September 23, 2017  That’s Charity Majors, a well known voice on Observability and someone who has built a business doing it well.</description>
+    </item>
+    
+    <item>
+      <title>That Tricky Thing Called Automation</title>
+      <link>https://chamilad.github.io/post/2018-07-20_that-tricky-thing-called-automation/</link>
+      <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2018-07-20_that-tricky-thing-called-automation/</guid>
+      <description>Automation of processes is something every serious organization should look into. The other option is to waste your precious human resources on tasks that are repetitive and hardly challenging. That is a depreciation in both man-hours and the employee morale. No one wants to keep on doing the same thing over and over again, especially if the tasks do not require the proper use of the human intellect.
+Automation enables the machine driven initiation and management of these tasks and sometimes can even help coordinate the use of manual intervention.</description>
+    </item>
+    
+    <item>
+      <title>Server Immutability</title>
+      <link>https://chamilad.github.io/post/2018-05-17_server-immutability/</link>
+      <pubDate>Thu, 17 May 2018 08:19:19 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2018-05-17_server-immutability/</guid>
+      <description>Server Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.
+What is Immutability? Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image.</description>
+    </item>
+    
+    <item>
+      <title>Adding a Self-Signed SSL Certificate to AWS ACM</title>
+      <link>https://chamilad.github.io/post/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</link>
+      <pubDate>Tue, 17 Oct 2017 18:56:28 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</guid>
+      <description>When setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.
+However if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following.</description>
+    </item>
+    
+    <item>
+      <title>Ballerina with Container Support</title>
+      <link>https://chamilad.github.io/post/2017-02-21_ballerina-with-container-support/</link>
+      <pubDate>Tue, 21 Feb 2017 06:48:33 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2017-02-21_ballerina-with-container-support/</guid>
+      <description>WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the WSO2Con 2017 in San Fransisco. Ballerina is a general purpose language with a focus on integration and a visual approach to coding. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “Connectors” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.</description>
+    </item>
+    
+    <item>
+      <title>Creating a Simple ActiveMQ Master/Slave Setup</title>
+      <link>https://chamilad.github.io/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/</link>
+      <pubDate>Tue, 17 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/</guid>
+      <description>ActiveMQ is a high performing message broker, however if clustering is needed, it supports a number of methods. Out of these, the Master/Slave is a pattern where the persistence layer is shared between multiple broker instances. A Single Master broker connects to the persistence, and the rest of the Slave brokers keep waiting to attain the lock on the persistence. If the Master node goes down the lock for the persistence is released and a Slave quickly acquires it, allowing a client to continue operation without any data loss.</description>
+    </item>
+    
+    <item>
+      <title>Support for ActiveMQ Master/Slave Failover in Apache Stratos Cartridge Agent</title>
+      <link>https://chamilad.github.io/post/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</link>
+      <pubDate>Mon, 16 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</guid>
+      <description>In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to secure the message broker communication. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.
+ActiveMQ supports various types of clustering patterns. Out of these, Master/Slave is a deployment pattern where the message store is replicated or shared between the clustered brokers.</description>
+    </item>
+    
+    <item>
+      <title>Secure Message Broker Communication in Apache Stratos With Apache ActiveMQ</title>
+      <link>https://chamilad.github.io/post/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</link>
+      <pubDate>Sun, 11 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</guid>
+      <description>Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of communication between components such as the Cartridge Agent, Cloud Controller and the Autoscaler, as this allows a decoupled architecture for the components.
+When it comes to message brokers, authentication is a crucial part of securing the communication channel since if left unsecured, anyone with access to the message broker can subscribe to the topics and listen to the communication between the components.</description>
+    </item>
+    
+    <item>
+      <title>Apache Stratos Cartridge Agent: Life Cycle Walkthough</title>
+      <link>https://chamilad.github.io/post/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</link>
+      <pubDate>Sun, 22 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</guid>
+      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
+ The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.</description>
+    </item>
+    
+    <item>
+      <title>Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2</title>
+      <link>https://chamilad.github.io/post/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</link>
+      <pubDate>Sat, 21 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</guid>
+      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
+ One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.</description>
+    </item>
+    
+    <item>
+      <title>Apache Stratos Cartridge Agent: Instance Configuration by Puppet 1</title>
+      <link>https://chamilad.github.io/post/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</link>
+      <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</guid>
+      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
+ When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance.</description>
+    </item>
+    
+  </channel>
+</rss>

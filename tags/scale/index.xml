@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scale on chamilad.github.io</title>
+    <link>https://chamilad.github.io/tags/scale/</link>
+    <description>Recent content in Scale on chamilad.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Mar 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://chamilad.github.io/tags/scale/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Apache Stratos Cartridge Agent: Life Cycle Walkthough</title>
+      <link>https://chamilad.github.io/post/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</link>
+      <pubDate>Sun, 22 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</guid>
+      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
+ The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.</description>
+    </item>
+    
+  </channel>
+</rss>

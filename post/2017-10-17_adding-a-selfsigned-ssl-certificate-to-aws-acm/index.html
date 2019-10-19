@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamilad.github.io/post/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/" />
+  <link rel="canonical" href="https://chamilad.github.io/post/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamilad.github.io\/"
+      },
+      "articleSection" : "post",
+      "name" : "Adding a Self-Signed SSL Certificate to AWS ACM",
+      "headline" : "Adding a Self-Signed SSL Certificate to AWS ACM",
+      "description" : "When setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.\nHowever if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2017",
+      "datePublished": "2017-10-17 18:56:28.616 \x2b0000 UTC",
+      "dateModified" : "2017-10-17 18:56:28.616 \x2b0000 UTC",
+      "url" : "https:\/\/chamilad.github.io\/post\/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm\/",
+      "keywords" : [ "Ssl","AWS","Openssl","Load Balancing","DevOps", ]
+  }
+</script>
+<title>Adding a Self-Signed SSL Certificate to AWS ACM - chamilad.github.io</title>
+  <meta property="og:title" content="Adding a Self-Signed SSL Certificate to AWS ACM - chamilad.github.io" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="When setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.
+However if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamilad.github.io">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamilad.github.io/">chamilad.github.io</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Adding a Self-Signed SSL Certificate to AWS ACM</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2017-10-17 18:56:28 UTC">
+                17 Oct 2017
+              </time>
+              
+           </div>
+      
+      <div class="post-tags">
+
+<a class="subtitle is-6" href="/tags/ssl">#Ssl</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/aws">#AWS</a>
+  
+  | <a class="subtitle is-6" href="/tags/openssl">#Openssl</a>
+  
+  | <a class="subtitle is-6" href="/tags/load-balancing">#Load Balancing</a>
+  
+  | <a class="subtitle is-6" href="/tags/devops">#DevOps</a>
+  
+
+</div>
+
+      
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          <p>When setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.</p>
+
+<p>However if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following.</p>
+
+<pre><code>Could not add listener. Server Certificate not found for the key: arn:aws:iam::xxxxxxxx:server-certificate/xxxxxxx
+</code></pre>
+
+<p>Due to unknown reasons, this error is notorious for appearing from time to time, and I have been personally plagued by it countless times. <a href="https://forums.aws.amazon.com/search.jspa?mbtc=32adb3e216d4dfd5562b1c2ed5eda6bfe8473e2be3a2621bb1fa67590bfc37ac&amp;objID=f30&amp;q=Server+Certificate+not+found+for+the+key%3A+arn%3Aaws%3Aiam&amp;x=0&amp;y=0">The AWS Discussion forum is filled with</a> similar queries and possible one-off solutions for this error.</p>
+
+<p>After a few hours spanning through two days I had enough and had to find a better consistent way to upload a self-signed SSL certificate that worked always. Following is the gist of what I managed to scrape of the web and try myself.</p>
+
+<p>Following are the steps to generate a temporary self-signed certificate and to add it to AWS Certificate Manager.</p>
+
+<blockquote>
+<p>Note that these commands were verified in Ubuntu 16.04.</p>
+</blockquote>
+
+<ol>
+<li><p>Generate a private key. Be sure to provide valid (even though false) domain names when needed.</p>
+
+<pre><code>openssl genrsa 2048 &gt; my-aws-private.key
+</code></pre></li>
+
+<li><p>Generate the certificate providing the key generated in #1</p>
+
+<pre><code>openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key my-aws-private.key &gt; my-aws-public.crt
+</code></pre></li>
+
+<li><p>Compile both of the above into a PKCS12 bundle (EDIT: Add correct command after Rodrigo pointed out an error below)</p>
+
+<pre><code>openssl pkcs12 -inkey my-aws-private.key -in my-aws-public.crt -export -out my-aws-public.p12
+</code></pre></li>
+
+<li><p>Install <a href="http://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS CLI</a> and setup credentials.</p></li>
+
+<li><p>Upload the generated certificate (<strong>my-aws-public.crt</strong>) and the private key (<strong>my-aws-private.key</strong>) to AWS Certificate Manager.</p>
+
+<pre><code>aws acm import-certificate — certificate file://my-aws-public.crt — private-key file://my-aws-private.key — region us-east-2
+</code></pre></li>
+
+<li><p>Now this certificate will be available in the Load Balancer creation Wizard under “<strong>Choose a certificate from ACM (recommended)</strong>” option.</p></li>
+</ol>
+
+<hr />
+
+<p>Written on October 17, 2017 by chamila de alwis.</p>
+
+<p>Originally published on <a href="https://medium.com/@chamilad/adding-a-self-signed-ssl-certificate-to-aws-acm-88a123a04301">Medium</a></p>
+
+        </div>
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/post/2017-07-03_infrastructure-as-code-aws-cloudformation/">Infrastructure as Code : AWS CloudFormation</a></li>
+    
+    <li><a href="/post/2017-02-21_ballerina-with-container-support/">Ballerina with Container Support</a></li>
+    
+    <li><a href="/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/">Creating a Simple ActiveMQ Master/Slave Setup</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

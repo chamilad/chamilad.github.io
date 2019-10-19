@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamilad.github.io/post/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/" />
+  <link rel="canonical" href="https://chamilad.github.io/post/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamilad.github.io\/"
+      },
+      "articleSection" : "post",
+      "name" : "Publishing WSO2 Logs to Splunk from a Containerized Deployment",
+      "headline" : "Publishing WSO2 Logs to Splunk from a Containerized Deployment",
+      "description" : "Or how to publish to Splunk from any Docker environment WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in \/repository\/conf folder, data in \/repository\/data, artifacts in \/repository\/deployment (or in \/repository\/tenants folder if you’re in to multi-tenancy). All the log files are written into \/repository\/logs folder.\nLog Aggregation All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards \/repository\/logs folder.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2018",
+      "datePublished": "2018-11-28 09:51:30.307 \x2b0000 UTC",
+      "dateModified" : "2018-11-28 09:51:30.307 \x2b0000 UTC",
+      "url" : "https:\/\/chamilad.github.io\/post\/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment\/",
+      "keywords" : [ "Docker","Aws Ecs","Wso2","Log Analysis","Splunk", ]
+  }
+</script>
+<title>Publishing WSO2 Logs to Splunk from a Containerized Deployment - chamilad.github.io</title>
+  <meta property="og:title" content="Publishing WSO2 Logs to Splunk from a Containerized Deployment - chamilad.github.io" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Or how to publish to Splunk from any Docker environment WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in /repository/conf folder, data in /repository/data, artifacts in /repository/deployment (or in /repository/tenants folder if you’re in to multi-tenancy). All the log files are written into /repository/logs folder.
+Log Aggregation All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards /repository/logs folder." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamilad.github.io">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamilad.github.io/">chamilad.github.io</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Publishing WSO2 Logs to Splunk from a Containerized Deployment</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2018-11-28 09:51:30 UTC">
+                28 Nov 2018
+              </time>
+              
+           </div>
+      
+      <div class="post-tags">
+
+<a class="subtitle is-6" href="/tags/docker">#Docker</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/aws-ecs">#Aws Ecs</a>
+  
+  | <a class="subtitle is-6" href="/tags/wso2">#Wso2</a>
+  
+  | <a class="subtitle is-6" href="/tags/log-analysis">#Log Analysis</a>
+  
+  | <a class="subtitle is-6" href="/tags/splunk">#Splunk</a>
+  
+
+</div>
+
+      
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+
+<h4 id="or-how-to-publish-to-splunk-from-any-docker-environment">Or how to publish to Splunk from any Docker environment</h4>
+
+<p>WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in <CARBON_HOME>/repository/conf folder, data in <CARBON_HOME>/repository/data, artifacts in <CARBON_HOME>/repository/deployment (or in <CARBON_HOME>/repository/tenants folder if you’re in to multi-tenancy). All the log files are written into <CARBON_HOME>/repository/logs folder.</p>
+
+<h4 id="log-aggregation">Log Aggregation</h4>
+
+<p>All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards <CARBON_HOME>/repository/logs folder. For an example, for ELK this could be something like <strong>FileBeat</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">filebeat.prospectors:
+- input_type: log
+  paths:
+    - /mnt/wso2am<span style="color:#ae81ff">-2.6.0</span>/repository/logs/<span style="color:#75715e">*.log</span>
+output.logstash:
+  hosts: [<span style="color:#e6db74">&#34;logstash.private.deployment.local:5044&#34;</span>]</code></pre></div>
+<p>When it comes Splunk, the traditional approach for a story like this is to use the <a href="http://docs.splunk.com/Documentation/Forwarder/6.4.2/Forwarder/Abouttheuniversalforwarder">Universal Forwarder</a>. It is an agent process that will read the contents of a specified log file and push events to a specified Splunk receiver port.</p>
+
+<p>However, this approach is not a suitable one when it comes to dynamic deployments like Docker, K8s, or ECS where instances are prone to come and go down without prior planning and notice. The gap exists when part of the Universal Forwarder configuration has to be done in the Splunk side the deployment. This will not be able to register new instances that were spawned by Container Orchestration systems both for auto healing and scaling. Furthermore, a somewhat heavy process like the Universal Forwarder running along side a JVM inside the same Container is not exactly conforming to Containerization best practices.</p>
+
+<p>Fortunately the proper way to register log events from a Docker based deployment to Splunk is a much simpler approach.</p>
+
+<h4 id="docker-logging">Docker Logging</h4>
+
+<p>Docker logging design enables <a href="https://docs.docker.com/config/containers/logging/configure/">multiple logging drivers to be enabled at the Docker daemon level</a>. There are multiple logging drivers that are enabled OOTB, in addition to the ability to plugin custom logging drivers. <a href="https://docs.docker.com/config/containers/logging/configure/#supported-logging-drivers">Splunk is one of these supported logging drivers</a> that are available OOTB, where the log events will be pushed to an <a href="http://dev.splunk.com/view/event-collector/SP-CAAAE7G">HTTP Event Collector</a> endpoint at Splunk.</p>
+
+<p>Therefore, any Docker based deployment only has to enable <code>splunk</code> as the logging driver name, and specify the required parameters in order to start publishing the events produced by the Docker Containers.</p>
+
+<p>When it comes AWS ECS, enabling this is a bit tricky.</p>
+
+<p>Managing the ECS Cluster Instances can be done in two ways. <code>EC2</code> is when you manage your own EC2 instances and register them in a specific ECS cluster as worker nodes. <code>FARGATE</code> is when that workload is handled by AWS Fargate.</p>
+
+<p>The compromise in AWS Fargate is that you lose the detailed level of control you have over the Cluster Instances. At the moment, if you go for a Fargate managed ECS Cluster, you will only have <code>awslogs</code> (which publishes logs to AWS CloudWatch) and <code>none</code> as the logging options.</p>
+
+<p>To enable OOTB logging drivers in the Docker daemon through the ECS Agent running on the Cluster Instances, you have to go with the EC2 option for managing the Cluster.</p>
+
+<p>Now, the ECS Agent should be notified so that the Docker daemon is configured to support the list of Docker logging drivers. To do this, add the following entry to the ECS Agent configuration file and restart the ECS Agent.</p>
+
+<pre><code>ECS_AVAILABLE_LOGGING_DRIVERS=[&quot;awslogs&quot;,&quot;splunk&quot;]
+</code></pre>
+
+<p>As you probably have guessed by now, any number of <a href="https://docs.docker.com/config/containers/logging/configure/#supported-logging-drivers">supported Docker logging drivers </a>can be specified here.</p>
+
+<p>When creating a Task Definition for the WSO2 deployment, in the Container definition, go down <strong>Storage and Logging</strong>section. Select the drop down list for <strong>Log Configuration</strong> to view the list of OOTB supported logging drivers.</p>
+
+<p><img src="/post/img/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment_0.png#layoutTextWidth" alt="" /></p>
+
+<blockquote>
+<p>While there are a list of available logging drivers, the entries in this list will not be edited depending on the values added for above mentioned ECS_AVAILABLE_LOGGING_DRIVERS agent configuration. These are only a static list of options. The existence of an option here does not necessarily mean that Docker daemon on the Cluster Instances may support them without the necessary configuration.</p>
+</blockquote>
+
+<p>Select <strong>Splunk</strong> as the <strong>Log Driver</strong> and add the following <strong>Log Options</strong>.</p>
+
+<ul>
+<li><code>splunk-url</code> — The Splunk HTTP Event Collector endpoint e.g.: <code>https://input-&lt;splunk-cloud-url&gt;:8089</code></li>
+<li><code>splunk-token</code> — The access token generated at Splunk end to enable Docker to access Splunk without having to provide credentials</li>
+<li><code>splunk-insecureskipverify</code> — Set to <code>true</code> if TLS verification is to be skipped for test reasons</li>
+</ul>
+
+<p>This will enable the logs created at the Docker daemon as part of the <code>stdout</code> of the running Containers to be pushed to the specified HEC endpoint at Splunk. Additional enrichment like tags could also be added as a <strong>Log Option.</strong>For an example, <code>tag-{{.Name}}</code> will add the name of the Container to the log event to be filtered out later. The <a href="https://docs.docker.com/config/containers/logging/log_tags/">full list of tags that can be added can be found here</a>.</p>
+
+<h4 id="conclusion">Conclusion</h4>
+
+<p>As this approach is tested and adopted for suitability, it may be better to create the EC2 Cluster Instances from a custom AMI that has all the ECS Agent configurations in place. That will help in managing the proper logging options in an autoscaling deployment.</p>
+
+<p>In addition to the reduced complexity of configuring paths and registering instances when using the Universal Forwarder, this approach also conforms with the natural way of log aggregation when it comes to Docker based deployments. That will be useful to maintain a uniform log analysis strategy across deployments since log aggregation is now part of the Containerization stack rather than the application.</p>
+
+<p>It may be possible that with future developments, AWS Fargate will also enable <code>splunk</code> as an option for <strong>Log Option</strong>entry. However for now, this is only possible with EC2 Clusters.</p>
+
+<hr />
+
+<p>Written on November 28, 2018 by chamila de alwis.</p>
+
+<p>Originally published on <a href="https://medium.com/@chamilad/publishing-wso2-logs-to-splunk-from-a-containerized-deployment-a19ab743c84e">Medium</a></p>
+
+        </div>
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/post/2018-11-25_cicd-apis-with-wso2-api-manager/">CI/CD APIs with WSO2 API Manager</a></li>
+    
+    <li><a href="/post/2017-02-21_ballerina-with-container-support/">Ballerina with Container Support</a></li>
+    
+    <li><a href="/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/">Thinking of Moving Your WSO2 Deployment On to Kubernetes?</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Integration on chamilad.github.io</title>
+    <link>https://chamilad.github.io/tags/integration/</link>
+    <description>Recent content in Integration on chamilad.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Feb 2017 06:48:33 +0000</lastBuildDate>
+    
+	<atom:link href="https://chamilad.github.io/tags/integration/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ballerina with Container Support</title>
+      <link>https://chamilad.github.io/post/2017-02-21_ballerina-with-container-support/</link>
+      <pubDate>Tue, 21 Feb 2017 06:48:33 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2017-02-21_ballerina-with-container-support/</guid>
+      <description>WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the WSO2Con 2017 in San Fransisco. Ballerina is a general purpose language with a focus on integration and a visual approach to coding. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “Connectors” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.</description>
+    </item>
+    
+  </channel>
+</rss>

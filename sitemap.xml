@@ -4,25 +4,716 @@
   
   <url>
     <loc>https://chamilad.github.io/</loc>
-    <lastmod>2019-09-22T19:20:43+12:00</lastmod>
+    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/docker/</loc>
+    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</loc>
+    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/filebeat/</loc>
+    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/k8s/</loc>
+    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/logging/</loc>
+    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/logstash/</loc>
+    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/post/</loc>
-    <lastmod>2019-09-22T19:20:43+12:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/post/uc/</loc>
-    <lastmod>2019-09-22T19:20:43+12:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/categories/</loc>
+    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/</loc>
+    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/elasticsearch/</loc>
+    <lastmod>2019-10-19T18:15:42+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2019-09-19_elasticsearch-on-k8s-01basic-design/</loc>
+    <lastmod>2019-10-19T18:15:42+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/log-aggregation/</loc>
+    <lastmod>2019-10-19T18:15:42+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/ingress/</loc>
+    <lastmod>2019-10-19T18:15:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/kubernetes/</loc>
+    <lastmod>2019-10-19T18:15:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/load-balancing/</loc>
+    <lastmod>2019-10-19T18:15:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</loc>
+    <lastmod>2019-10-19T18:15:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/reverse-proxy/</loc>
+    <lastmod>2019-10-19T18:15:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/automation/</loc>
+    <lastmod>2019-10-19T18:15:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/documentation/</loc>
+    <lastmod>2019-10-19T18:15:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/gitlab/</loc>
+    <lastmod>2019-10-19T18:15:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/go/</loc>
+    <lastmod>2019-10-19T18:15:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2019-02-15_releasing-docblock-v0.1/</loc>
+    <lastmod>2019-10-19T18:15:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/technical-writing/</loc>
+    <lastmod>2019-10-19T18:15:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/api-management/</loc>
+    <lastmod>2019-10-19T18:15:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/containers/</loc>
+    <lastmod>2019-10-19T18:15:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2018-12-24_how-to-design-a-wso2-docker-image/</loc>
+    <lastmod>2019-10-19T18:15:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/wso2/</loc>
+    <lastmod>2019-10-19T18:15:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/aws-ecs/</loc>
+    <lastmod>2019-10-19T18:15:34+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/log-analysis/</loc>
+    <lastmod>2019-10-19T18:15:34+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</loc>
+    <lastmod>2019-10-19T18:15:34+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/splunk/</loc>
+    <lastmod>2019-10-19T18:15:34+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2018-11-25_cicd-apis-with-wso2-api-manager/</loc>
+    <lastmod>2019-10-19T18:15:26+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/continuous-delivery/</loc>
+    <lastmod>2019-10-19T18:15:26+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/continuous-integration/</loc>
+    <lastmod>2019-10-19T18:15:26+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</loc>
+    <lastmod>2019-10-19T18:15:25+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/cloud-computing/</loc>
+    <lastmod>2019-10-19T18:15:25+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/devops/</loc>
+    <lastmod>2019-10-19T18:15:25+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/monitoring/</loc>
+    <lastmod>2019-10-19T18:15:25+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/observability/</loc>
+    <lastmod>2019-10-19T18:15:25+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/solution-architecture/</loc>
+    <lastmod>2019-10-19T18:15:25+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/</loc>
+    <lastmod>2019-10-19T18:15:22+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/microservices/</loc>
+    <lastmod>2019-10-19T18:15:22+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/process-improvement/</loc>
+    <lastmod>2019-10-19T18:15:21+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/terraform/</loc>
+    <lastmod>2019-10-19T18:15:21+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2018-07-20_that-tricky-thing-called-automation/</loc>
+    <lastmod>2019-10-19T18:15:21+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/tooling/</loc>
+    <lastmod>2019-10-19T18:15:21+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/git/</loc>
+    <lastmod>2019-10-19T18:15:20+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/github/</loc>
+    <lastmod>2019-10-19T18:15:20+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2018-06-05_in-other-good-news-microsoft-buys-github/</loc>
+    <lastmod>2019-10-19T18:15:20+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/linux/</loc>
+    <lastmod>2019-10-19T18:15:20+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/microsoft/</loc>
+    <lastmod>2019-10-19T18:15:20+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/open-source/</loc>
+    <lastmod>2019-10-19T18:15:20+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/aws/</loc>
+    <lastmod>2019-10-19T18:15:19+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/immutability/</loc>
+    <lastmod>2019-10-19T18:15:19+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2018-05-17_server-immutability/</loc>
+    <lastmod>2019-10-19T18:15:19+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</loc>
+    <lastmod>2019-10-19T18:15:17+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/gnuplot/</loc>
+    <lastmod>2019-10-19T18:15:17+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/graph/</loc>
+    <lastmod>2019-10-19T18:15:17+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/visualization/</loc>
+    <lastmod>2019-10-19T18:15:17+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</loc>
+    <lastmod>2019-10-19T18:15:12+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/bash/</loc>
+    <lastmod>2019-10-19T18:15:12+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/grep/</loc>
+    <lastmod>2019-10-19T18:15:12+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/scripting/</loc>
+    <lastmod>2019-10-19T18:15:12+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/unix/</loc>
+    <lastmod>2019-10-19T18:15:12+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/caching/</loc>
+    <lastmod>2019-10-19T18:15:04+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/esb/</loc>
+    <lastmod>2019-10-19T18:15:04+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/iam/</loc>
+    <lastmod>2019-10-19T18:15:04+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</loc>
+    <lastmod>2019-10-19T18:15:04+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/token-authentication/</loc>
+    <lastmod>2019-10-19T18:15:04+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/dns/</loc>
+    <lastmod>2019-10-19T18:15:02+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/ssl/</loc>
+    <lastmod>2019-10-19T18:15:02+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/subject-alternative-name/</loc>
+    <lastmod>2019-10-19T18:15:02+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2017-11-06_subject-alternative-names-in-ssl-certificates/</loc>
+    <lastmod>2019-10-19T18:15:02+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/x509/</loc>
+    <lastmod>2019-10-19T18:15:02+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</loc>
+    <lastmod>2019-10-19T18:15:02+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/openssl/</loc>
+    <lastmod>2019-10-19T18:15:02+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/docker-hub/</loc>
+    <lastmod>2019-10-19T18:15:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/docker-label/</loc>
+    <lastmod>2019-10-19T18:15:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/label-schema/</loc>
+    <lastmod>2019-10-19T18:15:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</loc>
+    <lastmod>2019-10-19T18:15:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/microbadger/</loc>
+    <lastmod>2019-10-19T18:15:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</loc>
+    <lastmod>2019-10-19T18:15:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/squash/</loc>
+    <lastmod>2019-10-19T18:15:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/atom/</loc>
+    <lastmod>2019-10-19T18:14:57+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/haproxy/</loc>
+    <lastmod>2019-10-19T18:14:57+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2017-07-13_haproxy-config-syntax-highlighting/</loc>
+    <lastmod>2019-10-19T18:14:57+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/syntax/</loc>
+    <lastmod>2019-10-19T18:14:57+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/vim/</loc>
+    <lastmod>2019-10-19T18:14:57+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/cloudformation/</loc>
+    <lastmod>2019-10-19T18:14:53+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/infrastructure-as-code/</loc>
+    <lastmod>2019-10-19T18:14:53+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2017-07-03_infrastructure-as-code-aws-cloudformation/</loc>
+    <lastmod>2019-10-19T18:14:53+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/puppet/</loc>
+    <lastmod>2019-10-19T18:14:53+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2017-02-21_ballerina-with-container-support/</loc>
+    <lastmod>2019-10-19T18:14:52+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/integration/</loc>
+    <lastmod>2019-10-19T18:14:52+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/programming/</loc>
+    <lastmod>2019-10-19T18:14:52+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</loc>
+    <lastmod>2019-10-19T18:14:49+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/adminservice/</loc>
+    <lastmod>2019-10-19T18:14:48+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/carbonapp/</loc>
+    <lastmod>2019-10-19T18:14:48+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</loc>
+    <lastmod>2019-10-19T18:14:48+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/wsdl/</loc>
+    <lastmod>2019-10-19T18:14:48+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/kibana/</loc>
+    <lastmod>2019-10-19T18:14:46+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</loc>
+    <lastmod>2019-10-19T18:14:46+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</loc>
+    <lastmod>2019-10-19T18:14:45+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/heapdump/</loc>
+    <lastmod>2019-10-19T18:14:45+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/java/</loc>
+    <lastmod>2019-10-19T18:14:45+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/jmap/</loc>
+    <lastmod>2019-10-19T18:14:45+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/jstack/</loc>
+    <lastmod>2019-10-19T18:14:45+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/threaddump/</loc>
+    <lastmod>2019-10-19T18:14:45+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2016-02-09_running-wso2-products-on-kubernetes/</loc>
+    <lastmod>2019-10-19T18:14:43+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2015-12-10_breadpool-a-thread-pool-for-python/</loc>
+    <lastmod>2019-10-19T18:14:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/python/</loc>
+    <lastmod>2019-10-19T18:14:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/threading/</loc>
+    <lastmod>2019-10-19T18:14:40+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/multi-threading/</loc>
+    <lastmod>2019-10-19T18:14:31+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2015-11-26_timing-out-of-long-running-methods-in-python/</loc>
+    <lastmod>2019-10-19T18:14:31+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/activemq/</loc>
+    <lastmod>2019-10-19T18:14:20+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/</loc>
+    <lastmod>2019-10-19T18:14:20+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/ha/</loc>
+    <lastmod>2019-10-19T18:14:20+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/apache-stratos/</loc>
+    <lastmod>2019-10-19T18:14:16+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</loc>
+    <lastmod>2019-10-19T18:14:16+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</loc>
+    <lastmod>2019-10-19T18:14:12+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</loc>
+    <lastmod>2019-10-19T18:14:09+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/scale/</loc>
+    <lastmod>2019-10-19T18:14:09+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</loc>
+    <lastmod>2019-10-19T18:14:08+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2015-03-17_apache-stratos-cartridge-agent-day-0/</loc>
+    <lastmod>2019-10-19T18:14:07+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</loc>
+    <lastmod>2019-10-19T18:14:07+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/cartridge-agent/</loc>
+    <lastmod>2019-10-19T18:14:07+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/cep/</loc>
+    <lastmod>2019-10-19T18:14:06+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/thrift/</loc>
+    <lastmod>2019-10-19T18:14:06+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2014-10-10_thrift-communication-in-apache-stratos/</loc>
+    <lastmod>2019-10-19T18:14:06+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/pppoe/</loc>
+    <lastmod>2019-10-19T18:14:05+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2014-08-05_pppoe-on-virtualbox/</loc>
+    <lastmod>2019-10-19T18:14:05+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/virtualbox/</loc>
+    <lastmod>2019-10-19T18:14:05+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/axis2/</loc>
+    <lastmod>2019-10-19T18:13:57+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2014-07-19_consuming-a-service-secured-by-wso2-esb/</loc>
+    <lastmod>2019-10-19T18:13:57+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2014-07-18_securing-a-web-service-with-wso2-esb/</loc>
+    <lastmod>2019-10-19T18:13:55+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/soap/</loc>
+    <lastmod>2019-10-19T18:13:55+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/wso2esb/</loc>
+    <lastmod>2019-10-19T18:13:55+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/ubuntu/</loc>
+    <lastmod>2019-10-19T18:13:55+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/wireshark/</loc>
+    <lastmod>2019-10-19T18:13:55+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2014-07-09_wireshark-crashing-in-ubuntu/</loc>
+    <lastmod>2019-10-19T18:13:55+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2014-07-01_creating-a-web-service-using-apache-axis2/</loc>
+    <lastmod>2019-10-19T18:13:29+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/wso2-carbon/</loc>
+    <lastmod>2019-10-19T18:13:29+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/categories/</loc>
   </url>
   
 </urlset>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker Label on chamilad.github.io</title>
+    <link>https://chamilad.github.io/tags/docker-label/</link>
+    <description>Recent content in Docker Label on chamilad.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 Sep 2017 18:50:34 +0000</lastBuildDate>
+    
+	<atom:link href="https://chamilad.github.io/tags/docker-label/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Let’s make your Docker Image better than 90% of existing ones</title>
+      <link>https://chamilad.github.io/post/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</link>
+      <pubDate>Tue, 05 Sep 2017 18:50:34 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</guid>
+      <description>Or why you should always Label your Docker Image.
+ Imagine this.
+You’re working on a new project, an exciting one that’s Container native. You’re almost done, and now at the stage where you want to build the Docker Image that ships your little project out to the public. You build on top of Alpine Linux, and pack your tool in to a nifty 80Mb Image that you tag latest and push to the public Docker Hub.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Threading on chamilad.github.io</title>
+    <link>https://chamilad.github.io/tags/threading/</link>
+    <description>Recent content in Threading on chamilad.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 Dec 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://chamilad.github.io/tags/threading/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>BreadPool — a Thread Pool for Python</title>
+      <link>https://chamilad.github.io/post/2015-12-10_breadpool-a-thread-pool-for-python/</link>
+      <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2015-12-10_breadpool-a-thread-pool-for-python/</guid>
+      <description>A thread pool is not a new concept. It’s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? Because the program wouldn’t be starting threads as it sees fit and somehow reach the maximum thread number soon. Simply said thread pools allows us to limit the number of threads spawned by our program execution. Trust me, you don’t want your code going to town spawning threads.</description>
+    </item>
+    
+  </channel>
+</rss>

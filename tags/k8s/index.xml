@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>K8s on chamilad.github.io</title>
+    <link>https://chamilad.github.io/tags/k8s/</link>
+    <description>Recent content in K8s on chamilad.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 21 Sep 2019 05:57:08 +0000</lastBuildDate>
+    
+	<atom:link href="https://chamilad.github.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ElasticSearch on K8s: 02 — Log Collection with Filebeat</title>
+      <link>https://chamilad.github.io/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</link>
+      <pubDate>Sat, 21 Sep 2019 05:57:08 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</guid>
+      <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint. Let’s explore these three aspects in detail.</description>
+    </item>
+    
+    <item>
+      <title>ElasticSearch on K8s: 01 — Basic Design</title>
+      <link>https://chamilad.github.io/post/2019-09-19_elasticsearch-on-k8s-01basic-design/</link>
+      <pubDate>Thu, 19 Sep 2019 20:29:53 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2019-09-19_elasticsearch-on-k8s-01basic-design/</guid>
+      <description>A design for a useful ELK deployment on K8s Log aggregation in a K8s environment is something I have lightly touched upon previously in multiple occasions. However setting up a minimal but a reliable log aggregation stack on top of K8s could quickly become an evolutionary process with each step improving on the previous one (and of course, everyone thinks they can do log aggregation before they actually start to do so).</description>
+    </item>
+    
+    <item>
+      <title>How to Design a WSO2 Docker Image</title>
+      <link>https://chamilad.github.io/post/2018-12-24_how-to-design-a-wso2-docker-image/</link>
+      <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
+      <description>What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
+Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.</description>
+    </item>
+    
+  </channel>
+</rss>

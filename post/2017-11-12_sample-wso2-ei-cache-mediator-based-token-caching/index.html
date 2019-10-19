@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamilad.github.io/post/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/" />
+  <link rel="canonical" href="https://chamilad.github.io/post/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamilad.github.io\/"
+      },
+      "articleSection" : "post",
+      "name" : "Sample: WSO2 EI Cache Mediator based Token Caching",
+      "headline" : "Sample: WSO2 EI Cache Mediator based Token Caching",
+      "description" : "This post and the sample code are the results of a particular issue I had to tackle recently. Though the sample code is my own, the idea and the approach have many authors, arising from the collective knowledge on the WSO2 Middleware Stack.\n The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,\n Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token  If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2017",
+      "datePublished": "2017-11-12 14:30:44.397 \x2b0000 UTC",
+      "dateModified" : "2017-11-12 14:30:44.397 \x2b0000 UTC",
+      "url" : "https:\/\/chamilad.github.io\/post\/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching\/",
+      "keywords" : [ "Wso2","Esb","Caching","Iam","Token Authentication", ]
+  }
+</script>
+<title>Sample: WSO2 EI Cache Mediator based Token Caching - chamilad.github.io</title>
+  <meta property="og:title" content="Sample: WSO2 EI Cache Mediator based Token Caching - chamilad.github.io" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="This post and the sample code are the results of a particular issue I had to tackle recently. Though the sample code is my own, the idea and the approach have many authors, arising from the collective knowledge on the WSO2 Middleware Stack.
+ The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,
+ Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token  If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamilad.github.io">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamilad.github.io/">chamilad.github.io</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Sample: WSO2 EI Cache Mediator based Token Caching</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2017-11-12 14:30:44 UTC">
+                12 Nov 2017
+              </time>
+              
+           </div>
+      
+      <div class="post-tags">
+
+<a class="subtitle is-6" href="/tags/wso2">#Wso2</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/esb">#Esb</a>
+  
+  | <a class="subtitle is-6" href="/tags/caching">#Caching</a>
+  
+  | <a class="subtitle is-6" href="/tags/iam">#Iam</a>
+  
+  | <a class="subtitle is-6" href="/tags/token-authentication">#Token Authentication</a>
+  
+
+</div>
+
+      
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+
+<blockquote>
+<p>This post and the sample code are the results of a particular issue I had to tackle recently. Though the sample code is my own, the idea and the approach have many authors, arising from the collective knowledge on the WSO2 Middleware Stack.</p>
+</blockquote>
+
+<h4 id="the-typical-case-for-caching">The Typical Case for Caching</h4>
+
+<p>Token based authentication is not a new paradigm. The basic story is,</p>
+
+<ol>
+<li>Talk to a Identity Management Service and obtain a token based on a kind of authentication</li>
+<li>Call a service provider API, providing the token received in step #1</li>
+<li>Service provider validates the token and acts on the privileges translated from the token</li>
+</ol>
+
+<p><img src="/post/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_0.jpeg#layoutOutsetLeft" alt="" /></p>
+
+<p>If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</p>
+
+<p>All tokens have a timeout period after which the validity of the it is expired and the client (application/user) is required to apply for a new token. During this period though, it makes little sense to repeatedly call the Identity Management Service for a new token, every time an API call has to be made.</p>
+
+<p>So the next sensible thing to do is to cache the retrieved token, until the timeout occurs.</p>
+
+<p><img src="/post/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_1.jpeg#layoutTextWidth" alt="" /></p>
+
+<h4 id="pseudo-mediation">Pseudo-mediation</h4>
+
+<p>In this case, the flow of the logic would be as follows.</p>
+
+<ol>
+<li>Receive request start</li>
+<li>Check the Token Cache for a valid token</li>
+<li>If a token is found, make request with the token</li>
+<li>If a token is not found, make a request to the IAM Service and retrieve a new token. Store the newly retrieved token in the Token Cache.</li>
+</ol>
+
+<p>Now the point of this post is to explain how this flow can be achieved through WSO2 EI/Integrator using Apache Synapse.</p>
+
+<h4 id="cache-mediator">Cache Mediator</h4>
+
+<p>The main mediator to be used in this scenario is the <a href="https://docs.wso2.com/display/EI611/Cache+Mediator">Cache Mediator</a>. The role of the Cache Mediator is to act as a message Cache Lookup and a message Cache Writer. When looking up values in the Cache, if a value is found, the Synapse Sequence specified in the <code>&lt;onCacheHit /&gt;</code> element is executed. If no value is found, the mediation flow continues to the next mediator after the Cache lookup mediator.</p>
+
+<p>For our sample setup, we are going to WSO2 EI/Integrator 6.1.1. For the sake of clarity, we are going to use mock services in place of the IAM Service and the Service Provider API. A Synapse API will be the mediation flow that handles the communication between the client, the IAM Service, and the Service Provider API.</p>
+
+<h4 id="simple-backend">Simple Backend</h4>
+
+<p>First let’s write a really simple Synapse API that would act as a dummy backend, AKA the <strong>Service Provider API</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;api</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://ws.apache.org/ns/synapse&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;SimpleBackend&#34;</span> <span style="color:#a6e22e">context=</span><span style="color:#e6db74">&#34;/log&#34;</span><span style="color:#f92672">&gt;</span>
+   <span style="color:#f92672">&lt;resource</span> <span style="color:#a6e22e">methods=</span><span style="color:#e6db74">&#34;POST&#34;</span> <span style="color:#a6e22e">outSequence=</span><span style="color:#e6db74">&#34;main&#34;</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;inSequence&gt;</span>
+        <span style="color:#75715e">&lt;!-- Let&#39;s see the conent of the request --&gt;</span>
+         <span style="color:#f92672">&lt;log</span> <span style="color:#a6e22e">level=</span><span style="color:#e6db74">&#34;full&#34;</span> <span style="color:#a6e22e">separator=</span><span style="color:#e6db74">&#34;--&#34;</span><span style="color:#f92672">/&gt;</span>
+        
+        <span style="color:#75715e">&lt;!-- Sending a simple response --&gt;</span>
+         <span style="color:#f92672">&lt;payloadFactory</span> <span style="color:#a6e22e">media-type=</span><span style="color:#e6db74">&#34;text&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;format&gt;</span>{&#34;status&#34;:&#34;0&#34;}<span style="color:#f92672">&lt;/format&gt;</span>
+            <span style="color:#f92672">&lt;args/&gt;</span>
+         <span style="color:#f92672">&lt;/payloadFactory&gt;</span>
+         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;messageType&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;application/json&#34;</span> <span style="color:#a6e22e">scope=</span><span style="color:#e6db74">&#34;axis2&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;STRING&#34;</span><span style="color:#f92672">/&gt;</span>
+         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ContentType&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;application/json&#34;</span> <span style="color:#a6e22e">scope=</span><span style="color:#e6db74">&#34;axis2&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;STRING&#34;</span><span style="color:#f92672">/&gt;</span>
+         <span style="color:#f92672">&lt;respond/&gt;</span>
+      <span style="color:#f92672">&lt;/inSequence&gt;</span>
+      <span style="color:#f92672">&lt;faultSequence&gt;</span>
+         <span style="color:#f92672">&lt;log</span> <span style="color:#a6e22e">level=</span><span style="color:#e6db74">&#34;custom&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MSG_FLOW&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;FAULT&#34;</span><span style="color:#f92672">/&gt;</span>
+         <span style="color:#f92672">&lt;/log&gt;</span>
+         <span style="color:#f92672">&lt;drop/&gt;</span>
+      <span style="color:#f92672">&lt;/faultSequence&gt;</span>
+   <span style="color:#f92672">&lt;/resource&gt;</span>
+<span style="color:#f92672">&lt;/api&gt;</span></code></pre></div>
+<p>A <code>curl</code> POST request to the above API would result in the text message <code>{&quot;status&quot;:&quot;0&quot;}</code> .</p>
+
+<p><img src="/post/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_2.png#layoutOutsetCenter" alt="" /></p>
+
+<p>The Carbon log shows the following message from the POST body we attached to the request.</p>
+
+<p><img src="/post/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_3.png#layoutOutsetCenter" alt="" /></p>
+
+<h4 id="iam-provider-mock-service">IAM Provider Mock Service</h4>
+
+<p>To mock the IAM Provider, I’m going to use a <a href="https://www.random.org/integers/">random integer generator</a> (We could use a IAM Middleware like <a href="https://wso2.com/identity-and-access-management">WSO2 Identity Server</a>, and an IAM Middleware could probably be the proper player in a real world scenario, however, to keep the focus on Cache management, I’m using the random integer generator. After all, we just need a “token” token that we can be sure to be random). A <code>GET</code> request to a <a href="https://www.random.org/integers/?num=1&amp;min=1&amp;max=100000&amp;col=1&amp;base=10&amp;format=plain&amp;rnd=new">customized random.org URL</a> will generate a random integer, per call. We will use this mechanism to generate our “tokens”.</p>
+
+<h4 id="mediation">Mediation</h4>
+
+<p>The mediation logic, according to what we came up in the <strong>Pseudo-mediation</strong>section is as follows.</p>
+
+<p><img src="/post/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_4.jpeg#layoutTextWidth" alt="" /></p>
+
+<p>As the diagram explains, the <code>&lt;onCacheHit /&gt;</code> sequence will be <code>CallBESequence</code>. When the Cache lookup fails, the API’s <strong>IN</strong>sequence will make a call to retrieve a new token. The result of that call will be handled by the <code>TokenReceiverSequence</code>.</p>
+
+<p>To get in to the code, following is the API definition for the <code>/calllogging</code> API.</p>
+
+<p><img src="/post/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_5.png#layoutTextWidth" alt="" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;api</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://ws.apache.org/ns/synapse&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;AuthAndCallLoggingAPI&#34;</span> <span style="color:#a6e22e">context=</span><span style="color:#e6db74">&#34;/calllogging&#34;</span><span style="color:#f92672">&gt;</span>
+   <span style="color:#f92672">&lt;resource</span> <span style="color:#a6e22e">methods=</span><span style="color:#e6db74">&#34;GET&#34;</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;inSequence&gt;</span>
+         <span style="color:#f92672">&lt;log</span> <span style="color:#a6e22e">level=</span><span style="color:#e6db74">&#34;custom&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MSG_FLOW&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;IN&#34;</span><span style="color:#f92672">/&gt;</span>
+         <span style="color:#f92672">&lt;/log&gt;</span>
+         
+         <span style="color:#75715e">&lt;!-- Do a cache lookup for the Token --&gt;</span>
+         <span style="color:#f92672">&lt;cache</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;tokenCache1&#34;</span> <span style="color:#a6e22e">scope=</span><span style="color:#e6db74">&#34;per-host&#34;</span> <span style="color:#a6e22e">collector=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">hashGenerator=</span><span style="color:#e6db74">&#34;org.wso2.carbon.mediator.cache.digest.DOMHASHGenerator&#34;</span> <span style="color:#a6e22e">timeout=</span><span style="color:#e6db74">&#34;120&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#75715e">&lt;!-- If a token is found, jump mediation flow to CallBESequence --&gt;</span>
+            <span style="color:#f92672">&lt;onCacheHit</span> <span style="color:#a6e22e">sequence=</span><span style="color:#e6db74">&#34;CallBESequence&#34;</span><span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;implementation</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;memory&#34;</span> <span style="color:#a6e22e">maxSize=</span><span style="color:#e6db74">&#34;1000&#34;</span><span style="color:#f92672">/&gt;</span>
+         <span style="color:#f92672">&lt;/cache&gt;</span>
+         
+         <span style="color:#75715e">&lt;!-- If the cache lookup fails, we need to retrieve a new token from IAM Service --&gt;</span>
+         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uri.var.num&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#a6e22e">scope=</span><span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;STRING&#34;</span><span style="color:#f92672">/&gt;</span>
+         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uri.var.min&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#a6e22e">scope=</span><span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;STRING&#34;</span><span style="color:#f92672">/&gt;</span>
+         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uri.var.max&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;100000&#34;</span> <span style="color:#a6e22e">scope=</span><span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;STRING&#34;</span><span style="color:#f92672">/&gt;</span>
+         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uri.var.col&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#a6e22e">scope=</span><span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;STRING&#34;</span><span style="color:#f92672">/&gt;</span>
+         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uri.var.base&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;10&#34;</span> <span style="color:#a6e22e">scope=</span><span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;STRING&#34;</span><span style="color:#f92672">/&gt;</span>
+         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uri.var.format&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;plain&#34;</span> <span style="color:#a6e22e">scope=</span><span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;STRING&#34;</span><span style="color:#f92672">/&gt;</span>
+         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uri.var.rnd&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;new&#34;</span> <span style="color:#a6e22e">scope=</span><span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;STRING&#34;</span><span style="color:#f92672">/&gt;</span>
+         
+         <span style="color:#75715e">&lt;!-- TokenReceiverSequence will handle the response from the random.org endpoint call --&gt;</span>
+         <span style="color:#f92672">&lt;send</span> <span style="color:#a6e22e">receive=</span><span style="color:#e6db74">&#34;TokenReceiverSequence&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;endpoint&gt;</span>
+               <span style="color:#f92672">&lt;http</span> <span style="color:#a6e22e">method=</span><span style="color:#e6db74">&#34;GET&#34;</span> <span style="color:#a6e22e">uri-template=</span><span style="color:#e6db74">&#34;https://www.random.org/integers/?num={uri.var.num}&amp;amp;min={uri.var.min}&amp;amp;max={uri.var.max}&amp;amp;col={uri.var.col}&amp;amp;base={uri.var.base}&amp;amp;format={uri.var.format}&amp;amp;rnd={uri.var.rnd}&#34;</span><span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;/endpoint&gt;</span>
+         <span style="color:#f92672">&lt;/send&gt;</span>
+      <span style="color:#f92672">&lt;/inSequence&gt;</span>
+      
+      <span style="color:#f92672">&lt;outSequence&gt;</span>
+         <span style="color:#75715e">&lt;!-- Forward the response to the client --&gt;</span>   
+         <span style="color:#f92672">&lt;send/&gt;</span>
+      <span style="color:#f92672">&lt;/outSequence&gt;</span>
+      
+   <span style="color:#f92672">&lt;/resource&gt;</span>
+<span style="color:#f92672">&lt;/api&gt;</span></code></pre></div>
+<p>Couple of things to notice about the Cache Mediator configuration are,</p>
+
+<ol>
+<li><code>id</code> is a unique identifier, that we can use to both lookup and persist values. We will later use the same <code>id</code> to persist the token received from random.org</li>
+<li><code>collector</code> is to <code>false</code>. This is because at this stage of the mediation flow, we are looking up values, not collecting them.</li>
+<li><code>timeout</code> is set to a low value of <code>120</code> seconds. This will be convenient to test our mediation flow.</li>
+</ol>
+
+<h4 id="cache-miss-scenario">Cache Miss Scenario</h4>
+
+<p>In the case of a <strong>cache miss</strong> (which is the initial case), the mediation logic will continue to the rest of the <strong>IN</strong>sequence. The token retrieval logic written there.</p>
+
+<p>A <code>&lt;send /&gt;</code> mediator is used to call the random.org endpoint. The attribute <code>receive</code> defines a sequence that will handle the response from the random.org endpoint. Let’s look at the logic written in the <code>TokenReceiverSequence</code>. Basically, what this sequence should do is to</p>
+
+<ol>
+<li>persist the value retrieved from the endpoint</li>
+<li>Continue to the mediation logic where the backend call happens</li>
+</ol>
+
+<p><img src="/post/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_6.png#layoutTextWidth" alt="" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#f92672">&lt;sequence</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;TokenReceiverSequence&#34;</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://ws.apache.org/ns/synapse&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#75715e">&lt;!-- Persist the response from random.org to Cache --&gt;</span>
+    <span style="color:#f92672">&lt;cache</span> <span style="color:#a6e22e">collector=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;tokenCache1&#34;</span> <span style="color:#a6e22e">scope=</span><span style="color:#e6db74">&#34;per-host&#34;</span><span style="color:#f92672">/&gt;</span>
+  
+    <span style="color:#f92672">&lt;log</span> <span style="color:#a6e22e">level=</span><span style="color:#e6db74">&#34;custom&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MSG_FLOW&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;TOKEN_RECV&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">expression=</span><span style="color:#e6db74">&#34;$body//p1:text&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;TOKEN&#34;</span>
+            <span style="color:#a6e22e">xmlns:ns=</span><span style="color:#e6db74">&#34;http://org.apache.synapse/xsd&#34;</span> <span style="color:#a6e22e">xmlns:p1=</span><span style="color:#e6db74">&#34;http://ws.apache.org/commons/ns/payload&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;/log&gt;</span>
+  
+    <span style="color:#75715e">&lt;!-- Continue to the backend calling logic --&gt;</span>
+    <span style="color:#f92672">&lt;sequence</span> <span style="color:#a6e22e">key=</span><span style="color:#e6db74">&#34;CallBESequence&#34;</span><span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/sequence&gt;</span></code></pre></div>
+<p>Again, looking at the Cache mediation settings, we can observe the following.</p>
+
+<ol>
+<li><code>id</code> has the same value as the one we used to lookup values.</li>
+<li><code>collector</code> is set to <code>true</code>, because we are persisting values here</li>
+</ol>
+
+<p>Next the mediation logic continues to <code>CallBESequence</code>. We have not modified the message context during this sequence, which means the message context consists of the value we received from the random.org (our mock IAM Service). The backend calling sequence will extract values from the message context and use them to call the backend properly.</p>
+
+<p><img src="/post/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_7.png#layoutTextWidth" alt="" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#f92672">&lt;sequence</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;CallBESequence&#34;</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://ws.apache.org/ns/synapse&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#75715e">&lt;!-- Retrieve token from the message context --&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">expression=</span><span style="color:#e6db74">&#34;$body//p1:text&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;authToken&#34;</span>
+        <span style="color:#a6e22e">xmlns:ns=</span><span style="color:#e6db74">&#34;http://org.apache.synapse/xsd&#34;</span> <span style="color:#a6e22e">xmlns:p1=</span><span style="color:#e6db74">&#34;http://ws.apache.org/commons/ns/payload&#34;</span><span style="color:#f92672">/&gt;</span>
+  
+    <span style="color:#f92672">&lt;log&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MSG_FLOW&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;B/E Call&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">expression=</span><span style="color:#e6db74">&#34;get-property(&#39;authToken&#39;)&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;BODY&#34;</span> <span style="color:#a6e22e">xmlns:ns=</span><span style="color:#e6db74">&#34;http://org.apache.synapse/xsd&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;/log&gt;</span>
+  
+    <span style="color:#75715e">&lt;!-- Construct the backend calling payload --&gt;</span>
+    <span style="color:#f92672">&lt;payloadFactory</span> <span style="color:#a6e22e">media-type=</span><span style="color:#e6db74">&#34;json&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;format&gt;</span>{&#34;token&#34;:&#34;$1&#34;}<span style="color:#f92672">&lt;/format&gt;</span>
+        <span style="color:#f92672">&lt;args&gt;</span>
+            <span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">evaluator=</span><span style="color:#e6db74">&#34;xml&#34;</span> <span style="color:#a6e22e">expression=</span><span style="color:#e6db74">&#34;get-property(&#39;authToken&#39;)&#34;</span>
+                <span style="color:#a6e22e">literal=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">xmlns:ns=</span><span style="color:#e6db74">&#34;http://org.apache.synapse/xsd&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;/args&gt;</span>
+    <span style="color:#f92672">&lt;/payloadFactory&gt;</span>
+  
+    <span style="color:#f92672">&lt;send&gt;</span>
+        <span style="color:#f92672">&lt;endpoint&gt;</span>
+            <span style="color:#75715e">&lt;!-- Our mock backend --&gt;</span>
+            <span style="color:#f92672">&lt;http</span> <span style="color:#a6e22e">method=</span><span style="color:#e6db74">&#34;POST&#34;</span> <span style="color:#a6e22e">uri-template=</span><span style="color:#e6db74">&#34;http://localhost:8280/log&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;/endpoint&gt;</span>
+    <span style="color:#f92672">&lt;/send&gt;</span>
+<span style="color:#f92672">&lt;/sequence&gt;</span></code></pre></div>
+<h4 id="cache-hit-scenario">Cache Hit Scenario</h4>
+
+<p>Going back to the logic where the cache lookup is done, you can see that <code>&lt;onCacheHit /&gt;</code> refers to the same sequence <code>CallBESequence</code>. After a cache hit, the message context is changed to the value retrieved from the cache. Therefore, the <code>&lt;property /&gt;</code> mediator expression <code>$body//p1:text</code> results in the token that was retrieved during the last cache miss scenario.</p>
+
+<p><img src="/post/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_8.png#layoutTextWidth" alt="" /></p>
+
+<h4 id="piecing-it-all-together">Piecing it All Together</h4>
+
+<p>After deploying the above configuration (2 APIs + 2 Sequences), we can test this story by making a couple of <code>curl</code> requests to the <code>/calllogging</code> API.</p>
+
+<pre><code>curl -v http://localhost:8280/calllogging
+</code></pre>
+
+<p><img src="/post/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_9.png#layoutOutsetCenter" alt="" /></p>
+
+<p>The first request results in a cache miss, and the token retrieval mediation logic is invoked. We can see this by the log line <code>TOKEN_RECV</code> printed in the console. Here, the token received is <code>42945</code>. This is then sent to the backend (evident in the log line <code>request--Payload:</code>).</p>
+
+<p>The next <code>curl</code> request made immediately after the first one results in a cache hit. There is no token retrieval logic to be done (no <code>TOKEN_RECV</code> log line), and the same token is sent to the backend.</p>
+
+<p>The third request is made after more than <strong>two minutes</strong>, the <code>120</code> timeout value in seconds we specified in the Cache mediator. This results in a cache miss, therefore the token retrieval logic is executed again. Hence the appearance of the log line <code>TOKEN_RECV</code> with a new token <code>67180</code>.</p>
+
+<h4 id="conclusion">Conclusion</h4>
+
+<p>The code, and the Composite Application Archive (CAR file) for the above can be found at <a href="https://github.com/chamilad/TokenCacheMediation">GitHub</a>. You can deploy the CAR file in your WSO2 EI/Integrator deployment.</p>
+
+<p>Token based authentication is almost every-day use in the current integration landscape. Adding a caching mechanism is the next natural step towards making the logic smoother. Cache Mediator plays a significant role in this story and this sample will be a good stepping stone in to this standard user story.</p>
+
+<hr />
+
+<p>Written on November 12, 2017 by chamila de alwis.</p>
+
+<p>Originally published on <a href="https://medium.com/@chamilad/sample-wso2-ei-cache-mediator-based-token-caching-3036f2e7e6eb">Medium</a></p>
+
+        </div>
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/post/2017-07-03_infrastructure-as-code-aws-cloudformation/">Infrastructure as Code : AWS CloudFormation</a></li>
+    
+    <li><a href="/post/2017-02-21_ballerina-with-container-support/">Ballerina with Container Support</a></li>
+    
+    <li><a href="/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/">Thinking of Moving Your WSO2 Deployment On to Kubernetes?</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

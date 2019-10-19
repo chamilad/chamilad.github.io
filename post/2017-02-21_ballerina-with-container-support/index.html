@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamilad.github.io/post/2017-02-21_ballerina-with-container-support/" />
+  <link rel="canonical" href="https://chamilad.github.io/post/2017-02-21_ballerina-with-container-support/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamilad.github.io\/"
+      },
+      "articleSection" : "post",
+      "name" : "Ballerina with Container Support",
+      "headline" : "Ballerina with Container Support",
+      "description" : "WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the WSO2Con 2017 in San Fransisco. Ballerina is a general purpose language with a focus on integration and a visual approach to coding. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “Connectors” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2017",
+      "datePublished": "2017-02-21 06:48:33.269 \x2b0000 UTC",
+      "dateModified" : "2017-02-21 06:48:33.269 \x2b0000 UTC",
+      "url" : "https:\/\/chamilad.github.io\/post\/2017-02-21_ballerina-with-container-support\/",
+      "keywords" : [ "Docker","DevOps","Wso2","Integration","Programming", ]
+  }
+</script>
+<title>Ballerina with Container Support - chamilad.github.io</title>
+  <meta property="og:title" content="Ballerina with Container Support - chamilad.github.io" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the WSO2Con 2017 in San Fransisco. Ballerina is a general purpose language with a focus on integration and a visual approach to coding. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “Connectors” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamilad.github.io">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamilad.github.io/">chamilad.github.io</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Ballerina with Container Support</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2017-02-21 06:48:33 UTC">
+                21 Feb 2017
+              </time>
+              
+           </div>
+      
+      <div class="post-tags">
+
+<a class="subtitle is-6" href="/tags/docker">#Docker</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/devops">#DevOps</a>
+  
+  | <a class="subtitle is-6" href="/tags/wso2">#Wso2</a>
+  
+  | <a class="subtitle is-6" href="/tags/integration">#Integration</a>
+  
+  | <a class="subtitle is-6" href="/tags/programming">#Programming</a>
+  
+
+</div>
+
+      
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+
+<p><img src="/post/img/2017-02-21_ballerina-with-container-support_0.png#layoutFillWidth" alt="" /></p>
+
+<p>WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the <a href="http://us17.wso2con.com/">WSO2Con 2017 in San Fransisco</a>. Ballerina is a <a href="http://ballerinalang.org/">general purpose language with a focus on integration and a visual approach to coding</a>. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “<strong>Connectors</strong>” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.</p>
+
+<p>Ballerina offers two downloads, a minimal <strong>Runtime</strong>, and a fully featured <strong>Tools</strong> distribution. The Tools distribution packs a list of developer tools required to build Ballerina programs, in addition to the Runtime itself.</p>
+
+<figure><img src="/post/img/2017-02-21_ballerina-with-container-support_1.png#layoutTextWidth"><figcaption>Ballerina Composer</figcaption></figure>
+
+<ol>
+<li>Ballerina Composer, a visual Editor through which Ballerina can be coded as Sequence Diagrams</li>
+<li>Docerina to generate API documentation</li>
+<li>Testerina, a test framework for Ballerina</li>
+<li>Helper tools — Swagger-Ballerina Code generator, and Container Support</li>
+</ol>
+
+<p>What we are interested here is the Container Support. Ballerina Container Support enables you to pack Ballerina <strong>packages</strong> as Docker images that can be used to run individual Ballerina Containers or Ballerina Container Clusters. Let’s follow a simple example.</p>
+
+<h4 id="preparation">Preparation</h4>
+
+<blockquote>
+<p>Ballerina Docker images depend on a common base image, <strong>ballerina-pkg:latest</strong>. Currently, this has to be manually built.</p>
+</blockquote>
+
+<ol>
+<li>Download Ballerina Runtime distribution.</li>
+<li>Clone <a href="https://github.com/ballerinalang/container-support">Ballerina Container Support repository</a> and checkout tag <strong>v0.8.0</strong>.</li>
+
+<li><p>Navigate to <strong>ballerina-base-image</strong> folder and execute <strong>build.sh</strong> as follows.</p>
+
+<pre><code>./build.sh -d ~/Downloads/ballerina-0.8.0.zip 
+</code></pre></li>
+</ol>
+
+<p>After the build process is done, there will be a <strong>ballerina-pkg:latest</strong> Docker image on the local registry.</p>
+
+<pre><code>REPOSITORY    TAG    IMAGE ID     CREATED      SIZE
+ballerina-pkg latest 2547078bf268 13 hours ago 138 MB
+</code></pre>
+
+<h3 id="containerization">Containerization</h3>
+
+<p>Let’s create a Docker image for a sample Ballerina Service.</p>
+
+<h4 id="packaging"><strong>Packaging</strong></h4>
+
+<p>For Ballerina programs to be packed in to Docker images, they have to be packaged first using <strong>ballerina build</strong> command.</p>
+
+<ol>
+<li>Download Ballerina Tools distribution and unzip to your development location.</li>
+
+<li><p>Execute the following <strong>build</strong> command to package the Ballerina sample <strong>helloWorldService</strong> as an executable archive.</p>
+
+<pre><code>ballerina-tools-0.8.0/bin/&gt; ./ballerina build service ../samples/helloWorldService/helloWorldService.bal
+</code></pre></li>
+
+<li><p>This will create a Ballerina Service Archive with <strong>.bsz</strong> file extension at your working directory.</p></li>
+</ol>
+
+<p><img src="/post/img/2017-02-21_ballerina-with-container-support_2.png#layoutTextWidth" alt="" /></p>
+
+<h4 id="dockerizing">Dockerizing</h4>
+
+<p>Now let’s create a Docker image out of this Service archive.</p>
+
+<ol>
+<li>Once again, make sure you have <strong>ballerina-pkg:latest</strong> Docker image in your local registry by executing a <code>docker images</code> command. Note that <strong>non-sudo access to the docker command is required for</strong><code>ballerina docker</code><strong>to correctly function.</strong></li>
+
+<li><p>Execute the following command to create the Docker image.</p>
+
+<pre><code>ballerina-tools-0.8.0/bin/&gt; ./ballerina docker helloWorldService.bsz
+</code></pre></li>
+</ol>
+
+<p>This will prompt for you to continue building the Docker image, and confirmed it will build the Docker image and show helpful text to continue the next steps.</p>
+
+<p><img src="/post/img/2017-02-21_ballerina-with-container-support_3.png#layoutTextWidth" alt="" /></p>
+
+<p>Test the Docker image by running a Container. Copy the command displayed to run the Container, which will do so in the background. Query for Container logs to see if the Ballerina Service was successfully deployed, and verify by making an HTTP call.</p>
+
+<figure><img src="/post/img/2017-02-21_ballerina-with-container-support_4.png#layoutOutsetCenter"><figcaption>voila!</figcaption></figure>
+
+<p>You have now completed Dockerizing a Ballerina Service.</p>
+
+<p>Dockerizing a Ballerina Main program is just as easy. Just package the Main program to a <strong>bmz</strong> archive and issue the same command <strong>ballerina docker</strong> to create a Docker image.</p>
+
+<p><img src="/post/img/2017-02-21_ballerina-with-container-support_5.png#layoutOutsetCenter" alt="" /></p>
+
+<p>You might have noticed that <strong>ballerina docker</strong> tagged the Docker images with the package name of the Ballerina Service/Main Archive provided. If you want to tag the resulting Docker image with a different name, you can use <code>-t</code>or <code>--tag</code> flag.</p>
+
+<p>Another feature that <strong>ballerina docker</strong> offers is to use an external Docker daemon as the Docker host for Docker commands to be executed. This enables resource sharing as a common server with a Docker daemon exposed via a TCP port can be used by a team to create and test Docker images before pushing to live. To specify an external Docker daemon, use the flags <code>-H</code> or <code>--host</code>.</p>
+
+<p>You can find more information on the usage on the <a href="https://github.com/ballerinalang/container-support/tree/v0.8.0">README</a>.</p>
+
+<hr />
+
+<p>Written on February 21, 2017 by chamila de alwis.</p>
+
+<p>Originally published on <a href="https://medium.com/@chamilad/ballerina-with-container-support-22847ff43d37">Medium</a></p>
+
+        </div>
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/">Thinking of Moving Your WSO2 Deployment On to Kubernetes?</a></li>
+    
+    <li><a href="/post/2016-02-09_running-wso2-products-on-kubernetes/">Running WSO2 Products on Kubernetes</a></li>
+    
+    <li><a href="/post/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/">How to Upload a Carbon App (CAR File) to a Remote WSO2 Server</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

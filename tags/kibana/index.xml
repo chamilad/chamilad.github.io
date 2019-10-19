@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kibana on chamilad.github.io</title>
+    <link>https://chamilad.github.io/tags/kibana/</link>
+    <description>Recent content in Kibana on chamilad.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 10 Sep 2016 21:26:48 +0000</lastBuildDate>
+    
+	<atom:link href="https://chamilad.github.io/tags/kibana/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Monitoring WSO2 Logs with Elasticsearch, Logstash, and Kibana (or Grafana)</title>
+      <link>https://chamilad.github.io/post/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</link>
+      <pubDate>Sat, 10 Sep 2016 21:26:48 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</guid>
+      <description>I’ve recently been doing some work involving analytics dashboards and the subject proved to be really interesting. It has a wide range starting from Big Data to UX. Starting at a point where you determine what kind of data is collected and what kind information you need to get out of the dashboard, going to data analysis and data processing (probably on top an engine like Apache Spark), it finalizes at the visualization stage which is really fun.</description>
+    </item>
+    
+  </channel>
+</rss>

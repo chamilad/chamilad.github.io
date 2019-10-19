@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AWS on chamilad.github.io</title>
+    <link>https://chamilad.github.io/tags/aws/</link>
+    <description>Recent content in AWS on chamilad.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 17 May 2018 08:19:19 +0000</lastBuildDate>
+    
+	<atom:link href="https://chamilad.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Server Immutability</title>
+      <link>https://chamilad.github.io/post/2018-05-17_server-immutability/</link>
+      <pubDate>Thu, 17 May 2018 08:19:19 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2018-05-17_server-immutability/</guid>
+      <description>Server Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.
+What is Immutability? Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image.</description>
+    </item>
+    
+    <item>
+      <title>Subject Alternative Names in SSL Certificates</title>
+      <link>https://chamilad.github.io/post/2017-11-06_subject-alternative-names-in-ssl-certificates/</link>
+      <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2017-11-06_subject-alternative-names-in-ssl-certificates/</guid>
+      <description>Or the SSL Cert Extension that saves your back during development
+ I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</description>
+    </item>
+    
+    <item>
+      <title>Adding a Self-Signed SSL Certificate to AWS ACM</title>
+      <link>https://chamilad.github.io/post/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</link>
+      <pubDate>Tue, 17 Oct 2017 18:56:28 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</guid>
+      <description>When setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.
+However if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following.</description>
+    </item>
+    
+    <item>
+      <title>Infrastructure as Code : AWS CloudFormation</title>
+      <link>https://chamilad.github.io/post/2017-07-03_infrastructure-as-code-aws-cloudformation/</link>
+      <pubDate>Mon, 03 Jul 2017 11:40:50 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
+      <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
+  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
+ Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
+    </item>
+    
+  </channel>
+</rss>

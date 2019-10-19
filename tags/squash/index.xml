@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Squash on chamilad.github.io</title>
+    <link>https://chamilad.github.io/tags/squash/</link>
+    <description>Recent content in Squash on chamilad.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Aug 2017 09:58:17 +0000</lastBuildDate>
+    
+	<atom:link href="https://chamilad.github.io/tags/squash/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker Image Size Concerns Out of the Window — Squash with Confidence</title>
+      <link>https://chamilad.github.io/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</link>
+      <pubDate>Tue, 22 Aug 2017 09:58:17 +0000</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</guid>
+      <description>Docker is finally bringing Squash support
+For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use --no-cache flag while building. The layered structure of a Docker image would spook out a beginner.
+Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved.</description>
+    </item>
+    
+  </channel>
+</rss>
