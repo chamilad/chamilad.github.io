@@ -33,6 +33,41 @@ figcaption {
   padding-top: 3px;
 }
 
+.reading-time {
+  font-size: 11px;
+  color: #999;
+}
+
+.toc {
+  font-size: 13px;
+  margin-bottom: 50px;
+}
+
+.toc hr {
+  color: #eaecef;
+}
+
+.toc a {
+  color: #0366d6;
+  text-decoration: underline;
+}
+
+.prev-next {
+  border-top: 1px solid #bbb;
+  padding-top: 10px;
+  font-size: 12px;
+}
+
+.prev-next .prev {
+  margin: auto;
+  text-align: left;
+}
+
+.prev-next .next {
+  margin: auto;
+  text-align: right;
+}
+
 /* overwrite github-markdown */
 
 blockquote {
@@ -42,6 +77,10 @@ blockquote {
 .markdown-body {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
+}
+
+.markdown-body code {
+  border: 1px solid #eee;
 }
 
 /* i18n */
