@@ -6,10 +6,21 @@
     <description>Recent content on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Sep 2019 05:57:08 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 20 Oct 2019 18:24:16 +1300</lastBuildDate>
     
 	<atom:link href="https://chamilad.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Medium to Hugo</title>
+      <link>https://chamilad.github.io/post/2019-10-20_medium-to-hugo/</link>
+      <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2019-10-20_medium-to-hugo/</guid>
+      <description>Taking a minor break from the &amp;ldquo;ElasticSearch on K8s&amp;rdquo; series
+ tl;dr: I&amp;rsquo;m moving back to maintaining my own site rather than depending on Medium as a platform for technical blogging, because of various reasons.
+A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;ve been writing blog posts for more than a decade now, on various platforms, SaaS ones to self-hosted solutions.</description>
+    </item>
     
     <item>
       <title>ElasticSearch on K8s: 02 — Log Collection with Filebeat</title>
