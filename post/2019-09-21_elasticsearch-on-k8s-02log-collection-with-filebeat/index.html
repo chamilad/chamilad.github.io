@@ -111,7 +111,7 @@
 
       
              <div class="col-xs-3 reading-time">
-		6m 1078 words
+		6m 1079 words
             </div>
          </div>
           
@@ -166,9 +166,9 @@
 
 <p>There are additional options that can be used in order to modify the default behavior Filebeat uses to collect Docker logs. These include the <code>containers.ids</code> , <code>containers.stream</code> , and <code>json</code> . <a href="https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-input-docker.html">Filebeat documentation</a> explains how these can be employed, however most defaults will do for the use case we are considering.</p>
 
-<p>This configuration will start collecting the Docker Container logs. However the resulting log event will only consist of the data collected off from the log file itself. There are other information that could be collected at this moment that could be meaningful at the end of the pipeline. For an example, it’s important to understand which Pod produced a particular log line on which specific AWS instance containing a specific tag. Although it may be possible to enrich each log event later by means of correlation, Filebeat provides <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/filtering-and-enhancing-data.html"><strong>Processors</strong></a>to configure enrichment easily.</p>
+<p>This configuration will start collecting the Docker Container logs. However the resulting log event will only consist of the data collected off from the log file itself. There are other information that could be collected at this moment that could be meaningful at the end of the pipeline. For an example, it’s important to understand which Pod produced a particular log line on which specific AWS instance containing a specific tag. Although it may be possible to enrich each log event later by means of correlation, Filebeat provides <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/filtering-and-enhancing-data.html"><strong>Processors</strong></a> to configure enrichment easily.</p>
 
-<p>Two processors if importance in this setup are the <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/add-cloud-metadata.html">Cloud Metadata Processor </a>and the <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/add-kubernetes-metadata.html">K8s Metadata Processor</a>. Adding these to the configuration will make sure Cloud Service Provider specific details like the instance ID, region, and availability zone (collected by talking to the Cloud Service Provider metadata service), and K8s cluster specific details like originating Pod name, Pod labels and Namespace (collected by talking to the K8s Master API) are included in each resulting log event as Fields to be manipulated later (interestingly this is a form of log enrichment before we actually reach the tool designed to do log enrichment). These Fields will be highly useful to setup proper data segregation, search, and visualization.</p>
+<p>Two processors of importance in this setup are the <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/add-cloud-metadata.html">Cloud Metadata Processor </a>and the <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/add-kubernetes-metadata.html">K8s Metadata Processor</a>. Adding these to the configuration will make sure Cloud Service Provider specific details like the instance ID, region, and availability zone (collected by talking to the Cloud Service Provider metadata service), and K8s cluster specific details like originating Pod name, Pod labels and Namespace (collected by talking to the K8s Master API) are included in each resulting log event as Fields to be manipulated later (interestingly this is a form of log enrichment before we actually reach the tool designed to do log enrichment). These Fields will be highly useful to setup proper data segregation, search, and visualization.</p>
 
 <h4 id="2-where-to-collect-the-logs-from">2. Where to collect the logs from?</h4>
 
