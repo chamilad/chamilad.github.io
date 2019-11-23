@@ -4,7 +4,52 @@
   
   <url>
     <loc>https://chamilad.github.io/</loc>
-    <lastmod>2019-10-20T18:24:16+13:00</lastmod>
+    <lastmod>2019-11-23T01:05:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/elasticsearch/</loc>
+    <lastmod>2019-11-23T01:05:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2019-11-23_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</loc>
+    <lastmod>2019-11-23T01:05:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/filebeat/</loc>
+    <lastmod>2019-11-23T01:05:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/k8s/</loc>
+    <lastmod>2019-11-23T01:05:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/log-aggregation/</loc>
+    <lastmod>2019-11-23T01:05:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/logging/</loc>
+    <lastmod>2019-11-23T01:05:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/logstash/</loc>
+    <lastmod>2019-11-23T01:05:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/</loc>
+    <lastmod>2019-11-23T01:05:37+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/</loc>
+    <lastmod>2019-11-23T01:05:37+13:00</lastmod>
   </url>
   
   <url>
@@ -33,16 +78,6 @@
   </url>
   
   <url>
-    <loc>https://chamilad.github.io/post/</loc>
-    <lastmod>2019-10-20T18:24:16+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/</loc>
-    <lastmod>2019-10-20T18:24:16+13:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://chamilad.github.io/tags/docker/</loc>
     <lastmod>2019-10-19T18:15:43+13:00</lastmod>
   </url>
@@ -53,37 +88,7 @@
   </url>
   
   <url>
-    <loc>https://chamilad.github.io/tags/filebeat/</loc>
-    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/k8s/</loc>
-    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/logging/</loc>
-    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/logstash/</loc>
-    <lastmod>2019-10-19T18:15:43+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/elasticsearch/</loc>
-    <lastmod>2019-10-19T18:15:42+13:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://chamilad.github.io/post/2019-09-19_elasticsearch-on-k8s-01basic-design/</loc>
-    <lastmod>2019-10-19T18:15:42+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/log-aggregation/</loc>
     <lastmod>2019-10-19T18:15:42+13:00</lastmod>
   </url>
   

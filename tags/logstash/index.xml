@@ -6,10 +6,21 @@
     <description>Recent content in Logstash on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Sep 2019 05:57:08 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 23 Nov 2019 01:05:37 +1300</lastBuildDate>
     
 	<atom:link href="https://chamilad.github.io/tags/logstash/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ElasticSearch on K8s: 03 - Log Enrichment with Logstash</title>
+      <link>https://chamilad.github.io/post/2019-11-23_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</link>
+      <pubDate>Sat, 23 Nov 2019 01:05:37 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2019-11-23_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</guid>
+      <description>A stash of sugar cane ready to be processed into sugar and Arrack
+ This is part of a series of short articles on setting up an ELK deployment on K8s.
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash  Log Enrichment Now that the logs are being collected from the required sources, it’s time to start making some sense out of them.</description>
+    </item>
     
     <item>
       <title>ElasticSearch on K8s: 02 — Log Collection with Filebeat</title>
