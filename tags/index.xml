@@ -6,7 +6,7 @@
     <description>Recent content in Tags on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Nov 2019 22:29:57 +1300</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2019 22:03:00 +1300</lastBuildDate>
     
 	<atom:link href="https://chamilad.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,54 @@
     <item>
       <title>Elasticsearch</title>
       <link>https://chamilad.github.io/tags/elasticsearch/</link>
-      <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
+      <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
       
       <guid>https://chamilad.github.io/tags/elasticsearch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>K8s</title>
+      <link>https://chamilad.github.io/tags/k8s/</link>
+      <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Log Aggregation</title>
+      <link>https://chamilad.github.io/tags/log-aggregation/</link>
+      <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/log-aggregation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Logging</title>
+      <link>https://chamilad.github.io/tags/logging/</link>
+      <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/logging/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Logstash</title>
+      <link>https://chamilad.github.io/tags/logstash/</link>
+      <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/logstash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ELKOnK8s</title>
+      <link>https://chamilad.github.io/tags/elkonk8s/</link>
+      <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/elkonk8s/</guid>
       <description></description>
     </item>
     
@@ -26,42 +71,6 @@
       <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
       
       <guid>https://chamilad.github.io/tags/filebeat/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>K8s</title>
-      <link>https://chamilad.github.io/tags/k8s/</link>
-      <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
-      
-      <guid>https://chamilad.github.io/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Log aggregation</title>
-      <link>https://chamilad.github.io/tags/log-aggregation/</link>
-      <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
-      
-      <guid>https://chamilad.github.io/tags/log-aggregation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Logging</title>
-      <link>https://chamilad.github.io/tags/logging/</link>
-      <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
-      
-      <guid>https://chamilad.github.io/tags/logging/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Logstash</title>
-      <link>https://chamilad.github.io/tags/logstash/</link>
-      <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
-      
-      <guid>https://chamilad.github.io/tags/logstash/</guid>
       <description></description>
     </item>
     

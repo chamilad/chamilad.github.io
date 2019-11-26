@@ -6,10 +6,22 @@
     <description>Recent content in Elasticsearch on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Nov 2019 22:29:57 +1300</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2019 22:03:00 +1300</lastBuildDate>
     
 	<atom:link href="https://chamilad.github.io/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ElasticSearch Index Management</title>
+      <link>https://chamilad.github.io/post/2019-11-26_elasticsearch-index-management/</link>
+      <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2019-11-26_elasticsearch-index-management/</guid>
+      <description>The comms tower on top of Riverston, Sri Lanka
+As the series on ElasticSearch deployment management in K8s is complete, I thought of writing down some of the Index Management tasks that I had to implement in order to reduce the manual work involved in cluster maintenance.
+ Following is the series of posts on ElasticSearch on K8s.
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying  The following management steps are not mandatory to be implemented in a cluster to be production ready, however having them in place would greatly reduce some of the common headaches involved in an ELK stack management.</description>
+    </item>
     
     <item>
       <title>ElasticSearch on K8s: 05 - Visualization and Production Readying</title>

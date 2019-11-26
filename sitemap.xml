@@ -4,12 +4,47 @@
   
   <url>
     <loc>https://chamilad.github.io/</loc>
-    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
+    <lastmod>2019-11-26T22:03:00+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/elasticsearch/</loc>
-    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
+    <lastmod>2019-11-26T22:03:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2019-11-26_elasticsearch-index-management/</loc>
+    <lastmod>2019-11-26T22:03:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/k8s/</loc>
+    <lastmod>2019-11-26T22:03:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/log-aggregation/</loc>
+    <lastmod>2019-11-26T22:03:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/logging/</loc>
+    <lastmod>2019-11-26T22:03:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/logstash/</loc>
+    <lastmod>2019-11-26T22:03:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/</loc>
+    <lastmod>2019-11-26T22:03:00+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/</loc>
+    <lastmod>2019-11-26T22:03:00+13:00</lastmod>
   </url>
   
   <url>
@@ -18,37 +53,12 @@
   </url>
   
   <url>
+    <loc>https://chamilad.github.io/tags/elkonk8s/</loc>
+    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://chamilad.github.io/tags/filebeat/</loc>
-    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/k8s/</loc>
-    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/log-aggregation/</loc>
-    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/logging/</loc>
-    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/logstash/</loc>
-    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/post/</loc>
-    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/</loc>
     <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url>
   
