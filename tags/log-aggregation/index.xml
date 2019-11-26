@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Log Aggregation on chamilad.github.io</title>
+    <title>Log aggregation on chamilad.github.io</title>
     <link>https://chamilad.github.io/tags/log-aggregation/</link>
-    <description>Recent content in Log Aggregation on chamilad.github.io</description>
+    <description>Recent content in Log aggregation on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 Nov 2019 16:01:40 +1300</lastBuildDate>
+    <lastBuildDate>Mon, 25 Nov 2019 22:29:57 +1300</lastBuildDate>
     
 	<atom:link href="https://chamilad.github.io/tags/log-aggregation/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ElasticSearch on K8s: 05 - Visualization and Production Readying</title>
+      <link>https://chamilad.github.io/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</link>
+      <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</guid>
+      <description>Woolshed Hut on Mt. Somers
+ This is part of a series of short articles on setting up an ELK deployment on K8s.
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying  Visualization Kibana is a web application which can be used to query data from an ElasticSearch cluster.</description>
+    </item>
     
     <item>
       <title>ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</title>
@@ -19,7 +30,7 @@
       <guid>https://chamilad.github.io/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</guid>
       <description>The morning shadow on the lower mountaineous plain beside Adam&amp;rsquo;s Peak, Sri Lanka
  This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch  Storage and Indexing Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying.</description>
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying  Storage and Indexing Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying.</description>
     </item>
     
     <item>
@@ -30,7 +41,7 @@
       <guid>https://chamilad.github.io/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</guid>
       <description>A stash of sugar cane ready to be processed into sugar and Arrack
  This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch  Log Enrichment Now that the logs are being collected from the required sources, it’s time to start making some sense out of them.</description>
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying  Log Enrichment Now that the logs are being collected from the required sources, it’s time to start making some sense out of them.</description>
     </item>
     
     <item>

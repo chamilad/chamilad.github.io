@@ -4,51 +4,56 @@
   
   <url>
     <loc>https://chamilad.github.io/</loc>
-    <lastmod>2019-11-23T16:01:40+13:00</lastmod>
+    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/elasticsearch/</loc>
-    <lastmod>2019-11-23T16:01:40+13:00</lastmod>
+    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamilad.github.io/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</loc>
-    <lastmod>2019-11-23T16:01:40+13:00</lastmod>
+    <loc>https://chamilad.github.io/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</loc>
+    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/filebeat/</loc>
-    <lastmod>2019-11-23T16:01:40+13:00</lastmod>
+    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/k8s/</loc>
-    <lastmod>2019-11-23T16:01:40+13:00</lastmod>
+    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/log-aggregation/</loc>
-    <lastmod>2019-11-23T16:01:40+13:00</lastmod>
+    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/logging/</loc>
-    <lastmod>2019-11-23T16:01:40+13:00</lastmod>
+    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/logstash/</loc>
-    <lastmod>2019-11-23T16:01:40+13:00</lastmod>
+    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/post/</loc>
-    <lastmod>2019-11-23T16:01:40+13:00</lastmod>
+    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/</loc>
+    <lastmod>2019-11-25T22:29:57+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</loc>
     <lastmod>2019-11-23T16:01:40+13:00</lastmod>
   </url>
   
