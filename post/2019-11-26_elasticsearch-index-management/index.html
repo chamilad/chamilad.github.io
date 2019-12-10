@@ -110,7 +110,7 @@
 
       
              <div class="col-xs-3 reading-time">
-		9m, 1737 words
+		<b>Read time:</b> 9m, 1737 words
             </div>
          </div>
           
@@ -279,7 +279,7 @@ curl -XPOST -H &quot;Content-type: application/json&quot; -H &quot;kbn-xsrf: kib
 <p>The above two API calls creates an index pattern and marks it as the default one.</p>
 
 <blockquote>
-<p>Marking an as index pattern default saves the user from an astonishing level frustration when it comes to querying on Kibana.</p>
+<p>Marking an index pattern as default saves the user from an astonishing level frustration when it comes to querying on Kibana.</p>
 </blockquote>
 
 <p>These two API calls can be configured to run once each day at the start of the day (ex: using a K8s <code>CronJob</code>). That should take care of the mundane task of creating efficient index patterns.</p>
@@ -292,6 +292,8 @@ curl -XPOST -H &quot;Content-type: application/json&quot; -H &quot;kbn-xsrf: kib
 		
 	</div>        
 	<div class="next col-sm">
+	
+	<a href="https://chamilad.github.io/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/">Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO &gt;</a>
 		
 	</div>
 </div>

@@ -6,15 +6,33 @@
     <description>Recent content in Tags on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 Nov 2019 22:03:00 +1300</lastBuildDate>
+    <lastBuildDate>Wed, 27 Nov 2019 19:43:20 +1300</lastBuildDate>
     
 	<atom:link href="https://chamilad.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Authentication</title>
+      <link>https://chamilad.github.io/tags/authentication/</link>
+      <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/authentication/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Authorization</title>
+      <link>https://chamilad.github.io/tags/authorization/</link>
+      <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/authorization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Elasticsearch</title>
       <link>https://chamilad.github.io/tags/elasticsearch/</link>
-      <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
+      <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
       
       <guid>https://chamilad.github.io/tags/elasticsearch/</guid>
       <description></description>
@@ -23,16 +41,25 @@
     <item>
       <title>K8s</title>
       <link>https://chamilad.github.io/tags/k8s/</link>
-      <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
+      <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
       
       <guid>https://chamilad.github.io/tags/k8s/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Log Aggregation</title>
+      <title>KeyCloak</title>
+      <link>https://chamilad.github.io/tags/keycloak/</link>
+      <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/keycloak/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Log aggregation</title>
       <link>https://chamilad.github.io/tags/log-aggregation/</link>
-      <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
+      <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
       
       <guid>https://chamilad.github.io/tags/log-aggregation/</guid>
       <description></description>
@@ -41,7 +68,7 @@
     <item>
       <title>Logging</title>
       <link>https://chamilad.github.io/tags/logging/</link>
-      <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
+      <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
       
       <guid>https://chamilad.github.io/tags/logging/</guid>
       <description></description>
@@ -50,9 +77,36 @@
     <item>
       <title>Logstash</title>
       <link>https://chamilad.github.io/tags/logstash/</link>
-      <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
+      <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
       
       <guid>https://chamilad.github.io/tags/logstash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Multitenancy</title>
+      <link>https://chamilad.github.io/tags/multitenancy/</link>
+      <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/multitenancy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Roles</title>
+      <link>https://chamilad.github.io/tags/roles/</link>
+      <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/roles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Single Sign On</title>
+      <link>https://chamilad.github.io/tags/single-sign-on/</link>
+      <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/single-sign-on/</guid>
       <description></description>
     </item>
     
