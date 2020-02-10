@@ -18,7 +18,7 @@
       
       <guid>https://chamilad.github.io/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</guid>
       <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.</description>
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.</description>
     </item>
     
     <item>
