@@ -30,7 +30,7 @@
       "datePublished": "2020-02-10 20:26:46 \x2b1300 NZDT",
       "dateModified" : "2020-02-10 20:26:46 \x2b1300 NZDT",
       "url" : "https:\/\/chamilad.github.io\/post\/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment\/",
-      "keywords" : [ "", ]
+      "keywords" : [ "K8s","Logging","ElasticSearch","Logstash","Log aggregation","Authentication","Authorization","KeyCloak","Single Sign On","Multitenancy","Roles", ]
   }
 </script>
 <title>Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment - chamilad.github.io</title>
@@ -93,9 +93,31 @@
       
       <div class="col-xs-6 post-tags">
 
-<a class="subtitle is-6" href="/tags/">#</a>
+<a class="subtitle is-6" href="/tags/k8s">#K8s</a>
 
 
+
+  
+  | <a class="subtitle is-6" href="/tags/logging">#Logging</a>
+  
+  | <a class="subtitle is-6" href="/tags/elasticsearch">#ElasticSearch</a>
+  
+  | <a class="subtitle is-6" href="/tags/logstash">#Logstash</a>
+  
+  | <a class="subtitle is-6" href="/tags/log-aggregation">#Log aggregation</a>
+  
+  | <a class="subtitle is-6" href="/tags/authentication">#Authentication</a>
+  
+  | <a class="subtitle is-6" href="/tags/authorization">#Authorization</a>
+  
+  | <a class="subtitle is-6" href="/tags/keycloak">#KeyCloak</a>
+  
+  | <a class="subtitle is-6" href="/tags/single-sign-on">#Single Sign On</a>
+  
+  | <a class="subtitle is-6" href="/tags/multitenancy">#Multitenancy</a>
+  
+  | <a class="subtitle is-6" href="/tags/roles">#Roles</a>
+  
 
 </div>
 
@@ -110,8 +132,6 @@
         <h4>Table of Contents:</h4>
 	<nav id="TableOfContents">
 <ul>
-<li>
-<ul>
 <li><a href="#keycloak-in-brief">KeyCloak in Brief</a></li>
 <li><a href="#authentication-with-no-multitenancy">Authentication with no Multitenancy</a>
 <ul>
@@ -125,7 +145,6 @@
 <li><a href="#role-mapping-for-authorization">Role Mapping for Authorization</a></li>
 </ul></li>
 <li><a href="#conclusion">Conclusion</a></li>
-</ul></li>
 </ul>
 </nav>
 	<hr />
@@ -153,7 +172,7 @@
 
 <p>As discussed in the last article, I will try to lay out the configuration details of a usable SSO based authn/authr design for an ELK deployment. Note that for certain features mentioned in this article to work, some features that are in the paid ElasticSearch tiers have to be available.</p>
 
-<h2 id="keycloak-in-brief">KeyCloak in Brief</h2>
+<h1 id="keycloak-in-brief">KeyCloak in Brief</h1>
 
 <p>First, let&rsquo;s take a look at our IDP solution. <a href="https://www.keycloak.org/">KeyCloak</a> is an OpenSource IDP backed maintained by RedHat. The community around KeyCloak is supportive, although the mailing list is hard one to keep hold of (you get dropped off the list soon if too many emails bounce back, and for some reason my Gmail address seems to do that a lot). As an IDP, KeyCloak supports SSO through SAML and OIDC protocols. In addition to the built-in user store, KeyCloak can also make use of external user stores (for an example, the internal LDAP directory of an organization), and also can act as a IDP federator for other identity providers such as Google and Facebook.</p>
 
@@ -167,7 +186,7 @@
 
 <p><img src="/post/img/2020-02-10_authn_authr_elk_02_2.png" alt="KeyCloak Realms" /></p>
 
-<h2 id="authentication-with-no-multitenancy">Authentication with no Multitenancy</h2>
+<h1 id="authentication-with-no-multitenancy">Authentication with no Multitenancy</h1>
 
 <p>Enabling an external IDP based authentication in ElasticSearch is somewhat straightforward. We just need to configure the IDP for ElasticSearch and point ElasticSearch to the proper IDP endpoint for the selected SSO protocol. For this to work, both parties (the Service Provider and the Identity Provider) should be resolvable at the end user&rsquo;s terminal.</p>
 
@@ -180,7 +199,7 @@
 <li><code>https://kibana.my.org</code> - Kibana URL.</li>
 </ol>
 
-<h3 id="configuring-keycloak-01-client-configuration">Configuring KeyCloak - 01 - Client Configuration</h3>
+<h2 id="configuring-keycloak-01-client-configuration">Configuring KeyCloak - 01 - Client Configuration</h2>
 
 <p>For KeyCloak, we can use a single Realm as an IDP for ElasticSearch. Each Realm has a concept called <code>Clients</code> which are configurations for Service Providers that will be using the Realm as an IDP. Clients are of different types based on the communication protocol used. Since we are going to use SAML as the SSO protocol, we can create a SAML client in the selected KeyCloak Realm that contains the configuration for the Service Provider, which is Kibana in our case.</p>
 
@@ -196,7 +215,7 @@
 <img src="/post/img/2020-02-10_authn_authr_elk_02_kc_client2.png" alt="KeyCloak Client Configurations - Redirect URLs" />
 <figcaption>Sample KeyCloak Client Configurations</figcaption></p>
 
-<h3 id="configuring-elasticsearch-02-auth-realm-configuration">Configuring ElasticSearch - 02 - Auth Realm Configuration</h3>
+<h2 id="configuring-elasticsearch-02-auth-realm-configuration">Configuring ElasticSearch - 02 - Auth Realm Configuration</h2>
 
 <p>On ElasticSearch, a SAML authentication configuration, otherwise known as <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/saml-guide-authentication.html">an authentication realm</a>, has to be created. This is specified in the <code>elasticsearch.yml</code> configuration file. This configuration contains the following information (for more information for the flow described here, refer to the <a href="https://chamilad.github.io/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/">previous article</a>).</p>
 
@@ -228,7 +247,7 @@
 <p>Note that <strong>exactly the same URLs</strong> specified earlier in KeyCloak SAML Client configuration, have to be specified here for Kibana for validations in the SAML requests and responses to work.</p>
 </blockquote>
 
-<h3 id="configuring-kibana-03-selecting-auth-realm-to-use">Configuring Kibana - 03 - Selecting Auth Realm to Use.</h3>
+<h2 id="configuring-kibana-03-selecting-auth-realm-to-use">Configuring Kibana - 03 - Selecting Auth Realm to Use.</h2>
 
 <p>Kibana now has to be configured to use this authentication realm that was configured on ElasticSearch. For this, the following is put on the <code>kibana.yml</code> configuration file. What this configuration does is to</p>
 
@@ -248,7 +267,7 @@ port: <span style="color:#ae81ff">443</span></code></pre></div></li>
 
 <p>However, the user that will get authenticated through this process is still not properly authorized to be performing any actions on the ElasticSearch cluster. Next set of configuration steps will try to assign an ElasticSearch <code>Role</code> to the User through a <code>RoleMapping</code>, otherwise known as <strong>Role Based Access Control</strong>.</p>
 
-<h2 id="authorization">Authorization</h2>
+<h1 id="authorization">Authorization</h1>
 
 <p>Authorization is the process of assigning proper permissions for the already <em>authenticated</em> users. This will make sure that only users with predefined attributes are allowed to perform certain actions (ex: <strong>READ</strong> from indices with names matching the pattern <code>logstash-org1*</code>, <strong>MODIFY</strong> advanced settings in Kibana). These attributes that determine access could be as granular as something like the username (ex: specifying only username <code>bob</code> is allowed to perform super user tasks on ElasticSearch) to others such as KeyCloak realm name, and role mappings (ex: only users from <code>master</code> KeyCloak realm are able to perform super user tasks, only users with role <code>KIBANA_ADMIN</code> are able perform write operations such as creating visualizations).</p>
 
@@ -256,11 +275,11 @@ port: <span style="color:#ae81ff">443</span></code></pre></div></li>
 <p>This could be taken to another step where Kibana Space level permissions can also be leveraged (ex: only users from <code>realmA</code> KeyCloak realm with role mapping <code>KIBANA_ADMIN</code> are able to do write operations within Kibana Space <code>Organization A</code>). This is a topic for another article to cover.</p>
 </blockquote>
 
-<h3 id="elasticsearch-roles">ElasticSearch Roles</h3>
+<h2 id="elasticsearch-roles">ElasticSearch Roles</h2>
 
 <p>How these permissions are granted to users in ElasticSearch is through <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/authorization.html"><code>Roles</code></a>. An ElasticSearch <code>Role</code> is a grouping of Permissions, action-index lists (that specify which actions can be done on which indices), and action-space lists (that specify which actions can be done within which Kibana Spaces). In addition to the custom roles that can be created, ElasticSearch also has <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/built-in-roles.html">a few built-in Roles</a> that enable leveraging RBAC right out of the box. For the purposes of this article, we can use one of these roles, specifically <code>superuser</code> Role to grant the authenticating user every permission on the ELK cluster (because Security should only be an afterthought! Yes, I am not serious).</p>
 
-<h3 id="role-mapping-for-authorization">Role Mapping for Authorization</h3>
+<h2 id="role-mapping-for-authorization">Role Mapping for Authorization</h2>
 
 <p>To assign the role <code>superuser</code> to every user authenticating through KeyCloak, there should be a document that gets evaluated during the process of authorization. A <code>RoleMapping</code> is this document that contains the set of rules for the user (or to be more specific, the authentication response from the IDP) to match, and the final role (or roles, since multiple roles can be assigned to a user) to be assigned. This document has to be created by hand.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
@@ -291,7 +310,7 @@ port: <span style="color:#ae81ff">443</span></code></pre></div></li>
 </span><span style="color:#e6db74">&#39;</span></code></pre></div>
 <p>At this point, the users authenticating through KeyCloak should be able to perform any task inside Kibana. We have achieved a basic level of authentication and authorization with KeyCloak SSO for ELK!</p>
 
-<h2 id="conclusion">Conclusion</h2>
+<h1 id="conclusion">Conclusion</h1>
 
 <p>Any unauthenticated user visiting <code>https://kibana.my.org</code> should now be redirected to the KeyCloak web UI (specifically the UI for the realm <code>elastic</code> and the Client for Kibana). If they have credentials for users in <code>elastic</code> KeyCloak realm, they should be able to use those credentials to log in to KeyCloak, which will then send a proper SAML Assertion document for ElasticSearch to evaluate. The role mapping that was added to ElasticSearch will kick in and assign the role <code>superuser</code> to the user, who will be granted access to Kibana web UI afterwards.</p>
 
@@ -323,6 +342,19 @@ port: <span style="color:#ae81ff">443</span></code></pre></div></li>
         
 
         
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/">Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</a></li>
+    
+    <li><a href="/post/2019-11-26_elasticsearch-index-management/">ElasticSearch Index Management</a></li>
+    
+    <li><a href="/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/">ElasticSearch on K8s: 05 - Visualization and Production Readying</a></li>
+    
+  </ul>
+</div>
 
 
         

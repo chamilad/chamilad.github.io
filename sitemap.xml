@@ -3,7 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://chamilad.github.io/tags/authentication/</loc>
+    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://chamilad.github.io/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</loc>
+    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/authorization/</loc>
     <lastmod>2020-02-10T20:26:46+13:00</lastmod>
   </url>
   
@@ -13,7 +23,52 @@
   </url>
   
   <url>
+    <loc>https://chamilad.github.io/tags/elasticsearch/</loc>
+    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/k8s/</loc>
+    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/keycloak/</loc>
+    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/log-aggregation/</loc>
+    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/logging/</loc>
+    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/logstash/</loc>
+    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/multitenancy/</loc>
+    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://chamilad.github.io/post/</loc>
+    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/roles/</loc>
+    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/single-sign-on/</loc>
     <lastmod>2020-02-10T20:26:46+13:00</lastmod>
   </url>
   
@@ -23,62 +78,7 @@
   </url>
   
   <url>
-    <loc>https://chamilad.github.io/tags/authentication/</loc>
-    <lastmod>2019-11-27T19:43:20+13:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://chamilad.github.io/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</loc>
-    <lastmod>2019-11-27T19:43:20+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/authorization/</loc>
-    <lastmod>2019-11-27T19:43:20+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/elasticsearch/</loc>
-    <lastmod>2019-11-27T19:43:20+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/k8s/</loc>
-    <lastmod>2019-11-27T19:43:20+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/keycloak/</loc>
-    <lastmod>2019-11-27T19:43:20+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/log-aggregation/</loc>
-    <lastmod>2019-11-27T19:43:20+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/logging/</loc>
-    <lastmod>2019-11-27T19:43:20+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/logstash/</loc>
-    <lastmod>2019-11-27T19:43:20+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/multitenancy/</loc>
-    <lastmod>2019-11-27T19:43:20+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/roles/</loc>
-    <lastmod>2019-11-27T19:43:20+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/single-sign-on/</loc>
     <lastmod>2019-11-27T19:43:20+13:00</lastmod>
   </url>
   
