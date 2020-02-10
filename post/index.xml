@@ -6,10 +6,20 @@
     <description>Recent content in Posts on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Nov 2019 19:43:20 +1300</lastBuildDate>
+    <lastBuildDate>Mon, 10 Feb 2020 20:26:46 +1300</lastBuildDate>
     
 	<atom:link href="https://chamilad.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</title>
+      <link>https://chamilad.github.io/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</link>
+      <pubDate>Mon, 10 Feb 2020 20:26:46 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</guid>
+      <description>This is a continuation of the addendum to a series of articles on ELK on K8s.
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO  As discussed in the last article, I will try to lay out the configuration details of a usable SSO based authn/authr design for an ELK deployment.</description>
+    </item>
     
     <item>
       <title>Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</title>
@@ -19,7 +29,7 @@
       <guid>https://chamilad.github.io/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</guid>
       <description>Point Sur, Cali 01
  I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying  So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s.</description>
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management  So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s.</description>
     </item>
     
     <item>

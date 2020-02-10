@@ -122,7 +122,7 @@
 
       
              <div class="col-xs-3 reading-time">
-		<b>Read time:</b> 6m, 1172 words
+		<b>Read time:</b> 6m, 1175 words
             </div>
          </div>
           
@@ -161,6 +161,7 @@
 <li><a href="/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/">ElasticSearch on K8s: 03 - Log Enrichment with Logstash</a></li>
 <li><a href="/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/">ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</a></li>
 <li><a href="/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/">ElasticSearch on K8s: 05 - Visualization and Production Readying</a></li>
+<li><a href="https://chamilad.github.io/post/2019-11-26_elasticsearch-index-management/">ElasticSearch Index Management</a></li>
 </ol>
 
 <p>So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s. The functionalities involved ELK core functions and how to mix and match K8s features to get the best out of the core ELK features. After getting the stack to receive and store logs, there are parallels that should be addressed. User management is one these critical features that this article will be discussing about.</p>
@@ -213,7 +214,7 @@
 
 <p>In the next article(s), let&rsquo;s explore how to implement this solution. We will be using a self-hosted KeyCloak server as our IDP with KeyCloak&rsquo;s internal database as the user store.</p>
 
-<p>We will be using SAML as the SSO protocol mostly because ELK&rsquo;s support for OIDC has been weak at best (especially in their hosted SaaS solution). However, the implementation details for an OIDC based solution should not be that much different after all.</p>
+<p>We will be using SAML as the SSO protocol mostly because ELK&rsquo;s support for OIDC has been weak at best (especially in their Cloud SaaS solution). However, the implementation details for an OIDC based solution should not be that much different after all.</p>
 
 <p>Kibana, as the service provider, has support for multi-tenancy materialized as Kibana Spaces. However, at the time this article is being written, Kibana Spaces and SSO do not go well together as a fully-fledged multi-tenant solution (there are zero tenant discovery mechanisms available for SSO from Kibana&rsquo;s point of view). We will also explore workarounds to implement a usable multi-tenant SSO system for ELK, using federated identity providers feature in KeyCloak.</p>
 
@@ -227,6 +228,8 @@
 		
 	</div>        
 	<div class="next col-sm">
+	
+	<a href="https://chamilad.github.io/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment &gt;</a>
 		
 	</div>
 </div>
