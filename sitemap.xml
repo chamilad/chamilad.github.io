@@ -4,76 +4,86 @@
   
   <url>
     <loc>https://chamilad.github.io/tags/authentication/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamilad.github.io/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <loc>https://chamilad.github.io/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</loc>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/authorization/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/elasticsearch/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/federation/</loc>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/k8s/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/keycloak/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/log-aggregation/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/logging/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/logstash/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/multitenancy/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/post/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/roles/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/single-sign-on/</loc>
-    <lastmod>2020-02-10T20:26:46+13:00</lastmod>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/</loc>
+    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</loc>
     <lastmod>2020-02-10T20:26:46+13:00</lastmod>
   </url>
   

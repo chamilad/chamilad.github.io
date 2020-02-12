@@ -6,10 +6,21 @@
     <description>Recent content in Posts on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Feb 2020 20:26:46 +1300</lastBuildDate>
+    <lastBuildDate>Wed, 12 Feb 2020 07:07:35 +1300</lastBuildDate>
     
 	<atom:link href="https://chamilad.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</title>
+      <link>https://chamilad.github.io/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</link>
+      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</guid>
+      <description>Horton Plains at sunrise, Sri Lanka
+ This is a continuation of the addendum to a series of articles on ELK on K8s.
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The previous post on this series was about enabling SSO between Kibana and KeyCloak.</description>
+    </item>
     
     <item>
       <title>Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</title>
@@ -18,7 +29,7 @@
       
       <guid>https://chamilad.github.io/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</guid>
       <description>This is a continuation of the addendum to a series of articles on ELK on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment  As discussed in the last article, I will try to lay out the configuration details of a usable SSO based authn/authr design for an ELK deployment.</description>
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  As discussed in the last article, I will try to lay out the configuration details of a usable SSO based authn/authr design for an ELK deployment.</description>
     </item>
     
     <item>
@@ -29,7 +40,7 @@
       <guid>https://chamilad.github.io/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</guid>
       <description>Point Sur, Cali 01
  I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment  So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s.</description>
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s.</description>
     </item>
     
     <item>
@@ -41,7 +52,7 @@
       <description>The comms tower on top of Riverston, Sri Lanka
 As the series on ElasticSearch deployment management in K8s is complete, I thought of writing down some of the Index Management tasks that I had to implement in order to reduce the manual work involved in cluster maintenance.
  Following is the series of posts on ElasticSearch on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment  The following management steps are not mandatory to be implemented in a cluster to be production ready, however having them in place would greatly reduce some of the common headaches involved in an ELK stack management.</description>
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The following management steps are not mandatory to be implemented in a cluster to be production ready, however having them in place would greatly reduce some of the common headaches involved in an ELK stack management.</description>
     </item>
     
     <item>
@@ -52,7 +63,7 @@ As the series on ElasticSearch deployment management in K8s is complete, I thoug
       <guid>https://chamilad.github.io/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</guid>
       <description>Woolshed Hut on Mt. Somers
  This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment  Visualization Kibana is a web application which can be used to query data from an ElasticSearch cluster.</description>
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Visualization Kibana is a web application which can be used to query data from an ElasticSearch cluster.</description>
     </item>
     
     <item>
@@ -63,7 +74,7 @@ As the series on ElasticSearch deployment management in K8s is complete, I thoug
       <guid>https://chamilad.github.io/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</guid>
       <description>The morning shadow on the lower mountaineous plain beside Adam&amp;rsquo;s Peak, Sri Lanka
  This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment  Storage and Indexing Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying.</description>
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Storage and Indexing Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying.</description>
     </item>
     
     <item>
@@ -74,7 +85,7 @@ As the series on ElasticSearch deployment management in K8s is complete, I thoug
       <guid>https://chamilad.github.io/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</guid>
       <description>A stash of sugar cane ready to be processed into sugar and Arrack
  This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment  Log Enrichment Now that the logs are being collected from the required sources, it’s time to start making some sense out of them.</description>
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Enrichment Now that the logs are being collected from the required sources, it’s time to start making some sense out of them.</description>
     </item>
     
     <item>
@@ -95,7 +106,7 @@ A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;v
       
       <guid>https://chamilad.github.io/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</guid>
       <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.</description>
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.</description>
     </item>
     
     <item>
