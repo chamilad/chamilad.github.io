@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamilad.github.io/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/" />
+  <link rel="canonical" href="https://chamilad.github.io/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamilad.github.io\/"
+      },
+      "articleSection" : "post",
+      "name" : "A Standalone Prometheus Exporter for Kibana",
+      "headline" : "A Standalone Prometheus Exporter for Kibana",
+      "description" : "A standalone Prometheus Exporter for Kibana to be deployed in K8s",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-03-14 13:37:33 \x2b1300 NZDT",
+      "dateModified" : "2020-03-14 13:37:33 \x2b1300 NZDT",
+      "url" : "https:\/\/chamilad.github.io\/post\/2020-03-14_a-standalone-prometheus-exporter-for-kibana\/",
+      "keywords" : [ "K8s","Prometheus","Monitoring","Kibana","Metrics", ]
+  }
+</script>
+<title>A Standalone Prometheus Exporter for Kibana - chamilad.github.io</title>
+  <meta property="og:title" content="A Standalone Prometheus Exporter for Kibana - chamilad.github.io" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="A standalone Prometheus Exporter for Kibana to be deployed in K8s" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamilad.github.io">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamilad.github.io/">chamilad.github.io</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">A Standalone Prometheus Exporter for Kibana</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2020-03-14 13:37:33 NZDT">
+                14 Mar 2020
+		<p><b>Read time:</b> 3m
+		<br /><b>Word count:</b> 502</p>
+              </time>
+              
+           </div>
+      
+      <div class="col-xs-6 post-tags">
+
+<a class="subtitle is-6" href="/tags/k8s">#K8s</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/prometheus">#Prometheus</a>
+  
+  | <a class="subtitle is-6" href="/tags/monitoring">#Monitoring</a>
+  
+  | <a class="subtitle is-6" href="/tags/kibana">#Kibana</a>
+  
+  | <a class="subtitle is-6" href="/tags/metrics">#Metrics</a>
+  
+
+</div>
+
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <p>I wrote a <a href="https://github.com/chamilad/kibana-prometheus-exporter">Prometheus Exporter that converts and exposes some metrics from Kibana API</a>. This was mostly inspired by <a href="https://github.com/pjhampton/kibana-prometheus-exporter/">an already existing Exporter</a>, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password</code></pre></div>
+<p>The Exporter is pretty basic one written in less than 500 lines of collective Go code. The following metrics are exposed to be scraped by Prometheus.</p>
+
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>kibana_status</code></td>
+<td>Kibana overall status</td>
+<td>Gauge</td>
+</tr>
+
+<tr>
+<td><code>kibana_concurrent_connections</code></td>
+<td>Kibana Concurrent Connections</td>
+<td>Gauge</td>
+</tr>
+
+<tr>
+<td><code>kibana_millis_uptime</code></td>
+<td>Kibana uptime in milliseconds</td>
+<td>Gauge</td>
+</tr>
+
+<tr>
+<td><code>kibana_heap_max_in_bytes</code></td>
+<td>Kibana Heap maximum in bytes</td>
+<td>Gauge</td>
+</tr>
+
+<tr>
+<td><code>kibana_heap_used_in_bytes</code></td>
+<td>Kibana Heap usage in bytes</td>
+<td>Gauge</td>
+</tr>
+
+<tr>
+<td><code>kibana_os_load_1m</code></td>
+<td>Kibana load average 1m</td>
+<td>Gauge</td>
+</tr>
+
+<tr>
+<td><code>kibana_os_load_5m</code></td>
+<td>Kibana load average 5m</td>
+<td>Gauge</td>
+</tr>
+
+<tr>
+<td><code>kibana_os_load_15m</code></td>
+<td>Kibana load average 15m</td>
+<td>Gauge</td>
+</tr>
+
+<tr>
+<td><code>kibana_response_average</code></td>
+<td>Kibana average response time in milliseconds</td>
+<td>Gauge</td>
+</tr>
+
+<tr>
+<td><code>kibana_response_max</code></td>
+<td>Kibana maximum response time in milliseconds</td>
+<td>Gauge</td>
+</tr>
+
+<tr>
+<td><code>kibana_requests_disconnects</code></td>
+<td>Kibana request disconnections count</td>
+<td>Gauge</td>
+</tr>
+
+<tr>
+<td><code>kibana_requests_total</code></td>
+<td>Kibana total request count</td>
+<td>Gauge</td>
+</tr>
+</tbody>
+</table>
+
+<p>The Exporter is distributed as a statically linked binary that can be started with no dependencies. In addition to the binaries that can be found <a href="https://github.com/chamilad/kibana-prometheus-exporter/releases">on the GitHub releases page</a>, the Exporter is also distributed <a href="https://hub.docker.com/r/chamilad/kibana-prometheus-exporter">as a Docker image on Docker Hub</a>. How to use, report bugs, and contribute can be found on the <a href="https://github.com/chamilad/kibana-prometheus-exporter/blob/master/README.md">project README</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -p <span style="color:#ae81ff">9684</span>:9684 -it chamilad/kibana-prometheus-exporter:v7.5.x.1 -kibana.username elastic -kibana.password password -kibana.uri https://elasticcloud.kibana.aws.found.io</code></pre></div>
+<p>Additionally, definitions for a K8s Deployment and a Service is also provided that may be of help to quickly deploy this Exporter in a K8s environment. When done so, the following Prometheus scrape config can be used to collect metrics.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    - job_name: <span style="color:#e6db74">&#34;kibana&#34;</span>
+      scrape_interval: 1m
+      metrics_path: <span style="color:#e6db74">&#34;/metrics&#34;</span>
+      kubernetes_sd_configs:
+        - role: service
+      relabel_configs:
+        - source_labels: [__meta_kubernetes_service_label_app]
+          regex: <span style="color:#e6db74">&#34;kibana-exporter&#34;</span>
+          action: keep
+        - source_labels: [__meta_kubernetes_namespace]
+          action: replace
+          target_label: kubernetes_namespace
+        - source_labels: [__address__, __meta_kubernetes_service_annotation_prometheus_io_port]
+          target_label: __address__
+          regex: ([^:]+)(?::\d+)?;(\d+)
+          replacement: $<span style="color:#ae81ff">1</span>:$<span style="color:#ae81ff">2</span></code></pre></div>
+<p>If you don&rsquo;t like my project, you can checkout others on the <a href="https://github.com/prometheus/prometheus/wiki/Default-port-allocations">Prometheus Exporter Collection page</a>.</p>
+
+<p>Enjoy!</p>
+
+<blockquote>
+<p>Why did I write one? Especially in this day and age where Prometheus Client Libraries enable any code base to easily integrate <a href="https://github.com/prometheus/docs/blob/master/content/docs/instrumenting/exposition_formats.md">OpenMetrics format</a> into their metrics subsystem? Why doesn&rsquo;t Elastic expose their metrics in OpenMetrics format, or at least enable a configuration that a user can select out of?</p>
+
+<p><a href="https://github.com/elastic/beats/issues/7432">Looking at discussions that the user community and Elastic has had in the past</a> this topic can be seen to have gone off topic really quickly. Metricbeat, which doesn&rsquo;t offer any Prometheus output, is recommended as the way to collect ELK metrics. However, most deployments really don&rsquo;t want to use multiple solutions in their monitoring stack. I understand the value of tier differentiators, however, if you&rsquo;re producing <a href="https://www.elastic.co/blog/elasticsearch-observability-embracing-prometheus-and-openmetrics-standards-for-metrics">writings about &ldquo;embracing&rdquo; Prometheus</a>, you might as well meet halfway and provide integrations towards that side too.</p>
+
+<p>As someone who would really like to integrate rather than code something new, writing a Prometheus Exporter is not fun (although coding itself is something I enjoy). That is why I felt this post should end with a rant.</p>
+</blockquote>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamilad.github.io/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/">&lt; Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/">Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</a></li>
+    
+    <li><a href="/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</a></li>
+    
+    <li><a href="/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/">Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

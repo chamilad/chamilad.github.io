@@ -3,6 +3,51 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://chamilad.github.io/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</loc>
+    <lastmod>2020-03-14T13:37:33+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/</loc>
+    <lastmod>2020-03-14T13:37:33+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/k8s/</loc>
+    <lastmod>2020-03-14T13:37:33+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/kibana/</loc>
+    <lastmod>2020-03-14T13:37:33+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/metrics/</loc>
+    <lastmod>2020-03-14T13:37:33+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/monitoring/</loc>
+    <lastmod>2020-03-14T13:37:33+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/</loc>
+    <lastmod>2020-03-14T13:37:33+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/prometheus/</loc>
+    <lastmod>2020-03-14T13:37:33+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/</loc>
+    <lastmod>2020-03-14T13:37:33+13:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://chamilad.github.io/tags/authentication/</loc>
     <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
@@ -18,22 +63,12 @@
   </url>
   
   <url>
-    <loc>https://chamilad.github.io/</loc>
-    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://chamilad.github.io/tags/elasticsearch/</loc>
     <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/federation/</loc>
-    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/k8s/</loc>
     <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
@@ -63,22 +98,12 @@
   </url>
   
   <url>
-    <loc>https://chamilad.github.io/post/</loc>
-    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://chamilad.github.io/tags/roles/</loc>
     <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/tags/single-sign-on/</loc>
-    <lastmod>2020-02-12T07:07:35+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/</loc>
     <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
@@ -284,11 +309,6 @@
   
   <url>
     <loc>https://chamilad.github.io/tags/devops/</loc>
-    <lastmod>2019-10-19T18:15:25+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/monitoring/</loc>
     <lastmod>2019-10-19T18:15:25+13:00</lastmod>
   </url>
   
@@ -595,11 +615,6 @@
   <url>
     <loc>https://chamilad.github.io/tags/wsdl/</loc>
     <lastmod>2019-10-19T18:14:48+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/kibana/</loc>
-    <lastmod>2019-10-19T18:14:46+13:00</lastmod>
   </url>
   
   <url>

@@ -6,10 +6,55 @@
     <description>Recent content in Tags on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Feb 2020 07:07:35 +1300</lastBuildDate>
+    <lastBuildDate>Sat, 14 Mar 2020 13:37:33 +1300</lastBuildDate>
     
 	<atom:link href="https://chamilad.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>K8s</title>
+      <link>https://chamilad.github.io/tags/k8s/</link>
+      <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kibana</title>
+      <link>https://chamilad.github.io/tags/kibana/</link>
+      <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/kibana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Metrics</title>
+      <link>https://chamilad.github.io/tags/metrics/</link>
+      <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/metrics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Monitoring</title>
+      <link>https://chamilad.github.io/tags/monitoring/</link>
+      <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/monitoring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Prometheus</title>
+      <link>https://chamilad.github.io/tags/prometheus/</link>
+      <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
+      
+      <guid>https://chamilad.github.io/tags/prometheus/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Authentication</title>
@@ -48,15 +93,6 @@
     </item>
     
     <item>
-      <title>K8s</title>
-      <link>https://chamilad.github.io/tags/k8s/</link>
-      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
-      
-      <guid>https://chamilad.github.io/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>KeyCloak</title>
       <link>https://chamilad.github.io/tags/keycloak/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
@@ -66,7 +102,7 @@
     </item>
     
     <item>
-      <title>Log Aggregation</title>
+      <title>Log aggregation</title>
       <link>https://chamilad.github.io/tags/log-aggregation/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
       
@@ -350,15 +386,6 @@
       <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
       
       <guid>https://chamilad.github.io/tags/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Monitoring</title>
-      <link>https://chamilad.github.io/tags/monitoring/</link>
-      <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
-      
-      <guid>https://chamilad.github.io/tags/monitoring/</guid>
       <description></description>
     </item>
     
@@ -764,15 +791,6 @@
       <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
       
       <guid>https://chamilad.github.io/tags/wsdl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kibana</title>
-      <link>https://chamilad.github.io/tags/kibana/</link>
-      <pubDate>Sat, 10 Sep 2016 21:26:48 +0000</pubDate>
-      
-      <guid>https://chamilad.github.io/tags/kibana/</guid>
       <description></description>
     </item>
     
