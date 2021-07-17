@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Splunk on chamilad.github.io</title>
@@ -6,19 +6,15 @@
     <description>Recent content in Splunk on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Nov 2018 09:51:30 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamilad.github.io/tags/splunk/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 28 Nov 2018 09:51:30 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/splunk/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Publishing WSO2 Logs to Splunk from a Containerized Deployment</title>
       <link>https://chamilad.github.io/post/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</link>
       <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
       
       <guid>https://chamilad.github.io/post/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</guid>
-      <description>Or how to publish to Splunk from any Docker environment WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in /repository/conf folder, data in /repository/data, artifacts in /repository/deployment (or in /repository/tenants folder if you’re in to multi-tenancy). All the log files are written into /repository/logs folder.
-Log Aggregation All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards /repository/logs folder.</description>
+      <description>Or how to publish to Splunk from any Docker environment WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in &amp;lt;CARBON_HOME&amp;gt;/repository/conf folder, data in &amp;lt;CARBON_HOME&amp;gt;/repository/data, artifacts in &amp;lt;CARBON_HOME&amp;gt;/repository/deployment (or in &amp;lt;CARBON_HOME&amp;gt;/repository/tenants folder if you’re in to multi-tenancy). All the log files are written into &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.
+Log Aggregation All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.</description>
     </item>
     
   </channel>

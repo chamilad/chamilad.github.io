@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.78.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2015",
-      "datePublished": "2015-03-21 00:00:00 \x2b0000 UTC",
-      "dateModified" : "2015-03-21 00:00:00 \x2b0000 UTC",
+      "datePublished": "2015-03-21 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2015-03-21 00:00:00 \u002b0000 UTC",
       "url" : "https:\/\/chamilad.github.io\/post\/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2\/",
       "keywords" : [ "DevOps","Puppet","Apache Stratos", ]
   }
@@ -114,46 +114,34 @@
 	<hr />
         <h4>Table of Contents:</h4>
 	<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#base-pp">base.pp</a></li>
-<li><a href="#cartridge-agent-modules">Cartridge Agent modules</a></li>
-<li><a href="#cartridge-agent-extensions-and-plugins">Cartridge Agent Extensions and Plugins</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#basepp">base.pp</a></li>
+        <li><a href="#cartridge-agentmodules">Cartridge Agent modules</a></li>
+        <li><a href="#cartridge-agent-extensions-andplugins">Cartridge Agent Extensions and Plugins</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 	<hr />
 	</div>
        </header>
         <div class="post-content markdown-body">
-          
-
-<blockquote>
+          <blockquote>
 <p>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the <a href="/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz">first article</a>?</p>
 </blockquote>
-
 <p>One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the <a href="http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-instance-configuration-by-puppet/">last article</a>, Puppet can be used to install, configure and start the Cartridge Agent. In this article, we will discuss how this is done in detail.</p>
-
 <p>The Cartridge Agent needs several parameters to start functioning correctly.</p>
-
 <ol>
 <li>Message broker IP address and port</li>
 <li>Complex Event Processor IP address and port</li>
 <li>Application path (for repository based cartridges)</li>
 </ol>
-
 <p>In addition to these parameters, there are several others which might be crucial to Cartridge Agent life cycle, based on different scenarios. However, at minimum, it needs the details of the above mentioned parameters to successfully function.</p>
-
 <p>For orchestration in the VM scenario, we provide these values to Puppet, which in turn will configure the Cartridge Agent accordingly.</p>
-
-<h3 id="base-pp">base.pp</h3>
-
+<h3 id="basepp">base.pp</h3>
 <p>The purpose of the base.pp in /etc/puppet/manifests/nodes/ folder is to serve as a super node definition which can be inherited by service type node definitions. It contains a list of variables that can be used by any module that inherits it. As of Stratos 4.1.0 release the contents of the base.pp file looks like as follows. The variables are pretty much self explanatory.</p>
-
 <pre><code>node ‘base’ { 
     #essential variables 
     $package_repo = ‘http://10.4.128.7' 
@@ -181,30 +169,19 @@
 
     require stratos_base 
 }
-</code></pre>
-
-<p>The base.pp file should be modified to include proper values when the Puppet master is configured.</p>
-
-<h3 id="cartridge-agent-modules">Cartridge Agent modules</h3>
-
+</code></pre><p>The base.pp file should be modified to include proper values when the Puppet master is configured.</p>
+<h3 id="cartridge-agentmodules">Cartridge Agent modules</h3>
 <p>Apache Stratos 4.1.0 ships with two implementations of the Cartridge Agent, default Java agent and a Python based agent. The respective Puppet modules for these implementations are agent and python_agent inside /etc/puppet/modules folder.</p>
-
 <p>Both modules have a similar flow of execution, where there are separate steps to,</p>
-
 <ol>
 <li>Copy the Cartridge Agent distribution from the Puppet master to the instance</li>
 <li>Copy templates reflecting configuration files, Cartridge Agent extensions and plugins, and configure parameters as given by base.pp and calling modules</li>
 <li>Start Cartridge Agent</li>
 </ol>
-
 <p>If a calling module (the module which includes the Cartridge Agent module, typically a service type like PHP) needs to override a value provided through base.pp it can do so by assigning the new value to the variable at the time of Puppet module inclusion.</p>
-
-<h3 id="cartridge-agent-extensions-and-plugins">Cartridge Agent Extensions and Plugins</h3>
-
+<h3 id="cartridge-agent-extensions-andplugins">Cartridge Agent Extensions and Plugins</h3>
 <p>In addition to <a href="/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz">what the Cartridge Agent does as a generic agent to all services</a>, each service can make use of extensions, and in the Python implementation, plugins to add additional behavior to it. We will go in to more details about the extensions and plugins in a separate article, however you only need to be aware of them as being executed for specified events that are processed by the Cartridge Agent. For example, you can have an extension that can be specified to be executed, when an ArtifactUpdatedEvent is processed by the Cartridge Agent.</p>
-
 <p>For each service that includes the Puppet module for a certain implementation of the Cartridge Agent, it can specify a list of extensions and plugins that should be copied over to the Cartridge Agent. For example, this is how the PHP module specifies the list of plugins and extensions that should be included in the Cartridge Agent, when the running service is PHP.</p>
-
 <pre><code>$custom_agent_templates = [‘extensions/artifacts-updated.sh’] 
 
 $custom_plugins = [‘plugins/PhpServerStarterPlugin.py’, ‘plugins/PhpServerStarterPlugin.yapsy-plugin’] 
@@ -214,24 +191,14 @@ class {‘python_agent’:
     custom_plugins =&gt; $custom_plugins, 
     module=&gt;’php’ 
 }
-</code></pre>
-
-<p>While the Cartridge Agent is executing, these specified extensions and plugins will be executed when their respective events are processed.</p>
-
+</code></pre><p>While the Cartridge Agent is executing, these specified extensions and plugins will be executed when their respective events are processed.</p>
 <p>As mentioned above, it is the responsibility of the Cartridge Agent to start the respective services related to the spawned Cartridge. This is also done using a Cartridge Agent plugin (Python implementation) or an extension (Java implementation).</p>
-
 <p>By the end of this article, we should be aware of the details of the configuration needed by the Cartridge Agent. At least, that was my intention. If you feel like I’ve missed a crucial explanation, feel free to drop a comment.</p>
-
 <p>As of now, Apache Stratos only supports Puppet as a configuration tool for Cartridge instances. However in the future releases, it will also be possible use Chef, or another similar tool as a replacement for Puppet.</p>
-
 <p>From this point onwards, we will start on the details of the Cartridge Agent life cycle execution. For that we will first go through a typical work flow of a PHP Cartridge instance…. in the next article!</p>
-
 <p>Originally published at <a href="http://chamilad.github.io/blog/2015/03/21/apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/">chamilad.github.io</a> on March 21, 2015.</p>
-
-<hr />
-
+<hr>
 <p>Written on March 21, 2015 by chamila de alwis.</p>
-
 <p>Originally published on <a href="https://medium.com/@chamilad/apache-stratos-cartridge-agent-instance-configuration-by-puppet-2-d8104506d3fe">Medium</a></p>
 
         </div>

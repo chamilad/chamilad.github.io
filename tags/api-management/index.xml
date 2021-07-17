@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Api Management on chamilad.github.io</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Api Management on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Dec 2018 16:49:16 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamilad.github.io/tags/api-management/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 24 Dec 2018 16:49:16 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/api-management/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Design a WSO2 Docker Image</title>
       <link>https://chamilad.github.io/post/2018-12-24_how-to-design-a-wso2-docker-image/</link>
@@ -18,7 +14,7 @@
       
       <guid>https://chamilad.github.io/post/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
       <description>What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
-Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.</description>
+Docker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind.</description>
     </item>
     
     <item>

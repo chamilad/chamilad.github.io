@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.78.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2015",
-      "datePublished": "2015-12-10 00:00:00 \x2b0000 UTC",
-      "dateModified" : "2015-12-10 00:00:00 \x2b0000 UTC",
+      "datePublished": "2015-12-10 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2015-12-10 00:00:00 \u002b0000 UTC",
       "url" : "https:\/\/chamilad.github.io\/post\/2015-12-10_breadpool-a-thread-pool-for-python\/",
       "keywords" : [ "Python","Threading", ]
   }
@@ -110,40 +110,27 @@
  	<div class="toc">
 	<hr />
         <h4>Table of Contents:</h4>
-	
+	<nav id="TableOfContents"></nav>
 	<hr />
 	</div>
        </header>
         <div class="post-content markdown-body">
           <p>A thread pool is not a new concept. It’s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? Because the program wouldn’t be starting threads as it sees fit and somehow reach the maximum thread number soon. Simply said thread pools allows us to limit the number of threads spawned by our program execution. Trust me, you don’t want your code going to town spawning threads. It comes back to bite you in your behind, sooner than you think.</p>
-
 <p>Programming languages usually provide built in libraries implementing thread pools, however Python doesn’t seem to have a pooling strategy for threads. It does however have a <a href="https://pymotw.com/2/multiprocessing/communication.html#process-pools">Process Pool</a> concept, where a set of workers can be used to submit a function, but that involves more complexities (ex: function’s ability to be pickled or unpickled) than threads. It also involves processes, which differ drastically from threads when it comes to multi-threading requirements.</p>
-
 <p>However it’s considerably easier in Python to write a simple thread pool implementation. All we really need is a thread safe blocking queue, a task interface, and a thread implementation which waits for tasks to appear on the blocking task queue. That is exactly why I decided to pack that all in to a single Python library called <a href="https://github.com/chamilad/breadpool">BreadPool</a>.</p>
-
 <p>In the past there were several instances where, for me, the need for a proper thread pool implementation came up without the time to dedicate write one from scratch. This would result in several thread pool implementations everywhere. It’s better to have a thread pool implementation at a mere pip install.</p>
-
 <p>BreadPool can be installed from PyPI and used immediately.</p>
-
 <pre><code>pip install breadpool
-</code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> breadpool.pool <span style="color:#f92672">import</span> ThreadPool
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> breadpool.pool <span style="color:#f92672">import</span> ThreadPool
 
-thread_pool <span style="color:#f92672">=</span> ThreadPool(<span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#34;CustomThreadPool&#34;</span>, polling_timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)</code></pre></div>
-<p>This will make sure that we will have a set of worker threads numbering no more than 5. You can refer more documentation on the project <a href="https://github.com/chamilad/breadpool">GitHub’s README</a>.</p>
-
+thread_pool <span style="color:#f92672">=</span> ThreadPool(<span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#34;CustomThreadPool&#34;</span>, polling_timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</code></pre></div><p>This will make sure that we will have a set of worker threads numbering no more than 5. You can refer more documentation on the project <a href="https://github.com/chamilad/breadpool">GitHub’s README</a>.</p>
 <p>BreadPool also includes a scheduled task executor which would submit a given task to a given thread pool, repeatedly with a given time interval in between. It’s supposed to be a thread safe way to schedule a certain task without rewriting your own scheduled executor for Python 2.7. It’s designed with Java’s ScheduledExecutor in mind, but still has a few more features to be desired.</p>
-
 <p>BreadPool doesn’t depend on anything other than the Python 2.7 standard library, and will try to keep it that way in the future. So it doesn’t drag anything unexpected in.</p>
-
 <p>The released version is <a href="https://pypi.python.org/pypi/breadpool/0.0.5">0.0.5</a>, and is licensed under Apache v2.0. Feel free to download and use BreadPool. The code base is small, and the work was short, but I figured it would save some time for you when it comes to worrying about thread pools.</p>
-
 <p>Originally published at <a href="http://chamilad.github.io/blog/2015/12/10/breadpool-a-thread-pool-for-python/">chamilad.github.io</a> on December 10, 2015.</p>
-
-<hr />
-
+<hr>
 <p>Written on December 10, 2015 by chamila de alwis.</p>
-
 <p>Originally published on <a href="https://medium.com/@chamilad/breadpool-a-thread-pool-for-python-7a8697ded2bc">Medium</a></p>
 
         </div>

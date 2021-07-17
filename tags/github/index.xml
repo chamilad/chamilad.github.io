@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Github on chamilad.github.io</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Github on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Oct 2019 18:24:16 +1300</lastBuildDate>
-    
-	<atom:link href="https://chamilad.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 20 Oct 2019 18:24:16 +1300</lastBuildDate><atom:link href="https://chamilad.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Medium to Hugo</title>
       <link>https://chamilad.github.io/post/2019-10-20_medium-to-hugo/</link>
@@ -30,7 +26,7 @@ A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;v
       <guid>https://chamilad.github.io/post/2018-06-05_in-other-good-news-microsoft-buys-github/</guid>
       <description>Or why you should cool down with the anti-Microsoft rhetoric, at least for now
  Disclaimer: This is an opinionated article.
- What a historic moment! May be only second to the moment Windows incorporated the Linux Subsystem, one-time anti-open source giantbuys off may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years.</description>
+ What a historic moment! May be only second to the moment Windows incorporated the Linux Subsystem, one-time anti-open source giantbuys off may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years. And my Facebook feed (yes, I’m still friends with that guy) is filled with rants on how Microsoft will kill Open Source.</description>
     </item>
     
   </channel>

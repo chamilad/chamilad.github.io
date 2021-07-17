@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>chamilad.github.io</title>
@@ -6,11 +6,7 @@
     <description>Recent content on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Mar 2020 13:37:33 +1300</lastBuildDate>
-    
-	<atom:link href="https://chamilad.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 14 Mar 2020 13:37:33 +1300</lastBuildDate><atom:link href="https://chamilad.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A Standalone Prometheus Exporter for Kibana</title>
       <link>https://chamilad.github.io/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</link>
@@ -27,8 +23,7 @@ kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kiba
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
       
       <guid>https://chamilad.github.io/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</guid>
-      <description>Horton Plains at sunrise, Sri Lanka
- This is a continuation of the addendum to a series of articles on ELK on K8s.
+      <description>This is a continuation of the addendum to a series of articles on ELK on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The previous post on this series was about enabling SSO between Kibana and KeyCloak.</description>
     </item>
     
@@ -48,8 +43,7 @@ kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kiba
       <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
       
       <guid>https://chamilad.github.io/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</guid>
-      <description>Point Sur, Cali 01
- I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.
+      <description>I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s.</description>
     </item>
     
@@ -59,8 +53,7 @@ kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kiba
       <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
       
       <guid>https://chamilad.github.io/post/2019-11-26_elasticsearch-index-management/</guid>
-      <description>The comms tower on top of Riverston, Sri Lanka
-As the series on ElasticSearch deployment management in K8s is complete, I thought of writing down some of the Index Management tasks that I had to implement in order to reduce the manual work involved in cluster maintenance.
+      <description>As the series on ElasticSearch deployment management in K8s is complete, I thought of writing down some of the Index Management tasks that I had to implement in order to reduce the manual work involved in cluster maintenance.
  Following is the series of posts on ElasticSearch on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The following management steps are not mandatory to be implemented in a cluster to be production ready, however having them in place would greatly reduce some of the common headaches involved in an ELK stack management.</description>
     </item>
@@ -71,8 +64,7 @@ As the series on ElasticSearch deployment management in K8s is complete, I thoug
       <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
       
       <guid>https://chamilad.github.io/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</guid>
-      <description>Woolshed Hut on Mt. Somers
- This is part of a series of short articles on setting up an ELK deployment on K8s.
+      <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Visualization Kibana is a web application which can be used to query data from an ElasticSearch cluster.</description>
     </item>
     
@@ -82,8 +74,7 @@ As the series on ElasticSearch deployment management in K8s is complete, I thoug
       <pubDate>Sat, 23 Nov 2019 16:01:40 +1300</pubDate>
       
       <guid>https://chamilad.github.io/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</guid>
-      <description>The morning shadow on the lower mountaineous plain beside Adam&amp;rsquo;s Peak, Sri Lanka
- This is part of a series of short articles on setting up an ELK deployment on K8s.
+      <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Storage and Indexing Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying.</description>
     </item>
     
@@ -93,8 +84,7 @@ As the series on ElasticSearch deployment management in K8s is complete, I thoug
       <pubDate>Fri, 22 Nov 2019 01:05:37 +1300</pubDate>
       
       <guid>https://chamilad.github.io/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</guid>
-      <description>A stash of sugar cane ready to be processed into sugar and Arrack
- This is part of a series of short articles on setting up an ELK deployment on K8s.
+      <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Enrichment Now that the logs are being collected from the required sources, it’s time to start making some sense out of them.</description>
     </item>
     
@@ -134,7 +124,7 @@ A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;v
       <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
       
       <guid>https://chamilad.github.io/post/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</guid>
-      <description>Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic Morning sunlight on Horton Plains National Park In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. How would one go about exposing the services deployed inside a K8s cluster to outside traffic?The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.</description>
+      <description>Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.</description>
     </item>
     
     <item>
@@ -153,7 +143,7 @@ A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;v
       
       <guid>https://chamilad.github.io/post/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
       <description>What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
-Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.</description>
+Docker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind.</description>
     </item>
     
     <item>
@@ -162,8 +152,8 @@ Options available to obtain WSO2 products other than downloading the Zip file it
       <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
       
       <guid>https://chamilad.github.io/post/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</guid>
-      <description>Or how to publish to Splunk from any Docker environment WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in /repository/conf folder, data in /repository/data, artifacts in /repository/deployment (or in /repository/tenants folder if you’re in to multi-tenancy). All the log files are written into /repository/logs folder.
-Log Aggregation All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards /repository/logs folder.</description>
+      <description>Or how to publish to Splunk from any Docker environment WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in &amp;lt;CARBON_HOME&amp;gt;/repository/conf folder, data in &amp;lt;CARBON_HOME&amp;gt;/repository/data, artifacts in &amp;lt;CARBON_HOME&amp;gt;/repository/deployment (or in &amp;lt;CARBON_HOME&amp;gt;/repository/tenants folder if you’re in to multi-tenancy). All the log files are written into &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.
+Log Aggregation All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.</description>
     </item>
     
     <item>
@@ -182,7 +172,7 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
       
       <guid>https://chamilad.github.io/post/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</guid>
       <description>What should an Observability Framework address? In the previous post, we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design. Let’s explore the possibility of a structured approach for designing observable systems.
-Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls Why should there be a structured approach? In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack.</description>
+Why should there be a structured approach? In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack.</description>
     </item>
     
     <item>
@@ -216,7 +206,7 @@ Automation enables the machine driven initiation and management of these tasks a
       <guid>https://chamilad.github.io/post/2018-06-05_in-other-good-news-microsoft-buys-github/</guid>
       <description>Or why you should cool down with the anti-Microsoft rhetoric, at least for now
  Disclaimer: This is an opinionated article.
- What a historic moment! May be only second to the moment Windows incorporated the Linux Subsystem, one-time anti-open source giantbuys off may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years.</description>
+ What a historic moment! May be only second to the moment Windows incorporated the Linux Subsystem, one-time anti-open source giantbuys off may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years. And my Facebook feed (yes, I’m still friends with that guy) is filled with rants on how Microsoft will kill Open Source.</description>
     </item>
     
     <item>
@@ -310,8 +300,8 @@ Typically, these layers would be handled in such a way that maximum optimization
       <guid>https://chamilad.github.io/post/2017-07-13_haproxy-config-syntax-highlighting/</guid>
       <description>A brief post on getting this done on Atom and Vim.
 Atom Just install language-haproxy Atom plugin through either Atom UI or apm .
-apm install language-haproxy  When opening an haproxy.cfg file, Atom will detect and highlight accordingly.
-Vim Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from VimAwesome. To enable this, just clone the Github repository, copy the .</description>
+apm install language-haproxy When opening an haproxy.cfg file, Atom will detect and highlight accordingly.
+Vim Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from VimAwesome. To enable this, just clone the Github repository, copy the .vim file inside syntax/ folder to $HOME/.</description>
     </item>
     
     <item>
@@ -321,7 +311,7 @@ Vim Syntax highlighting in Vim for HAProxy configuration has been available for 
       
       <guid>https://chamilad.github.io/post/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
       <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
-  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
+ The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
  Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
     </item>
     
@@ -349,7 +339,7 @@ Vim Syntax highlighting in Vim for HAProxy configuration has been available for 
       <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
       
       <guid>https://chamilad.github.io/post/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</guid>
-      <description>Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints.</description>
+      <description>Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.</description>
     </item>
     
     <item>
@@ -369,7 +359,7 @@ Vim Syntax highlighting in Vim for HAProxy configuration has been available for 
       <guid>https://chamilad.github.io/post/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</guid>
       <description>Almost every Java developer knows about jmapand jstack tools that come with the JDK. These provide functionality to extract heap and thread information of a running JVM instance. Easy.
 What if there’s a running JVM that has produced a deadlock and you want to take a thread dump while the process is running? You go in and run the following.
-jstack pid &amp;gt;&amp;gt; thread_dump.txt  Turns out the system doesn’t know what jstack is.</description>
+jstack pid &amp;gt;&amp;gt; thread_dump.txt Turns out the system doesn’t know what jstack is.</description>
     </item>
     
     <item>
@@ -520,8 +510,8 @@ Security in Web Services is covered by the WS-Security standard. There are vario
       <guid>https://chamilad.github.io/post/2014-07-09_wireshark-crashing-in-ubuntu/</guid>
       <description>If you have customized your Ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu 14.04 and found the solution to be disabling overlay scrollbars that come as the default.
 To do this simply add an environment variable called LIBOVERLAY_SCROLLBAR with value0.
-export LIBOVERLAY_SCROLLBAR=0  Originally published at chamilad.github.io on July 9, 2014.
-Written on July 9, 2014 by chamila de alwis.</description>
+export LIBOVERLAY_SCROLLBAR=0 Originally published at chamilad.github.io on July 9, 2014.
+ Written on July 9, 2014 by chamila de alwis.</description>
     </item>
     
     <item>

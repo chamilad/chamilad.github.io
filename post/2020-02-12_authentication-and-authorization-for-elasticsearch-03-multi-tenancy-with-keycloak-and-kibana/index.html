@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.78.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "post",
       "name" : "Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana",
       "headline" : "Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana",
-      "description" : "Horton Plains at sunrise, Sri Lanka\n This is a continuation of the addendum to a series of articles on ELK on K8s.\n  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The previous post on this series was about enabling SSO between Kibana and KeyCloak.",
+      "description" : "This is a continuation of the addendum to a series of articles on ELK on K8s.\n  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The previous post on this series was about enabling SSO between Kibana and KeyCloak.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2020",
-      "datePublished": "2020-02-12 07:07:35 \x2b1300 NZDT",
-      "dateModified" : "2020-02-12 07:07:35 \x2b1300 NZDT",
+      "datePublished": "2020-02-12 07:07:35 \u002b1300 NZDT",
+      "dateModified" : "2020-02-12 07:07:35 \u002b1300 NZDT",
       "url" : "https:\/\/chamilad.github.io\/post\/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana\/",
       "keywords" : [ "K8s","Logging","ElasticSearch","Logstash","Log aggregation","Authentication","Authorization","KeyCloak","Single Sign On","Multitenancy","Roles","Federation", ]
   }
@@ -36,8 +36,7 @@
 <title>Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana - chamilad.github.io</title>
   <meta property="og:title" content="Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana - chamilad.github.io" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="Horton Plains at sunrise, Sri Lanka
- This is a continuation of the addendum to a series of articles on ELK on K8s.
+  <meta name="description" content="This is a continuation of the addendum to a series of articles on ELK on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The previous post on this series was about enabling SSO between Kibana and KeyCloak." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
@@ -89,7 +88,7 @@
               <time class="post-date" datetime="2020-02-12 07:07:35 NZDT">
                 12 Feb 2020
 		<p><b>Read time:</b> 23m
-		<br /><b>Word count:</b> 4824</p>
+		<br /><b>Word count:</b> 4792</p>
               </time>
               
            </div>
@@ -133,53 +132,34 @@
 	<hr />
         <h4>Table of Contents:</h4>
 	<nav id="TableOfContents">
-<ul>
-<li><a href="#the-problem-of-multi-tenancy">The Problem of Multi-Tenancy</a>
-<ul>
-<li><a href="#support-from-sp-and-idp">Support from SP and IDP</a></li>
-<li><a href="#tenant-discovery-and-the-lack-of-it">Tenant Discovery and the Lack of it</a></li>
-</ul></li>
-<li><a href="#a-solution-with-federation">A Solution with Federation</a>
-<ul>
-<li><a href="#handling-tenant-discovery">Handling Tenant Discovery</a>
-<ul>
-<li><a href="#implementation">Implementation</a></li>
-</ul></li>
-<li><a href="#handling-authorization">Handling Authorization</a>
-<ul>
-<li><a href="#propagating-user-information-through-idp-federation">Propagating User Information Through IDP Federation</a>
-<ul>
-<li><a href="#example-determining-read-only-vs-write-access-in-kibana">Example: Determining Read-only vs Write Access in Kibana</a>
-<ul>
-<li><a href="#elasticsearch-roles">ElasticSearch Roles</a></li>
-<li><a href="#elasticsearch-role-mappings">ElasticSearch Role Mappings</a></li>
-<li><a href="#keycloak-tenant-oidc-client-mapper">KeyCloak Tenant OIDC Client Mapper</a></li>
-<li><a href="#keycloak-idp-and-saml-client-mappers">KeyCloak IDP and SAML Client Mappers</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#tenant-separation">Tenant Separation</a>
-<ul>
-<li><a href="#keycloak-mappers-for-tenant-name">KeyCloak Mappers for Tenant Name</a></li>
-<li><a href="#elasticsearch-changes-to-lookup-the-new-saml-attribute">ElasticSearch Changes to Lookup the New SAML Attribute</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><a href="#conclusion">Conclusion</a></li>
-</ul>
+  <ul>
+    <li><a href="#support-from-sp-and-idp">Support from SP and IDP</a></li>
+    <li><a href="#tenant-discovery-and-the-lack-of-it">Tenant Discovery and the Lack of it</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#handling-tenant-discovery">Handling Tenant Discovery</a>
+      <ul>
+        <li><a href="#implementation">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#handling-authorization">Handling Authorization</a>
+      <ul>
+        <li><a href="#propagating-user-information-through-idp-federation">Propagating User Information Through IDP Federation</a></li>
+        <li><a href="#tenant-separation">Tenant Separation</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 	<hr />
 	</div>
        </header>
         <div class="post-content markdown-body">
-          
-
-<p><img src="/post/img/2020-02-12_multitenant_sso_header.jpg" alt="" />
-<figcaption>Horton Plains at sunrise, Sri Lanka</figcaption></p>
-
+          <p><img src="/post/img/2020-02-12_multitenant_sso_header.jpg" alt=""></p>
+<!-- raw HTML omitted -->
 <blockquote>
 <p>This is a continuation of the addendum to a series of articles on ELK on K8s.</p>
 </blockquote>
-
 <ol>
 <li><a href="/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a">ElasticSearch on K8s: 01 — Basic Design</a></li>
 <li><a href="/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/">ElasticSearch on K8s: 02 — Log Collection with Filebeat</a></li>
@@ -191,104 +171,63 @@
 <li><a href="/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</a></li>
 <li>Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</li>
 </ol>
-
 <p><a href="/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/">The previous post on this series</a> was about enabling SSO between Kibana and KeyCloak. However, it did not address any concerns about multi-tenancy with SSO. This article aims to come up with a design for a multi-tenant SSO solution for Kibana with KeyCloak.</p>
-
 <h1 id="the-problem-of-multi-tenancy">The Problem of Multi-Tenancy</h1>
-
 <p>A multi-tenant deployment is <strong>one that can accommodate different organizational units of users (called <em>tenants</em>) during service utilization without compromising the logical separation between those units</strong>. Achieving this design is the responsibility of the deployment stack (including hardware and software). It could be either a fully separated multi-tenant system, where different organizational units (tenants) will be served out of different physical (or virtual) stacks of software, where the code is somewhat free from having knowledge on the multi-tenant complexities of the larger system, or an in-software multi-tenant design where the code itself if fully aware of tenancy in the request-response flow and handles partition of tenant data accordingly.</p>
-
-<p><img src="/post/img/2020-02-12_multitenant_sso_07.png" alt="" />
-<figcaption>Physically separate multi-tenancy</figcaption></p>
-
-<p><img src="/post/img/2020-02-12_multitenant_sso_08.png" alt="" />
-<figcaption>In-Software multi-tenancy</figcaption></p>
-
+<p><img src="/post/img/2020-02-12_multitenant_sso_07.png" alt=""></p>
+<!-- raw HTML omitted -->
+<p><img src="/post/img/2020-02-12_multitenant_sso_08.png" alt=""></p>
+<!-- raw HTML omitted -->
 <p>There are various pros and cons of both approaches, however physically separate multi-tenancy, being a simpler approach to implement at first, could easily become operational burden if not done correctly. It can also easily evolve (or devolve depending on the Ops perspective) into a serverless design if the software architecture can support it.</p>
-
 <h2 id="support-from-sp-and-idp">Support from SP and IDP</h2>
-
 <p>When it comes to the ELK stack, what should be tenant aware is Kibana, the main user interface of the stack. Kibana offers an in-software multi-tenancy model where a feature called <code>Spaces</code> along with ElasticSearch <code>Roles</code> act in combination to provide tenant specific experiences of Kibana. In other words, different tenants could have access to different Spaces in Kibana, that may provide isolation between tenants and avoid having to share the same set of data and configuration between tenants.</p>
-
 <p>On the other side of the process, KeyCloak has a well built-in model for multi-tenancy called <code>Realms</code> (that we already are familiar with after enabling single tenant SSO in the previous post). As the IDP, KeyCloak provides logical separation between tenants with this concept of Realms.</p>
-
 <p>We can simply map these two functionalities so that a set of users from one KeyCloak Realm are assumed to be of the same Tenant and assign them one or more Roles in Kibana (to be precise, ElasticSearch) so that they all have access to a single Space, and only to that Space. <strong>This is the basis of our multi-tenant design for Kibana</strong>. This results in a simple user model, where a single user may only be part of a single tenant. Note that there could be more complex user models with a single user having the ability to be part of different tenants. For the purposes of this article, a 1-1 mapping between a user and tenant is enough.</p>
-
-<p><img src="/post/img/2020-02-12_multitenant_sso_09.png" alt="" />
-<figcaption>Mapping Kibana Spaces to KeyCloak Realms</figcaption></p>
-
+<p><img src="/post/img/2020-02-12_multitenant_sso_09.png" alt=""></p>
+<!-- raw HTML omitted -->
 <h2 id="tenant-discovery-and-the-lack-of-it">Tenant Discovery and the Lack of it</h2>
-
 <p>In theory, Kibana and KeyCloak having support for multi-tenancy should be the end of story. Unfortunately it is not. There is another part of multi-tenancy outside of just having support for logical separation. The initiating component of the multi-tenant design should be able to figure out which users belong to which tenants, using some distinguishing feature in the request. This is called <strong>tenant/realm discovery</strong>. For an example, this could be a design based on URL segments, where a user visiting <code>https://saas.my.org/tenant1/</code> is assumed to be part of the tenant <code>tenant1</code>. There are multiple other ways of doing realm discovery (ex: using a custom header or deriving information from standard headers, additional prompts where the user is allowed to specify the tenant they wish to be part of). Because this is such an open ended approach, different service providers may decide how they want to do tenant discovery on their own terms.</p>
-
 <p>As the Service Provider in this SSO scenario, Kibana is the main component of contact, that would initiate the SSO flow. This means, it should be Kibana that should start separating users to their respective tenants. If there was no authentication for Kibana, on visiting the UI, Kibana would present the list of Spaces to be selected. However, with authentication in place, by the time the Space selection interface is presented, the user should already be granted proper roles.</p>
-
 <p>Therefore, it&rsquo;s clear that Role Mappings rules (that was discussed in the previous article) should take care of assigning proper roles to users. However, impact of proper tenant discovery goes a step before this. Since KeyCloak realms are completely separate, to authenticate different users from different tenants, Kibana should initiate SSO with the respective realm in the first place, i.e. users from <code>tenant1</code> should be sent to KeyCloak with SSO initiated with a Client configuration in <code>tenant1</code> realm. To do this, Kibana should already have derived the user&rsquo;s tenant, i.e. Kibana should have done tenant discovery. This is why tenant discovery is an important feature for multi-tenant SSO.</p>
-
 <p>Unfortunately, as of the current version (7.4), Kibana does not have any kind of tenant discovery mechanism built into it. A complex URL segment based discovery mechanism may be designed with a reverse proxy in front of Kibana, however with other limitations (ex: ElasticCloud&rsquo;s inability to support proxy URLs) this quickly becomes a rigid, high-maintenance structure.</p>
-
 <h1 id="a-solution-with-federation">A Solution with Federation</h1>
-
 <h2 id="handling-tenant-discovery">Handling Tenant Discovery</h2>
-
 <p>A simpler approach for this may be the easiest one to implement. If the burden of the decision during tenant discovery can be pushed off to the end-user, the impact from the lack of software features can be mitigated. Therefore, when the user is redirected to KeyCloak, they should be able to decide which tenant to authenticate against. Kibana on the other hand, should also have a single point of contact for KeyCloak to send the users for authentication. In other words, an SSO facade that speaks SAML should be present between Kibana and KeyCloak. With KeyCloak&rsquo;s support for IDP Federation, this SAML facade can be another KeyCloak realm that acts as a proxy for the rest of the actual tenant realms.</p>
-
 <p>For an example, for a list of tenant realms named <code>org1</code>, <code>org2</code>, <code>org3</code>, KeyCloak can have another realm (let&rsquo;s call it the <code>federator realm</code>) to act as a facade, named <code>federator</code>. The realm <code>federator</code> will have the realms <code>org</code>, <code>org2</code>, and <code>org3</code> as pseudo-external IDPs, using OIDC as the communication protocol between <code>federator</code> and the tenant realms. For the <code>federator</code> realm, the external IDP configured to point to <code>org1</code> becomes a completely separate KeyCloak instance, even though the two realms act on the same CPU cycles on the same VM.</p>
-
 <blockquote>
 <p>IDP Federation is feature typically used to enable social authentication with public providers like Google, Twitter, or Facebook. However, because of standardized protocols like OIDC (on which the typical social providers usually build upon and end up with their custom protocols), any compliant provider could be an externally federated IDP. Since any KeyCloak realm is OIDC compliant, a self-referencing federation is like any other integration.</p>
 </blockquote>
-
 <p>When a user visits a Client configuration on the <code>federator</code> realm to authenticate, they will be provided with a list of external IDPs to select. If the user is from <strong>organization1</strong> they can then select <code>org1</code> option from the list, after which they will be redirected again to a Client on the <code>org1</code> realm to be authenticated. After successful authentication, the user details will be sent back to the <code>federator</code> realm, which can send them again to the Service Provider that initiated the SSO flow.</p>
-
-<p><img src="/post/img/2020-02-12_multitenant_sso_05.png" alt="" /></p>
-
+<p><img src="/post/img/2020-02-12_multitenant_sso_05.png" alt=""></p>
 <blockquote>
 <p>The user interface provided to a user when visiting a Client for authentication is part of a KeyCloak Theme. With the default theme, the federated IDPs are rendered as selectable options. However a customized theme can easily modify this to be an additional textual input for the user to enter, if exposure of other realm names is a security concern.</p>
 </blockquote>
-
 <p>We have solved the problem of tenant discovery by essentially not choosing to do it programmatically.</p>
-
 <h3 id="implementation">Implementation</h3>
-
 <p>KeyCloak IDP federation is <a href="https://www.keycloak.org/docs/6.0/server_admin/#_identity_broker">a well documented feature</a>. The essence of implementing this is,</p>
-
 <ol>
 <li>Create an OIDC client in the tenant realm (ex: <code>org1</code>) to be the point of contact during identity brokering</li>
 <li>Create an external IDP configuration in the <code>federator</code> realm and use the OIDC client created in #1</li>
 <li>Add the entry details created in #2 as a redirect URL in the OIDC client created in #1 to complete the plumbing</li>
 </ol>
-
-<p><img src="/post/img/2020-02-12_multitenant_sso_13.png" alt="" />
-<figcaption>OIDC Client configuration in the <code>org1</code> Tenant Realm</figcaption></p>
-
-<p><img src="/post/img/2020-02-12_multitenant_sso_11.png" alt="" />
-<img src="/post/img/2020-02-12_multitenant_sso_12.png" alt="" />
-<figcaption>IDP Federation configuration in the <code>federator</code> Realm</figcaption></p>
-
+<p><img src="/post/img/2020-02-12_multitenant_sso_13.png" alt=""></p>
+<!-- raw HTML omitted -->
+<p><img src="/post/img/2020-02-12_multitenant_sso_11.png" alt="">
+<img src="/post/img/2020-02-12_multitenant_sso_12.png" alt=""></p>
+<!-- raw HTML omitted -->
 <p>Doing these simple tasks will create the basic connectivity between the federated and the federating realms. A few things to note are,</p>
-
 <ol>
 <li>As mentioned above, the federation process happens here using OIDC as the protocol. However additionally SAML or OAuth2 could also be used as the federation protocol. For the authorization needs in our design, either OIDC or SAML is a must in this case.</li>
 <li>Since we are using OIDC as the communication protocol, for the backchannel communication that is done as part of the process, we need to enable direct communication between the two parties involved. i.e. we need to enable KeyCloak to KeyCloak direct communication. This means, if the infrastructure architecture is a NAT based one, then the public IP addresses of the proxies should be whitelisted at the network firewall. To be more K8s specific, the firewall for the Cloud Load Balancer that gets created as part of the Ingress should contain the IP addresses of the NAT proxy/proxies of the deployment, as KeyCloak would essentially call itself through the publicly resolvable name.</li>
 </ol>
-
-<p><img src="/post/img/2020-02-12_multitenant_sso_10.png" alt="" /></p>
-
+<p><img src="/post/img/2020-02-12_multitenant_sso_10.png" alt=""></p>
 <h2 id="handling-authorization">Handling Authorization</h2>
-
 <p>With SSO and Tenant Discovery out of the way, we can start evolving the design towards a multi-tenant authorization. In other words, as the Service Provider, Kibana should be able to separate the users out using the user information received from the IDP. Let&rsquo;s explore how this would be like in a federated IDP design.</p>
-
 <p>In the previous post, we essentially ignored authorization and assigned the <code>superuser</code> role in ElasticSearch to everyone who authenticates using SAML. However, in a real world deployment, there should be one or more SAML Attributes in the SAML response from the IDP that helps to match one or more Role Mapping Rules to decide one or more Roles to be assigned to the user.</p>
-
 <h3 id="propagating-user-information-through-idp-federation">Propagating User Information Through IDP Federation</h3>
-
 <p>The federated tenant realm is the source of truth for information about a specific user. However, in the federated IDP design that we came up with so far, Kibana does not have an idea of the federated tenant realm, as it only communicates with the SAML facade, the <code>federator</code> realm. Therefore, the user information should be propagated from the federated tenant realms, through the <code>federator</code> realm, to Kibana.</p>
-
 <p>How this is done in KeyCloak is using Client and IDP federation Mappers. Mappers are a means of dynamically translating protocol specific data into (and out of) KeyCloak internal data structures. For an example in this case, we can use Mappers for IDP federation to translate a Claim in the OIDC token that is received as part of the federated IDP authentication process, into an entry in the SAML Attribute document in the SAML response sent to the Service Provider.</p>
-
 <p>How this mapping would happen in detail would be,</p>
-
 <ol>
 <li>The user would end up in the federated realm authentication step and successfully authenticate themselves against the tenant realm (ex: <code>org1</code>)</li>
 <li>The <code>federator</code> realm will request user information from the tenant realm, <code>org1</code>. This will be done through the OIDC client created for the purposes of communication during federation. There should be Client Mappers in this Client that would set additional Claims in the outgoing token as a result of the <code>/userinfo</code> API call. For an example, the KeyCloak Roles that the user is attached with could be part of the <code>userinfo</code> token.</li>
@@ -296,28 +235,19 @@
 <li>The next hop in the process is the SAML client in the <code>federator</code> realm that creates a SAML response to be sent to the Service Provider, Kibana. This Client should have Client Mappers that translate the KeyCloak attributes to statements in the SAML Attribute document. For an example, the KeyCloak attribute named <code>userroles</code> that we read off from the JWT from <code>org1</code> could be an Attribute in the SAML response named <code>UserRoles</code>. Since SAML is a prime example of a verbose XML based protocol, you could sprinkle a &ldquo;friendly&rdquo; name on top, <code>org.my.kibana.saml.userroles</code>.</li>
 <li>Kibana, upon receiving the SAML response, should be configured to read the additional attributes off from the document properly. This is <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.6/saml-user-metadata.html">a SAML specific implementation detail in ElasticSearch</a> where the SAML attributes can be referred to in the Role Mapping Rules, by using certain naming conventions. Using this feature, Kibana will figure out the roles to assign to the user, evaluating custom role mappings.</li>
 </ol>
-
 <p>With this knowledge, we can come up with a more detailed picture of what happens when a user tries to authenticate through federated SSO.</p>
-
-<p><img src="/post/img/2020-02-12_multitenant_sso_06.png" alt="" /></p>
-
+<p><img src="/post/img/2020-02-12_multitenant_sso_06.png" alt=""></p>
 <h4 id="example-determining-read-only-vs-write-access-in-kibana">Example: Determining Read-only vs Write Access in Kibana</h4>
-
 <p>Let&rsquo;s take a really specific case of assigning write access to users in Kibana (or effectively ElasticSearch). For this example, let&rsquo;s decide write access using the presence of a SAML attribute named <code>kibanaAdmin</code>, with value <code>true</code> giving user write access, and value <code>false</code> restricting them to a read-only role.</p>
-
 <p>For this, the following configurations should be done in Kibana and KeyCloak.</p>
-
 <ol>
 <li>Create 2 ElasticSearch Roles for <strong>Write</strong> and <strong>Read-only</strong> roles</li>
 <li>Create 2 ElasticSearch Role Mappings that contain rules to evaluate to assign the above created roles</li>
 <li>Configure KeyCloak tenant realm <code>org1</code> to include the details for <code>kibanaAdmin</code> in the <code>userinfo</code> JWT</li>
 <li>Configure KeyCloak <code>federator</code> realm to read and translate the JWT to create the SAML attribute <code>kibanaAdmin</code></li>
 </ol>
-
 <h5 id="elasticsearch-roles">ElasticSearch Roles</h5>
-
 <p>The following two roles, <code>roaccess</code> and <code>writeaccess</code> could be created in ElasticSearch to encapsulate the two levels of permissions the users would get.</p>
-
 <p><strong><code>roaccess</code></strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;applications&#34;</span>: [],
@@ -348,8 +278,8 @@
     }
   ],
   <span style="color:#f92672">&#34;metadata&#34;</span>: {}
-}</code></pre></div>
-<p><strong><code>writeaccess</code></strong></p>
+}
+</code></pre></div><p><strong><code>writeaccess</code></strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;applications&#34;</span>: [
       {
@@ -387,15 +317,12 @@
     }
   ],
   <span style="color:#f92672">&#34;metadata&#34;</span>: {}
-}</code></pre></div>
-<blockquote>
+}
+</code></pre></div><blockquote>
 <p>Note that due to frequent ElasticSearch and Kibana API changes, these definitions could slightly change.</p>
 </blockquote>
-
 <h5 id="elasticsearch-role-mappings">ElasticSearch Role Mappings</h5>
-
 <p>With the name of the SAML attribute decided, we can create the following two role mappings, <code>roaccessmapping</code> and <code>writeaccessmapping</code> to map the above two roles to the authenticating users.</p>
-
 <p><strong><code>writeaccessmapping</code></strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;rules&#34;</span>: {
@@ -419,8 +346,8 @@
   <span style="color:#f92672">&#34;metadata&#34;</span>: {
     <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>
   }
-}</code></pre></div>
-<p><strong><code>roaccessmapping</code></strong></p>
+}
+</code></pre></div><p><strong><code>roaccessmapping</code></strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;rules&#34;</span>: {
     <span style="color:#f92672">&#34;all&#34;</span>: [
@@ -443,23 +370,16 @@
   <span style="color:#f92672">&#34;metadata&#34;</span>: {
     <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>
   }
-}</code></pre></div>
-<blockquote>
+}
+</code></pre></div><blockquote>
 <p>Note the use of field name matching for the field <code>metadata.saml_kibanaAdmin</code>. This will result in the lookup of a SAML attribute in the SAML response with the friendly name of <code>kibanaAdmin</code>.</p>
 </blockquote>
-
 <p>With the client side of the process complete, let&rsquo;s explore how to setup the user information so that the details that we are looking for end up in the SAML response.</p>
-
 <h5 id="keycloak-tenant-oidc-client-mapper">KeyCloak Tenant OIDC Client Mapper</h5>
-
 <p>As the source of truth, the tenant realm <code>org1</code> should start embedding the data needed to derive the information at the ElasticSearch side.</p>
-
 <p>To differentiate between a user that should have write access in Kibana and a user that should only have read-only access, we can make use of a KeyCloak role assignment. There could be a KeyCloak role named <code>kibana_admin</code> that gets assigned to the user only if they should be someone with write access in Kibana. We can take another step for the sake of clean design and make use of KeyCloak Client Roles instead of Realm wide Roles to restrict the impact of that role on other Service Providers. A KeyCloak Client Role is a role mapping that is associated with a specific KeyCloak Client only. In our case, this is the OIDC Client that was created to facilitate federation. Using a Client Role restrict the meaning of that role to the scope of the client, i.e. to the effect of stating something like <strong><code>kibana_admin</code> role has a meaning only if the user is authenticated through this specific Client</strong>.</p>
-
 <p>We can start embedding all the client roles in the JWT in the OIDC Client, however for the sake of simplicity we can also embed another Claim that has the values <code>true</code> and <code>false</code> under the Claim name <code>kibanaAdmin</code>. For this we can use the Script Mapper, a feature in KeyCloak that lets us extend the functionality a bit.</p>
-
 <p>With a Script Mapper, we can use JavaScript to programmatically create or modify the Claims in the JWT. The JavaScript is executed using Nashorn runtime inside the JVM so there are certain changes from the common JavaScript dialect on how to access certain data embedded from the JVM runtime, however, including a custom boolean type Claim is a simple code.</p>
-
 <p>The Script Mapper attached to the OIDC Client for federation would look like the following.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">/**
 </span><span style="color:#75715e"> * Available variables: 
@@ -485,23 +405,14 @@
 
 <span style="color:#75715e">// set Claim 
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">setOtherClaims</span>(<span style="color:#e6db74">&#34;kibanaAdmin&#34;</span>, <span style="color:#a6e22e">kibana_admin</span>);
-</code></pre></div>
-<p>After this Mapper gets evaluated, the JWT will contain a Claim named <code>kibanaAdmin</code> with either <code>true</code> or <code>false</code> set to the value.</p>
-
+</code></pre></div><p>After this Mapper gets evaluated, the JWT will contain a Claim named <code>kibanaAdmin</code> with either <code>true</code> or <code>false</code> set to the value.</p>
 <h5 id="keycloak-idp-and-saml-client-mappers">KeyCloak IDP and SAML Client Mappers</h5>
-
 <p>With the proper values in the incoming JWT, we can now programme the rest of the process to propagate it through federation into the SAML document.</p>
-
 <p>The first step is to configure the IDP federation to read the Claim off of the JWT and store it as a KeyCloak attribute. For this, the Attribute Importer Mapper that is configured to read <code>kibanaAdmin</code> can be used.</p>
-
-<p><img src="/post/img/2020-02-12_multitenant_sso_01.png" alt="" /></p>
-
+<p><img src="/post/img/2020-02-12_multitenant_sso_01.png" alt=""></p>
 <p>The next step is to configure the SAML client for Kibana to include the attribute read off from the JWT in the SAML response. For this, a User Attribute Mapper can be used.</p>
-
-<p><img src="/post/img/2020-02-12_multitenant_sso_02.png" alt="" /></p>
-
+<p><img src="/post/img/2020-02-12_multitenant_sso_02.png" alt=""></p>
 <p>With all these in place, the final SAML response from KeyCloak should contain the following SAML Attribute, that can be evaluated by ElasticSearch.</p>
-
 <p>The value of <code>Response.Assertion.AttributeStatement[.FriendlyName == 'kibanaAdmin'].AttributeValue</code> will be what the above created ElasticSearch Role Mappings would be evaluating.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;samlp:Response</span> <span style="color:#a6e22e">xmlns:samlp=</span><span style="color:#e6db74">&#34;urn:oasis:names:tc:SAML:2.0:protocol&#34;</span>
                 <span style="color:#a6e22e">xmlns:saml=</span><span style="color:#e6db74">&#34;urn:oasis:names:tc:SAML:2.0:assertion&#34;</span>
@@ -538,25 +449,18 @@
             ...
         <span style="color:#f92672">&lt;/saml:AttributeStatement&gt;</span>
     <span style="color:#f92672">&lt;/saml:Assertion&gt;</span>
-<span style="color:#f92672">&lt;/samlp:Response&gt;</span></code></pre></div>
-<p>This is a somewhat detailed example of how to do fine grained authorization based on information passed through federation in KeyCloak. Let&rsquo;s consider another scenario where authorization should be done to implement multi-tenancy.</p>
-
+<span style="color:#f92672">&lt;/samlp:Response&gt;</span>
+</code></pre></div><p>This is a somewhat detailed example of how to do fine grained authorization based on information passed through federation in KeyCloak. Let&rsquo;s consider another scenario where authorization should be done to implement multi-tenancy.</p>
 <h3 id="tenant-separation">Tenant Separation</h3>
-
 <p>Since users can now be authorized into different levels of access, let&rsquo;s consider how to do that within the confinements of separate tenants.</p>
-
 <p>We can take the same approach as how we enabled multi-level access, i.e. sending data that from KeyCloak that would help to determine the tenant at Kibana level. We decided to map a KeyCloak Realm to a Kibana Space and consider that as the basis of multi-tenancy in our solution. Therefore, Kibana should have the data that helps to determine the tenant realm that the user belongs to (not the <code>federator</code> realm, as it is only a facade for authentication) and assign roles that only allows access to the Space that tenant is mapped to.</p>
-
 <p>For this,</p>
-
 <ol>
 <li>KeyCloak should send another SAML Attribute stating the original tenant realm name</li>
 <li>ElasticSearch Role Mappings should be created that evaluate rules to check for the existence of the original tenant realm name in the SAML response</li>
 <li>ElasticSearch Roles should be created that restrict access to the specific Spaces and Indices</li>
 </ol>
-
 <h4 id="keycloak-mappers-for-tenant-name">KeyCloak Mappers for Tenant Name</h4>
-
 <p>As we dynamically added a Claim in the JWT and propagated that through to the SAML document, we can dynamically add the original realm name. Another Script Mapper can be made use in this case too. This mapper would be far simpler than the earlier one, since we have access to the information we need as JavaScript variables injected by the JVM runtime.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">/**
 </span><span style="color:#75715e"> * Available variables: 
@@ -568,12 +472,9 @@
 </span><span style="color:#75715e"> */</span>
 
 <span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">setOtherClaims</span>(<span style="color:#e6db74">&#34;tenant&#34;</span>, <span style="color:#a6e22e">realm</span>.<span style="color:#a6e22e">getName</span>());
-</code></pre></div>
-<p>We&rsquo;ll propagate this Claim in the JWT using Attribute Importer and Mapper.</p>
-
-<p><img src="/post/img/2020-02-12_multitenant_sso_03.png" alt="" />
-<img src="/post/img/2020-02-12_multitenant_sso_04.png" alt="" /></p>
-
+</code></pre></div><p>We&rsquo;ll propagate this Claim in the JWT using Attribute Importer and Mapper.</p>
+<p><img src="/post/img/2020-02-12_multitenant_sso_03.png" alt="">
+<img src="/post/img/2020-02-12_multitenant_sso_04.png" alt=""></p>
 <p>This should result in an additional SAML Attribute in the Attribute Statement section of the SAML response.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;saml:Attribute</span> <span style="color:#a6e22e">FriendlyName=</span><span style="color:#e6db74">&#34;tenant&#34;</span>
                 <span style="color:#a6e22e">Name=</span><span style="color:#e6db74">&#34;tenant&#34;</span>
@@ -583,35 +484,30 @@
                          <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
                          <span style="color:#a6e22e">xsi:type=</span><span style="color:#e6db74">&#34;xs:string&#34;</span>
                          <span style="color:#f92672">&gt;</span>org1<span style="color:#f92672">&lt;/saml:AttributeValue&gt;</span>
-<span style="color:#f92672">&lt;/saml:Attribute&gt;</span></code></pre></div>
-<h4 id="elasticsearch-changes-to-lookup-the-new-saml-attribute">ElasticSearch Changes to Lookup the New SAML Attribute</h4>
-
+<span style="color:#f92672">&lt;/saml:Attribute&gt;</span>
+</code></pre></div><h4 id="elasticsearch-changes-to-lookup-the-new-saml-attribute">ElasticSearch Changes to Lookup the New SAML Attribute</h4>
 <p>To read this SAML Attribute at the ElasticSearch side of things, we could follow the same approach as the earlier one. However, we can make use of an ElasticSearch SAML configuration, that let&rsquo;s us specify what should be translated as the <code>group</code> variable for a particular subject (i.e. authenticating user). Doing this instead of treating <code>tenant</code> as just another SAML Attribute makes certain sense, since it is the actual grouping factor for a KeyCloak user.</p>
-
 <p>To do this, we should edit the ElasticSearch SAML configuration that was added in the previous post, with a slight modification to the field <code>xpack.security.authc.realms.saml.cloud-saml.attributes.groups</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">xpack:
-  security:
-    authc:
-      realms:
-        saml:
-          cloud-saml:
-            order: <span style="color:#ae81ff">2</span>
-            attributes.principal: <span style="color:#e6db74">&#34;email&#34;</span>
-            attributes.groups: <span style="color:#e6db74">&#34;tenant&#34;</span>
-            idp.metadata.path: <span style="color:#e6db74">&#34;/app/config/saml/metadata.xml&#34;</span>
-            idp.entity_id: <span style="color:#e6db74">&#34;https://keycloak.my.org/auth/realms/elastic&#34;</span>
-            sp.entity_id: <span style="color:#e6db74">&#34;https://kibana.my.org:443/&#34;</span>
-            sp.acs: <span style="color:#e6db74">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
-            sp.logout: <span style="color:#e6db74">&#34;https://kibana.my.org:443/logout&#34;</span></code></pre></div>
-<p>This would enable us to query for the <code>groups</code> field in the Role Mappings to figure out the Space specific Role to assign.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">xpack</span>:
+  <span style="color:#f92672">security</span>:
+    <span style="color:#f92672">authc</span>:
+      <span style="color:#f92672">realms</span>:
+        <span style="color:#f92672">saml</span>:
+          <span style="color:#f92672">cloud-saml</span>:
+            <span style="color:#f92672">order</span>: <span style="color:#ae81ff">2</span>
+            <span style="color:#f92672">attributes.principal</span>: <span style="color:#e6db74">&#34;email&#34;</span>
+            <span style="color:#f92672">attributes.groups</span>: <span style="color:#e6db74">&#34;tenant&#34;</span>
+            <span style="color:#f92672">idp.metadata.path</span>: <span style="color:#e6db74">&#34;/app/config/saml/metadata.xml&#34;</span>
+            <span style="color:#f92672">idp.entity_id</span>: <span style="color:#e6db74">&#34;https://keycloak.my.org/auth/realms/elastic&#34;</span>
+            <span style="color:#f92672">sp.entity_id</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/&#34;</span>
+            <span style="color:#f92672">sp.acs</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
+            <span style="color:#f92672">sp.logout</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/logout&#34;</span>
+</code></pre></div><p>This would enable us to query for the <code>groups</code> field in the Role Mappings to figure out the Space specific Role to assign.</p>
 <p>For an example, for the tenant <code>org1</code>, the following two Role Mappings can be added to determine,</p>
-
 <ol>
 <li>whether the user should be assigned to a role related <code>org1</code></li>
 <li>whether the user should be able to do write operations on the tenant <code>org1</code></li>
 </ol>
-
 <p><strong>Write Access</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;rules&#34;</span>: {
@@ -640,8 +536,8 @@
   <span style="color:#f92672">&#34;metadata&#34;</span>: {
     <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>
   }
-}</code></pre></div>
-<p><strong>Read-only Access</strong></p>
+}
+</code></pre></div><p><strong>Read-only Access</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;rules&#34;</span>: {
     <span style="color:#f92672">&#34;all&#34;</span>: [
@@ -669,9 +565,8 @@
   <span style="color:#f92672">&#34;metadata&#34;</span>: {
     <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>
   }
-}</code></pre></div>
-<p>These evaluations will result in either of the following roles being assigned to the user.</p>
-
+}
+</code></pre></div><p>These evaluations will result in either of the following roles being assigned to the user.</p>
 <p><strong><code>org1writeaccess</code></strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;applications&#34;</span>: [
@@ -713,8 +608,8 @@
     }
   ],
   <span style="color:#f92672">&#34;metadata&#34;</span>: {}
-}</code></pre></div>
-<p><strong><code>org1roaccess</code></strong></p>
+}
+</code></pre></div><p><strong><code>org1roaccess</code></strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;applications&#34;</span>: [
     {
@@ -756,42 +651,37 @@
     }
   ],
   <span style="color:#f92672">&#34;metadata&#34;</span>: {}
-}</code></pre></div>
-<blockquote>
+}
+</code></pre></div><blockquote>
 <p>Note how the roles restrict access to one Space named <code>org1</code> and only Indices that match the name pattern <code>logstash*org1*</code>.</p>
 </blockquote>
-
 <h1 id="conclusion">Conclusion</h1>
-
 <p>With the topics covered in the articles in this series so far, it should be a fairly straight forward exercise to design a custom multi-tenant SSO solution that doesn&rsquo;t require complex organization specific customizations. KeyCloak was used as a reference IDP in this scenario, however any IDP that</p>
-
 <ol>
 <li>has a native concept of multi-tenancy</li>
 <li>supports SAML and/or OIDC SSO protocols</li>
 <li>allows extending the functionality through easy configuration</li>
 <li>is preferably Open Source so that you can fallback to the code when things aren&rsquo;t clear</li>
 </ol>
-
 <p>can easily replace it.</p>
-
 <p>The depth of granularized authorization at ElasticSearch purely depends on the specific requirements of the deployment. For an example, there could easily be other roles that only allow read access to dashboards in Kibana.</p>
-
 <p>A few things to note about this solution are,</p>
-
 <ol>
-<li><p>This is a SAML/OIDC mix bag - This solution makes use of both SAML and OIDC which in unconventional in SSO designs. The main reason for this is ElasticSearch&rsquo;s limited support for OIDC and their ElasticCloud being behind when it comes to enabling new features of the product. ElasticCloud was what I was able to experiement with for this solution, therefore most of my experience on ElasticSearch is from there.</p></li>
-
-<li><p>OIDC requires back channel communication - Because OIDC has back channel communication steps (unlike SAML which can be configured to do all communication in the front channel through the user&rsquo;s browser), there should be some whitelisting of traffic originating from self should be done. This could probably be worked around manipulating name resolution (ex: split DNS inside the network boundary), however it is complex enough to avoid altogether.</p></li>
-
-<li><p>Automation - Configuring the above mentioned user model for one tenant for one level of granularization is relatively easy. However things easily get out of hand when there are multiple tenants involved, and tenants need to be dynamically created and provisioned. Therefore, the above mentioned configuration steps should be automated to be part of Infrastructure as Code scripts (or an API code that exposes tenant creation as an admin operation). This is easy to do with KeyCloak as it comes with a well documented REST API that is easy to work with. However if you are using ElasticCloud, some operations that should be done as part of maintenance are hard to be automated as ElasticCloud does not have an API to work with at all.</p></li>
-
-<li><p>Avoid user information provisioning during federated authentication - One slight downside of a federated multi-tenant SSO solution is a feature that is built-in to IDP federation. The users that are authenticated from the external IDPs (the tenant realms in this scenario) are &ldquo;provisioned&rdquo; into the <code>federator</code> realm to be reused later. This is a feature when the actual scope of IDP federation is concerned since you don&rsquo;t want to connect to the Social IDP Provider everytime you need to read the user&rsquo;s email address. However, in this example, this could be a downside, since some user information that might be updated in the tenant realm may not get updated in the <code>federator</code> realm, and different users in different realms who have the same username (KeyCloak realms are about full separation) could be detected as a conflict if authenticated through the same <code>federator</code> realm. Some of these drawbacks could be worked around (ex: using a Username Changer Mapper to customize how the username is stored during provisioning), however a longer term solution would be to write a <a href="https://www.keycloak.org/docs/6.0/server_admin/#_identity_broker_first_login">custom First Login Flow that does not do provisioning during federated authentication</a>.</p></li>
+<li>
+<p>This is a SAML/OIDC mix bag - This solution makes use of both SAML and OIDC which in unconventional in SSO designs. The main reason for this is ElasticSearch&rsquo;s limited support for OIDC and their ElasticCloud being behind when it comes to enabling new features of the product. ElasticCloud was what I was able to experiement with for this solution, therefore most of my experience on ElasticSearch is from there.</p>
+</li>
+<li>
+<p>OIDC requires back channel communication - Because OIDC has back channel communication steps (unlike SAML which can be configured to do all communication in the front channel through the user&rsquo;s browser), there should be some whitelisting of traffic originating from self should be done. This could probably be worked around manipulating name resolution (ex: split DNS inside the network boundary), however it is complex enough to avoid altogether.</p>
+</li>
+<li>
+<p>Automation - Configuring the above mentioned user model for one tenant for one level of granularization is relatively easy. However things easily get out of hand when there are multiple tenants involved, and tenants need to be dynamically created and provisioned. Therefore, the above mentioned configuration steps should be automated to be part of Infrastructure as Code scripts (or an API code that exposes tenant creation as an admin operation). This is easy to do with KeyCloak as it comes with a well documented REST API that is easy to work with. However if you are using ElasticCloud, some operations that should be done as part of maintenance are hard to be automated as ElasticCloud does not have an API to work with at all.</p>
+</li>
+<li>
+<p>Avoid user information provisioning during federated authentication - One slight downside of a federated multi-tenant SSO solution is a feature that is built-in to IDP federation. The users that are authenticated from the external IDPs (the tenant realms in this scenario) are &ldquo;provisioned&rdquo; into the <code>federator</code> realm to be reused later. This is a feature when the actual scope of IDP federation is concerned since you don&rsquo;t want to connect to the Social IDP Provider everytime you need to read the user&rsquo;s email address. However, in this example, this could be a downside, since some user information that might be updated in the tenant realm may not get updated in the <code>federator</code> realm, and different users in different realms who have the same username (KeyCloak realms are about full separation) could be detected as a conflict if authenticated through the same <code>federator</code> realm. Some of these drawbacks could be worked around (ex: using a Username Changer Mapper to customize how the username is stored during provisioning), however a longer term solution would be to write a <a href="https://www.keycloak.org/docs/6.0/server_admin/#_identity_broker_first_login">custom First Login Flow that does not do provisioning during federated authentication</a>.</p>
+</li>
 </ol>
-
 <p>With a certain level of added complexity, we have now implemented a multi-tenant SSO solution for the ELK stack. However there could be simpler solutions that may get rid of the need to design such a solution altogether. This way of doing things is the least that can be done with minimal level of paid support. With new product features, it may be possible that Kibana would introduce tenant discovery in the future, that may get rid of most of the complexity in this design in the first place.</p>
-
-<hr />
-
+<hr>
 <p>I have been writing about ELK for sometime, and this would hopefully be my last post on the series. Hope this series would help you to navigate around this interesting stack that works 100% of the time sometimes.</p>
 
         </div>

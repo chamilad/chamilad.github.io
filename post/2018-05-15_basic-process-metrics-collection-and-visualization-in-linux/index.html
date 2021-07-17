@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.78.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2018",
-      "datePublished": "2018-05-15 06:36:59.69 \x2b0000 UTC",
-      "dateModified" : "2018-05-15 06:36:59.69 \x2b0000 UTC",
+      "datePublished": "2018-05-15 06:36:59.69 \u002b0000 UTC",
+      "dateModified" : "2018-05-15 06:36:59.69 \u002b0000 UTC",
       "url" : "https:\/\/chamilad.github.io\/post\/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux\/",
       "keywords" : [ "Gnuplot","Graph","Visualization","Linux","Monitoring", ]
   }
@@ -88,7 +88,7 @@ For an example, consider a scenario where you’re troubleshooting a certain sin
               <time class="post-date" datetime="2018-05-15 06:36:59 UTC">
                 15 May 2018
 		<p><b>Read time:</b> 7m
-		<br /><b>Word count:</b> 1477</p>
+		<br /><b>Word count:</b> 1472</p>
               </time>
               
            </div>
@@ -118,168 +118,89 @@ For an example, consider a scenario where you’re troubleshooting a certain sin
 	<hr />
         <h4>Table of Contents:</h4>
 	<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#bashfu-again">Bashfu Again!</a></li>
-<li><a href="#cpu-and-memory-usage">CPU and Memory Usage</a></li>
-<li><a href="#thread-count">Thread Count</a></li>
-<li><a href="#tcp-connection-count">TCP Connection Count</a></li>
-<li><a href="#visualization">Visualization</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 	<hr />
 	</div>
        </header>
         <div class="post-content markdown-body">
-          
-
-<p>When it comes to deployment observability there are multiple, comprehensive solutions that can handle almost any system of scale you throw at them. I said almost, because there are certain stories that do not require setting up a central monitoring server with satellite agents to collect and enrich data.</p>
-
+          <p>When it comes to deployment observability there are multiple, comprehensive solutions that can handle almost any system of scale you throw at them. I said almost, because there are certain stories that do not require setting up a central monitoring server with satellite agents to collect and enrich data.</p>
 <p>For an example, consider a scenario where you’re troubleshooting a certain single process for a particular period of time. You want to collect the approximate CPU usage, approximate memory usage, light weight process (aka thread) count, and the TCP connection count. You want these stats collected during the time period you’re conducting load test against the process.</p>
-
 <p>There are a list of well established tools that could provide the results we need. However, with sophisticated functionality comes complex setup instructions. Even if you skip a system with agent based monitoring, you’ll still be <code>yum install</code> ing, <code>apt-get</code> ting, or <code>make install</code> ing stuff. Sometimes the window is too narrow for these to be done, so much that by the time you’re setup, the issue has been resolved in some mysterious way that you start believing in miracles again.</p>
-
 <p>After a little bit of Googling, I wanted to write something myself (living the dream!). I wanted to use as minimum bootstrapping as possible to collect a reasonably accurate set of metrics for a brief period of time. I wanted the collected stats to be human readable as well as quickly converted to a visualization.</p>
-
 <blockquote>
 <p>I wanted something <strong>dot slashable</strong> instead of <a href="https://medium.com/@madeeshafernando/how-to-install-icinga2-and-icingaweb2-on-ubuntu-14-04-a767fd8c83a4">setting up an Icinga2 setup</a>.</p>
 </blockquote>
-
 <h4 id="bashfu-again">Bashfu Again!</h4>
-
 <p>I have to admit, Bash is kind of the proverbial hammer for almost every problem of mine. It’s easy to become so. Quickly written, quickly tested, and quickly deployed, Bash scripts are one of the most versatile tools I’ve come across.</p>
-
 <p>So to come back to the problem again, I wanted to collect metrics for a single process, for a controlled period of time, and output (somewhat) both human and machine readable numbers.</p>
-
 <p>Comma Separated Values (CSV) is the obvious easy choice here, though there could be more sophisticated options. A CSV file</p>
-
 <ol>
 <li>can be loaded to a spreadsheet application which then can visualize the data easily</li>
 <li>can be easily written by a script</li>
 <li>can be easily read to understand the values</li>
 </ol>
-
 <p>Now it’s just a matter of collecting the information.</p>
-
-<h4 id="cpu-and-memory-usage">CPU and Memory Usage</h4>
-
+<h4 id="cpu-and-memoryusage">CPU and Memory Usage</h4>
 <p>To keep to the principle of using minimal bootstrapping, I opted to use the <code>top</code> tool to collect CPU and Memory usage.</p>
-
 <pre><code>cpu_mem_usage=$(top -b -n 1 | grep -w -E &quot;^ *$pid&quot; | awk '{print $9 &quot;,&quot; $10}')
-</code></pre>
-
-<p><code>top -b -n 1</code> — <code>top</code> command run in the batch mode once</p>
-
+</code></pre><p><code>top -b -n 1</code> — <code>top</code> command run in the batch mode once</p>
 <p><code>grep -w -E &quot;^ *$pid&quot;</code> — look for the entry for the process ID we are looking for</p>
-
 <p><code>awk '{print $9 &quot;,&quot; $10}'</code> — get the CPU and memory usage values</p>
-
 <h4 id="thread-count">Thread Count</h4>
-
 <p>Another everyday tool to the rescue.</p>
-
 <pre><code>tcount=$(ps -o nlwp h $pid | tr -d ' ')
-</code></pre>
-
-<p><code>ps -o nlwp h $pid</code> — print the <strong>n</strong>umber of <strong>l</strong>ight <strong>w</strong>eight <strong>p</strong>rocesses (threads) for the particular process (without the header — <code>h</code>)</p>
-
+</code></pre><p><code>ps -o nlwp h $pid</code> — print the <strong>n</strong>umber of <strong>l</strong>ight <strong>w</strong>eight <strong>p</strong>rocesses (threads) for the particular process (without the header — <code>h</code>)</p>
 <p><code>tr -d ' '</code> — remove any spaces</p>
-
 <h4 id="tcp-connection-count">TCP Connection Count</h4>
-
 <p>I wanted to count the number of outgoing TCP connections the process made during the load testing (we wanted to see if setting TCP <code>keep_alive</code> settings were making any difference).</p>
-
 <pre><code>tcp_cons=$(lsof -i -a -p $pid -w | tail -n +2 | wc -l)
-</code></pre>
-
-<p><code>lsof -i -a -p $pid -w</code> — print all the Internet (ipv4 and ipv6) connections for the process suppressing any errors</p>
-
+</code></pre><p><code>lsof -i -a -p $pid -w</code> — print all the Internet (ipv4 and ipv6) connections for the process suppressing any errors</p>
 <p><code>tail -n +2</code> — Remove the header line from selection</p>
-
 <p><code>wc -l</code> — Count the number of lines</p>
-
 <blockquote>
 <p>Of course, there are other ways to collect the same information. The accuracy of some of the metrics, like the CPU usage, can be argued about too.</p>
 </blockquote>
-
 <p>This information is then written as a CSV entry into a file.</p>
-
 <pre><code>timestamp=$(date +&quot;%b %d %H:%M:%S&quot;)
 cpu_mem_usage=$(top -b -n 1 | grep -w -E &quot;^ *$pid&quot; | awk '{print $9 &quot;,&quot; $10}')
 tcp_cons=$(lsof -i -a -p $pid -w | tail -n +2 | wc -l)
 tcount=$(ps -o nlwp h $pid | tr -d ' ')
 
 echo &quot;$timestamp,$cpu_mem_usage,$tcp_cons,$tcount&quot; &gt;&gt; $csv_filename 
-</code></pre>
-
-<h4 id="visualization">Visualization</h4>
-
+</code></pre><h4 id="visualization">Visualization</h4>
 <p>In terms of data collection, this is enough. However, we could go a bit further with minimal tools. For an example, let’s plot this data as graphs to get a better idea on spikes during the selected time period.</p>
-
 <p>Plotting graphs is also a task with a lot of options in Bash. Out of these, <a href="http://gnuplot.info/"><code>gnuplot</code></a> is the best tool to start with. It’s a well established tool (started out in 1986) with little complexity at its core.</p>
-
 <p>We have to break our aim on using existing tools here though. Most systems do not have gnuplot packed in.</p>
-
 <pre><code>sudo apt install gnuplot
-</code></pre>
-
-<p>That should do for Ubuntu/Debian.</p>
-
+</code></pre><p>That should do for Ubuntu/Debian.</p>
 <p>gnuplot can work with a variety of data files. To let it know that the input file is a CSV we can set the <code>datafile separator</code> .</p>
-
 <pre><code>set datafile separator &quot;,&quot;
-</code></pre>
-
-<p>It also supports a number of output formats. In this story, we only need a graph output to an image file. We can set this information with the following. We are specifying the <code>png</code> output ( <code>pngcairo</code> is only available in certain systems but produce better looking anti-aliased lines), with image dimensions of <code>1024</code> x <code>800</code> .</p>
-
+</code></pre><p>It also supports a number of output formats. In this story, we only need a graph output to an image file. We can set this information with the following. We are specifying the <code>png</code> output ( <code>pngcairo</code> is only available in certain systems but produce better looking anti-aliased lines), with image dimensions of <code>1024</code> x <code>800</code> .</p>
 <pre><code>set term pngcairo size 1024,800 noenhanced font &quot;Helvetica,10&quot;
-</code></pre>
-
-<p>The first graph to plot is the CPU and memory usage.</p>
-
+</code></pre><p>The first graph to plot is the CPU and memory usage.</p>
 <pre><code>set output &quot;${dir_name}/cpu-mem-usage.png&quot;
-</code></pre>
-
-<p>After setting the filename, the graph plotting is done, specifying the functions to perform on the data.</p>
-
+</code></pre><p>After setting the filename, the graph plotting is done, specifying the functions to perform on the data.</p>
 <pre><code>plot &quot;$csv_filename&quot; using 2:xticlabels(1) with lines smooth unique lw 2 lt rgb &quot;#4848d6&quot; t &quot;CPU Usage %&quot;,\
        &quot;$csv_filename&quot; using 3:xticlabels(1) with lines smooth unique lw 2 lt rgb &quot;#b40000&quot; t &quot;Memory Usage %&quot;
-</code></pre>
-
-<p><code>$csv_filename</code> — The data set to use</p>
-
+</code></pre><p><code>$csv_filename</code> — The data set to use</p>
 <p><code>using 2:xticlabels(1)</code> — Graph the second column using the first column as string labels on the X axis</p>
-
 <p><code>with lines</code> — Graph a line chart</p>
-
 <p><code>smooth unique</code> — Smoothen lines</p>
-
 <p><code>lw 2</code> — Line width should be 2</p>
-
 <p><code>lt rgb &quot;#4848d6&quot;</code> — Define a line type with a color <code>#4848d6</code></p>
-
 <p><code>t &quot;CPU Usage %&quot;</code> — Label of the chart</p>
-
 <p>If we look at our Bash script line which writes to the CSV file, we can see that the second column contains the CPU metrics, while the first column contains the time stamp value.</p>
-
 <p>We can plot the memory usage (third column) on the same graph.</p>
-
 <pre><code>&quot;$csv_filename&quot; using 3:xticlabels(1) with lines smooth unique lw 2 lt rgb &quot;#b40000&quot; t &quot;Memory Usage %&quot;
-</code></pre>
-
-<figure><img src="/post/img/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux_0.png#layoutTextWidth"><figcaption>Anti-aliased because we used `pngcairo`</figcaption></figure>
-
+</code></pre><!-- raw HTML omitted -->
 <p>Likewise the other metrics can be plotted separately,</p>
-
 <pre><code># TCP count
 set output &quot;${dir_name}/tcp-count.png&quot;
 set title &quot;TCP Connections Count for Proces ID $pid&quot;
@@ -289,48 +210,28 @@ plot &quot;$csv_filename&quot; using 4:xticlabels(1) with lines smooth unique lw
 set output &quot;${dir_name}/thread-count.png&quot;
 set title &quot;Thread Count for Proces ID $pid&quot;
 plot &quot;$csv_filename&quot; using 5:xticlabels(1) with lines smooth unique lw 2 lt rgb &quot;#48d65b&quot; t &quot;Thread Count&quot;
-</code></pre>
-
-<p>or together.</p>
-
+</code></pre><p>or together.</p>
 <pre><code>set output &quot;${dir_name}/all-metrices.png&quot;
 set title &quot;All Metrics for Proces ID $pid&quot;
 plot &quot;$csv_filename&quot; using 2:xticlabels(1) with lines smooth unique lw 2 lt rgb &quot;#4848d6&quot; t &quot;CPU Usage %&quot;,\
         &quot;$csv_filename&quot; using 3:xticlabels(1) with lines smooth unique lw 2 lt rgb &quot;#b40000&quot; t &quot;Memory Usage %&quot;, \
         &quot;$csv_filename&quot; using 4:xticlabels(1) with lines smooth unique lw 2 lt rgb &quot;#ed8004&quot; t &quot;TCP Connection Count&quot;, \
         &quot;$csv_filename&quot; using 5:xticlabels(1) with lines smooth unique lw 2 lt rgb &quot;#48d65b&quot; t &quot;Thread Count&quot;
-</code></pre>
-
-<p><img src="/post/img/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux_1.jpeg#layoutTextWidth" alt="" /></p>
-
+</code></pre><p><img src="/post/img/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux_1.jpeg#layoutTextWidth" alt=""></p>
 <p>Of course these are not the only directives given to <code>gnuplot</code> for these graphs to be generated. Everything from the position of the key, to the axis line colors can be configured to the detail.</p>
-
 <pre><code># Set border color around the graph
 set border ls 50 lt rgb &quot;#939393&quot;
-</code></pre>
-
-<p><code>gnuplot</code> has a interactive shell where these commands can be given. However, this story requires a less involved approach. All the directives can be provided to <code>gnuplot</code> through heredoc, or <code>&lt;&lt;- EOF</code> notation.</p>
-
+</code></pre><p><code>gnuplot</code> has a interactive shell where these commands can be given. However, this story requires a less involved approach. All the directives can be provided to <code>gnuplot</code> through heredoc, or <code>&lt;&lt;- EOF</code> notation.</p>
 <pre><code>gnuplog &lt;&lt;- EOF
 set terminal
 EOF
-</code></pre>
-
-<p>The above will display all the output types supported on the system. Similar to above, all the directives are fed to <code>gnuplot</code> to produce the graphs.</p>
-
+</code></pre><p>The above will display all the output types supported on the system. Similar to above, all the directives are fed to <code>gnuplot</code> to produce the graphs.</p>
 <h4 id="conclusion">Conclusion</h4>
-
 <p>More an exercise than a comprehensive tool, I collected all the above into a single script to be executed. The source is on <a href="https://github.com/chamilad/process-metrics-collector">Github</a>.</p>
-
 <pre><code>./process-metrics-collector.sh &lt;PID&gt;
-</code></pre>
-
-<p>The aim of the script is to be executed on a remote server. What it does is to cover a narrow set of requirements at the lower end of the monitoring spectrum. On the other side are the tools like AppDynamics, Icinga, and graphing tools like Graphite, and Grafana. This would cover the stories where we wouldn’t have the time or the resources to setup a comprehensive system, just to monitor a single process for a brief period of time.</p>
-
-<hr />
-
+</code></pre><p>The aim of the script is to be executed on a remote server. What it does is to cover a narrow set of requirements at the lower end of the monitoring spectrum. On the other side are the tools like AppDynamics, Icinga, and graphing tools like Graphite, and Grafana. This would cover the stories where we wouldn’t have the time or the resources to setup a comprehensive system, just to monitor a single process for a brief period of time.</p>
+<hr>
 <p>Written on May 15, 2018 by chamila de alwis.</p>
-
 <p>Originally published on <a href="https://medium.com/@chamilad/basic-process-metrics-collection-and-visualization-in-linux-3d0fce3eeb87">Medium</a></p>
 
         </div>

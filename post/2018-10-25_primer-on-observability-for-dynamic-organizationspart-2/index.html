@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.78.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "post",
       "name" : "A Primer on Observability for Dynamic Organizations — Part 2",
       "headline" : "A Primer on Observability for Dynamic Organizations — Part 2",
-      "description" : "What should an Observability Framework address? In the previous post, we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design. Let’s explore the possibility of a structured approach for designing observable systems.\nMassive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls Why should there be a structured approach? In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack.",
+      "description" : "What should an Observability Framework address? In the previous post, we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design. Let’s explore the possibility of a structured approach for designing observable systems.\nWhy should there be a structured approach? In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2018",
-      "datePublished": "2018-10-25 06:44:38.732 \x2b0000 UTC",
-      "dateModified" : "2018-10-25 06:44:38.732 \x2b0000 UTC",
+      "datePublished": "2018-10-25 06:44:38.732 \u002b0000 UTC",
+      "dateModified" : "2018-10-25 06:44:38.732 \u002b0000 UTC",
       "url" : "https:\/\/chamilad.github.io\/post\/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2\/",
       "keywords" : [ "DevOps","Observability","Monitoring","Cloud Computing","Solution Architecture", ]
   }
@@ -37,7 +37,7 @@
   <meta property="og:title" content="A Primer on Observability for Dynamic Organizations — Part 2 - chamilad.github.io" />
   <meta property="og:type" content="article" />
   <meta name="description" content="What should an Observability Framework address? In the previous post, we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design. Let’s explore the possibility of a structured approach for designing observable systems.
-Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls Why should there be a structured approach? In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack." />
+Why should there be a structured approach? In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -88,7 +88,7 @@ Massive industrial process of Sugar production where the mechanics are mostly li
               <time class="post-date" datetime="2018-10-25 06:44:38 UTC">
                 25 Oct 2018
 		<p><b>Read time:</b> 11m
-		<br /><b>Word count:</b> 2218</p>
+		<br /><b>Word count:</b> 2203</p>
               </time>
               
            </div>
@@ -118,122 +118,66 @@ Massive industrial process of Sugar production where the mechanics are mostly li
 	<hr />
         <h4>Table of Contents:</h4>
 	<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#what-should-an-observability-framework-address">What should an Observability Framework address?</a></li>
-<li><a href="#why-should-there-be-a-structured-approach">Why should there be a structured approach?</a></li>
-</ul></li>
-<li><a href="#design-principles-of-observability">Design Principles of Observability</a>
-<ul>
-<li><a href="#observable-products-and-tools"><strong>Observable products and tools</strong></a></li>
-<li><a href="#deployment-architecture-focused-design"><strong>Deployment architecture focused design</strong></a></li>
-<li><a href="#tiered-approach"><strong>Tiered approach</strong></a></li>
-<li><a href="#post-hoc-focus">Post-Hoc focus</a></li>
-<li><a href="#functional-alerting">Functional alerting</a></li>
-</ul></li>
-<li><a href="#packaging-it-up">Packaging it up</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#design-principles-of-observability">Design Principles of Observability</a></li>
+        <li><a href="#packaging-itup">Packaging it up</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 	<hr />
 	</div>
        </header>
         <div class="post-content markdown-body">
-          
-
-<h4 id="what-should-an-observability-framework-address">What should an Observability Framework address?</h4>
-
+          <h4 id="what-should-an-observability-framework-address">What should an Observability Framework address?</h4>
 <p>In the previous post, <a href="/a-primer-on-observability-for-dynamic-organizations-part-1-43c577ded1d3">we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design</a>. Let’s explore the possibility of a <strong>structured approach</strong> for designing observable systems.</p>
-
-<figure><img src="/post/img/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2_0.jpeg#layoutTextWidth"><figcaption>Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls</figcaption></figure>
-
+<!-- raw HTML omitted -->
 <h4 id="why-should-there-be-a-structured-approach">Why should there be a structured approach?</h4>
-
 <p>In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack.</p>
-
 <p>For example, take High Availability of a system. The critical points in a Solution Architecture diagram are analyzed and improved so that there are no single points of failure. The nodes (and lines that connect them), in other words execution points and their communication paths, are horizontally (or sometimes vertically as appropriate) scaled to match the roughly expected capacity. For points that provide elasticity, external-factor based auto-scaling is added to match varying traffic and unexpected spikes in load.</p>
-
 <p>This is all done at the design phase, and not after the Solution Architecture is deployed. For the process, there will be general and (organization, client, or team) specific design principles and guidelines to follow. Basically, <strong>designing</strong> a Highly Available system requires a structured approach.</p>
-
 <p>The same should be the case with Observability. It should be considered at the architecture design phase. It should be done with a structure in mind.</p>
-
 <h3 id="design-principles-of-observability">Design Principles of Observability</h3>
-
 <p>When looking for weak points in a Solution Architecture when designing highly available systems, there are specific pointers that people search for. Communication choke points, third party services, and sometimes even the Client Support Systems themselves are analyzed first to see if possible failures could create availability issues. Then those pointers are addressed according an agreed set of guidelines.</p>
-
 <p>Similarly, following is a set of principles that could be followed in order to ensure that a system meets the required Observability standards. Some of these are qualities that I’ve personally found to be positive in existing systems, services, and tools. Some are ones that I found to be desired and takes too much effort to be implemented at the current stage (of development or deployment). All of these are the results of personal experiences (and frustrations).</p>
-
-<h4 id="observable-products-and-tools"><strong>Observable products and tools</strong></h4>
-
+<h4 id="observable-products-andtools"><strong>Observable products and tools</strong></h4>
 <p>Products and tools used in the deployment should adhere to a proper level of Observability on their own. This includes exposing product level metrics without filtering (e.g. metrics events pushed to a designated monitoring platform), traceability of code path executions, technology stack level metrics (e.g. JMX monitoring enabled through a port), and a proper level of (configurable) logging. Without these factors, product level view of the system has to be achieved through workarounds that may not reflect the true state at all.</p>
-
 <p>For an example, if there is no built-in way to calculate the round trip time of a request at an API Gateway <strong>and</strong> a built-in way to calculate the total time a request spends within the Gateway itself, the proper performance of the system may not be visible. There will be no way to separately identify a back-end failure from a Gateway failure. Workarounds such as log based calculations could produce wrong metrics altogether.</p>
-
-<h4 id="deployment-architecture-focused-design"><strong>Deployment architecture focused design</strong></h4>
-
+<h4 id="deployment-architecture-focuseddesign"><strong>Deployment architecture focused design</strong></h4>
 <p>Observability of the system should be approached from the deployment architecture design level onward. This will involve deciding on the products and tools on the basis of their capacity to be observable, deciding the metrics to cover the nodes and connections between nodes based on the deployment-specific functional and non-functional requirements, deciding the granularity of each metric, limits of each metric to trigger alerts and paging, and defining a general checklist for adding a new metric when needed.</p>
-
 <p>Each metric is approached with the goal of meeting SLAs and achieving decided functionality levels. A checklist that thoroughly examines the metrics that are included will scrutinize the aspects that are covered by the metric, failure conditions, and the level of escalation they should do in the event of a failure. Going through this checklist will make sure the required aspects and only them are covered through enabling Observability of a system and they adhere to an acceptable level of noise in the event of failure.</p>
-
 <p>Any future modifications to the solution should also be able to match the existing Observability level with minimum effort. If the effort taken for a new component added to a deployment to achieve the same level of Observability as the existing system as a whole is high enough to be a barrier, the incentive will be to avoid the process altogether. For an example, if a newly added Compute instance requires configuration changes throughout the whole monitoring stack, either it will be kept out of monitoring, key metrics will be absent when needed, or the whole monitoring system would soon become too brittle to even touch. An auto-scaling Compute layer would be virtually impossible with such a system.</p>
-
 <p>With a deployment diagram based approach, each points of consideration will have a responsible set of metrics and alerts, and each metric and alert will have a rationale for existence.</p>
-
 <h4 id="tiered-approach"><strong>Tiered approach</strong></h4>
-
 <p>The impact of an incident can be felt at different tiers of the system.</p>
-
 <p>There can be service level disruptions that can vary from absolute catastrophes to unnoticed blips. Both of these are likely to have an effect on the end user, therefore there should be more emphasis on managing these interruptions swiftly with minimum impact on the service level experience.</p>
-
 <p>Infrastructure level disruptions could range from unanticipated down-times at the third party infrastructure provider to capacity saturation that creeps with or without adequate advance notice. With proper deployment architecture designing, most of these interruptions could be handled automatically without human intervention.</p>
-
 <p>Product level interruptions could be known and unknown product level bugs that can be designed off to a recovery that goes unnoticed by the end user.</p>
-
 <p>These failures should be well recorded, and fall within predetermined areas that are covered by action plans. Deployment architecture based designing helps this by identifying the high level incident response plans to be applied for each anticipated type of incident.</p>
-
 <h4 id="post-hoc-focus">Post-Hoc focus</h4>
-
 <p>Efforts to improve Observability of a system should heavily focus on getting the vital information available for Post-Hoc analysis of incidents. While most incidents may fall within anticipated areas of failure, there could failures that arise out of the most reliable, performant sections and aspects of a system. Murphy’s law guarantees it.</p>
-
 <p>Comprehensive analysis of these incidents with both spatially and temporally accurate data after the fact is the key to properly “handle” them. The analysis reports will provide way to avoid future incidents, recover automatically from them, or escalate to the correct parties when they repeat.</p>
-
 <p>There should be proper level of logging with crucial information available. Metrics collected from the relevant participants (and non-relevant ones as well, since relevancy to the incident may not be properly understood at the time) should be available for querying. It should be clear which series of steps resulted in the particular incident. All of these information should be mapped to the incident occurrence duration, and there should be proper data retention policies defined in order to preserve critical data to be analyzed for past patterns.</p>
-
 <h4 id="functional-alerting">Functional alerting</h4>
-
 <p>When incidents occur and alerts are generated, there is an embarrassingly wide possibility of them being the least useful at first glance. Most alerts only provide data that are too narrow in scope and sometimes misdirect from the actual incident occurring.</p>
-
 <p>For a service level downtime that is resulted by an unavailable third party and bad software development, the actual alert generated might be a disk usage saturation resulted by the excessive errors printed in the logs. Based on this, the personnel involved may only cleanup the disk and would not see the actual impact the end users are having, until a few recurrences.</p>
-
 <p>While individual alerts may not be able to gather data of a suitable scope to give indications of possible root causes at a glance, they should be complete in terms of their origin. In the above example, in addition to the disk usage alerts, there should have been service disruption, third party unavailability, and consecutive error log count alerts configured to match appropriate levels of availability. For a given window of generated alerts, the “what” and “why” of an incident should be answered with minimum effort.</p>
-
 <p>On the flip-side, alert generation process should be simple. There should not be complicated rules that result in a single alert instead of a series of ones, that may be easily broken by the smallest design or code change. At the same note, there should be a balance between simplicity and noise for alerts.</p>
-
 <p>Alerts should also take the above “Post-Hoc focus” into consideration. Past experiences have shown that email alerts frequently go unnoticed. However that doesn’t invalidate the need for email alerts. Emails have better retention than (e.g.) mobile push notifications, and are a gold mine for post-mortems to figure out the timeline of a certain incident.</p>
-
-<h3 id="packaging-it-up">Packaging it up</h3>
-
+<h3 id="packaging-itup">Packaging it up</h3>
 <p>For organizations that involve few static deployments, implementing the above set of design principles and guidelines would be better done as a manual one-time task. However for organizations that are dynamic in deployment nature, working with several deployments at a time, and are intending to scale the operations along with business goals may need to package the above implementation to a reusable stack. During new deployments (and even during upgrades to existing ones) it should be possible to employee this stack with the minimum effort so that the resulting deployments achieve relatively the same levels of Observability. In that nature, this should be an Observability “day pack” that a Solutions Architect may just pick up and go to work with.</p>
-
 <p>This “day pack” should package up the following in a way that each component is both adoptable to a wide range of scenarios and also involves minimum effort in doing so. Furthermore, it should take into account both a Solutions Architect and an Ops personnel mind set as both these groups will be involved in the implementation.</p>
-
 <ol>
 <li>The monitoring stack implementation</li>
 <li>The automation artifacts (Infrastructure-as-Code, Config Automation code, scripts, templates) needed to implement the monitoring stack with minimum effort</li>
 <li>Comprehensive documentation for guidelines, manuals, and troubleshooting. These will be organization (or even business unit) specific interpretations of the design principles</li>
 <li>Agents, configurations, service discovery implementations, custom metric collector implementations, and the other peripheral components of the monitoring stack</li>
 </ol>
-
-<p>The above could be inter-linked and connected to provide a <code>run.sh</code>like experience for the user, however decoupling and compartmentalizing them to different independent “pockets” may better adapt them to different scenarios. The monitoring stack itself could be of different tools and implementations that do not inherently expect a strict interface on the other layers. For an example, the visualizer layer could be able to work with different metrics and log databases.</p>
-
+<p>The above could be inter-linked and connected to provide a <code>run.sh </code>like experience for the user, however decoupling and compartmentalizing them to different independent “pockets” may better adapt them to different scenarios. The monitoring stack itself could be of different tools and implementations that do not inherently expect a strict interface on the other layers. For an example, the visualizer layer could be able to work with different metrics and log databases.</p>
 <p>The documentation should be extensive. The day pack could be used in a wide range of stories that involve different user expectations. Generally, the documentation can be of the following parts.</p>
-
 <ol>
 <li>Generic guidelines adhering to the above mentioned design principles with a 10,000 feet view on the Observability goals expected of a typical system.</li>
 <li>Product and solution level stories that affect and depend on the Observability of the system</li>
@@ -241,17 +185,11 @@ Massive industrial process of Sugar production where the mechanics are mostly li
 <li>Platform and provider specific implementation details for the monitoring stack. These can be instructions and guidelines for both automated and manual processes</li>
 <li>Setting up chain of responsibility for the incident types</li>
 </ol>
-
 <p>The capabilities of the implementation and the documentation should not limit the capabilities of the complete deployment itself. Since the target audience for this day pack is internal to the organization and therefore are well familiar with the nature of technologies and tools used in the deployments, documentation can go to a deeper level of detail than it would be allowed to go to for an external set of users.</p>
-
 <p>With a well understood implementation and a detailed set of guidelines, designing better observable systems can be reduced down to a trivial practice, very much like how designing highly available or high performant systems are now well explored practices. The story was the same for other properties of systems that we take granted these days. High availability, scalability, and performance were afterthoughts of systems designed with implementation efficiencies kept first. The need for these properties to be evaluated and addressed at design time came after, and design principles, guidelines, and various implementations came next. Today, these properties are sometimes reduced to a combination of check-boxes and service selections in public Cloud Service Providers. Observability in the public Cloud has also followed the same path.</p>
-
 <p>Unlike highly available or scalable system design where guidelines tend to be organization-agnostic, designing observable systems should take organization, team, business-goal specific details into consideration. Therefore, it’s important for these practices to be explored and understood before the actual requirements come in with deadlines and dependencies. The above set of guidelines will help organizations ease into having Observability as a property designed into systems rather than an afterthought.</p>
-
-<hr />
-
+<hr>
 <p>Written on October 25, 2018 by chamila de alwis.</p>
-
 <p>Originally published on <a href="https://medium.com/@chamilad/a-primer-on-observability-for-dynamic-organizations-part-2-473f8488d344">Medium</a></p>
 
         </div>

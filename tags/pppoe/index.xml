@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pppoe on chamilad.github.io</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Pppoe on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Aug 2014 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamilad.github.io/tags/pppoe/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 05 Aug 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/pppoe/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>PPPOE on VirtualBox</title>
       <link>https://chamilad.github.io/post/2014-08-05_pppoe-on-virtualbox/</link>

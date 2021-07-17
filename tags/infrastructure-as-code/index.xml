@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Infrastructure As Code on chamilad.github.io</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Infrastructure As Code on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Jul 2017 11:40:50 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamilad.github.io/tags/infrastructure-as-code/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 03 Jul 2017 11:40:50 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/infrastructure-as-code/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Infrastructure as Code : AWS CloudFormation</title>
       <link>https://chamilad.github.io/post/2017-07-03_infrastructure-as-code-aws-cloudformation/</link>
@@ -18,7 +14,7 @@
       
       <guid>https://chamilad.github.io/post/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
       <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
-  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
+ The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
  Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
     </item>
     

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Visualization on chamilad.github.io</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Visualization on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 May 2018 06:36:59 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamilad.github.io/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 15 May 2018 06:36:59 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Basic Process Metrics Collection and Visualization in Linux</title>
       <link>https://chamilad.github.io/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</link>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.78.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2017",
-      "datePublished": "2017-08-22 09:58:17.886 \x2b0000 UTC",
-      "dateModified" : "2017-08-22 09:58:17.886 \x2b0000 UTC",
+      "datePublished": "2017-08-22 09:58:17.886 \u002b0000 UTC",
+      "dateModified" : "2017-08-22 09:58:17.886 \u002b0000 UTC",
       "url" : "https:\/\/chamilad.github.io\/post\/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence\/",
       "keywords" : [ "Docker","Squash","Containers", ]
   }
@@ -115,44 +115,27 @@ Typically, these layers would be handled in such a way that maximum optimization
 	<hr />
         <h4>Table of Contents:</h4>
 	<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#enable-docker-experimental-mode">Enable Docker Experimental Mode</a></li>
-<li><a href="#building-with-squash-option">Building with Squash Option</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 	<hr />
 	</div>
        </header>
         <div class="post-content markdown-body">
-          
-
-<p>Docker is finally bringing Squash support</p>
-
+          <p>Docker is finally bringing Squash support</p>
 <p>For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use <code>--no-cache</code> flag while building. The layered structure of a Docker image would spook out a beginner.</p>
-
 <p>Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved. However, it’s often the case that overlaying file systems can introduce unnecessary image sizes, especially when the same file system locations are edited in different layers.</p>
-
 <p>To get around the issues of image sizes, there were several recommended workarounds. You’d want to have all the <code>RUN</code> commands in a single instruction. You’d minimize the changes done to the same file locations in different instruction layers. There were even suggestions to copy all the files over a temporary HTTP server in to the Docker image during build time to minimize file changes, and we at WSO2 <a href="https://github.com/wso2-attic/dockerfiles">successfully did that too</a>, for WSO2 Dockerfiles, bringing the image size down the minimum possible with an Ubuntu base image.</p>
-
 <p>However, it quickly became apparent that these workarounds introduce quite a lot of noise to the core concern involving a Dockerfile, which is to build a Docker image from a Dockerfile descriptor. They would constantly require special scripts that do some kind of bootstrapping before the actual Docker build, which made it almost impossible for plain old Docker CLI commands to make use of the Dockerfiles. There was a clear compromise between readable Dockerfiles and size-efficient Dockerfiles. Also, being forced to use <code>--no-cache</code> always was a downer, since incremental builds took more time than actually needed.</p>
-
 <p><strong>Squashing</strong> images used to be a more of a hack-practice, that a lot of third-party tools would be available for. It would basically flatten all the layers by saving the images to a TAR file, and then reload the images. This would, most of the time, lose layer related metadata and would not always be consistent across platforms.</p>
-
 <p>Docker has finally introduced <code>--squash</code> option for the <code>build</code> command in the Experimental features. Having a vendor-supported way to reduce image sizes is a massive relief of a headache, that otherwise would be first part of any Docker related discussion. In most cases there seems to be around 40% reduction in the image sizes, which is not bad for an experimental feature.</p>
-
 <h4 id="enable-docker-experimental-mode">Enable Docker Experimental Mode</h4>
-
 <p>First, verify that Docker Daemon has experimental mode.</p>
-
 <pre><code>$ docker version
 Client:
  Version:      17.05.0-ce
@@ -170,19 +153,12 @@ Server:
  Built:        Thu May  4 22:10:54 2017
  OS/Arch:      linux/amd64
  Experimental: false
-</code></pre>
-
-<p>If <code>Experimental</code> is set to <code>false</code> , we have to enable it in the Daemon and restart it.</p>
-
+</code></pre><p>If <code>Experimental</code> is set to <code>false</code> , we have to enable it in the Daemon and restart it.</p>
 <p>To do this, create the file <code>/etc/docker/daemon.json</code> and add the following content.</p>
-
 <pre><code>{
  “experimental”: true
 }
-</code></pre>
-
-<p>Then restart the Docker Daemon. The experiemental mode should now be set to <code>true</code> .</p>
-
+</code></pre><p>Then restart the Docker Daemon. The experiemental mode should now be set to <code>true</code> .</p>
 <pre><code>$ sudo systemctl restart docker.service
 $ docker version
 Client:
@@ -201,21 +177,12 @@ Server:
  Built:        Thu May  4 22:10:54 2017
  OS/Arch:      linux/amd64
  Experimental: true
-</code></pre>
-
-<h4 id="building-with-squash-option">Building with Squash Option</h4>
-
+</code></pre><h4 id="building-with-squashoption">Building with Squash Option</h4>
 <p>Now, <code>--squash</code> option is available for the <code>docker build</code> command.</p>
-
 <pre><code>docker build --squash -t chamilad/testdocker:0.1 .
-</code></pre>
-
-<p>If you inspect the resulting Docker image using the <code>docker history</code> command, you will see that although the layers are mentioned, their resulting sizes are <code>0B</code> and there is an additional layer with a comment similar to format <code>merge sha256:&lt;hash&gt; to &lt;hash&gt;</code> . This is all the previous layers (up to the parent image) being squashed to one layer. With the Union FS layers out of the question, the unified layer can then be used with less storage for the Docker image layers.</p>
-
-<hr />
-
+</code></pre><p>If you inspect the resulting Docker image using the <code>docker history</code> command, you will see that although the layers are mentioned, their resulting sizes are <code>0B</code> and there is an additional layer with a comment similar to format <code>merge sha256:&lt;hash&gt; to &lt;hash&gt;</code> . This is all the previous layers (up to the parent image) being squashed to one layer. With the Union FS layers out of the question, the unified layer can then be used with less storage for the Docker image layers.</p>
+<hr>
 <p>Written on August 22, 2017 by chamila de alwis.</p>
-
 <p>Originally published on <a href="https://medium.com/@chamilad/docker-image-size-concerns-out-of-the-window-squash-with-confidence-796f7c48f5c6">Medium</a></p>
 
         </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.78.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2019",
-      "datePublished": "2019-11-22 01:05:37 \x2b1300 NZDT",
-      "dateModified" : "2019-11-22 01:05:37 \x2b1300 NZDT",
+      "datePublished": "2019-11-22 01:05:37 \u002b1300 NZDT",
+      "dateModified" : "2019-11-22 01:05:37 \u002b1300 NZDT",
       "url" : "https:\/\/chamilad.github.io\/post\/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash\/",
       "keywords" : [ "K8s","Logging","Logstash","Filebeat","Elasticsearch","Log aggregation","ELKOnK8s", ]
   }
@@ -87,7 +87,7 @@
               <time class="post-date" datetime="2019-11-22 01:05:37 NZDT">
                 22 Nov 2019
 		<p><b>Read time:</b> 6m
-		<br /><b>Word count:</b> 1089</p>
+		<br /><b>Word count:</b> 1076</p>
               </time>
               
            </div>
@@ -121,28 +121,21 @@
 	<hr />
         <h4>Table of Contents:</h4>
 	<nav id="TableOfContents">
-<ul>
-<li><a href="#log-enrichment">Log Enrichment</a>
-<ul>
-<li><a href="#input">Input</a></li>
-<li><a href="#processing">Processing</a></li>
-<li><a href="#output">Output</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#input">Input</a></li>
+    <li><a href="#processing">Processing</a></li>
+    <li><a href="#output">Output</a></li>
+  </ul>
 </nav>
 	<hr />
 	</div>
        </header>
         <div class="post-content markdown-body">
-          
-
-<p><img src="/post/img/2019-11-22_elasticsearch-on-k8s-03_01.jpeg#layoutOutsetCenter" alt="" />
-<figcaption>A stash of sugar cane ready to be processed into sugar and Arrack</figcaption></p>
-
+          <p><img src="/post/img/2019-11-22_elasticsearch-on-k8s-03_01.jpeg#layoutOutsetCenter" alt=""></p>
+<!-- raw HTML omitted -->
 <blockquote>
 <p>This is part of a series of short articles on setting up an ELK deployment on K8s.</p>
 </blockquote>
-
 <ol>
 <li><a href="/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a">ElasticSearch on K8s: 01 — Basic Design</a></li>
 <li><a href="/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/">ElasticSearch on K8s: 02 — Log Collection with Filebeat</a></li>
@@ -154,46 +147,28 @@
 <li><a href="/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</a></li>
 <li><a href="/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/">Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</a></li>
 </ol>
-
 <h1 id="log-enrichment">Log Enrichment</h1>
-
 <p>Now that the logs are being collected from the required sources, it’s time to start making some sense out of them. This part of the process is called enrichment, and Logstash is the tool of choice in our stack.</p>
-
 <p>In brief, Logstash is a customizable pipeline that each incoming event goes through. A pipeline contains some kind of an <em>input</em> that gets <em>processed</em> to be sent away to an <em>output</em>.</p>
-
 <h2 id="input">Input</h2>
-
 <p>A pipeline can have different types of <strong>input</strong> plugins defined. This could be <code>file</code>, <code>s3</code>, or <code>http</code> <a href="https://www.elastic.co/guide/en/logstash/current/input-plugins.html">among other things</a>. <code>beats</code> is the type of input that we are interested in this use case, that will allow our Filebeat agents to push collected logs to Logstash. Defining an input for <code>beats</code> opens up a port on the host that Logstash is running on so that Filebeat agents are able to connect to that port and send over the logs.</p>
-
 <pre><code>input {
   beats {
     port =&gt; 5044
   }
 }
-</code></pre>
-
-<p>If you refer to the <a href="/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/">last post of this series on Filebeat</a>, you can see that the Filebeat configuration defines a Logstash URL as the output. In the URL the port used is <code>5044</code>. This is the port opened by the Logstash <code>input.beats</code> section as configured above.</p>
-
+</code></pre><p>If you refer to the <a href="/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/">last post of this series on Filebeat</a>, you can see that the Filebeat configuration defines a Logstash URL as the output. In the URL the port used is <code>5044</code>. This is the port opened by the Logstash <code>input.beats</code> section as configured above.</p>
 <h2 id="processing">Processing</h2>
-
 <p>Log events coming through these inputs are then fed into a pipeline of <strong>filters</strong>. These filters can modify, delete, clone, or hold (throttle) the log event based on the parameters provided in the filter configuration. The most important of these filters is the <code>grok</code> filter where the incoming log message could be split up to meaningful fields to make sense out of later.</p>
-
 <p>For an example, consider the following log line produced by an Nginx Pod.</p>
-
 <pre><code>172.17.0.1 - - [23/Oct/2019:09:01:52 +0000] &quot;GET / HTTP/1.1&quot; 200 612 &quot;-&quot; &quot;curl/7.64.0&quot; &quot;-&quot;
-</code></pre>
-
-<p>The whole entry has a few meaningful pieces of information huddled together. These are,</p>
-
+</code></pre><p>The whole entry has a few meaningful pieces of information huddled together. These are,</p>
 <pre><code>log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '
                   '$status $body_bytes_sent &quot;$http_referer&quot; '
                   '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;';
 
 access_log  /var/log/nginx/access.log  main;
-</code></pre>
-
-<p>This format is the default format specified in the Nginx configuration shipped as a <a href="https://hub.docker.com/_/nginx?tab=tags&amp;page=1&amp;name=1.7.9">Docker image tagged <code>1.7.9</code></a>. We can see that the fields in a single log line are,</p>
-
+</code></pre><p>This format is the default format specified in the Nginx configuration shipped as a <a href="https://hub.docker.com/_/nginx?tab=tags&amp;page=1&amp;name=1.7.9">Docker image tagged <code>1.7.9</code></a>. We can see that the fields in a single log line are,</p>
 <ol>
 <li>remote address - <code>172.17.0.1</code></li>
 <li><strong>-</strong> - <code>-</code></li>
@@ -206,17 +181,13 @@ access_log  /var/log/nginx/access.log  main;
 <li>&ldquo;user agent&rdquo; - <code>&quot;curl/7.64.0&quot;</code></li>
 <li>&ldquo;x-forwarded-for&rdquo; original sender (if sent through proxy) - <code>&quot;-&quot;</code></li>
 </ol>
-
 <p>Given the understanding of the log format, we can instruct Logstash to extract the fields out of each Nginx log line.</p>
-
 <p>How this happens is through the use of the <code>grok</code> filter. A pattern to match is given to <code>grok</code> that will try its best to parse the given line. The result is a map of values where keys are fields in the pattern provided to the <code>grok</code> filter, and the values are the matched values in the log line.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-grok" data-lang="grok">%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] &#34;(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})&#34; %{NUMBER:response} (?:%{NUMBER:bytes}|-)</code></pre></div>
-<blockquote>
+<pre><code class="language-grok" data-lang="grok">%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] &quot;(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})&quot; %{NUMBER:response} (?:%{NUMBER:bytes}|-)
+</code></pre><blockquote>
 <p>The above pattern is a direct copy and paste from the <a href="https://github.com/logstash-plugins/logstash-patterns-core/blob/master/patterns/grok-patterns">grok patterns shipped by default with Logstash</a>. What&rsquo;s interesting is that each type above is a redefinition of a more simple set of types. And the combination of above types can be referenced by one type called <code>COMBINEDAPACHELOG</code></p>
 </blockquote>
-
 <p>Since all sorts of logs generated by different Pods could be fed through Filebeat, we can instruct Logstash to only apply the <code>grok</code> filter to the log events originating from Nginx Pods. We can do this since before publishing the log event, Filebeat has already enriched it with K8s metadata. We can conditionally apply the <code>grok</code> pattern only if <code>kubernetes.labels.app</code> is equal to <code>nginx</code> (given that the Nginx Pod has a label <code>app</code> with the value <code>nginx</code> ).</p>
-
 <pre><code>filter {
   if &quot;nginx&quot; in [kubernetes][labels][app] {
     grok {
@@ -226,28 +197,18 @@ access_log  /var/log/nginx/access.log  main;
     } 
   }
 }
-</code></pre>
-
-<h2 id="output">Output</h2>
-
+</code></pre><h2 id="output">Output</h2>
 <p>After the enrichment of the events is done, they can be pushed off to storage (which is ElasticSearch in our stack). Reaching ElasticSearch is also done using a K8s Service that can be addressed just by name or the FQDN if Logstash and Elasticsearch are not colocated on the same Namespace.</p>
-
 <p>The configuration for the output is specified on the <strong>output</strong> section of the Logstash configuration. Once again, there are different output plugins, but the one we are interested is <code>elasticsearch</code>.</p>
-
 <pre><code>output {
   elasticsearch {
     hosts =&gt; [&quot;elasticsearch:9200&quot;]
     index =&gt; &quot;logstash-%{+YYYY.MM.dd}-%{[kubernetes][namespace]}&quot;
   }
 }
-</code></pre>
-
-<p>In the above <code>output.elasticsearch</code> configuration, we are making use of the logstash interpolation functions to send logs from different sources to different indices (let&rsquo;s discuss what indices are on the next post on this series). Using the configuration option <code>index</code> we are instructing logstash to push logs to indices named based on the date and the K8s Namespace value (which is forwarded by the Filebeat metadata processor). This functionality is most useful especially where in a K8s setup, we could implement some kind of tenancy based data segregation by sending logs from different K8s Namespaces to different ElasticSearch indices.</p>
-
-<p><img src="/post/img/draft__clipboard_3.png#layoutTextWidth" alt="" /></p>
-
+</code></pre><p>In the above <code>output.elasticsearch</code> configuration, we are making use of the logstash interpolation functions to send logs from different sources to different indices (let&rsquo;s discuss what indices are on the next post on this series). Using the configuration option <code>index</code> we are instructing logstash to push logs to indices named based on the date and the K8s Namespace value (which is forwarded by the Filebeat metadata processor). This functionality is most useful especially where in a K8s setup, we could implement some kind of tenancy based data segregation by sending logs from different K8s Namespaces to different ElasticSearch indices.</p>
+<p><img src="/post/img/draft__clipboard_3.png#layoutTextWidth" alt=""></p>
 <p>In terms of scheduling the Logstash processes, a standard Deployment could be used to schedule Pods of Logstash throughout the K8s cluster. However, a Deployment will not be suitable for production level tuning that will have to be done at the Logstash level in the future.</p>
-
 <blockquote>
 <p>You might have noticed that we have used a StatefulSet with persistence instead of a Deployment in the above diagram. Why this is, has to do with fault tolerance requirements production deployments may have. This is discussed in detail in the last section of this article, where the basic setup has to be modified in order to withstand production level loads.</p>
 </blockquote>

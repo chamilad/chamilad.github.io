@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Squash on chamilad.github.io</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Squash on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Aug 2017 09:58:17 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamilad.github.io/tags/squash/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 22 Aug 2017 09:58:17 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/squash/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker Image Size Concerns Out of the Window — Squash with Confidence</title>
       <link>https://chamilad.github.io/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</link>

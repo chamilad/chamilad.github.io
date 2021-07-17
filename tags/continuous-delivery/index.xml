@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Continuous Delivery on chamilad.github.io</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Continuous Delivery on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 25 Nov 2018 03:47:20 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamilad.github.io/tags/continuous-delivery/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 25 Nov 2018 03:47:20 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/continuous-delivery/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CI/CD APIs with WSO2 API Manager</title>
       <link>https://chamilad.github.io/post/2018-11-25_cicd-apis-with-wso2-api-manager/</link>

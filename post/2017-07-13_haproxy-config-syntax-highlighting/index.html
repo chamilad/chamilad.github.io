@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.78.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "post",
       "name" : "HAProxy Config Syntax Highlighting",
       "headline" : "HAProxy Config Syntax Highlighting",
-      "description" : "A brief post on getting this done on Atom and Vim.\nAtom Just install language-haproxy Atom plugin through either Atom UI or apm .\napm install language-haproxy  When opening an haproxy.cfg file, Atom will detect and highlight accordingly.\nVim Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from VimAwesome. To enable this, just clone the Github repository, copy the .",
+      "description" : "A brief post on getting this done on Atom and Vim.\nAtom Just install language-haproxy Atom plugin through either Atom UI or apm .\napm install language-haproxy When opening an haproxy.cfg file, Atom will detect and highlight accordingly.\nVim Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from VimAwesome. To enable this, just clone the Github repository, copy the .vim file inside syntax\/ folder to $HOME\/.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2017",
-      "datePublished": "2017-07-13 05:26:55.729 \x2b0000 UTC",
-      "dateModified" : "2017-07-13 05:26:55.729 \x2b0000 UTC",
+      "datePublished": "2017-07-13 05:26:55.729 \u002b0000 UTC",
+      "dateModified" : "2017-07-13 05:26:55.729 \u002b0000 UTC",
       "url" : "https:\/\/chamilad.github.io\/post\/2017-07-13_haproxy-config-syntax-highlighting\/",
       "keywords" : [ "Vim","Atom","Haproxy","Syntax", ]
   }
@@ -38,8 +38,8 @@
   <meta property="og:type" content="article" />
   <meta name="description" content="A brief post on getting this done on Atom and Vim.
 Atom Just install language-haproxy Atom plugin through either Atom UI or apm .
-apm install language-haproxy  When opening an haproxy.cfg file, Atom will detect and highlight accordingly.
-Vim Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from VimAwesome. To enable this, just clone the Github repository, copy the ." />
+apm install language-haproxy When opening an haproxy.cfg file, Atom will detect and highlight accordingly.
+Vim Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from VimAwesome. To enable this, just clone the Github repository, copy the .vim file inside syntax/ folder to $HOME/." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -118,61 +118,35 @@ Vim Syntax highlighting in Vim for HAProxy configuration has been available for 
 	<hr />
         <h4>Table of Contents:</h4>
 	<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#atom">Atom</a></li>
-<li><a href="#vim">Vim</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 	<hr />
 	</div>
        </header>
         <div class="post-content markdown-body">
-          
-
-<p>A brief post on getting this done on Atom and Vim.</p>
-
+          <p>A brief post on getting this done on Atom and Vim.</p>
 <h4 id="atom">Atom</h4>
-
 <p>Just install <code>language-haproxy</code> Atom plugin through either Atom UI or <code>apm</code> .</p>
-
 <pre><code>apm install language-haproxy
-</code></pre>
-
-<p>When opening an <code>haproxy.cfg</code> file, Atom will detect and highlight accordingly.</p>
-
-<p><img src="/post/img/2017-07-13_haproxy-config-syntax-highlighting_0.png#layoutTextWidth" alt="" /></p>
-
+</code></pre><p>When opening an <code>haproxy.cfg</code> file, Atom will detect and highlight accordingly.</p>
+<p><img src="/post/img/2017-07-13_haproxy-config-syntax-highlighting_0.png#layoutTextWidth" alt=""></p>
 <h4 id="vim">Vim</h4>
-
 <p>Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from <a href="http://vimawesome.com/plugin/haproxy">VimAwesome</a>. To enable this, just clone the Github repository, copy the <code>.vim</code> file inside <code>syntax/</code> folder to <code>$HOME/.vim/syntax</code> .</p>
-
 <pre><code>git clone https://github.com/vim-scripts/haproxy.git
 mkdir -p $HOME/.vim/syntax 
 cp haproxy/syntax/haproxy.vim $HOME/.vim/syntax/
-</code></pre>
-
-<p>Now add the following line to <code>$HOME/.vimrc</code> .</p>
-
+</code></pre><p>Now add the following line to <code>$HOME/.vimrc</code> .</p>
 <pre><code>au BufRead,BufNewFile haproxy* set ft=haproxy
-</code></pre>
-
-<p>Now you should be able to see syntax highlighting enabled for HAProxy configuration files in Vim.</p>
-
-<p><img src="/post/img/2017-07-13_haproxy-config-syntax-highlighting_1.png#layoutTextWidth" alt="" /></p>
-
-<hr />
-
+</code></pre><p>Now you should be able to see syntax highlighting enabled for HAProxy configuration files in Vim.</p>
+<p><img src="/post/img/2017-07-13_haproxy-config-syntax-highlighting_1.png#layoutTextWidth" alt=""></p>
+<hr>
 <p>Written on July 13, 2017 by chamila de alwis.</p>
-
 <p>Originally published on <a href="https://medium.com/@chamilad/haproxy-config-syntax-highlighting-987fd9ca56be">Medium</a></p>
 
         </div>

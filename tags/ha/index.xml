@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ha on chamilad.github.io</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Ha on chamilad.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Nov 2015 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamilad.github.io/tags/ha/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 17 Nov 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/ha/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creating a Simple ActiveMQ Master/Slave Setup</title>
       <link>https://chamilad.github.io/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/</link>

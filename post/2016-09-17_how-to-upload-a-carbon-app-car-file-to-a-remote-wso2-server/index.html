@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.78.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "post",
       "name" : "How to Upload a Carbon App (CAR File) to a Remote WSO2 Server",
       "headline" : "How to Upload a Carbon App (CAR File) to a Remote WSO2 Server",
-      "description" : "Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints.",
+      "description" : "Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2016",
-      "datePublished": "2016-09-17 00:49:13.356 \x2b0000 UTC",
-      "dateModified" : "2016-09-17 00:49:13.356 \x2b0000 UTC",
+      "datePublished": "2016-09-17 00:49:13.356 \u002b0000 UTC",
+      "dateModified" : "2016-09-17 00:49:13.356 \u002b0000 UTC",
       "url" : "https:\/\/chamilad.github.io\/post\/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server\/",
       "keywords" : [ "Wso2","Carbonapp","Adminservice","Wsdl","Continuous Integration", ]
   }
@@ -36,7 +36,7 @@
 <title>How to Upload a Carbon App (CAR File) to a Remote WSO2 Server - chamilad.github.io</title>
   <meta property="og:title" content="How to Upload a Carbon App (CAR File) to a Remote WSO2 Server - chamilad.github.io" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints." />
+  <meta name="description" content="Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -87,7 +87,7 @@
               <time class="post-date" datetime="2016-09-17 00:49:13 UTC">
                 17 Sep 2016
 		<p><b>Read time:</b> 7m
-		<br /><b>Word count:</b> 1345</p>
+		<br /><b>Word count:</b> 1340</p>
               </time>
               
            </div>
@@ -117,34 +117,26 @@
 	<hr />
         <h4>Table of Contents:</h4>
 	<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#service-definition">Service Definition</a></li>
-<li><a href="#soapui-requests">SoapUI Requests</a></li>
-<li><a href="#attaching-the-car-file">Attaching the CAR File</a></li>
-<li><a href="#authentication">Authentication</a></li>
-<li><a href="#upload-the-car-file">Upload the CAR File</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#service-definition">Service Definition</a></li>
+        <li><a href="#soapui-requests">SoapUI Requests</a></li>
+        <li><a href="#attaching-the-carfile">Attaching the CAR File</a></li>
+        <li><a href="#authentication">Authentication</a></li>
+        <li><a href="#upload-the-carfile">Upload the CAR File</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 	<hr />
 	</div>
        </header>
         <div class="post-content markdown-body">
-          
-
-<p>Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.</p>
-
-<p>A Carbon App can be deployed on a WSO2 Server using different methods, however all those methods end up copying the CAR file to <strong><CARBON_HOME>/repository/deployment/server/carbonapps</strong> folder. A continuous watcher that checks for content changes inside this folder would decompress the CAR file and execute respective deployers based on the artifact type (defined in the meta file <strong>artifact.xml</strong>).</p>
-
+          <p>Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.</p>
+<p>A Carbon App can be deployed on a WSO2 Server using different methods, however all those methods end up copying the CAR file to <strong>&lt;CARBON_HOME&gt;/repository/deployment/server/carbonapps</strong> folder. A continuous watcher that checks for content changes inside this folder would decompress the CAR file and execute respective deployers based on the artifact type (defined in the meta file <strong>artifact.xml</strong>).</p>
 <p>So, if the target server is a <strong>localhost</strong>, it’s just a simple matter of copying the CAR file to the above location. However, things get a little complicated when the target server doesn’t provide shell access.</p>
-
 <p>WSO2 Carbon exposes a set of administrative services that act as a SOAP based API to interact with the particular WSO2 Server. If the OSGi Console is enabled (by setting <strong>osgiConsole</strong> System Property), the total list of admin services can be displayed by issuing <strong>listAdminServices</strong> command on the OSGi prompt. For example, the list of admin services exposed in an ESB 4.9.0 server can be found out as follows.</p>
-
 <pre><code>./wso2server.sh -DosgiConsole 
 JAVA_HOME environment variable is set to /home/chamilad/dev/java/jdk1.8.0_77
 CARBON_HOME environment variable is set to /home/chamilad/dev/wso2esb-4.9.0
@@ -242,91 +234,51 @@ Admin services deployed on this server:
 75. DiscoveryAdmin, DiscoveryAdmin, https://chamilad-ubuntu:8243/services/DiscoveryAdmin 
 76. FileUploadService, FileUploadService, https://chamilad-ubuntu:8243/services/FileUploadService 
 77. ClassMediatorAdmin, ClassMediatorAdmin, https://chamilad-ubuntu:8243/services/ClassMediatorAdmin
-</code></pre>
-
-<blockquote>
+</code></pre><blockquote>
 <p>Although all admin services are listed here, some of those are not exposed by default, and some do not have authorization parameters set. Therefore, those are blocked from being accessed. If these need to be desperately accessed follow {future blog post} steps.</p>
 </blockquote>
-
-<p><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_0.png#layoutTextWidth" alt="" /></p>
-
+<p><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_0.png#layoutTextWidth" alt=""></p>
 <p>Getting back to the topic, one of the admin services in this list is of interest to us. Using the service <strong>CarbonAppUploader,</strong> CAR files can be uploaded to the respective server. Let’s try this scenario using SoapUI for WSO2 ESB 4.9.0.</p>
-
 <h3 id="service-definition">Service Definition</h3>
-
 <p>To call the CarbonAppUploader admin service, we have to create the clients from its WSDL. By default, the WSDLs of the admin services are hidden. If you don’t have any control over the server in question, or it cannot be restarted for reasons of service disruption, I’ve added the <a href="https://gist.github.com/chamilad/7fe796bfa9773496bddeaefaec16c302">WSDL as a Gist</a>. After downloading, replace <strong>server-host-or-ip</strong> with the hostname or the IP address of the ESB server.</p>
-
-<p>If you have some control over the server, where you can restart the ESB server, you can directly obtain the WSDL from the server. First disable the setting that hides the WSDLs by default, by setting <strong>HideAdminServiceWSDLs</strong> to <strong>false</strong> in <strong><CARBON_HOME>/repository/conf/carbon.xml</strong>.</p>
-
+<p>If you have some control over the server, where you can restart the ESB server, you can directly obtain the WSDL from the server. First disable the setting that hides the WSDLs by default, by setting <strong>HideAdminServiceWSDLs</strong> to <strong>false</strong> in <strong>&lt;CARBON_HOME&gt;/repository/conf/carbon.xml</strong>.</p>
 <pre><code>&lt;HideAdminServiceWSDLs&gt;false&lt;/HideAdminServiceWSDLs&gt;
-</code></pre>
-
-<p>After this you will able to obtain the WSDL of a service by appending <strong>?wsdl</strong> to the end of the Service URL. For example, the WSDL of the CarbonAppUpload service of a locally run ESB server will be at the following location.</p>
-
+</code></pre><p>After this you will able to obtain the WSDL of a service by appending <strong>?wsdl</strong> to the end of the Service URL. For example, the WSDL of the CarbonAppUpload service of a locally run ESB server will be at the following location.</p>
 <pre><code>https://localhost:8243/services/CarbonAppUploader?wsdl
-</code></pre>
-
-<blockquote>
+</code></pre><blockquote>
 <p>Notice the port mentioned in the above URL, <strong>8243</strong>, and in the resulting WSDL, is different from the port that I have included in the <a href="https://gist.github.com/chamilad/7fe796bfa9773496bddeaefaec16c302">WSDL in the Gist above</a>? This is to do with the difference between the <a href="https://docs.wso2.com/display/ESB500/Default+Ports+of+WSO2+Products"><strong>Servlet ports</strong> and the <strong>Synapse Mediation port</strong></a><strong>s</strong>. Because Synapse accepts mediation through (by default) port 8243, the WSDL is shown on it. However the admin services are available through the Servlet port, <strong>9443</strong>.</p>
 </blockquote>
-
 <h3 id="soapui-requests">SoapUI Requests</h3>
-
 <p>Having obtained the WSDL, let’s proceed to create a SoapUI request from it.</p>
-
 <p>Open SoapUI and create a new SOAP Project (<strong>File</strong> -&gt; <strong>New SOAP Project</strong>). Provide the WSDL file (or the above <strong>?wsdl</strong> URL). Check <strong>Create Requests</strong> so that SoapUI will create sample requests for the operations in the WSDL.</p>
-
-<figure><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_1.png#layoutTextWidth"><figcaption>New SOAP Project</figcaption></figure>
-
+<!-- raw HTML omitted -->
 <p>Click <strong>Ok</strong> and you will see the set of operations (in CarbonAppUploader, there is one operation, <strong>uploadApp</strong>) created in the SoapUI Project view.</p>
-
-<p><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_2.png#layoutTextWidth" alt="" /></p>
-
+<p><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_2.png#layoutTextWidth" alt=""></p>
 <p>Open <strong>Request1</strong> under <strong>CarbonAppUploaderSoap11Binding.uploadApp</strong> and you will see the already created Soap Envelope with <strong>?</strong> as a placeholder for values. For the <strong>uploadApp</strong> operation three inputs are needed.</p>
-
 <ol>
 <li><strong>dataHandler</strong> — Base64 binary encoded file content</li>
 <li><strong>fileName</strong> — File name of the CAR file</li>
 <li><strong>fileType</strong> — File compression, only the value “jar” is supported</li>
 </ol>
-
 <blockquote>
 <p>The port confusion comes in to play again. If you loaded the WSDL from the remote URL with 8243, you will have to change the port in the request from 8243 to <strong>9443</strong>.</p>
 </blockquote>
-
-<h3 id="attaching-the-car-file">Attaching the CAR File</h3>
-
+<h3 id="attaching-the-carfile">Attaching the CAR File</h3>
 <p>We need to serialize the CAR file as a base64 encoded string and add it in the SOAP request. SoapUI provides this functionality as Attachments.</p>
-
 <p>On the request, click on <strong>Attachments</strong>, and then add CAR file as an attachment. Navigate to the CAR file and select it. Select <strong>No</strong> to cache the attachment, as I found it to sometimes upload the file in an incomplete manner.</p>
-
-<p><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_3.png#layoutTextWidth" alt="" /></p>
-
+<p><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_3.png#layoutTextWidth" alt=""></p>
 <p>Copy the value in the <strong>ContentID</strong>. This, along with the <strong>cid:</strong> prefix, has to be added as the <strong>dataHandler</strong> in the request.</p>
-
 <p>After the attachment is done, the request will look like the following.</p>
-
-<p><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_4.png#layoutOutsetCenter" alt="" /></p>
-
+<p><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_4.png#layoutOutsetCenter" alt=""></p>
 <p>In addition to adding the attachment, <a href="http://axis.apache.org/axis2/java/core/docs/mtom-guide.html"><strong>MTOM</strong></a> has to be enabled in the request. This has to be done through setting <strong>Enable MTOM</strong> to true in the request properties.</p>
-
 <h3 id="authentication">Authentication</h3>
-
 <p>Click on <strong>Auth</strong> tab and add basic authentication to the request.</p>
-
-<p><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_5.png#layoutTextWidth" alt="" /><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_6.png#layoutTextWidth" alt="" /></p>
-
-<h3 id="upload-the-car-file">Upload the CAR File</h3>
-
+<p><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_5.png#layoutTextWidth" alt=""><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_6.png#layoutTextWidth" alt=""></p>
+<h3 id="upload-the-carfile">Upload the CAR File</h3>
 <p>We are all done now. What’s left is to just go ahead and make the SOAP request. The file will be uploaded, and a response will be returned, with the status of the upload. After a maximum of one minute, the Carbon App will be processed and the artifacts will be deployed.</p>
-
-<p><figure><img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_7.png#layoutFillWidth"><figcaption>Upload Successful!</figcaption></figure>
-<img src="/post/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_8.png#layoutFillWidth" alt="" /></p>
-
-<hr />
-
+<!-- raw HTML omitted -->
+<hr>
 <p>Written on September 17, 2016 by chamila de alwis.</p>
-
 <p>Originally published on <a href="https://medium.com/@chamilad/how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server-e323447a99ce">Medium</a></p>
 
         </div>

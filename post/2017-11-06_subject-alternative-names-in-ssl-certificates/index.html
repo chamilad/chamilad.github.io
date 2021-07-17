@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.78.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2017",
-      "datePublished": "2017-11-06 14:26:50.449 \x2b0000 UTC",
-      "dateModified" : "2017-11-06 14:26:50.449 \x2b0000 UTC",
+      "datePublished": "2017-11-06 14:26:50.449 \u002b0000 UTC",
+      "dateModified" : "2017-11-06 14:26:50.449 \u002b0000 UTC",
       "url" : "https:\/\/chamilad.github.io\/post\/2017-11-06_subject-alternative-names-in-ssl-certificates\/",
       "keywords" : [ "Ssl","X509","AWS","Subject Alternative Name","DNS", ]
   }
@@ -117,7 +117,7 @@
  	<div class="toc">
 	<hr />
         <h4>Table of Contents:</h4>
-	
+	<nav id="TableOfContents"></nav>
 	<hr />
 	</div>
        </header>
@@ -125,57 +125,34 @@
           <blockquote>
 <p>Or the SSL Cert Extension that saves your back during development</p>
 </blockquote>
-
 <p>I recently wrote an article on <a href="/adding-a-self-signed-ssl-certificate-to-aws-acm-88a123a04301">how to generate and upload a self-signed SSL Certificate</a> to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</p>
-
 <p><strong>Subject Alternative Name</strong>, or <strong>SAN</strong>, allows to specify a list of hostnames, IP addresses, and other common names, addition to the Common Name (<strong>CN</strong>) field specified in the certificate. If the SAN field is populated and if the CN hostname verification during the SSL Certificate verification, the values in the SAN field are matched against the hostname. This is where the flexibility of the SAN field becomes evident.</p>
-
 <p>Suppose you’re using an AWS ELB to front your cluster of servers, and perform SSL termination at the ELB. In this case, the public DNS name of the ELB would be of the format <code>elb-name.region.elb.amazonaws.com</code> . Out of this format, the latter part <code>region.elb.amazonaws.com</code> is fairly constant (as long as you don’t start expanding to different regions).</p>
-
 <p>If you’re frequently recreating ELBs, the public DNS name would also change. If you use CN as the only hostname verification mechanism, you would have to regenerate the certificate every time a new ELB is created.</p>
-
 <p>You can instead specify the pattern <code>*.region.elb.amazonaws.com</code> as a SAN field while generating the certificate and upload it to ACM to be used in every HTTPS listener in the newly created ELBs.</p>
-
 <p>To specify the SAN fields while generating a self-signed certificate with OpenSSL, the parameter <code>-extensions</code> has to be used. In short, the commands to follow are,</p>
-
 <ol>
-<li><p>Generate the private key</p>
-
-<pre><code>openssl genrsa 2048 &gt; private.key
-</code></pre></li>
-
-<li><p>Generate the self-signed certificate with SAN fields</p>
-
-<pre><code>openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key private.key -extensions SAN -config &lt;(cat /etc/ssl/openssl.cnf &lt;(printf &quot;[SAN]\nsubjectAltName=DNS:*.us-east-1.elb.amazonaws.com,DNS:*.dev.acme.org&quot;)) &gt; public.crt
-</code></pre></li>
-
-<li><p>Upload to AWS ACM</p>
-
-<pre><code>aws acm import-certificate --certificate file://public.crt --private-key file://private.key --region us-east-1
-</code></pre></li>
+<li>Generate the private key</li>
 </ol>
-
-<p>After generating the certificate with the SAN fields, you can check if your command succeeded by looking at the certificate. To do this execute the following command.</p>
-
+<pre><code>openssl genrsa 2048 &gt; private.key
+</code></pre><ol start="2">
+<li>Generate the self-signed certificate with SAN fields</li>
+</ol>
+<pre><code>openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key private.key -extensions SAN -config &lt;(cat /etc/ssl/openssl.cnf &lt;(printf &quot;[SAN]\nsubjectAltName=DNS:*.us-east-1.elb.amazonaws.com,DNS:*.dev.acme.org&quot;)) &gt; public.crt
+</code></pre><ol start="3">
+<li>Upload to AWS ACM</li>
+</ol>
+<pre><code>aws acm import-certificate --certificate file://public.crt --private-key file://private.key --region us-east-1
+</code></pre><p>After generating the certificate with the SAN fields, you can check if your command succeeded by looking at the certificate. To do this execute the following command.</p>
 <pre><code>openssl x509 -in public.crt -noout -text
-</code></pre>
-
-<p>You will see an output similar to the following.</p>
-
-<p><img src="/post/img/2017-11-06_subject-alternative-names-in-ssl-certificates_0.png#layoutOutsetCenter" alt="" /></p>
-
+</code></pre><p>You will see an output similar to the following.</p>
+<p><img src="/post/img/2017-11-06_subject-alternative-names-in-ssl-certificates_0.png#layoutOutsetCenter" alt=""></p>
 <p>According to the above output, <code>public.crt</code> certificate will validate to any ELB created in the <code>us-east-1</code> region, along with any subdomain created under <code>dev.acme.org</code> .</p>
-
 <p>There’s one fact to remember about the use of wild cards in the SAN fields though. You can only use wild cards to match a single level of variation.</p>
-
 <p>In other words, the above certificate will validate <code>project1.dev.acme.org</code> while <code>sub.project1.dev.acme.org</code> will not match.</p>
-
 <p>While it’s rather a trivial task to generate a self-signed certificate (or even an authorized certificate online), repeating it every time your <a href="/infrastructure-as-code-aws-cloudformation-d5f4945fdb27">CloudFormation script runs</a>, is going to be a headache. This is where the SAN extension becomes valuable.</p>
-
-<hr />
-
+<hr>
 <p>Written on November 6, 2017 by chamila de alwis.</p>
-
 <p>Originally published on <a href="https://medium.com/@chamilad/subject-alternative-names-in-ssl-certificates-1bfc4f747b00">Medium</a></p>
 
         </div>
