@@ -3,12 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://chamilad.github.io/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</loc>
-    <lastmod>2020-03-14T13:37:33+13:00</lastmod>
+    <loc>https://chamilad.github.io/tags/apache-nifi/</loc>
+    <lastmod>2021-07-17T13:21:12+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/bigdata/</loc>
+    <lastmod>2021-07-17T13:21:12+12:00</lastmod>
   </url>
   
   <url>
     <loc>https://chamilad.github.io/</loc>
+    <lastmod>2021-07-17T13:21:12+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</loc>
+    <lastmod>2021-07-17T13:21:12+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/data-transformation/</loc>
+    <lastmod>2021-07-17T13:21:12+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/esb/</loc>
+    <lastmod>2021-07-17T13:21:12+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/</loc>
+    <lastmod>2021-07-17T13:21:12+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/tags/</loc>
+    <lastmod>2021-07-17T13:21:12+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamilad.github.io/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</loc>
     <lastmod>2020-03-14T13:37:33+13:00</lastmod>
   </url>
   
@@ -33,17 +68,7 @@
   </url>
   
   <url>
-    <loc>https://chamilad.github.io/post/</loc>
-    <lastmod>2020-03-14T13:37:33+13:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://chamilad.github.io/tags/prometheus/</loc>
-    <lastmod>2020-03-14T13:37:33+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/</loc>
     <lastmod>2020-03-14T13:37:33+13:00</lastmod>
   </url>
   
@@ -439,11 +464,6 @@
   
   <url>
     <loc>https://chamilad.github.io/tags/caching/</loc>
-    <lastmod>2019-10-19T18:15:04+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamilad.github.io/tags/esb/</loc>
     <lastmod>2019-10-19T18:15:04+13:00</lastmod>
   </url>
   
