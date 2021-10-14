@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ha on chamilad.github.io</title>
-    <link>https://chamilad.github.io/tags/ha/</link>
-    <description>Recent content in Ha on chamilad.github.io</description>
+    <title>Ha on blog.chamila.dev</title>
+    <link>https://blog.chamila.dev/tags/ha/</link>
+    <description>Recent content in Ha on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Nov 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/ha/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Nov 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/ha/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creating a Simple ActiveMQ Master/Slave Setup</title>
-      <link>https://chamilad.github.io/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/</link>
+      <link>https://blog.chamila.dev/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/</link>
       <pubDate>Tue, 17 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/</guid>
+      <guid>https://blog.chamila.dev/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/</guid>
       <description>ActiveMQ is a high performing message broker, however if clustering is needed, it supports a number of methods. Out of these, the Master/Slave is a pattern where the persistence layer is shared between multiple broker instances. A Single Master broker connects to the persistence, and the rest of the Slave brokers keep waiting to attain the lock on the persistence. If the Master node goes down the lock for the persistence is released and a Slave quickly acquires it, allowing a client to continue operation without any data loss.</description>
     </item>
     

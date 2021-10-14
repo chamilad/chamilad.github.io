@@ -7,14 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="https://chamilad.github.io/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/" />
-  <link rel="canonical" href="https://chamilad.github.io/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/" /><script type="application/ld+json">
+  <meta property="og:url" content="https://blog.chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/" />
+  <link rel="canonical" href="https://blog.chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/" /><script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https:\/\/chamilad.github.io\/"
+           "@id": "https:\/\/blog.chamila.dev\/"
       },
       "articleSection" : "post",
       "name" : "Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment",
@@ -29,12 +29,12 @@
       "copyrightYear" : "2020",
       "datePublished": "2020-02-10 20:26:46 \u002b1300 NZDT",
       "dateModified" : "2020-02-10 20:26:46 \u002b1300 NZDT",
-      "url" : "https:\/\/chamilad.github.io\/post\/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment\/",
+      "url" : "https:\/\/blog.chamila.dev\/post\/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment\/",
       "keywords" : [ "K8s","Logging","ElasticSearch","Logstash","Log aggregation","Authentication","Authorization","KeyCloak","Single Sign On","Multitenancy","Roles", ]
   }
 </script>
-<title>Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment - chamilad.github.io</title>
-  <meta property="og:title" content="Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment - chamilad.github.io" />
+<title>Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment - blog.chamila.dev</title>
+  <meta property="og:title" content="Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment - blog.chamila.dev" />
   <meta property="og:type" content="article" />
   <meta name="description" content="This is a continuation of the addendum to a series of articles on ELK on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  As discussed in the last article, I will try to lay out the configuration details of a usable SSO based authn/authr design for an ELK deployment." />
@@ -44,7 +44,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamilad.github.io">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="blog.chamila.dev">
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
   
@@ -68,7 +68,7 @@
           
 <header>
   <div class="signatures site-title">
-    <a href="https://chamilad.github.io/">chamilad.github.io</a>
+    <a href="https://blog.chamila.dev/">blog.chamila.dev</a>
    
   </div>
 </header>
@@ -279,12 +279,12 @@
 	<div class="prev-next row">
 	<div class="prev col-sm">
 	
-	<a href="https://chamilad.github.io/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/">&lt; Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</a>
+	<a href="https://blog.chamila.dev/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/">&lt; Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</a>
 		
 	</div>        
 	<div class="next col-sm">
 	
-	<a href="https://chamilad.github.io/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/">Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana &gt;</a>
+	<a href="https://blog.chamila.dev/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/">Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana &gt;</a>
 		
 	</div>
 </div>

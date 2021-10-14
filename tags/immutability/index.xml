@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Immutability on chamilad.github.io</title>
-    <link>https://chamilad.github.io/tags/immutability/</link>
-    <description>Recent content in Immutability on chamilad.github.io</description>
+    <title>Immutability on blog.chamila.dev</title>
+    <link>https://blog.chamila.dev/tags/immutability/</link>
+    <description>Recent content in Immutability on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 May 2018 08:19:19 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/immutability/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 May 2018 08:19:19 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/immutability/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Server Immutability</title>
-      <link>https://chamilad.github.io/post/2018-05-17_server-immutability/</link>
+      <link>https://blog.chamila.dev/post/2018-05-17_server-immutability/</link>
       <pubDate>Thu, 17 May 2018 08:19:19 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-05-17_server-immutability/</guid>
+      <guid>https://blog.chamila.dev/post/2018-05-17_server-immutability/</guid>
       <description>Server Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.
 What is Immutability? Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image.</description>
     </item>

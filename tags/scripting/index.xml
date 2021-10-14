@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Scripting on chamilad.github.io</title>
-    <link>https://chamilad.github.io/tags/scripting/</link>
-    <description>Recent content in Scripting on chamilad.github.io</description>
+    <title>Scripting on blog.chamila.dev</title>
+    <link>https://blog.chamila.dev/tags/scripting/</link>
+    <description>Recent content in Scripting on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 May 2018 07:46:05 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/scripting/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 May 2018 07:46:05 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/scripting/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A little bit of Bashfu for a specific case of log analysis</title>
-      <link>https://chamilad.github.io/post/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</link>
+      <link>https://blog.chamila.dev/post/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</link>
       <pubDate>Tue, 01 May 2018 07:46:05 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</guid>
+      <guid>https://blog.chamila.dev/post/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</guid>
       <description>This post is not about a solution to a generic issue. This post is about how I found some way to cut and assemble a large log file using a few Bash tools (and subliminally why Unix principle of implementing stuff may be the superior way).
 So today, there came a need to sort through a large access log file for a list of request counts for each key. It’s not just a key — request count relationship.</description>
     </item>

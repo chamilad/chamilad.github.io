@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>chamilad.github.io</title>
-    <link>https://chamilad.github.io/</link>
-    <description>Recent content on chamilad.github.io</description>
+    <title>blog.chamila.dev</title>
+    <link>https://blog.chamila.dev/</link>
+    <description>Recent content on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Jul 2021 22:20:47 +1200</lastBuildDate><atom:link href="https://chamilad.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Jul 2021 22:20:47 +1200</lastBuildDate><atom:link href="https://blog.chamila.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CI/CD for Apache Nifi 02: Automation with NipyAPI</title>
-      <link>https://chamilad.github.io/post/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</link>
+      <link>https://blog.chamila.dev/post/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</link>
       <pubDate>Sun, 18 Jul 2021 22:20:47 +1200</pubDate>
       
-      <guid>https://chamilad.github.io/post/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</guid>
+      <guid>https://blog.chamila.dev/post/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</guid>
       <description>In the earlier post on setting up Apache Nifi and Nifi Registry, two Nifi and Registry deployments set up and integrated with each other. This post will focus on automating the migrations between the two environments. Just to refresh, the following diagram shows what we are trying to achieve.
  Though this shows three environments, we have only taken the dev -&amp;gt; test step into consideration in the current and the previous posts.</description>
     </item>
     
     <item>
       <title>CI/CD for Apache Nifi 01 - Introduction and Set up</title>
-      <link>https://chamilad.github.io/post/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</link>
+      <link>https://blog.chamila.dev/post/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</link>
       <pubDate>Sat, 17 Jul 2021 13:21:12 +1200</pubDate>
       
-      <guid>https://chamilad.github.io/post/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</guid>
+      <guid>https://blog.chamila.dev/post/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</guid>
       <description>I&amp;rsquo;m getting back to writing after more than an year of a gap. A lot happened during this period, moved from one city to another, changed employers, but mostly, I think I switched my writing time for some PS4 time. At one point though, you come to accept that your best K/D is going to be 0.2 and you&amp;rsquo;re too old to get better. In any case, I managed to do a few rounds of bug fixing to my Kibana Prometheus Exporter, and learn a few things in an area I didn&amp;rsquo;t have that much of experience in, Big Data.</description>
     </item>
     
     <item>
       <title>A Standalone Prometheus Exporter for Kibana</title>
-      <link>https://chamilad.github.io/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</link>
+      <link>https://blog.chamila.dev/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</link>
       <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
       
-      <guid>https://chamilad.github.io/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</guid>
+      <guid>https://blog.chamila.dev/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</guid>
       <description>I wrote a Prometheus Exporter that converts and exposes some metrics from Kibana API. This was mostly inspired by an already existing Exporter, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.
 kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password The Exporter is pretty basic one written in less than 500 lines of collective Go code.</description>
     </item>
     
     <item>
       <title>Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</title>
-      <link>https://chamilad.github.io/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</link>
+      <link>https://blog.chamila.dev/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
       
-      <guid>https://chamilad.github.io/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</guid>
+      <guid>https://blog.chamila.dev/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</guid>
       <description>This is a continuation of the addendum to a series of articles on ELK on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The previous post on this series was about enabling SSO between Kibana and KeyCloak.</description>
     </item>
     
     <item>
       <title>Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</title>
-      <link>https://chamilad.github.io/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</link>
+      <link>https://blog.chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</link>
       <pubDate>Mon, 10 Feb 2020 20:26:46 +1300</pubDate>
       
-      <guid>https://chamilad.github.io/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</guid>
+      <guid>https://blog.chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</guid>
       <description>This is a continuation of the addendum to a series of articles on ELK on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  As discussed in the last article, I will try to lay out the configuration details of a usable SSO based authn/authr design for an ELK deployment.</description>
     </item>
     
     <item>
       <title>Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</title>
-      <link>https://chamilad.github.io/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</link>
+      <link>https://blog.chamila.dev/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</link>
       <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
       
-      <guid>https://chamilad.github.io/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</guid>
+      <guid>https://blog.chamila.dev/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</guid>
       <description>I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s.</description>
     </item>
     
     <item>
       <title>ElasticSearch Index Management</title>
-      <link>https://chamilad.github.io/post/2019-11-26_elasticsearch-index-management/</link>
+      <link>https://blog.chamila.dev/post/2019-11-26_elasticsearch-index-management/</link>
       <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
       
-      <guid>https://chamilad.github.io/post/2019-11-26_elasticsearch-index-management/</guid>
+      <guid>https://blog.chamila.dev/post/2019-11-26_elasticsearch-index-management/</guid>
       <description>As the series on ElasticSearch deployment management in K8s is complete, I thought of writing down some of the Index Management tasks that I had to implement in order to reduce the manual work involved in cluster maintenance.
  Following is the series of posts on ElasticSearch on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The following management steps are not mandatory to be implemented in a cluster to be production ready, however having them in place would greatly reduce some of the common headaches involved in an ELK stack management.</description>
@@ -79,40 +79,40 @@ kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kiba
     
     <item>
       <title>ElasticSearch on K8s: 05 - Visualization and Production Readying</title>
-      <link>https://chamilad.github.io/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</link>
+      <link>https://blog.chamila.dev/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</link>
       <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
       
-      <guid>https://chamilad.github.io/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</guid>
+      <guid>https://blog.chamila.dev/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</guid>
       <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Visualization Kibana is a web application which can be used to query data from an ElasticSearch cluster.</description>
     </item>
     
     <item>
       <title>ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</title>
-      <link>https://chamilad.github.io/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</link>
+      <link>https://blog.chamila.dev/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</link>
       <pubDate>Sat, 23 Nov 2019 16:01:40 +1300</pubDate>
       
-      <guid>https://chamilad.github.io/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</guid>
+      <guid>https://blog.chamila.dev/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</guid>
       <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Storage and Indexing Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying.</description>
     </item>
     
     <item>
       <title>ElasticSearch on K8s: 03 - Log Enrichment with Logstash</title>
-      <link>https://chamilad.github.io/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</link>
+      <link>https://blog.chamila.dev/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</link>
       <pubDate>Fri, 22 Nov 2019 01:05:37 +1300</pubDate>
       
-      <guid>https://chamilad.github.io/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</guid>
+      <guid>https://blog.chamila.dev/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</guid>
       <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Enrichment Now that the logs are being collected from the required sources, it’s time to start making some sense out of them.</description>
     </item>
     
     <item>
       <title>Medium to Hugo</title>
-      <link>https://chamilad.github.io/post/2019-10-20_medium-to-hugo/</link>
+      <link>https://blog.chamila.dev/post/2019-10-20_medium-to-hugo/</link>
       <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
       
-      <guid>https://chamilad.github.io/post/2019-10-20_medium-to-hugo/</guid>
+      <guid>https://blog.chamila.dev/post/2019-10-20_medium-to-hugo/</guid>
       <description>Taking a minor break from the &amp;ldquo;ElasticSearch on K8s&amp;rdquo; series
  tl;dr: I&amp;rsquo;m moving back to maintaining my own site rather than depending on Medium as a platform for technical blogging, because of various reasons. Also introducing a tool to convert from Medium to Hugo.
 A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;ve been writing blog posts for more than a decade now, on various platforms, SaaS ones to self-hosted solutions.</description>
@@ -120,86 +120,86 @@ A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;v
     
     <item>
       <title>ElasticSearch on K8s: 02 — Log Collection with Filebeat</title>
-      <link>https://chamilad.github.io/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</link>
+      <link>https://blog.chamila.dev/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</link>
       <pubDate>Sat, 21 Sep 2019 05:57:08 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</guid>
+      <guid>https://blog.chamila.dev/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</guid>
       <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.</description>
     </item>
     
     <item>
       <title>ElasticSearch on K8s: 01 — Basic Design</title>
-      <link>https://chamilad.github.io/post/2019-09-19_elasticsearch-on-k8s-01basic-design/</link>
+      <link>https://blog.chamila.dev/post/2019-09-19_elasticsearch-on-k8s-01basic-design/</link>
       <pubDate>Thu, 19 Sep 2019 20:29:53 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2019-09-19_elasticsearch-on-k8s-01basic-design/</guid>
+      <guid>https://blog.chamila.dev/post/2019-09-19_elasticsearch-on-k8s-01basic-design/</guid>
       <description>A design for a useful ELK deployment on K8s Log aggregation in a K8s environment is something I have lightly touched upon previously in multiple occasions. However setting up a minimal but a reliable log aggregation stack on top of K8s could quickly become an evolutionary process with each step improving on the previous one (and of course, everyone thinks they can do log aggregation before they actually start to do so).</description>
     </item>
     
     <item>
       <title>Load Balancing and Reverse Proxying for Kubernetes Services</title>
-      <link>https://chamilad.github.io/post/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</link>
+      <link>https://blog.chamila.dev/post/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</link>
       <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</guid>
+      <guid>https://blog.chamila.dev/post/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</guid>
       <description>Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.</description>
     </item>
     
     <item>
       <title>Releasing DocBlock v0.1</title>
-      <link>https://chamilad.github.io/post/2019-02-15_releasing-docblock-v0.1/</link>
+      <link>https://blog.chamila.dev/post/2019-02-15_releasing-docblock-v0.1/</link>
       <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2019-02-15_releasing-docblock-v0.1/</guid>
+      <guid>https://blog.chamila.dev/post/2019-02-15_releasing-docblock-v0.1/</guid>
       <description>A tool to automate technical content generation for configuration files Many months ago, a technical writer colleague of mine complained about how they were struggling to keep up with the frequent releases that the company was doing at the time. There were multiple products in their plate, with each having multiple configuration files (sometimes numbering more than 10). Although the configuration files overlapped within each product, because of the componentized platform the company had built the products upon, each product in theory could have different release versions of the components that used these configuration files.</description>
     </item>
     
     <item>
       <title>How to Design a WSO2 Docker Image</title>
-      <link>https://chamilad.github.io/post/2018-12-24_how-to-design-a-wso2-docker-image/</link>
+      <link>https://blog.chamila.dev/post/2018-12-24_how-to-design-a-wso2-docker-image/</link>
       <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
+      <guid>https://blog.chamila.dev/post/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
       <description>What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
 Docker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind.</description>
     </item>
     
     <item>
       <title>Publishing WSO2 Logs to Splunk from a Containerized Deployment</title>
-      <link>https://chamilad.github.io/post/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</link>
+      <link>https://blog.chamila.dev/post/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</link>
       <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</guid>
+      <guid>https://blog.chamila.dev/post/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</guid>
       <description>Or how to publish to Splunk from any Docker environment WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in &amp;lt;CARBON_HOME&amp;gt;/repository/conf folder, data in &amp;lt;CARBON_HOME&amp;gt;/repository/data, artifacts in &amp;lt;CARBON_HOME&amp;gt;/repository/deployment (or in &amp;lt;CARBON_HOME&amp;gt;/repository/tenants folder if you’re in to multi-tenancy). All the log files are written into &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.
 Log Aggregation All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.</description>
     </item>
     
     <item>
       <title>CI/CD APIs with WSO2 API Manager</title>
-      <link>https://chamilad.github.io/post/2018-11-25_cicd-apis-with-wso2-api-manager/</link>
+      <link>https://blog.chamila.dev/post/2018-11-25_cicd-apis-with-wso2-api-manager/</link>
       <pubDate>Sun, 25 Nov 2018 03:47:20 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-11-25_cicd-apis-with-wso2-api-manager/</guid>
+      <guid>https://blog.chamila.dev/post/2018-11-25_cicd-apis-with-wso2-api-manager/</guid>
       <description>How to do continuous integration and continuous delivery of APIs with WSO2 API Manager WSO2 API Manager, the only Open Source Leader in API Management Solutions in Forrester Wave, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.</description>
     </item>
     
     <item>
       <title>A Primer on Observability for Dynamic Organizations — Part 2</title>
-      <link>https://chamilad.github.io/post/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</link>
+      <link>https://blog.chamila.dev/post/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</link>
       <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</guid>
+      <guid>https://blog.chamila.dev/post/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</guid>
       <description>What should an Observability Framework address? In the previous post, we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design. Let’s explore the possibility of a structured approach for designing observable systems.
 Why should there be a structured approach? In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack.</description>
     </item>
     
     <item>
       <title>A Primer on Observability for Dynamic Organizations — Part 1</title>
-      <link>https://chamilad.github.io/post/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/</link>
+      <link>https://blog.chamila.dev/post/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/</link>
       <pubDate>Tue, 21 Aug 2018 04:29:46 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/</guid>
+      <guid>https://blog.chamila.dev/post/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/</guid>
       <description>A introduction to the buzzword and the rationale for implementing it What is Observability? Before we dive in to the waters, we need to define what observability is. Let’s go for some tweets first.
 Monitoring is for operating software/systems
 Instrumentation is for writing software
@@ -209,20 +209,20 @@ Observability is for understanding systems
     
     <item>
       <title>That Tricky Thing Called Automation</title>
-      <link>https://chamilad.github.io/post/2018-07-20_that-tricky-thing-called-automation/</link>
+      <link>https://blog.chamila.dev/post/2018-07-20_that-tricky-thing-called-automation/</link>
       <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-07-20_that-tricky-thing-called-automation/</guid>
+      <guid>https://blog.chamila.dev/post/2018-07-20_that-tricky-thing-called-automation/</guid>
       <description>Automation of processes is something every serious organization should look into. The other option is to waste your precious human resources on tasks that are repetitive and hardly challenging. That is a depreciation in both man-hours and the employee morale. No one wants to keep on doing the same thing over and over again, especially if the tasks do not require the proper use of the human intellect.
 Automation enables the machine driven initiation and management of these tasks and sometimes can even help coordinate the use of manual intervention.</description>
     </item>
     
     <item>
       <title>In Other Good News, Microsoft buys GitHub</title>
-      <link>https://chamilad.github.io/post/2018-06-05_in-other-good-news-microsoft-buys-github/</link>
+      <link>https://blog.chamila.dev/post/2018-06-05_in-other-good-news-microsoft-buys-github/</link>
       <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-06-05_in-other-good-news-microsoft-buys-github/</guid>
+      <guid>https://blog.chamila.dev/post/2018-06-05_in-other-good-news-microsoft-buys-github/</guid>
       <description>Or why you should cool down with the anti-Microsoft rhetoric, at least for now
  Disclaimer: This is an opinionated article.
  What a historic moment! May be only second to the moment Windows incorporated the Linux Subsystem, one-time anti-open source giantbuys off may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years. And my Facebook feed (yes, I’m still friends with that guy) is filled with rants on how Microsoft will kill Open Source.</description>
@@ -230,40 +230,40 @@ Automation enables the machine driven initiation and management of these tasks a
     
     <item>
       <title>Server Immutability</title>
-      <link>https://chamilad.github.io/post/2018-05-17_server-immutability/</link>
+      <link>https://blog.chamila.dev/post/2018-05-17_server-immutability/</link>
       <pubDate>Thu, 17 May 2018 08:19:19 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-05-17_server-immutability/</guid>
+      <guid>https://blog.chamila.dev/post/2018-05-17_server-immutability/</guid>
       <description>Server Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.
 What is Immutability? Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image.</description>
     </item>
     
     <item>
       <title>Basic Process Metrics Collection and Visualization in Linux</title>
-      <link>https://chamilad.github.io/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</link>
+      <link>https://blog.chamila.dev/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</link>
       <pubDate>Tue, 15 May 2018 06:36:59 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</guid>
+      <guid>https://blog.chamila.dev/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</guid>
       <description>When it comes to deployment observability there are multiple, comprehensive solutions that can handle almost any system of scale you throw at them. I said almost, because there are certain stories that do not require setting up a central monitoring server with satellite agents to collect and enrich data.
 For an example, consider a scenario where you’re troubleshooting a certain single process for a particular period of time. You want to collect the approximate CPU usage, approximate memory usage, light weight process (aka thread) count, and the TCP connection count.</description>
     </item>
     
     <item>
       <title>A little bit of Bashfu for a specific case of log analysis</title>
-      <link>https://chamilad.github.io/post/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</link>
+      <link>https://blog.chamila.dev/post/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</link>
       <pubDate>Tue, 01 May 2018 07:46:05 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</guid>
+      <guid>https://blog.chamila.dev/post/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</guid>
       <description>This post is not about a solution to a generic issue. This post is about how I found some way to cut and assemble a large log file using a few Bash tools (and subliminally why Unix principle of implementing stuff may be the superior way).
 So today, there came a need to sort through a large access log file for a list of request counts for each key. It’s not just a key — request count relationship.</description>
     </item>
     
     <item>
       <title>Sample: WSO2 EI Cache Mediator based Token Caching</title>
-      <link>https://chamilad.github.io/post/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</link>
+      <link>https://blog.chamila.dev/post/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</link>
       <pubDate>Sun, 12 Nov 2017 14:30:44 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</guid>
+      <guid>https://blog.chamila.dev/post/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</guid>
       <description>This post and the sample code are the results of a particular issue I had to tackle recently. Though the sample code is my own, the idea and the approach have many authors, arising from the collective knowledge on the WSO2 Middleware Stack.
  The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,
  Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token  If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</description>
@@ -271,30 +271,30 @@ So today, there came a need to sort through a large access log file for a list o
     
     <item>
       <title>Subject Alternative Names in SSL Certificates</title>
-      <link>https://chamilad.github.io/post/2017-11-06_subject-alternative-names-in-ssl-certificates/</link>
+      <link>https://blog.chamila.dev/post/2017-11-06_subject-alternative-names-in-ssl-certificates/</link>
       <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2017-11-06_subject-alternative-names-in-ssl-certificates/</guid>
+      <guid>https://blog.chamila.dev/post/2017-11-06_subject-alternative-names-in-ssl-certificates/</guid>
       <description>Or the SSL Cert Extension that saves your back during development
  I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</description>
     </item>
     
     <item>
       <title>Adding a Self-Signed SSL Certificate to AWS ACM</title>
-      <link>https://chamilad.github.io/post/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</link>
+      <link>https://blog.chamila.dev/post/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</link>
       <pubDate>Tue, 17 Oct 2017 18:56:28 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</guid>
+      <guid>https://blog.chamila.dev/post/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</guid>
       <description>When setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.
 However if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following.</description>
     </item>
     
     <item>
       <title>Let’s make your Docker Image better than 90% of existing ones</title>
-      <link>https://chamilad.github.io/post/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</link>
+      <link>https://blog.chamila.dev/post/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</link>
       <pubDate>Tue, 05 Sep 2017 18:50:34 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</guid>
+      <guid>https://blog.chamila.dev/post/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</guid>
       <description>Or why you should always Label your Docker Image.
  Imagine this.
 You’re working on a new project, an exciting one that’s Container native. You’re almost done, and now at the stage where you want to build the Docker Image that ships your little project out to the public. You build on top of Alpine Linux, and pack your tool in to a nifty 80Mb Image that you tag latest and push to the public Docker Hub.</description>
@@ -302,10 +302,10 @@ You’re working on a new project, an exciting one that’s Container native. Yo
     
     <item>
       <title>Docker Image Size Concerns Out of the Window — Squash with Confidence</title>
-      <link>https://chamilad.github.io/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</link>
+      <link>https://blog.chamila.dev/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</link>
       <pubDate>Tue, 22 Aug 2017 09:58:17 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</guid>
+      <guid>https://blog.chamila.dev/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</guid>
       <description>Docker is finally bringing Squash support
 For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use --no-cache flag while building. The layered structure of a Docker image would spook out a beginner.
 Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved.</description>
@@ -313,10 +313,10 @@ Typically, these layers would be handled in such a way that maximum optimization
     
     <item>
       <title>HAProxy Config Syntax Highlighting</title>
-      <link>https://chamilad.github.io/post/2017-07-13_haproxy-config-syntax-highlighting/</link>
+      <link>https://blog.chamila.dev/post/2017-07-13_haproxy-config-syntax-highlighting/</link>
       <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2017-07-13_haproxy-config-syntax-highlighting/</guid>
+      <guid>https://blog.chamila.dev/post/2017-07-13_haproxy-config-syntax-highlighting/</guid>
       <description>A brief post on getting this done on Atom and Vim.
 Atom Just install language-haproxy Atom plugin through either Atom UI or apm .
 apm install language-haproxy When opening an haproxy.cfg file, Atom will detect and highlight accordingly.
@@ -325,10 +325,10 @@ Vim Syntax highlighting in Vim for HAProxy configuration has been available for 
     
     <item>
       <title>Infrastructure as Code : AWS CloudFormation</title>
-      <link>https://chamilad.github.io/post/2017-07-03_infrastructure-as-code-aws-cloudformation/</link>
+      <link>https://blog.chamila.dev/post/2017-07-03_infrastructure-as-code-aws-cloudformation/</link>
       <pubDate>Mon, 03 Jul 2017 11:40:50 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
+      <guid>https://blog.chamila.dev/post/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
       <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
  Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
@@ -336,46 +336,46 @@ Vim Syntax highlighting in Vim for HAProxy configuration has been available for 
     
     <item>
       <title>Ballerina with Container Support</title>
-      <link>https://chamilad.github.io/post/2017-02-21_ballerina-with-container-support/</link>
+      <link>https://blog.chamila.dev/post/2017-02-21_ballerina-with-container-support/</link>
       <pubDate>Tue, 21 Feb 2017 06:48:33 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2017-02-21_ballerina-with-container-support/</guid>
+      <guid>https://blog.chamila.dev/post/2017-02-21_ballerina-with-container-support/</guid>
       <description>WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the WSO2Con 2017 in San Fransisco. Ballerina is a general purpose language with a focus on integration and a visual approach to coding. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “Connectors” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.</description>
     </item>
     
     <item>
       <title>Thinking of Moving Your WSO2 Deployment On to Kubernetes?</title>
-      <link>https://chamilad.github.io/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</link>
+      <link>https://blog.chamila.dev/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</link>
       <pubDate>Sun, 22 Jan 2017 19:25:15 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</guid>
+      <guid>https://blog.chamila.dev/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</guid>
       <description>Moving from a Virtual Machine based deployment to a Container Clustering environment can be quite a few sleepless nights. Cloud deployment artifacts for WSO2 products would reduce this number by a few, because of their tried and tested nature. These include Dockerfiles, Puppet based configurations, Kubernetes and Mesos deployment artifacts. As easy as these artifacts make life easier during a redesign stage of an existing deployment, let us anyway walk through some points to keep in mind regarding a WSO2 deployment on top of Kubernetes.</description>
     </item>
     
     <item>
       <title>How to Upload a Carbon App (CAR File) to a Remote WSO2 Server</title>
-      <link>https://chamilad.github.io/post/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</link>
+      <link>https://blog.chamila.dev/post/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</link>
       <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</guid>
+      <guid>https://blog.chamila.dev/post/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</guid>
       <description>Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.</description>
     </item>
     
     <item>
       <title>Monitoring WSO2 Logs with Elasticsearch, Logstash, and Kibana (or Grafana)</title>
-      <link>https://chamilad.github.io/post/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</link>
+      <link>https://blog.chamila.dev/post/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</link>
       <pubDate>Sat, 10 Sep 2016 21:26:48 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</guid>
+      <guid>https://blog.chamila.dev/post/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</guid>
       <description>I’ve recently been doing some work involving analytics dashboards and the subject proved to be really interesting. It has a wide range starting from Big Data to UX. Starting at a point where you determine what kind of data is collected and what kind information you need to get out of the dashboard, going to data analysis and data processing (probably on top an engine like Apache Spark), it finalizes at the visualization stage which is really fun.</description>
     </item>
     
     <item>
       <title>Extracting memory and thread dumps from a running JRE based JVM</title>
-      <link>https://chamilad.github.io/post/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</link>
+      <link>https://blog.chamila.dev/post/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</link>
       <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</guid>
+      <guid>https://blog.chamila.dev/post/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</guid>
       <description>Almost every Java developer knows about jmapand jstack tools that come with the JDK. These provide functionality to extract heap and thread information of a running JVM instance. Easy.
 What if there’s a running JVM that has produced a deadlock and you want to take a thread dump while the process is running? You go in and run the following.
 jstack pid &amp;gt;&amp;gt; thread_dump.txt Turns out the system doesn’t know what jstack is.</description>
@@ -383,10 +383,10 @@ jstack pid &amp;gt;&amp;gt; thread_dump.txt Turns out the system doesn’t know 
     
     <item>
       <title>Running WSO2 Products on Kubernetes</title>
-      <link>https://chamilad.github.io/post/2016-02-09_running-wso2-products-on-kubernetes/</link>
+      <link>https://blog.chamila.dev/post/2016-02-09_running-wso2-products-on-kubernetes/</link>
       <pubDate>Tue, 09 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2016-02-09_running-wso2-products-on-kubernetes/</guid>
+      <guid>https://blog.chamila.dev/post/2016-02-09_running-wso2-products-on-kubernetes/</guid>
       <description>Running WSO2 Products on Kubernetes
  Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.
  It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!</description>
@@ -394,108 +394,108 @@ jstack pid &amp;gt;&amp;gt; thread_dump.txt Turns out the system doesn’t know 
     
     <item>
       <title>BreadPool — a Thread Pool for Python</title>
-      <link>https://chamilad.github.io/post/2015-12-10_breadpool-a-thread-pool-for-python/</link>
+      <link>https://blog.chamila.dev/post/2015-12-10_breadpool-a-thread-pool-for-python/</link>
       <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2015-12-10_breadpool-a-thread-pool-for-python/</guid>
+      <guid>https://blog.chamila.dev/post/2015-12-10_breadpool-a-thread-pool-for-python/</guid>
       <description>A thread pool is not a new concept. It’s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? Because the program wouldn’t be starting threads as it sees fit and somehow reach the maximum thread number soon. Simply said thread pools allows us to limit the number of threads spawned by our program execution. Trust me, you don’t want your code going to town spawning threads.</description>
     </item>
     
     <item>
       <title>Timing Out of Long Running Methods in Python</title>
-      <link>https://chamilad.github.io/post/2015-11-26_timing-out-of-long-running-methods-in-python/</link>
+      <link>https://blog.chamila.dev/post/2015-11-26_timing-out-of-long-running-methods-in-python/</link>
       <pubDate>Thu, 26 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2015-11-26_timing-out-of-long-running-methods-in-python/</guid>
+      <guid>https://blog.chamila.dev/post/2015-11-26_timing-out-of-long-running-methods-in-python/</guid>
       <description>Sometimes there are conditions under which a function call could not return in a needed time period and would cause unexpected behavior. For example, a file read could take more time than anticipated and leave the code execution without proper control over what to do when such a situation occurs. This can be worse if the said function call directs to an external library which we can’t control.
 Python has a nifty module called signal which exposes UNIX Signal numbers and a way to register callbacks for each signal.</description>
     </item>
     
     <item>
       <title>Creating a Simple ActiveMQ Master/Slave Setup</title>
-      <link>https://chamilad.github.io/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/</link>
+      <link>https://blog.chamila.dev/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/</link>
       <pubDate>Tue, 17 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/</guid>
+      <guid>https://blog.chamila.dev/post/2015-11-17_creating-a-simple-activemq-masterslave-setup/</guid>
       <description>ActiveMQ is a high performing message broker, however if clustering is needed, it supports a number of methods. Out of these, the Master/Slave is a pattern where the persistence layer is shared between multiple broker instances. A Single Master broker connects to the persistence, and the rest of the Slave brokers keep waiting to attain the lock on the persistence. If the Master node goes down the lock for the persistence is released and a Slave quickly acquires it, allowing a client to continue operation without any data loss.</description>
     </item>
     
     <item>
       <title>Support for ActiveMQ Master/Slave Failover in Apache Stratos Cartridge Agent</title>
-      <link>https://chamilad.github.io/post/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</link>
+      <link>https://blog.chamila.dev/post/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</link>
       <pubDate>Mon, 16 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</guid>
+      <guid>https://blog.chamila.dev/post/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</guid>
       <description>In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to secure the message broker communication. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.
 ActiveMQ supports various types of clustering patterns. Out of these, Master/Slave is a deployment pattern where the message store is replicated or shared between the clustered brokers.</description>
     </item>
     
     <item>
       <title>Secure Message Broker Communication in Apache Stratos With Apache ActiveMQ</title>
-      <link>https://chamilad.github.io/post/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</link>
+      <link>https://blog.chamila.dev/post/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</link>
       <pubDate>Sun, 11 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</guid>
+      <guid>https://blog.chamila.dev/post/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</guid>
       <description>Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of communication between components such as the Cartridge Agent, Cloud Controller and the Autoscaler, as this allows a decoupled architecture for the components.
 When it comes to message brokers, authentication is a crucial part of securing the communication channel since if left unsecured, anyone with access to the message broker can subscribe to the topics and listen to the communication between the components.</description>
     </item>
     
     <item>
       <title>Apache Stratos Cartridge Agent: Life Cycle Walkthough</title>
-      <link>https://chamilad.github.io/post/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</link>
+      <link>https://blog.chamila.dev/post/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</link>
       <pubDate>Sun, 22 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</guid>
+      <guid>https://blog.chamila.dev/post/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</guid>
       <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
  The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.</description>
     </item>
     
     <item>
       <title>Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2</title>
-      <link>https://chamilad.github.io/post/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</link>
+      <link>https://blog.chamila.dev/post/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</link>
       <pubDate>Sat, 21 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</guid>
+      <guid>https://blog.chamila.dev/post/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</guid>
       <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
  One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.</description>
     </item>
     
     <item>
       <title>Apache Stratos Cartridge Agent: Day 0</title>
-      <link>https://chamilad.github.io/post/2015-03-17_apache-stratos-cartridge-agent-day-0/</link>
+      <link>https://blog.chamila.dev/post/2015-03-17_apache-stratos-cartridge-agent-day-0/</link>
       <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2015-03-17_apache-stratos-cartridge-agent-day-0/</guid>
+      <guid>https://blog.chamila.dev/post/2015-03-17_apache-stratos-cartridge-agent-day-0/</guid>
       <description>As the first post of a series of comprehensive guide to the Apache Stratos Cartridge Agent, let’s look at the Cartridge Agent contract. Keep tuned in and expect more detailed explanations on the instance and Cartridge Agent configuration, workflow, different Cartridge Agent implementations, their configurations and newly introduced plugin system in the Python implementation.
 When the instances are spawned in Apache Stratos, there are a few requirements that the particular instance should fulfill.</description>
     </item>
     
     <item>
       <title>Apache Stratos Cartridge Agent: Instance Configuration by Puppet 1</title>
-      <link>https://chamilad.github.io/post/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</link>
+      <link>https://blog.chamila.dev/post/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</link>
       <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</guid>
+      <guid>https://blog.chamila.dev/post/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</guid>
       <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
  When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance.</description>
     </item>
     
     <item>
       <title>Thrift Communication in Apache Stratos</title>
-      <link>https://chamilad.github.io/post/2014-10-10_thrift-communication-in-apache-stratos/</link>
+      <link>https://blog.chamila.dev/post/2014-10-10_thrift-communication-in-apache-stratos/</link>
       <pubDate>Fri, 10 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2014-10-10_thrift-communication-in-apache-stratos/</guid>
+      <guid>https://blog.chamila.dev/post/2014-10-10_thrift-communication-in-apache-stratos/</guid>
       <description>In Apache Stratos, data publishing over Thrift is done via streaming. It uses WSO2 Carbon’s Data Bridge to serialize data in to a stream and publish to a given IP address and a Port. The use of DataBridge is explained here.
 Stream Definition In order to publish data as a stream, the definition of the particular stream should be defined first. This is achieved using the org.wso2.carbon.databridge.commons.StreamDefinition class. The list of attributes that will be written to the stream is defined using a StreamDefinition object to be assigned to a particular DataPublisher.</description>
     </item>
     
     <item>
       <title>PPPOE on VirtualBox</title>
-      <link>https://chamilad.github.io/post/2014-08-05_pppoe-on-virtualbox/</link>
+      <link>https://blog.chamila.dev/post/2014-08-05_pppoe-on-virtualbox/</link>
       <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2014-08-05_pppoe-on-virtualbox/</guid>
+      <guid>https://blog.chamila.dev/post/2014-08-05_pppoe-on-virtualbox/</guid>
       <description>A quick note!
 If your internet connection comes as a PPPOE connection and it can’t be selected on the drop down list when “Bridged network” is selected on Network tab of the VM settings in VirtualBox. You can create a host-only network and configure a static ip for eth0 on the guest OS to make it accessible to outside.
 A host-only network virtualizes the network interface of the host OS and uses it as a loopback device to enable guest OS to communicate on their network and with the host[1].</description>
@@ -503,30 +503,30 @@ A host-only network virtualizes the network interface of the host OS and uses it
     
     <item>
       <title>Consuming a Service Secured by WSO2 ESB</title>
-      <link>https://chamilad.github.io/post/2014-07-19_consuming-a-service-secured-by-wso2-esb/</link>
+      <link>https://blog.chamila.dev/post/2014-07-19_consuming-a-service-secured-by-wso2-esb/</link>
       <pubDate>Sat, 19 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2014-07-19_consuming-a-service-secured-by-wso2-esb/</guid>
+      <guid>https://blog.chamila.dev/post/2014-07-19_consuming-a-service-secured-by-wso2-esb/</guid>
       <description>In the last post I explained the steps needed, although somewhat minimal, to secure an unsecured backend service with WSO2 ESB. In this post I will continue on to the client side of the communication explaining the minimal client needed to communicate with the secure proxy service we created and take a peak at the action going on under the hood.
 UsernameToken Before we dive in to the client side code let’s take a look at the WS-Policy for the UsernameToken security we applied to our service.</description>
     </item>
     
     <item>
       <title>Securing a Web Service With WSO2 ESB</title>
-      <link>https://chamilad.github.io/post/2014-07-18_securing-a-web-service-with-wso2-esb/</link>
+      <link>https://blog.chamila.dev/post/2014-07-18_securing-a-web-service-with-wso2-esb/</link>
       <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2014-07-18_securing-a-web-service-with-wso2-esb/</guid>
+      <guid>https://blog.chamila.dev/post/2014-07-18_securing-a-web-service-with-wso2-esb/</guid>
       <description>WSO2 Enterprise Service Bus is one of the best performing implementations for the Enterprise market. In this article I will briefly go through what it takes to secure an unsecured backend web service using WSO2 ESB as a mediator.
 Security in Web Services is covered by the WS-Security standard. There are various policies such as simple username and password authentication and PKI certificates that can be used to secure a Web Service.</description>
     </item>
     
     <item>
       <title>Wireshark Crashing in Ubuntu</title>
-      <link>https://chamilad.github.io/post/2014-07-09_wireshark-crashing-in-ubuntu/</link>
+      <link>https://blog.chamila.dev/post/2014-07-09_wireshark-crashing-in-ubuntu/</link>
       <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2014-07-09_wireshark-crashing-in-ubuntu/</guid>
+      <guid>https://blog.chamila.dev/post/2014-07-09_wireshark-crashing-in-ubuntu/</guid>
       <description>If you have customized your Ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu 14.04 and found the solution to be disabling overlay scrollbars that come as the default.
 To do this simply add an environment variable called LIBOVERLAY_SCROLLBAR with value0.
 export LIBOVERLAY_SCROLLBAR=0 Originally published at chamilad.github.io on July 9, 2014.
@@ -535,10 +535,10 @@ export LIBOVERLAY_SCROLLBAR=0 Originally published at chamilad.github.io on July
     
     <item>
       <title>Creating a Web Service Using Apache Axis2</title>
-      <link>https://chamilad.github.io/post/2014-07-01_creating-a-web-service-using-apache-axis2/</link>
+      <link>https://blog.chamila.dev/post/2014-07-01_creating-a-web-service-using-apache-axis2/</link>
       <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2014-07-01_creating-a-web-service-using-apache-axis2/</guid>
+      <guid>https://blog.chamila.dev/post/2014-07-01_creating-a-web-service-using-apache-axis2/</guid>
       <description>Prerequisites We need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let’s use Tomcat as a container. So in the following order
  Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7) Download and install Axis2 on Tomcat  Oracle JDK7 Download and extract the JDK tarball.</description>
     </item>

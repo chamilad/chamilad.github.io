@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Wireshark on chamilad.github.io</title>
-    <link>https://chamilad.github.io/tags/wireshark/</link>
-    <description>Recent content in Wireshark on chamilad.github.io</description>
+    <title>Wireshark on blog.chamila.dev</title>
+    <link>https://blog.chamila.dev/tags/wireshark/</link>
+    <description>Recent content in Wireshark on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Jul 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/wireshark/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 09 Jul 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/wireshark/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Wireshark Crashing in Ubuntu</title>
-      <link>https://chamilad.github.io/post/2014-07-09_wireshark-crashing-in-ubuntu/</link>
+      <link>https://blog.chamila.dev/post/2014-07-09_wireshark-crashing-in-ubuntu/</link>
       <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2014-07-09_wireshark-crashing-in-ubuntu/</guid>
+      <guid>https://blog.chamila.dev/post/2014-07-09_wireshark-crashing-in-ubuntu/</guid>
       <description>If you have customized your Ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu 14.04 and found the solution to be disabling overlay scrollbars that come as the default.
 To do this simply add an environment variable called LIBOVERLAY_SCROLLBAR with value0.
 export LIBOVERLAY_SCROLLBAR=0 Originally published at chamilad.github.io on July 9, 2014.

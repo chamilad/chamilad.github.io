@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on chamilad.github.io</title>
-    <link>https://chamilad.github.io/tags/linux/</link>
-    <description>Recent content in Linux on chamilad.github.io</description>
+    <title>Linux on blog.chamila.dev</title>
+    <link>https://blog.chamila.dev/tags/linux/</link>
+    <description>Recent content in Linux on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jun 2018 06:00:19 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jun 2018 06:00:19 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>In Other Good News, Microsoft buys GitHub</title>
-      <link>https://chamilad.github.io/post/2018-06-05_in-other-good-news-microsoft-buys-github/</link>
+      <link>https://blog.chamila.dev/post/2018-06-05_in-other-good-news-microsoft-buys-github/</link>
       <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-06-05_in-other-good-news-microsoft-buys-github/</guid>
+      <guid>https://blog.chamila.dev/post/2018-06-05_in-other-good-news-microsoft-buys-github/</guid>
       <description>Or why you should cool down with the anti-Microsoft rhetoric, at least for now
  Disclaimer: This is an opinionated article.
  What a historic moment! May be only second to the moment Windows incorporated the Linux Subsystem, one-time anti-open source giantbuys off may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years. And my Facebook feed (yes, I’m still friends with that guy) is filled with rants on how Microsoft will kill Open Source.</description>
@@ -20,20 +20,20 @@
     
     <item>
       <title>Basic Process Metrics Collection and Visualization in Linux</title>
-      <link>https://chamilad.github.io/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</link>
+      <link>https://blog.chamila.dev/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</link>
       <pubDate>Tue, 15 May 2018 06:36:59 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</guid>
+      <guid>https://blog.chamila.dev/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</guid>
       <description>When it comes to deployment observability there are multiple, comprehensive solutions that can handle almost any system of scale you throw at them. I said almost, because there are certain stories that do not require setting up a central monitoring server with satellite agents to collect and enrich data.
 For an example, consider a scenario where you’re troubleshooting a certain single process for a particular period of time. You want to collect the approximate CPU usage, approximate memory usage, light weight process (aka thread) count, and the TCP connection count.</description>
     </item>
     
     <item>
       <title>PPPOE on VirtualBox</title>
-      <link>https://chamilad.github.io/post/2014-08-05_pppoe-on-virtualbox/</link>
+      <link>https://blog.chamila.dev/post/2014-08-05_pppoe-on-virtualbox/</link>
       <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2014-08-05_pppoe-on-virtualbox/</guid>
+      <guid>https://blog.chamila.dev/post/2014-08-05_pppoe-on-virtualbox/</guid>
       <description>A quick note!
 If your internet connection comes as a PPPOE connection and it can’t be selected on the drop down list when “Bridged network” is selected on Network tab of the VM settings in VirtualBox. You can create a host-only network and configure a static ip for eth0 on the guest OS to make it accessible to outside.
 A host-only network virtualizes the network interface of the host OS and uses it as a loopback device to enable guest OS to communicate on their network and with the host[1].</description>

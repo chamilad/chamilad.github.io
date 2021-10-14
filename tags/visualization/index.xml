@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Visualization on chamilad.github.io</title>
-    <link>https://chamilad.github.io/tags/visualization/</link>
-    <description>Recent content in Visualization on chamilad.github.io</description>
+    <title>Visualization on blog.chamila.dev</title>
+    <link>https://blog.chamila.dev/tags/visualization/</link>
+    <description>Recent content in Visualization on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 May 2018 06:36:59 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 May 2018 06:36:59 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Basic Process Metrics Collection and Visualization in Linux</title>
-      <link>https://chamilad.github.io/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</link>
+      <link>https://blog.chamila.dev/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</link>
       <pubDate>Tue, 15 May 2018 06:36:59 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</guid>
+      <guid>https://blog.chamila.dev/post/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</guid>
       <description>When it comes to deployment observability there are multiple, comprehensive solutions that can handle almost any system of scale you throw at them. I said almost, because there are certain stories that do not require setting up a central monitoring server with satellite agents to collect and enrich data.
 For an example, consider a scenario where you’re troubleshooting a certain single process for a particular period of time. You want to collect the approximate CPU usage, approximate memory usage, light weight process (aka thread) count, and the TCP connection count.</description>
     </item>

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Prometheus on chamilad.github.io</title>
-    <link>https://chamilad.github.io/tags/prometheus/</link>
-    <description>Recent content in Prometheus on chamilad.github.io</description>
+    <title>Prometheus on blog.chamila.dev</title>
+    <link>https://blog.chamila.dev/tags/prometheus/</link>
+    <description>Recent content in Prometheus on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Mar 2020 13:37:33 +1300</lastBuildDate><atom:link href="https://chamilad.github.io/tags/prometheus/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 Mar 2020 13:37:33 +1300</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/prometheus/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A Standalone Prometheus Exporter for Kibana</title>
-      <link>https://chamilad.github.io/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</link>
+      <link>https://blog.chamila.dev/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</link>
       <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
       
-      <guid>https://chamilad.github.io/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</guid>
+      <guid>https://blog.chamila.dev/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</guid>
       <description>I wrote a Prometheus Exporter that converts and exposes some metrics from Kibana API. This was mostly inspired by an already existing Exporter, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.
 kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password The Exporter is pretty basic one written in less than 500 lines of collective Go code.</description>
     </item>

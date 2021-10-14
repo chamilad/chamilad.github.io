@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Automation on chamilad.github.io</title>
-    <link>https://chamilad.github.io/tags/automation/</link>
-    <description>Recent content in Automation on chamilad.github.io</description>
+    <title>Automation on blog.chamila.dev</title>
+    <link>https://blog.chamila.dev/tags/automation/</link>
+    <description>Recent content in Automation on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Feb 2019 18:17:04 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Feb 2019 18:17:04 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/automation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Releasing DocBlock v0.1</title>
-      <link>https://chamilad.github.io/post/2019-02-15_releasing-docblock-v0.1/</link>
+      <link>https://blog.chamila.dev/post/2019-02-15_releasing-docblock-v0.1/</link>
       <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2019-02-15_releasing-docblock-v0.1/</guid>
+      <guid>https://blog.chamila.dev/post/2019-02-15_releasing-docblock-v0.1/</guid>
       <description>A tool to automate technical content generation for configuration files Many months ago, a technical writer colleague of mine complained about how they were struggling to keep up with the frequent releases that the company was doing at the time. There were multiple products in their plate, with each having multiple configuration files (sometimes numbering more than 10). Although the configuration files overlapped within each product, because of the componentized platform the company had built the products upon, each product in theory could have different release versions of the components that used these configuration files.</description>
     </item>
     
     <item>
       <title>That Tricky Thing Called Automation</title>
-      <link>https://chamilad.github.io/post/2018-07-20_that-tricky-thing-called-automation/</link>
+      <link>https://blog.chamila.dev/post/2018-07-20_that-tricky-thing-called-automation/</link>
       <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-07-20_that-tricky-thing-called-automation/</guid>
+      <guid>https://blog.chamila.dev/post/2018-07-20_that-tricky-thing-called-automation/</guid>
       <description>Automation of processes is something every serious organization should look into. The other option is to waste your precious human resources on tasks that are repetitive and hardly challenging. That is a depreciation in both man-hours and the employee morale. No one wants to keep on doing the same thing over and over again, especially if the tasks do not require the proper use of the human intellect.
 Automation enables the machine driven initiation and management of these tasks and sometimes can even help coordinate the use of manual intervention.</description>
     </item>

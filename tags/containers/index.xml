@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Containers on chamilad.github.io</title>
-    <link>https://chamilad.github.io/tags/containers/</link>
-    <description>Recent content in Containers on chamilad.github.io</description>
+    <title>Containers on blog.chamila.dev</title>
+    <link>https://blog.chamila.dev/tags/containers/</link>
+    <description>Recent content in Containers on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Dec 2018 16:49:16 +0000</lastBuildDate><atom:link href="https://chamilad.github.io/tags/containers/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Dec 2018 16:49:16 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/containers/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Design a WSO2 Docker Image</title>
-      <link>https://chamilad.github.io/post/2018-12-24_how-to-design-a-wso2-docker-image/</link>
+      <link>https://blog.chamila.dev/post/2018-12-24_how-to-design-a-wso2-docker-image/</link>
       <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
+      <guid>https://blog.chamila.dev/post/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
       <description>What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
 Docker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind.</description>
     </item>
     
     <item>
       <title>Docker Image Size Concerns Out of the Window — Squash with Confidence</title>
-      <link>https://chamilad.github.io/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</link>
+      <link>https://blog.chamila.dev/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</link>
       <pubDate>Tue, 22 Aug 2017 09:58:17 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</guid>
+      <guid>https://blog.chamila.dev/post/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</guid>
       <description>Docker is finally bringing Squash support
 For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use --no-cache flag while building. The layered structure of a Docker image would spook out a beginner.
 Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved.</description>
@@ -30,10 +30,10 @@ Typically, these layers would be handled in such a way that maximum optimization
     
     <item>
       <title>Thinking of Moving Your WSO2 Deployment On to Kubernetes?</title>
-      <link>https://chamilad.github.io/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</link>
+      <link>https://blog.chamila.dev/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</link>
       <pubDate>Sun, 22 Jan 2017 19:25:15 +0000</pubDate>
       
-      <guid>https://chamilad.github.io/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</guid>
+      <guid>https://blog.chamila.dev/post/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</guid>
       <description>Moving from a Virtual Machine based deployment to a Container Clustering environment can be quite a few sleepless nights. Cloud deployment artifacts for WSO2 products would reduce this number by a few, because of their tried and tested nature. These include Dockerfiles, Puppet based configurations, Kubernetes and Mesos deployment artifacts. As easy as these artifacts make life easier during a redesign stage of an existing deployment, let us anyway walk through some points to keep in mind regarding a WSO2 deployment on top of Kubernetes.</description>
     </item>
     
