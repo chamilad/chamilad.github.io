@@ -6,7 +6,11 @@
     <description>Recent content in Immutability on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 May 2018 08:19:19 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/immutability/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 May 2018 08:19:19 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.chamila.dev/tags/immutability/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Server Immutability</title>
       <link>https://blog.chamila.dev/post/2018-05-17_server-immutability/</link>

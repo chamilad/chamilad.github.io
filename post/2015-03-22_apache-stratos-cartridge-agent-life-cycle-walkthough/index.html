@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.78.2" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2015",
-      "datePublished": "2015-03-22 00:00:00 \u002b0000 UTC",
-      "dateModified" : "2015-03-22 00:00:00 \u002b0000 UTC",
+      "datePublished": "2015-03-22 00:00:00 \x2b0000 UTC",
+      "dateModified" : "2015-03-22 00:00:00 \x2b0000 UTC",
       "url" : "https:\/\/blog.chamila.dev\/post\/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough\/",
       "keywords" : [ "DevOps","Apache Stratos","Scale", ]
   }
@@ -147,10 +147,10 @@
 <p><img src="/post/img/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough_0.png#layoutTextWidth" alt=""></p>
 <h3 id="deploying-the-application">Deploying the Application</h3>
 <p>The sample scripts and artifacts for our scenario is available in the samples folder of the Stratos source. You can deploy this sample in any one of the available IaaS options including the Mock IaaS that is available in Stratos for developer testing purposes. Following is how it can be deployed in the Mock IaaS.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># navigate to the sample application folder </span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># navigate to the sample application folder</span> 
 cd &lt;STRATOS_SOURCE&gt;/samples/applications/single-cartridge/scripts/mock
  
-<span style="color:#75715e"># run deploy script </span>
+<span style="color:#75715e"># run deploy script</span> 
 ./deploy.sh
 </code></pre></div><p>However the Mock IaaS does not involve the Cartridge Agent execution, and therefore is a bit irrelevant in our scenario. You can deploy the same application in OpenStack or Amazon EC2 to witness the Cartridge Agent execution. You can even use Docker on Kubernetes and deploy a Kubernetes cluster to deploy this Single PHP Cartridge application.</p>
 <h3 id="what-to-lookfor">What to Look For</h3>

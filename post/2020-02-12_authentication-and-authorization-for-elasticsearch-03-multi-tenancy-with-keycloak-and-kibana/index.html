@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.78.2" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2020",
-      "datePublished": "2020-02-12 07:07:35 \u002b1300 NZDT",
-      "dateModified" : "2020-02-12 07:07:35 \u002b1300 NZDT",
+      "datePublished": "2020-02-12 07:07:35 \x2b1300 NZDT",
+      "dateModified" : "2020-02-12 07:07:35 \x2b1300 NZDT",
       "url" : "https:\/\/blog.chamila.dev\/post\/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana\/",
       "keywords" : [ "K8s","Logging","ElasticSearch","Logstash","Log aggregation","Authentication","Authorization","KeyCloak","Single Sign On","Multitenancy","Roles","Federation", ]
   }
@@ -488,20 +488,20 @@
 </code></pre></div><h4 id="elasticsearch-changes-to-lookup-the-new-saml-attribute">ElasticSearch Changes to Lookup the New SAML Attribute</h4>
 <p>To read this SAML Attribute at the ElasticSearch side of things, we could follow the same approach as the earlier one. However, we can make use of an ElasticSearch SAML configuration, that let&rsquo;s us specify what should be translated as the <code>group</code> variable for a particular subject (i.e. authenticating user). Doing this instead of treating <code>tenant</code> as just another SAML Attribute makes certain sense, since it is the actual grouping factor for a KeyCloak user.</p>
 <p>To do this, we should edit the ElasticSearch SAML configuration that was added in the previous post, with a slight modification to the field <code>xpack.security.authc.realms.saml.cloud-saml.attributes.groups</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">xpack</span>:
-  <span style="color:#f92672">security</span>:
-    <span style="color:#f92672">authc</span>:
-      <span style="color:#f92672">realms</span>:
-        <span style="color:#f92672">saml</span>:
-          <span style="color:#f92672">cloud-saml</span>:
-            <span style="color:#f92672">order</span>: <span style="color:#ae81ff">2</span>
-            <span style="color:#f92672">attributes.principal</span>: <span style="color:#e6db74">&#34;email&#34;</span>
-            <span style="color:#f92672">attributes.groups</span>: <span style="color:#e6db74">&#34;tenant&#34;</span>
-            <span style="color:#f92672">idp.metadata.path</span>: <span style="color:#e6db74">&#34;/app/config/saml/metadata.xml&#34;</span>
-            <span style="color:#f92672">idp.entity_id</span>: <span style="color:#e6db74">&#34;https://keycloak.my.org/auth/realms/elastic&#34;</span>
-            <span style="color:#f92672">sp.entity_id</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/&#34;</span>
-            <span style="color:#f92672">sp.acs</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
-            <span style="color:#f92672">sp.logout</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/logout&#34;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">xpack</span>:
+  <span style="color:#66d9ef">security</span>:
+    <span style="color:#66d9ef">authc</span>:
+      <span style="color:#66d9ef">realms</span>:
+        <span style="color:#66d9ef">saml</span>:
+          <span style="color:#66d9ef">cloud-saml</span>:
+            <span style="color:#66d9ef">order</span>: <span style="color:#ae81ff">2</span>
+            <span style="color:#66d9ef">attributes.principal</span>: <span style="color:#e6db74">&#34;email&#34;</span>
+            <span style="color:#66d9ef">attributes.groups</span>: <span style="color:#e6db74">&#34;tenant&#34;</span>
+            <span style="color:#66d9ef">idp.metadata.path</span>: <span style="color:#e6db74">&#34;/app/config/saml/metadata.xml&#34;</span>
+            <span style="color:#66d9ef">idp.entity_id</span>: <span style="color:#e6db74">&#34;https://keycloak.my.org/auth/realms/elastic&#34;</span>
+            <span style="color:#66d9ef">sp.entity_id</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/&#34;</span>
+            <span style="color:#66d9ef">sp.acs</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
+            <span style="color:#66d9ef">sp.logout</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/logout&#34;</span>
 </code></pre></div><p>This would enable us to query for the <code>groups</code> field in the Role Mappings to figure out the Space specific Role to assign.</p>
 <p>For an example, for the tenant <code>org1</code>, the following two Role Mappings can be added to determine,</p>
 <ol>

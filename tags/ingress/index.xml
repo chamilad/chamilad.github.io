@@ -6,7 +6,11 @@
     <description>Recent content in Ingress on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Feb 2019 17:56:15 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/ingress/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Feb 2019 17:56:15 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.chamila.dev/tags/ingress/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Load Balancing and Reverse Proxying for Kubernetes Services</title>
       <link>https://blog.chamila.dev/post/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</link>

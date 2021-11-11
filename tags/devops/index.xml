@@ -6,7 +6,11 @@
     <description>Recent content in DevOps on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Oct 2018 06:44:38 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Oct 2018 06:44:38 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.chamila.dev/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>A Primer on Observability for Dynamic Organizations — Part 2</title>
       <link>https://blog.chamila.dev/post/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</link>

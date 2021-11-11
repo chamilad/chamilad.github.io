@@ -6,9 +6,1027 @@
     <description>Recent content in Tags on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 18 Jul 2021 22:20:47 +1200</lastBuildDate>
     
 	<atom:link href="https://blog.chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Apache Nifi</title>
+      <link>https://blog.chamila.dev/tags/apache-nifi/</link>
+      <pubDate>Sun, 18 Jul 2021 22:20:47 +1200</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/apache-nifi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>BigData</title>
+      <link>https://blog.chamila.dev/tags/bigdata/</link>
+      <pubDate>Sun, 18 Jul 2021 22:20:47 +1200</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/bigdata/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Transformation</title>
+      <link>https://blog.chamila.dev/tags/data-transformation/</link>
+      <pubDate>Sun, 18 Jul 2021 22:20:47 +1200</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/data-transformation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Esb</title>
+      <link>https://blog.chamila.dev/tags/esb/</link>
+      <pubDate>Sat, 17 Jul 2021 13:21:12 +1200</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/esb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>K8s</title>
+      <link>https://blog.chamila.dev/tags/k8s/</link>
+      <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kibana</title>
+      <link>https://blog.chamila.dev/tags/kibana/</link>
+      <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/kibana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Metrics</title>
+      <link>https://blog.chamila.dev/tags/metrics/</link>
+      <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/metrics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Monitoring</title>
+      <link>https://blog.chamila.dev/tags/monitoring/</link>
+      <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/monitoring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Prometheus</title>
+      <link>https://blog.chamila.dev/tags/prometheus/</link>
+      <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Authentication</title>
+      <link>https://blog.chamila.dev/tags/authentication/</link>
+      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/authentication/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Authorization</title>
+      <link>https://blog.chamila.dev/tags/authorization/</link>
+      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/authorization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Elasticsearch</title>
+      <link>https://blog.chamila.dev/tags/elasticsearch/</link>
+      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/elasticsearch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Federation</title>
+      <link>https://blog.chamila.dev/tags/federation/</link>
+      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/federation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>KeyCloak</title>
+      <link>https://blog.chamila.dev/tags/keycloak/</link>
+      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/keycloak/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Log Aggregation</title>
+      <link>https://blog.chamila.dev/tags/log-aggregation/</link>
+      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/log-aggregation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Logging</title>
+      <link>https://blog.chamila.dev/tags/logging/</link>
+      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/logging/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Logstash</title>
+      <link>https://blog.chamila.dev/tags/logstash/</link>
+      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/logstash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Multitenancy</title>
+      <link>https://blog.chamila.dev/tags/multitenancy/</link>
+      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/multitenancy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Roles</title>
+      <link>https://blog.chamila.dev/tags/roles/</link>
+      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/roles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Single Sign On</title>
+      <link>https://blog.chamila.dev/tags/single-sign-on/</link>
+      <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/single-sign-on/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ELKOnK8s</title>
+      <link>https://blog.chamila.dev/tags/elkonk8s/</link>
+      <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/elkonk8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Filebeat</title>
+      <link>https://blog.chamila.dev/tags/filebeat/</link>
+      <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/filebeat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>https://blog.chamila.dev/tags/git/</link>
+      <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>https://blog.chamila.dev/tags/github/</link>
+      <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://blog.chamila.dev/tags/hugo/</link>
+      <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Markdown</title>
+      <link>https://blog.chamila.dev/tags/markdown/</link>
+      <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Medium</title>
+      <link>https://blog.chamila.dev/tags/medium/</link>
+      <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/medium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://blog.chamila.dev/tags/docker/</link>
+      <pubDate>Sat, 21 Sep 2019 05:57:08 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ingress</title>
+      <link>https://blog.chamila.dev/tags/ingress/</link>
+      <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/ingress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://blog.chamila.dev/tags/kubernetes/</link>
+      <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Load Balancing</title>
+      <link>https://blog.chamila.dev/tags/load-balancing/</link>
+      <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/load-balancing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reverse Proxy</title>
+      <link>https://blog.chamila.dev/tags/reverse-proxy/</link>
+      <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/reverse-proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Automation</title>
+      <link>https://blog.chamila.dev/tags/automation/</link>
+      <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Documentation</title>
+      <link>https://blog.chamila.dev/tags/documentation/</link>
+      <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/documentation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gitlab</title>
+      <link>https://blog.chamila.dev/tags/gitlab/</link>
+      <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/gitlab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://blog.chamila.dev/tags/go/</link>
+      <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Technical Writing</title>
+      <link>https://blog.chamila.dev/tags/technical-writing/</link>
+      <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/technical-writing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Api Management</title>
+      <link>https://blog.chamila.dev/tags/api-management/</link>
+      <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/api-management/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Containers</title>
+      <link>https://blog.chamila.dev/tags/containers/</link>
+      <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/containers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wso2</title>
+      <link>https://blog.chamila.dev/tags/wso2/</link>
+      <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/wso2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS</title>
+      <link>https://blog.chamila.dev/tags/aws/</link>
+      <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Aws Ecs</title>
+      <link>https://blog.chamila.dev/tags/aws-ecs/</link>
+      <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/aws-ecs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Log Analysis</title>
+      <link>https://blog.chamila.dev/tags/log-analysis/</link>
+      <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/log-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Splunk</title>
+      <link>https://blog.chamila.dev/tags/splunk/</link>
+      <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/splunk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Continuous Delivery</title>
+      <link>https://blog.chamila.dev/tags/continuous-delivery/</link>
+      <pubDate>Sun, 25 Nov 2018 03:47:20 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/continuous-delivery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Continuous Integration</title>
+      <link>https://blog.chamila.dev/tags/continuous-integration/</link>
+      <pubDate>Sun, 25 Nov 2018 03:47:20 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/continuous-integration/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloud Computing</title>
+      <link>https://blog.chamila.dev/tags/cloud-computing/</link>
+      <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/cloud-computing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DevOps</title>
+      <link>https://blog.chamila.dev/tags/devops/</link>
+      <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Observability</title>
+      <link>https://blog.chamila.dev/tags/observability/</link>
+      <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/observability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Solution Architecture</title>
+      <link>https://blog.chamila.dev/tags/solution-architecture/</link>
+      <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/solution-architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Microservices</title>
+      <link>https://blog.chamila.dev/tags/microservices/</link>
+      <pubDate>Tue, 21 Aug 2018 04:29:46 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/microservices/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Process Improvement</title>
+      <link>https://blog.chamila.dev/tags/process-improvement/</link>
+      <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/process-improvement/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Terraform</title>
+      <link>https://blog.chamila.dev/tags/terraform/</link>
+      <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/terraform/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tooling</title>
+      <link>https://blog.chamila.dev/tags/tooling/</link>
+      <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/tooling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://blog.chamila.dev/tags/linux/</link>
+      <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Microsoft</title>
+      <link>https://blog.chamila.dev/tags/microsoft/</link>
+      <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/microsoft/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Open Source</title>
+      <link>https://blog.chamila.dev/tags/open-source/</link>
+      <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/open-source/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Immutability</title>
+      <link>https://blog.chamila.dev/tags/immutability/</link>
+      <pubDate>Thu, 17 May 2018 08:19:19 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/immutability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gnuplot</title>
+      <link>https://blog.chamila.dev/tags/gnuplot/</link>
+      <pubDate>Tue, 15 May 2018 06:36:59 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/gnuplot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Graph</title>
+      <link>https://blog.chamila.dev/tags/graph/</link>
+      <pubDate>Tue, 15 May 2018 06:36:59 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/graph/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Visualization</title>
+      <link>https://blog.chamila.dev/tags/visualization/</link>
+      <pubDate>Tue, 15 May 2018 06:36:59 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bash</title>
+      <link>https://blog.chamila.dev/tags/bash/</link>
+      <pubDate>Tue, 01 May 2018 07:46:05 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Grep</title>
+      <link>https://blog.chamila.dev/tags/grep/</link>
+      <pubDate>Tue, 01 May 2018 07:46:05 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/grep/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scripting</title>
+      <link>https://blog.chamila.dev/tags/scripting/</link>
+      <pubDate>Tue, 01 May 2018 07:46:05 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/scripting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unix</title>
+      <link>https://blog.chamila.dev/tags/unix/</link>
+      <pubDate>Tue, 01 May 2018 07:46:05 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/unix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Caching</title>
+      <link>https://blog.chamila.dev/tags/caching/</link>
+      <pubDate>Sun, 12 Nov 2017 14:30:44 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/caching/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Iam</title>
+      <link>https://blog.chamila.dev/tags/iam/</link>
+      <pubDate>Sun, 12 Nov 2017 14:30:44 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/iam/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Token Authentication</title>
+      <link>https://blog.chamila.dev/tags/token-authentication/</link>
+      <pubDate>Sun, 12 Nov 2017 14:30:44 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/token-authentication/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DNS</title>
+      <link>https://blog.chamila.dev/tags/dns/</link>
+      <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/dns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ssl</title>
+      <link>https://blog.chamila.dev/tags/ssl/</link>
+      <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/ssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Subject Alternative Name</title>
+      <link>https://blog.chamila.dev/tags/subject-alternative-name/</link>
+      <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/subject-alternative-name/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>X509</title>
+      <link>https://blog.chamila.dev/tags/x509/</link>
+      <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/x509/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Openssl</title>
+      <link>https://blog.chamila.dev/tags/openssl/</link>
+      <pubDate>Tue, 17 Oct 2017 18:56:28 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/openssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker Hub</title>
+      <link>https://blog.chamila.dev/tags/docker-hub/</link>
+      <pubDate>Tue, 05 Sep 2017 18:50:34 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/docker-hub/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker Label</title>
+      <link>https://blog.chamila.dev/tags/docker-label/</link>
+      <pubDate>Tue, 05 Sep 2017 18:50:34 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/docker-label/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Label Schema</title>
+      <link>https://blog.chamila.dev/tags/label-schema/</link>
+      <pubDate>Tue, 05 Sep 2017 18:50:34 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/label-schema/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Microbadger</title>
+      <link>https://blog.chamila.dev/tags/microbadger/</link>
+      <pubDate>Tue, 05 Sep 2017 18:50:34 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/microbadger/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Squash</title>
+      <link>https://blog.chamila.dev/tags/squash/</link>
+      <pubDate>Tue, 22 Aug 2017 09:58:17 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/squash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Atom</title>
+      <link>https://blog.chamila.dev/tags/atom/</link>
+      <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/atom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ha</title>
+      <link>https://blog.chamila.dev/tags/ha/</link>
+      <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/ha/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Haproxy</title>
+      <link>https://blog.chamila.dev/tags/haproxy/</link>
+      <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/haproxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Syntax</title>
+      <link>https://blog.chamila.dev/tags/syntax/</link>
+      <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/syntax/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vim</title>
+      <link>https://blog.chamila.dev/tags/vim/</link>
+      <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/vim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloudformation</title>
+      <link>https://blog.chamila.dev/tags/cloudformation/</link>
+      <pubDate>Mon, 03 Jul 2017 11:40:50 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/cloudformation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Infrastructure As Code</title>
+      <link>https://blog.chamila.dev/tags/infrastructure-as-code/</link>
+      <pubDate>Mon, 03 Jul 2017 11:40:50 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/infrastructure-as-code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Puppet</title>
+      <link>https://blog.chamila.dev/tags/puppet/</link>
+      <pubDate>Mon, 03 Jul 2017 11:40:50 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/puppet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Integration</title>
+      <link>https://blog.chamila.dev/tags/integration/</link>
+      <pubDate>Tue, 21 Feb 2017 06:48:33 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/integration/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Programming</title>
+      <link>https://blog.chamila.dev/tags/programming/</link>
+      <pubDate>Tue, 21 Feb 2017 06:48:33 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Adminservice</title>
+      <link>https://blog.chamila.dev/tags/adminservice/</link>
+      <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/adminservice/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Carbonapp</title>
+      <link>https://blog.chamila.dev/tags/carbonapp/</link>
+      <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/carbonapp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wsdl</title>
+      <link>https://blog.chamila.dev/tags/wsdl/</link>
+      <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/wsdl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Heapdump</title>
+      <link>https://blog.chamila.dev/tags/heapdump/</link>
+      <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/heapdump/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://blog.chamila.dev/tags/java/</link>
+      <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jmap</title>
+      <link>https://blog.chamila.dev/tags/jmap/</link>
+      <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/jmap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jstack</title>
+      <link>https://blog.chamila.dev/tags/jstack/</link>
+      <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/jstack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Threaddump</title>
+      <link>https://blog.chamila.dev/tags/threaddump/</link>
+      <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/threaddump/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://blog.chamila.dev/tags/python/</link>
+      <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Threading</title>
+      <link>https://blog.chamila.dev/tags/threading/</link>
+      <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/threading/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Multi Threading</title>
+      <link>https://blog.chamila.dev/tags/multi-threading/</link>
+      <pubDate>Thu, 26 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/multi-threading/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Activemq</title>
+      <link>https://blog.chamila.dev/tags/activemq/</link>
+      <pubDate>Tue, 17 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/activemq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Apache Stratos</title>
+      <link>https://blog.chamila.dev/tags/apache-stratos/</link>
+      <pubDate>Mon, 16 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/apache-stratos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scale</title>
+      <link>https://blog.chamila.dev/tags/scale/</link>
+      <pubDate>Sun, 22 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/scale/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cartridge Agent</title>
+      <link>https://blog.chamila.dev/tags/cartridge-agent/</link>
+      <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/cartridge-agent/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cep</title>
+      <link>https://blog.chamila.dev/tags/cep/</link>
+      <pubDate>Fri, 10 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/cep/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Thrift</title>
+      <link>https://blog.chamila.dev/tags/thrift/</link>
+      <pubDate>Fri, 10 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/thrift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pppoe</title>
+      <link>https://blog.chamila.dev/tags/pppoe/</link>
+      <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/pppoe/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Virtualbox</title>
+      <link>https://blog.chamila.dev/tags/virtualbox/</link>
+      <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/virtualbox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Axis2</title>
+      <link>https://blog.chamila.dev/tags/axis2/</link>
+      <pubDate>Sat, 19 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/axis2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Soap</title>
+      <link>https://blog.chamila.dev/tags/soap/</link>
+      <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/soap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wso2esb</title>
+      <link>https://blog.chamila.dev/tags/wso2esb/</link>
+      <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/wso2esb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu</title>
+      <link>https://blog.chamila.dev/tags/ubuntu/</link>
+      <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wireshark</title>
+      <link>https://blog.chamila.dev/tags/wireshark/</link>
+      <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/wireshark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wso2 Carbon</title>
+      <link>https://blog.chamila.dev/tags/wso2-carbon/</link>
+      <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.chamila.dev/tags/wso2-carbon/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.78.2" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2020",
-      "datePublished": "2020-02-10 20:26:46 \u002b1300 NZDT",
-      "dateModified" : "2020-02-10 20:26:46 \u002b1300 NZDT",
+      "datePublished": "2020-02-10 20:26:46 \x2b1300 NZDT",
+      "dateModified" : "2020-02-10 20:26:46 \x2b1300 NZDT",
       "url" : "https:\/\/blog.chamila.dev\/post\/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment\/",
       "keywords" : [ "K8s","Logging","ElasticSearch","Logstash","Log aggregation","Authentication","Authorization","KeyCloak","Single Sign On","Multitenancy","Roles", ]
   }
@@ -198,20 +198,20 @@
 <li><code>attributes.principal</code> and <code>attributes.groups</code> - The names of the attributes on the SAML Assertion (response) that should be treated as the username and the group name of the authenticated user. These are information that will determine the authorization aspects of the process. Although these are required for the whole process of user authentication to complete, we&rsquo;ll forget about these two for the moment, and will soon revisit with more contextual information.</li>
 </ol>
 <p>Following is the configuration that should end up in the <code>elasticsearch.yml</code> file. Note that the key, <code>xpack.security.authc.realms.saml.cloud-saml</code> could be changed for on-premise deployment to be one that uniquely identifies this IDP configuration. However for ElasticCloud deployments, the existence of <code>cloud-saml</code> as the key is a must for SAML (and apparently OIDC) to work at this moment. ElasticCloud seems to work in a different way than you&rsquo;d expect a managed ELK deployment to work, being restrictive about which configurations should be used in what way.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">xpack</span>:
-  <span style="color:#f92672">security</span>:
-    <span style="color:#f92672">authc</span>:
-      <span style="color:#f92672">realms</span>:
-        <span style="color:#f92672">saml</span>:
-          <span style="color:#f92672">cloud-saml</span>:
-            <span style="color:#f92672">order</span>: <span style="color:#ae81ff">2</span>
-            <span style="color:#f92672">attributes.principal</span>: <span style="color:#e6db74">&#34;email&#34;</span>
-            <span style="color:#f92672">attributes.groups</span>: <span style="color:#e6db74">&#34;realm&#34;</span>
-            <span style="color:#f92672">idp.metadata.path</span>: <span style="color:#e6db74">&#34;/app/config/saml/metadata.xml&#34;</span>
-            <span style="color:#f92672">idp.entity_id</span>: <span style="color:#e6db74">&#34;https://keycloak.my.org/auth/realms/elastic&#34;</span>
-            <span style="color:#f92672">sp.entity_id</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/&#34;</span>
-            <span style="color:#f92672">sp.acs</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
-            <span style="color:#f92672">sp.logout</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/logout&#34;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">xpack</span>:
+  <span style="color:#66d9ef">security</span>:
+    <span style="color:#66d9ef">authc</span>:
+      <span style="color:#66d9ef">realms</span>:
+        <span style="color:#66d9ef">saml</span>:
+          <span style="color:#66d9ef">cloud-saml</span>:
+            <span style="color:#66d9ef">order</span>: <span style="color:#ae81ff">2</span>
+            <span style="color:#66d9ef">attributes.principal</span>: <span style="color:#e6db74">&#34;email&#34;</span>
+            <span style="color:#66d9ef">attributes.groups</span>: <span style="color:#e6db74">&#34;realm&#34;</span>
+            <span style="color:#66d9ef">idp.metadata.path</span>: <span style="color:#e6db74">&#34;/app/config/saml/metadata.xml&#34;</span>
+            <span style="color:#66d9ef">idp.entity_id</span>: <span style="color:#e6db74">&#34;https://keycloak.my.org/auth/realms/elastic&#34;</span>
+            <span style="color:#66d9ef">sp.entity_id</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/&#34;</span>
+            <span style="color:#66d9ef">sp.acs</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
+            <span style="color:#66d9ef">sp.logout</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/logout&#34;</span>
 </code></pre></div><blockquote>
 <p>Note that <strong>exactly the same URLs</strong> specified earlier in KeyCloak SAML Client configuration, have to be specified here for Kibana for validations in the SAML requests and responses to work.</p>
 </blockquote>
@@ -221,12 +221,12 @@
 <li>Make Kibana use <code>saml</code> and <code>basic</code> authentication realms in that order. <code>basic</code> is used here as a fallback authentication mechanism if <code>saml</code> fails. This would be the case for API access as most of the time, since there is no way for a browser based login flow to be initiated during API calls. If SAML SSO is to be associated with API calls, that has to be done using an auth flow done through browsers and using the resulting sessions details for the API calls.</li>
 <li>Specify the details of the proxy that is fronting Kibana publicly for URL building. In our case, the URL <code>https://kibana.my.org:443</code> should be used <strong>with the port number 443</strong>.</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">xpack.security.authProviders</span>: [<span style="color:#ae81ff">saml, basic]</span>
-<span style="color:#f92672">server.xsrf.whitelist</span>: [<span style="color:#ae81ff">/api/security/v1/saml]</span>
-<span style="color:#f92672">xpack.security.public</span>:
-  <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">https</span>
-  <span style="color:#f92672">hostname</span>: <span style="color:#ae81ff">kibana.my.org</span>
-  <span style="color:#f92672">port</span>: <span style="color:#ae81ff">443</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">xpack.security.authProviders</span>: [saml, basic]
+<span style="color:#66d9ef">server.xsrf.whitelist</span>: [/api/security/v1/saml]
+<span style="color:#66d9ef">xpack.security.public</span>:
+  <span style="color:#66d9ef">protocol</span>: https
+  <span style="color:#66d9ef">hostname</span>: kibana.my.org
+  <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">443</span>
 </code></pre></div><p>At this point, the basic configurations that point the Service Provider and the Identity Provider at each other are done. Ideally these should be enough to make SSO happen for Kibana based on KeyCloak.</p>
 <p>However, the user that will get authenticated through this process is still not properly authorized to be performing any actions on the ElasticSearch cluster. Next set of configuration steps will try to assign an ElasticSearch <code>Role</code> to the User through a <code>RoleMapping</code>, otherwise known as <strong>Role Based Access Control</strong>.</p>
 <h1 id="authorization">Authorization</h1>

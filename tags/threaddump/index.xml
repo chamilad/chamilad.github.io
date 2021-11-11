@@ -6,7 +6,11 @@
     <description>Recent content in Threaddump on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Sep 2016 22:30:52 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/threaddump/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Sep 2016 22:30:52 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.chamila.dev/tags/threaddump/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Extracting memory and thread dumps from a running JRE based JVM</title>
       <link>https://blog.chamila.dev/post/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</link>

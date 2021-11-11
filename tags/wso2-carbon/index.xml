@@ -6,7 +6,11 @@
     <description>Recent content in Wso2 Carbon on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Jul 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/wso2-carbon/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Jul 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.chamila.dev/tags/wso2-carbon/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Creating a Web Service Using Apache Axis2</title>
       <link>https://blog.chamila.dev/post/2014-07-01_creating-a-web-service-using-apache-axis2/</link>

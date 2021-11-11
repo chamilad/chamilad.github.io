@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.78.2" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2019",
-      "datePublished": "2019-11-25 22:29:57 \u002b1300 NZDT",
-      "dateModified" : "2019-11-25 22:29:57 \u002b1300 NZDT",
+      "datePublished": "2019-11-25 22:29:57 \x2b1300 NZDT",
+      "dateModified" : "2019-11-25 22:29:57 \x2b1300 NZDT",
       "url" : "https:\/\/blog.chamila.dev\/post\/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying\/",
       "keywords" : [ "K8s","Logging","ElasticSearch","Logstash","Filebeat","Log aggregation","ELKOnK8s", ]
   }
@@ -233,11 +233,11 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl taint nodes elasticsearch-node-01 role<span style="color:#f92672">=</span>elasticsearch:NoSchedule
 kubectl taint nodes elasticsearch-node-02 role<span style="color:#f92672">=</span>elasticsearch:NoSchedule
 </code></pre></div><p>The <code>elasticsearch</code> StatefulSet should get the following tolerations.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">tolerations</span>:
-  - <span style="color:#f92672">key</span>: <span style="color:#e6db74">&#34;role&#34;</span>
-    <span style="color:#f92672">operator</span>: <span style="color:#e6db74">&#34;Equal&#34;</span>
-    <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;elasticsearch&#34;</span>
-    <span style="color:#f92672">effect</span>: <span style="color:#e6db74">&#34;NoSchedule&#34;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">tolerations</span>:
+  - <span style="color:#66d9ef">key</span>: <span style="color:#e6db74">&#34;role&#34;</span>
+    <span style="color:#66d9ef">operator</span>: <span style="color:#e6db74">&#34;Equal&#34;</span>
+    <span style="color:#66d9ef">value</span>: <span style="color:#e6db74">&#34;elasticsearch&#34;</span>
+    <span style="color:#66d9ef">effect</span>: <span style="color:#e6db74">&#34;NoSchedule&#34;</span>
 </code></pre></div><p>After this change is done the Nodes will only carry the required <code>kube-system</code> Pods and <code>elasticsearch-*</code> Pods that match the tolerations. However, Filebeat Pods should also be scheduled in these Nodes for log collection to be completed. Therefore, the above tolerations that were added to ElasticSearch StatefulSet should also be added to the Filebeat DaemonSet.</p>
 <!-- raw HTML omitted -->
 <blockquote>

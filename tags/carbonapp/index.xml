@@ -6,7 +6,11 @@
     <description>Recent content in Carbonapp on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Sep 2016 00:49:13 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/carbonapp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Sep 2016 00:49:13 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.chamila.dev/tags/carbonapp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>How to Upload a Carbon App (CAR File) to a Remote WSO2 Server</title>
       <link>https://blog.chamila.dev/post/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</link>

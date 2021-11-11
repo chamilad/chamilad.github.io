@@ -6,7 +6,11 @@
     <description>Recent content in Splunk on blog.chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Nov 2018 09:51:30 +0000</lastBuildDate><atom:link href="https://blog.chamila.dev/tags/splunk/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 28 Nov 2018 09:51:30 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.chamila.dev/tags/splunk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Publishing WSO2 Logs to Splunk from a Containerized Deployment</title>
       <link>https://blog.chamila.dev/post/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</link>
