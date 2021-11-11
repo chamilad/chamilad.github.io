@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Threaddump on blog.chamila.dev</title>
-    <link>https://blog.chamila.dev/tags/threaddump/</link>
-    <description>Recent content in Threaddump on blog.chamila.dev</description>
+    <title>Threaddump on chamila.dev</title>
+    <link>https://chamila.dev/tags/threaddump/</link>
+    <description>Recent content in Threaddump on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 07 Sep 2016 22:30:52 +0000</lastBuildDate>
     
-	<atom:link href="https://blog.chamila.dev/tags/threaddump/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chamila.dev/tags/threaddump/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Extracting memory and thread dumps from a running JRE based JVM</title>
-      <link>https://blog.chamila.dev/post/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</link>
+      <link>https://chamila.dev/posts/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</link>
       <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</guid>
+      <guid>https://chamila.dev/posts/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</guid>
       <description>Almost every Java developer knows about jmapand jstack tools that come with the JDK. These provide functionality to extract heap and thread information of a running JVM instance. Easy.
 What if there’s a running JVM that has produced a deadlock and you want to take a thread dump while the process is running? You go in and run the following.
 jstack pid &amp;gt;&amp;gt; thread_dump.txt Turns out the system doesn’t know what jstack is.</description>

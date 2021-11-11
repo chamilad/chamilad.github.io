@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Syntax on blog.chamila.dev</title>
-    <link>https://blog.chamila.dev/tags/syntax/</link>
-    <description>Recent content in Syntax on blog.chamila.dev</description>
+    <title>Syntax on chamila.dev</title>
+    <link>https://chamila.dev/tags/syntax/</link>
+    <description>Recent content in Syntax on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 13 Jul 2017 05:26:55 +0000</lastBuildDate>
     
-	<atom:link href="https://blog.chamila.dev/tags/syntax/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chamila.dev/tags/syntax/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>HAProxy Config Syntax Highlighting</title>
-      <link>https://blog.chamila.dev/post/2017-07-13_haproxy-config-syntax-highlighting/</link>
+      <link>https://chamila.dev/posts/2017-07-13_haproxy-config-syntax-highlighting/</link>
       <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2017-07-13_haproxy-config-syntax-highlighting/</guid>
+      <guid>https://chamila.dev/posts/2017-07-13_haproxy-config-syntax-highlighting/</guid>
       <description>A brief post on getting this done on Atom and Vim.
 Atom Just install language-haproxy Atom plugin through either Atom UI or apm .
 apm install language-haproxy When opening an haproxy.cfg file, Atom will detect and highlight accordingly.

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Thrift on blog.chamila.dev</title>
-    <link>https://blog.chamila.dev/tags/thrift/</link>
-    <description>Recent content in Thrift on blog.chamila.dev</description>
+    <title>Thrift on chamila.dev</title>
+    <link>https://chamila.dev/tags/thrift/</link>
+    <description>Recent content in Thrift on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 Oct 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://blog.chamila.dev/tags/thrift/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chamila.dev/tags/thrift/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Thrift Communication in Apache Stratos</title>
-      <link>https://blog.chamila.dev/post/2014-10-10_thrift-communication-in-apache-stratos/</link>
+      <link>https://chamila.dev/posts/2014-10-10_thrift-communication-in-apache-stratos/</link>
       <pubDate>Fri, 10 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2014-10-10_thrift-communication-in-apache-stratos/</guid>
+      <guid>https://chamila.dev/posts/2014-10-10_thrift-communication-in-apache-stratos/</guid>
       <description>In Apache Stratos, data publishing over Thrift is done via streaming. It uses WSO2 Carbon’s Data Bridge to serialize data in to a stream and publish to a given IP address and a Port. The use of DataBridge is explained here.
 Stream Definition In order to publish data as a stream, the definition of the particular stream should be defined first. This is achieved using the org.wso2.carbon.databridge.commons.StreamDefinition class. The list of attributes that will be written to the stream is defined using a StreamDefinition object to be assigned to a particular DataPublisher.</description>
     </item>

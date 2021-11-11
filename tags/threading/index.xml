@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Threading on blog.chamila.dev</title>
-    <link>https://blog.chamila.dev/tags/threading/</link>
-    <description>Recent content in Threading on blog.chamila.dev</description>
+    <title>Threading on chamila.dev</title>
+    <link>https://chamila.dev/tags/threading/</link>
+    <description>Recent content in Threading on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 10 Dec 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://blog.chamila.dev/tags/threading/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chamila.dev/tags/threading/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>BreadPool — a Thread Pool for Python</title>
-      <link>https://blog.chamila.dev/post/2015-12-10_breadpool-a-thread-pool-for-python/</link>
+      <link>https://chamila.dev/posts/2015-12-10_breadpool-a-thread-pool-for-python/</link>
       <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2015-12-10_breadpool-a-thread-pool-for-python/</guid>
+      <guid>https://chamila.dev/posts/2015-12-10_breadpool-a-thread-pool-for-python/</guid>
       <description>A thread pool is not a new concept. It’s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? Because the program wouldn’t be starting threads as it sees fit and somehow reach the maximum thread number soon. Simply said thread pools allows us to limit the number of threads spawned by our program execution. Trust me, you don’t want your code going to town spawning threads.</description>
     </item>
     

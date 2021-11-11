@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Continuous Integration on blog.chamila.dev</title>
-    <link>https://blog.chamila.dev/tags/continuous-integration/</link>
-    <description>Recent content in Continuous Integration on blog.chamila.dev</description>
+    <title>Continuous Integration on chamila.dev</title>
+    <link>https://chamila.dev/tags/continuous-integration/</link>
+    <description>Recent content in Continuous Integration on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 25 Nov 2018 03:47:20 +0000</lastBuildDate>
     
-	<atom:link href="https://blog.chamila.dev/tags/continuous-integration/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chamila.dev/tags/continuous-integration/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>CI/CD APIs with WSO2 API Manager</title>
-      <link>https://blog.chamila.dev/post/2018-11-25_cicd-apis-with-wso2-api-manager/</link>
+      <link>https://chamila.dev/posts/2018-11-25_cicd-apis-with-wso2-api-manager/</link>
       <pubDate>Sun, 25 Nov 2018 03:47:20 +0000</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2018-11-25_cicd-apis-with-wso2-api-manager/</guid>
+      <guid>https://chamila.dev/posts/2018-11-25_cicd-apis-with-wso2-api-manager/</guid>
       <description>How to do continuous integration and continuous delivery of APIs with WSO2 API Manager WSO2 API Manager, the only Open Source Leader in API Management Solutions in Forrester Wave, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.</description>
     </item>
     
     <item>
       <title>How to Upload a Carbon App (CAR File) to a Remote WSO2 Server</title>
-      <link>https://blog.chamila.dev/post/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</link>
+      <link>https://chamila.dev/posts/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</link>
       <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</guid>
+      <guid>https://chamila.dev/posts/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</guid>
       <description>Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.</description>
     </item>
     

@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Filebeat on blog.chamila.dev</title>
-    <link>https://blog.chamila.dev/tags/filebeat/</link>
-    <description>Recent content in Filebeat on blog.chamila.dev</description>
+    <title>Filebeat on chamila.dev</title>
+    <link>https://chamila.dev/tags/filebeat/</link>
+    <description>Recent content in Filebeat on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 25 Nov 2019 22:29:57 +1300</lastBuildDate>
     
-	<atom:link href="https://blog.chamila.dev/tags/filebeat/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chamila.dev/tags/filebeat/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>ElasticSearch on K8s: 05 - Visualization and Production Readying</title>
-      <link>https://blog.chamila.dev/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</link>
+      <link>https://chamila.dev/posts/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</link>
       <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</guid>
-      <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
+      <guid>https://chamila.dev/posts/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</guid>
+      <description>Woolshed Hut on Mt. Somers    This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Visualization Kibana is a web application which can be used to query data from an ElasticSearch cluster.</description>
     </item>
     
     <item>
       <title>ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</title>
-      <link>https://blog.chamila.dev/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</link>
+      <link>https://chamila.dev/posts/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</link>
       <pubDate>Sat, 23 Nov 2019 16:01:40 +1300</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</guid>
-      <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
+      <guid>https://chamila.dev/posts/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</guid>
+      <description>The morning shadow on the lower mountaineous plain beside Adam&amp;#39;s Peak, Sri Lanka    This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Storage and Indexing Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying.</description>
     </item>
     
     <item>
       <title>ElasticSearch on K8s: 03 - Log Enrichment with Logstash</title>
-      <link>https://blog.chamila.dev/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</link>
+      <link>https://chamila.dev/posts/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</link>
       <pubDate>Fri, 22 Nov 2019 01:05:37 +1300</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</guid>
-      <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
+      <guid>https://chamila.dev/posts/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</guid>
+      <description>A stash of sugar cane ready to be processed into sugar and Arrack    This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Enrichment Now that the logs are being collected from the required sources, it’s time to start making some sense out of them.</description>
     </item>
     
     <item>
       <title>ElasticSearch on K8s: 02 — Log Collection with Filebeat</title>
-      <link>https://blog.chamila.dev/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</link>
+      <link>https://chamila.dev/posts/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</link>
       <pubDate>Sat, 21 Sep 2019 05:57:08 +0000</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</guid>
+      <guid>https://chamila.dev/posts/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</guid>
       <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.</description>
     </item>

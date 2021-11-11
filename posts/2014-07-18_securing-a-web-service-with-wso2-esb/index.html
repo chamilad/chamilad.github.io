@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/posts/2014-07-18_securing-a-web-service-with-wso2-esb/" />
+  <link rel="canonical" href="https://chamila.dev/posts/2014-07-18_securing-a-web-service-with-wso2-esb/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Securing a Web Service With WSO2 ESB",
+      "headline" : "Securing a Web Service With WSO2 ESB",
+      "description" : "WSO2 Enterprise Service Bus is one of the best performing implementations for the Enterprise market. In this article I will briefly go through what it takes to secure an unsecured backend web service using WSO2 ESB as a mediator.\nSecurity in Web Services is covered by the WS-Security standard. There are various policies such as simple username and password authentication and PKI certificates that can be used to secure a Web Service.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2014",
+      "datePublished": "2014-07-18 00:00:00 \x2b0000 UTC",
+      "dateModified" : "2014-07-18 00:00:00 \x2b0000 UTC",
+      "url" : "https:\/\/chamila.dev\/posts\/2014-07-18_securing-a-web-service-with-wso2-esb\/",
+      "keywords" : [ "Wso2","Wso2esb","Soap", ]
+  }
+</script>
+<title>Securing a Web Service With WSO2 ESB - chamila.dev</title>
+  <meta property="og:title" content="Securing a Web Service With WSO2 ESB - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="WSO2 Enterprise Service Bus is one of the best performing implementations for the Enterprise market. In this article I will briefly go through what it takes to secure an unsecured backend web service using WSO2 ESB as a mediator.
+Security in Web Services is covered by the WS-Security standard. There are various policies such as simple username and password authentication and PKI certificates that can be used to secure a Web Service." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamila.dev/">chamila.dev</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Securing a Web Service With WSO2 ESB</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2014-07-18 00:00:00 UTC">
+                18 Jul 2014
+		<p><b>Read time:</b> 5m
+		<br /><b>Word count:</b> 919</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#backend-service">Backend Service</a></li>
+        <li><a href="#setting-up-wso2esb">Setting up WSO2 ESB</a></li>
+        <li><a href="#creating-the-proxyservice">Creating the Proxy Service</a></li>
+        <li><a href="#pass-throughproxy">Pass Through Proxy</a></li>
+        <li><a href="#wsdl-proxy">WSDL Proxy</a></li>
+        <li><a href="#securing-the-proxyservice">Securing the Proxy Service</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <p>WSO2 Enterprise Service Bus is one of the <a href="http://blog.samisa.org/2014/02/wso2-esb-performance-round-75.html">best performing implementations</a> for the Enterprise market. In this article I will briefly go through what it takes to secure an unsecured backend web service using WSO2 ESB as a mediator.</p>
+<p>Security in Web Services is covered by the WS-Security standard. There are <a href="http://docs.oasis-open.org/ws-sx/security-policy/examples/ws-sp-usecases-examples-cd-01.html">various policies</a> such as simple username and password authentication and PKI certificates that can be used to secure a Web Service. The policy that will be used is described using the WS-Policy standard.</p>
+<p>WSDL of the secured service will have the WS-Security policy embedded and the consumer will be able to filter out the WS-Security policy from it to implement the client side security demands.</p>
+<p>For this example we will be using the basic <strong>UsernameToken</strong> with Plain Text password policy which is supported right out of the box by WSO2 ESB. Note that this policy is recommended only for pre-production environments because the password is communicated in plain text. WSO2 ESB supports by default twenty security scenarios and you can always customize the policy to your liking.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<ol>
+<li>Unsecured backend service</li>
+<li>WSO2 ESB (4.8.1 is used in this article)</li>
+</ol>
+<h3 id="backend-service">Backend Service</h3>
+<p>For demo purposes get a simple Web Service running. Refer to my earlier post, <a href="http://code.chamiladealwis.com/blog/2014/07/01/creating-a-web-service-using-apache-axis2-no-ide/">Creating a Web Service using Apache Axis2</a>, for help.</p>
+<h3 id="setting-up-wso2esb">Setting up WSO2 ESB</h3>
+<p><a href="http://wso2.com/products/enterprise-service-bus/">Download</a> WSO2 ESB and extract it. Go to its bin folder and execute <strong>wso2server.sh</strong>. After it is executed go to the <a href="https://localhost:9443/carbon">management console</a> and log in. The default username and password is <strong>admin</strong>.</p>
+<h3 id="creating-the-proxyservice">Creating the Proxy Service</h3>
+<p>We will create a proxy service for the backend service and then secure it with the UsernameToken policy.</p>
+<p>Go to the ESB <a href="https://localhost:9443/carbon">management console</a> and add a proxy service by clicking on “Proxy Service” under <strong>Services-&gt;Add</strong> menu of the Main tab.</p>
+<p><img src="/posts/img/2014-07-18_securing-a-web-service-with-wso2-esb_0.jpg#layoutTextWidth" alt=""></p>
+<p>Choose either “Pass Through Proxy” or “WSDL Based Proxy”. Fill the details according to the following</p>
+<h3 id="pass-throughproxy">Pass Through Proxy</h3>
+<p><img src="/posts/img/2014-07-18_securing-a-web-service-with-wso2-esb_1.jpg#layoutTextWidth" alt=""></p>
+<ul>
+<li>Proxy Service Name — Enter an identifying name for the Proxy service you’re creating.</li>
+<li>Target Endpoint — Select “Enter URL”. “Pick From Registry” option allows you to select the endpoint stored as a resource on the configuration registry or the governance registry. We will be entering the endpoint URL by hand.</li>
+<li>Target URL — Copy the URL of the backend service. This will be the WSDL url on the Axis2 service you created without the <strong>?wsdl</strong> string at the end.</li>
+<li>On the “Publish WSDL Options” select “Specify source URL” for “Publishing WSDL”</li>
+<li>WSDL URI — Enter the WSDL URL for the backend service. Click on “Test URI” to test the connection.</li>
+</ul>
+<p>Click Next.</p>
+<h3 id="wsdl-proxy">WSDL Proxy</h3>
+<p><img src="/posts/img/2014-07-18_securing-a-web-service-with-wso2-esb_2.jpg#layoutTextWidth" alt=""></p>
+<ul>
+<li>Proxy Service Name — Enter an identifying name for the Proxy service you’re creating.</li>
+<li>WSDL URI — The URI of the WSDL of the backend service.</li>
+<li>WSDL Service — This is the service name that is used in the WSDL as the identifier for the service. In the WSDL document this is the value for the attribute name in the <strong>wsdl:service</strong> tag.</li>
+<li>WSDL Port — This is the endpoint that you’re going to use for the proxy service.</li>
+</ul>
+<p>Normally three types of WSDL ports are exposed for a service. Those are</p>
+<ul>
+<li>SOAP1.1 Endpoint — ServiceNameHttpSoap11Endpoint</li>
+<li>SOAP1.2 Endpoint — ServiceNameHttpSOap12Endpoint</li>
+<li>HTTP REST Endpoint — ServiceNameHttpEndpoint</li>
+</ul>
+<p>Use either SOAP 1.1 or SOAP 1.2 endpoint as the port. You can find the names under the <strong><a href="wsdl:service">wsdl:service</a><a href="wsdl:port">wsdl:port</a></strong> tags.</p>
+<p>Click Next.</p>
+<p>Your proxy service will be created. WSO2 ESB has a tool called “Try It” which can be used as a test tool for Web Services. <a href="https://localhost:9443/carbon/service-mgt/index.jsp?region=region1&amp;item=services_list_menu">Service list page</a> will have a link to the “Try It” console in front of each service. Test the proxy service you just created to verify that we can go ahead to the securing phase.</p>
+<p>At this point you have an unsecured proxy service that does basically nothing as a mediator to the backend service. We need to secure the service with UsernameToken policy so that the ESB will handle security aspects and only pass SOAP messages back and forth to the backend service sans the WS-Security.</p>
+<h3 id="securing-the-proxyservice">Securing the Proxy Service</h3>
+<p>If you list the services of the ESB you will see that the proxy service you created just now is marked as unsecured, with the unlocked padlock as the icon.</p>
+<p><img src="/posts/img/2014-07-18_securing-a-web-service-with-wso2-esb_3.jpg#layoutTextWidth" alt=""></p>
+<p>Click on that icon to secure the service. Select “Yes” in the next page and you will be presented with the policy types that WSO2 ESB supports right out of the box.</p>
+<p><img src="/posts/img/2014-07-18_securing-a-web-service-with-wso2-esb_4.jpg#layoutTextWidth" alt=""></p>
+<p>Select “UsernameToken” and click Next.</p>
+<p>Select the user groups that are allowed to use the service. In this case select admin.</p>
+<p><img src="/posts/img/2014-07-18_securing-a-web-service-with-wso2-esb_5.jpg#layoutTextWidth" alt=""></p>
+<p>Voilà! You have secured your proxy service. Run “Try It” again and enter the username and the password (in this case admin:admin) to consume the service. If you try to consume the service without entering the proper user credentials you will be presented with an AxisFault.</p>
+<p>If you check the WSDL of the secured proxy service you will observe the embedded WS-Policy describing the WS-Security policy (UsernameToken in our case) in the top most part of the WSDL document. If you wish to edit this policy you can do so by selecting “Edit Policy” in the Policies page of the Proxy Service. I will go to details of customized policies in another article.</p>
+<p>In the next article I will elaborate on how to code a client to consume the secured proxy service and how UsernameToken policy is represented in the WS-Security headers.</p>
+<p>Originally published at <a href="http://chamilad.github.io/blog/2014/07/18/securing-a-web-service-with-wso2-esb/">chamilad.github.io</a> on July 18, 2014.</p>
+<hr>
+<p>Written on July 18, 2014 by chamila de alwis.</p>
+<p>Originally published on <a href="https://medium.com/@chamilad/securing-a-web-service-with-wso2-esb-8e0495383f00">Medium</a></p>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/posts/2014-07-09_wireshark-crashing-in-ubuntu/">&lt; Wireshark Crashing in Ubuntu</a>
+		
+	</div>        
+	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/posts/2014-07-19_consuming-a-service-secured-by-wso2-esb/">Consuming a Service Secured by WSO2 ESB &gt;</a>
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/2014-07-01_creating-a-web-service-using-apache-axis2/">Creating a Web Service Using Apache Axis2</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

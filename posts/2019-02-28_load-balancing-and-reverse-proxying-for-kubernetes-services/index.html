@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/posts/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/" />
+  <link rel="canonical" href="https://chamila.dev/posts/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Load Balancing and Reverse Proxying for Kubernetes Services",
+      "headline" : "Load Balancing and Reverse Proxying for Kubernetes Services",
+      "description" : "Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic   Morning sunlight on Horton Plains National Park   In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2019",
+      "datePublished": "2019-02-28 17:56:15.6 \x2b0000 UTC",
+      "dateModified" : "2019-02-28 17:56:15.6 \x2b0000 UTC",
+      "url" : "https:\/\/chamila.dev\/posts\/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services\/",
+      "keywords" : [ "Docker","Kubernetes","Load Balancing","Reverse Proxy","Ingress", ]
+  }
+</script>
+<title>Load Balancing and Reverse Proxying for Kubernetes Services - chamila.dev</title>
+  <meta property="og:title" content="Load Balancing and Reverse Proxying for Kubernetes Services - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic   Morning sunlight on Horton Plains National Park   In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamila.dev/">chamila.dev</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Load Balancing and Reverse Proxying for Kubernetes Services</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2019-02-28 17:56:15 UTC">
+                28 Feb 2019
+		<p><b>Read time:</b> 20m
+		<br /><b>Word count:</b> 4069</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#the-problem">The Problem</a></li>
+        <li><a href="#the-solution-servicetypes">The Solution: Service Types</a></li>
+        <li><a href="#ingress">Ingress</a></li>
+        <li><a href="#gathering-all-uptogether">Gathering All Up Together</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <h4 id="different-load-balancing-and-reverse-proxying-strategies-to-use-in-production-k8s-deployments-to-expose-services-to-outsidetraffic">Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic</h4>
+<figure>
+    <img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_0.jpeg#layoutOutsetCenter"/> <figcaption>
+            <h4>Morning sunlight on Horton Plains National Park</h4>
+        </figcaption>
+</figure>
+
+<p>In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.</p>
+<h4 id="lets-define-someterms">Let’s define some terms!</h4>
+<p>Before we move on to the actual discussion, let’s define and agree on a few terms as they could be confusing with each use if not defined as a specific term first. Let’s define a sample deployment and refer to parts of this sample deployment later in the discussion.</p>
+<blockquote>
+<p>Basic understanding of <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod/">Pods</a>, <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Services</a>, and the usage of the <a href="https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types">Service Types</a> in K8s is expected for the topics discussed in this article.</p>
+</blockquote>
+<ul>
+<li><strong>K8s cluster</strong> — The boundary within which Pods, Services, and other K8s constructs are created and maintained. This includes K8s Master and the Nodes where the actual Pods are scheduled.</li>
+<li><strong>Node</strong>(with upper case N) — These are the K8s Nodes that all Pods, Volumes, and other computational constructs will be spawned in. They are not managed by K8s, and reside within the private network that is assigned to them by the IaaS provider when the virtual machines are spawned.</li>
+<li><strong>Node private network</strong>— The K8s Nodes reside in a private network in the Cloud Service Provider (e.g.: AWS VPC). For the sample deployment, let’s define this private network CIDR as <code>10.128.0.0/24</code> . There will be routing set up so that traffic is properly routed to and from this private network (e.g.: with the use of Internet and NAT Gateways).</li>
+<li><strong>Container Networking</strong> — The networking boundary within which the K8s constructs are created. This is a Software Defined Network, almost always implemented as <a href="https://github.com/coreos/flannel">Flannel</a>. How routing works within this network could vary with different Cloud Service Providers, however generally every private IP assigned within this space can talk to each other without having to do NAT in between. This network is manipulated by <strong>kube-proxy</strong>whenever new Services and Pods are created. There are usually two CIDRs defined within this space, Pod Network CIDR and the Service Network CIDR.</li>
+<li><strong>Pod Network CIDR</strong>— The IP address range from which Pods spawned within the K8s cluster will get IP addresses from. For the sample deployment, let’s keep this to <code>10.244.0.0./16</code></li>
+<li><strong>Service Network CIDR</strong> — The IP address range from which the Services created within the K8s cluster will get IP addresses from. For the sample deployment, let’s keep this to <code>10.250.10.0/20</code></li>
+<li>(K8s) <strong>Service</strong> (with upper case S) — The K8s Service construct that this article focuses on.</li>
+<li><strong>service</strong> — The application service that a particular set of Pods will provide</li>
+</ul>
+<p>The following is an excerpt from a single Service definition, <code>myservice.yml</code> . The <code>.spec.type</code> field can have values of <code>ClusterIP</code> , <code>NodePort</code> , <code>LoadBalancer</code> (or <code>ExternalName</code> which is not related to the scope of this article). This Service exposes port <code>8080</code> mapped to the Pod port <code>8080</code> . The name of the Service will be <code>myservice</code> .</p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: myservice
+...
+spec:
+  type: &lt;type&gt;
+  ...
+  ports:
+  - name: myserviceport1
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+...
+</code></pre><h3 id="the-problem">The Problem</h3>
+<blockquote>
+<p>Pods are ephemeral.</p>
+</blockquote>
+<p>In K8s, Pods are the basic unit of computation. However, Pods are not guaranteed to live for the whole life time that the user would intend it to be. In fact, the only contract that K8s adheres to when it comes to liveliness of Pods is that only the desired count of Pods (a.k.a. Replicas) would be maintained. They are ephemeral, and are vulnerable to kill signals from K8s during occasions such as scaling, memory or CPU over usage, rescheduling for more efficient resource use, or even to downtime because of outside factors (e.g.: the whole K8s Node going down). The IP address that is assigned to a Pod at its creation will not survive such events.</p>
+<p>Therefore, although each Pod has a cluster-wide routable IP address, those Pod IP addresses are not usable as direct service endpoints, simply because of the fact that at any given time there’s a chance that one or more would stop being responsive. There should be a construct that stands as a single, fixed service endpoint as a reverse proxy for a given set of Pods.</p>
+<p>This is where K8s Services come into play.</p>
+<p>A K8s Service is fixed in terms of reachability from within the cluster (and from outside of the cluster which is what this article would address). Once it gets an internal cluster-wide IP address, that can be used to refer to it until the Service is intentionally removed. It can also be referred from within the K8s cluster using the Service <code>name</code> .</p>
+<blockquote>
+<p>You may notice that the problem statement and the primary functionality of a K8s Service as described above is not something only a K8s deployment would have. Bare-metal or virtualized deployments also need some kind of reverse proxying for a given set of compute instances that offer a particular service. For an example in AWS, for a set of EC2 compute instances managed by an Autoscaling Group, there should be an ELB/ALB that acts as both a fixed referable address and a load balancing mechanism. This is the same type of functionality offered by K8s Services, except in K8s, Services are not compute instances that are managed by the provider/have to be managed by an end user. They are more a product of Software Defined Networking and Linux Kernel based packet filtering, than a single process of computation running on some CPU.</p>
+</blockquote>
+<blockquote>
+<p>Although a K8s Service does basic load balancing, as you will understand in the following sections, sometimes when advanced load balancing and reverse proxying features (e.g.: L7 features like path based routing) are needed, those advanced features are offset to a real load balancing process running as a compute process, either internal to the K8s cluster as Pods, or as external managed services. K8s Services will only perform L3 routing.</p>
+</blockquote>
+<p>However, the set of Pods handled by the Service are still not accessible from a client outside the K8s internal network. Every IP address that was discussed above is within the CIDR(s) defined when creating the K8s Overlay Network. Therefore, these are addresses in the private space. They will not be routed to the K8s cluster if a client tries to invoke them from outside the network, because routing rules for them are setup inside the Overlay Network.</p>
+<h3 id="the-solution-servicetypes">The Solution: Service Types</h3>
+<p>To address this problem, there are several Service <code>type</code> s that can be leveraged to allow ingress of external traffic to a Pod with a private IP address. Let’s explore each type and see if the goal to end up with a public IP address that a domain name can be mapped with can be achieved with any of them.</p>
+<h4 id="type-clusterip">type: ClusterIP</h4>
+<blockquote>
+<p>Pros: None that is specific to this type</p>
+</blockquote>
+<p>This is the <a href="https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types">default type of Service</a> that would be created if the <code>type</code> field is not explicitly specified for a Service definition. A cluster-wide, but internal IP address, which is part of one of the Service network CIDR that is divided up when setting up Container Networking, will be provided as the fixed IP address of the Service. This IP address (and the Service <code>name</code>)is routable from anywhere within the K8s Overlay Network.</p>
+<pre><code>curl http://myservice:8080/
+curl http://$(kubectl get svc myservice --template='{{.spec.clusterIP}}'):8080/
+</code></pre><p><img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_1.png#layoutTextWidth" alt=""></p>
+<p>However, as mentioned above, this IP address is (sort of) useless on its own for the scope of this article. It is not routable from outside the cluster network unless you can somehow implement the following series of steps.</p>
+<ol>
+<li>Watch and detect new Service creations at the K8s Master — doable, easy</li>
+<li>Get the ClusterIP addresses assigned for each Service — doable, easy</li>
+<li>Create and update routing tables from <strong>all the possible clients</strong> up to the K8s Nodes to route the requests to the cluster network — not so much</li>
+</ol>
+<blockquote>
+<p>You can also expose a Service to outside traffic through the use of the <a href="https://kubernetes.io/docs/tasks/access-kubernetes-api/http-proxy-access-api/"><code>kubectl proxy</code></a><a href="https://kubernetes.io/docs/tasks/access-kubernetes-api/http-proxy-access-api/"> command</a>. However, this exposes the complete K8s API Server and is not a recommended approach to take in production systems.</p>
+</blockquote>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>None that is specific to this type</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Not an easy task to expose the Services</li>
+<li>Doing so with other workarounds would potentially expose the most possible surface for attacks</li>
+</ul>
+<p>Moving on!</p>
+<h4 id="type-nodeport">type: NodePort</h4>
+<p>As far as the order in which this article explores the Service types, this is the first that would allow us to expose the Services in a meaningful manner in a production deployment. And as it would be apparent later, this would be the basis of other mechanisms to map a Service port to a physical port.</p>
+<p>A Service with <code>NodePort</code> type would allocate a physical port on the K8s Node for each <code>.spec.ports[*]</code> port entry defined in the Service definition. Furthermore, it will do so for <strong>all</strong> the K8s Nodes in the cluster (as opposed to doing so only in the Node(s) that the Pods handled by the Service are spawned in). This way, the Service port will be mapped to a port opened on the <code>eth0</code> interface of every Node.</p>
+<p>If <code>myservice.yml</code> is created with <code>.spec.type=NodePort</code> there would be a random (but consistent) physical port opened in each of the Nodes in the K8s Cluster. This port will be picked from a range that is modifiable when creating the K8s Cluster <code>--service-node-port-range</code> which has a default range of <code>32000</code> — <code>32767</code> . The port assigned to each <code>.spec.ports[*]</code> entry can be checked by looking at the output from <code>kubectl get svc &lt;svc_name&gt;</code> where under the <code>PORT(S)</code> column, there would be a value after a <code>:</code> for each port.</p>
+<p><img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_2.png#layoutTextWidth" alt=""></p>
+<p>If (e.g.:) the <code>myserviceport1</code> in <code>myservice</code> above (<code>8080</code>) is assigned to NodePort <code>31644</code> , then external clients who have access to the Node private network can directly access the Service using any of the Node IP addresses and the NodePort. Assuming one of these Node IP addresses is <code>10.128.0.13</code> (from range <code>10.128.0.0/24</code> defined during above definitions), we can invoke <code>myservice</code> port <code>8080</code> using the following <code>curl</code> command from within the Node private network.</p>
+<pre><code>curl http://10.128.0.13:31644/
+</code></pre><p>Additionally, if the random assignment of ports is something to worry about, fixed port values (within the above mentioned range) can be specified using <code>.spec.ports[*].nodePort</code> value for each entry. The downside of predefined NodePorts is that they have to be coordinated among the potential number of Services that will be deployed so that one Service would not clash with another.</p>
+<p>As long as there are mechanisms set up ingress and egress from the Node private network, any external client will also be able to access <code>myservice</code> with Node public IP addresses.</p>
+<p>As the next step, a reverse proxy can be setup in the IaaS public address space that sits within the same network grouping (e.g.: VPC) as the K8s Nodes so that external traffic is routed to (and load balanced between) the NodePorts -&gt; Service Ports -&gt; Pod Ports.</p>
+<p><img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_3.png#layoutTextWidth" alt=""></p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Easiest method to expose internal Services to outside traffic</li>
+<li>Enables greater freedom when it comes to setting up external load balancing and reverse proxying</li>
+<li>Service-provided L3 load balancing functionality (e.g.: <code>.spec.sessionAffinity</code>) is available</li>
+<li>Straight-forward, easy-to-untangle mechanism that would help when troubleshooting (especially with predefined NodePorts)</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Have to manage load balancing and reverse proxying external from K8s management</li>
+<li>Have to coordinate NodePorts among Services</li>
+</ul>
+<blockquote>
+<p>This is the basis of all other types of reverse proxying discussed from this point onward. Any kind of traffic that has to come inside the K8s Cluster Network has to come through some kind of a NodePort. All variations try to address other factors such as dynamic management of external load balancers with K8s directives, but NodePort is the bridge that connects the Node Private Network with the Service Network.</p>
+</blockquote>
+<h4 id="type-loadbalancer">type: LoadBalancer</h4>
+<p>Also known as the Cloud Load Balancer approach, specifying this as the <code>.spec.type</code> when K8s is deployed in a supported Cloud Service Provider would result in a load balancer in the Cloud to be provisioned that proxies the particular Service.</p>
+<p>For an example, in a K8s cluster deployed in AWS, this would result in an ELB instance being provisioned that proxies traffic for the Service inside the K8s cluster. The traffic that reaches the ELB will reach the Overlay Network through random NodePorts exposed to ferry the traffic from Cloud Service Provider private network to K8s Overlay Network.</p>
+<p>The exact details on how this flow is implemented can vary depending on the Cloud Service Provider. However, the overall idea is to quickly provision a Load Balancer without having to go through the Cloud Service Provider APIs separately. K8s will translate the Service definition and perform the API calls on behalf of the user to setup the resources required (e.g.: Load balancer, static public IP address, routing on the Cloud Service Provider).</p>
+<p><img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_4.png#layoutTextWidth" alt=""></p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Provisioning load balancing and reverse proxying with minimum effort</li>
+<li>NodePort management is done without the intervention of the user</li>
+<li>Do not have to manage load balancing facilities outside of K8s domain</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>A single load balancer proxies for a single Service, and therefore is a costly approach</li>
+<li>The implementation details are sometimes opaque and requires manual investigation to understand and troubleshoot</li>
+<li>Sets up Network Load Balancers most of the time and therefore L7 features like path based routing and TLS/SSL termination are out of the table</li>
+<li>Usually takes time for Cloud Service Provider to complete provisioning the load balancer</li>
+</ul>
+<p>The above are the different Service <code>type</code> s available that provide different methods to expose a Service to the outside of the K8s cluster. However, they alone do not get the task to a complete state (e.g. <code>NodePort</code> just exports the ports, <code>LoadBalancer</code> is not flexible). Therefore certain “patterns” of combining the above with more application level functionality have come up. Following are two such methods.</p>
+<h4 id="bare-metal-service-load-balancerpattern">Bare Metal Service Load Balancer Pattern</h4>
+<p>Before K8s v1.1, <a href="https://github.com/kubernetes/contrib/tree/master/service-loadbalancer">Bare Metal Service Load Balancer </a>was the preferred solution to tackle shortcomings of the above LoadBalancer Service type. This makes use of NodePorts and a set of HAProxy Pods that acts as a L7 reverse proxy for the rest of a sets of Pods. The solution is roughly the following.</p>
+<ol>
+<li>A single-container Pod contains an HAProxy deployment along with an additional binary called <strong>service_loadbalancer</strong></li>
+<li>This Pod is deployed as a DaemonSet where only a single Pod is scheduled per Node</li>
+<li>The <strong>service_loadbalancer</strong>binary constantly watches the K8s API Server and retrieves the details of Services. With the use of Service Annotation metadata, each Service can indicate the load balancing details to be adopted by any third party load balancer (TLS/SSL Termination, virtual host names etc.)</li>
+<li>With the details retrieved, it rewrites the HAProxy configuration file, filling the <code>backend</code> and <code>frontend</code> section details with Pod IP addresses for each Service</li>
+<li>After the HAProxy configuration file is written, <strong>service_loadbalancer</strong> does a <a href="https://www.haproxy.com/blog/truly-seamless-reloads-with-haproxy-no-more-hacks/">soft-reload on the HAProxy process</a>.</li>
+<li>HAProxy exposes ports <strong>80</strong> and <strong>443</strong>. These are then exposed to outside traffic as <strong>NodePorts</strong></li>
+<li>The NodePorts can be exposed to outside through a public Load Balancer</li>
+</ol>
+<p><img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_5.png#layoutTextWidth" alt=""></p>
+<p>In this approach, any incoming traffic reaches a Pod in the following order</p>
+<ol>
+<li>Traffic is routed to the public Load Balancer via the public IP address</li>
+<li>Load Balancer forwards the traffic to the NodePorts</li>
+<li>Once traffic reaches the NodePorts HAProxy starts L7 deconstruction and does host or path based routing based on the Service Annotation details</li>
+<li>Once the routing decision is taken, the traffic is directly forwarded to the Pod IP</li>
+</ol>
+<p>Notice that once traffic reaches the NodePorts (<strong>#2</strong> above) it is inside the Overlay Network. Therefore, load balancing between direct Pod IP addresses can be done, based on any L7 decisions. In other words, the Service K8s construct is not involved in the load balancing decision, other than providing a grouping mechanism in the beginning. This is in contrast to approaches discussed so far where load balancing happens outside the K8s Overlay Network, and traffic is usually pushed to the Service virtual IP.</p>
+<p>In stories that I have used this approach personally, the main driver for choosing it has been its customizability. Some use cases involve specific requirements like combinations of host and/or path based routing, mutual authentication, etc. With this approach (and with some Go coding competency) these customizations were easy to implement.</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Can make L7 decisions</li>
+<li>Can make use of specific load balancer features such as cookie based Session Stickiness that may not be possible with Cloud Load Balancer approach</li>
+<li>Has more control over how load balancing should be scaled</li>
+<li>Load balancing details are managed with K8s constructs such as Service annotations</li>
+<li>Is more customizable when it comes to different use cases</li>
+<li>Economical since only one Cloud Load Balancer would be provisioned for a complete K8s cluster</li>
+<li>Transparent configuration changes and mechanism since after the <strong>service_loadbalancer</strong> the changes involved are HAProxy specific</li>
+<li>Changes are propagated quickly as the <strong>service_loadbalancer</strong> picks up the changes within a short interval period</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Complex to set up and troubleshoot</li>
+<li>Could result in a single point of failure if the number of Nodes or affinity specified Nodes is limited</li>
+<li><strong>service_loadbalancer</strong> only has support for HAProxy (although could support other reverse proxies in theory with considerable code changes)</li>
+</ul>
+<blockquote>
+<p>After K8s v1.1, <code>kubernetes/contrib</code> repository has marked the folder <code>service_loadbalancer</code> as deprecated, favoring the HAProxy Ingress Controller.</p>
+</blockquote>
+<blockquote>
+<p><a href="https://traefik.io/">traefik</a> which combines the above mentioned <strong>service_loadbalancer</strong> logic into a lightweight reverse proxy, also popped up later after the Service Load Balancer pattern got deprecated. There is an Enterprise Edition that seems to be production recommended. However I have not personally seen that in action in production yet.</p>
+</blockquote>
+<h3 id="ingress">Ingress</h3>
+<p>It is fair to say that the concept of Ingress and the associated Ingress Controller evolved out of the Bare Metal Service Load Balancer pattern discussed above. This approach is only available after K8s v1.1.</p>
+<p>In the Service Load Balancer pattern, the load balancing and reverse proxying intent was tied up with the Service declaration and the implementation was tied up with the <strong>service_loadbalancer</strong> code. Annotations are implementation specific, and are not trusted to be standard. Adding support for new type of a load balancer require multiple changes in the existing code.</p>
+<p>Ingress takes these concerns out into their own K8s API objects.</p>
+<p>An Ingress is an intent of exposing a route from outside to a certain set of Pods proxied by a Service. In this intent, the load balancing specifics such as TLS termination, host and/or path based routing, and load distribution policies could be specified as <strong>rules</strong>. This is in contrast to implementation specific annotations the Service Load Balancer pattern followed. Ingress rules are parts of the Ingress spec section and thus are standard constructs of the K8s API, not some arbitrary string that a only custom implementation would be able to make a meaning out of.</p>
+<p>The implementation of the Ingress (intent) is done by an <strong>Ingress Controller</strong>. This is a load balancer specific implementation of a contract that should configure a given load balancer (e.g.: Nginx, HAProxy, AWS ALB) according to the details provided by the Ingress resources. Which Ingress Controller to use for a certain Ingress resource is specified by <code>metadata.annotations.kubernetes.io/ingress.class</code> annotation. The values here could be <code>nginx</code> , <code>gce</code> or any other IngressController implementation identifier.</p>
+<p>The details of this implementation could vary between different Ingress Controllers. They only have to adhere to the standards defined by the Ingress resource API.</p>
+<p>For an example, <a href="https://git.k8s.io/ingress-nginx/README.md">Nginx Ingress Controller</a> deploys an Nginx proxy as a Pod and configures it according to the Ingress resources defined in the cluster. <a href="https://github.com/kubernetes-sigs/aws-alb-ingress-controller">AWS ALB Ingress Controller</a> provisions an AWS ALB with the routing details of the Ingress rules. The same is true for <a href="https://git.k8s.io/ingress-gce/README.md">GCE Ingress Controller</a>, where a GCP L7 load balancer will be provisioned. Both the AWS ALB and GCP Ingress Controller spawned external load balancers will forward traffic to Pods through the Service Cluster IP exposed as NodePort type.</p>
+<p><img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_6.png#layoutTextWidth" alt=""></p>
+<p>This might look similar to the Cloud Load Balancer ( <code>type: LoadBalancer</code> ) approach discussed above, however there are key differences between Ingress and LoadBalancer type Services.</p>
+<ol>
+<li>Cloud Load Balancer approach most of the time provisions Network Load Balancers with no control of L7 constructs. Ingress does not do this. Its resulting load balancers are mostly L7.</li>
+<li>Cloud Load Balancer approach is dictated by the Service declaration. Ingress is a separate declaration that does not depend on the Service type.</li>
+<li>There would be one Cloud Service Provider load balancer per Service in the former approach, whereas with Ingress multiple Services and backends could be managed with a single load balancer.</li>
+</ol>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Standardized approach to provisioning external load balancers</li>
+<li>Support for HTTP and L7 features like path based routing</li>
+<li>K8s managed load balancer behavior</li>
+<li>Can manage multiple Services with a single load balancer</li>
+<li>Can easily plugin different load balancer options</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Ingress Controller implementations could be buggy (e.g.: I have had a fair share of GCP Ingress Controller not properly picking up readiness and liveliness probes to detect healthy backends)</li>
+<li>Implementation control is in the hands of the Ingress Controller, which might restrict certain customizations that otherwise can be done with the Service Load Balancer pattern</li>
+<li>K8s managed load balancer configuration could mean less control over the Cloud Service Provider load balancer with means that were available previously (perhaps in the older deployment architecture).</li>
+</ul>
+<h3 id="gathering-all-uptogether">Gathering All Up Together</h3>
+<p>The above options are the basic ones available OOTB at the moment. However, many more patterns can be created by combining these approaches or custom implementations together.</p>
+<p>When choosing the right approach for a deployment, the following factors can be used as bases of comparison.</p>
+<h4 id="cost">Cost</h4>
+<p>What would be the infrastructure and operational cost of each approach? Would there be multiple instances of load balancers and associated resources (static IP addresses, storage, firewall rules etc) or would they be compressed to the workable minimum?</p>
+<p>Would operating with a specific approach mean hiring a new resource with Go lang competency? Or can you manage with only the knowledge in YAML and the K8s API?</p>
+<h4 id="complexity-and-customizability">Complexity and Customizability</h4>
+<p>Does the approach reasonably explain the inner workings of the implementations? Are there multiple abstractions that lack adequate documentation and make the underlying implementation too opaque? How easy is it to troubleshoot the path between a client which is outside the K8s Pod network and a backend inside it?</p>
+<p>How complex is it to incorporate project/team/organization specific customizations into the approach? Do changes have to be pushed upstream to the wider project to be approved before being added to the “official” repositories/image registries?</p>
+<h4 id="latency">Latency</h4>
+<p>How many routing hops should a request go through after entering the K8s Overlay Network before hitting the actual backend? Do these hops introduce considerable latency? Are implementations following proper load testing to identify saturation points?</p>
+<blockquote>
+<p>I have seen deployments with the Service Load Balancer implementation where the HAProxy started to respawn with high inflight request counts because the default artifacts provided in the <code>kubernetes/contrib</code> repository had not adequately described the CPU and memory limits and requests.</p>
+</blockquote>
+<h4 id="operational-transition">Operational Transition</h4>
+<p>What is the degree of freedom allowed to modify resources created as part of the approach? Can the older processes and methods of infrastructure management be used with new approach for resources created outside the K8s realm? Or would Ops tasks be drastically disrupted?</p>
+<blockquote>
+<p>For example, managing an AWS ALB instance, created as part of an AWS ALB Ingress Controller, with methods such as Terraform could be tricky as the Ingress Controller itself could see outside changes as intrusive. On the other hand if a basic NodePort setup is proxied by the ALB, then Terraform resources could very well be involved as management artifacts.</p>
+</blockquote>
+<p>At the end of the day, exposing internal services to clients outside the K8s network is all about creating a bridge between the Node private network and the Pod network. This bridge is usually a NodePort. As long as this bridge is set up, any external load balancer with a public IP address can see and collect that port as a forwardable backend. Except for Service type <code>ClusterIP</code>, all other approaches discussed here are about how to manage this bridge, a.k.a. the NodePort. As long as this concept is understood, figuring out the reverse proxying strategy for you K8s cluster is a simple task.</p>
+<hr>
+<p>Written on February 28, 2019 by chamila de alwis.</p>
+<p>Originally published on <a href="https://medium.com/@chamilad/load-balancing-and-reverse-proxying-for-kubernetes-services-f03dd0efe80">Medium</a></p>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/posts/2019-02-15_releasing-docblock-v0.1/">&lt; Releasing DocBlock v0.1</a>
+		
+	</div>        
+	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/posts/2019-09-19_elasticsearch-on-k8s-01basic-design/">ElasticSearch on K8s: 01 — Basic Design &gt;</a>
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/">Thinking of Moving Your WSO2 Deployment On to Kubernetes?</a></li>
+    
+    <li><a href="/posts/2016-02-09_running-wso2-products-on-kubernetes/">Running WSO2 Products on Kubernetes</a></li>
+    
+    <li><a href="/posts/2018-12-24_how-to-design-a-wso2-docker-image/">How to Design a WSO2 Docker Image</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

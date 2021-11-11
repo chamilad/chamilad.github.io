@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/posts/2018-11-25_cicd-apis-with-wso2-api-manager/" />
+  <link rel="canonical" href="https://chamila.dev/posts/2018-11-25_cicd-apis-with-wso2-api-manager/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "posts",
+      "name" : "CI\/CD APIs with WSO2 API Manager",
+      "headline" : "CI\/CD APIs with WSO2 API Manager",
+      "description" : "How to do continuous integration and continuous delivery of APIs with WSO2 API Manager WSO2 API Manager, the only Open Source Leader in API Management Solutions in Forrester Wave, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2018",
+      "datePublished": "2018-11-25 03:47:20.167 \x2b0000 UTC",
+      "dateModified" : "2018-11-25 03:47:20.167 \x2b0000 UTC",
+      "url" : "https:\/\/chamila.dev\/posts\/2018-11-25_cicd-apis-with-wso2-api-manager\/",
+      "keywords" : [ "Docker","Api Management","Wso2","Continuous Integration","Continuous Delivery", ]
+  }
+</script>
+<title>CI/CD APIs with WSO2 API Manager - chamila.dev</title>
+  <meta property="og:title" content="CI/CD APIs with WSO2 API Manager - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="How to do continuous integration and continuous delivery of APIs with WSO2 API Manager WSO2 API Manager, the only Open Source Leader in API Management Solutions in Forrester Wave, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamila.dev/">chamila.dev</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">CI/CD APIs with WSO2 API Manager</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2018-11-25 03:47:20 UTC">
+                25 Nov 2018
+		<p><b>Read time:</b> 11m
+		<br /><b>Word count:</b> 2239</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <h4 id="how-to-do-continuous-integration-and-continuous-delivery-of-apis-with-wso2-apimanager">How to do continuous integration and continuous delivery of APIs with WSO2 API Manager</h4>
+<p><a href="https://wso2.com/api-management/">WSO2 API Manager</a>, the only <a href="https://wso2.com/resources/analyst-reports/the-forrester-wave-api-management-solutions-q4-2018/?utm_source=bannerprodpg&amp;utm_medium=mailer&amp;utm_campaign=forrester_wave_apim_2018B2">Open Source Leader in API Management Solutions in Forrester Wave</a>, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.</p>
+<p>An interesting scenario on API Management is how to perform Continuous Integration and Continuous Delivery of APIs. CI/CD, usually uttered with the same sentences having to do with programmable code management, is a more generalized concept when it comes to integrating API Management to DevOps culture.</p>
+<p>Continuous Integration of APIs is how to seamlessly automate the API creation and update processes with minimal intervention of the Ops personnel. Continuous Delivery of APIs is how to promote these APIs from lower environments to subsequently pre-production (or if you are adventurous and well automated, to production) systems with minimal intervention of the Ops personnel.</p>
+<h4 id="continuous-integration">Continuous Integration</h4>
+<p>Automation of API creation is an open ended scenario. Each story may have different parameters and limitations introduced by business requirements that will have to be tackled per story.</p>
+<p>However, each implementation will be generally similar on how different layers of the automation will interact. There will be a some kind of an input method of API creation requests, that will in turn trigger a job on an automation tool. The job will analyze the submitted API creation requests and make the necessary API Management API calls to WSO2 API Manager.</p>
+<p>For the sake of simplification and restricting a potentially open ended discussion to a narrow set of requirements, let’s assume the following story.</p>
+<p>The API requesting party will submit a structured request (which is both human and machine readable) to create a new API to a VCS (e.g. a Git repository). This will trigger a build job on Jenkins (i.e. the automation tool) that will analyze the submitted structured request and make HTTP calls to <a href="https://docs.wso2.com/display/AM260/apidocs/publisher/">WSO2 API Manager Publisher REST APIs</a>, to create new APIs.</p>
+<p><img src="/posts/img/2018-11-25_cicd-apis-with-wso2-api-manager_0.jpeg#layoutTextWidth" alt=""></p>
+<p>During this API creation, the number of inputs expected of the requesting party is something that can vary based on the story. For an example, some stories may only require a few metadata like name, context, and description whereas other stories may demand more details like backend URLs, tagging metadata, resource configuration, etc. It’s the responsibility of the party who designs this process to come up with the level of details required in the process initiation and codify it to a proper structured request format.</p>
+<p>For an example, a minimal API creation request could look like the following JSON document.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;username&#34;</span>: <span style="color:#e6db74">&#34;Username of the user&#34;</span>,
+  <span style="color:#f92672">&#34;department&#34;</span>: <span style="color:#e6db74">&#34;Department of the user&#34;</span>,
+  <span style="color:#f92672">&#34;apis&#34;</span>: [
+    {
+      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;SampleAPI_dev1&#34;</span>,
+      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Sample API description&#34;</span>,
+      <span style="color:#f92672">&#34;context&#34;</span>: <span style="color:#e6db74">&#34;/api/dev1/sample&#34;</span>,
+      <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;v1&#34;</span>
+    }
+  ]
+}
+</code></pre></div><p>The JSON-Schema for this is as follows.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;$schema&#34;</span>: <span style="color:#e6db74">&#34;http://json-schema.org/draft-04/schema#&#34;</span>,
+  <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+  <span style="color:#f92672">&#34;properties&#34;</span>: {
+    <span style="color:#f92672">&#34;username&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
+    },
+    <span style="color:#f92672">&#34;department&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
+    },
+    <span style="color:#f92672">&#34;apis&#34;</span>: {
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;array&#34;</span>,
+      <span style="color:#f92672">&#34;items&#34;</span>: [
+        {
+          <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+          <span style="color:#f92672">&#34;properties&#34;</span>: {
+            <span style="color:#f92672">&#34;name&#34;</span>: {
+              <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
+            },
+            <span style="color:#f92672">&#34;description&#34;</span>: {
+              <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
+            },
+            <span style="color:#f92672">&#34;context&#34;</span>: {
+              <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
+            },
+            <span style="color:#f92672">&#34;version&#34;</span>: {
+              <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
+            }
+          },
+          <span style="color:#f92672">&#34;required&#34;</span>: [
+            <span style="color:#e6db74">&#34;name&#34;</span>,
+            <span style="color:#e6db74">&#34;description&#34;</span>,
+            <span style="color:#e6db74">&#34;context&#34;</span>,
+            <span style="color:#e6db74">&#34;version&#34;</span>
+          ]
+        }
+      ]
+    }
+  },
+  <span style="color:#f92672">&#34;required&#34;</span>: [
+    <span style="color:#e6db74">&#34;username&#34;</span>,
+    <span style="color:#e6db74">&#34;department&#34;</span>,
+    <span style="color:#e6db74">&#34;apis&#34;</span>
+  ]
+}
+</code></pre></div><p>Since this example only takes the minimal parameters for an API creation, the APIs will be created with the status <code>CREATED</code> which enables to submit minimal data in the creation request.</p>
+<p>It’s the job of the automation tool to make sense of this request format and perform the necessary actions. I have implemented a sample Python script that does this (and performs Continuous Delivery in the next section) and uploaded the <a href="https://github.com/chamilad/apim_cicd">code to Github</a>. This script can be invoked in the automation tool (e.g. as a Shell Task in Jenkins) during a job that is triggered by a post-commit hook from a Git repository that contains the API requests.</p>
+<p>Let’s briefly go over the Python code to understand the basic implementation of a CI flow.</p>
+<p>First task is to parse the JSON requests so that each API request can be made.’</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">for</span> api_request_file <span style="color:#f92672">in</span> glob<span style="color:#f92672">.</span>glob(<span style="color:#e6db74">&#34;api_definitions/*_apis.json&#34;</span>):
+        request_json_content <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(open(api_request_file)<span style="color:#f92672">.</span>read())
+        requesting_user <span style="color:#f92672">=</span> request_json_content[<span style="color:#e6db74">&#34;username&#34;</span>]
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Parsing create requests for [user] </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> [department] </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> [requests] </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">...&#34;</span> <span style="color:#f92672">%</span> (
+            requesting_user, request_json_content[<span style="color:#e6db74">&#34;department&#34;</span>], len(request_json_content[<span style="color:#e6db74">&#34;apis&#34;</span>]))
+
+</code></pre></div><p>The JSON requests are contained as files inside a particular folder, <code>api_definintions</code> . The reason why JSON was selected as the DSL for this PoC is clear here. Python support for JSON is brilliant.</p>
+<p>The parsed data then have to be converted to API create requests. But before that can happen, the existence of each API in the environment has to be checked. If an API <strong>CREATE</strong> request is made for an existing API (matching name, version, and context), the REST API will return an error. In this case, there should not be any <strong>CREATE</strong>requests.</p>
+<blockquote>
+<p>There is another edge case where the API already exists by name and context but <strong>not by version.</strong> In this case, the request should be to create a new version of the existing API.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># If there is no matching API, an API create request is done.</span>
+<span style="color:#75715e"># If a matching API is there, but no matching version, a version would be added</span>
+<span style="color:#75715e"># If both a matching API with a matching version exists, the API would not be created.</span>
+<span style="color:#66d9ef">for</span> api_request <span style="color:#f92672">in</span> request_json_content[<span style="color:#e6db74">&#34;apis&#34;</span>]:
+    api_name_exists, api_id <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>api_name_exists(api_request[<span style="color:#e6db74">&#34;name&#34;</span>], apimgt_url, access_token,
+                                                        verify_ssl)
+
+    <span style="color:#66d9ef">if</span> api_name_exists:
+        <span style="color:#75715e"># Check if the same version exists</span>
+        api_version_exists, _ <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>api_version_exists(api_request[<span style="color:#e6db74">&#34;name&#34;</span>], api_request[<span style="color:#e6db74">&#34;version&#34;</span>],
+                                                             apimgt_url, access_token, verify_ssl)
+        <span style="color:#66d9ef">if</span> api_version_exists:
+            <span style="color:#75715e"># Do not create the same version</span>
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">:</span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> </span><span style="color:#ae81ff">\t</span><span style="color:#e6db74"> :Exists. Skipping...&#34;</span> <span style="color:#f92672">%</span> (api_request[<span style="color:#e6db74">&#34;name&#34;</span>], api_request[<span style="color:#e6db74">&#34;version&#34;</span>])
+            <span style="color:#66d9ef">continue</span>
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#75715e"># Add as a new version</span>
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">:</span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> </span><span style="color:#ae81ff">\t</span><span style="color:#e6db74"> :Adding version...&#34;</span> <span style="color:#f92672">%</span> (api_request[<span style="color:#e6db74">&#34;name&#34;</span>], api_request[<span style="color:#e6db74">&#34;version&#34;</span>])
+            api_utils<span style="color:#f92672">.</span>add_api_version(api_id, api_request[<span style="color:#e6db74">&#34;version&#34;</span>], apimgt_url, access_token, verify_ssl)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#75715e"># Create API</span>
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">:</span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> </span><span style="color:#ae81ff">\t</span><span style="color:#e6db74"> :Creating...&#34;</span> <span style="color:#f92672">%</span> (api_request[<span style="color:#e6db74">&#34;name&#34;</span>], api_request[<span style="color:#e6db74">&#34;version&#34;</span>])
+
+        <span style="color:#75715e"># build create request</span>
+        <span style="color:#75715e"># ....</span>
+        <span style="color:#75715e"># ....</span>
+        <span style="color:#75715e"># ....</span>
+
+        successful <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>create_api(create_req_body, apimgt_url, access_token, verify_ssl)
+</code></pre></div><p><a href="https://github.com/chamilad/apim_cicd/blob/master/api_create.py">The complete script can be found in the Github Repository</a>. There are additional logic that involves loading configuration parameters, obtains access tokens, and handles errors.</p>
+<p>This script would turn the requests contained in <a href="https://github.com/chamilad/apim_cicd/tree/master/api_definitions">these JSON files</a> to the following APIs in <code>CREATED</code> state in WSO2 API Manager Publisher.</p>
+<!-- raw HTML omitted -->
+<p>It’s the responsibility of the implementation party to add necessary implementation details and publish the APIs.</p>
+<blockquote>
+<p>In a different story, where all the required details are obtained in the API creation request, the script itself can create the APIs in the <code>PUBLISHED</code> state. This would eliminate the need for end users to get involved <strong>after</strong> the APIs are created, but it will have to put faith in the correctness of the API requests created by the end users.</p>
+</blockquote>
+<h4 id="continuous-delivery">Continuous Delivery</h4>
+<p>Continuous Delivery of APIs into production, promoting them from lower level environments with proper testing a well designed dream to have. Once the APIs are created in the lowest environment, there can be a periodic or manually triggered automation job that reads API details from one environment, create or update them in the next environment, and ideally run API tests on the higher level environment that make sure no contract is broken by the changes introduced.</p>
+<p><img src="/posts/img/2018-11-25_cicd-apis-with-wso2-api-manager_3.jpeg#layoutTextWidth" alt=""></p>
+<p>In the <a href="https://github.com/chamilad/apim_cicd">PoC scripts in my Github Repository</a>, the API read and propagation step is implemented as <a href="https://github.com/chamilad/apim_cicd/blob/master/api_propagate.py">another Python script</a>. Given the details of the two environments, it will iterate through each API read from the lower level environment, check if it exists in the upper level environment, and do a <strong>CREATE</strong> or <strong>UPDATE</strong> request as needed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 1. Get list of APIs from env1</span>
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Getting the list of APIs from ENV1...&#34;</span>
+all_apis_in_env1 <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>get_all_apis(env1_apimgt_url, env1_access_token, verify_ssl)
+
+<span style="color:#75715e">#...</span>
+<span style="color:#75715e">#...</span>
+<span style="color:#75715e">#...</span>
+
+<span style="color:#75715e"># 2. Iterate through APIs and check if exists in env2</span>
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Checking for API status in ENV2...&#34;</span>
+<span style="color:#66d9ef">for</span> api_to_propagate <span style="color:#f92672">in</span> all_apis_in_env1[<span style="color:#e6db74">&#34;list&#34;</span>]:
+    
+    <span style="color:#75715e">#...</span>
+    <span style="color:#75715e"># get the api definition from env 1</span>
+    api_definition_env1 <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>get_api_by_id(api_to_propagate[<span style="color:#e6db74">&#34;id&#34;</span>], env1_apimgt_url, env1_access_token,
+                                                  verify_ssl)
+    <span style="color:#75715e">#...</span>
+    <span style="color:#75715e">#...</span>
+    
+    <span style="color:#75715e"># check if API exists in env2</span>
+    api_exists_in_env2, api_id <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>api_version_exists(api_definition_env1[<span style="color:#e6db74">&#34;name&#34;</span>],
+                                                              api_definition_env1[<span style="color:#e6db74">&#34;version&#34;</span>],
+                                                              env2_apimgt_url, env2_access_token, verify_ssl)
+    <span style="color:#66d9ef">if</span> api_exists_in_env2:
+        <span style="color:#75715e"># 3. If exists, update API</span>
+        api_definition_env1[<span style="color:#e6db74">&#34;id&#34;</span>] <span style="color:#f92672">=</span> api_id
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Updating API </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> in ENV2...&#34;</span> <span style="color:#f92672">%</span> api_definition_env1[<span style="color:#e6db74">&#34;name&#34;</span>]
+        api_utils<span style="color:#f92672">.</span>update_api(api_definition_env1, env2_apimgt_url, env2_access_token, verify_ssl)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#75715e"># 4 If doesn&#39;t exist, create API in env2</span>
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Creating API </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> in ENV2...&#34;</span> <span style="color:#f92672">%</span> api_definition_env1[<span style="color:#e6db74">&#34;name&#34;</span>]
+        api_utils<span style="color:#f92672">.</span>create_api(api_definition_env1, env2_apimgt_url, env2_access_token, verify_ssl)
+</code></pre></div><p>The logic here is straightforward.</p>
+<ol>
+<li>The list of APIs is retrieved from <strong>ENV1</strong></li>
+<li>For each API retrieved, the API definition is also retrieved from <strong>ENV1</strong></li>
+<li>For each API, it’s existence is checked in <strong>ENV2</strong>, and based on the result, a <strong>CREATE</strong>or <strong>UPDATE</strong> request is made to <strong>ENV2</strong></li>
+</ol>
+<blockquote>
+<p>For the sake of simplicity, existence of different versions of the same API is ignored here as a possibility.</p>
+</blockquote>
+<blockquote>
+<p>As a demonstration of mutability of API information during this migration, <a href="https://github.com/chamilad/apim_cicd/blob/master/api_propagate.py#L138-L153">API name, context, and backend URL has been modified to contain environment specific details</a>.</p>
+</blockquote>
+<p>The execution of<a href="https://github.com/chamilad/apim_cicd/blob/master/api_propagate.py"> this script </a>will result in an output similar to the following in the two environments.</p>
+<!-- raw HTML omitted -->
+<p>This script could be part of an automation pipeline (e.g. Jenkins Pipeline) where the next step is the execution of a set of API tests. The API tests make sure the API contracts are not broken and will result in delivery confidence. This is crucial for a Continuous Delivery process. Otherwise the tendency will be towards manual intervention that halts seamless integration of the changes through the environments towards production, because there is not enough trust on the process to not break the APIs. This API test can be something simple as a JMeter or SOAPUI test suite that makes API specific calls to verify responses received. Without such a testing phase, the APIs should never be automatically pushed to production. Doing so may result in frequent API changes experienced by the consumers that will reduce the confidence they have on your APIs.</p>
+<h4 id="what-about-importexport">What about Import/Export?</h4>
+<p>The traditional approach to API migration between deployments is the <a href="https://docs.wso2.com/display/AM260/Migrating+the+APIs+and+Applications+to+a+Different+Environment">WSO2 API Manager Import/Export Tool</a>. However, this tool does not handle the create/update granularity for each API successfully, as it assumes APIs to not exist in the new environment. Import/Export handles APIs in bulk. In contrast, Continuous Delivery might have to consider a granularity at each API. Therefore, standard <a href="https://docs.wso2.com/display/AM260/apidocs/publisher/">WSO2 API Manager Publisher REST APIs</a> are used in the above CI/CD process implementation.</p>
+<h4 id="use-of-the-pocscripts">Use of the PoC Scripts</h4>
+<p>The <a href="https://github.com/chamilad/apim_cicd">PoC scripts in the Github repository</a> may not be directly usable in all CI/CD stories, because of the <a href="https://github.com/chamilad/apim_cicd#assumptions">assumptions made in the implementation process</a>. However, by changing the Python scripts they can be adopted to suite a majority of the scenarios.</p>
+<p>To make it easy to try out the scripts, <a href="https://github.com/chamilad/apim_cicd/blob/master/docker-compose.yml">a Docker Compose setup has been provided</a>. This <a href="https://github.com/chamilad/apim_cicd/blob/master/docker-compose.yml"><code>docker-compose.yml</code></a> setup contains two WSO2 API Manager 2.6.0 Containers that will be mapped to ports <code>9443</code>/<code>8243</code> (<code>api-manager1</code>) and <code>9543</code>/<code>8343</code> (<code>api-manager2</code>) respectively.</p>
+<p>To start this deployment, run <a href="https://github.com/chamilad/apim_cicd/blob/master/start_test_containers.sh"><code>start_test_containers.sh</code></a> script. This will in essence run <code>docker-compose up</code> and output the IP addresses of the Containers.</p>
+<blockquote>
+<p>The Containers are networked as bridged to the default Docker bridge on the Host, and therefore will share IP addresses from the range <code>172.17.0.1/16</code></p>
+</blockquote>
+<p>Once the testing is done, the deployment can be torn down with the script <a href="https://github.com/chamilad/apim_cicd/blob/master/stop_test_containers.sh"><code>stop_test_containers.sh</code></a>.</p>
+<!-- raw HTML omitted -->
+<p>The Python scripts take the required parameters as environment variables. Therefore, any automation tool that executes these scripts should inject the environment variables with the proper values during execution. For an example, Jenkins can make use of <a href="https://plugins.jenkins.io/envinject">EnvInject</a> plugin to load environment variabels from a pre-populated properties file for a build job.</p>
+<p>The environment variables required for each script are as follows.</p>
+<p><a href="https://github.com/chamilad/apim_cicd/blob/master/api_create.py"><code>api_create.py</code></a></p>
+<ul>
+<li>API Manager URL — <code>WSO2_APIM_APIMGT_URL</code></li>
+<li>Gateway URL — <code>WSO2_APIM_GW_URL</code></li>
+<li>API Manager Username — <code>WSO2_APIM_APIMGT_USERNAME</code></li>
+<li>API Manager Password — <code>WSO2_APIM_APIMGT_PASSWD</code></li>
+<li>Verify SSL flag — <code>WSO2_APIM_VERIFY_SSL</code></li>
+<li>Production Backend URL — <code>WSO2_APIM_BE_PROD</code></li>
+<li>Sandbox Backend URL — <code>WSO2_APIM_BE_SNDBX</code></li>
+<li>API Status — <code>WSO2_APIM_API_STATUS</code></li>
+</ul>
+<p><a href="https://github.com/chamilad/apim_cicd/blob/master/api_propagate.py"><code>api_propagate.py</code></a></p>
+<ul>
+<li>ENV1 API Manager URL — <code>WSO2_APIM_ENV1_APIMGT_URL</code></li>
+<li>ENV1 Gateway URL — <code>WSO2_APIM_ENV1_GW_URL</code></li>
+<li>ENV1 API Manager Username — <code>WSO2_APIM_ENV1_APIMGT_USERNAME</code></li>
+<li>ENV1 API Manager Password — <code>WSO2_APIM_ENV1_APIMGT_PASSWD</code></li>
+<li>ENV1 Identifier — <code>WSO2_APIM_ENV1_ID</code></li>
+<li>ENV2 API Manager URL — <code>WSO2_APIM_ENV2_APIMGT_URL</code></li>
+<li>ENV2 Gateway URL — <code>WSO2_APIM_ENV2_GW_URL</code></li>
+<li>ENV2 API Manager Username — <code>WSO2_APIM_ENV2_APIMGT_USERNAME</code></li>
+<li>ENV2 API Manager Password — <code>WSO2_APIM_ENV2_APIMGT_PASSWD</code></li>
+<li>ENV2 Identifier — <code>WSO2_APIM_ENV2_ID</code></li>
+<li>Verify SSL flag — <code>WSO2_APIM_VERIFY_SSL</code></li>
+</ul>
+<p>To run the Python scripts by setting the required environment variables, the <code>test_local_*.sh</code> scripts can be used.</p>
+<ol>
+<li><a href="https://github.com/chamilad/apim_cicd/blob/master/test_local_create.sh"><code>test_local_create.sh</code></a> - This script runs the <a href="https://github.com/chamilad/apim_cicd/blob/master/api_create.py"><code>api_create.py</code></a> script pointing the script to the local setup at <code>localhost:9443</code> (<code>172.17.0.1</code> refers to the default Docker bridge network itself, thus <code>localhost</code>.)</li>
+<li><a href="https://github.com/chamilad/apim_cicd/blob/master/test_local_propagate.sh"><code>test_local_propagate.sh</code></a> - This script runs the <a href="https://github.com/chamilad/apim_cicd/blob/master/api_propagate.py"><code>api_propagate.py</code></a> script, pointed to two API Manager deployments on localhost, the second one with an offset of <code>100</code>, i.e. <code>172.17.0.1:9443</code> and <code>172.17.0.1:9543</code></li>
+<li><a href="https://github.com/chamilad/apim_cicd/blob/master/test_local_propagate_same_instance.sh"><code>test_local_propagate_same_instance.sh</code></a> - This does the same as #2 above, but with both environments pointing to the same API Manager deployment.</li>
+</ol>
+<p>Simply start the Docker Containers as <a href="https://github.com/chamilad/apim_cicd#setup">mentioned above</a>, and execute scripts <a href="https://github.com/chamilad/apim_cicd/blob/master/test_local_create.sh"><code>test_local_create.sh</code></a>, <a href="https://github.com/chamilad/apim_cicd/blob/master/test_local_propagate.sh"><code>test_local_propagate.sh</code></a>, and <a href="https://github.com/chamilad/apim_cicd/blob/master/test_local_propagate_same_instance.sh"><code>test_local_propagate_same_instance.sh</code></a> in that order. You can visit the pages <a href="https://localhost:9443/publisher">ENV1 Publisher</a> and <a href="https://localhost:9543/publisher">ENV2 Publisher</a> to see the APIs getting created as the scripts are executed.</p>
+<!-- raw HTML omitted -->
+<h4 id="conclusion">Conclusion</h4>
+<p>There are various approaches when it comes to adopting CI/CD for APIs with WSO2 API Manager. With the flexibility of the <a href="https://docs.wso2.com/display/AM260/apidocs/publisher/">Publisher APIs</a>, almost any unique set of requirements could be satisfied with proper design and implementation. Though the above explained PoC makes use of Jenkins and Python, I have seen deployments that make use of Chef and private Git repositories along with structured email based request to automate the CI/CD process. This existence of different implementations of the same concept is evidence of how flexible of a product WSO2 API Manager is when enabling proper DevOps processes.</p>
+<hr>
+<p>Written on November 25, 2018 by chamila de alwis.</p>
+<p>Originally published on <a href="https://medium.com/@chamilad/ci-cd-apis-with-wso2-api-manager-93d0f7688078">Medium</a></p>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/posts/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/">&lt; A Primer on Observability for Dynamic Organizations — Part 2</a>
+		
+	</div>        
+	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/posts/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/">Publishing WSO2 Logs to Splunk from a Containerized Deployment &gt;</a>
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/2017-02-21_ballerina-with-container-support/">Ballerina with Container Support</a></li>
+    
+    <li><a href="/posts/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/">Thinking of Moving Your WSO2 Deployment On to Kubernetes?</a></li>
+    
+    <li><a href="/posts/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/">How to Upload a Carbon App (CAR File) to a Remote WSO2 Server</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Wsdl on blog.chamila.dev</title>
-    <link>https://blog.chamila.dev/tags/wsdl/</link>
-    <description>Recent content in Wsdl on blog.chamila.dev</description>
+    <title>Wsdl on chamila.dev</title>
+    <link>https://chamila.dev/tags/wsdl/</link>
+    <description>Recent content in Wsdl on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 17 Sep 2016 00:49:13 +0000</lastBuildDate>
     
-	<atom:link href="https://blog.chamila.dev/tags/wsdl/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chamila.dev/tags/wsdl/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>How to Upload a Carbon App (CAR File) to a Remote WSO2 Server</title>
-      <link>https://blog.chamila.dev/post/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</link>
+      <link>https://chamila.dev/posts/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</link>
       <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</guid>
+      <guid>https://chamila.dev/posts/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</guid>
       <description>Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.</description>
     </item>
     

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Microsoft on blog.chamila.dev</title>
-    <link>https://blog.chamila.dev/tags/microsoft/</link>
-    <description>Recent content in Microsoft on blog.chamila.dev</description>
+    <title>Microsoft on chamila.dev</title>
+    <link>https://chamila.dev/tags/microsoft/</link>
+    <description>Recent content in Microsoft on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 05 Jun 2018 06:00:19 +0000</lastBuildDate>
     
-	<atom:link href="https://blog.chamila.dev/tags/microsoft/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chamila.dev/tags/microsoft/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>In Other Good News, Microsoft buys GitHub</title>
-      <link>https://blog.chamila.dev/post/2018-06-05_in-other-good-news-microsoft-buys-github/</link>
+      <link>https://chamila.dev/posts/2018-06-05_in-other-good-news-microsoft-buys-github/</link>
       <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2018-06-05_in-other-good-news-microsoft-buys-github/</guid>
+      <guid>https://chamila.dev/posts/2018-06-05_in-other-good-news-microsoft-buys-github/</guid>
       <description>Or why you should cool down with the anti-Microsoft rhetoric, at least for now
  Disclaimer: This is an opinionated article.
  What a historic moment! May be only second to the moment Windows incorporated the Linux Subsystem, one-time anti-open source giantbuys off may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years. And my Facebook feed (yes, I’m still friends with that guy) is filled with rants on how Microsoft will kill Open Source.</description>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/posts/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/" />
+  <link rel="canonical" href="https://chamila.dev/posts/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO",
+      "headline" : "Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO",
+      "description" : "A design to enable multi-tenancy with SSO for an ELK Stack",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2019",
+      "datePublished": "2019-11-27 19:43:20 \x2b1300 NZDT",
+      "dateModified" : "2019-11-27 19:43:20 \x2b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/posts\/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso\/",
+      "keywords" : [ "K8s","Logging","ElasticSearch","Logstash","Log aggregation","Authentication","Authorization","KeyCloak","Single Sign On","Multitenancy","Roles", ]
+  }
+</script>
+<title>Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO - chamila.dev</title>
+  <meta property="og:title" content="Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="A design to enable multi-tenancy with SSO for an ELK Stack" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamila.dev/">chamila.dev</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2019-11-27 19:43:20 NZDT">
+                27 Nov 2019
+		<p><b>Read time:</b> 6m
+		<br /><b>Word count:</b> 1211</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#need-for-sso">Need for SSO</a></li>
+    <li><a href="#multi-tenancy-in-elk">Multi-Tenancy in ELK</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#breakdown-of-the-flow">Breakdown of the flow</a></li>
+  </ul>
+</nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <figure>
+    <img src="/posts/img/2019-11-27_header.jpg"/> <figcaption>
+            <h4>Point Sur, Cali 01</h4>
+        </figcaption>
+</figure>
+
+<blockquote>
+<p>I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.</p>
+</blockquote>
+<ol>
+<li><a href="/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a">ElasticSearch on K8s: 01 — Basic Design</a></li>
+<li><a href="/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/">ElasticSearch on K8s: 02 — Log Collection with Filebeat</a></li>
+<li><a href="/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/">ElasticSearch on K8s: 03 - Log Enrichment with Logstash</a></li>
+<li><a href="/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/">ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</a></li>
+<li><a href="/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/">ElasticSearch on K8s: 05 - Visualization and Production Readying</a></li>
+<li><a href="https://chamilad.github.io/post/2019-11-26_elasticsearch-index-management/">ElasticSearch Index Management</a></li>
+<li>Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</li>
+<li><a href="/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</a></li>
+<li><a href="/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/">Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</a></li>
+</ol>
+<p>So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s. The functionalities involved ELK core functions and how to mix and match K8s features to get the best out of the core ELK features. After getting the stack to receive and store logs, there are parallels that should be addressed. User management is one these critical features that this article will be discussing about.</p>
+<h1 id="need-for-authnauthr-for-elk">Need for Authn/Authr for ELK</h1>
+<p>First of all, in this day and age, this shouldn&rsquo;t be a matter of discussion at all. Every service should have a wrapper layer that does some kind of authentication and authorization of the user before granting access to the data the service offers. This should especially be true if the said services manage almost all significant data produced as side-effects of operations done on an enterprise platform. Therefore, ELK typically being the log aggregation stack of one or more systems in an organization, the log data should sit behind an authn/authr layer.</p>
+<p>Authentication will make sure that the data access will be restricted to a set of authenticated users from a pre-determined user store. For an example, this could be the organization LDAP user store with an associated identity provider (ex: KeyCloak).</p>
+<p>Authorization makes sure that only the pre-determined controlled access is given to the authenticated users. For an example, there could be departmental separation to access logs, such that logs produced by systems related to <code>deptA</code> should only be viewable by users from <code>deptA</code> and the Ops personal from the internal platform team. Furthermore, this could also be broken down to read-only access, an access level with a subset of write operations, and an access level with ability to perform all write operations.</p>
+<p>When it comes to the ELK stack, both authentication and authorization is handled by features available from ElasticSearch. There are <strong>authentication realms</strong> that can be defined to make users authenticate before accessing indices. After authentication, there are <strong>roles</strong> and <strong>role mappings</strong> that can be used to authorize users into a correct set of permissions. All these features are available from a plugin named <code>XPack</code> that Elastic merged into the core product a few releases ago.</p>
+<blockquote>
+<p>Note that some features that are discussed in this articles are only available in paid tiers of the ELK subscription model.</p>
+</blockquote>
+<h2 id="need-for-sso">Need for SSO</h2>
+<p>By default, XPack allows to enable basic authentication as a way of user management for the ELK stack. However this means that the underlying user store will be on ElasticSearch and users will have to maintain separate accounts just to login to the logging platform. It would be good to reuse accounts that users have on the corporate platform (ex: the corporate LDAP store) for the logging platform authentication and authorization as well.</p>
+<p>This is where SSO comes into play. Single-Sign On will allow to use the accounts provided by the corporate Identity Provider (or any other external Identity Provider) for the authn/authr purposes of other service providers. XPack plugin also has authentication realms that allow to configure SSO relationships between ELK and other IDPs through standards such as SAML and OIDC. These authentication realms also provide means to map users from external IDPs to internal ElasticSearch roles based on pre-defined criteria.</p>
+<h2 id="multi-tenancy-in-elk">Multi-Tenancy in ELK</h2>
+<p><a href="/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/">In the article related to Logstash and enrichment, an example strategy to divide incoming logs to different indices was discussed</a>. In a more established setup, this would naturally extend to a point where different tenants of the system will produce logs that will end up in different indices. When that happens, data access should also be segregated so that users are not able to view logs from other tenants. This could also end up with a more complex user model where there are several layers of access that have to be granted to users depending on the scope of their control.</p>
+<blockquote>
+<p>For an example, in a wider scoped setup, there could be tenant specific read-only roles (ex: for users like managers and HR), tenant specific admin roles (ex: for tenant specific support engineers), system wide read-only roles (ex: service provider&rsquo;s sales personnel), system-wide semi-admin roles (ex: service provider support engineers, pre-sales engineers), and super-admin roles (ex: service provider cloud engineers). Each of these roles have to be granted based on the attributes provided by the authentication system, be it the internal ElasticSearch user store or an external IDP.</p>
+</blockquote>
+<h1 id="designing-a-solution">Designing a Solution</h1>
+<p>Based on the above requirements, a high-level design such as the following can be approached.</p>
+<p><img src="/posts/img/2019-11-27_elk_auth_01.jpg" alt=""></p>
+<h2 id="breakdown-of-the-flow">Breakdown of the flow</h2>
+<p>After such a design is implemented, the following flow should be possible.</p>
+<ol>
+<li>The user will start the flow by accessing the Kibana URL into the browser.</li>
+<li>After the connection is established, Kibana should check if the user is already logged in. If not, then the user should be redirected to the pre-configured external IDP to be authenticated.</li>
+<li>This redirection will probably be visible to the user as a browser redirection. The IDP should check if the user is logged into the IDP, if not, should present the login form.</li>
+<li>After successful authentication, the external IDP should send the user back to the Kibana UI. This would again be a browser redirection. There could also be additional information that both Kibana/ElasticSearch and the IDP will be preconfigured to share.</li>
+<li>With the received user information, ELK will grant the user an appropriate role through pre-defined role mappings. These roles will determine which actions the user will be allowed to perform on the ELK cluster through the Kibana UI.</li>
+</ol>
+<p>In the next article(s), let&rsquo;s explore how to implement this solution. We will be using a self-hosted KeyCloak server as our IDP with KeyCloak&rsquo;s internal database as the user store.</p>
+<p>We will be using SAML as the SSO protocol mostly because ELK&rsquo;s support for OIDC has been weak at best (especially in their Cloud SaaS solution). However, the implementation details for an OIDC based solution should not be that much different after all.</p>
+<p>Kibana, as the service provider, has support for multi-tenancy materialized as Kibana Spaces. However, at the time this article is being written, Kibana Spaces and SSO do not go well together as a fully-fledged multi-tenant solution (there are zero tenant discovery mechanisms available for SSO from Kibana&rsquo;s point of view). We will also explore workarounds to implement a usable multi-tenant SSO system for ELK, using federated identity providers feature in KeyCloak.</p>
+<p>Furthermore, we will also explore ways to implement complex user models on top of the SSO solution so that different roles can be assigned to different users based on certain granular rules.</p>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/posts/2019-11-26_elasticsearch-index-management/">&lt; ElasticSearch Index Management</a>
+		
+	</div>        
+	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/posts/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment &gt;</a>
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/2019-11-26_elasticsearch-index-management/">ElasticSearch Index Management</a></li>
+    
+    <li><a href="/posts/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/">ElasticSearch on K8s: 05 - Visualization and Production Readying</a></li>
+    
+    <li><a href="/posts/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/">ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

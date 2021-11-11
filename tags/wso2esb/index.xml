@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Wso2esb on blog.chamila.dev</title>
-    <link>https://blog.chamila.dev/tags/wso2esb/</link>
-    <description>Recent content in Wso2esb on blog.chamila.dev</description>
+    <title>Wso2esb on chamila.dev</title>
+    <link>https://chamila.dev/tags/wso2esb/</link>
+    <description>Recent content in Wso2esb on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 18 Jul 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://blog.chamila.dev/tags/wso2esb/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chamila.dev/tags/wso2esb/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Securing a Web Service With WSO2 ESB</title>
-      <link>https://blog.chamila.dev/post/2014-07-18_securing-a-web-service-with-wso2-esb/</link>
+      <link>https://chamila.dev/posts/2014-07-18_securing-a-web-service-with-wso2-esb/</link>
       <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.chamila.dev/post/2014-07-18_securing-a-web-service-with-wso2-esb/</guid>
+      <guid>https://chamila.dev/posts/2014-07-18_securing-a-web-service-with-wso2-esb/</guid>
       <description>WSO2 Enterprise Service Bus is one of the best performing implementations for the Enterprise market. In this article I will briefly go through what it takes to secure an unsecured backend web service using WSO2 ESB as a mediator.
 Security in Web Services is covered by the WS-Security standard. There are various policies such as simple username and password authentication and PKI certificates that can be used to secure a Web Service.</description>
     </item>
