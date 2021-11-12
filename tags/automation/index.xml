@@ -6,10 +6,19 @@
     <description>Recent content in Automation on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Feb 2019 18:17:04 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Nov 2021 19:32:16 +1300</lastBuildDate>
     
 	<atom:link href="https://chamila.dev/tags/automation/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Automating Snowflake</title>
+      <link>https://chamila.dev/blog/2021-11-12_automating-snowflake/</link>
+      <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2021-11-12_automating-snowflake/</guid>
+      <description>Only photo with me for now that&amp;#39;s closest to the theme   I had an opportunity to work on automating a Snowflake workflow last year. The scenario involved a typical Snowflake based setup for a Data Warehouse where data would be ingested from an Azure Blob Storage or AWS S3 and stored on multiple databases. I&amp;rsquo;m not going to dive into intricate details, but I&amp;rsquo;d like to write down some of the approaches I wanted to take during this exercise.</description>
+    </item>
     
     <item>
       <title>Releasing DocBlock v0.1</title>

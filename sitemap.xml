@@ -8,12 +8,42 @@
   </url>
   
   <url>
+    <loc>https://chamila.dev/tags/automation/</loc>
+    <lastmod>2021-11-12T19:32:16+13:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://chamila.dev/</loc>
     <lastmod>2021-11-12T19:32:16+13:00</lastmod>
   </url>
   
   <url>
+    <loc>https://chamila.dev/tags/data-warehousing/</loc>
+    <lastmod>2021-11-12T19:32:16+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamila.dev/tags/database/</loc>
+    <lastmod>2021-11-12T19:32:16+13:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://chamila.dev/blog/</loc>
+    <lastmod>2021-11-12T19:32:16+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamila.dev/tags/snowflake/</loc>
+    <lastmod>2021-11-12T19:32:16+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamila.dev/tags/</loc>
+    <lastmod>2021-11-12T19:32:16+13:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chamila.dev/tags/terraform/</loc>
     <lastmod>2021-11-12T19:32:16+13:00</lastmod>
   </url>
   
@@ -34,11 +64,6 @@
   
   <url>
     <loc>https://chamila.dev/tags/data-transformation/</loc>
-    <lastmod>2021-07-18T22:20:47+12:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamila.dev/tags/</loc>
     <lastmod>2021-07-18T22:20:47+12:00</lastmod>
   </url>
   
@@ -253,11 +278,6 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/tags/automation/</loc>
-    <lastmod>2019-10-19T18:15:40+13:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://chamila.dev/tags/documentation/</loc>
     <lastmod>2019-10-19T18:15:40+13:00</lastmod>
   </url>
@@ -379,11 +399,6 @@
   
   <url>
     <loc>https://chamila.dev/tags/process-improvement/</loc>
-    <lastmod>2019-10-19T18:15:21+13:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chamila.dev/tags/terraform/</loc>
     <lastmod>2019-10-19T18:15:21+13:00</lastmod>
   </url>
   

@@ -6,10 +6,55 @@
     <description>Recent content in Tags on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Jul 2021 22:20:47 +1200</lastBuildDate>
+    <lastBuildDate>Fri, 12 Nov 2021 19:32:16 +1300</lastBuildDate>
     
 	<atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Automation</title>
+      <link>https://chamila.dev/tags/automation/</link>
+      <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data warehousing</title>
+      <link>https://chamila.dev/tags/data-warehousing/</link>
+      <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/data-warehousing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>database</title>
+      <link>https://chamila.dev/tags/database/</link>
+      <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>snowflake</title>
+      <link>https://chamila.dev/tags/snowflake/</link>
+      <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/snowflake/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Terraform</title>
+      <link>https://chamila.dev/tags/terraform/</link>
+      <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/terraform/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Apache Nifi</title>
@@ -300,15 +345,6 @@
     </item>
     
     <item>
-      <title>Automation</title>
-      <link>https://chamila.dev/tags/automation/</link>
-      <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
-      
-      <guid>https://chamila.dev/tags/automation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Documentation</title>
       <link>https://chamila.dev/tags/documentation/</link>
       <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
@@ -476,15 +512,6 @@
       <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
       
       <guid>https://chamila.dev/tags/process-improvement/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Terraform</title>
-      <link>https://chamila.dev/tags/terraform/</link>
-      <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
-      
-      <guid>https://chamila.dev/tags/terraform/</guid>
       <description></description>
     </item>
     
