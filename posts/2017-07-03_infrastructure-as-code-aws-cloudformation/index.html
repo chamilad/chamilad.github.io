@@ -335,7 +335,7 @@
     }
 }
 </code></pre><p>The resulting screen looks like the following. Note that the field provided to the user is a drop-down box instead of a text-field. This is because, the <code>Type</code> of the parameter is defined as <code>AWS::EC2::KeyPair::KeyName</code>. CF interprets this and provides list of Key Pairs available in the user’s account to be selected for convenience.</p>
-<p><img src="/posts/img/2017-07-03_infrastructure-as-code-aws-cloudformation_1.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-07-03_infrastructure-as-code-aws-cloudformation_1.png#layoutTextWidth" alt=""></p>
 <p>The parameters can then be refered to inside the Resources as needed. For an example, to create an EC2 Instance, the above provided KeyPair name should be used.</p>
 <pre><code>&quot;KeyName&quot;: {
     &quot;Ref&quot;: &quot;KeyPairName&quot;
@@ -585,9 +585,9 @@
 <p>Any configuration automation tool like Puppet or Chef can be invoked in this script. Or a list of simple steps can be executed that make use of <code>sed</code> to replace values available at the run-time (such as certain IP addresses and JDBC URLs).</p>
 <p>The <code>user-data</code> can be specified in the <code>UserData</code> field in either <code>EC2::Instance</code> Resource or <code>Autoscaling::LaunchConfiguration</code> Resource (the latter is discussed later).</p>
 <p>Following is such a script passed in <code>UserData</code> that makes use of <code>cfn-init</code>. This is an excerpt from a <a href="https://s3.amazonaws.com/cloudformation-templates-us-east-1/vpc_single_instance_in_subnet.template">CF sample template</a>.</p>
-<p><img src="/posts/img/2017-07-03_infrastructure-as-code-aws-cloudformation_2.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-07-03_infrastructure-as-code-aws-cloudformation_2.png#layoutTextWidth" alt=""></p>
 <p>Note the way run-time values are referred to, using <code>Ref</code> function. By the use of the shebang (<code>#!/bin/bash</code>), the init script identifies this list of commands as executable script. It is therefore important to include that at every <code>UserData</code> value.</p>
-<p><img src="/posts/img/2017-07-03_infrastructure-as-code-aws-cloudformation_3.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-07-03_infrastructure-as-code-aws-cloudformation_3.png#layoutTextWidth" alt=""></p>
 <h4 id="pre-packaging">Pre-packaging</h4>
 <p>When considering the approach where a Configuration Automation tool like Puppet has to be invoked at instance initiation, a small gap is revealed. That approach usually requires Puppet modules, and their artifacts like the product packs, to be available in the AMI already. Furthermore, there can be certain actions in the <code>UserData</code> section, that can be included in an AMI so that those do not have to be executed every time an instance is spawned.</p>
 <p>The typical approach to create an AMI is something like the following.</p>
@@ -609,17 +609,17 @@
 <li>Once the deployment is rolled out, any update process can be performed by updating the AMIs, updating the Template, then updating the Stack as it is. CloudFormation provides the facility to update an existing Stack with an updated Template. The changes can be reviewed and rolled out at the click of a button.</li>
 </ol>
 <p>A sample CloudFormation script can be found <a href="https://github.com/chamilad/cf-demo">here</a> including above sections in the Template (sans Conditions and Mapping) that will create a WSO2 Enterprise Integrator 6.1.1 Stack. The stack will include an Elastic Load Balancer, an Autoscaling Group, a corresponding LaunchConfiguration, an Elastic File System Mount, and a RDS DB Instance.</p>
-<p><img src="/posts/img/2017-07-03_infrastructure-as-code-aws-cloudformation_5.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-07-03_infrastructure-as-code-aws-cloudformation_5.png#layoutTextWidth" alt=""></p>
 <blockquote>
 <p>Be mindful of the AWS costs that would occur when you create this script.</p>
 </blockquote>
 <p>To create this script, login to the AWS Console and change region to <strong>US East 2 (Ohio)</strong> (this script can only be run in Ohio as I’ve not used Mappings contrary to own advice), then navigate to CloudFormation.</p>
-<p><img src="/posts/img/2017-07-03_infrastructure-as-code-aws-cloudformation_6.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-07-03_infrastructure-as-code-aws-cloudformation_6.png#layoutTextWidth" alt=""></p>
 <p>In the resulting screen select “<strong>Create New Stack</strong>” and then upload the file <code>EI611-CF.template.json</code> (you can also make use of the YAML file, CloudFormation accepts either JSON or YAML). The next screen will prompt for a Stack name, and the inputs for Parameters defined in the template.</p>
-<p><img src="/posts/img/2017-07-03_infrastructure-as-code-aws-cloudformation_7.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-07-03_infrastructure-as-code-aws-cloudformation_7.png#layoutTextWidth" alt=""></p>
 <p>You will have to have a SSL Certificate in your IAM profile or AWS Certificate Manager for the script to continue. This certificate is used at the Elastic Load Balancer where SSL Termination happens for Listeners <strong>9443</strong> and <strong>8243</strong>.</p>
 <p>After adding the prompted information continue on to “<strong>Create</strong>” after which the stack creation will start. While the resources are being created, CF will push events indicating the resource creation progress.</p>
-<p><img src="/posts/img/2017-07-03_infrastructure-as-code-aws-cloudformation_8.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-07-03_infrastructure-as-code-aws-cloudformation_8.png#layoutTextWidth" alt=""></p>
 <p>After the stack creation completes (which will take a certain amount of time), clicking on the stack will take you to a page with Outputs. You will be able to access the Carbon console for the WSO2 Enterprise Integrator 6.1.1 by clicking the URL provided as <code>ServerURL</code> Output (For this URL to be accessible, it will take sometime as the instance would take a certain time to configure the server, including steps like downloading the JDK etc. This is one of the primary reasons to use a customized AMI where you can embed all the needed filed beforehand).</p>
 <p>To understand what happened after Resource creation, you can refer to the <a href="https://github.com/chamilad/cf-demo/blob/812834645a26f02a8b4a409b433db02d747059e8/EI611-CF.template.json#L884-L1062"><code>UserData</code></a><a href="https://github.com/chamilad/cf-demo/blob/812834645a26f02a8b4a409b433db02d747059e8/EI611-CF.template.json#L884-L1062"> field in the LaunchConfiguration</a>. It mounts the EFS resource, installs needed packages, modified WSO2 EI configuration files using the run-time data such as IP address, ELB Public DNS names, DB Instance’s JDBC URL etc. At the end of the modifications, it then starts the WSO2 EI 6.1.1 server. This script is the solution that gaps Infrastructure as Code and Application Provisioning.</p>
 <blockquote>
@@ -630,7 +630,7 @@
 <li>Use Parameters, Mappings, Conditions, and Outputs to make the Template more flexible and reusable. At the same time, try to keep the logic sane as CF Templates are nothing more than JSON/YAML declarations. Trying too much to make the Templates reusable will quickly result in a Template that is incomprehensible.</li>
 <li>Use Autoscaling — To spawn EC2 Instances, rather than using <code>EC2::Instance</code> it might be a good idea to use AutoScalingGroups and LaunchConfigurations.</li>
 </ul>
-<p><img src="/posts/img/2017-07-03_infrastructure-as-code-aws-cloudformation_9.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-07-03_infrastructure-as-code-aws-cloudformation_9.png#layoutTextWidth" alt=""></p>
 <p>An AutoScaling Group will take care of maintaining a defined number of instances in the defined subnets. To spawn new instances, it will make use of an associated LaunchConfiguration (this is where the <code>UserData</code> should be defined). The AutoScaling Group will additionally register the launched instances to a defined Load Balancer.</p>
 <p>It’s almost always a good idea to use AutoScaling Groups to make sure your deployment wouldn’t suddenly be unavailable due to crashes.</p>
 <ul>

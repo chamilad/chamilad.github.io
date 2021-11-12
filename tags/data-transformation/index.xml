@@ -13,20 +13,20 @@
     
     <item>
       <title>CI/CD for Apache Nifi 02: Automation with NipyAPI</title>
-      <link>https://chamila.dev/posts/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</link>
+      <link>https://chamila.dev/blog/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</link>
       <pubDate>Sun, 18 Jul 2021 22:20:47 +1200</pubDate>
       
-      <guid>https://chamila.dev/posts/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</guid>
+      <guid>https://chamila.dev/blog/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</guid>
       <description>Wharf on a good day   In the earlier post on setting up Apache Nifi and Nifi Registry, two Nifi and Registry deployments set up and integrated with each other. This post will focus on automating the migrations between the two environments. Just to refresh, the following diagram shows what we are trying to achieve.
  Though this shows three environments, we have only taken the dev -&amp;gt; test step into consideration in the current and the previous posts.</description>
     </item>
     
     <item>
       <title>CI/CD for Apache Nifi 01 - Introduction and Set up</title>
-      <link>https://chamila.dev/posts/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</link>
+      <link>https://chamila.dev/blog/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</link>
       <pubDate>Sat, 17 Jul 2021 13:21:12 +1200</pubDate>
       
-      <guid>https://chamila.dev/posts/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</guid>
+      <guid>https://chamila.dev/blog/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</guid>
       <description>Harbour on a misty day    I&amp;rsquo;m getting back to writing after more than an year of a gap. A lot happened during this period, moved from one city to another, changed employers, but mostly, I think I switched my writing time for some PS4 time. At one point though, you come to accept that your best K/D is going to be 0.2 and you&amp;rsquo;re too old to get better.</description>
     </item>
     

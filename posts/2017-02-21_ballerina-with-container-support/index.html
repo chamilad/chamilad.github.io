@@ -113,7 +113,7 @@
 	</div>
        </header>
         <div class="post-content markdown-body">
-          <p><img src="/posts/img/2017-02-21_ballerina-with-container-support_0.png#layoutFillWidth" alt=""></p>
+          <p><img src="/blog/img/2017-02-21_ballerina-with-container-support_0.png#layoutFillWidth" alt=""></p>
 <p>WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the <a href="http://us17.wso2con.com/">WSO2Con 2017 in San Fransisco</a>. Ballerina is a <a href="http://ballerinalang.org/">general purpose language with a focus on integration and a visual approach to coding</a>. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “<strong>Connectors</strong>” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.</p>
 <p>Ballerina offers two downloads, a minimal <strong>Runtime</strong>, and a fully featured <strong>Tools</strong> distribution. The Tools distribution packs a list of developer tools required to build Ballerina programs, in addition to the Runtime itself.</p>
 <!-- raw HTML omitted -->
@@ -149,7 +149,7 @@ ballerina-pkg latest 2547078bf268 13 hours ago 138 MB
 </code></pre><ol start="3">
 <li>This will create a Ballerina Service Archive with <strong>.bsz</strong> file extension at your working directory.</li>
 </ol>
-<p><img src="/posts/img/2017-02-21_ballerina-with-container-support_2.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-02-21_ballerina-with-container-support_2.png#layoutTextWidth" alt=""></p>
 <h4 id="dockerizing">Dockerizing</h4>
 <p>Now let’s create a Docker image out of this Service archive.</p>
 <ol>
@@ -158,12 +158,12 @@ ballerina-pkg latest 2547078bf268 13 hours ago 138 MB
 </ol>
 <pre><code>ballerina-tools-0.8.0/bin/&gt; ./ballerina docker helloWorldService.bsz
 </code></pre><p>This will prompt for you to continue building the Docker image, and confirmed it will build the Docker image and show helpful text to continue the next steps.</p>
-<p><img src="/posts/img/2017-02-21_ballerina-with-container-support_3.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-02-21_ballerina-with-container-support_3.png#layoutTextWidth" alt=""></p>
 <p>Test the Docker image by running a Container. Copy the command displayed to run the Container, which will do so in the background. Query for Container logs to see if the Ballerina Service was successfully deployed, and verify by making an HTTP call.</p>
 <!-- raw HTML omitted -->
 <p>You have now completed Dockerizing a Ballerina Service.</p>
 <p>Dockerizing a Ballerina Main program is just as easy. Just package the Main program to a <strong>bmz</strong> archive and issue the same command <strong>ballerina docker</strong> to create a Docker image.</p>
-<p><img src="/posts/img/2017-02-21_ballerina-with-container-support_5.png#layoutOutsetCenter" alt=""></p>
+<p><img src="/blog/img/2017-02-21_ballerina-with-container-support_5.png#layoutOutsetCenter" alt=""></p>
 <p>You might have noticed that <strong>ballerina docker</strong> tagged the Docker images with the package name of the Ballerina Service/Main Archive provided. If you want to tag the resulting Docker image with a different name, you can use <code>-t</code>or <code>--tag</code> flag.</p>
 <p>Another feature that <strong>ballerina docker</strong> offers is to use an external Docker daemon as the Docker host for Docker commands to be executed. This enables resource sharing as a common server with a Docker daemon exposed via a TCP port can be used by a team to create and test Docker images before pushing to live. To specify an external Docker daemon, use the flags <code>-H</code> or <code>--host</code>.</p>
 <p>You can find more information on the usage on the <a href="https://github.com/ballerinalang/container-support/tree/v0.8.0">README</a>.</p>

@@ -109,7 +109,7 @@ So today, there came a need to sort through a large access log file for a list o
 <p>So today, there came a need to sort through a large access log file for a list of request counts for each key. It’s not just a key — request count relationship. To elaborate briefly,</p>
 <p>In WSO2 API Manager, authentication happens through OAuth2. This involves a Consumer Key for a particular application and user, and a pair of access, refresh tokens to be used in actual API invocation. A particular <strong>Consumer Key</strong> can be used to generate multiple <strong>Access Tokens</strong>and <strong>Refresh Tokens</strong>. The requirement was to find how many requests were done using <strong>Access Tokens</strong> mapped to each <strong>Consumer Key</strong>. It’s only the <strong>Access Token</strong> that gets logged into the access log, so getting to this list of numbers required some kind of scripting.</p>
 <p>I start with one-liners.</p>
-<p><img src="/posts/img/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis_0.gif#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis_0.gif#layoutTextWidth" alt=""></p>
 <p>First I need to get the actual list of requests that were made with an Access Token.</p>
 <pre><code>grep &quot;Bearer &quot; access-log-with-thousands-of-lines.log
 </code></pre><p>This gives me a search result with too many information. I need only the Access Tokens used. In other words, I need only the next 37 characters (36 being the number of characters in an Access Token) after a match for <code>Bearer</code>.</p>
@@ -159,7 +159,7 @@ mbn05ns9-f97d-3401-881e-3940859ajaf2
 stmt+=&quot;access_token='$token' OR &quot;
 done &lt; tokens.txt; echo &quot;${stmt:0:-4};&quot;;
 </code></pre><p>Since that Bashfu could be a little bit hard to see to a lay person, let me explain what happens.</p>
-<p><img src="/posts/img/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis_1.gif#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis_1.gif#layoutTextWidth" alt=""></p>
 <ul>
 <li>Write the first part of the non-repetitive statement</li>
 </ul>
@@ -177,7 +177,7 @@ done &lt; tokens.txt;
 </code></pre><p>With the help of a friend (both because I don’t have access to the database server and because I only learn SQL absolutely when I need to — latter being the strongest reason) I get the consumer key, username, application name, and the access token in the following format, in a file called <code>db_output.txt</code> .</p>
 <pre><code>consumer_key|username|app_name|access_key
 </code></pre><p>Now what I need to do is to go through each consumer key, get all the access keys mapped to it, and sum up the number of requests done with each access key. For this, I’m going to have to use some advanced Bashfu, which forces me to a scripting position.</p>
-<p><img src="/posts/img/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis_2.gif#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis_2.gif#layoutTextWidth" alt=""></p>
 <p>First I need to sort the retrieved list of consumer keys in <code>db_output.txt</code> file, by the contents of the first column.</p>
 <pre><code>cat db_output.txt | sort -k1 &gt; db_output_sorted.txt
 </code></pre><p>Following is the ad-hoc script I come up with to perform the advanced bashfu.</p>
@@ -245,7 +245,7 @@ consumer_key410   username410   appname410   1
 consumer_key335   username335   appname335   1
 consumer_key100   username100   appname100   1
 </code></pre><p>Flawless Victory!!!</p>
-<p><img src="/posts/img/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis_3.gif#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis_3.gif#layoutTextWidth" alt=""></p>
 <blockquote>
 <p>The path taken here isn’t the only way to achieve the same result. The following much simpler script takes a different approach using <code>awk</code> to sum up the request counts, and it turns out to be a few seconds faster than the first script (even with the additional IO and nested looping)!!</p>
 </blockquote>

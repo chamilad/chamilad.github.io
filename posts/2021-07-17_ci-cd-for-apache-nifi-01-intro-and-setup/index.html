@@ -121,7 +121,7 @@
        </header>
         <div class="post-content markdown-body">
           <figure>
-    <img src="/posts/img/2021-07-17_nifi_cicd_01_header.jpeg"/> <figcaption>
+    <img src="/blog/img/2021-07-17_nifi_cicd_01_header.jpeg"/> <figcaption>
             <h4>Harbour on a misty day</h4>
         </figcaption>
 </figure>
@@ -162,7 +162,7 @@
 <p>The Nifi Flow Groups will all be persisted in one Bucket in the Registry to keep things simple, and the Bucket name will be the same across the three environments too. This will require a Registry deployment per environment, however considering that Nifi Registry was first considered to be part of the core product, that pattern does not sound bad at all. Also, it makes sense to separate at least the prod and non-prod Registry instances, specially if certain compliance requirements demand that.</p>
 <p>We will have to use a Git repository per Registry deployment. This is because of the fact that at the moment, there is no way to differentiate branches in the Git Flow Persistence provider configuration in the Registry.</p>
 <p>With these components configured, we&rsquo;ll use the Nifi and Registry APIs to transfer the changes done to the Flow definitions from one environment to the other, by using export and import functions. To do this, we&rsquo;ll use a wrapper SDK <a href="https://nipyapi.readthedocs.io/en/latest/readme.html">Nipyapi</a>.</p>
-<p><img src="/posts/img/2021-07-17_nifi_cicd_design.png" alt="CI/CD design for Nifi"></p>
+<p><img src="/blog/img/2021-07-17_nifi_cicd_design.png" alt="CI/CD design for Nifi"></p>
 <h1 id="implementation">Implementation</h1>
 <h2 id="configuring-the-components">Configuring the Components</h2>
 <p>We first need to set up the Registry so that it&rsquo;s working with a proper Git repository. For this blog post, I&rsquo;m going to run the Nifi and the Registry instances locally, however, these details do not change if the deployment platform changes.</p>
@@ -209,9 +209,9 @@ nifi.registry.web.https.host=
         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Remote Clone Repository&#34;</span><span style="color:#f92672">&gt;</span>https://github.com/chamilad/nifi-registry-test.git<span style="color:#f92672">&lt;/property&gt;</span>
     <span style="color:#f92672">&lt;/flowPersistenceProvider&gt;</span>
 </code></pre></div><p>We are now ready to start the Registry instances properly. Run <code>bin/nifi-registry.sh start</code> and <code>tail -100f ../logs/nifi-registry-app.log</code> to monitor startup process. After the Registry starts up, visit the address <code>http://localhost:18080/nifi-registry</code> on the browser and you&rsquo;ll be presented with something similar to the below.</p>
-<p><img src="/posts/img/2021-07-17_nifi_cicd_reg_ui.png" alt="Nifi Registry UI"></p>
+<p><img src="/blog/img/2021-07-17_nifi_cicd_reg_ui.png" alt="Nifi Registry UI"></p>
 <p>Let&rsquo;s complete the Registry set up by creating a Registry Bucket to act as a Container for the Flows that we&rsquo;ll be pushing to the Registry. Click on the Spanner icon on the top right corner (or visit the administration UI at <code>http://localhost:18080/nifi-registry/#/administration</code>) and select <code>New Bucket</code>. Let&rsquo;s use <code>realtimestats</code> as the Bucket name.</p>
-<p><img src="/posts/img/2021-07-17_nifi_cicd_reg_bucket_creation.png" alt="Registry Bucket Creation"></p>
+<p><img src="/blog/img/2021-07-17_nifi_cicd_reg_bucket_creation.png" alt="Registry Bucket Creation"></p>
 <p>Do the same in the <code>test</code> Registry instance.</p>
 <blockquote>
 <p>If you visit the Git repository to see if anything has changed, you&rsquo;d be a bit disappointed. A Registry Bucket is a Git directory, and as you may know now, there is no such thing as an empty Git directory. We will not see anything change in the Git repository until we start pushing Flow definitions to the Registry.</p>
@@ -227,21 +227,21 @@ nifi.web.https.network.interface.default=
 <p>For the recent versions, Nifi generates a user and a password when it starts the first time. If you&rsquo;re greeted with a login screen, go back to the <code>tail</code> output and find the credentials there. And you&rsquo;ll have to log into the two Nifi instances from two different browser sessions (one in a Private Window, or different Firefox Containers).</p>
 </blockquote>
 <p>By default, Nifi does not point to any Registry component. We change this by adding a <em>Registry Client</em> so that Nifi knows that Flow definitions will be version controlled and where to talk to when doing so. To do this, go to Settings menu (three lines on the top right corner) -&gt; Controller Settings -&gt; Registry Clients -&gt; New Client (plus sign icon)</p>
-<p><img src="/posts/img/2021-07-17_nifi_cicd_reg_client_01.png" alt="Creating Registry Client">
-<img src="/posts/img/2021-07-17_nifi_cicd_reg_client_02.png" alt="Creating Registry Client"></p>
+<p><img src="/blog/img/2021-07-17_nifi_cicd_reg_client_01.png" alt="Creating Registry Client">
+<img src="/blog/img/2021-07-17_nifi_cicd_reg_client_02.png" alt="Creating Registry Client"></p>
 <blockquote>
 <p>The Registry URL should only be the <code>host</code> and the <code>port</code>, not the <code>/nifi-registry</code> path.</p>
 </blockquote>
 <p>Do the same in the <code>test</code> Nifi instance and point it to the <code>test</code> Registry.</p>
 <p>We have now set up the plumbing necessary to integrate Nifi and the Nifi Registry setup. I have also added a sample Process Group with a single Flow that generates a Flow File (data event) every 5 seconds and output to <code>stdout</code>.</p>
-<p><img src="/posts/img/2021-07-17_nifi_cicd_example.png" alt="Sample Flow Group"></p>
+<p><img src="/blog/img/2021-07-17_nifi_cicd_example.png" alt="Sample Flow Group"></p>
 <p>Since we have integrated the Registry to Nifi, we can directly <em>commit</em> this Flow to Registry. To do that, go to the top level UI, right click on the Process Group, Version -&gt; Start Version Control. In the resulting dialog box, add the necessary details.</p>
-<p><img src="/posts/img/2021-07-17_nifi_cicd_example_02.png" alt="Sample Flow Group">
-<img src="/posts/img/2021-07-17_nifi_cicd_example_03.png" alt="Sample Flow Group commit"></p>
+<p><img src="/blog/img/2021-07-17_nifi_cicd_example_02.png" alt="Sample Flow Group">
+<img src="/blog/img/2021-07-17_nifi_cicd_example_03.png" alt="Sample Flow Group commit"></p>
 <p>Visit the <code>dev</code> Registry UI and you will see the Flow Group <code>RandomEvents</code> that we just added to version control being displayed under the <code>realtimestats</code> Bucket.</p>
-<p><img src="/posts/img/2021-07-17_nifi_cicd_example_05.png" alt="Registry Entry for the Flow Group"></p>
+<p><img src="/blog/img/2021-07-17_nifi_cicd_example_05.png" alt="Registry Entry for the Flow Group"></p>
 <p>If you visit the <code>dev</code> Git repository after this, you&rsquo;ll see the directory named <code>realtimestats</code> which is the Registry Bucket we made earlier. And inside that directory there will be two files, one corresponding to the Flow Group named <code>RandomEvents.snapshot</code> and another file which is the descriptor for the Bucket, named <code>bucket.yml</code>. This is our starting point when automating the CI/CD flow for the Flow definitions.</p>
-<p><img src="/posts/img/2021-07-17_nifi_cicd_example_04.png" alt="Dev Registry Git Repository"></p>
+<p><img src="/blog/img/2021-07-17_nifi_cicd_example_04.png" alt="Dev Registry Git Repository"></p>
 <p>So far, we set up the basic components of a typical Nifi deployment with a Registry primed for CI/CD. You can break off from this point, and build your way of doing things, since the Registry just opens up a number of possibilities. You can manually perform export and import actions and call it a day. However, with a little bit of scripting, we can automate a bunch of these actions. Let&rsquo;s address that part in the next post.</p>
 
         </div>

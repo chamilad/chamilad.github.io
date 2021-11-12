@@ -129,7 +129,7 @@
 </code></pre><p>After generating the certificate with the SAN fields, you can check if your command succeeded by looking at the certificate. To do this execute the following command.</p>
 <pre><code>openssl x509 -in public.crt -noout -text
 </code></pre><p>You will see an output similar to the following.</p>
-<p><img src="/posts/img/2017-11-06_subject-alternative-names-in-ssl-certificates_0.png#layoutOutsetCenter" alt=""></p>
+<p><img src="/blog/img/2017-11-06_subject-alternative-names-in-ssl-certificates_0.png#layoutOutsetCenter" alt=""></p>
 <p>According to the above output, <code>public.crt</code> certificate will validate to any ELB created in the <code>us-east-1</code> region, along with any subdomain created under <code>dev.acme.org</code> .</p>
 <p>There’s one fact to remember about the use of wild cards in the SAN fields though. You can only use wild cards to match a single level of variation.</p>
 <p>In other words, the above certificate will validate <code>project1.dev.acme.org</code> while <code>sub.project1.dev.acme.org</code> will not match.</p>

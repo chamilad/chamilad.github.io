@@ -13,10 +13,10 @@
     
     <item>
       <title>Timing Out of Long Running Methods in Python</title>
-      <link>https://chamila.dev/posts/2015-11-26_timing-out-of-long-running-methods-in-python/</link>
+      <link>https://chamila.dev/blog/2015-11-26_timing-out-of-long-running-methods-in-python/</link>
       <pubDate>Thu, 26 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2015-11-26_timing-out-of-long-running-methods-in-python/</guid>
+      <guid>https://chamila.dev/blog/2015-11-26_timing-out-of-long-running-methods-in-python/</guid>
       <description>Sometimes there are conditions under which a function call could not return in a needed time period and would cause unexpected behavior. For example, a file read could take more time than anticipated and leave the code execution without proper control over what to do when such a situation occurs. This can be worse if the said function call directs to an external library which we can’t control.
 Python has a nifty module called signal which exposes UNIX Signal numbers and a way to register callbacks for each signal.</description>
     </item>

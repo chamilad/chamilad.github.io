@@ -13,39 +13,39 @@
     
     <item>
       <title>How to Design a WSO2 Docker Image</title>
-      <link>https://chamila.dev/posts/2018-12-24_how-to-design-a-wso2-docker-image/</link>
+      <link>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</link>
       <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
+      <guid>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
       <description>What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
 Docker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind.</description>
     </item>
     
     <item>
       <title>Publishing WSO2 Logs to Splunk from a Containerized Deployment</title>
-      <link>https://chamila.dev/posts/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</link>
+      <link>https://chamila.dev/blog/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</link>
       <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</guid>
+      <guid>https://chamila.dev/blog/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</guid>
       <description>Or how to publish to Splunk from any Docker environment WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in &amp;lt;CARBON_HOME&amp;gt;/repository/conf folder, data in &amp;lt;CARBON_HOME&amp;gt;/repository/data, artifacts in &amp;lt;CARBON_HOME&amp;gt;/repository/deployment (or in &amp;lt;CARBON_HOME&amp;gt;/repository/tenants folder if you’re in to multi-tenancy). All the log files are written into &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.
 Log Aggregation All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.</description>
     </item>
     
     <item>
       <title>CI/CD APIs with WSO2 API Manager</title>
-      <link>https://chamila.dev/posts/2018-11-25_cicd-apis-with-wso2-api-manager/</link>
+      <link>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</link>
       <pubDate>Sun, 25 Nov 2018 03:47:20 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2018-11-25_cicd-apis-with-wso2-api-manager/</guid>
+      <guid>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</guid>
       <description>How to do continuous integration and continuous delivery of APIs with WSO2 API Manager WSO2 API Manager, the only Open Source Leader in API Management Solutions in Forrester Wave, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.</description>
     </item>
     
     <item>
       <title>Sample: WSO2 EI Cache Mediator based Token Caching</title>
-      <link>https://chamila.dev/posts/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</link>
+      <link>https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</link>
       <pubDate>Sun, 12 Nov 2017 14:30:44 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</guid>
+      <guid>https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</guid>
       <description>This post and the sample code are the results of a particular issue I had to tackle recently. Though the sample code is my own, the idea and the approach have many authors, arising from the collective knowledge on the WSO2 Middleware Stack.
  The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,
  Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token  If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</description>
@@ -53,10 +53,10 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
     
     <item>
       <title>Infrastructure as Code : AWS CloudFormation</title>
-      <link>https://chamila.dev/posts/2017-07-03_infrastructure-as-code-aws-cloudformation/</link>
+      <link>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</link>
       <pubDate>Mon, 03 Jul 2017 11:40:50 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
+      <guid>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
       <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
  Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
@@ -64,46 +64,46 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
     
     <item>
       <title>Ballerina with Container Support</title>
-      <link>https://chamila.dev/posts/2017-02-21_ballerina-with-container-support/</link>
+      <link>https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/</link>
       <pubDate>Tue, 21 Feb 2017 06:48:33 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2017-02-21_ballerina-with-container-support/</guid>
+      <guid>https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/</guid>
       <description>WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the WSO2Con 2017 in San Fransisco. Ballerina is a general purpose language with a focus on integration and a visual approach to coding. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “Connectors” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.</description>
     </item>
     
     <item>
       <title>Thinking of Moving Your WSO2 Deployment On to Kubernetes?</title>
-      <link>https://chamila.dev/posts/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</link>
+      <link>https://chamila.dev/blog/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</link>
       <pubDate>Sun, 22 Jan 2017 19:25:15 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</guid>
+      <guid>https://chamila.dev/blog/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</guid>
       <description>Moving from a Virtual Machine based deployment to a Container Clustering environment can be quite a few sleepless nights. Cloud deployment artifacts for WSO2 products would reduce this number by a few, because of their tried and tested nature. These include Dockerfiles, Puppet based configurations, Kubernetes and Mesos deployment artifacts. As easy as these artifacts make life easier during a redesign stage of an existing deployment, let us anyway walk through some points to keep in mind regarding a WSO2 deployment on top of Kubernetes.</description>
     </item>
     
     <item>
       <title>How to Upload a Carbon App (CAR File) to a Remote WSO2 Server</title>
-      <link>https://chamila.dev/posts/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</link>
+      <link>https://chamila.dev/blog/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</link>
       <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</guid>
+      <guid>https://chamila.dev/blog/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</guid>
       <description>Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.</description>
     </item>
     
     <item>
       <title>Monitoring WSO2 Logs with Elasticsearch, Logstash, and Kibana (or Grafana)</title>
-      <link>https://chamila.dev/posts/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</link>
+      <link>https://chamila.dev/blog/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</link>
       <pubDate>Sat, 10 Sep 2016 21:26:48 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</guid>
+      <guid>https://chamila.dev/blog/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</guid>
       <description>I’ve recently been doing some work involving analytics dashboards and the subject proved to be really interesting. It has a wide range starting from Big Data to UX. Starting at a point where you determine what kind of data is collected and what kind information you need to get out of the dashboard, going to data analysis and data processing (probably on top an engine like Apache Spark), it finalizes at the visualization stage which is really fun.</description>
     </item>
     
     <item>
       <title>Running WSO2 Products on Kubernetes</title>
-      <link>https://chamila.dev/posts/2016-02-09_running-wso2-products-on-kubernetes/</link>
+      <link>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</link>
       <pubDate>Tue, 09 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2016-02-09_running-wso2-products-on-kubernetes/</guid>
+      <guid>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</guid>
       <description>Running WSO2 Products on Kubernetes
  Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.
  It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!</description>
@@ -111,30 +111,30 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
     
     <item>
       <title>Consuming a Service Secured by WSO2 ESB</title>
-      <link>https://chamila.dev/posts/2014-07-19_consuming-a-service-secured-by-wso2-esb/</link>
+      <link>https://chamila.dev/blog/2014-07-19_consuming-a-service-secured-by-wso2-esb/</link>
       <pubDate>Sat, 19 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2014-07-19_consuming-a-service-secured-by-wso2-esb/</guid>
+      <guid>https://chamila.dev/blog/2014-07-19_consuming-a-service-secured-by-wso2-esb/</guid>
       <description>In the last post I explained the steps needed, although somewhat minimal, to secure an unsecured backend service with WSO2 ESB. In this post I will continue on to the client side of the communication explaining the minimal client needed to communicate with the secure proxy service we created and take a peak at the action going on under the hood.
 UsernameToken Before we dive in to the client side code let’s take a look at the WS-Policy for the UsernameToken security we applied to our service.</description>
     </item>
     
     <item>
       <title>Securing a Web Service With WSO2 ESB</title>
-      <link>https://chamila.dev/posts/2014-07-18_securing-a-web-service-with-wso2-esb/</link>
+      <link>https://chamila.dev/blog/2014-07-18_securing-a-web-service-with-wso2-esb/</link>
       <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2014-07-18_securing-a-web-service-with-wso2-esb/</guid>
+      <guid>https://chamila.dev/blog/2014-07-18_securing-a-web-service-with-wso2-esb/</guid>
       <description>WSO2 Enterprise Service Bus is one of the best performing implementations for the Enterprise market. In this article I will briefly go through what it takes to secure an unsecured backend web service using WSO2 ESB as a mediator.
 Security in Web Services is covered by the WS-Security standard. There are various policies such as simple username and password authentication and PKI certificates that can be used to secure a Web Service.</description>
     </item>
     
     <item>
       <title>Creating a Web Service Using Apache Axis2</title>
-      <link>https://chamila.dev/posts/2014-07-01_creating-a-web-service-using-apache-axis2/</link>
+      <link>https://chamila.dev/blog/2014-07-01_creating-a-web-service-using-apache-axis2/</link>
       <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2014-07-01_creating-a-web-service-using-apache-axis2/</guid>
+      <guid>https://chamila.dev/blog/2014-07-01_creating-a-web-service-using-apache-axis2/</guid>
       <description>Prerequisites We need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let’s use Tomcat as a container. So in the following order
  Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7) Download and install Axis2 on Tomcat  Oracle JDK7 Download and extract the JDK tarball.</description>
     </item>

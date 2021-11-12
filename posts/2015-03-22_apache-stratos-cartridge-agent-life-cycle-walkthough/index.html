@@ -131,7 +131,7 @@
 <p>The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting. In this article we will discuss in detail, in which order these tasks are performed.</p>
 <h3 id="setup">Setup</h3>
 <p>For our walkthrough let’s take an application with a single PHP cartridge. The Puppet manifest for this PHP cartridge is distributed with Stratos source. The application will only consist of this cartridge. Following is the deployed application view of the Single PHP Cartridge Application.</p>
-<p><img src="/posts/img/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough_0.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough_0.png#layoutTextWidth" alt=""></p>
 <h3 id="deploying-the-application">Deploying the Application</h3>
 <p>The sample scripts and artifacts for our scenario is available in the samples folder of the Stratos source. You can deploy this sample in any one of the available IaaS options including the Mock IaaS that is available in Stratos for developer testing purposes. Following is how it can be deployed in the Mock IaaS.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># navigate to the sample application folder</span> 

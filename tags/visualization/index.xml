@@ -13,10 +13,10 @@
     
     <item>
       <title>Basic Process Metrics Collection and Visualization in Linux</title>
-      <link>https://chamila.dev/posts/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</link>
+      <link>https://chamila.dev/blog/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</link>
       <pubDate>Tue, 15 May 2018 06:36:59 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</guid>
+      <guid>https://chamila.dev/blog/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</guid>
       <description>When it comes to deployment observability there are multiple, comprehensive solutions that can handle almost any system of scale you throw at them. I said almost, because there are certain stories that do not require setting up a central monitoring server with satellite agents to collect and enrich data.
 For an example, consider a scenario where you’re troubleshooting a certain single process for a particular period of time. You want to collect the approximate CPU usage, approximate memory usage, light weight process (aka thread) count, and the TCP connection count.</description>
     </item>

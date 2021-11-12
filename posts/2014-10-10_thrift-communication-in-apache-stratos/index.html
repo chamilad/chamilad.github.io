@@ -127,7 +127,7 @@ Stream Definition In order to publish data as a stream, the definition of the pa
 <p>Data are written in to the stream as Events. <strong>org.wso2.carbon.databridge.commons.Event</strong> object stores the data for a particular event and when the time comes to actually serialize the data in to the wire, <strong>org.wso2.carbon.databridge.agent.thrift.internal.utils.ThriftEventConverter</strong> adds all the data together and assigns proper Thrift types to each data. This logic is implemented in the Carbon platform’s DataBridge.</p>
 <p>Apache Stratos publishes data over Thrift in two scenarios. Both scenarios are involved with managing cartridges based on their performance. Cartridge Agent initiates and manages streaming of data from the cartridge to the monitoring server/complex event processing server. The addresses and the credentials of the data aggregation servers should be provided from Stratos to the cartridge agent.</p>
 <h3 id="health-statistics-publishing">Health Statistics Publishing</h3>
-<p><img src="/posts/img/2014-10-10_thrift-communication-in-apache-stratos_0.jpg#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2014-10-10_thrift-communication-in-apache-stratos_0.jpg#layoutTextWidth" alt=""></p>
 <p>Health statistics of a particular cartridge instance is used by a real time processing engine to declare events that manage the cartridge life cycle. For example based on the memory load and the CPU usage, CEP can publish events that the AutoScaling picks up and accordingly spawn new instances. Another example is the AutoScaler terminating faulty cartridges based on events published by the CEP when health statistics publishing stops for a certain period of timeout. The role of the AutoScaler along with a CEP is described <a href="https://cwiki.apache.org/confluence/display/STRATOS/4.1.0+Auto-scaler">here</a>.</p>
 <p>Following values should be passed to the Cartridge Agent via the Puppet Configuration, which includes these values as system properties when the Cartridge Agent starts up. They are then used to establish the connection and publish the data to the Thrift receiver.</p>
 <ol>
@@ -149,7 +149,7 @@ Stream Definition In order to publish data as a stream, the definition of the pa
 <p>Two types of health statistics are published by the cartridge agent, percentage of free memory, and the load average of the CPU. <strong>health_description</strong> field uses values <strong>memory_consumption</strong> and <strong>load_average</strong> respectively for these two readings.</p>
 <p>Health statistics publishing can be disabled by setting <strong>cep.stats.publisher.enabled</strong> property of the Cartridge agent to false.</p>
 <h3 id="log-publishing">Log Publishing</h3>
-<p><img src="/posts/img/2014-10-10_thrift-communication-in-apache-stratos_1.jpg#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2014-10-10_thrift-communication-in-apache-stratos_1.jpg#layoutTextWidth" alt=""></p>
 <p>The application logs are published to a monitoring server by the cartridge agent for data analysis. For this the property enable.data.publisher should be set to true.</p>
 <p>The log publishing thread starts as soon as the cartridge agent initialization is complete. For it to connect to the Thrift receiver following fields have to be passed to the Cartridge Agent.</p>
 <ol>

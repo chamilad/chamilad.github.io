@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch",
+      "headline" : "ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch",
+      "description" : "Log storage with ElasticSearch",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2019",
+      "datePublished": "2019-11-23 16:01:40 \x2b1300 NZDT",
+      "dateModified" : "2019-11-23 16:01:40 \x2b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch\/",
+      "keywords" : [ "K8s","Logging","ElasticSearch","Logstash","Filebeat","Log aggregation","ELKOnK8s", ]
+  }
+</script>
+<title>ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch - chamila.dev</title>
+  <meta property="og:title" content="ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Log storage with ElasticSearch" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamila.dev/">chamila.dev</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2019-11-23 16:01:40 NZDT">
+                23 Nov 2019
+		<p><b>Read time:</b> 8m
+		<br /><b>Word count:</b> 1517</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#shards-and-indices">Shards and Indices</a></li>
+    <li><a href="#scheduling-and-networking">Scheduling and Networking</a></li>
+    <li><a href="#bootstrap-and-master-election-process">Bootstrap and Master Election Process</a></li>
+  </ul>
+</nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <figure>
+    <img src="/blog/img/2019-11-23_elasticsearch-on-k8s-04_01.jpeg"/> <figcaption>
+            <h4>The morning shadow on the lower mountaineous plain beside Adam&#39;s Peak, Sri Lanka</h4>
+        </figcaption>
+</figure>
+
+<blockquote>
+<p>This is part of a series of short articles on setting up an ELK deployment on K8s.</p>
+</blockquote>
+<ol>
+<li><a href="/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a">ElasticSearch on K8s: 01 — Basic Design</a></li>
+<li><a href="/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/">ElasticSearch on K8s: 02 — Log Collection with Filebeat</a></li>
+<li><a href="/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/">ElasticSearch on K8s: 03 - Log Enrichment with Logstash</a></li>
+<li>ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</li>
+<li><a href="/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying">ElasticSearch on K8s: 05 - Visualization and Production Readying</a></li>
+<li><a href="/post/2019-11-26_elasticsearch-index-management/">ElasticSearch Index Management</a></li>
+<li><a href="/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/">Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</a></li>
+<li><a href="/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</a></li>
+<li><a href="/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/">Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</a></li>
+</ol>
+<h1 id="storage-and-indexing">Storage and Indexing</h1>
+<p>Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying. ElasticSearch is the tool of choice, the main attraction of the stack to be honest. It’s an efficient useful tool to store and index unstructured data. How ElasticSearch&rsquo;s design (which is something that was done in a time when <em>Docker was not even invented yet</em>) is matched to K8s is an interesting story of itself.</p>
+<h2 id="shards-and-indices">Shards and Indices</h2>
+<p>In its core, ElasticSearch is only a collection of carefully managed Apache Lucene instances. They store and index the given unstructured data. Each of these Lucene instances is called a <strong>Shard</strong> in ElasticSearch terms. Typically two of these Shards (one called a <strong>primary shard</strong>, the other the backup shard) is called an <strong>Index.</strong> ElasticSearch makes sure to never schedule both of the Shards of the Index in the same ElasticSearch node, to avoid data loss.</p>
+<blockquote>
+<p>I said “typically” because the number of shards per index could vary depending on user preferences. There was a time when 5 shards, 1 primary and 4 backups was suggested as a sensible default. Number of shards per index is best decided early in the design and deployment, as changing this later, when there are a large number of indices to change, would be a hassle.</p>
+</blockquote>
+<p>Other than the number of Shards per index, ElasticSearch requires very little in terms of configuration to startup. However, just one ElasticSearch instance is not considered a healthy cluster, and given that the resource usage of the Shards go up proportionately to the number of requests and the data stored, it’s a good idea to scale out from the get go. <a href="/post/2019-11-23_elasticsearch-on-k8s-03-log-enrichment-with-logstash/">In the previous article</a>, it was discussed how Logstash could send logs from different sources on different dates to separate indices in ElasticSearch. For a small K8s cluster with two Namespaces, this pattern would create at least four new Shards in the ElasticSearch cluster. This can easily get out of control and result in resources being wasted on idle maintenance cycles for the running Shards. Furthermore, scaling out an existing ElasticSearch cluster could result in a considerable downtime (especially if the ElasticSearch cluster already has a high number of running Shards), since Shards may have to be rebalanced among the new instances of the cluster. So it is important to figure out the cluster requirements before the deployment.</p>
+<blockquote>
+<p>It&rsquo;s important to manage the active number of indices in an ElasticSearch cluster for optimal resource usage. With a high level of granularization between indices, this maintenance will have to be automated. Let&rsquo;s discuss the use of Index Lifecycle Management Policies to keep an ElasticSearch cluster clean.</p>
+</blockquote>
+<h2 id="scheduling-and-networking">Scheduling and Networking</h2>
+<p>For our sample problem, a 2-node ElasticSearch cluster is enough, although better fault tolerance is achieved with odd numbered clusters, as odd numbers reduce the possibility of split-brain situations during most faulty scenarios. However, for the scope of this article, the configuration that would work for a 2-node cluster will also work for a 3-node cluster.</p>
+<p><img src="/blog/img/draft__clipboard_4.png#layoutTextWidth" alt=""></p>
+<p>The K8s controller used for the ElasticSearch deployment is a StatefulSet. This is because of the persistence and network consistency that the log persistence tool requires. StatefulSets will schedule Pods in a manner that makes sure in case of Pod downtimes the same resources will be allocated to the newly created Pods during healing. These include any persistent volumes attached to the Pods in addition to consistent networking through the use of <strong>Headless Services</strong> where each Pod will have a standard consistent name to be reached. Each Pod is also started in a sequential manner where for a replica count of 3, the start sequence will be <code>pod-0</code> , <code>pod-1</code> , <code>pod-2</code> . Each subsequent Pod will wait until the previous Pod becomes live and running. Together, these features provide a sane way of initializing a cluster where node membership is managed by well-known addresses rather than having to manage the dynamic nature of Pods in K8s.</p>
+<p>In the StatefulSet, we are also going to define a <code>PersistentVolumeClaimTemplate</code> which generates a <code>PersistentVolumeClaim</code> for each Pod scheduled by the StatefulSet. The allocated <code>PersistentVolume</code> will be mounted to the location which ElasticSearch considers as the data directory, where all data is stored. This is because data should survive beyond Pod lifecycles, or even StatefulSet lifecycles.</p>
+<p>In terms of networking, this setup use two K8s Services for ElasticSearch Pods. One is a typical <a href="/load-balancing-and-reverse-proxying-for-kubernetes-services-f03dd0efe80">ClusterIP Service</a> named <code>elasticsearch</code> that exposes the ElasticSearch HTTP port, which by default is <code>9200</code>. This can be used by outside processes (ex: Logstash, Kibana) to reach the ElasticSearch Pods in a load balanced manner. The IPs resolved for each call to the Service name could be the either of the Pod IP addresses.</p>
+<p>The other Service is a <strong>Headless Service</strong>, where the Endpoint objects are created based on Selectors that match the ElasticSearch Pod labels. This is used by the StatefulSet to provide stable network IDs to the Pods through the Service name. For an example, for the sample setup, with a Headless Service named <code>elasticsearch-headless</code> in the <code>default</code> namespace, the two Pods generated by the StatefulSet <code>elasticsearch </code>will be reachable through the FQDNs <code>elasticsearch-0.elasticsearch-headless.default.svc.cluster.local</code> and <code>elasticsearch-1.elasticsearch-headless.default.svc.cluster.local</code>. These names can be used for the ElasticSearch configuration to bootstrap the cluster membership. The Headless Service attached to the StatefulSet will expose the clustering port of <code>9300</code> in addition to the HTTP port <code>9200</code> .</p>
+<h2 id="bootstrap-and-master-election-process">Bootstrap and Master Election Process</h2>
+<p>ElasticSearch nodes can play different roles in a cluster depending on the configuration. These roles include,</p>
+<ol>
+<li>data</li>
+<li>ingest</li>
+<li>master</li>
+</ol>
+<p>In the sample setup we are discussing, both nodes are playing all the above roles. However, for a given cluster, there can be only one master node and all others nodes that hope to become one will have to be <strong>master eligible.</strong></p>
+<p>When an ElasticSearch cluster is first booted up, two tasks have to complete for a master node to be elected.</p>
+<ol>
+<li>cluster bootstrap (one time task that executes the first time the cluster nodes start up), where the first round of master eligible nodes (whose votes will be used for master election) are explicitly looked for</li>
+<li>discovery of master eligible nodes in the cluster, typically through a load balancing A record resolution</li>
+</ol>
+<p>For a K8s setup, the Headless Service features that were described will help to complete both of these tasks.</p>
+<ol>
+<li>In the K8s ElasticSearch setup we are considering, both Pods will be live (determined by the StatefulSet, as opposed to one Pod being on standby until a single node goes down) so both Pods can be used as initial master eligible nodes. Since Headless Services provide consistent naming for both of the Pods, the names <code>elasticsearch-0</code> and <code>elasticsearch-1</code> can be used for the related setting <code>cluster.initial_master_nodes</code> . The cluster when starting up for the first time, will consider the votes of both of these Pods and proceed with the master election.</li>
+<li>When another master election comes (ex: cluster restart, master going offline), there has to be a method to discover newly joined Pods which are master eligible. In this case, any new Pods created as a result of scaling out will have to be discovered in order for election process to proceed. This can be done through the use of the Headless Service name, which when resolved will return all the Pod addresses (in contrast to a typical ClusterIP Service which will return only the Cluster IP address when resolved). Therefore, for the related setting <code>discovery.seed_hosts</code> , the Headless Service name <code>elasticsearch-headless</code> can be provided.</li>
+</ol>
+<p>Since these names are known before the Pods are actually spawned, including them in a ConfigMap and making ElasticSearch Pods use that configuration is possible. This would not have been the case if a Deployment and a typical Service were used in place of the StatefulSet and the Headless Service.</p>
+<p>The configuration for <code>elasticsearch.yml</code> could look like the following.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># bind to all IP addressses</span>
+<span style="color:#66d9ef">network.host</span>: <span style="color:#ae81ff">0.0.0.0</span>
+
+<span style="color:#75715e"># production check</span>
+<span style="color:#66d9ef">bootstrap.memory_lock</span>: <span style="color:#66d9ef">false</span>
+
+<span style="color:#75715e"># discovery method for master elections</span>
+<span style="color:#66d9ef">discovery.seed_hosts</span>:
+- elasticsearch-headless
+
+<span style="color:#66d9ef">cluster.name</span>: elasticsearch
+
+<span style="color:#66d9ef">node.master</span>: <span style="color:#66d9ef">true</span>
+<span style="color:#66d9ef">node.data</span>: <span style="color:#66d9ef">true</span>
+<span style="color:#66d9ef">node.ingest</span>: <span style="color:#66d9ef">true</span>
+
+<span style="color:#75715e"># master eligible endpoints for initial bootstrap process</span>
+<span style="color:#66d9ef">cluster.initial_master_nodes</span>:
+- elasticsearch<span style="color:#ae81ff">-0</span>
+- elasticsearch<span style="color:#ae81ff">-1</span>
+</code></pre></div><p>With the successful and healthy <code>GREEN</code> ElasticSearch cluster, the data pushed from Logstash will correctly be stored and indexed. Now these can be queried for all kinds of purposes, through either the ElasticSearch REST API or the visualization tool, Kibana which will be discussed in the next article.</p>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/">&lt; ElasticSearch on K8s: 03 - Log Enrichment with Logstash</a>
+		
+	</div>        
+	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/">ElasticSearch on K8s: 05 - Visualization and Production Readying &gt;</a>
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/">ElasticSearch on K8s: 03 - Log Enrichment with Logstash</a></li>
+    
+    <li><a href="/blog/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/">ElasticSearch on K8s: 02 — Log Collection with Filebeat</a></li>
+    
+    <li><a href="/blog/2019-09-19_elasticsearch-on-k8s-01basic-design/">ElasticSearch on K8s: 01 — Basic Design</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

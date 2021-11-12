@@ -135,13 +135,13 @@
        </header>
         <div class="post-content markdown-body">
           <figure>
-    <img src="/posts/img/2021-07-18_nifi_cicd_02_header.jpeg"/> <figcaption>
+    <img src="/blog/img/2021-07-18_nifi_cicd_02_header.jpeg"/> <figcaption>
             <h4>Wharf on a good day</h4>
         </figcaption>
 </figure>
 
 <p>In the <a href="/post/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/">earlier post on setting up Apache Nifi and Nifi Registry</a>, two Nifi and Registry deployments set up and integrated with each other. This post will focus on automating the migrations between the two environments. Just to refresh, the following diagram shows what we are trying to achieve.</p>
-<p><img src="/posts/img/2021-07-17_nifi_cicd_design.png" alt="CI/CD design for Nifi"></p>
+<p><img src="/blog/img/2021-07-17_nifi_cicd_design.png" alt="CI/CD design for Nifi"></p>
 <blockquote>
 <p>Though this shows three environments, we have only taken the <code>dev</code> -&gt; <code>test</code> step into consideration in the current and the previous posts. This is because once you automate the series of steps, it&rsquo;s just a matter of pointing the script to the next step.</p>
 </blockquote>
@@ -194,7 +194,7 @@ connected <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672
 </blockquote>
 <h3 id="which-ones">Which ones?</h3>
 <p>We ended the previous post by committing the sample Process Group <code>RandomEvents</code> to version control. However, in a real world scenario there would be multiple, tens of Process Groups in Nifi to be managed. While you can list all the top level Process Groups on the Canvas (the Canvas is the Nifi visual editor UI presented to the user when visiting the Web Console), you may not necessarily want to do that, especially on a <code>dev</code> environment, where different Data Engineers would be working on Process Groups at different states.</p>
-<p><img src="/posts/img/2021-07-17_nifi_cicd_example.png" alt="RandomEvents Process Group"></p>
+<p><img src="/blog/img/2021-07-17_nifi_cicd_example.png" alt="RandomEvents Process Group"></p>
 <p>A better way to do this is to define a list of Process Groups to be migrated. The script can then lookup the presence of each of the names and export them separately, rather than collecting all the Process Groups across the Canvas.</p>
 <p>This can be improved (or depending on your view, made complex) by adding another dimension to the Process Group name input. You can also make it so that the version that should exported for each Process Group is also defined in the input. This would be useful, when it&rsquo;s required to allow development to progress without waiting on delivery to happen at the same pace. Data Engineers could implement certain changes, commit to the Registry, and continue implementing breaking changes, and when the time to roll out the earlier changes to <code>test</code> comes, the older version can be specified for each Process Group so that the script would only export those versions, and not the <code>latest</code>.</p>
 <h3 id="staging-for-migration">Staging for migration</h3>
@@ -420,14 +420,14 @@ root_pg <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672">
 <h1 id="conclusion">Conclusion</h1>
 <h2 id="end-results">End results</h2>
 <p>The final result of this script being executed can be seen in the following screenshot. <code>dev</code> is on the left side, and <code>test</code> is on the right.</p>
-<p><img src="/posts/img/2021-07-18_nifi_cicd_final_result.png" alt="Nifi CICD script execution"></p>
+<p><img src="/blog/img/2021-07-18_nifi_cicd_final_result.png" alt="Nifi CICD script execution"></p>
 <p>If I wanted to propagate a change, I can do so by committing the changes again to the Registry in <code>dev</code> and running this script again.</p>
-<p><img src="/posts/img/2021-07-18_nifi_cicd_incr_changes.png" alt="Committing changes"></p>
+<p><img src="/blog/img/2021-07-18_nifi_cicd_incr_changes.png" alt="Committing changes"></p>
 <p>By looking at the versions in the <code>test</code> version I can verify the version I&rsquo;m at by referring to the commit message (another reason why you should use meaningful commit messages).</p>
-<p><img src="/posts/img/2021-07-18_nifi_cicd_incr_changes_02.png" alt="Changing versions"></p>
-<p><img src="/posts/img/2021-07-18_nifi_cicd_incr_changes_03.png" alt="Viewing versions"></p>
+<p><img src="/blog/img/2021-07-18_nifi_cicd_incr_changes_02.png" alt="Changing versions"></p>
+<p><img src="/blog/img/2021-07-18_nifi_cicd_incr_changes_03.png" alt="Viewing versions"></p>
 <p>You can also check the version history from the Registry UI itself.</p>
-<p><img src="/posts/img/2021-07-18_nifi_cicd_incr_changes_04.png" alt="Viewing versions"></p>
+<p><img src="/blog/img/2021-07-18_nifi_cicd_incr_changes_04.png" alt="Viewing versions"></p>
 <h2 id="quirks">Quirks?</h2>
 <p>Yeah, a few.</p>
 <h3 id="with-the-design">With the design</h3>

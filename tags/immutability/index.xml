@@ -13,10 +13,10 @@
     
     <item>
       <title>Server Immutability</title>
-      <link>https://chamila.dev/posts/2018-05-17_server-immutability/</link>
+      <link>https://chamila.dev/blog/2018-05-17_server-immutability/</link>
       <pubDate>Thu, 17 May 2018 08:19:19 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2018-05-17_server-immutability/</guid>
+      <guid>https://chamila.dev/blog/2018-05-17_server-immutability/</guid>
       <description>Server Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.
 What is Immutability? Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image.</description>
     </item>

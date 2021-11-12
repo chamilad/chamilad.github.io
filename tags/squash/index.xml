@@ -13,10 +13,10 @@
     
     <item>
       <title>Docker Image Size Concerns Out of the Window — Squash with Confidence</title>
-      <link>https://chamila.dev/posts/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</link>
+      <link>https://chamila.dev/blog/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</link>
       <pubDate>Tue, 22 Aug 2017 09:58:17 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</guid>
+      <guid>https://chamila.dev/blog/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</guid>
       <description>Docker is finally bringing Squash support
 For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use --no-cache flag while building. The layered structure of a Docker image would spook out a beginner.
 Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved.</description>

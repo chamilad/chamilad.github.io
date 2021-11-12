@@ -116,7 +116,7 @@ When it comes to message brokers, authentication is a crucial part of securing t
        </header>
         <div class="post-content markdown-body">
           <p>Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of communication between components such as the Cartridge Agent, Cloud Controller and the Autoscaler, as this allows a decoupled architecture for the components.</p>
-<p><img src="/posts/img/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq_0.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq_0.png#layoutTextWidth" alt=""></p>
 <p>When it comes to message brokers, authentication is a crucial part of securing the communication channel since if left unsecured, anyone with access to the message broker can subscribe to the topics and listen to the communication between the components. This can expose sensitive data easily and the system would be compromised in no time. The purpose of this article is to explain how to engage Username and Password based authentication with Apache ActiveMQ in Stratos.</p>
 <p>ActiveMQ allows to add authentication and authorization through an extensible plugin system. For our purpose, the out of the box SimpleAuthenticationPlugin is more than enough as it allows us to define a username and a password with the list of user groups the particular user belongs to.</p>
 <p>To engage SimpleAuthenticationPlugin we have to add the following section before the broker tag closes, in &lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml.</p>

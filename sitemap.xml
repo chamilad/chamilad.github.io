@@ -18,7 +18,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</loc>
+    <loc>https://chamila.dev/blog/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</loc>
     <lastmod>2021-07-18T22:20:47+12:00</lastmod>
   </url>
   
@@ -28,7 +28,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/</loc>
+    <loc>https://chamila.dev/blog/</loc>
     <lastmod>2021-07-18T22:20:47+12:00</lastmod>
   </url>
   
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</loc>
+    <loc>https://chamila.dev/blog/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</loc>
     <lastmod>2021-07-17T13:21:12+12:00</lastmod>
   </url>
   
@@ -48,7 +48,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</loc>
+    <loc>https://chamila.dev/blog/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</loc>
     <lastmod>2020-03-14T13:37:33+13:00</lastmod>
   </url>
   
@@ -83,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</loc>
+    <loc>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</loc>
     <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url>
   
@@ -138,22 +138,22 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</loc>
+    <loc>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</loc>
     <lastmod>2020-02-10T20:26:46+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</loc>
+    <loc>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</loc>
     <lastmod>2019-11-27T19:43:20+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2019-11-26_elasticsearch-index-management/</loc>
+    <loc>https://chamila.dev/blog/2019-11-26_elasticsearch-index-management/</loc>
     <lastmod>2019-11-26T22:03:00+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</loc>
+    <loc>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</loc>
     <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url>
   
@@ -168,12 +168,12 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</loc>
+    <loc>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</loc>
     <lastmod>2019-11-23T16:01:40+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</loc>
+    <loc>https://chamila.dev/blog/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</loc>
     <lastmod>2019-11-22T01:05:37+13:00</lastmod>
   </url>
   
@@ -203,7 +203,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2019-10-20_medium-to-hugo/</loc>
+    <loc>https://chamila.dev/blog/2019-10-20_medium-to-hugo/</loc>
     <lastmod>2019-10-20T18:24:16+13:00</lastmod>
   </url>
   
@@ -213,12 +213,12 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</loc>
+    <loc>https://chamila.dev/blog/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</loc>
     <lastmod>2019-10-19T18:15:43+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2019-09-19_elasticsearch-on-k8s-01basic-design/</loc>
+    <loc>https://chamila.dev/blog/2019-09-19_elasticsearch-on-k8s-01basic-design/</loc>
     <lastmod>2019-10-19T18:15:42+13:00</lastmod>
   </url>
   
@@ -238,7 +238,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</loc>
+    <loc>https://chamila.dev/blog/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</loc>
     <lastmod>2019-10-19T18:15:40+13:00</lastmod>
   </url>
   
@@ -268,7 +268,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2019-02-15_releasing-docblock-v0.1/</loc>
+    <loc>https://chamila.dev/blog/2019-02-15_releasing-docblock-v0.1/</loc>
     <lastmod>2019-10-19T18:15:40+13:00</lastmod>
   </url>
   
@@ -288,7 +288,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2018-12-24_how-to-design-a-wso2-docker-image/</loc>
+    <loc>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</loc>
     <lastmod>2019-10-19T18:15:37+13:00</lastmod>
   </url>
   
@@ -313,7 +313,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</loc>
+    <loc>https://chamila.dev/blog/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</loc>
     <lastmod>2019-10-19T18:15:34+13:00</lastmod>
   </url>
   
@@ -323,7 +323,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2018-11-25_cicd-apis-with-wso2-api-manager/</loc>
+    <loc>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</loc>
     <lastmod>2019-10-19T18:15:26+13:00</lastmod>
   </url>
   
@@ -338,7 +338,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</loc>
+    <loc>https://chamila.dev/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</loc>
     <lastmod>2019-10-19T18:15:25+13:00</lastmod>
   </url>
   
@@ -363,7 +363,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/</loc>
+    <loc>https://chamila.dev/blog/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/</loc>
     <lastmod>2019-10-19T18:15:22+13:00</lastmod>
   </url>
   
@@ -383,7 +383,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2018-07-20_that-tricky-thing-called-automation/</loc>
+    <loc>https://chamila.dev/blog/2018-07-20_that-tricky-thing-called-automation/</loc>
     <lastmod>2019-10-19T18:15:21+13:00</lastmod>
   </url>
   
@@ -393,7 +393,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2018-06-05_in-other-good-news-microsoft-buys-github/</loc>
+    <loc>https://chamila.dev/blog/2018-06-05_in-other-good-news-microsoft-buys-github/</loc>
     <lastmod>2019-10-19T18:15:20+13:00</lastmod>
   </url>
   
@@ -418,12 +418,12 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2018-05-17_server-immutability/</loc>
+    <loc>https://chamila.dev/blog/2018-05-17_server-immutability/</loc>
     <lastmod>2019-10-19T18:15:19+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</loc>
+    <loc>https://chamila.dev/blog/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</loc>
     <lastmod>2019-10-19T18:15:17+13:00</lastmod>
   </url>
   
@@ -443,7 +443,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</loc>
+    <loc>https://chamila.dev/blog/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</loc>
     <lastmod>2019-10-19T18:15:12+13:00</lastmod>
   </url>
   
@@ -478,7 +478,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</loc>
+    <loc>https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</loc>
     <lastmod>2019-10-19T18:15:04+13:00</lastmod>
   </url>
   
@@ -503,7 +503,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2017-11-06_subject-alternative-names-in-ssl-certificates/</loc>
+    <loc>https://chamila.dev/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/</loc>
     <lastmod>2019-10-19T18:15:02+13:00</lastmod>
   </url>
   
@@ -513,7 +513,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</loc>
+    <loc>https://chamila.dev/blog/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</loc>
     <lastmod>2019-10-19T18:15:02+13:00</lastmod>
   </url>
   
@@ -538,7 +538,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</loc>
+    <loc>https://chamila.dev/blog/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</loc>
     <lastmod>2019-10-19T18:15:00+13:00</lastmod>
   </url>
   
@@ -548,7 +548,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</loc>
+    <loc>https://chamila.dev/blog/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</loc>
     <lastmod>2019-10-19T18:15:00+13:00</lastmod>
   </url>
   
@@ -573,7 +573,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2017-07-13_haproxy-config-syntax-highlighting/</loc>
+    <loc>https://chamila.dev/blog/2017-07-13_haproxy-config-syntax-highlighting/</loc>
     <lastmod>2019-10-19T18:14:57+13:00</lastmod>
   </url>
   
@@ -598,7 +598,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2017-07-03_infrastructure-as-code-aws-cloudformation/</loc>
+    <loc>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</loc>
     <lastmod>2019-10-19T18:14:53+13:00</lastmod>
   </url>
   
@@ -608,7 +608,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2017-02-21_ballerina-with-container-support/</loc>
+    <loc>https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/</loc>
     <lastmod>2019-10-19T18:14:52+13:00</lastmod>
   </url>
   
@@ -623,7 +623,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</loc>
+    <loc>https://chamila.dev/blog/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</loc>
     <lastmod>2019-10-19T18:14:49+13:00</lastmod>
   </url>
   
@@ -638,7 +638,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</loc>
+    <loc>https://chamila.dev/blog/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</loc>
     <lastmod>2019-10-19T18:14:48+13:00</lastmod>
   </url>
   
@@ -648,12 +648,12 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</loc>
+    <loc>https://chamila.dev/blog/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</loc>
     <lastmod>2019-10-19T18:14:46+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</loc>
+    <loc>https://chamila.dev/blog/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</loc>
     <lastmod>2019-10-19T18:14:45+13:00</lastmod>
   </url>
   
@@ -683,12 +683,12 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2016-02-09_running-wso2-products-on-kubernetes/</loc>
+    <loc>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</loc>
     <lastmod>2019-10-19T18:14:43+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2015-12-10_breadpool-a-thread-pool-for-python/</loc>
+    <loc>https://chamila.dev/blog/2015-12-10_breadpool-a-thread-pool-for-python/</loc>
     <lastmod>2019-10-19T18:14:40+13:00</lastmod>
   </url>
   
@@ -708,7 +708,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2015-11-26_timing-out-of-long-running-methods-in-python/</loc>
+    <loc>https://chamila.dev/blog/2015-11-26_timing-out-of-long-running-methods-in-python/</loc>
     <lastmod>2019-10-19T18:14:31+13:00</lastmod>
   </url>
   
@@ -718,7 +718,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2015-11-17_creating-a-simple-activemq-masterslave-setup/</loc>
+    <loc>https://chamila.dev/blog/2015-11-17_creating-a-simple-activemq-masterslave-setup/</loc>
     <lastmod>2019-10-19T18:14:20+13:00</lastmod>
   </url>
   
@@ -728,17 +728,17 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</loc>
+    <loc>https://chamila.dev/blog/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</loc>
     <lastmod>2019-10-19T18:14:16+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</loc>
+    <loc>https://chamila.dev/blog/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</loc>
     <lastmod>2019-10-19T18:14:12+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</loc>
+    <loc>https://chamila.dev/blog/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</loc>
     <lastmod>2019-10-19T18:14:09+13:00</lastmod>
   </url>
   
@@ -748,17 +748,17 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</loc>
+    <loc>https://chamila.dev/blog/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</loc>
     <lastmod>2019-10-19T18:14:08+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2015-03-17_apache-stratos-cartridge-agent-day-0/</loc>
+    <loc>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-day-0/</loc>
     <lastmod>2019-10-19T18:14:07+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</loc>
+    <loc>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</loc>
     <lastmod>2019-10-19T18:14:07+13:00</lastmod>
   </url>
   
@@ -778,7 +778,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2014-10-10_thrift-communication-in-apache-stratos/</loc>
+    <loc>https://chamila.dev/blog/2014-10-10_thrift-communication-in-apache-stratos/</loc>
     <lastmod>2019-10-19T18:14:06+13:00</lastmod>
   </url>
   
@@ -788,7 +788,7 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2014-08-05_pppoe-on-virtualbox/</loc>
+    <loc>https://chamila.dev/blog/2014-08-05_pppoe-on-virtualbox/</loc>
     <lastmod>2019-10-19T18:14:05+13:00</lastmod>
   </url>
   
@@ -803,12 +803,12 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2014-07-19_consuming-a-service-secured-by-wso2-esb/</loc>
+    <loc>https://chamila.dev/blog/2014-07-19_consuming-a-service-secured-by-wso2-esb/</loc>
     <lastmod>2019-10-19T18:13:57+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2014-07-18_securing-a-web-service-with-wso2-esb/</loc>
+    <loc>https://chamila.dev/blog/2014-07-18_securing-a-web-service-with-wso2-esb/</loc>
     <lastmod>2019-10-19T18:13:55+13:00</lastmod>
   </url>
   
@@ -833,12 +833,12 @@
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2014-07-09_wireshark-crashing-in-ubuntu/</loc>
+    <loc>https://chamila.dev/blog/2014-07-09_wireshark-crashing-in-ubuntu/</loc>
     <lastmod>2019-10-19T18:13:55+13:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chamila.dev/posts/2014-07-01_creating-a-web-service-using-apache-axis2/</loc>
+    <loc>https://chamila.dev/blog/2014-07-01_creating-a-web-service-using-apache-axis2/</loc>
     <lastmod>2019-10-19T18:13:29+13:00</lastmod>
   </url>
   

@@ -13,10 +13,10 @@
     
     <item>
       <title>Securing a Web Service With WSO2 ESB</title>
-      <link>https://chamila.dev/posts/2014-07-18_securing-a-web-service-with-wso2-esb/</link>
+      <link>https://chamila.dev/blog/2014-07-18_securing-a-web-service-with-wso2-esb/</link>
       <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2014-07-18_securing-a-web-service-with-wso2-esb/</guid>
+      <guid>https://chamila.dev/blog/2014-07-18_securing-a-web-service-with-wso2-esb/</guid>
       <description>WSO2 Enterprise Service Bus is one of the best performing implementations for the Enterprise market. In this article I will briefly go through what it takes to secure an unsecured backend web service using WSO2 ESB as a mediator.
 Security in Web Services is covered by the WS-Security standard. There are various policies such as simple username and password authentication and PKI certificates that can be used to secure a Web Service.</description>
     </item>

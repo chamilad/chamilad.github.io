@@ -13,19 +13,19 @@
     
     <item>
       <title>Load Balancing and Reverse Proxying for Kubernetes Services</title>
-      <link>https://chamila.dev/posts/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</link>
+      <link>https://chamila.dev/blog/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</link>
       <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</guid>
+      <guid>https://chamila.dev/blog/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</guid>
       <description>Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic   Morning sunlight on Horton Plains National Park   In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?</description>
     </item>
     
     <item>
       <title>Adding a Self-Signed SSL Certificate to AWS ACM</title>
-      <link>https://chamila.dev/posts/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</link>
+      <link>https://chamila.dev/blog/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</link>
       <pubDate>Tue, 17 Oct 2017 18:56:28 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</guid>
+      <guid>https://chamila.dev/blog/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</guid>
       <description>When setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.
 However if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following.</description>
     </item>

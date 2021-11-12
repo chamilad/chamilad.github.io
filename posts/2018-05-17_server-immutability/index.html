@@ -135,7 +135,7 @@ What is Immutability? Immutability, when it comes to server instances, is not ch
 <li>Easier update roll-outs</li>
 </ol>
 <p>Let’s take a sample deployment consisting of multiple component clusters.</p>
-<p><img src="/posts/img/2018-05-17_server-immutability_0.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2018-05-17_server-immutability_0.png#layoutTextWidth" alt=""></p>
 <h4 id="verified-consistency">Verified Consistency</h4>
 <p>For a guaranteed consistency of functionality, each instance of a single cluster should have exactly the same artifacts and the same configuration. This sounds easy to be done when the initial stages of instance spawning are considered. With a fair amount of Configuration Automation options available, initializing a set of nodes with an identical set of artifacts and configurations can be easy. Martin Fowler calls these <a href="https://martinfowler.com/bliki/PhoenixServer.html">Phoenix Servers</a>.</p>
 <p>However, Configuration Automation alone cannot guarantee consistency at a given moment. Details like OS level configurations, patches, and tweaks can be addressed by a certain degree of scripting but not without sacrificing compatibility. Configuration Automation tools only address the problems in the component configuration space. They rarely venture in to the infrastructure layer, and even when they do, it’s without full effect. For an example, Configuration Automation tools like Puppet or Chef do not successfully address to need base infrastructure like networking for server instances to be spawned.</p>
@@ -161,7 +161,7 @@ What is Immutability? Immutability, when it comes to server instances, is not ch
 <p>Because of codified configuration the constantly practiced processes, all technical stakeholders have a chance to be up to date with the current configuration and their design rationales. This makes it easy to see and predict the impact of proposed changes, because now there are several members of the team with knowledge of the complete deployment, than just one (may be disgruntled) Devops engineer, who would have a better chance at seeing that the load balancer rule change proposed to be introduced will certainly break the multi-region story of the deployment.</p>
 <p>Once the changes are approved and released, the rest of the roll out process can largely be automated, with monitoring, health checks, and alerts built into the process to update stakeholders on the new feature releases.</p>
 <p>These are the most compelling arguments related to following Server Immutability for medium and large scaled deployments. However, Immutability is not a silver bullet (like any other term in this space).</p>
-<p><img src="/posts/img/2018-05-17_server-immutability_1.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2018-05-17_server-immutability_1.png#layoutTextWidth" alt=""></p>
 <h4 id="why-not">Why not</h4>
 <p>Like mentioned above, Immutability <strong>demands</strong> best practices and processes to be implemented, with more focus on DevOps than plain old system administration. This effectively requires more planning, bootstrapping, development cycles, that may not be suitable if your</p>
 <ol>

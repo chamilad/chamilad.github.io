@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2017-07-13_haproxy-config-syntax-highlighting/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2017-07-13_haproxy-config-syntax-highlighting/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "HAProxy Config Syntax Highlighting",
+      "headline" : "HAProxy Config Syntax Highlighting",
+      "description" : "A brief post on getting this done on Atom and Vim.\nAtom Just install language-haproxy Atom plugin through either Atom UI or apm .\napm install language-haproxy When opening an haproxy.cfg file, Atom will detect and highlight accordingly.\nVim Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from VimAwesome. To enable this, just clone the Github repository, copy the .vim file inside syntax\/ folder to $HOME\/.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2017",
+      "datePublished": "2017-07-13 05:26:55.729 \x2b0000 UTC",
+      "dateModified" : "2017-07-13 05:26:55.729 \x2b0000 UTC",
+      "url" : "https:\/\/chamila.dev\/blog\/2017-07-13_haproxy-config-syntax-highlighting\/",
+      "keywords" : [ "Vim","Atom","Haproxy","Syntax", ]
+  }
+</script>
+<title>HAProxy Config Syntax Highlighting - chamila.dev</title>
+  <meta property="og:title" content="HAProxy Config Syntax Highlighting - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="A brief post on getting this done on Atom and Vim.
+Atom Just install language-haproxy Atom plugin through either Atom UI or apm .
+apm install language-haproxy When opening an haproxy.cfg file, Atom will detect and highlight accordingly.
+Vim Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from VimAwesome. To enable this, just clone the Github repository, copy the .vim file inside syntax/ folder to $HOME/." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamila.dev/">chamila.dev</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">HAProxy Config Syntax Highlighting</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2017-07-13 05:26:55 UTC">
+                13 Jul 2017
+		<p><b>Read time:</b> 1m
+		<br /><b>Word count:</b> 127</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <p>A brief post on getting this done on Atom and Vim.</p>
+<h4 id="atom">Atom</h4>
+<p>Just install <code>language-haproxy</code> Atom plugin through either Atom UI or <code>apm</code> .</p>
+<pre><code>apm install language-haproxy
+</code></pre><p>When opening an <code>haproxy.cfg</code> file, Atom will detect and highlight accordingly.</p>
+<p><img src="/blog/img/2017-07-13_haproxy-config-syntax-highlighting_0.png#layoutTextWidth" alt=""></p>
+<h4 id="vim">Vim</h4>
+<p>Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from <a href="http://vimawesome.com/plugin/haproxy">VimAwesome</a>. To enable this, just clone the Github repository, copy the <code>.vim</code> file inside <code>syntax/</code> folder to <code>$HOME/.vim/syntax</code> .</p>
+<pre><code>git clone https://github.com/vim-scripts/haproxy.git
+mkdir -p $HOME/.vim/syntax 
+cp haproxy/syntax/haproxy.vim $HOME/.vim/syntax/
+</code></pre><p>Now add the following line to <code>$HOME/.vimrc</code> .</p>
+<pre><code>au BufRead,BufNewFile haproxy* set ft=haproxy
+</code></pre><p>Now you should be able to see syntax highlighting enabled for HAProxy configuration files in Vim.</p>
+<p><img src="/blog/img/2017-07-13_haproxy-config-syntax-highlighting_1.png#layoutTextWidth" alt=""></p>
+<hr>
+<p>Written on July 13, 2017 by chamila de alwis.</p>
+<p>Originally published on <a href="https://medium.com/@chamilad/haproxy-config-syntax-highlighting-987fd9ca56be">Medium</a></p>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/">&lt; Infrastructure as Code : AWS CloudFormation</a>
+		
+	</div>        
+	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/blog/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/">Docker Image Size Concerns Out of the Window — Squash with Confidence &gt;</a>
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

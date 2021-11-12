@@ -118,7 +118,7 @@
         <div class="post-content markdown-body">
           <h4 id="different-load-balancing-and-reverse-proxying-strategies-to-use-in-production-k8s-deployments-to-expose-services-to-outsidetraffic">Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic</h4>
 <figure>
-    <img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_0.jpeg#layoutOutsetCenter"/> <figcaption>
+    <img src="/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_0.jpeg#layoutOutsetCenter"/> <figcaption>
             <h4>Morning sunlight on Horton Plains National Park</h4>
         </figcaption>
 </figure>
@@ -178,7 +178,7 @@ spec:
 <p>This is the <a href="https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types">default type of Service</a> that would be created if the <code>type</code> field is not explicitly specified for a Service definition. A cluster-wide, but internal IP address, which is part of one of the Service network CIDR that is divided up when setting up Container Networking, will be provided as the fixed IP address of the Service. This IP address (and the Service <code>name</code>)is routable from anywhere within the K8s Overlay Network.</p>
 <pre><code>curl http://myservice:8080/
 curl http://$(kubectl get svc myservice --template='{{.spec.clusterIP}}'):8080/
-</code></pre><p><img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_1.png#layoutTextWidth" alt=""></p>
+</code></pre><p><img src="/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_1.png#layoutTextWidth" alt=""></p>
 <p>However, as mentioned above, this IP address is (sort of) useless on its own for the scope of this article. It is not routable from outside the cluster network unless you can somehow implement the following series of steps.</p>
 <ol>
 <li>Watch and detect new Service creations at the K8s Master — doable, easy</li>
@@ -202,13 +202,13 @@ curl http://$(kubectl get svc myservice --template='{{.spec.clusterIP}}'):8080/
 <p>As far as the order in which this article explores the Service types, this is the first that would allow us to expose the Services in a meaningful manner in a production deployment. And as it would be apparent later, this would be the basis of other mechanisms to map a Service port to a physical port.</p>
 <p>A Service with <code>NodePort</code> type would allocate a physical port on the K8s Node for each <code>.spec.ports[*]</code> port entry defined in the Service definition. Furthermore, it will do so for <strong>all</strong> the K8s Nodes in the cluster (as opposed to doing so only in the Node(s) that the Pods handled by the Service are spawned in). This way, the Service port will be mapped to a port opened on the <code>eth0</code> interface of every Node.</p>
 <p>If <code>myservice.yml</code> is created with <code>.spec.type=NodePort</code> there would be a random (but consistent) physical port opened in each of the Nodes in the K8s Cluster. This port will be picked from a range that is modifiable when creating the K8s Cluster <code>--service-node-port-range</code> which has a default range of <code>32000</code> — <code>32767</code> . The port assigned to each <code>.spec.ports[*]</code> entry can be checked by looking at the output from <code>kubectl get svc &lt;svc_name&gt;</code> where under the <code>PORT(S)</code> column, there would be a value after a <code>:</code> for each port.</p>
-<p><img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_2.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_2.png#layoutTextWidth" alt=""></p>
 <p>If (e.g.:) the <code>myserviceport1</code> in <code>myservice</code> above (<code>8080</code>) is assigned to NodePort <code>31644</code> , then external clients who have access to the Node private network can directly access the Service using any of the Node IP addresses and the NodePort. Assuming one of these Node IP addresses is <code>10.128.0.13</code> (from range <code>10.128.0.0/24</code> defined during above definitions), we can invoke <code>myservice</code> port <code>8080</code> using the following <code>curl</code> command from within the Node private network.</p>
 <pre><code>curl http://10.128.0.13:31644/
 </code></pre><p>Additionally, if the random assignment of ports is something to worry about, fixed port values (within the above mentioned range) can be specified using <code>.spec.ports[*].nodePort</code> value for each entry. The downside of predefined NodePorts is that they have to be coordinated among the potential number of Services that will be deployed so that one Service would not clash with another.</p>
 <p>As long as there are mechanisms set up ingress and egress from the Node private network, any external client will also be able to access <code>myservice</code> with Node public IP addresses.</p>
 <p>As the next step, a reverse proxy can be setup in the IaaS public address space that sits within the same network grouping (e.g.: VPC) as the K8s Nodes so that external traffic is routed to (and load balanced between) the NodePorts -&gt; Service Ports -&gt; Pod Ports.</p>
-<p><img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_3.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_3.png#layoutTextWidth" alt=""></p>
 <p><strong>Pros:</strong></p>
 <ul>
 <li>Easiest method to expose internal Services to outside traffic</li>
@@ -228,7 +228,7 @@ curl http://$(kubectl get svc myservice --template='{{.spec.clusterIP}}'):8080/
 <p>Also known as the Cloud Load Balancer approach, specifying this as the <code>.spec.type</code> when K8s is deployed in a supported Cloud Service Provider would result in a load balancer in the Cloud to be provisioned that proxies the particular Service.</p>
 <p>For an example, in a K8s cluster deployed in AWS, this would result in an ELB instance being provisioned that proxies traffic for the Service inside the K8s cluster. The traffic that reaches the ELB will reach the Overlay Network through random NodePorts exposed to ferry the traffic from Cloud Service Provider private network to K8s Overlay Network.</p>
 <p>The exact details on how this flow is implemented can vary depending on the Cloud Service Provider. However, the overall idea is to quickly provision a Load Balancer without having to go through the Cloud Service Provider APIs separately. K8s will translate the Service definition and perform the API calls on behalf of the user to setup the resources required (e.g.: Load balancer, static public IP address, routing on the Cloud Service Provider).</p>
-<p><img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_4.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_4.png#layoutTextWidth" alt=""></p>
 <p><strong>Pros:</strong></p>
 <ul>
 <li>Provisioning load balancing and reverse proxying with minimum effort</li>
@@ -254,7 +254,7 @@ curl http://$(kubectl get svc myservice --template='{{.spec.clusterIP}}'):8080/
 <li>HAProxy exposes ports <strong>80</strong> and <strong>443</strong>. These are then exposed to outside traffic as <strong>NodePorts</strong></li>
 <li>The NodePorts can be exposed to outside through a public Load Balancer</li>
 </ol>
-<p><img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_5.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_5.png#layoutTextWidth" alt=""></p>
 <p>In this approach, any incoming traffic reaches a Pod in the following order</p>
 <ol>
 <li>Traffic is routed to the public Load Balancer via the public IP address</li>
@@ -295,7 +295,7 @@ curl http://$(kubectl get svc myservice --template='{{.spec.clusterIP}}'):8080/
 <p>The implementation of the Ingress (intent) is done by an <strong>Ingress Controller</strong>. This is a load balancer specific implementation of a contract that should configure a given load balancer (e.g.: Nginx, HAProxy, AWS ALB) according to the details provided by the Ingress resources. Which Ingress Controller to use for a certain Ingress resource is specified by <code>metadata.annotations.kubernetes.io/ingress.class</code> annotation. The values here could be <code>nginx</code> , <code>gce</code> or any other IngressController implementation identifier.</p>
 <p>The details of this implementation could vary between different Ingress Controllers. They only have to adhere to the standards defined by the Ingress resource API.</p>
 <p>For an example, <a href="https://git.k8s.io/ingress-nginx/README.md">Nginx Ingress Controller</a> deploys an Nginx proxy as a Pod and configures it according to the Ingress resources defined in the cluster. <a href="https://github.com/kubernetes-sigs/aws-alb-ingress-controller">AWS ALB Ingress Controller</a> provisions an AWS ALB with the routing details of the Ingress rules. The same is true for <a href="https://git.k8s.io/ingress-gce/README.md">GCE Ingress Controller</a>, where a GCP L7 load balancer will be provisioned. Both the AWS ALB and GCP Ingress Controller spawned external load balancers will forward traffic to Pods through the Service Cluster IP exposed as NodePort type.</p>
-<p><img src="/posts/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_6.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_6.png#layoutTextWidth" alt=""></p>
 <p>This might look similar to the Cloud Load Balancer ( <code>type: LoadBalancer</code> ) approach discussed above, however there are key differences between Ingress and LoadBalancer type Services.</p>
 <ol>
 <li>Cloud Load Balancer approach most of the time provisions Network Load Balancers with no control of L7 constructs. Ingress does not do this. Its resulting load balancers are mostly L7.</li>

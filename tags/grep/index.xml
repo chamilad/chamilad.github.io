@@ -13,10 +13,10 @@
     
     <item>
       <title>A little bit of Bashfu for a specific case of log analysis</title>
-      <link>https://chamila.dev/posts/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</link>
+      <link>https://chamila.dev/blog/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</link>
       <pubDate>Tue, 01 May 2018 07:46:05 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</guid>
+      <guid>https://chamila.dev/blog/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</guid>
       <description>This post is not about a solution to a generic issue. This post is about how I found some way to cut and assemble a large log file using a few Bash tools (and subliminally why Unix principle of implementing stuff may be the superior way).
 So today, there came a need to sort through a large access log file for a list of request counts for each key. It’s not just a key — request count relationship.</description>
     </item>

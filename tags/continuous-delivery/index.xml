@@ -13,10 +13,10 @@
     
     <item>
       <title>CI/CD APIs with WSO2 API Manager</title>
-      <link>https://chamila.dev/posts/2018-11-25_cicd-apis-with-wso2-api-manager/</link>
+      <link>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</link>
       <pubDate>Sun, 25 Nov 2018 03:47:20 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2018-11-25_cicd-apis-with-wso2-api-manager/</guid>
+      <guid>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</guid>
       <description>How to do continuous integration and continuous delivery of APIs with WSO2 API Manager WSO2 API Manager, the only Open Source Leader in API Management Solutions in Forrester Wave, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.</description>
     </item>
     

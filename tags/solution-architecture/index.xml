@@ -13,10 +13,10 @@
     
     <item>
       <title>A Primer on Observability for Dynamic Organizations — Part 2</title>
-      <link>https://chamila.dev/posts/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</link>
+      <link>https://chamila.dev/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</link>
       <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</guid>
+      <guid>https://chamila.dev/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</guid>
       <description>What should an Observability Framework address? In the previous post, we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design. Let’s explore the possibility of a structured approach for designing observable systems.
   Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls   Why should there be a structured approach?</description>
     </item>

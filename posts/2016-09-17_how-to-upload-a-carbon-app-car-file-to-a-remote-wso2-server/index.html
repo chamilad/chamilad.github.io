@@ -220,7 +220,7 @@ Admin services deployed on this server:
 </code></pre><blockquote>
 <p>Although all admin services are listed here, some of those are not exposed by default, and some do not have authorization parameters set. Therefore, those are blocked from being accessed. If these need to be desperately accessed follow {future blog post} steps.</p>
 </blockquote>
-<p><img src="/posts/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_0.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_0.png#layoutTextWidth" alt=""></p>
 <p>Getting back to the topic, one of the admin services in this list is of interest to us. Using the service <strong>CarbonAppUploader,</strong> CAR files can be uploaded to the respective server. Let’s try this scenario using SoapUI for WSO2 ESB 4.9.0.</p>
 <h3 id="service-definition">Service Definition</h3>
 <p>To call the CarbonAppUploader admin service, we have to create the clients from its WSDL. By default, the WSDLs of the admin services are hidden. If you don’t have any control over the server in question, or it cannot be restarted for reasons of service disruption, I’ve added the <a href="https://gist.github.com/chamilad/7fe796bfa9773496bddeaefaec16c302">WSDL as a Gist</a>. After downloading, replace <strong>server-host-or-ip</strong> with the hostname or the IP address of the ESB server.</p>
@@ -236,7 +236,7 @@ Admin services deployed on this server:
 <p>Open SoapUI and create a new SOAP Project (<strong>File</strong> -&gt; <strong>New SOAP Project</strong>). Provide the WSDL file (or the above <strong>?wsdl</strong> URL). Check <strong>Create Requests</strong> so that SoapUI will create sample requests for the operations in the WSDL.</p>
 <!-- raw HTML omitted -->
 <p>Click <strong>Ok</strong> and you will see the set of operations (in CarbonAppUploader, there is one operation, <strong>uploadApp</strong>) created in the SoapUI Project view.</p>
-<p><img src="/posts/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_2.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_2.png#layoutTextWidth" alt=""></p>
 <p>Open <strong>Request1</strong> under <strong>CarbonAppUploaderSoap11Binding.uploadApp</strong> and you will see the already created Soap Envelope with <strong>?</strong> as a placeholder for values. For the <strong>uploadApp</strong> operation three inputs are needed.</p>
 <ol>
 <li><strong>dataHandler</strong> — Base64 binary encoded file content</li>
@@ -249,14 +249,14 @@ Admin services deployed on this server:
 <h3 id="attaching-the-carfile">Attaching the CAR File</h3>
 <p>We need to serialize the CAR file as a base64 encoded string and add it in the SOAP request. SoapUI provides this functionality as Attachments.</p>
 <p>On the request, click on <strong>Attachments</strong>, and then add CAR file as an attachment. Navigate to the CAR file and select it. Select <strong>No</strong> to cache the attachment, as I found it to sometimes upload the file in an incomplete manner.</p>
-<p><img src="/posts/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_3.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_3.png#layoutTextWidth" alt=""></p>
 <p>Copy the value in the <strong>ContentID</strong>. This, along with the <strong>cid:</strong> prefix, has to be added as the <strong>dataHandler</strong> in the request.</p>
 <p>After the attachment is done, the request will look like the following.</p>
-<p><img src="/posts/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_4.png#layoutOutsetCenter" alt=""></p>
+<p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_4.png#layoutOutsetCenter" alt=""></p>
 <p>In addition to adding the attachment, <a href="http://axis.apache.org/axis2/java/core/docs/mtom-guide.html"><strong>MTOM</strong></a> has to be enabled in the request. This has to be done through setting <strong>Enable MTOM</strong> to true in the request properties.</p>
 <h3 id="authentication">Authentication</h3>
 <p>Click on <strong>Auth</strong> tab and add basic authentication to the request.</p>
-<p><img src="/posts/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_5.png#layoutTextWidth" alt=""><img src="/posts/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_6.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_5.png#layoutTextWidth" alt=""><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_6.png#layoutTextWidth" alt=""></p>
 <h3 id="upload-the-carfile">Upload the CAR File</h3>
 <p>We are all done now. What’s left is to just go ahead and make the SOAP request. The file will be uploaded, and a response will be returned, with the status of the upload. After a maximum of one minute, the Carbon App will be processed and the artifacts will be deployed.</p>
 <!-- raw HTML omitted -->

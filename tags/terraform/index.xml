@@ -13,20 +13,20 @@
     
     <item>
       <title>That Tricky Thing Called Automation</title>
-      <link>https://chamila.dev/posts/2018-07-20_that-tricky-thing-called-automation/</link>
+      <link>https://chamila.dev/blog/2018-07-20_that-tricky-thing-called-automation/</link>
       <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2018-07-20_that-tricky-thing-called-automation/</guid>
+      <guid>https://chamila.dev/blog/2018-07-20_that-tricky-thing-called-automation/</guid>
       <description>Automation of processes is something every serious organization should look into. The other option is to waste your precious human resources on tasks that are repetitive and hardly challenging. That is a depreciation in both man-hours and the employee morale. No one wants to keep on doing the same thing over and over again, especially if the tasks do not require the proper use of the human intellect.
 Automation enables the machine driven initiation and management of these tasks and sometimes can even help coordinate the use of manual intervention.</description>
     </item>
     
     <item>
       <title>Server Immutability</title>
-      <link>https://chamila.dev/posts/2018-05-17_server-immutability/</link>
+      <link>https://chamila.dev/blog/2018-05-17_server-immutability/</link>
       <pubDate>Thu, 17 May 2018 08:19:19 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2018-05-17_server-immutability/</guid>
+      <guid>https://chamila.dev/blog/2018-05-17_server-immutability/</guid>
       <description>Server Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.
 What is Immutability? Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image.</description>
     </item>

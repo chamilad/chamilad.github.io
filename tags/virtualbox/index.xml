@@ -13,10 +13,10 @@
     
     <item>
       <title>PPPOE on VirtualBox</title>
-      <link>https://chamila.dev/posts/2014-08-05_pppoe-on-virtualbox/</link>
+      <link>https://chamila.dev/blog/2014-08-05_pppoe-on-virtualbox/</link>
       <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2014-08-05_pppoe-on-virtualbox/</guid>
+      <guid>https://chamila.dev/blog/2014-08-05_pppoe-on-virtualbox/</guid>
       <description>A quick note!
 If your internet connection comes as a PPPOE connection and it can’t be selected on the drop down list when “Bridged network” is selected on Network tab of the VM settings in VirtualBox. You can create a host-only network and configure a static ip for eth0 on the guest OS to make it accessible to outside.
 A host-only network virtualizes the network interface of the host OS and uses it as a loopback device to enable guest OS to communicate on their network and with the host[1].</description>

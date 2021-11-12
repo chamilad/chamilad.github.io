@@ -113,7 +113,7 @@
 	</div>
        </header>
         <div class="post-content markdown-body">
-          <p><img src="/posts/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_0.jpeg#layoutOutsetCenter" alt=""></p>
+          <p><img src="/blog/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_0.jpeg#layoutOutsetCenter" alt=""></p>
 <blockquote>
 <p>This is part of a series of short articles on setting up an ELK deployment on K8s.</p>
 </blockquote>
@@ -144,7 +144,7 @@
 <p>In this case, Filebeat has to be run in background in the compute Nodes that are running K8s. This has to be a constantly running process that repeatedly polls the log files for new inputs.</p>
 <p>We can start Filebeat as a typical Pod, may be as part of a Deployment. However, deploying Filebeat as a Deployment type opens up a critical hole in the design.</p>
 <p>While a Deployment may schedule its Pods as it wishes, based on resource availability and other factors such as taints and tolerances, that would result in some compute Nodes not having a Filebeat Pod running in them to collect the Docker logs. To make sure that a Filebeat Pod is scheduled on each and every Node, another K8s construct called DaemonSet has to be used. A DaemonSet makes sure that the Filebeat Pods are scheduled in every Node with a count of 1. The resulting physical deployment should look like the following.</p>
-<p><img src="/posts/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_1.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_1.png#layoutTextWidth" alt=""></p>
 <h4 id="3-where-to-send-the-collected-logsto">3. Where to send the collected logs to?</h4>
 <p>Now that how the logs should be collected and where log collection should happen are specified, the last piece of configuration to attach to the above is the destination for the logs that are read off from the Docker Container logs.</p>
 <p>In<a href="/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a"> our stack defined in the sample problem</a>, this destination is the log enrichment layer, where Logstash is running. For Filebeat to publish logs to Logstash, the K8s Service for Logstash can be used. Because Filebeat is deployed in the <code>kube-system</code> Namespace in the sample code, Logstash will be in a different Namespace. Therefore, the FQDN of <code>logstash.&lt;namespaces&gt;.svc.cluster.local</code> has to be used to resolve the Service name correctly.</p>
@@ -183,7 +183,7 @@
 <p>These concerns are not discussed in this article series as the requirements around them could be specific to each deployment.</p>
 </blockquote>
 <p>Following is the logical deployment and flow of data for the log collection layer.</p>
-<p><img src="/posts/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_3.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_3.png#layoutTextWidth" alt=""></p>
 <p>Note that we have not specified any persistence for the Filebeat Pods. Since Filebeat only does log collection to be sent off to enrichment, and since the logs can be retrieved from the source if needed (during a limited period of time), Pods do not need a persistence layer to retrieve data in the case of crashes.</p>
 <p>Let’s discuss the next step in the stack, log enrichment in the next article.</p>
 <p>The configuration related to the stack being discussed in this article series will be available through <a href="https://github.com/chamilad/elk-k8s-demo">a Github repository</a>.</p>

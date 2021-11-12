@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2019-11-26_elasticsearch-index-management/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2019-11-26_elasticsearch-index-management/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "ElasticSearch Index Management",
+      "headline" : "ElasticSearch Index Management",
+      "description" : "A few tricks to manage data in an ElasticSearch cluster",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2019",
+      "datePublished": "2019-11-26 22:03:00 \x2b1300 NZDT",
+      "dateModified" : "2019-11-26 22:03:00 \x2b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2019-11-26_elasticsearch-index-management\/",
+      "keywords" : [ "K8s","Logging","ElasticSearch","Logstash","Log aggregation", ]
+  }
+</script>
+<title>ElasticSearch Index Management - chamila.dev</title>
+  <meta property="og:title" content="ElasticSearch Index Management - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="A few tricks to manage data in an ElasticSearch cluster" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamila.dev/">chamila.dev</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">ElasticSearch Index Management</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2019-11-26 22:03:00 NZDT">
+                26 Nov 2019
+		<p><b>Read time:</b> 9m
+		<br /><b>Word count:</b> 1776</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#segregating-data-into-indices">Segregating Data into Indices</a></li>
+    <li><a href="#automating-data-retention-policies">Automating Data Retention Policies</a></li>
+    <li><a href="#explicit-vs-dynamic-mapping">Explicit vs Dynamic Mapping</a></li>
+    <li><a href="#managing-the-query-load">Managing the Query Load</a>
+      <ul>
+        <li><a href="#automated-index-pattern-creation">Automated Index Pattern Creation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <figure>
+    <img src="/blog/img/2019-11-26_elasticsearch-index-management_01.jpeg"/> <figcaption>
+            <h4>The comms tower on top of Riverston, Sri Lanka</h4>
+        </figcaption>
+</figure>
+
+<p>As the series on ElasticSearch deployment management in K8s is complete, I thought of writing down some of the Index Management tasks that I had to implement in order to reduce the manual work involved in cluster maintenance.</p>
+<blockquote>
+<p>Following is the series of posts on ElasticSearch on K8s.</p>
+</blockquote>
+<ol>
+<li><a href="/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a">ElasticSearch on K8s: 01 — Basic Design</a></li>
+<li><a href="/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/">ElasticSearch on K8s: 02 — Log Collection with Filebeat</a></li>
+<li><a href="/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/">ElasticSearch on K8s: 03 - Log Enrichment with Logstash</a></li>
+<li><a href="/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/">ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</a></li>
+<li><a href="/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/">ElasticSearch on K8s: 05 - Visualization and Production Readying</a></li>
+<li>ElasticSearch Index Management</li>
+<li><a href="/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/">Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</a></li>
+<li><a href="/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</a></li>
+<li><a href="/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/">Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</a></li>
+</ol>
+<p>The following management steps are not mandatory to be implemented in a cluster to be production ready, however having them in place would greatly reduce some of the common headaches involved in an ELK stack management.</p>
+<h2 id="segregating-data-into-indices">Segregating Data into Indices</h2>
+<p>As discussed in the post related to <a href="/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash">Logstash</a>, logs could be sent to ElasticSearch in a way that logs from different sources may end up in different indices. In that particular example, logs generated in different K8s Namespaces were sent to different indices that were again separated based on the date on which the logs are published (as opposed the date on which the logs are generated, this is an important distinction to make when the logs are analyzed later).</p>
+<pre><code>output {
+  elasticsearch {
+    hosts =&gt; [&quot;elasticsearch:9200&quot;]
+    index =&gt; &quot;logstash-%{+YYYY.MM.dd}-%{[kubernetes][namespace]}&quot;
+  }
+}
+</code></pre><p>What happens here is simple. The index to which a particular log line is pushed to is dynamically named from a field that is included in the event itself, the nested field, <code>[kubernetes][namespace]</code>. This can be expanded more by separating indices based on more factors, such as the applications from which the logs are generated (ex: using <code>[kubernetes][labels][app]</code> perhaps) or any other custom field extracted from the log line itself (ex: requests made from within the cluster determined by the source IP address present on an Nginx Access Log).</p>
+<p>However, this kind of separation could easily get out of hand, where too many indices (and therefore shards) are created on the ElasticSearch cluster, with too little data in each index. This consumes more resources just to keep the shards running. Therefore, a healthy balance between sensible data separation and a manageable shard count should be targeted.</p>
+<p>A generally useful separation is to make use of the date based separation (which would put logs from each day on a separate index) along with one more factor (ex: Namespace, Application, etc). This pattern usually makes sure that (given a stable cluster) data would be separated out to even sized indices.</p>
+<p>The date based separation is going to help in another way too.</p>
+<h2 id="automating-data-retention-policies">Automating Data Retention Policies</h2>
+<p>As mentioned above, a data segregation strategy would likely result in more number of indices than a cluster that doesn&rsquo;t separate data based on one or more factors. Over a period of time, the use of the these indices go down, mainly because majority of the search queries will be made against a small window of time, such as for the past 15 minutes, past 24 hours or at most for a past couple of days. Queries made for data older than a few weeks are rare and beyond that the frequency of lookups go down almost exponentially.</p>
+<p>Similarly, the number of writes on indices (if they are separated by date, daily) would also go down as the particular index becomes older. In fact, wrtiting data into an index older than a day is rare and would happen under abnormal circumstances (ex: if some kind of <a href="https://www.elastic.co/guide/en/logstash/current/dead-letter-queues.html">a dead letter queue</a> is implemented and causes failed events to be retried after days of the original publishing).</p>
+<p>With these behaviors in mind, we can start implementing a data retention policy to define what the time period should be within which data will be available for querying. Any indices that fall out of this window can be safely deleted. Deleting these &ldquo;unwanted&rdquo; indices will free up memory that will have to be committed to keep shards running, and it will also reduce the number of query threads spawned for a query with an unsafe index pattern.</p>
+<p>We can decide on a number of days for an index to be active. After this count is passed for each index, they should be deleted. ElasticSearch has a function named <strong>Index Lifecycle Managmenet Policy</strong> that makes it easier to write down policies like these and have them enforced automatically.</p>
+<p>For an example, we can define an ILM policy to delete any matching index older than 30 days.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -XPUT -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#e6db74">&#34;http://elasticsearch:9200/_ilm/policy/delete_after_30d&#34;</span> -d<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">{
+</span><span style="color:#e6db74">  &#34;policy&#34;: {
+</span><span style="color:#e6db74">    &#34;phases&#34;: {
+</span><span style="color:#e6db74">      &#34;delete&#34;: {
+</span><span style="color:#e6db74">        &#34;min_age&#34;: &#34;30d&#34;,
+</span><span style="color:#e6db74">        &#34;actions&#34;: {
+</span><span style="color:#e6db74">          &#34;delete&#34;: {}
+</span><span style="color:#e6db74">        }
+</span><span style="color:#e6db74">      }
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">  }
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">&#39;</span>
+</code></pre></div><p>Now the policy is defined, however it&rsquo;s not enforced on any index. To do that, the newly created policy has to be associated to an <em>Index Template</em>. An Index Template is a collection of settings applied to an index when it&rsquo;s created. Which template to be applied for a newly created index depends on the name of the index and the <code>index_patterns</code> specified on the templates. This means, zero or more templates could be potentially applied for an index.</p>
+<p>For an example, if we want the above policy to be applied to any index with name that matches with <code>logstash-*</code>, we can define the following index template.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -XPUT -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#e6db74">&#34;http://elasticsearch:9200/_template/logstash_ilm&#34;</span> -d<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">{
+</span><span style="color:#e6db74">  &#34;order&#34;: 10,
+</span><span style="color:#e6db74">  &#34;index_patterns&#34;: [
+</span><span style="color:#e6db74">    &#34;logstash-*&#34;,
+</span><span style="color:#e6db74">  ],
+</span><span style="color:#e6db74">  &#34;settings&#34;: {
+</span><span style="color:#e6db74">    &#34;index&#34;: {
+</span><span style="color:#e6db74">      &#34;number_of_shards&#34;: &#34;1&#34;,
+</span><span style="color:#e6db74">      &#34;refresh_interval&#34;: &#34;5s&#34;,
+</span><span style="color:#e6db74">      &#34;lifecycle&#34;: {
+</span><span style="color:#e6db74">        &#34;name&#34;: &#34;delete_after_30d&#34;
+</span><span style="color:#e6db74">      }
+</span><span style="color:#e6db74">   }
+</span><span style="color:#e6db74">  }
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">&#39;</span>
+</code></pre></div><p>The ILM policy defined above will start getting applied to indices created after creating the above index template, with a matching name that starts with <code>logstash-</code>.</p>
+<blockquote>
+<p>If an ILM policy is changed later (ex: changing the number of days before the index is deleted), the changes will be applied immediately to all the indices the particular ILM policy is applied to.</p>
+</blockquote>
+<p>For an index that an ILM policy is applied to, the current <strong>phase</strong> and the time that the index will go into the next phase can be checked from the index metadata.</p>
+<p>As mentioned above, separating data into daily indices can be useful in index management policies. If such a separation is not made, efficiently deleting outdated data will become complex, as parts of indices will contain outdated data while other parts may have active and relevant data.</p>
+<h2 id="explicit-vs-dynamic-mapping">Explicit vs Dynamic Mapping</h2>
+<p>ElasticSearch is a database for unstructured data. When a log is fed to ElasticSearch, it will try to decode the fields in the record and guess the data type for each field. This is called Dynamic Mapping, and how the data type of each field is determined is specified in <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-field-mapping.html">the ElasticSearch documentation</a>. This is mostly useful during the early stages of a project where multiple types of data could be stored in ElasticSearch and their structure would frequently change.</p>
+<p>However, this dynamic mapping could sometimes result in unexpected data types guessed for certain fields. Fields that are intended to be full-text searcheable may end up being marked as <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html"><code>Keyword</code> type fields</a>. Or, with slight changes to the incoming data, the same field on multiple indices could end up being marked as either an integer or a text (which could interfere with queries). It&rsquo;s also possible to cause some level of instability in ElasticSearch with a set of carefully designed data (ex: having a high number of unique fields causing what&rsquo;s called a mapping explosion).</p>
+<p>If a common schema for the incoming data is known, that schema can be applied for a given index pattern. These could be defined as <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html">Mappings</a>. This will make sure no guess work is involved for a given field and the potentially unstable behavior of dynamic mapping is avoided.</p>
+<p>The common schema may not be visible at first. However as the deployment becomes more stable, this will start become clearer. Adding explicit mappings will also allow to handle changes to the system more carefully.</p>
+<h2 id="managing-the-query-load">Managing the Query Load</h2>
+<p>When a query is issued on the ElasticSearch API, the index to search for is usually defined. On Kibana, the indices to search for are defined by an <a href="https://www.elastic.co/guide/en/kibana/current/tutorial-define-index.html">Index Pattern</a>. An index pattern is a string pattern that index names should match to. Each query made on Kibana will be executed against each index with names matching the given index pattern.</p>
+<p>With this tool, it&rsquo;s easy to define patterns like <code>logstash*</code> which includes all the indices created by Logstash (usually). However, there&rsquo;s a cost that is associated with each query, and that cost could be increased based on the index pattern selected to do the query with.</p>
+<p>For each index, a query generates a separate thread. These threads execute the query on the indices and return the results to be aggregated. Therefore, for an index pattern like <code>logstash*</code> there could be dozens of threads spawning for each query. If the time window applied for the query is somewhat larger (ex: a few days) such a query would result in a massive CPU and memory spike on the ElasticSearch cluster.</p>
+<p>Since most queries will be for a small time window (at most expanding to a few hours) the indices of importance will only be the ones created on the same day (or in some cases the day before). Therefore, by creating index patterns that restrict the number of indices matched for a certain query, we can reduce the load on the system drastically.</p>
+<h3 id="automated-index-pattern-creation">Automated Index Pattern Creation</h3>
+<p>However, creating index patterns for each day could soon become an overhead on the maintenance of the cluster. This could easily be automated using ElasticSearch and Kibana APIs.</p>
+<pre><code># creating an index pattern for the current day
+index_pattern_id=$(cat /proc/sys/kernel/random/uuid)
+curl -XPOST -H &quot;Content-type: application/json&quot; -H &quot;kbn-xsrf: kibana&quot; &quot;http://kibana:5601/api/saved_objects/index-pattern/${index_pattern_id}&quot; -d '
+{
+  &quot;attributes&quot;: {
+    &quot;title&quot;: &quot;logstash-*$(date +&quot;%Y.%m.%d&quot;)&quot;, 
+    &quot;timeFieldName&quot;: &quot;@timestamp&quot;
+  }
+}
+' 
+
+# marking the created index pattern as the default one
+curl -XPOST -H &quot;Content-type: application/json&quot; -H &quot;kbn-xsrf: kibana&quot; &quot;http://kibana:5601/api/kibana/settings&quot; -d'
+{
+  &quot;changes&quot;: { 
+    &quot;defaultIndex&quot;: &quot;${index_pattern_id}&quot;
+  }
+}
+'
+</code></pre><p>The above two API calls creates an index pattern and marks it as the default one.</p>
+<blockquote>
+<p>Marking an index pattern as default saves the user from an astonishing level frustration when it comes to querying on Kibana.</p>
+</blockquote>
+<p>These two API calls can be configured to run once each day at the start of the day (ex: using a K8s <code>CronJob</code>). That should take care of the mundane task of creating efficient index patterns.</p>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/">&lt; ElasticSearch on K8s: 05 - Visualization and Production Readying</a>
+		
+	</div>        
+	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/">Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO &gt;</a>
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/">ElasticSearch on K8s: 05 - Visualization and Production Readying</a></li>
+    
+    <li><a href="/blog/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/">ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</a></li>
+    
+    <li><a href="/blog/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/">ElasticSearch on K8s: 03 - Log Enrichment with Logstash</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

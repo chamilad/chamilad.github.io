@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "A little bit of Bashfu for a specific case of log analysis",
+      "headline" : "A little bit of Bashfu for a specific case of log analysis",
+      "description" : "This post is not about a solution to a generic issue. This post is about how I found some way to cut and assemble a large log file using a few Bash tools (and subliminally why Unix principle of implementing stuff may be the superior way).\nSo today, there came a need to sort through a large access log file for a list of request counts for each key. It’s not just a key — request count relationship.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2018",
+      "datePublished": "2018-05-01 07:46:05.235 \x2b0000 UTC",
+      "dateModified" : "2018-05-01 07:46:05.235 \x2b0000 UTC",
+      "url" : "https:\/\/chamila.dev\/blog\/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis\/",
+      "keywords" : [ "Bash","Log Analysis","Scripting","Unix","Grep", ]
+  }
+</script>
+<title>A little bit of Bashfu for a specific case of log analysis - chamila.dev</title>
+  <meta property="og:title" content="A little bit of Bashfu for a specific case of log analysis - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="This post is not about a solution to a generic issue. This post is about how I found some way to cut and assemble a large log file using a few Bash tools (and subliminally why Unix principle of implementing stuff may be the superior way).
+So today, there came a need to sort through a large access log file for a list of request counts for each key. It’s not just a key — request count relationship." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamila.dev/">chamila.dev</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">A little bit of Bashfu for a specific case of log analysis</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2018-05-01 07:46:05 UTC">
+                01 May 2018
+		<p><b>Read time:</b> 6m
+		<br /><b>Word count:</b> 1223</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents"></nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <p>This post is not about a solution to a generic issue. This post is about how I found some way to cut and assemble a large log file using a few Bash tools (and subliminally why Unix principle of implementing stuff may be the superior way).</p>
+<p>So today, there came a need to sort through a large access log file for a list of request counts for each key. It’s not just a key — request count relationship. To elaborate briefly,</p>
+<p>In WSO2 API Manager, authentication happens through OAuth2. This involves a Consumer Key for a particular application and user, and a pair of access, refresh tokens to be used in actual API invocation. A particular <strong>Consumer Key</strong> can be used to generate multiple <strong>Access Tokens</strong>and <strong>Refresh Tokens</strong>. The requirement was to find how many requests were done using <strong>Access Tokens</strong> mapped to each <strong>Consumer Key</strong>. It’s only the <strong>Access Token</strong> that gets logged into the access log, so getting to this list of numbers required some kind of scripting.</p>
+<p>I start with one-liners.</p>
+<p><img src="/blog/img/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis_0.gif#layoutTextWidth" alt=""></p>
+<p>First I need to get the actual list of requests that were made with an Access Token.</p>
+<pre><code>grep &quot;Bearer &quot; access-log-with-thousands-of-lines.log
+</code></pre><p>This gives me a search result with too many information. I need only the Access Tokens used. In other words, I need only the next 37 characters (36 being the number of characters in an Access Token) after a match for <code>Bearer</code>.</p>
+<pre><code>grep -o -P &quot;Bearer.{0,37}&quot; access-log-with-thousands-of-lines.log
+</code></pre><p>Now it gives me a manageable list of search results.</p>
+<pre><code>Bearer fgjk7d29-b6b8-3024-8a76-5639ddlcwslo
+Bearer sdlof320-c797-3c50-80b1-065nslgnxcld
+Bearer worh366f-e133-3093-9c68-0495ndlgskdl
+Bearer pyof8a2c-b534-37eb-9afc-0349ruaslkfw
+Bearer &quot;-&quot; &quot;Mozilla/5.0&quot;
+Bearer 2bfeslgo-056a-3e60-92be-34erlkgjarf3
+Bearer ertlkjix-056a-3e60-92be-lkdsjf023498
+Bearer lsn24fx0-8dd1-385e-8c54-09wpoisajf09
+Bearer 03jdl59f-ded7-33a7-ba6d-q2308wafhj00
+Bearer &quot;-&quot; &quot;Mozilla/5.0&quot;
+Bearer &quot;-&quot; &quot;Mozilla/5.0&quot;
+Bearer mbn05ns9-f97d-3401-881e-3940859ajaf2
+</code></pre><p>I need to remove the <code>Bearer </code>part and get a unique list of access tokens (because from another discussion I heard that a new Access Token was generated for each request).</p>
+<pre><code>grep -o -P &quot;Bearer.{0,37}&quot; access-log-with-thousands-of-lines.log | sed 's/^Bearer //' | sort | uniq
+</code></pre><p>This gives me a further cleaned up list of access tokens with an additional line that I don’t want to count in, <code>&quot;-&quot; &quot;Mozilla/5.0&quot;</code>. I need to remove this last line as well.</p>
+<pre><code>fgjk7d29-b6b8-3024-8a76-5639ddlcwslo
+sdlof320-c797-3c50-80b1-065nslgnxcld
+worh366f-e133-3093-9c68-0495ndlgskdl
+pyof8a2c-b534-37eb-9afc-0349ruaslkfw
+2bfeslgo-056a-3e60-92be-34erlkgjarf3
+ertlkjix-056a-3e60-92be-lkdsjf023498
+lsn24fx0-8dd1-385e-8c54-09wpoisajf09
+03jdl59f-ded7-33a7-ba6d-q2308wafhj00
+mbn05ns9-f97d-3401-881e-3940859ajaf2
+&quot;-&quot; &quot;Mozilla/5.0&quot;
+
+&gt; grep -o -P &quot;Bearer.{0,37}&quot; access-log-with-thousands-of-lines.log | sed 's/^Bearer //' | sort | uniq | sed '$ d' &gt; tokens.txt
+&gt; cat tokens.txt
+fgjk7d29-b6b8-3024-8a76-5639ddlcwslo
+sdlof320-c797-3c50-80b1-065nslgnxcld
+worh366f-e133-3093-9c68-0495ndlgskdl
+pyof8a2c-b534-37eb-9afc-0349ruaslkfw
+2bfeslgo-056a-3e60-92be-34erlkgjarf3
+ertlkjix-056a-3e60-92be-lkdsjf023498
+lsn24fx0-8dd1-385e-8c54-09wpoisajf09
+03jdl59f-ded7-33a7-ba6d-q2308wafhj00
+mbn05ns9-f97d-3401-881e-3940859ajaf2
+</code></pre><p>So now I have a cleared up list of access tokens. I need to find the <strong>Consumer Key</strong> corresponding to each of the access token next. For this, I need to get into the database. The <code>select</code> statement needed for this is something similar to the following.</p>
+<pre><code>select consumer_key,username,app_name,access_token from my_table where access_token='fgjk7d29-b6b8-3024-8a76-5639ddlcwslo' OR access_token='sdlof320-c797-3c50-80b1-065nslgnxcld' OR access_token='worh366f-e133-3093-9c68-0495ndlgskdl' OR access_token='pyof8a2c-b534-37eb-9afc-0349ruaslkfw' OR access_token='2bfeslgo-056a-3e60-92be-34erlkgjarf3' OR access_token='ertlkjix-056a-3e60-92be-lkdsjf023498' OR access_token='lsn24fx0-8dd1-385e-8c54-09wpoisajf09' OR access_token='03jdl59f-ded7-33a7-ba6d-q2308wafhj00' OR access_token='mbn05ns9-f97d-3401-881e-3940859ajaf2';
+</code></pre><p>To come up with that with the list of access tokens, I make the following move.</p>
+<pre><code>stmt=&quot;select consumer_key,username,app_name,access_token from my_table where &quot;;while read token; do
+stmt+=&quot;access_token='$token' OR &quot;
+done &lt; tokens.txt; echo &quot;${stmt:0:-4};&quot;;
+</code></pre><p>Since that Bashfu could be a little bit hard to see to a lay person, let me explain what happens.</p>
+<p><img src="/blog/img/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis_1.gif#layoutTextWidth" alt=""></p>
+<ul>
+<li>Write the first part of the non-repetitive statement</li>
+</ul>
+<pre><code>stmt=&quot;select consumer_key,username,app_name,access_token from my_table where &quot;;
+</code></pre><ul>
+<li>Loop through the access tokens and write the repetitive part</li>
+</ul>
+<pre><code>while read token; do
+stmt+=&quot;access_token='$token' OR &quot;
+done &lt; tokens.txt;
+</code></pre><ul>
+<li>Get the final statement but without the last <code>OR</code> removed and a semi-colon added</li>
+</ul>
+<pre><code>echo &quot;${stmt:0:-4};&quot;;
+</code></pre><p>With the help of a friend (both because I don’t have access to the database server and because I only learn SQL absolutely when I need to — latter being the strongest reason) I get the consumer key, username, application name, and the access token in the following format, in a file called <code>db_output.txt</code> .</p>
+<pre><code>consumer_key|username|app_name|access_key
+</code></pre><p>Now what I need to do is to go through each consumer key, get all the access keys mapped to it, and sum up the number of requests done with each access key. For this, I’m going to have to use some advanced Bashfu, which forces me to a scripting position.</p>
+<p><img src="/blog/img/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis_2.gif#layoutTextWidth" alt=""></p>
+<p>First I need to sort the retrieved list of consumer keys in <code>db_output.txt</code> file, by the contents of the first column.</p>
+<pre><code>cat db_output.txt | sort -k1 &gt; db_output_sorted.txt
+</code></pre><p>Following is the ad-hoc script I come up with to perform the advanced bashfu.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>
+prev_consumer_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+prev_access_token<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+prev_username<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+prev_appname<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+
+total_count<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+
+<span style="color:#75715e"># start looping</span>
+<span style="color:#66d9ef">while</span> read line; <span style="color:#66d9ef">do</span>
+  <span style="color:#75715e"># cut up the line by separator `|`</span>
+  consumer_key<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $line | cut -d <span style="color:#e6db74">&#39;|&#39;</span> -f1<span style="color:#66d9ef">)</span>
+  username<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $line | cut -d <span style="color:#e6db74">&#39;|&#39;</span> -f2<span style="color:#66d9ef">)</span>
+  appname<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $line | cut -d <span style="color:#e6db74">&#39;|&#39;</span> -f3<span style="color:#66d9ef">)</span>
+  access_token<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $line | cut -d <span style="color:#e6db74">&#39;|&#39;</span> -f4<span style="color:#66d9ef">)</span>
+
+  <span style="color:#75715e"># search for access token in the log file and get the line count for the results</span>
+  grep_count<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>grep $access_token access-log-with-thousands-of-lines.log | wc -l<span style="color:#66d9ef">)</span>
+
+  <span style="color:#75715e"># first loop</span>
+  <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $prev_consumer_key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+    prev_consumer_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$consumer_key<span style="color:#e6db74">&#34;</span>
+    prev_appname<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$appname<span style="color:#e6db74">&#34;</span>
+    prev_username<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$username<span style="color:#e6db74">&#34;</span>
+    prev_access_token<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$access_token<span style="color:#e6db74">&#34;</span>
+  <span style="color:#66d9ef">fi</span>
+
+  <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $prev_consumer_key <span style="color:#f92672">==</span> $consumer_key <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+    <span style="color:#75715e"># Add up to the request count found for earlier access token</span>
+    total_count<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span> total_count <span style="color:#f92672">+</span> grep_count <span style="color:#66d9ef">))</span>
+  <span style="color:#66d9ef">else</span> <span style="color:#f92672">[[</span> $prev_consumer_key !<span style="color:#f92672">=</span> $consumer_key <span style="color:#f92672">]]</span>;
+    <span style="color:#75715e"># Display the total for the previous consumer key</span>
+    echo -e <span style="color:#e6db74">&#34;</span>$prev_consumer_key<span style="color:#e6db74">\t</span>$prev_username<span style="color:#e6db74">\t</span>$prev_appname<span style="color:#e6db74">\t</span>$total_count<span style="color:#e6db74">&#34;</span>
+
+    <span style="color:#75715e"># Start counting for the next one</span>
+    total_count<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$grep_count<span style="color:#e6db74">&#34;</span>
+    prev_consumer_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$consumer_key<span style="color:#e6db74">&#34;</span>
+    prev_appname<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$appname<span style="color:#e6db74">&#34;</span>
+    prev_username<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$username<span style="color:#e6db74">&#34;</span>
+    prev_access_token<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$access_token<span style="color:#e6db74">&#34;</span>
+  <span style="color:#66d9ef">fi</span>
+<span style="color:#66d9ef">done</span> &lt; db_output_sorted.txt
+
+<span style="color:#75715e"># show the final line too</span>
+echo -e <span style="color:#e6db74">&#34;</span>$prev_consumer_key<span style="color:#e6db74">\t</span>$prev_username<span style="color:#e6db74">\t</span>$prev_appname<span style="color:#e6db74">\t</span>$total_count<span style="color:#e6db74">&#34;</span>
+</code></pre></div><p>Pretty self-explanatory!!</p>
+<p>With this script I get the number of requests made with access tokens mapped to each consumer key.</p>
+<pre><code>&gt; ./filter_log.sh 
+consumer_key100   username100   appname100   1
+consumer_key335   username335   appname335   1
+consumer_key202   username202   appname202   13
+consumer_key410   username410   appname410   1
+consumer_key099   username099   appname099   45
+consumer_key001   username001   appname001   18
+</code></pre><p>But I still need it sorted by the numerical request count , with the most consumer key with the most request count on the top.</p>
+<pre><code>&gt; ./filter_log.sh | sort -k4 -nr
+consumer_key099   username099   appname099   45
+consumer_key001   username001   appname001   18
+consumer_key202   username202   appname202   13
+consumer_key410   username410   appname410   1
+consumer_key335   username335   appname335   1
+consumer_key100   username100   appname100   1
+</code></pre><p>Flawless Victory!!!</p>
+<p><img src="/blog/img/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis_3.gif#layoutTextWidth" alt=""></p>
+<blockquote>
+<p>The path taken here isn’t the only way to achieve the same result. The following much simpler script takes a different approach using <code>awk</code> to sum up the request counts, and it turns out to be a few seconds faster than the first script (even with the additional IO and nested looping)!!</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># loop, read last line for the input values</span>
+<span style="color:#66d9ef">while</span> read line; <span style="color:#66d9ef">do</span>
+  <span style="color:#75715e"># read values from the line delimitted by `|`</span>
+  consumer_key<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $line | cut -d <span style="color:#e6db74">&#39;|&#39;</span> -f1<span style="color:#66d9ef">)</span>
+  username<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $line | cut -d <span style="color:#e6db74">&#39;|&#39;</span> -f2<span style="color:#66d9ef">)</span>
+  appname<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $line | cut -d <span style="color:#e6db74">&#39;|&#39;</span> -f3<span style="color:#66d9ef">)</span>
+
+  <span style="color:#75715e"># get all the access tokens for the consumer key</span>
+  grep <span style="color:#e6db74">&#34;</span>$consumer_key<span style="color:#e6db74">&#34;</span> db_output_sorted.txt  | cut -d <span style="color:#e6db74">&#39;|&#39;</span> -f4 &gt; tmp_access_tokens.txt
+
+  <span style="color:#75715e"># collect all the counts for access keys found and sum them together using awk</span>
+  <span style="color:#66d9ef">while</span> read line; <span style="color:#66d9ef">do</span>
+    grep $line access-log-with-thousands-of-lines.log | wc -l
+  <span style="color:#66d9ef">done</span> &lt; tmp_access_tokens.txt | awk <span style="color:#e6db74">&#39;{ SUM += $1 } END { print SUM }&#39;</span> &gt; tmp_total_count.txt
+
+  total_count<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat tmp_total_count.txt<span style="color:#66d9ef">)</span>
+
+  <span style="color:#75715e"># remove temp files</span>
+  rm -rf tmp_access_tokens.txt tmp_total_count.txt
+
+  <span style="color:#75715e"># output!</span>
+  echo -e <span style="color:#e6db74">&#34;</span>$consumer_key<span style="color:#e6db74">\t</span>$username<span style="color:#e6db74">\t</span>$appname<span style="color:#e6db74">\t</span>$total_count<span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">done</span> &lt; &lt;<span style="color:#f92672">(</span>cat db_output_sorted.txt | cut -d <span style="color:#e6db74">&#39;|&#39;</span> -f1,2,3 | sort | uniq<span style="color:#f92672">)</span>
+<span style="color:#75715e"># input the list of unique consumer keys, their usernames, and app names</span>
+
+</code></pre></div><p>There you go! Not much of a help in terms of copy value, but I hope it helps you get an idea on how to bash (tehee!) your way out of a complex situation.</p>
+<hr>
+<p>Written on May 1, 2018 by chamila de alwis.</p>
+<p>Originally published on <a href="https://medium.com/@chamilad/a-little-bit-of-bashfu-for-a-specific-case-of-log-analysis-9a7c95d9f6ac">Medium</a></p>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/">&lt; Sample: WSO2 EI Cache Mediator based Token Caching</a>
+		
+	</div>        
+	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/blog/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/">Basic Process Metrics Collection and Visualization in Linux &gt;</a>
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

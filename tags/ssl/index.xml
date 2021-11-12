@@ -13,30 +13,30 @@
     
     <item>
       <title>Subject Alternative Names in SSL Certificates</title>
-      <link>https://chamila.dev/posts/2017-11-06_subject-alternative-names-in-ssl-certificates/</link>
+      <link>https://chamila.dev/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/</link>
       <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2017-11-06_subject-alternative-names-in-ssl-certificates/</guid>
+      <guid>https://chamila.dev/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/</guid>
       <description>Or the SSL Cert Extension that saves your back during development
  I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</description>
     </item>
     
     <item>
       <title>Adding a Self-Signed SSL Certificate to AWS ACM</title>
-      <link>https://chamila.dev/posts/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</link>
+      <link>https://chamila.dev/blog/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</link>
       <pubDate>Tue, 17 Oct 2017 18:56:28 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</guid>
+      <guid>https://chamila.dev/blog/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</guid>
       <description>When setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.
 However if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following.</description>
     </item>
     
     <item>
       <title>Consuming a Service Secured by WSO2 ESB</title>
-      <link>https://chamila.dev/posts/2014-07-19_consuming-a-service-secured-by-wso2-esb/</link>
+      <link>https://chamila.dev/blog/2014-07-19_consuming-a-service-secured-by-wso2-esb/</link>
       <pubDate>Sat, 19 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2014-07-19_consuming-a-service-secured-by-wso2-esb/</guid>
+      <guid>https://chamila.dev/blog/2014-07-19_consuming-a-service-secured-by-wso2-esb/</guid>
       <description>In the last post I explained the steps needed, although somewhat minimal, to secure an unsecured backend service with WSO2 ESB. In this post I will continue on to the client side of the communication explaining the minimal client needed to communicate with the secure proxy service we created and take a peak at the action going on under the hood.
 UsernameToken Before we dive in to the client side code let’s take a look at the WS-Policy for the UsernameToken security we applied to our service.</description>
     </item>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "How to Upload a Carbon App (CAR File) to a Remote WSO2 Server",
+      "headline" : "How to Upload a Carbon App (CAR File) to a Remote WSO2 Server",
+      "description" : "Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2016",
+      "datePublished": "2016-09-17 00:49:13.356 \x2b0000 UTC",
+      "dateModified" : "2016-09-17 00:49:13.356 \x2b0000 UTC",
+      "url" : "https:\/\/chamila.dev\/blog\/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server\/",
+      "keywords" : [ "Wso2","Carbonapp","Adminservice","Wsdl","Continuous Integration", ]
+  }
+</script>
+<title>How to Upload a Carbon App (CAR File) to a Remote WSO2 Server - chamila.dev</title>
+  <meta property="og:title" content="How to Upload a Carbon App (CAR File) to a Remote WSO2 Server - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamila.dev/">chamila.dev</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">How to Upload a Carbon App (CAR File) to a Remote WSO2 Server</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2016-09-17 00:49:13 UTC">
+                17 Sep 2016
+		<p><b>Read time:</b> 7m
+		<br /><b>Word count:</b> 1340</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#service-definition">Service Definition</a></li>
+        <li><a href="#soapui-requests">SoapUI Requests</a></li>
+        <li><a href="#attaching-the-carfile">Attaching the CAR File</a></li>
+        <li><a href="#authentication">Authentication</a></li>
+        <li><a href="#upload-the-carfile">Upload the CAR File</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <p>Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.</p>
+<p>A Carbon App can be deployed on a WSO2 Server using different methods, however all those methods end up copying the CAR file to <strong>&lt;CARBON_HOME&gt;/repository/deployment/server/carbonapps</strong> folder. A continuous watcher that checks for content changes inside this folder would decompress the CAR file and execute respective deployers based on the artifact type (defined in the meta file <strong>artifact.xml</strong>).</p>
+<p>So, if the target server is a <strong>localhost</strong>, it’s just a simple matter of copying the CAR file to the above location. However, things get a little complicated when the target server doesn’t provide shell access.</p>
+<p>WSO2 Carbon exposes a set of administrative services that act as a SOAP based API to interact with the particular WSO2 Server. If the OSGi Console is enabled (by setting <strong>osgiConsole</strong> System Property), the total list of admin services can be displayed by issuing <strong>listAdminServices</strong> command on the OSGi prompt. For example, the list of admin services exposed in an ESB 4.9.0 server can be found out as follows.</p>
+<pre><code>./wso2server.sh -DosgiConsole 
+JAVA_HOME environment variable is set to /home/chamilad/dev/java/jdk1.8.0_77
+CARBON_HOME environment variable is set to /home/chamilad/dev/wso2esb-4.9.0
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0
+OSGi console has been enabled with options: -console
+osgi&gt; [2016-09-16 01:00:45,715]  INFO - CarbonCoreActivator Starting WSO2 Carbon...
+[2016-09-16 01:00:45,718]  INFO - CarbonCoreActivator Operating System : Linux 4.4.0-36-generic, amd64
+[2016-09-16 01:00:45,718]  INFO - CarbonCoreActivator Java Home        : /home/chamilad/dev/java/jdk1.8.0_77/jre
+[2016-09-16 01:00:45,718]  INFO - CarbonCoreActivator Java Version     : 1.8.0_77
+....
+....
+....
+....
+....
+[2016-09-16 01:01:06,987]  INFO - CarbonUIServiceComponent Mgt Console URL  : https://172.17.0.1:9443/carbon/
+
+[Press ENTER]
+osgi&gt; 
+osgi&gt; 
+osgi&gt; listAdminServices
+Admin services deployed on this server:
+1. ModuleAdminService, ModuleAdminService, https://chamilad-ubuntu:8243/services/ModuleAdminService 
+2. TracerAdmin, TracerAdmin, https://chamilad-ubuntu:8243/services/TracerAdmin 
+3. InboundAdmin, InboundAdmin, https://chamilad-ubuntu:8243/services/InboundAdmin 
+4. TemplateAdminService, TemplateAdminService, https://chamilad-ubuntu:8243/services/TemplateAdminService 
+5. CustomUIAdminService, CustomUIAdminService, https://chamilad-ubuntu:8243/services/CustomUIAdminService 
+6. ThemeMgtService, ThemeMgtService, https://chamilad-ubuntu:8243/services/ThemeMgtService 
+7. MediationLibraryUploader, MediationLibraryUploader, https://chamilad-ubuntu:8243/services/MediationLibraryUploader 
+8. ListMetadataService, ListMetadataService, https://chamilad-ubuntu:8243/services/ListMetadataService 
+9. LoginStatisticsAdmin, LoginStatisticsAdmin, https://chamilad-ubuntu:8243/services/LoginStatisticsAdmin 
+10. PropertiesAdminService, PropertiesAdminService, https://chamilad-ubuntu:8243/services/PropertiesAdminService 
+11. PublishEventMediatorConfigAdmin, PublishEventMediatorConfigAdmin, https://chamilad-ubuntu:8243/services/PublishEventMediatorConfigAdmin 
+12. LoggingAdmin, LoggingAdmin, https://chamilad-ubuntu:8243/services/LoggingAdmin 
+13. LogViewer, LogViewer, https://chamilad-ubuntu:8243/services/LogViewer 
+14. NDataSourceAdmin, NDataSourceAdmin, https://chamilad-ubuntu:8243/services/NDataSourceAdmin 
+15. SearchAdminService, SearchAdminService, https://chamilad-ubuntu:8243/services/SearchAdminService 
+16. RestApiAdmin, RestApiAdmin, https://chamilad-ubuntu:8243/services/RestApiAdmin 
+17. WSDL2CodeService, WSDL2CodeService, https://chamilad-ubuntu:8243/services/WSDL2CodeService 
+18. BAMMediatorConfigAdmin, BAMMediatorConfigAdmin, https://chamilad-ubuntu:8243/services/BAMMediatorConfigAdmin 
+19. CustomMeteringService, CustomMeteringService, https://chamilad-ubuntu:8243/services/CustomMeteringService 
+20. UserAdmin, UserAdmin, https://chamilad-ubuntu:8243/services/UserAdmin 
+21. UserStoreConfigAdminService, UserStoreConfigAdminService, https://chamilad-ubuntu:8243/services/UserStoreConfigAdminService 
+22. TaskAdmin, TaskAdmin, https://chamilad-ubuntu:8243/services/TaskAdmin 
+23. CGAgentAdminService, CGAgentAdminService, https://chamilad-ubuntu:8243/services/CGAgentAdminService 
+24. WSDLValidatorService, WSDLValidatorService, https://chamilad-ubuntu:8243/services/WSDLValidatorService 
+25. SynapseArtifactUploaderAdmin, SynapseArtifactUploaderAdmin, https://chamilad-ubuntu:8243/services/SynapseArtifactUploaderAdmin 
+26. ServerAdmin, ServerAdmin, https://chamilad-ubuntu:8243/services/ServerAdmin 
+27. MediationTracerService, MediationTracerService, https://chamilad-ubuntu:8243/services/MediationTracerService 
+28. RelationAdminService, RelationAdminService, https://chamilad-ubuntu:8243/services/RelationAdminService 
+29. ServiceAdmin, ServiceAdmin, https://chamilad-ubuntu:8243/services/ServiceAdmin 
+30. PriorityMediationAdmin, PriorityMediationAdmin, https://chamilad-ubuntu:8243/services/PriorityMediationAdmin 
+31. ExternalTryitService, ExternalTryitService, https://chamilad-ubuntu:8243/services/ExternalTryitService 
+32. ConfigServiceAdmin, ConfigServiceAdmin, https://chamilad-ubuntu:8243/services/ConfigServiceAdmin 
+33. ProxyServiceAdmin, ProxyServiceAdmin, https://chamilad-ubuntu:8243/services/ProxyServiceAdmin 
+34. ResourceAdminService, ResourceAdminService, https://chamilad-ubuntu:8243/services/ResourceAdminService 
+35. EventBrokerService, EventBrokerService, https://chamilad-ubuntu:8243/services/EventBrokerService 
+36. StatisticsAdmin, StatisticsAdmin, https://chamilad-ubuntu:8243/services/StatisticsAdmin 
+37. KeyStoreAdminService, KeyStoreAdminService, https://chamilad-ubuntu:8243/services/KeyStoreAdminService 
+38. MessageProcessorAdminService, MessageProcessorAdminService, https://chamilad-ubuntu:8243/services/MessageProcessorAdminService 
+39. ESBNTaskAdmin, ESBNTaskAdmin, https://chamilad-ubuntu:8243/services/ESBNTaskAdmin 
+40. ProvisioningAdminService, ProvisioningAdminService, https://chamilad-ubuntu:8243/services/ProvisioningAdminService 
+41. MediationSecurityAdminService, MediationSecurityAdminService, https://chamilad-ubuntu:8243/services/MediationSecurityAdminService 
+42. RemoteTaskAdmin, RemoteTaskAdmin, https://chamilad-ubuntu:8243/services/RemoteTaskAdmin 
+43. ServerRolesManager, ServerRolesManager, https://chamilad-ubuntu:8243/services/ServerRolesManager 
+44. SecurityAdminService, SecurityAdminService, https://chamilad-ubuntu:8243/services/SecurityAdminService 
+45. ContentSearchAdminService, ContentSearchAdminService, https://chamilad-ubuntu:8243/services/ContentSearchAdminService 
+46. InfoAdminService, InfoAdminService, https://chamilad-ubuntu:8243/services/InfoAdminService 
+47. ManageGenericArtifactService, ManageGenericArtifactService, https://chamilad-ubuntu:8243/services/ManageGenericArtifactService 
+48. LoggedUserInfoAdmin, LoggedUserInfoAdmin, https://chamilad-ubuntu:8243/services/LoggedUserInfoAdmin 
+49. MessageStoreAdminService, MessageStoreAdminService, https://chamilad-ubuntu:8243/services/MessageStoreAdminService 
+50. TenantMgtAdminService, TenantMgtAdminService, https://chamilad-ubuntu:8243/services/TenantMgtAdminService 
+51. CarbonAppUploader, CarbonAppUploader, https://chamilad-ubuntu:8243/services/CarbonAppUploader 52. FileDownloadService, FileDownloadService, https://chamilad-ubuntu:8243/services/FileDownloadService 
+53. CommandMediatorAdmin, CommandMediatorAdmin, https://chamilad-ubuntu:8243/services/CommandMediatorAdmin 
+54. ServiceGroupAdmin, ServiceGroupAdmin, https://chamilad-ubuntu:8243/services/ServiceGroupAdmin 
+55. MediationStatisticsAdmin, MediationStatisticsAdmin, https://chamilad-ubuntu:8243/services/MediationStatisticsAdmin 
+56. DeploymentSynchronizerAdmin, DeploymentSynchronizerAdmin, https://chamilad-ubuntu:8243/services/DeploymentSynchronizerAdmin 
+57. ApplicationAdmin, ApplicationAdmin, https://chamilad-ubuntu:8243/services/ApplicationAdmin 
+58. EndpointAdmin, EndpointAdmin, https://chamilad-ubuntu:8243/services/EndpointAdmin 
+59. MediationStatPublisherAdmin, MediationStatPublisherAdmin, https://chamilad-ubuntu:8243/services/MediationStatPublisherAdmin 
+60. MediationLibraryAdminService, MediationLibraryAdminService, https://chamilad-ubuntu:8243/services/MediationLibraryAdminService 
+61. TopicManagerAdminService, TopicManagerAdminService, https://chamilad-ubuntu:8243/services/TopicManagerAdminService 
+62. SynapseApplicationAdmin, SynapseApplicationAdmin, https://chamilad-ubuntu:8243/services/SynapseApplicationAdmin 
+63. OperationAdmin, OperationAdmin, https://chamilad-ubuntu:8243/services/OperationAdmin 
+64. Java2WSDLService, Java2WSDLService, https://chamilad-ubuntu:8243/services/Java2WSDLService 
+65. LocalEntryAdmin, LocalEntryAdmin, https://chamilad-ubuntu:8243/services/LocalEntryAdmin 
+66. ThrottleAdminService, ThrottleAdminService, https://chamilad-ubuntu:8243/services/ThrottleAdminService 
+67. MultipleCredentialsUserAdmin, MultipleCredentialsUserAdmin, https://chamilad-ubuntu:8243/services/MultipleCredentialsUserAdmin 
+68. SequenceAdminService, SequenceAdminService, https://chamilad-ubuntu:8243/services/SequenceAdminService 
+69. STSAdminService, STSAdminService, https://chamilad-ubuntu:8243/services/STSAdminService 
+70. FlowsAdminService, FlowsAdminService, https://chamilad-ubuntu:8243/services/FlowsAdminService 
+71. RepositoryAdminService, RepositoryAdminService, https://chamilad-ubuntu:8243/services/RepositoryAdminService 
+72. RegistryAdminService, RegistryAdminService, https://chamilad-ubuntu:8243/services/RegistryAdminService 
+73. EndpointTemplateAdminService, EndpointTemplateAdminService, https://chamilad-ubuntu:8243/services/EndpointTemplateAdminService 
+74. WSDLToolService, WSDLToolService, https://chamilad-ubuntu:8243/services/WSDLToolService 
+75. DiscoveryAdmin, DiscoveryAdmin, https://chamilad-ubuntu:8243/services/DiscoveryAdmin 
+76. FileUploadService, FileUploadService, https://chamilad-ubuntu:8243/services/FileUploadService 
+77. ClassMediatorAdmin, ClassMediatorAdmin, https://chamilad-ubuntu:8243/services/ClassMediatorAdmin
+</code></pre><blockquote>
+<p>Although all admin services are listed here, some of those are not exposed by default, and some do not have authorization parameters set. Therefore, those are blocked from being accessed. If these need to be desperately accessed follow {future blog post} steps.</p>
+</blockquote>
+<p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_0.png#layoutTextWidth" alt=""></p>
+<p>Getting back to the topic, one of the admin services in this list is of interest to us. Using the service <strong>CarbonAppUploader,</strong> CAR files can be uploaded to the respective server. Let’s try this scenario using SoapUI for WSO2 ESB 4.9.0.</p>
+<h3 id="service-definition">Service Definition</h3>
+<p>To call the CarbonAppUploader admin service, we have to create the clients from its WSDL. By default, the WSDLs of the admin services are hidden. If you don’t have any control over the server in question, or it cannot be restarted for reasons of service disruption, I’ve added the <a href="https://gist.github.com/chamilad/7fe796bfa9773496bddeaefaec16c302">WSDL as a Gist</a>. After downloading, replace <strong>server-host-or-ip</strong> with the hostname or the IP address of the ESB server.</p>
+<p>If you have some control over the server, where you can restart the ESB server, you can directly obtain the WSDL from the server. First disable the setting that hides the WSDLs by default, by setting <strong>HideAdminServiceWSDLs</strong> to <strong>false</strong> in <strong>&lt;CARBON_HOME&gt;/repository/conf/carbon.xml</strong>.</p>
+<pre><code>&lt;HideAdminServiceWSDLs&gt;false&lt;/HideAdminServiceWSDLs&gt;
+</code></pre><p>After this you will able to obtain the WSDL of a service by appending <strong>?wsdl</strong> to the end of the Service URL. For example, the WSDL of the CarbonAppUpload service of a locally run ESB server will be at the following location.</p>
+<pre><code>https://localhost:8243/services/CarbonAppUploader?wsdl
+</code></pre><blockquote>
+<p>Notice the port mentioned in the above URL, <strong>8243</strong>, and in the resulting WSDL, is different from the port that I have included in the <a href="https://gist.github.com/chamilad/7fe796bfa9773496bddeaefaec16c302">WSDL in the Gist above</a>? This is to do with the difference between the <a href="https://docs.wso2.com/display/ESB500/Default+Ports+of+WSO2+Products"><strong>Servlet ports</strong> and the <strong>Synapse Mediation port</strong></a><strong>s</strong>. Because Synapse accepts mediation through (by default) port 8243, the WSDL is shown on it. However the admin services are available through the Servlet port, <strong>9443</strong>.</p>
+</blockquote>
+<h3 id="soapui-requests">SoapUI Requests</h3>
+<p>Having obtained the WSDL, let’s proceed to create a SoapUI request from it.</p>
+<p>Open SoapUI and create a new SOAP Project (<strong>File</strong> -&gt; <strong>New SOAP Project</strong>). Provide the WSDL file (or the above <strong>?wsdl</strong> URL). Check <strong>Create Requests</strong> so that SoapUI will create sample requests for the operations in the WSDL.</p>
+<!-- raw HTML omitted -->
+<p>Click <strong>Ok</strong> and you will see the set of operations (in CarbonAppUploader, there is one operation, <strong>uploadApp</strong>) created in the SoapUI Project view.</p>
+<p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_2.png#layoutTextWidth" alt=""></p>
+<p>Open <strong>Request1</strong> under <strong>CarbonAppUploaderSoap11Binding.uploadApp</strong> and you will see the already created Soap Envelope with <strong>?</strong> as a placeholder for values. For the <strong>uploadApp</strong> operation three inputs are needed.</p>
+<ol>
+<li><strong>dataHandler</strong> — Base64 binary encoded file content</li>
+<li><strong>fileName</strong> — File name of the CAR file</li>
+<li><strong>fileType</strong> — File compression, only the value “jar” is supported</li>
+</ol>
+<blockquote>
+<p>The port confusion comes in to play again. If you loaded the WSDL from the remote URL with 8243, you will have to change the port in the request from 8243 to <strong>9443</strong>.</p>
+</blockquote>
+<h3 id="attaching-the-carfile">Attaching the CAR File</h3>
+<p>We need to serialize the CAR file as a base64 encoded string and add it in the SOAP request. SoapUI provides this functionality as Attachments.</p>
+<p>On the request, click on <strong>Attachments</strong>, and then add CAR file as an attachment. Navigate to the CAR file and select it. Select <strong>No</strong> to cache the attachment, as I found it to sometimes upload the file in an incomplete manner.</p>
+<p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_3.png#layoutTextWidth" alt=""></p>
+<p>Copy the value in the <strong>ContentID</strong>. This, along with the <strong>cid:</strong> prefix, has to be added as the <strong>dataHandler</strong> in the request.</p>
+<p>After the attachment is done, the request will look like the following.</p>
+<p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_4.png#layoutOutsetCenter" alt=""></p>
+<p>In addition to adding the attachment, <a href="http://axis.apache.org/axis2/java/core/docs/mtom-guide.html"><strong>MTOM</strong></a> has to be enabled in the request. This has to be done through setting <strong>Enable MTOM</strong> to true in the request properties.</p>
+<h3 id="authentication">Authentication</h3>
+<p>Click on <strong>Auth</strong> tab and add basic authentication to the request.</p>
+<p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_5.png#layoutTextWidth" alt=""><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_6.png#layoutTextWidth" alt=""></p>
+<h3 id="upload-the-carfile">Upload the CAR File</h3>
+<p>We are all done now. What’s left is to just go ahead and make the SOAP request. The file will be uploaded, and a response will be returned, with the status of the upload. After a maximum of one minute, the Carbon App will be processed and the artifacts will be deployed.</p>
+<!-- raw HTML omitted -->
+<hr>
+<p>Written on September 17, 2016 by chamila de alwis.</p>
+<p>Originally published on <a href="https://medium.com/@chamilad/how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server-e323447a99ce">Medium</a></p>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/">&lt; Monitoring WSO2 Logs with Elasticsearch, Logstash, and Kibana (or Grafana)</a>
+		
+	</div>        
+	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/blog/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/">Thinking of Moving Your WSO2 Deployment On to Kubernetes? &gt;</a>
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/">Monitoring WSO2 Logs with Elasticsearch, Logstash, and Kibana (or Grafana)</a></li>
+    
+    <li><a href="/blog/2016-02-09_running-wso2-products-on-kubernetes/">Running WSO2 Products on Kubernetes</a></li>
+    
+    <li><a href="/blog/2014-07-19_consuming-a-service-secured-by-wso2-esb/">Consuming a Service Secured by WSO2 ESB</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

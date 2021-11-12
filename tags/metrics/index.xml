@@ -13,10 +13,10 @@
     
     <item>
       <title>A Standalone Prometheus Exporter for Kibana</title>
-      <link>https://chamila.dev/posts/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</link>
+      <link>https://chamila.dev/blog/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</link>
       <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
       
-      <guid>https://chamila.dev/posts/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</guid>
+      <guid>https://chamila.dev/blog/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</guid>
       <description>I wrote a Prometheus Exporter that converts and exposes some metrics from Kibana API. This was mostly inspired by an already existing Exporter, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.
 kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password The Exporter is pretty basic one written in less than 500 lines of collective Go code.</description>
     </item>

@@ -111,7 +111,7 @@
        </header>
         <div class="post-content markdown-body">
           <figure>
-    <img src="/posts/img/2019-11-22_elasticsearch-on-k8s-03_01.jpeg#layoutOutsetCenter"/> <figcaption>
+    <img src="/blog/img/2019-11-22_elasticsearch-on-k8s-03_01.jpeg#layoutOutsetCenter"/> <figcaption>
             <h4>A stash of sugar cane ready to be processed into sugar and Arrack</h4>
         </figcaption>
 </figure>
@@ -190,7 +190,7 @@ access_log  /var/log/nginx/access.log  main;
   }
 }
 </code></pre><p>In the above <code>output.elasticsearch</code> configuration, we are making use of the logstash interpolation functions to send logs from different sources to different indices (let&rsquo;s discuss what indices are on the next post on this series). Using the configuration option <code>index</code> we are instructing logstash to push logs to indices named based on the date and the K8s Namespace value (which is forwarded by the Filebeat metadata processor). This functionality is most useful especially where in a K8s setup, we could implement some kind of tenancy based data segregation by sending logs from different K8s Namespaces to different ElasticSearch indices.</p>
-<p><img src="/posts/img/draft__clipboard_3.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/draft__clipboard_3.png#layoutTextWidth" alt=""></p>
 <p>In terms of scheduling the Logstash processes, a standard Deployment could be used to schedule Pods of Logstash throughout the K8s cluster. However, a Deployment will not be suitable for production level tuning that will have to be done at the Logstash level in the future.</p>
 <blockquote>
 <p>You might have noticed that we have used a StatefulSet with persistence instead of a Deployment in the above diagram. Why this is, has to do with fault tolerance requirements production deployments may have. This is discussed in detail in the last section of this article, where the basic setup has to be modified in order to withstand production level loads.</p>

@@ -13,40 +13,40 @@
     
     <item>
       <title>Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</title>
-      <link>https://chamila.dev/posts/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</link>
+      <link>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
       
-      <guid>https://chamila.dev/posts/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</guid>
+      <guid>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</guid>
       <description>Horton Plains at sunrise, Sri Lanka    This is a continuation of the addendum to a series of articles on ELK on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The previous post on this series was about enabling SSO between Kibana and KeyCloak.</description>
     </item>
     
     <item>
       <title>Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</title>
-      <link>https://chamila.dev/posts/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</link>
+      <link>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</link>
       <pubDate>Mon, 10 Feb 2020 20:26:46 +1300</pubDate>
       
-      <guid>https://chamila.dev/posts/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</guid>
+      <guid>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</guid>
       <description>This is a continuation of the addendum to a series of articles on ELK on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  As discussed in the last article, I will try to lay out the configuration details of a usable SSO based authn/authr design for an ELK deployment.</description>
     </item>
     
     <item>
       <title>Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</title>
-      <link>https://chamila.dev/posts/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</link>
+      <link>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</link>
       <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
       
-      <guid>https://chamila.dev/posts/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</guid>
+      <guid>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</guid>
       <description>Point Sur, Cali 01    I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s.</description>
     </item>
     
     <item>
       <title>ElasticSearch Index Management</title>
-      <link>https://chamila.dev/posts/2019-11-26_elasticsearch-index-management/</link>
+      <link>https://chamila.dev/blog/2019-11-26_elasticsearch-index-management/</link>
       <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
       
-      <guid>https://chamila.dev/posts/2019-11-26_elasticsearch-index-management/</guid>
+      <guid>https://chamila.dev/blog/2019-11-26_elasticsearch-index-management/</guid>
       <description>The comms tower on top of Riverston, Sri Lanka   As the series on ElasticSearch deployment management in K8s is complete, I thought of writing down some of the Index Management tasks that I had to implement in order to reduce the manual work involved in cluster maintenance.
  Following is the series of posts on ElasticSearch on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The following management steps are not mandatory to be implemented in a cluster to be production ready, however having them in place would greatly reduce some of the common headaches involved in an ELK stack management.</description>
@@ -54,40 +54,40 @@
     
     <item>
       <title>ElasticSearch on K8s: 05 - Visualization and Production Readying</title>
-      <link>https://chamila.dev/posts/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</link>
+      <link>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</link>
       <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
       
-      <guid>https://chamila.dev/posts/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</guid>
+      <guid>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</guid>
       <description>Woolshed Hut on Mt. Somers    This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Visualization Kibana is a web application which can be used to query data from an ElasticSearch cluster.</description>
     </item>
     
     <item>
       <title>ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</title>
-      <link>https://chamila.dev/posts/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</link>
+      <link>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</link>
       <pubDate>Sat, 23 Nov 2019 16:01:40 +1300</pubDate>
       
-      <guid>https://chamila.dev/posts/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</guid>
+      <guid>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</guid>
       <description>The morning shadow on the lower mountaineous plain beside Adam&amp;#39;s Peak, Sri Lanka    This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Storage and Indexing Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying.</description>
     </item>
     
     <item>
       <title>ElasticSearch on K8s: 03 - Log Enrichment with Logstash</title>
-      <link>https://chamila.dev/posts/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</link>
+      <link>https://chamila.dev/blog/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</link>
       <pubDate>Fri, 22 Nov 2019 01:05:37 +1300</pubDate>
       
-      <guid>https://chamila.dev/posts/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</guid>
+      <guid>https://chamila.dev/blog/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</guid>
       <description>A stash of sugar cane ready to be processed into sugar and Arrack    This is part of a series of short articles on setting up an ELK deployment on K8s.
   ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Enrichment Now that the logs are being collected from the required sources, it’s time to start making some sense out of them.</description>
     </item>
     
     <item>
       <title>ElasticSearch on K8s: 01 — Basic Design</title>
-      <link>https://chamila.dev/posts/2019-09-19_elasticsearch-on-k8s-01basic-design/</link>
+      <link>https://chamila.dev/blog/2019-09-19_elasticsearch-on-k8s-01basic-design/</link>
       <pubDate>Thu, 19 Sep 2019 20:29:53 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2019-09-19_elasticsearch-on-k8s-01basic-design/</guid>
+      <guid>https://chamila.dev/blog/2019-09-19_elasticsearch-on-k8s-01basic-design/</guid>
       <description>A design for a useful ELK deployment on K8s Log aggregation in a K8s environment is something I have lightly touched upon previously in multiple occasions. However setting up a minimal but a reliable log aggregation stack on top of K8s could quickly become an evolutionary process with each step improving on the previous one (and of course, everyone thinks they can do log aggregation before they actually start to do so).</description>
     </item>
     

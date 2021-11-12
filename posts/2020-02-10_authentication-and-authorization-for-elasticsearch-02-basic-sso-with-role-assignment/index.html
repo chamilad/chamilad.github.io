@@ -116,7 +116,7 @@
 	</div>
        </header>
         <div class="post-content markdown-body">
-          <p><img src="/posts/img/2020-02-10_authn_authr_elk_02_header.png" alt=""></p>
+          <p><img src="/blog/img/2020-02-10_authn_authr_elk_02_header.png" alt=""></p>
 <blockquote>
 <p>This is a continuation of the addendum to a series of articles on ELK on K8s.</p>
 </blockquote>
@@ -139,7 +139,7 @@
 <p>The exception to the Realm separation is the built-in realm named <code>master</code> which has access to all other realms as a means of administration.</p>
 </blockquote>
 <p>For the purposes of this article, KeyCloak&rsquo;s support for OIDC, SAML, and the concept of Realms will be used in the SSO and multi-tenancy design.</p>
-<p><img src="/posts/img/2020-02-10_authn_authr_elk_02_2.png" alt="KeyCloak Realms"></p>
+<p><img src="/blog/img/2020-02-10_authn_authr_elk_02_2.png" alt="KeyCloak Realms"></p>
 <h1 id="authentication-with-no-multitenancy">Authentication with no Multitenancy</h1>
 <p>Enabling an external IDP based authentication in ElasticSearch is somewhat straightforward. We just need to configure the IDP for ElasticSearch and point ElasticSearch to the proper IDP endpoint for the selected SSO protocol. For this to work, both parties (the Service Provider and the Identity Provider) should be resolvable at the end user&rsquo;s terminal.</p>
 <p>We will first configure KeyCloak to include configuration about the Kibana Service Provider and generate a <code>Client</code> for Kibana to use to initiate SAML communication. These information will then be used to configure ElasticSearch and Kibana to direct them to KeyCloak Identity Management instead of Basic Auth being used by default.</p>
@@ -155,8 +155,8 @@
 </blockquote>
 <p>When creating a SAML client, the publicly resolvable URL of the Kibana instance has to be used. This is the URL that will be trusted to initiate the SSO flow for this client. We will also configure Kibana to use the same URL in the SAML request document for this validation to go through.</p>
 <p>Additionally, one or more valid redirect URLs should be specified. If the incoming SAML request doesn&rsquo;t have a redirect URL matching any in that list, the SSO request will be denied.</p>
-<p><img src="/posts/img/2020-02-10_authn_authr_elk_02_kc_client1.png" alt="KeyCloak Client Configurations">
-<img src="/posts/img/2020-02-10_authn_authr_elk_02_kc_client2.png" alt="KeyCloak Client Configurations - Redirect URLs"></p>
+<p><img src="/blog/img/2020-02-10_authn_authr_elk_02_kc_client1.png" alt="KeyCloak Client Configurations">
+<img src="/blog/img/2020-02-10_authn_authr_elk_02_kc_client2.png" alt="KeyCloak Client Configurations - Redirect URLs"></p>
 <!-- raw HTML omitted -->
 <h2 id="configuring-elasticsearch---02---auth-realm-configuration">Configuring ElasticSearch - 02 - Auth Realm Configuration</h2>
 <p>On ElasticSearch, a SAML authentication configuration, otherwise known as <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/saml-guide-authentication.html">an authentication realm</a>, has to be created. This is specified in the <code>elasticsearch.yml</code> configuration file. This configuration contains the following information (for more information for the flow described here, refer to the <a href="https://chamilad.github.io/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/">previous article</a>).</p>

@@ -124,11 +124,11 @@
 <li>Call a service provider API, providing the token received in step #1</li>
 <li>Service provider validates the token and acts on the privileges translated from the token</li>
 </ol>
-<p><img src="/posts/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_0.jpeg#layoutOutsetLeft" alt=""></p>
+<p><img src="/blog/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_0.jpeg#layoutOutsetLeft" alt=""></p>
 <p>If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</p>
 <p>All tokens have a timeout period after which the validity of the it is expired and the client (application/user) is required to apply for a new token. During this period though, it makes little sense to repeatedly call the Identity Management Service for a new token, every time an API call has to be made.</p>
 <p>So the next sensible thing to do is to cache the retrieved token, until the timeout occurs.</p>
-<p><img src="/posts/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_1.jpeg#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_1.jpeg#layoutTextWidth" alt=""></p>
 <h4 id="pseudo-mediation">Pseudo-mediation</h4>
 <p>In this case, the flow of the logic would be as follows.</p>
 <ol>
@@ -167,17 +167,17 @@
    <span style="color:#f92672">&lt;/resource&gt;</span>
 <span style="color:#f92672">&lt;/api&gt;</span>
 </code></pre></div><p>A <code>curl</code> POST request to the above API would result in the text message <code>{&quot;status&quot;:&quot;0&quot;}</code> .</p>
-<p><img src="/posts/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_2.png#layoutOutsetCenter" alt=""></p>
+<p><img src="/blog/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_2.png#layoutOutsetCenter" alt=""></p>
 <p>The Carbon log shows the following message from the POST body we attached to the request.</p>
-<p><img src="/posts/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_3.png#layoutOutsetCenter" alt=""></p>
+<p><img src="/blog/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_3.png#layoutOutsetCenter" alt=""></p>
 <h4 id="iam-provider-mockservice">IAM Provider Mock Service</h4>
 <p>To mock the IAM Provider, I’m going to use a <a href="https://www.random.org/integers/">random integer generator</a> (We could use a IAM Middleware like <a href="https://wso2.com/identity-and-access-management">WSO2 Identity Server</a>, and an IAM Middleware could probably be the proper player in a real world scenario, however, to keep the focus on Cache management, I’m using the random integer generator. After all, we just need a “token” token that we can be sure to be random). A <code>GET</code> request to a <a href="https://www.random.org/integers/?num=1&amp;min=1&amp;max=100000&amp;col=1&amp;base=10&amp;format=plain&amp;rnd=new">customized random.org URL</a> will generate a random integer, per call. We will use this mechanism to generate our “tokens”.</p>
 <h4 id="mediation">Mediation</h4>
 <p>The mediation logic, according to what we came up in the <strong>Pseudo-mediation</strong>section is as follows.</p>
-<p><img src="/posts/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_4.jpeg#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_4.jpeg#layoutTextWidth" alt=""></p>
 <p>As the diagram explains, the <code>&lt;onCacheHit /&gt;</code> sequence will be <code>CallBESequence</code>. When the Cache lookup fails, the API’s <strong>IN</strong>sequence will make a call to retrieve a new token. The result of that call will be handled by the <code>TokenReceiverSequence</code>.</p>
 <p>To get in to the code, following is the API definition for the <code>/calllogging</code> API.</p>
-<p><img src="/posts/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_5.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_5.png#layoutTextWidth" alt=""></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;api</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://ws.apache.org/ns/synapse&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;AuthAndCallLoggingAPI&#34;</span> <span style="color:#a6e22e">context=</span><span style="color:#e6db74">&#34;/calllogging&#34;</span><span style="color:#f92672">&gt;</span>
    <span style="color:#f92672">&lt;resource</span> <span style="color:#a6e22e">methods=</span><span style="color:#e6db74">&#34;GET&#34;</span><span style="color:#f92672">&gt;</span>
       <span style="color:#f92672">&lt;inSequence&gt;</span>
@@ -229,7 +229,7 @@
 <li>persist the value retrieved from the endpoint</li>
 <li>Continue to the mediation logic where the backend call happens</li>
 </ol>
-<p><img src="/posts/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_6.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_6.png#layoutTextWidth" alt=""></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
 <span style="color:#f92672">&lt;sequence</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;TokenReceiverSequence&#34;</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://ws.apache.org/ns/synapse&#34;</span><span style="color:#f92672">&gt;</span>
     <span style="color:#75715e">&lt;!-- Persist the response from random.org to Cache --&gt;</span>
@@ -250,7 +250,7 @@
 <li><code>collector</code> is set to <code>true</code>, because we are persisting values here</li>
 </ol>
 <p>Next the mediation logic continues to <code>CallBESequence</code>. We have not modified the message context during this sequence, which means the message context consists of the value we received from the random.org (our mock IAM Service). The backend calling sequence will extract values from the message context and use them to call the backend properly.</p>
-<p><img src="/posts/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_7.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_7.png#layoutTextWidth" alt=""></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
 <span style="color:#f92672">&lt;sequence</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;CallBESequence&#34;</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://ws.apache.org/ns/synapse&#34;</span><span style="color:#f92672">&gt;</span>
     <span style="color:#75715e">&lt;!-- Retrieve token from the message context --&gt;</span>
@@ -280,11 +280,11 @@
 <span style="color:#f92672">&lt;/sequence&gt;</span>
 </code></pre></div><h4 id="cache-hitscenario">Cache Hit Scenario</h4>
 <p>Going back to the logic where the cache lookup is done, you can see that <code>&lt;onCacheHit /&gt;</code> refers to the same sequence <code>CallBESequence</code>. After a cache hit, the message context is changed to the value retrieved from the cache. Therefore, the <code>&lt;property /&gt;</code> mediator expression <code>$body//p1:text</code> results in the token that was retrieved during the last cache miss scenario.</p>
-<p><img src="/posts/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_8.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_8.png#layoutTextWidth" alt=""></p>
 <h4 id="piecing-it-alltogether">Piecing it All Together</h4>
 <p>After deploying the above configuration (2 APIs + 2 Sequences), we can test this story by making a couple of <code>curl</code> requests to the <code>/calllogging</code> API.</p>
 <pre><code>curl -v http://localhost:8280/calllogging
-</code></pre><p><img src="/posts/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_9.png#layoutOutsetCenter" alt=""></p>
+</code></pre><p><img src="/blog/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_9.png#layoutOutsetCenter" alt=""></p>
 <p>The first request results in a cache miss, and the token retrieval mediation logic is invoked. We can see this by the log line <code>TOKEN_RECV</code> printed in the console. Here, the token received is <code>42945</code>. This is then sent to the backend (evident in the log line <code>request--Payload:</code>).</p>
 <p>The next <code>curl</code> request made immediately after the first one results in a cache hit. There is no token retrieval logic to be done (no <code>TOKEN_RECV</code> log line), and the same token is sent to the backend.</p>
 <p>The third request is made after more than <strong>two minutes</strong>, the <code>120</code> timeout value in seconds we specified in the Cache mediator. This results in a cache miss, therefore the token retrieval logic is executed again. Hence the appearance of the log line <code>TOKEN_RECV</code> with a new token <code>67180</code>.</p>

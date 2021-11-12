@@ -138,7 +138,7 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
 <pre><code>ECS_AVAILABLE_LOGGING_DRIVERS=[&quot;awslogs&quot;,&quot;splunk&quot;]
 </code></pre><p>As you probably have guessed by now, any number of <a href="https://docs.docker.com/config/containers/logging/configure/#supported-logging-drivers">supported Docker logging drivers </a>can be specified here.</p>
 <p>When creating a Task Definition for the WSO2 deployment, in the Container definition, go down <strong>Storage and Logging</strong>section. Select the drop down list for <strong>Log Configuration</strong> to view the list of OOTB supported logging drivers.</p>
-<p><img src="/posts/img/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment_0.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment_0.png#layoutTextWidth" alt=""></p>
 <blockquote>
 <p>While there are a list of available logging drivers, the entries in this list will not be edited depending on the values added for above mentioned ECS_AVAILABLE_LOGGING_DRIVERS agent configuration. These are only a static list of options. The existence of an option here does not necessarily mean that Docker daemon on the Cluster Instances may support them without the necessary configuration.</p>
 </blockquote>

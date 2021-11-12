@@ -13,10 +13,10 @@
     
     <item>
       <title>Ballerina with Container Support</title>
-      <link>https://chamila.dev/posts/2017-02-21_ballerina-with-container-support/</link>
+      <link>https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/</link>
       <pubDate>Tue, 21 Feb 2017 06:48:33 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2017-02-21_ballerina-with-container-support/</guid>
+      <guid>https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/</guid>
       <description>WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the WSO2Con 2017 in San Fransisco. Ballerina is a general purpose language with a focus on integration and a visual approach to coding. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “Connectors” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.</description>
     </item>
     

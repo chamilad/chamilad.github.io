@@ -117,7 +117,7 @@
        </header>
         <div class="post-content markdown-body">
           <figure>
-    <img src="/posts/img/2019-11-25_elasticsearch-on-k8s-05_01.jpeg"/> <figcaption>
+    <img src="/blog/img/2019-11-25_elasticsearch-on-k8s-05_01.jpeg"/> <figcaption>
             <h4>Woolshed Hut on Mt. Somers</h4>
         </figcaption>
 </figure>
@@ -142,7 +142,7 @@
 <blockquote>
 <p>Exposing the stack to outside traffic inevitably means that some kind of application level authentication and authorization will have to be put in place. This will be discussed in a future article.</p>
 </blockquote>
-<p><img src="/posts/img/draft__clipboard_5.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/draft__clipboard_5.png#layoutTextWidth" alt=""></p>
 <p>Since there are no special requirements for scheduling when it comes to Kibana, a typical K8s Deployment can be used to spawn Pods. As it turns out, this will also be the layer with the lowest user generated load (mostly because Kibana will be used during the time of an abnormal behavior in the system to debug and troubleshoot, situations which ideally should be rare. Having the bulk of the effective load for a request performed at the ElasticSearch layer also helps to reduce the load on the visualization tool).</p>
 <p>Furthermore, being stateless on its own (since ElasticSearch is its persistence), Kibana Pods can be scaled up and down as desired without having to worry about persistence requirement.</p>
 <p>When Kibana is first started up, it checks for an ElasticSearch index named <code>.kibana</code>, and creates one if none is found. This is the index that should be persisted between cluster upgrades. This index stores all the Kibana specific settings and artifacts (called <strong>Saved Objects</strong>).</p>
@@ -152,7 +152,7 @@
 <h1 id="gluing-the-stacktogether">Gluing the stack together</h1>
 <p>Now that we have discussed each tool of the stack in detail, let’s take a closer look at how these components interact with each other.</p>
 <p>Looking back at the first diagram <a href="/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a">on the first post of this series</a> which shows the complete logical deployment of the stack, the interactions between the components can be broken down to the following.</p>
-<p><img src="/posts/img/2019-09-19_elasticsearch-on-k8s-01basic-design_1.png#layoutOutsetCenter" alt=""></p>
+<p><img src="/blog/img/2019-09-19_elasticsearch-on-k8s-01basic-design_1.png#layoutOutsetCenter" alt=""></p>
 <ol>
 <li>Filebeat talks to Logstash through the K8s Service <code>logstash</code> through port <code>5066</code> to push collected logs</li>
 <li>Logstash talks to ElasticSearch through the K8s Service <code>elasticsearch</code> through the port <code>9200</code> to push enriched logs</li>
@@ -170,7 +170,7 @@
 <p>Logstash on the other hand could get affected first by a spike of input. “<a href="https://www.elastic.co/guide/en/logstash/current/persistent-queues.html#persistent-queues-architecture">Persistent Queues</a>” (PQs) is a built-in feature for Logstash to tackle this exact problem. In brief, Logstash instances with PQs enabled will keep a configurable file based buffer (instead of a fixed in-memory buffer) for incoming events to be processed. Events will clear this buffer only after being fully processed (i.e. going through <strong>filter</strong> and/or <strong>output</strong> stages, based on <strong>ACK</strong>nowledging the event to Filebeat as processed). If the buffer is filled at a certain points (ex: by a spike of inputs from one of the Filebeat instances) that Logstash instance will stop accepting events for processing, until the buffer is cleared to queue more input. This method of back-pressuring inputs lets Logstash gracefully fail during a spike, without dropping events.</p>
 <p>PQs can be configured to have both a maximum event count and a maximum size on disk. Therefore, the buffer size can be experimented with to have the optimum size for managing back-pressure in a sensible manner.</p>
 <p>For PQs, durability is important, and therefore, storing the PQs on a Pod storage, which does not survive Pod lifecycles, defeats the purpose. PQs should be complemented with Persistent Storage for Logstash. The easiest way to handle this is to convert the Logstash K8s Deployment to a StatefulSet with a <code>PersistentVolumeClaimTemplate</code> . This will make sure that PQs are stored in volumes that will not go down with the Pod or even the StatefulSet controller. This is the reason why Logstash component is portrayed as a StatefulSet managed set of Pods in the initial diagram.</p>
-<p><img src="/posts/img/draft__clipboard_6.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/draft__clipboard_6.png#layoutTextWidth" alt=""></p>
 <h3 id="throttling-events-at-logstash">Throttling Events at Logstash</h3>
 <p>The above method of disk based buffering is only half of the work that can be done to throttle input at the Logstash layer. Provided that we have an understanding of the wanted and unwanted events, we can restrict the load on the stack furthermore. This is an active method of throttling as opposed to the passive buffering method described above. During buffering, the events that are not acked by Logstash will be tried again by Filebeat later. With throttling, the unwanted events are typically dropped and will not be evaluated again (unless otherwise fed again into the Logstash pipeline. This however will be rare since use of throttling will mostly happen for unwanted events).</p>
 <p>How throttling is done at Logstash is using the <a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-throttle.html">Throttle Filter</a>. It defines a window based on the number of events passing through the filter, so that events outside that window are throttled. This window is defined by the properties, <code>before_count</code> and <code>after_count</code>. This window is reset from time to time, which is also configurable using properties <code>period</code> and <code>max_age</code>. Furthermore, the throttle filter can be selectively applied for sources that are only likely to produce spikes of data. There could be multiple such window counters based on a <code>key</code> that is defined to separate events into diffeerent buckets.</p>

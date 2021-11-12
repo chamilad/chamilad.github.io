@@ -111,7 +111,7 @@
        </header>
         <div class="post-content markdown-body">
           <figure>
-    <img src="/posts/img/2019-11-23_elasticsearch-on-k8s-04_01.jpeg"/> <figcaption>
+    <img src="/blog/img/2019-11-23_elasticsearch-on-k8s-04_01.jpeg"/> <figcaption>
             <h4>The morning shadow on the lower mountaineous plain beside Adam&#39;s Peak, Sri Lanka</h4>
         </figcaption>
 </figure>
@@ -143,7 +143,7 @@
 </blockquote>
 <h2 id="scheduling-and-networking">Scheduling and Networking</h2>
 <p>For our sample problem, a 2-node ElasticSearch cluster is enough, although better fault tolerance is achieved with odd numbered clusters, as odd numbers reduce the possibility of split-brain situations during most faulty scenarios. However, for the scope of this article, the configuration that would work for a 2-node cluster will also work for a 3-node cluster.</p>
-<p><img src="/posts/img/draft__clipboard_4.png#layoutTextWidth" alt=""></p>
+<p><img src="/blog/img/draft__clipboard_4.png#layoutTextWidth" alt=""></p>
 <p>The K8s controller used for the ElasticSearch deployment is a StatefulSet. This is because of the persistence and network consistency that the log persistence tool requires. StatefulSets will schedule Pods in a manner that makes sure in case of Pod downtimes the same resources will be allocated to the newly created Pods during healing. These include any persistent volumes attached to the Pods in addition to consistent networking through the use of <strong>Headless Services</strong> where each Pod will have a standard consistent name to be reached. Each Pod is also started in a sequential manner where for a replica count of 3, the start sequence will be <code>pod-0</code> , <code>pod-1</code> , <code>pod-2</code> . Each subsequent Pod will wait until the previous Pod becomes live and running. Together, these features provide a sane way of initializing a cluster where node membership is managed by well-known addresses rather than having to manage the dynamic nature of Pods in K8s.</p>
 <p>In the StatefulSet, we are also going to define a <code>PersistentVolumeClaimTemplate</code> which generates a <code>PersistentVolumeClaim</code> for each Pod scheduled by the StatefulSet. The allocated <code>PersistentVolume</code> will be mounted to the location which ElasticSearch considers as the data directory, where all data is stored. This is because data should survive beyond Pod lifecycles, or even StatefulSet lifecycles.</p>
 <p>In terms of networking, this setup use two K8s Services for ElasticSearch Pods. One is a typical <a href="/load-balancing-and-reverse-proxying-for-kubernetes-services-f03dd0efe80">ClusterIP Service</a> named <code>elasticsearch</code> that exposes the ElasticSearch HTTP port, which by default is <code>9200</code>. This can be used by outside processes (ex: Logstash, Kibana) to reach the ElasticSearch Pods in a load balanced manner. The IPs resolved for each call to the Service name could be the either of the Pod IP addresses.</p>

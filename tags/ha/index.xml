@@ -13,10 +13,10 @@
     
     <item>
       <title>Creating a Simple ActiveMQ Master/Slave Setup</title>
-      <link>https://chamila.dev/posts/2015-11-17_creating-a-simple-activemq-masterslave-setup/</link>
+      <link>https://chamila.dev/blog/2015-11-17_creating-a-simple-activemq-masterslave-setup/</link>
       <pubDate>Tue, 17 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2015-11-17_creating-a-simple-activemq-masterslave-setup/</guid>
+      <guid>https://chamila.dev/blog/2015-11-17_creating-a-simple-activemq-masterslave-setup/</guid>
       <description>ActiveMQ is a high performing message broker, however if clustering is needed, it supports a number of methods. Out of these, the Master/Slave is a pattern where the persistence layer is shared between multiple broker instances. A Single Master broker connects to the persistence, and the rest of the Slave brokers keep waiting to attain the lock on the persistence. If the Master node goes down the lock for the persistence is released and a Slave quickly acquires it, allowing a client to continue operation without any data loss.</description>
     </item>
     

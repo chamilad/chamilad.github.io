@@ -13,10 +13,10 @@
     
     <item>
       <title>BreadPool — a Thread Pool for Python</title>
-      <link>https://chamila.dev/posts/2015-12-10_breadpool-a-thread-pool-for-python/</link>
+      <link>https://chamila.dev/blog/2015-12-10_breadpool-a-thread-pool-for-python/</link>
       <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://chamila.dev/posts/2015-12-10_breadpool-a-thread-pool-for-python/</guid>
+      <guid>https://chamila.dev/blog/2015-12-10_breadpool-a-thread-pool-for-python/</guid>
       <description>A thread pool is not a new concept. It’s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? Because the program wouldn’t be starting threads as it sees fit and somehow reach the maximum thread number soon. Simply said thread pools allows us to limit the number of threads spawned by our program execution. Trust me, you don’t want your code going to town spawning threads.</description>
     </item>
     
