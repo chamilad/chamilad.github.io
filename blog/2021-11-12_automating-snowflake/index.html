@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2021-11-12_automating-snowflake/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2021-11-12_automating-snowflake/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Automating Snowflake",
+      "headline" : "Automating Snowflake",
+      "description" : "A couple of approaches to automate Snowflake Data Warehousing",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2021",
+      "datePublished": "2021-11-12 19:32:16 \x2b1300 NZDT",
+      "dateModified" : "2021-11-12 19:32:16 \x2b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2021-11-12_automating-snowflake\/",
+      "keywords" : [ "", ]
+  }
+</script>
+<title>Automating Snowflake - chamila.dev</title>
+  <meta property="og:title" content="Automating Snowflake - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="A couple of approaches to automate Snowflake Data Warehousing" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamila.dev/">chamila.dev</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Automating Snowflake</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2021-11-12 19:32:16 NZDT">
+                12 Nov 2021
+		<p><b>Read time:</b> 14m
+		<br /><b>Word count:</b> 2879</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-story">The Story</a></li>
+    <li><a href="#approach-1---terraform">Approach 1 - Terraform</a>
+      <ul>
+        <li><a href="#defining-the-user-interface">Defining the &ldquo;user&rdquo; interface</a></li>
+        <li><a href="#code-structure">Code Structure</a></li>
+        <li><a href="#maintenance-or-not-being-able-to-do-that">Maintenance, or not being able to do that</a></li>
+        <li><a href="#permissions">Permissions</a></li>
+        <li><a href="#pets-not-cattle">Pets, not cattle</a></li>
+        <li><a href="#pros">Pros</a></li>
+        <li><a href="#cons">Cons</a></li>
+      </ul>
+    </li>
+    <li><a href="#approach-2---imperative-migrations">Approach 2 - Imperative Migrations</a>
+      <ul>
+        <li><a href="#idempotency">Idempotency</a></li>
+        <li><a href="#tracking-changes">Tracking changes</a></li>
+        <li><a href="#batteries-not-included">Batteries not included</a></li>
+        <li><a href="#reusability">Reusability</a></li>
+        <li><a href="#pros-1">Pros</a></li>
+        <li><a href="#cons-1">Cons</a></li>
+      </ul>
+    </li>
+    <li><a href="#approach-3---excel-sheets">Approach 3 - Excel sheets</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <figure>
+    <img src="/blog/img/2021_11_12_header.jpeg"/> <figcaption>
+            <h4>Only photo with me for now that&#39;s closest to the theme</h4>
+        </figcaption>
+</figure>
+
+<p>I had an opportunity to work on automating a Snowflake workflow last year. The scenario involved a typical Snowflake based setup for a Data Warehouse where data would be ingested from an Azure Blob Storage or AWS S3 and stored on multiple databases. I&rsquo;m not going to dive into intricate details, but I&rsquo;d like to write down some of the approaches I wanted to take during this exercise. And yes, that makes this blog post way overdue.</p>
+<h2 id="the-story">The Story</h2>
+<p>There would be a need to define a couple of data warehouses, and databases with each having different schemas, stages, and a couple of roles, resource monitors. In other words a typical setup on a Snowflake deployment for Data Warehousing. Given the requirements, creating these resources should be fairly straightforward, and maintaining them should also be made easy. The data model can change from time to time, hence the emphasis on maintenance.</p>
+<h2 id="approach-1---terraform">Approach 1 - Terraform</h2>
+<p>This was my first foray into automating something that resembled a database (and only the Data Warehousing aspects of Snowflake were being considered in the scenario). Coming from a DevOps engineering angle, my first instinct was to go with something like Terraform. The <a href="https://github.com/chanzuckerberg/terraform-provider-snowflake">ChanZuckerbergFoundation Snowflake Terraform provider</a> made this a lot easier, since a lot of Snowflake constructs that were considered in the scenario were already written into Terraform Resources. As someone who wrestled with the older Terraform provider plugin interface(almost completed writing a provider for the WSO2 API Cloud), having this provider out of the box played a major role in deciding on this approach.</p>
+<p>Being somewhat of a database, managing Snowflake with Terraform brings out a totally different set of problems to work with than a typical infrastructure project. This is after all natural. Most providers in Terraform wrap a symmetric API provided by some kind of a public Cloud Service Provider. This makes it easy to write the provider plugin code around certainities that come with the design.</p>
+<p>For Snowflake though, the &ldquo;API&rdquo; is the SQL interface that allows executing the Snowflake SQL. This isn&rsquo;t exactly what can be called symmetric, and it&rsquo;s not exactly an API in realistic terms.</p>
+<h3 id="defining-the-user-interface">Defining the &ldquo;user&rdquo; interface</h3>
+<p>The first hurdle was to design the input contract, the variable structure. For a typical infrastructure project, this is almost always straightforward. The expected input is well structured, well documented, and fairly normalized around RESTful principles. The project&rsquo;s main <code>variables.tf</code> file ends up as almost a mirror of the main infrastructure provider API. For a module that creates a VPC with a few subnets in AWS, the <code>variables.tf</code> file ends up with variables like <code>availability_zones</code>, <code>cidr_range</code>, <code>private_cidrs</code>, <code>public_cidrs</code> etc, which are directly then passed into the AWS provided modules or the <code>resource</code> calls.</p>
+<p>For an open ended SQL interface, this becomes a bit blurrier. SQL statements are open ended, and could have a number of permutations for a given command. The relationships between different constructs are sometimes decoupled (ex: resource monitor vs data warehouse), but then other times tightly coupled (different types of grants). There could be different combinations of statements that could end up with the same state.</p>
+<p>Therefore, a stable but flexible <code>variables.tf</code> was needed to be defined. This would need to allow for changing number of data warehouses, databases, schemas and other resources, while not forcing the business logic to duplicate for differences in the resource counts. At the same time, it should allow for different combinations of inputs to end up with the same state where possible (ex: it should be possible to define database role grants when defining a database structure, and it should also be possible to define new role grants and database attachments to the role grants later).</p>
+<p>Terraform Variables allow complex scenarios to be defined like this through the use of <code>list</code>, <code>map</code>, and <code>object</code> types. With the <code>object</code> type, we can define a structure for a single entity (a database), and then make use of <code>map</code> to add some flexibility into the variable structure.</p>
+<h5 id="single-database-object">Single <code>database</code> object</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hcl" data-lang="hcl"><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;database&#34;</span> {
+  type <span style="color:#f92672">=</span> <span style="color:#66d9ef">object</span>({
+    comment        <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span>,
+    retention_days <span style="color:#f92672">=</span> <span style="color:#66d9ef">number</span>,
+    schemas <span style="color:#f92672">=</span> <span style="color:#66d9ef">list</span>(<span style="color:#66d9ef">object</span>({
+      name    <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span>,
+      comment <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span>,
+      privileges <span style="color:#f92672">=</span> <span style="color:#66d9ef">list</span>(<span style="color:#66d9ef">object</span>({
+        roles     <span style="color:#f92672">=</span> <span style="color:#66d9ef">set</span>(<span style="color:#66d9ef">string</span>),
+        privilege <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span>,
+      })),
+    })),
+    privileges <span style="color:#f92672">=</span> <span style="color:#66d9ef">list</span>(<span style="color:#66d9ef">object</span>({
+      roles     <span style="color:#f92672">=</span> <span style="color:#66d9ef">set</span>(<span style="color:#66d9ef">string</span>),
+      privilege <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span>,
+    })),
+  })
+}
+</code></pre></div><h5 id="flexible-databases-input">Flexible <code>databases</code> input</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hcl" data-lang="hcl"><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;databases&#34;</span> {
+  type <span style="color:#f92672">=</span> <span style="color:#66d9ef">map</span>(<span style="color:#66d9ef">object</span>({
+    comment        <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span>,
+    retention_days <span style="color:#f92672">=</span> <span style="color:#66d9ef">number</span>,
+    schemas <span style="color:#f92672">=</span> <span style="color:#66d9ef">list</span>(<span style="color:#66d9ef">object</span>({
+      name    <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span>,
+      comment <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span>,
+      privileges <span style="color:#f92672">=</span> <span style="color:#66d9ef">list</span>(<span style="color:#66d9ef">object</span>({
+        roles     <span style="color:#f92672">=</span> <span style="color:#66d9ef">set</span>(<span style="color:#66d9ef">string</span>),
+        privilege <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span>,
+      })),
+    })),
+    privileges <span style="color:#f92672">=</span> <span style="color:#66d9ef">list</span>(<span style="color:#66d9ef">object</span>({
+      roles     <span style="color:#f92672">=</span> <span style="color:#66d9ef">set</span>(<span style="color:#66d9ef">string</span>),
+      privilege <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span>,
+    })),
+  }))
+}
+</code></pre></div><p>This way, any number of databases can be defined with the same structure without having to mess around with the business logic of the infrastructure code. The same pattern goes for any other resource type, data warehouses, schemas, and resource monitors.</p>
+<p>There is a small caveat here though. With the <code>object</code> type, you can&rsquo;t really define meaningful defaults for the fields inside the object definition. A <code>default</code> value can be defined, however, that will be for the whole object, i.e. no deep merging is done (at least at the time this code was written). No partially defined inputs survive the first round of parsing. A workaround here is to define the default value object as a different variable and merge the two at runtime as a <code>local</code>. However, when the <code>object</code> definition is wrapped with a <code>map</code>, this is impossible to do, at least not without seriously degrading the readability of the code. As evident from the above codelet, this is already somewhat complex to read through.</p>
+<h3 id="code-structure">Code Structure</h3>
+<p>With Terraform, there is enough flexibility to structure the code into different layers of modules. However, the most common pattern is to modularise the reusable components, define &ldquo;patterns&rdquo; that compose the modules together, with the final layer containing the environment specific details. This final layer becomes the root module that gets invoked with the <code>terraform</code> binary. The level of abstraction, or more accurately the depth of abstraction could vary, but this is almost always a pattern anyone ends up with, when they practice the radical notion of reusability (hint: it&rsquo;s not radical).</p>
+<p>This is exactly how I evolved the code base. There would different scenarios where the infrastructure patterns would need to be changed. These could be the patterns that different modules like <code>processing</code> (for data warehousing), <code>storage</code> for databases and schemas etc. Modularisation makes it easy to compose new patterns as the need arises, which for everyone&rsquo;s mental health, should be based on customer requirements.</p>
+<p>However working with this model requires software engineers with software engineering capabilities like understanding the basic principles like resusability, modularity, and even why a module should be cohesive but decoupled. I&rsquo;ll just leave it at that.</p>
+<h3 id="maintenance-or-not-being-able-to-do-that">Maintenance, or not being able to do that</h3>
+<p>Terraform, in its bare sense is an API wrapper. A Terraform provider&rsquo;s contract is to implement how the CRUD operations for a given set of resources, and only that. To do this, the provider code should have a reference point to hold on to during the various CRUD operations for a given resource. This is where the <code>id</code> of a Terraform state resource comes in.</p>
+<p>A symmetric API almost guarantees resource identifiers.For AWS, this is the resource ID for each resource (ex: instance ID for EC2 instances). A resource identifier that&rsquo;s unique and persistent through changes is key for a successful Terraform provider implementation. Otherwise you have to use unreliable resource identifiers like name labels in the <code>SetId()</code> method call in the CRUD implementation code.</p>
+<p>Turns out, treating SQL as an API brings out this exact issue. Resources in Snowflake do not have any unique persistent ID. Well, there could be uniqueness between the names of resources of the same type, but they are never persistent. Therefore, the following scenario breaks completely.</p>
+<ol>
+<li>create database <code>db1</code></li>
+<li>create a schema in <code>db1</code> named <code>sch1</code></li>
+<li>apply changes</li>
+<li>change database name to <code>newdb1</code></li>
+<li>apply breaks</li>
+</ol>
+<p>This is because during step #5, a series of things happen that breaks halfway through.</p>
+<ol>
+<li>a diff of the current state and intended state is generated. it&rsquo;s decided to change <code>db1</code> to <code>newdb1</code> and by dependency schema <code>sch1</code>'s entry in Terraform state will have to be updated to reflect the parent resource name change</li>
+<li><code>db1</code> gets renamed to <code>newdb1</code></li>
+<li>when the API call, or in this case the SQL statement is built to update the <code>sch1</code> schema, the SQL execution fails. Because by this time there is no database named <code>db1</code></li>
+</ol>
+<p>Why did Terraform use <code>db1</code> instead of the new name <code>newdb1</code> when issuing the second SQL statement? It&rsquo;s because the <code>id</code> field for both the database resource and the parent resource of the schema resource has been persisted with the SQL resource name and not an ID. When the name changed, i.e. behaved in a volatile way, the SQL statement breaks.</p>
+<p>So either you have to get the naming right for most resources that can act as a dependency for other resources, or you should learn to live with the shitty names like <code>db1</code>.</p>
+<p>The root cause of this issue arises from the basic design principles of Terraform, having a state. Declarative code usually follows this approach since storing the previous state is easier than computing it everytime a diff is run.</p>
+<p>We could try out something like Ansible where being declarative or imperative is a matter of the code and not the tool. However this issue cannot be worked around like that. Even with an Ansible module, the returns and facts will have to be passed meticulously to resolve this situation. And we would still end up with brittle code that no one can touch without bring in the entire team for a code review.</p>
+<h3 id="permissions">Permissions</h3>
+<p>Unlike most Cloud or other infrastructure providers, Snowflake resources inherit the roles they were created under. I&rsquo;m not sure if this design has been changed, but when executing pure SQL, a data engineer would need to switch to the non-privileged roles to create resources like databases and schema.</p>
+<p>While this is not the usual way for Terraform, getting around this is relatively easy to do. Terraform already has a similar pattern where the state backend and actual resources being managed by Terraform could be in different Cloud providers or different accounts in the same Cloud provider.</p>
+<p>For this scenario, each role could be defined with its own <code>provider</code> config, which can then be referenced by the resource or module calls.</p>
+<h3 id="pets-not-cattle">Pets, not cattle</h3>
+<p>Pets vs Cattle is a central consideration around most architectural discussions these few years. Elasticity provided by Cloud Service Providers have normalised replacing older infrastructure resources with new ones. Periodic refreshes even without any kind of incident is the norm now, not the exception.</p>
+<p>Tools like Terraform are perfectly designed on top of this thinking. State diff? Delete and recreate. Someone accidentally deleted an instance? Delete and recreate.</p>
+<p>However, a Snowflake database is not cattle by any standard. These are precious datasets that are sometimes refined or to be refined and stored again. These would be datasets important in training new models for critical business functions. These would be results of ELT pipelines that aggregated key business impacting intelligence. In any scenario, data is not something that&rsquo;s reproducible easily.</p>
+<p>Using Terraform to manage Snowflake resources is bit reckless in this sense. Terraform is a bit too trigger happy to delete resources and an engineer tired after 6 hours of continuous meetings could easily key in <code>yes</code> to a Terraform diff that calculated a list of databases should be deleted and recreated to reconcile state. Lifecycle hooks could be somewhat effective gatekeeping here, but ultimately the danger would still be there, lurking.</p>
+<h3 id="pros">Pros</h3>
+<ol>
+<li>Easy to get started with thanks to third party modules available</li>
+<li>Single source of truth that can be grepped, updated, and understood</li>
+<li>DevOps engineers can easily write the code and incorporate into the usual toolset</li>
+<li>Can build an elaborate hierarchy of reusable modules increasing maintainability in the long run</li>
+<li>Can integrate easily into workflow orchestration tools</li>
+</ol>
+<h3 id="cons">Cons</h3>
+<ol>
+<li>Data engineers cannot easily understand what&rsquo;s written in Terraform</li>
+<li>Can easily break with some simple changes</li>
+<li>A corrupted state file can clear out an entire Data Lake</li>
+</ol>
+<h2 id="approach-2---imperative-migrations">Approach 2 - Imperative Migrations</h2>
+<p>Snowflake has released tool named <a href="https://github.com/Snowflake-Labs/schemachange"><code>schemachange</code> (previously known as <code>snowchange</code>, they have changed the name so if you&rsquo;re confused as I am from the search results, don&rsquo;t be)</a>, which is a <a href="https://flywaydb.org/">FlywayDB</a> like migration tool for Snowflake. In brief, you can write the changes to Snowflake deployments in the SQL scripts numbered in order as you would write database migration scripts in any software (at least I hope every enterprise application follows some kind of migration format). <code>schemachange</code> will execute those scripts in the numbered order. That&rsquo;s it, it does nothing more.</p>
+<p>This approach allows us to work around a few issues in the previous approach. It gives Data Engineers direct freedom to incorporate their scratch notes into pre-production code. It doesn&rsquo;t need to work around resource ID issues mentioned in the Terraform approach. There is no state file to protect. And unless explicitly written, it would not delete resources as a side effect.</p>
+<p>However this approach has its own set of issues.</p>
+<h3 id="idempotency">Idempotency</h3>
+<p>Idempotency, or being able to end up with the same state when run multiple times, is something Terraform can boast about right from the start. It&rsquo;s what it&rsquo;s born to do. It&rsquo;s what a declarative approach to Infrastructure-as-Code is supposed to deliver.</p>
+<p>However, with this approach, where SQL scripts are the basis of how the resources are being created, the scripts themselves will have to be written in an idempotent way. This time, idempotency cannot be assumed from the tool, rather the business logic should contain it. This isn&rsquo;t something new for the SQL migration scripts since <code>IF NOT EXISTS</code> is something you&rsquo;ll be able to grep for in almost every code base with SQL scripts.</p>
+<h3 id="tracking-changes">Tracking changes</h3>
+<p>With Terraform, you&rsquo;d have one version of the code to check at a given point in time. For a given database resource, you&rsquo;ll be able to track the changes made in the Git Log. The entire list of resources being managed by Terraform will be in one place (multiple files and directories, yeah, but all at the same temporal point, now).</p>
+<p>With migration scripts, to understand why certain Snowflake resources are the way they are, you have to wade through every migration script written going backwards from the current state. This gets more complicated when standards are not followed and the same migration script is used to add new resources.</p>
+<h3 id="batteries-not-included">Batteries not included</h3>
+<p><code>schemachange</code> takes care of migration script execution, but defining an input contract is almost impossible for changes. With Terraform, this is a matter of building better UX to bridge the gap between the variables structure and human interaction. However, with <code>schemachange</code> using SQL directly the only direct improvement that can be made is to build UI that allows users to write SQL on it. This SQL has to be then parsed for validation and stored properly. With Terraform, validation is built into variables with strict schema being defined for each variable as described above.</p>
+<h3 id="reusability">Reusability</h3>
+<p>With the migration script approach, there is a certain flexibility provided by the use of SQL. There could be a halfway built set of SQL scripts that can avoid the boilerplate SQL code needed to build the Snowflake resources.</p>
+<p>However, the modularity and reusability of this code has to be built into the file structure and at most an ad-hoc compiler tool. There is no inherent moularity that can be made use here, in contrast to Terraform where modularity is one of the key design considerations.</p>
+<h3 id="pros-1">Pros</h3>
+<ol>
+<li>Data engineers can directly write provisioning automation</li>
+<li>No danger of data being accidentally deleted</li>
+<li>Not easily broken if sanitary code is being written</li>
+</ol>
+<h3 id="cons-1">Cons</h3>
+<ol>
+<li>Idempotency isn&rsquo;t a given</li>
+<li>Logic spread across different migration scripts</li>
+<li>Reusability of the code isn&rsquo;t built in</li>
+<li>Has to build tooling on top of it to be user friendly</li>
+<li>Validation has to be done explicitly, not built into the tool</li>
+</ol>
+<h2 id="approach-3---excel-sheets">Approach 3 - Excel sheets</h2>
+<p>Wait. Take a deep breath, and think twice before you suggest this at a meeting. An Excel sheet is not a tool you should use in production automation. If this is your idea of automation and user input, stop, and let the people who know what&rsquo;s actually involved do their job.</p>
+<p>Having had to hear this being suggested in real life and worse, seeing dumbass product managers who have no idea about their product celebrating the idea like the next disruption in the industry, and even worse, seeing engineers having to spend their time converting Excel CSV to Terraform <code>.tfvars</code> format, I&rsquo;ve made it a point to staunchly oppose ideas like this. If you think it&rsquo;s bit a too harsh, you have better patience than me.</p>
+<p>Please do not be deluded into thinking Microsoft Office products are DevOps automation tools.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Some details might have changed since I worked with these tools. <code>snowchange</code> is now <code>schemachange</code>. The Terraform provider for Snowflake seems to have improved, and Snowflake has also moved into new areas. In any case, hope the above learnings help you if you find yourself having to automate Snowflake operations.</p>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/">&lt; CI/CD for Apache Nifi 02: Automation with NipyAPI</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>
