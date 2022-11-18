@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.105.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2017",
-      "datePublished": "2017-02-21 06:48:33.269 \x2b0000 UTC",
-      "dateModified" : "2017-02-21 06:48:33.269 \x2b0000 UTC",
+      "datePublished": "2017-02-21 06:48:33.269 \u002b0000 UTC",
+      "dateModified" : "2017-02-21 06:48:33.269 \u002b0000 UTC",
       "url" : "https:\/\/chamila.dev\/blog\/2017-02-21_ballerina-with-container-support\/",
       "keywords" : [ "Docker","DevOps","Wso2","Integration","Programming", ]
   }
@@ -133,9 +133,9 @@
 <li>Clone <a href="https://github.com/ballerinalang/container-support">Ballerina Container Support repository</a> and checkout tag <strong>v0.8.0</strong>.</li>
 <li>Navigate to <strong>ballerina-base-image</strong> folder and execute <strong>build.sh</strong> as follows.</li>
 </ol>
-<pre><code>./build.sh -d ~/Downloads/ballerina-0.8.0.zip 
+<pre tabindex="0"><code>./build.sh -d ~/Downloads/ballerina-0.8.0.zip 
 </code></pre><p>After the build process is done, there will be a <strong>ballerina-pkg:latest</strong> Docker image on the local registry.</p>
-<pre><code>REPOSITORY    TAG    IMAGE ID     CREATED      SIZE
+<pre tabindex="0"><code>REPOSITORY    TAG    IMAGE ID     CREATED      SIZE
 ballerina-pkg latest 2547078bf268 13 hours ago 138 MB
 </code></pre><h3 id="containerization">Containerization</h3>
 <p>Let’s create a Docker image for a sample Ballerina Service.</p>
@@ -145,7 +145,7 @@ ballerina-pkg latest 2547078bf268 13 hours ago 138 MB
 <li>Download Ballerina Tools distribution and unzip to your development location.</li>
 <li>Execute the following <strong>build</strong> command to package the Ballerina sample <strong>helloWorldService</strong> as an executable archive.</li>
 </ol>
-<pre><code>ballerina-tools-0.8.0/bin/&gt; ./ballerina build service ../samples/helloWorldService/helloWorldService.bal
+<pre tabindex="0"><code>ballerina-tools-0.8.0/bin/&gt; ./ballerina build service ../samples/helloWorldService/helloWorldService.bal
 </code></pre><ol start="3">
 <li>This will create a Ballerina Service Archive with <strong>.bsz</strong> file extension at your working directory.</li>
 </ol>
@@ -156,7 +156,7 @@ ballerina-pkg latest 2547078bf268 13 hours ago 138 MB
 <li>Once again, make sure you have <strong>ballerina-pkg:latest</strong> Docker image in your local registry by executing a <code>docker images</code> command. Note that <strong>non-sudo access to the docker command is required for</strong><code>ballerina docker</code><strong>to correctly function.</strong></li>
 <li>Execute the following command to create the Docker image.</li>
 </ol>
-<pre><code>ballerina-tools-0.8.0/bin/&gt; ./ballerina docker helloWorldService.bsz
+<pre tabindex="0"><code>ballerina-tools-0.8.0/bin/&gt; ./ballerina docker helloWorldService.bsz
 </code></pre><p>This will prompt for you to continue building the Docker image, and confirmed it will build the Docker image and show helpful text to continue the next steps.</p>
 <p><img src="/blog/img/2017-02-21_ballerina-with-container-support_3.png#layoutTextWidth" alt=""></p>
 <p>Test the Docker image by running a Container. Copy the command displayed to run the Container, which will do so in the background. Query for Container logs to see if the Ballerina Service was successfully deployed, and verify by making an HTTP call.</p>

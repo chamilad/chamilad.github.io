@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.105.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2014",
-      "datePublished": "2014-08-05 00:00:00 \x2b0000 UTC",
-      "dateModified" : "2014-08-05 00:00:00 \x2b0000 UTC",
+      "datePublished": "2014-08-05 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2014-08-05 00:00:00 \u002b0000 UTC",
       "url" : "https:\/\/chamila.dev\/blog\/2014-08-05_pppoe-on-virtualbox\/",
       "keywords" : [ "Linux","Virtualbox","Pppoe", ]
   }
@@ -113,7 +113,7 @@ A host-only network virtualizes the network interface of the host OS and uses it
 <p>Go to your VM’s settings and navigate to the “Network” tab. On the network adaptor you’re going to use as the connection to the network, select “Host-Only adaptor” as the networking type to attach to. Then select the host-only network device we created in the VirtualBox preferences. Select “Allow All” for “Promiscuous Mode”.</p>
 <p>Start your VM and login as a super user. Define<a href="https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually">[2]</a><a href="http://www.putorius.net/2012/10/how-to-configure-static-ip-address-in.html">[3]</a> the network interface you attached to the Host-Only network with a static IP in the network of the host-only network. Point the gateway to the IP address of the host-only network. Restart the network service and your guest OS will have an IP which is accessible from the host.</p>
 <p><strong>Note</strong>: If you come across any issues when restarting the network service with an error message containing “file exists” it’s possible that network devices and their mappings to network device names have been jumbled. Best course to take is to delete the rules file and reboot the machine to regenerate it. This issue is likely to occur in Ubuntu distributions before 12.04 or in RedHat distributions<a href="http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/">[4]</a>.</p>
-<pre><code>sudo rm -rv /etc/udev/rules.d/70-persistant-* sudo reboot
+<pre tabindex="0"><code>sudo rm -rv /etc/udev/rules.d/70-persistant-* sudo reboot
 </code></pre><p>[1] — <a href="https://www.virtualbox.org/manual/ch06.html">https://www.virtualbox.org/manual/ch06.html</a></p>
 <p>[2] — <a href="https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually">https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually</a></p>
 <p>[3] — <a href="http://www.putorius.net/2012/10/how-to-configure-static-ip-address-in.html">http://www.putorius.net/2012/10/how-to-configure-static-ip-address-in.html</a></p>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.105.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Rotating AWS Secrets Manager Secrets with Lambda",
+      "headline" : "Rotating AWS Secrets Manager Secrets with Lambda",
+      "description" : "Understanding Secret Stages and Rotation Steps",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2022",
+      "datePublished": "2022-11-01 07:09:49 \u002b1300 NZDT",
+      "dateModified" : "2022-11-01 07:09:49 \u002b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda\/",
+      "keywords" : [ "AWS","Secrets Manager","Lambda","Secret Rotation", ]
+  }
+</script>
+<title>Rotating AWS Secrets Manager Secrets with Lambda - chamila.dev</title>
+  <meta property="og:title" content="Rotating AWS Secrets Manager Secrets with Lambda - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Understanding Secret Stages and Rotation Steps" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="https://chamila.dev/">chamila.dev</a>
+   
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Rotating AWS Secrets Manager Secrets with Lambda</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2022-11-01 07:09:49 NZDT">
+                01 Nov 2022
+		<p><b>Read time:</b> 10m
+		<br /><b>Word count:</b> 2069</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#secrets-manager-secret-types">Secrets Manager secret types</a></li>
+    <li><a href="#secret-versions-and-stages">Secret Versions and Stages</a></li>
+    <li><a href="#registering-the-secret">Registering the Secret</a></li>
+    <li><a href="#writing-a-lambda-function-for-secret-rotation">Writing a Lambda Function for Secret Rotation</a>
+      <ul>
+        <li><a href="#execution-role-permissions">Execution Role Permissions</a></li>
+        <li><a href="#invoking-the-function-from-secrets-manager">Invoking the Function from Secrets Manager</a></li>
+        <li><a href="#function-implementation">Function Implementation</a></li>
+        <li><a href="#createsecret"><code>createSecret</code></a></li>
+        <li><a href="#setsecret"><code>setSecret</code></a></li>
+        <li><a href="#testsecret"><code>testSecret</code></a></li>
+        <li><a href="#finishsecret"><code>finishSecret</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#registering-rotation">Registering Rotation</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <figure><img src="/blog/img/2022-11-01_secret_heading.jpeg"/><figcaption>
+            <h4>Again, the only photo with me for now that&#39;s closest to the theme, a spider weaving a trap near Manigala, Sri Lanka</h4>
+        </figcaption>
+</figure>
+
+<h2 id="secrets-manager-secret-types">Secrets Manager secret types</h2>
+<p>AWS Secret Manager supports a several types of secrets. These are mainly to
+support effective secret management by integrating them closer with the AWS
+Services they support. These are mainly various types of database services
+offered by AWS, which is one of the key uses for using Secrets Manager to
+manage master credentials.</p>
+<p><img src="/blog/img/2022-11-01_secret_types.png" alt="AWS Secrets Manager Secret Types"></p>
+<p>One of the key advantages of using first class secret types for the scenarios
+they support is, built-in automatic secret rotation functionality. With secret
+rotation, you can implement security best practices in credentials management
+with minimal effort.</p>
+<p>However for custom secret type secrets, secret rotation takes a bit more of
+an effort to implement. This is purely because the particular secret could
+be associated with practically any type of service or process and needs
+specific steps to be followed to implement the rotation process for it.
+AWS makes it really easy to implement custom secret rotation logic with close
+support from AWS Lambda as a compute layer. In the following sections, let&rsquo;s
+dive into an example on how to do this.</p>
+<h2 id="secret-versions-and-stages">Secret Versions and Stages</h2>
+<p>A secret in real-world is an evolving item. Even if the value wouldn&rsquo;t change
+overtime, at a given moment, the value of the secret is only known after
+retrieval. With security standards and controls containing frequent credential
+rotation as important to implement, the party that uses the secret will have to
+depend on the secret management tool to provide the proper value for the secret
+at the moment.</p>
+<p>AWS Secrets Manager handles this aspect of an evolving secret by using
+staging labels. For a given Secret in AWS, there could be three staging labels
+corresponding to three versions of the secret value at a given moment. These are,</p>
+<ol>
+<li><code>AWSCURRENT</code> - This is the version that is used whenever a secret is read.
+This is also the version that gets replaced during a secret rotation.</li>
+<li><code>AWSPREVIOUS</code> - This is the last value of the secret before the value marked
+as <code>AWSCURRENT</code>. AWS does not keep multiple older versions of the same secret,
+instead it maintains the last known value. To access this version, you can use
+the CLI or the API and specify <code>AWSPREVIOUS</code> as the version ID.</li>
+<li><code>AWSPENDING</code> - This label is used to mark an incoming new value for the
+secret. Usually, this version label only exists for the duration of the secret
+rotation process.</li>
+</ol>
+<p>At the start of a rotation process the new value is made <code>AWSPENDING</code>, and after
+finalising the rotation, the new value is made <code>AWSCURRENT</code> while the previous
+value is transitioned to <code>AWSPREVIOUS</code>.</p>
+<p>Let&rsquo;s consider a custom secret where the secret is derived from a custom logic
+and should be rotated in a third party system. The steps to implement proper
+rotation for this is to,</p>
+<ol>
+<li>register the secret in Secrets Manager</li>
+<li>write a Lambda function for rotation steps</li>
+<li>enable rotation with a schedule for the secret and point it towards the
+Lambda function we wrote</li>
+</ol>
+<h2 id="registering-the-secret">Registering the Secret</h2>
+<p><a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_secret.html">Adding a secret in Secrets
+Manager</a>
+is pretty straightforward. While doing this, make a note to not enable Automatic
+Rotation, since we don&rsquo;t have the Lambda function ready yet. If you use a
+AWS KMS Customer Managed Key as the encryption key for the secret, make sure
+the <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">Key
+Policy</a>
+allows access from the Lambda function as well.</p>
+<p>In this case we have set the initial secret value to a random <code>kn6aTD5*$$*n7v</code>.
+However it could be (for example) the credentials you generated for a custom
+database.</p>
+<p><img src="/blog/img/2022-11-01_secret_register.png" alt="Sample secret db/credentials">
+<img src="/blog/img/2022-11-01_secret_initial_value.png" alt="Sampel secret db/credentials initialvalue"></p>
+<h2 id="writing-a-lambda-function-for-secret-rotation">Writing a Lambda Function for Secret Rotation</h2>
+<p>For this post, let&rsquo;s write the rotation Lambda implementation in Python. The
+concepts are the same for any language targetting the runtimes supported by
+Lambda.</p>
+<p>All code is available on the <a href="https://github.com/chamilad/aws-secret-rotation-lambda-sample">Github
+repository</a>.</p>
+<h3 id="execution-role-permissions">Execution Role Permissions</h3>
+<p>The Lambda function needs permissions to read and modify the secret when
+invoked. This is provided to the Lambda function as an Execution Role.</p>
+<p>When creating the function, define a new Execution Role with the
+following permissions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;Allow managing the secret from Lambda&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;secretsmanager:GetSecretValue&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;secretsmanager:DescribeSecret&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;secretsmanager:PutSecretValue&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;secretsmanager:UpdateSecretVersionStage&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;secretsmanager:ListSecretVersionIds&#34;</span>
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;&lt;secret-arn&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>Make sure to attach the <code>AWSLambdaBasicExecutionRole</code> policy to the Execution
+Role as well. This allows the Lambda function to write to CloudWatch Logs.
+Without this, you will not be able to properly troubleshoot an execution.</p>
+</blockquote>
+<h3 id="invoking-the-function-from-secrets-manager">Invoking the Function from Secrets Manager</h3>
+<p>Similar to giving permissions for the Lambda function to modify the secret,
+a Resource Based Policy should be added to the Lambda function so that Secrets
+Manager is able to invoke the Lambda function.</p>
+<p>To do this, once the Lambda function is created, go to <code>Configuration</code> -&gt;
+<code>Permissions</code> -&gt; <code>Resource-based Policy Statements</code> and add a new policy.
+Specify AWS Secrets Manager as the service to be granted
+<code>lambda:invokeFunction</code> permission.</p>
+<p><img src="/blog/img/2022-11-01_secret_invoke_lambda.png" alt="Adding a new resource-based policy"></p>
+<h3 id="function-implementation">Function Implementation</h3>
+<p>During a secret rotation process, a series of &ldquo;steps&rdquo; are followed in order,
+that expects the different kinds of work that should be done for rotation to be
+performed during each step. When automatic rotation with a Lambda function is
+enabled, AWS Secrets Manager calls the function at least four times for the
+same secret. During each call, a different &ldquo;step&rdquo; is expected to be executed by
+the Lambda function. These steps are,</p>
+<ol>
+<li><code>createSecret</code> - generate the new secret value and store it as <code>AWSPENDING</code></li>
+<li><code>setSecret</code> - set the newly generated <code>AWSPENDING</code> value in the service</li>
+<li><code>testSecret</code> - verify that the service credentials were properly changed by
+using the <code>AWSPENDING</code> value to access the service</li>
+<li><code>finishSecret</code> - mark the new value as <code>AWSCURRENT</code> and move the old value
+to <code>AWSPREVIOUS</code></li>
+</ol>
+<p>As mentioned above, each invocation of the Lambda function during the rotation
+process receives a payload similar to the following.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Step&#34;</span>: <span style="color:#e6db74">&#34;createSecret&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;SecretId&#34;</span>: <span style="color:#e6db74">&#34;&lt;secretARN&gt;&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;ClientRequestToken&#34;</span>: <span style="color:#e6db74">&#34;&lt;rotation unique token to be used as version ID&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>When writing the Lambda function, we can check the <code>Step</code> value in each
+invocation and implement the different steps as needed. When persisting the new
+value, the <code>ClientRequestToken</code> should be used as the version ID.</p>
+<p>The handler function for the Lambda function is <code>handle_event()</code>. We&rsquo;ll be
+checking the step that invoked the function execution in this function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> event[<span style="color:#e6db74">&#34;Step&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;createSecret&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># first step of the process, we are generating a new value for the next</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># version of the secret here.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> event[<span style="color:#e6db74">&#34;Step&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;setSecret&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># in the next step, we apply the new version of the secret to the</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># remote server. There can be situations where a secret is not</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># necessarily about a service credential. In those cases, this step can</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># be skipped.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> event[<span style="color:#e6db74">&#34;Step&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;testSecret&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># in this step, the remote server change is tested to be successful.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Like the previous step, if the secret is not a service credential or</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># has nothing to do with an external service, this step can be skipped.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> event[<span style="color:#e6db74">&#34;Step&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;finishSecret&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># final step of the rotation process. We are transitioning the new</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># secret version to be the actual &#34;current&#34; version. The previous</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># version is preserved, however default reads point to the new version</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># only.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span></code></pre></div><p>Each execution retuning <code>None</code> is a successful execution for Python3.9 runtime
+for Lambda. Let&rsquo;s dive into the sample implementation steps next.</p>
+<h3 id="createsecret"><code>createSecret</code></h3>
+<p>This is the first invocation of the Lambda function in the rotation process. We
+should generate what should be the next version of the secret in this step. For
+our sample scenario, we generate a random password.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#75715e"># generate a new password</span>
+</span></span><span style="display:flex;"><span>new_pwd <span style="color:#f92672">=</span> generate_password(<span style="color:#ae81ff">16</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># persist as a new secret version setting version stage to AWSPENDING,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># the new password isn&#39;t usable yet</span>
+</span></span><span style="display:flex;"><span>secret_client<span style="color:#f92672">.</span>put_secret_value(
+</span></span><span style="display:flex;"><span>    ClientRequestToken<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;ClientRequestToken&#34;</span>],
+</span></span><span style="display:flex;"><span>    SecretId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;SecretId&#34;</span>],
+</span></span><span style="display:flex;"><span>    SecretString<span style="color:#f92672">=</span>new_pwd,
+</span></span><span style="display:flex;"><span>    VersionStages<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;AWSPENDING&#34;</span>],
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>When persisting the new version, we label it as <code>AWSPENDING</code>. Ideally, a given
+secret would have a version labelled <code>AWSPENDING</code> only during the brief
+rotation period only. If all goes well, this version should transition into
+<code>AWSCURRENT</code>. The <code>VersionId</code> of the new version is the <code>ClientRequestToken</code>
+that was used to invoke this step. If you&rsquo;re seeing errors related to different
+<code>ClientRequestToken</code> being used to persist or transition secret versions, it
+probably means a version with <code>AWSPENDING</code> staging label exists for the secret
+from a previous rotation attempt. In those cases, investigate the scret with
+AWS CLI and remove the unwanted version as needed.</p>
+<blockquote>
+<p>You might need to run <code>cancel-rotate-secret</code> on the secret if the rotation is
+being retried. Typically, a failed rotation is retried and given up after 5
+attempts. After fixing the versions, go back and enable Secret Rotation
+again.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># list secret versions</span>
+</span></span><span style="display:flex;"><span>aws secretsmanager list-secret-version-ids <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --secret-id &lt;secret-arn&gt; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --no-cli-pager
+</span></span></code></pre></div><p><img src="/blog/img/2022-11-01_secret_versions_error_state.png" alt="AWSPENDING staginglabel"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># remove unwanted AWSPENDING version (more accurately, remove AWSPENDING label</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># from that version</span>
+</span></span><span style="display:flex;"><span>aws secretsmanager update-secret-version-stage <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --secret-id &lt;secret-arn&gt; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --no-cli-pager <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --remove-from-version-id &lt;version-id-with-awspending-label&gt; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --version-stage AWSPENDING
+</span></span></code></pre></div><p><img src="/blog/img/2022-11-01_secret_versions_error_fixed.png" alt="AWSPENDING staginglabel removed"></p>
+<p>You can alternatively write this into the rotation logic instead. For any
+failures after writing the <code>AWSPENDING</code> version, you can execute an
+<code>update_secret_version_stage()</code> call.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span>secret_client<span style="color:#f92672">.</span>update_secret_version_stage(
+</span></span><span style="display:flex;"><span>    SecretId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;SecretId&#34;</span>],
+</span></span><span style="display:flex;"><span>    VersionStage<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;AWSPENDING&#34;</span>,
+</span></span><span style="display:flex;"><span>    RemoveFromVersionId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;ClientRequestToken&#34;</span>],
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="setsecret"><code>setSecret</code></h3>
+<p>The second step of the process is intended to be used to apply credentials and
+other types of secrets that are to do with external services. For an example,
+for a database credential, this could be applying the new value (with the
+<code>AWSPENDING</code> label) as the user password.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span>secret_version <span style="color:#f92672">=</span> secret_client<span style="color:#f92672">.</span>get_secret_value(
+</span></span><span style="display:flex;"><span>    SecretId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;SecretId&#34;</span>],
+</span></span><span style="display:flex;"><span>    VersionId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;ClientRequestToken&#34;</span>],
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>new_value <span style="color:#f92672">=</span> secret_version[<span style="color:#e6db74">&#34;SecretString&#34;</span>]
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;changing password in the remote server with value </span><span style="color:#e6db74">{</span>new_value<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><p>For cases where the secret has nothing to with an external service directly or
+if the external service does not support an API to rotate credentials or tokens
+with, this step and the next <code>testSecret</code> step can be skipped.</p>
+<h3 id="testsecret"><code>testSecret</code></h3>
+<p>The next step for secrets that are directly related with external services that
+implements the previous <code>setSecret</code> step is to verify the new version of the
+secret is usable from this point onwards. This can be as simple as executing a
+simple read operation on the remote server and making sure the operation
+completes without an issue.</p>
+<p>Same as before, this step can be skipped if not relevant to the secret context.</p>
+<h3 id="finishsecret"><code>finishSecret</code></h3>
+<p>After making sure the new version of the secret is the actual one usable (where
+relevant), we can transition it to the <code>AWSCURRENT</code> label. When we perform this
+step AWS does two things.</p>
+<ol>
+<li>the current version with the <code>AWSPENDING</code> staging label is made <code>AWSCURRENT</code></li>
+<li>the previous <code>AWSCURRENT</code> version is made <code>AWSPREVIOUS</code>. If there was
+another <code>AWSPREVIOUS</code> version available, that is scheduled to be deleted in
+the background.</li>
+</ol>
+<p>To make the transition we need two version IDs, of the version
+with the <code>AWSPENDING</code> label and the version with the <code>AWSCURRENT</code> label.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#75715e"># find the version ID to which AWSCURRENT is attached to now</span>
+</span></span><span style="display:flex;"><span>versions <span style="color:#f92672">=</span> secret_client<span style="color:#f92672">.</span>list_secret_version_ids(
+</span></span><span style="display:flex;"><span>    SecretId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;SecretId&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>prev_version_id: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> version <span style="color:#f92672">in</span> versions[<span style="color:#e6db74">&#34;Versions&#34;</span>]:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> stage <span style="color:#f92672">in</span> version[<span style="color:#e6db74">&#34;VersionStages&#34;</span>]:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> stage <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;AWSCURRENT&#34;</span>:
+</span></span><span style="display:flex;"><span>            prev_version_id <span style="color:#f92672">=</span> version[<span style="color:#e6db74">&#34;VersionId&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> prev_version_id <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">RuntimeError</span>(<span style="color:#e6db74">&#34;could not find the previous version ID&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># set the new value to AWSCURRENT</span>
+</span></span><span style="display:flex;"><span>secret_client<span style="color:#f92672">.</span>update_secret_version_stage(
+</span></span><span style="display:flex;"><span>    SecretId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;SecretId&#34;</span>],
+</span></span><span style="display:flex;"><span>    VersionStage<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;AWSCURRENT&#34;</span>,
+</span></span><span style="display:flex;"><span>    MoveToVersionId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;ClientRequestToken&#34;</span>],
+</span></span><span style="display:flex;"><span>    RemoveFromVersionId<span style="color:#f92672">=</span>prev_version_id,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>After executing this step, we are done! The secret has been successfully
+rotated, and the new value will be returned for all the read operations from
+this point onwards.</p>
+<p><img src="/blog/img/2022-11-01_secret_rotated_value.png" alt="Rotated secret value"></p>
+<h2 id="registering-rotation">Registering Rotation</h2>
+<p>Once the Lambda function is at a testable level, you can enable Automatic
+Secret Rotation. A rotation schedule and the rotation implementation Lambda
+function is specified when enabling this.</p>
+<p><img src="/blog/img/2022-11-01_secret_rotation_enable.png" alt="Enabling Automatic SecretRotation"></p>
+<p>The secret can be rotated immediately as well, which is a great way to
+iteratively develop the logic without having to wait until the schedule
+triggers rotation.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>As always, a few things can go wrong during development of the Lambda function
+for your specific use case.</p>
+<p>In most cases, the secret will end up a state with
+a version ID different to the current <code>ClientRequestToken</code> having <code>AWSPENDING</code>
+staging label. Following the instructions <a href="#createsecret">detailed above in the <code>createSecret</code>
+section</a>, the older version ID can be removed. However, take
+into account the step at which the rotation process failed. If the secret is
+managing access to a remote service and rotation process failed after a
+successful <code>setSecret</code> step execution, you may need to manually revert the
+credential changes done in the remote server before deleting the older
+<code>AWSPENDING</code> version, to avoid losing access to the service.</p>
+<p>All code mentioned in this post is available on the <a href="https://github.com/chamilad/aws-secret-rotation-lambda-sample">Github
+repository</a>.</p>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2021-11-12_automating-snowflake/">&lt; Automating Snowflake</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2018-05-17_server-immutability/">Server Immutability</a></li>
+    
+    <li><a href="/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/">Subject Alternative Names in SSL Certificates</a></li>
+    
+    <li><a href="/blog/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/">Adding a Self-Signed SSL Certificate to AWS ACM</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

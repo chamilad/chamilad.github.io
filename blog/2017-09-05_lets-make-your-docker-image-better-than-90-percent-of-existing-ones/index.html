@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.105.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Let’s make your Docker Image better than 90% of existing ones",
       "headline" : "Let’s make your Docker Image better than 90% of existing ones",
-      "description" : "Or why you should always Label your Docker Image.\n Imagine this.\nYou’re working on a new project, an exciting one that’s Container native. You’re almost done, and now at the stage where you want to build the Docker Image that ships your little project out to the public. You build on top of Alpine Linux, and pack your tool in to a nifty 80Mb Image that you tag latest and push to the public Docker Hub.",
+      "description" : "Or why you should always Label your Docker Image.\nImagine this.\nYou’re working on a new project, an exciting one that’s Container native. You’re almost done, and now at the stage where you want to build the Docker Image that ships your little project out to the public. You build on top of Alpine Linux, and pack your tool in to a nifty 80Mb Image that you tag latest and push to the public Docker Hub.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2017",
-      "datePublished": "2017-09-05 18:50:34.137 \x2b0000 UTC",
-      "dateModified" : "2017-09-05 18:50:34.137 \x2b0000 UTC",
+      "datePublished": "2017-09-05 18:50:34.137 \u002b0000 UTC",
+      "dateModified" : "2017-09-05 18:50:34.137 \u002b0000 UTC",
       "url" : "https:\/\/chamila.dev\/blog\/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones\/",
       "keywords" : [ "Docker","Label Schema","Microbadger","Docker Label","Docker Hub", ]
   }
@@ -37,7 +37,7 @@
   <meta property="og:title" content="Let’s make your Docker Image better than 90% of existing ones - chamila.dev" />
   <meta property="og:type" content="article" />
   <meta name="description" content="Or why you should always Label your Docker Image.
- Imagine this.
+Imagine this.
 You’re working on a new project, an exciting one that’s Container native. You’re almost done, and now at the stage where you want to build the Docker Image that ships your little project out to the public. You build on top of Alpine Linux, and pack your tool in to a nifty 80Mb Image that you tag latest and push to the public Docker Hub." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
@@ -121,17 +121,17 @@ You’re working on a new project, an exciting one that’s Container native. Yo
 <p>Docker Labels to the rescue!</p>
 </blockquote>
 <p>Specifying a Label for a Docker Image is simple. You just specify it as another Dockerfile instruction.</p>
-<pre><code>LABEL &lt;label_name&gt;=&quot;&lt;label_value&gt;&quot;
+<pre tabindex="0"><code>LABEL &lt;label_name&gt;=&#34;&lt;label_value&gt;&#34;
 </code></pre><p>For example, specifying a few labels to indicate the author and the build date for a particular Docker Image would look like the following in the Dockerfile.</p>
-<pre><code>FROM openjdk:jre-alpine
-LABEL maintainer=&quot;dev@someproject.org&quot;
+<pre tabindex="0"><code>FROM openjdk:jre-alpine
+LABEL maintainer=&#34;dev@someproject.org&#34;
 
-LABEL build_date=&quot;2017-09-05&quot;
+LABEL build_date=&#34;2017-09-05&#34;
 COPY tool.tar.gz /mnt
 WORKDIR /mnt
 RUN tar zxvf /mnt/tool.tar.gz
 
-CMD [&quot;/mnt/tool/tool.sh&quot;]
+CMD [&#34;/mnt/tool/tool.sh&#34;]
 </code></pre><p>After this Image is built, a <code>docker inspect</code> will be able to extract the <code>LABEL</code> information that we embedded into it during build time.</p>
 <p>Is that it?</p>
 <p>Yes, we solved that problem rather quickly didn’t we? Don’t celebrate just yet though. We have another gaping problem looking at us now.</p>
@@ -152,12 +152,12 @@ CMD [&quot;/mnt/tool/tool.sh&quot;]
 <p>Every label is prefixed with <code>org.label-schema</code>, and the only mandatory Label is <code>org.label-schema.schema-version</code> which should at the moment be of value <code>1.0</code>.</p>
 <p>Want to communicate the commit ID you built your Image at? Use <code>vcs-ref</code>. You can also use <code>build-date</code> for the same purpose, if you’re working on timestamps rather than commit IDs.</p>
 <p>Let’s talk about <code>build-date</code> a bit more. It requires a timestamp value that is formatted according to the <a href="https://tools.ietf.org/html/rfc3339">RFC3339</a> standard. An example value would be as follows.</p>
-<pre><code>LABEL org.label-schema.build-date=&quot;2017-08-28T09:24:41Z&quot;
+<pre tabindex="0"><code>LABEL org.label-schema.build-date=&#34;2017-08-28T09:24:41Z&#34;
 </code></pre><p>You can generate the current date timestamp in this format in Bash using the following command.</p>
-<pre><code>date -u +'%Y-%m-%dT%H:%M:%SZ'
+<pre tabindex="0"><code>date -u +&#39;%Y-%m-%dT%H:%M:%SZ&#39;
 </code></pre><p>Combining this with Docker build ARGs, a build script can be written to pass the current build time to the Dockerfile.</p>
-<pre><code>FROM openjdk:jre-alpine
-LABEL maintainer=&quot;dev@someproject.org&quot;
+<pre tabindex="0"><code>FROM openjdk:jre-alpine
+LABEL maintainer=&#34;dev@someproject.org&#34;
 
 ARG BUILD_DATE
 
@@ -167,9 +167,9 @@ COPY tool.tar.gz /mnt
 WORKDIR /mnt
 RUN tar zxvf /mnt/tool.tar.gz
 
-CMD [&quot;/mnt/tool/tool.sh&quot;]
+CMD [&#34;/mnt/tool/tool.sh&#34;]
 </code></pre><p>The following <code>docker build</code> command passes the <code>BUILD_DATE</code> argument with the proper RFC3339 standard value.</p>
-<pre><code>docker build --no-cache=true --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') -t mytool:latest .
+<pre tabindex="0"><code>docker build --no-cache=true --build-arg BUILD_DATE=$(date -u +&#39;%Y-%m-%dT%H:%M:%SZ&#39;) -t mytool:latest .
 </code></pre><p>label-schema is not only about Docker. It also has a set of Labels that can be used for <code>acbuild label</code> directives in <a href="https://github.com/appc/spec">App Container Build Specification</a>, implemented in <code>rkt</code>.</p>
 <p>Now that we have a set of standard labels to work with, we just have to specify those in our Dockerfile in order to make our Docker Image stand out from <strong>almost 90% of the rest of the Images</strong> on the public Docker Hub. You heard it right. According to a <a href="https://medium.com/microscaling-systems/how-many-public-images-are-there-on-docker-hub-bcdd2f7d6100">survey done by Microscaling Systems</a>, which is the loudest at the moment to get people to use label-schema, almost 90% of the Images hosted on the public Docker Hub are unlabelled.</p>
 <blockquote>
@@ -179,18 +179,18 @@ CMD [&quot;/mnt/tool/tool.sh&quot;]
 <p>Apart from the reasons stated above, it’s the same reason as we write <strong>How-To</strong> guides on <code>README.md</code> files and complete tutorials on the GitHub wiki. It’s always a good practice to embed as much metadata as possible to the immutable Docker Image you’re building, so that it can stand on its own in orchestration, management, and build tools. In this context, an Image that is properly labelled will stand out high compared to an Image that has no metadata at all, even though the latter might be better in any other angle.</p>
 <p>Now that we have Labelled our Docker Image, it’s time to boast about it.</p>
 <p><a href="https://microbadger.com">Microbadger</a> is a service offered by Microscaling Systems that analyzes the Images hosted on the public Docker Hub. It will specifically look at how Docker Labels are used in an Image. It also offers badges showing the Image conditions, such as the number of layers, commit ID (extracted from <code>org.label-schema.vcs-ref</code> Label), and the version (which is also extracted from <code>org.label-schema.version</code> Label). For an example, Microbadger shows the these details <a href="https://microbadger.com/images/ballerinalang/ballerina">for the Ballerina runtime Docker Image</a> hosted on the public Docker Hub. The corresponding labeling in the Dockerfile is as follows.</p>
-<pre><code>FROM openjdk:jre-alpine
-LABEL maintainer=&quot;tryballerina@gmail.com&quot;
+<pre tabindex="0"><code>FROM openjdk:jre-alpine
+LABEL maintainer=&#34;tryballerina@gmail.com&#34;
 
 # Ballerina runtime distribution filename.
 ARG BALLERINA_DISTARG BUILD_DATEARG VCS_REFARG BUILD_VERSION# Labels.
-LABEL org.label-schema.schema-version=&quot;1.0&quot;
-LABEL org.label-schema.build-date=$BUILD_DATELABEL org.label-schema.name=&quot;ballerinalang/ballerina&quot;
-LABEL org.label-schema.description=&quot;Ballerina language runtime&quot;
-LABEL org.label-schema.url=&quot;http://ballerinalang.org/&quot;
-LABEL org.label-schema.vcs-url=&quot;https://github.com/ballerinalang/container-support&quot;
-LABEL org.label-schema.vcs-ref=$VCS_REFLABEL org.label-schema.vendor=&quot;WSO2&quot;
-LABEL org.label-schema.version=$BUILD_VERSIONLABEL org.label-schema.docker.cmd=&quot;docker run -v ~/ballerina/packages:/ballerina/files -p 9090:9090 -d ballerinalang/ballerina&quot;
+LABEL org.label-schema.schema-version=&#34;1.0&#34;
+LABEL org.label-schema.build-date=$BUILD_DATELABEL org.label-schema.name=&#34;ballerinalang/ballerina&#34;
+LABEL org.label-schema.description=&#34;Ballerina language runtime&#34;
+LABEL org.label-schema.url=&#34;http://ballerinalang.org/&#34;
+LABEL org.label-schema.vcs-url=&#34;https://github.com/ballerinalang/container-support&#34;
+LABEL org.label-schema.vcs-ref=$VCS_REFLABEL org.label-schema.vendor=&#34;WSO2&#34;
+LABEL org.label-schema.version=$BUILD_VERSIONLABEL org.label-schema.docker.cmd=&#34;docker run -v ~/ballerina/packages:/ballerina/files -p 9090:9090 -d ballerinalang/ballerina&#34;
 </code></pre><!-- raw HTML omitted -->
 <p>There you go! How to improve your Docker Image a bit more. Also it goes without saying that if you’re intending your public Docker Hub repository to be made an <a href="https://docs.docker.com/docker-hub/official_repos/">official one</a>, <a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#label">labeling is one of the stated Dockerfile best practices</a> that is considered in the process.</p>
 <p>So should you use Labels for every Image that you’re going to push to public Docker Hub? Most probably!</p>

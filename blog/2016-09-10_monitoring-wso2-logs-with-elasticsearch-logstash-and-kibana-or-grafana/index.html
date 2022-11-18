@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.105.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2016",
-      "datePublished": "2016-09-10 21:26:48.042 \x2b0000 UTC",
-      "dateModified" : "2016-09-10 21:26:48.042 \x2b0000 UTC",
+      "datePublished": "2016-09-10 21:26:48.042 \u002b0000 UTC",
+      "dateModified" : "2016-09-10 21:26:48.042 \u002b0000 UTC",
       "url" : "https:\/\/chamila.dev\/blog\/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana\/",
       "keywords" : [ "Wso2","Elasticsearch","Kibana","Logstash","Logging", ]
   }
@@ -131,18 +131,18 @@
 <h3 id="-15hrs">+ 1.5hrs</h3>
 <p>After briefly reading through the basics of the Log4j appender and doing the configuration, I got the pipeline setup. With the following Logstash conf file and the log4j appender in ESB <strong>log4j.properties</strong> file, my log events are being published to Logstash, and being indexed by Elasticsearch.</p>
 <p><strong>&lt;LOGSTASH_HOME&gt;/wso2carbon.log.conf</strong></p>
-<pre><code>input {
+<pre tabindex="0"><code>input {
     log4j {
         mode =&gt; server
-        host =&gt; &quot;0.0.0.0&quot;
+        host =&gt; &#34;0.0.0.0&#34;
         port =&gt; 6000
-        type =&gt; &quot;log4j&quot;
+        type =&gt; &#34;log4j&#34;
     }
 }
 
 output {
     elasticsearch {
-        hosts =&gt; [ &quot;localhost:9200&quot; ]
+        hosts =&gt; [ &#34;localhost:9200&#34; ]
     }
 
 stdout {
@@ -150,7 +150,7 @@ stdout {
     }
 }
 </code></pre><p><strong>&lt;CARBON_HOME&gt;/repository/conf/log4j.properties</strong></p>
-<pre><code># ELK stuff
+<pre tabindex="0"><code># ELK stuff
 log4j.rootLogger=INFO, CARBON_CONSOLE, CARBON_LOGFILE, CARBON_MEMORY,tcp
 
 log4j.appender.tcp=org.apache.log4j.net.SocketAppender

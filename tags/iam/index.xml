@@ -6,11 +6,7 @@
     <description>Recent content in Iam on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Nov 2017 14:30:44 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamila.dev/tags/iam/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 12 Nov 2017 14:30:44 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/iam/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sample: WSO2 EI Cache Mediator based Token Caching</title>
       <link>https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</link>
@@ -18,8 +14,8 @@
       
       <guid>https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</guid>
       <description>This post and the sample code are the results of a particular issue I had to tackle recently. Though the sample code is my own, the idea and the approach have many authors, arising from the collective knowledge on the WSO2 Middleware Stack.
- The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,
- Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token  If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</description>
+The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,
+Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</description>
     </item>
     
   </channel>

@@ -6,11 +6,7 @@
     <description>Recent content in Haproxy on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Jul 2017 05:26:55 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamila.dev/tags/haproxy/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 13 Jul 2017 05:26:55 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/haproxy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HAProxy Config Syntax Highlighting</title>
       <link>https://chamila.dev/blog/2017-07-13_haproxy-config-syntax-highlighting/</link>

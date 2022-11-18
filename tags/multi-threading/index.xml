@@ -6,11 +6,7 @@
     <description>Recent content in Multi Threading on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Nov 2015 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamila.dev/tags/multi-threading/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 26 Nov 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/multi-threading/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Timing Out of Long Running Methods in Python</title>
       <link>https://chamila.dev/blog/2015-11-26_timing-out-of-long-running-methods-in-python/</link>

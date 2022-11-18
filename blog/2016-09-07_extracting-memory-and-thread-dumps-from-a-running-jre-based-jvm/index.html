@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.105.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Extracting memory and thread dumps from a running JRE based JVM",
       "headline" : "Extracting memory and thread dumps from a running JRE based JVM",
-      "description" : "Almost every Java developer knows about jmapand jstack tools that come with the JDK. These provide functionality to extract heap and thread information of a running JVM instance. Easy.\nWhat if there’s a running JVM that has produced a deadlock and you want to take a thread dump while the process is running? You go in and run the following.\njstack pid \x26gt;\x26gt; thread_dump.txt Turns out the system doesn’t know what jstack is.",
+      "description" : "Almost every Java developer knows about jmapand jstack tools that come with the JDK. These provide functionality to extract heap and thread information of a running JVM instance. Easy.\nWhat if there’s a running JVM that has produced a deadlock and you want to take a thread dump while the process is running? You go in and run the following.\njstack pid \u0026gt;\u0026gt; thread_dump.txt Turns out the system doesn’t know what jstack is.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2016",
-      "datePublished": "2016-09-07 22:30:52.951 \x2b0000 UTC",
-      "dateModified" : "2016-09-07 22:30:52.951 \x2b0000 UTC",
+      "datePublished": "2016-09-07 22:30:52.951 \u002b0000 UTC",
+      "dateModified" : "2016-09-07 22:30:52.951 \u002b0000 UTC",
       "url" : "https:\/\/chamila.dev\/blog\/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm\/",
       "keywords" : [ "Java","Heapdump","Threaddump","Jstack","Jmap", ]
   }
@@ -108,7 +108,7 @@ jstack pid &gt;&gt; thread_dump.txt Turns out the system doesn’t know what jst
         <div class="post-content markdown-body">
           <p>Almost every Java developer knows about <strong>jmap</strong>and <strong>jstack</strong> tools that come with the JDK. These provide functionality to extract heap and thread information of a running JVM instance. Easy.</p>
 <p>What if there’s a running JVM that has produced a deadlock and you want to take a thread dump while the process is running? You go in and run the following.</p>
-<pre><code>jstack pid &gt;&gt; thread_dump.txt
+<pre tabindex="0"><code>jstack pid &gt;&gt; thread_dump.txt
 </code></pre><p>Turns out the system doesn’t know what <strong>jstack</strong> is. You don’t panic, but you get a tiny sensation at the back of your head saying you’re not leaving early this Friday.</p>
 <p>What has happened is the running JVM is based on a JRE and not a JDK. The JRE is a minimal runtime that doesn’t pack the monitoring and analysis tools that the JDK packs.</p>
 <p>So what are our options here?</p>
@@ -119,9 +119,9 @@ jstack pid &gt;&gt; thread_dump.txt Turns out the system doesn’t know what jst
 </ol>
 <p>Functionalities such as <strong>jstack</strong> are implemented in the tools.jar file which is packed inside <strong>&lt;JDK_HOME&gt;/lib</strong> folder. We can use this to invoke the <strong>JStack</strong>class and get a thread dump of the running process.</p>
 <p>So we march on to download and extract the JDK, and then to run the following.</p>
-<pre><code>java -classpath &lt;JDK_HOME&gt;/lib/tools.jar sun.tools.jstack.JStack &lt;pid&gt; &gt;&gt; thread_dump.txt
+<pre tabindex="0"><code>java -classpath &lt;JDK_HOME&gt;/lib/tools.jar sun.tools.jstack.JStack &lt;pid&gt; &gt;&gt; thread_dump.txt
 </code></pre><p>..and come across the following error.</p>
-<pre><code>Exception in thread &quot;main&quot; java.lang.UnsatisfiedLinkError: no attach in java.library.path
+<pre tabindex="0"><code>Exception in thread &#34;main&#34; java.lang.UnsatisfiedLinkError: no attach in java.library.path
         at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1867)
         at java.lang.Runtime.loadLibrary0(Runtime.java:870)
         at java.lang.System.loadLibrary(System.java:1122)
@@ -132,11 +132,11 @@ jstack pid &gt;&gt; thread_dump.txt Turns out the system doesn’t know what jst
         at sun.tools.jstack.JStack.main(JStack.java:116)
 </code></pre><p>Darn it! Spoiled again!</p>
 <p>How do we solve this? The above error is caused when the process can’t find <strong>libattach.so</strong> file which is related to the <strong>Dynamic Attach</strong>function related to <strong>JStack</strong>. Setting the following environment variable will help the JVM to find the <strong>libattach.so</strong> file.</p>
-<pre><code>export LD_LIBRARY_PATH=&lt;JDK_HOME&gt;/jre/lib/amd64/
+<pre tabindex="0"><code>export LD_LIBRARY_PATH=&lt;JDK_HOME&gt;/jre/lib/amd64/
 </code></pre><p>Now let’s run <strong>JStack</strong> again, this time with results!</p>
-<pre><code>java -classpath &lt;JDK_HOME&gt;/lib/tools.jar sun.tools.jstack.JStack &lt;pid&gt; &gt;&gt; thread_dump.txt
+<pre tabindex="0"><code>java -classpath &lt;JDK_HOME&gt;/lib/tools.jar sun.tools.jstack.JStack &lt;pid&gt; &gt;&gt; thread_dump.txt
 </code></pre><p>Now that we have the thread dump, we move on to the heap dump. The tool we normally use is <strong>jmap</strong> but that too is not available on the JRE. So what? We can use the binary in the JDK’s bin directory right? right?</p>
-<pre><code>root@snowflake1 latest]# &lt;JDK_HOME&gt;/bin/jmap -heap &lt;pid&gt;
+<pre tabindex="0"><code>root@snowflake1 latest]# &lt;JDK_HOME&gt;/bin/jmap -heap &lt;pid&gt;
 Attaching to process ID &lt;pid&gt;, please wait…
 Error attaching to process: sun.jvm.hotspot.runtime.VMVersionMismatchException: Supported versions are 25.102-b14. Target VM is 25.91-b14
 sun.jvm.hotspot.debugger.DebuggerException: sun.jvm.hotspot.runtime.VMVersionMismatchException: Supported versions are 25.102-b14. Target VM is 25.91-b14
@@ -159,7 +159,7 @@ Caused by: sun.jvm.hotspot.runtime.VMVersionMismatchException: Supported version
  at sun.jvm.hotspot.HotSpotAgent.setupVM(HotSpotAgent.java:431)
  … 11 more
 </code></pre><p>Nope! Unless you match the JDK version with the<strong>exact version the JRE is at</strong> you get the above issue (which is pretty self-explanatory). So we download the JDK of the JRE of on top our process is running and run jmap again.</p>
-<pre><code>&lt;JDK_HOME&gt;/bin/jmap -dump:file=heap_dump.hprof &lt;pid&gt;
+<pre tabindex="0"><code>&lt;JDK_HOME&gt;/bin/jmap -dump:file=heap_dump.hprof &lt;pid&gt;
 </code></pre><p>Now you go home, a proud developer who took the first dump out of the running server. And no that does not sound good on a different context.</p>
 <hr>
 <p>Written on September 7, 2016 by chamila de alwis.</p>

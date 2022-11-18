@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.105.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Load Balancing and Reverse Proxying for Kubernetes Services",
       "headline" : "Load Balancing and Reverse Proxying for Kubernetes Services",
-      "description" : "Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic   Morning sunlight on Horton Plains National Park   In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?",
+      "description" : "Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic Morning sunlight on Horton Plains National Park In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2019",
-      "datePublished": "2019-02-28 17:56:15.6 \x2b0000 UTC",
-      "dateModified" : "2019-02-28 17:56:15.6 \x2b0000 UTC",
+      "datePublished": "2019-02-28 17:56:15.6 \u002b0000 UTC",
+      "dateModified" : "2019-02-28 17:56:15.6 \u002b0000 UTC",
       "url" : "https:\/\/chamila.dev\/blog\/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services\/",
       "keywords" : [ "Docker","Kubernetes","Load Balancing","Reverse Proxy","Ingress", ]
   }
@@ -36,7 +36,7 @@
 <title>Load Balancing and Reverse Proxying for Kubernetes Services - chamila.dev</title>
   <meta property="og:title" content="Load Balancing and Reverse Proxying for Kubernetes Services - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic   Morning sunlight on Horton Plains National Park   In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?" />
+  <meta name="description" content="Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic Morning sunlight on Horton Plains National Park In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -87,7 +87,7 @@
               <time class="post-date" datetime="2019-02-28 17:56:15 UTC">
                 28 Feb 2019
 		<p><b>Read time:</b> 20m
-		<br /><b>Word count:</b> 4069</p>
+		<br /><b>Word count:</b> 4070</p>
               </time>
               
            </div>
@@ -117,8 +117,7 @@
        </header>
         <div class="post-content markdown-body">
           <h4 id="different-load-balancing-and-reverse-proxying-strategies-to-use-in-production-k8s-deployments-to-expose-services-to-outsidetraffic">Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic</h4>
-<figure>
-    <img src="/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_0.jpeg#layoutOutsetCenter"/> <figcaption>
+<figure><img src="/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_0.jpeg#layoutOutsetCenter"/><figcaption>
             <h4>Morning sunlight on Horton Plains National Park</h4>
         </figcaption>
 </figure>
@@ -140,7 +139,7 @@
 <li><strong>service</strong> — The application service that a particular set of Pods will provide</li>
 </ul>
 <p>The following is an excerpt from a single Service definition, <code>myservice.yml</code> . The <code>.spec.type</code> field can have values of <code>ClusterIP</code> , <code>NodePort</code> , <code>LoadBalancer</code> (or <code>ExternalName</code> which is not related to the scope of this article). This Service exposes port <code>8080</code> mapped to the Pod port <code>8080</code> . The name of the Service will be <code>myservice</code> .</p>
-<pre><code>apiVersion: v1
+<pre tabindex="0"><code>apiVersion: v1
 kind: Service
 metadata:
   name: myservice
@@ -176,8 +175,8 @@ spec:
 <p>Pros: None that is specific to this type</p>
 </blockquote>
 <p>This is the <a href="https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types">default type of Service</a> that would be created if the <code>type</code> field is not explicitly specified for a Service definition. A cluster-wide, but internal IP address, which is part of one of the Service network CIDR that is divided up when setting up Container Networking, will be provided as the fixed IP address of the Service. This IP address (and the Service <code>name</code>)is routable from anywhere within the K8s Overlay Network.</p>
-<pre><code>curl http://myservice:8080/
-curl http://$(kubectl get svc myservice --template='{{.spec.clusterIP}}'):8080/
+<pre tabindex="0"><code>curl http://myservice:8080/
+curl http://$(kubectl get svc myservice --template=&#39;{{.spec.clusterIP}}&#39;):8080/
 </code></pre><p><img src="/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_1.png#layoutTextWidth" alt=""></p>
 <p>However, as mentioned above, this IP address is (sort of) useless on its own for the scope of this article. It is not routable from outside the cluster network unless you can somehow implement the following series of steps.</p>
 <ol>
@@ -204,7 +203,7 @@ curl http://$(kubectl get svc myservice --template='{{.spec.clusterIP}}'):8080/
 <p>If <code>myservice.yml</code> is created with <code>.spec.type=NodePort</code> there would be a random (but consistent) physical port opened in each of the Nodes in the K8s Cluster. This port will be picked from a range that is modifiable when creating the K8s Cluster <code>--service-node-port-range</code> which has a default range of <code>32000</code> — <code>32767</code> . The port assigned to each <code>.spec.ports[*]</code> entry can be checked by looking at the output from <code>kubectl get svc &lt;svc_name&gt;</code> where under the <code>PORT(S)</code> column, there would be a value after a <code>:</code> for each port.</p>
 <p><img src="/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_2.png#layoutTextWidth" alt=""></p>
 <p>If (e.g.:) the <code>myserviceport1</code> in <code>myservice</code> above (<code>8080</code>) is assigned to NodePort <code>31644</code> , then external clients who have access to the Node private network can directly access the Service using any of the Node IP addresses and the NodePort. Assuming one of these Node IP addresses is <code>10.128.0.13</code> (from range <code>10.128.0.0/24</code> defined during above definitions), we can invoke <code>myservice</code> port <code>8080</code> using the following <code>curl</code> command from within the Node private network.</p>
-<pre><code>curl http://10.128.0.13:31644/
+<pre tabindex="0"><code>curl http://10.128.0.13:31644/
 </code></pre><p>Additionally, if the random assignment of ports is something to worry about, fixed port values (within the above mentioned range) can be specified using <code>.spec.ports[*].nodePort</code> value for each entry. The downside of predefined NodePorts is that they have to be coordinated among the potential number of Services that will be deployed so that one Service would not clash with another.</p>
 <p>As long as there are mechanisms set up ingress and egress from the Node private network, any external client will also be able to access <code>myservice</code> with Node public IP addresses.</p>
 <p>As the next step, a reverse proxy can be setup in the IaaS public address space that sits within the same network grouping (e.g.: VPC) as the K8s Nodes so that external traffic is routed to (and load balanced between) the NodePorts -&gt; Service Ports -&gt; Pod Ports.</p>

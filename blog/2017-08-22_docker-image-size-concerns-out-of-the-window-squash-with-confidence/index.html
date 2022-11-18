@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.105.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2017",
-      "datePublished": "2017-08-22 09:58:17.886 \x2b0000 UTC",
-      "dateModified" : "2017-08-22 09:58:17.886 \x2b0000 UTC",
+      "datePublished": "2017-08-22 09:58:17.886 \u002b0000 UTC",
+      "dateModified" : "2017-08-22 09:58:17.886 \u002b0000 UTC",
       "url" : "https:\/\/chamila.dev\/blog\/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence\/",
       "keywords" : [ "Docker","Squash","Containers", ]
   }
@@ -123,7 +123,7 @@ Typically, these layers would be handled in such a way that maximum optimization
 <p>Docker has finally introduced <code>--squash</code> option for the <code>build</code> command in the Experimental features. Having a vendor-supported way to reduce image sizes is a massive relief of a headache, that otherwise would be first part of any Docker related discussion. In most cases there seems to be around 40% reduction in the image sizes, which is not bad for an experimental feature.</p>
 <h4 id="enable-docker-experimental-mode">Enable Docker Experimental Mode</h4>
 <p>First, verify that Docker Daemon has experimental mode.</p>
-<pre><code>$ docker version
+<pre tabindex="0"><code>$ docker version
 Client:
  Version:      17.05.0-ce
  API version:  1.29
@@ -142,11 +142,11 @@ Server:
  Experimental: false
 </code></pre><p>If <code>Experimental</code> is set to <code>false</code> , we have to enable it in the Daemon and restart it.</p>
 <p>To do this, create the file <code>/etc/docker/daemon.json</code> and add the following content.</p>
-<pre><code>{
+<pre tabindex="0"><code>{
  “experimental”: true
 }
 </code></pre><p>Then restart the Docker Daemon. The experiemental mode should now be set to <code>true</code> .</p>
-<pre><code>$ sudo systemctl restart docker.service
+<pre tabindex="0"><code>$ sudo systemctl restart docker.service
 $ docker version
 Client:
  Version:      17.05.0-ce
@@ -166,7 +166,7 @@ Server:
  Experimental: true
 </code></pre><h4 id="building-with-squashoption">Building with Squash Option</h4>
 <p>Now, <code>--squash</code> option is available for the <code>docker build</code> command.</p>
-<pre><code>docker build --squash -t chamilad/testdocker:0.1 .
+<pre tabindex="0"><code>docker build --squash -t chamilad/testdocker:0.1 .
 </code></pre><p>If you inspect the resulting Docker image using the <code>docker history</code> command, you will see that although the layers are mentioned, their resulting sizes are <code>0B</code> and there is an additional layer with a comment similar to format <code>merge sha256:&lt;hash&gt; to &lt;hash&gt;</code> . This is all the previous layers (up to the parent image) being squashed to one layer. With the Union FS layers out of the question, the unified layer can then be used with less storage for the Docker image layers.</p>
 <hr>
 <p>Written on August 22, 2017 by chamila de alwis.</p>

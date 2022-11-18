@@ -6,11 +6,7 @@
     <description>Recent content in Graph on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 May 2018 06:36:59 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamila.dev/tags/graph/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 15 May 2018 06:36:59 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/graph/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Basic Process Metrics Collection and Visualization in Linux</title>
       <link>https://chamila.dev/blog/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</link>

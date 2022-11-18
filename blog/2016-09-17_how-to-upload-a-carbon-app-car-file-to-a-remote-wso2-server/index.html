@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.105.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2016",
-      "datePublished": "2016-09-17 00:49:13.356 \x2b0000 UTC",
-      "dateModified" : "2016-09-17 00:49:13.356 \x2b0000 UTC",
+      "datePublished": "2016-09-17 00:49:13.356 \u002b0000 UTC",
+      "dateModified" : "2016-09-17 00:49:13.356 \u002b0000 UTC",
       "url" : "https:\/\/chamila.dev\/blog\/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server\/",
       "keywords" : [ "Wso2","Carbonapp","Adminservice","Wsdl","Continuous Integration", ]
   }
@@ -120,7 +120,7 @@
 <p>A Carbon App can be deployed on a WSO2 Server using different methods, however all those methods end up copying the CAR file to <strong>&lt;CARBON_HOME&gt;/repository/deployment/server/carbonapps</strong> folder. A continuous watcher that checks for content changes inside this folder would decompress the CAR file and execute respective deployers based on the artifact type (defined in the meta file <strong>artifact.xml</strong>).</p>
 <p>So, if the target server is a <strong>localhost</strong>, it’s just a simple matter of copying the CAR file to the above location. However, things get a little complicated when the target server doesn’t provide shell access.</p>
 <p>WSO2 Carbon exposes a set of administrative services that act as a SOAP based API to interact with the particular WSO2 Server. If the OSGi Console is enabled (by setting <strong>osgiConsole</strong> System Property), the total list of admin services can be displayed by issuing <strong>listAdminServices</strong> command on the OSGi prompt. For example, the list of admin services exposed in an ESB 4.9.0 server can be found out as follows.</p>
-<pre><code>./wso2server.sh -DosgiConsole 
+<pre tabindex="0"><code>./wso2server.sh -DosgiConsole 
 JAVA_HOME environment variable is set to /home/chamilad/dev/java/jdk1.8.0_77
 CARBON_HOME environment variable is set to /home/chamilad/dev/wso2esb-4.9.0
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0
@@ -225,9 +225,9 @@ Admin services deployed on this server:
 <h3 id="service-definition">Service Definition</h3>
 <p>To call the CarbonAppUploader admin service, we have to create the clients from its WSDL. By default, the WSDLs of the admin services are hidden. If you don’t have any control over the server in question, or it cannot be restarted for reasons of service disruption, I’ve added the <a href="https://gist.github.com/chamilad/7fe796bfa9773496bddeaefaec16c302">WSDL as a Gist</a>. After downloading, replace <strong>server-host-or-ip</strong> with the hostname or the IP address of the ESB server.</p>
 <p>If you have some control over the server, where you can restart the ESB server, you can directly obtain the WSDL from the server. First disable the setting that hides the WSDLs by default, by setting <strong>HideAdminServiceWSDLs</strong> to <strong>false</strong> in <strong>&lt;CARBON_HOME&gt;/repository/conf/carbon.xml</strong>.</p>
-<pre><code>&lt;HideAdminServiceWSDLs&gt;false&lt;/HideAdminServiceWSDLs&gt;
+<pre tabindex="0"><code>&lt;HideAdminServiceWSDLs&gt;false&lt;/HideAdminServiceWSDLs&gt;
 </code></pre><p>After this you will able to obtain the WSDL of a service by appending <strong>?wsdl</strong> to the end of the Service URL. For example, the WSDL of the CarbonAppUpload service of a locally run ESB server will be at the following location.</p>
-<pre><code>https://localhost:8243/services/CarbonAppUploader?wsdl
+<pre tabindex="0"><code>https://localhost:8243/services/CarbonAppUploader?wsdl
 </code></pre><blockquote>
 <p>Notice the port mentioned in the above URL, <strong>8243</strong>, and in the resulting WSDL, is different from the port that I have included in the <a href="https://gist.github.com/chamilad/7fe796bfa9773496bddeaefaec16c302">WSDL in the Gist above</a>? This is to do with the difference between the <a href="https://docs.wso2.com/display/ESB500/Default+Ports+of+WSO2+Products"><strong>Servlet ports</strong> and the <strong>Synapse Mediation port</strong></a><strong>s</strong>. Because Synapse accepts mediation through (by default) port 8243, the WSDL is shown on it. However the admin services are available through the Servlet port, <strong>9443</strong>.</p>
 </blockquote>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.105.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2017",
-      "datePublished": "2017-10-17 18:56:28.616 \x2b0000 UTC",
-      "dateModified" : "2017-10-17 18:56:28.616 \x2b0000 UTC",
+      "datePublished": "2017-10-17 18:56:28.616 \u002b0000 UTC",
+      "dateModified" : "2017-10-17 18:56:28.616 \u002b0000 UTC",
       "url" : "https:\/\/chamila.dev\/blog\/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm\/",
       "keywords" : [ "Ssl","AWS","Openssl","Load Balancing","DevOps", ]
   }
@@ -107,7 +107,7 @@ However if you try to upload a self-signed SSL Certificate to IAM or ACM using t
         <div class="post-content markdown-body">
           <p>When setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.</p>
 <p>However if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following.</p>
-<pre><code>Could not add listener. Server Certificate not found for the key: arn:aws:iam::xxxxxxxx:server-certificate/xxxxxxx
+<pre tabindex="0"><code>Could not add listener. Server Certificate not found for the key: arn:aws:iam::xxxxxxxx:server-certificate/xxxxxxx
 </code></pre><p>Due to unknown reasons, this error is notorious for appearing from time to time, and I have been personally plagued by it countless times. <a href="https://forums.aws.amazon.com/search.jspa?mbtc=32adb3e216d4dfd5562b1c2ed5eda6bfe8473e2be3a2621bb1fa67590bfc37ac&amp;objID=f30&amp;q=Server+Certificate+not+found+for+the+key%3A+arn%3Aaws%3Aiam&amp;x=0&amp;y=0">The AWS Discussion forum is filled with</a> similar queries and possible one-off solutions for this error.</p>
 <p>After a few hours spanning through two days I had enough and had to find a better consistent way to upload a self-signed SSL certificate that worked always. Following is the gist of what I managed to scrape of the web and try myself.</p>
 <p>Following are the steps to generate a temporary self-signed certificate and to add it to AWS Certificate Manager.</p>
@@ -117,15 +117,15 @@ However if you try to upload a self-signed SSL Certificate to IAM or ACM using t
 <ol>
 <li>Generate a private key. Be sure to provide valid (even though false) domain names when needed.</li>
 </ol>
-<pre><code>openssl genrsa 2048 &gt; my-aws-private.key
+<pre tabindex="0"><code>openssl genrsa 2048 &gt; my-aws-private.key
 </code></pre><ol start="2">
 <li>Generate the certificate providing the key generated in #1</li>
 </ol>
-<pre><code>openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key my-aws-private.key &gt; my-aws-public.crt
+<pre tabindex="0"><code>openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key my-aws-private.key &gt; my-aws-public.crt
 </code></pre><ol start="3">
 <li>Compile both of the above into a PKCS12 bundle (EDIT: Add correct command after Rodrigo pointed out an error below)</li>
 </ol>
-<pre><code>openssl pkcs12 -inkey my-aws-private.key -in my-aws-public.crt -export -out my-aws-public.p12
+<pre tabindex="0"><code>openssl pkcs12 -inkey my-aws-private.key -in my-aws-public.crt -export -out my-aws-public.p12
 </code></pre><ol start="4">
 <li>
 <p>Install <a href="http://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS CLI</a> and setup credentials.</p>
@@ -134,7 +134,7 @@ However if you try to upload a self-signed SSL Certificate to IAM or ACM using t
 <p>Upload the generated certificate (<strong>my-aws-public.crt</strong>) and the private key (<strong>my-aws-private.key</strong>) to AWS Certificate Manager.</p>
 </li>
 </ol>
-<pre><code>aws acm import-certificate — certificate file://my-aws-public.crt — private-key file://my-aws-private.key — region us-east-2
+<pre tabindex="0"><code>aws acm import-certificate — certificate file://my-aws-public.crt — private-key file://my-aws-private.key — region us-east-2
 </code></pre><ol start="6">
 <li>Now this certificate will be available in the Load Balancer creation Wizard under “<strong>Choose a certificate from ACM (recommended)</strong>” option.</li>
 </ol>

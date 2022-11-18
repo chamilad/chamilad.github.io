@@ -6,11 +6,7 @@
     <description>Recent content in Markdown on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Oct 2019 18:24:16 +1300</lastBuildDate>
-    
-	<atom:link href="https://chamila.dev/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 20 Oct 2019 18:24:16 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Medium to Hugo</title>
       <link>https://chamila.dev/blog/2019-10-20_medium-to-hugo/</link>
@@ -18,7 +14,7 @@
       
       <guid>https://chamila.dev/blog/2019-10-20_medium-to-hugo/</guid>
       <description>Taking a minor break from the &amp;ldquo;ElasticSearch on K8s&amp;rdquo; series
- tl;dr: I&amp;rsquo;m moving back to maintaining my own site rather than depending on Medium as a platform for technical blogging, because of various reasons. Also introducing a tool to convert from Medium to Hugo.
+tl;dr: I&amp;rsquo;m moving back to maintaining my own site rather than depending on Medium as a platform for technical blogging, because of various reasons. Also introducing a tool to convert from Medium to Hugo.
 A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;ve been writing blog posts for more than a decade now, on various platforms, SaaS ones to self-hosted solutions.</description>
     </item>
     

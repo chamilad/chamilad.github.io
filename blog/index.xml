@@ -6,10 +6,15 @@
     <description>Recent content in nerd_journal on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Nov 2021 19:32:16 +1300</lastBuildDate>
-    
-	<atom:link href="https://chamila.dev/blog/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Tue, 01 Nov 2022 07:09:49 +1300</lastBuildDate><atom:link href="https://chamila.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rotating AWS Secrets Manager Secrets with Lambda</title>
+      <link>https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/</link>
+      <pubDate>Tue, 01 Nov 2022 07:09:49 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/</guid>
+      <description>Again, the only photo with me for now that&amp;#39;s closest to the theme, a spider weaving a trap near Manigala, Sri Lanka Secrets Manager secret types AWS Secret Manager supports a several types of secrets. These are mainly to support effective secret management by integrating them closer with the AWS Services they support. These are mainly various types of database services offered by AWS, which is one of the key uses for using Secrets Manager to manage master credentials.</description>
+    </item>
     
     <item>
       <title>Automating Snowflake</title>
@@ -17,7 +22,7 @@
       <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
       
       <guid>https://chamila.dev/blog/2021-11-12_automating-snowflake/</guid>
-      <description>Only photo with me for now that&amp;#39;s closest to the theme   I had an opportunity to work on automating a Snowflake workflow last year. The scenario involved a typical Snowflake based setup for a Data Warehouse where data would be ingested from an Azure Blob Storage or AWS S3 and stored on multiple databases. I&amp;rsquo;m not going to dive into intricate details, but I&amp;rsquo;d like to write down some of the approaches I wanted to take during this exercise.</description>
+      <description>Only photo with me for now that&amp;#39;s closest to the theme I had an opportunity to work on automating a Snowflake workflow last year. The scenario involved a typical Snowflake based setup for a Data Warehouse where data would be ingested from an Azure Blob Storage or AWS S3 and stored on multiple databases. I&amp;rsquo;m not going to dive into intricate details, but I&amp;rsquo;d like to write down some of the approaches I wanted to take during this exercise.</description>
     </item>
     
     <item>
@@ -26,8 +31,8 @@
       <pubDate>Sun, 18 Jul 2021 22:20:47 +1200</pubDate>
       
       <guid>https://chamila.dev/blog/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</guid>
-      <description>Wharf on a good day   In the earlier post on setting up Apache Nifi and Nifi Registry, two Nifi and Registry deployments set up and integrated with each other. This post will focus on automating the migrations between the two environments. Just to refresh, the following diagram shows what we are trying to achieve.
- Though this shows three environments, we have only taken the dev -&amp;gt; test step into consideration in the current and the previous posts.</description>
+      <description>Wharf on a good day In the earlier post on setting up Apache Nifi and Nifi Registry, two Nifi and Registry deployments set up and integrated with each other. This post will focus on automating the migrations between the two environments. Just to refresh, the following diagram shows what we are trying to achieve.
+Though this shows three environments, we have only taken the dev -&amp;gt; test step into consideration in the current and the previous posts.</description>
     </item>
     
     <item>
@@ -36,7 +41,7 @@
       <pubDate>Sat, 17 Jul 2021 13:21:12 +1200</pubDate>
       
       <guid>https://chamila.dev/blog/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</guid>
-      <description>Harbour on a misty day    I&amp;rsquo;m getting back to writing after more than an year of a gap. A lot happened during this period, moved from one city to another, changed employers, but mostly, I think I switched my writing time for some PS4 time. At one point though, you come to accept that your best K/D is going to be 0.2 and you&amp;rsquo;re too old to get better.</description>
+      <description>Harbour on a misty day I&amp;rsquo;m getting back to writing after more than an year of a gap. A lot happened during this period, moved from one city to another, changed employers, but mostly, I think I switched my writing time for some PS4 time. At one point though, you come to accept that your best K/D is going to be 0.2 and you&amp;rsquo;re too old to get better. In any case, I managed to do a few rounds of bug fixing to my Kibana Prometheus Exporter, and learn a few things in an area I didn&amp;rsquo;t have that much of experience in, Big Data.</description>
     </item>
     
     <item>
@@ -51,32 +56,32 @@ kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kiba
     
     <item>
       <title>Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</title>
-      <link>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</link>
+      <link>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03---multi-tenancy-with-keycloak-and-kibana/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
       
-      <guid>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</guid>
-      <description>Horton Plains at sunrise, Sri Lanka    This is a continuation of the addendum to a series of articles on ELK on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The previous post on this series was about enabling SSO between Kibana and KeyCloak.</description>
+      <guid>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03---multi-tenancy-with-keycloak-and-kibana/</guid>
+      <description>Horton Plains at sunrise, Sri Lanka This is a continuation of the addendum to a series of articles on ELK on K8s.
+ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana The previous post on this series was about enabling SSO between Kibana and KeyCloak.</description>
     </item>
     
     <item>
       <title>Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</title>
-      <link>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</link>
+      <link>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02---basic-sso-with-role-assignment/</link>
       <pubDate>Mon, 10 Feb 2020 20:26:46 +1300</pubDate>
       
-      <guid>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</guid>
+      <guid>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02---basic-sso-with-role-assignment/</guid>
       <description>This is a continuation of the addendum to a series of articles on ELK on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  As discussed in the last article, I will try to lay out the configuration details of a usable SSO based authn/authr design for an ELK deployment.</description>
+ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana As discussed in the last article, I will try to lay out the configuration details of a usable SSO based authn/authr design for an ELK deployment.</description>
     </item>
     
     <item>
       <title>Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</title>
-      <link>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</link>
+      <link>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01---a-blueprint-for-multi-tenant-sso/</link>
       <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
       
-      <guid>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</guid>
-      <description>Point Sur, Cali 01    I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s.</description>
+      <guid>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01---a-blueprint-for-multi-tenant-sso/</guid>
+      <description>Point Sur, Cali 01 I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.
+ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s.</description>
     </item>
     
     <item>
@@ -85,29 +90,29 @@ kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kiba
       <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
       
       <guid>https://chamila.dev/blog/2019-11-26_elasticsearch-index-management/</guid>
-      <description>The comms tower on top of Riverston, Sri Lanka   As the series on ElasticSearch deployment management in K8s is complete, I thought of writing down some of the Index Management tasks that I had to implement in order to reduce the manual work involved in cluster maintenance.
- Following is the series of posts on ElasticSearch on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The following management steps are not mandatory to be implemented in a cluster to be production ready, however having them in place would greatly reduce some of the common headaches involved in an ELK stack management.</description>
+      <description>The comms tower on top of Riverston, Sri Lanka As the series on ElasticSearch deployment management in K8s is complete, I thought of writing down some of the Index Management tasks that I had to implement in order to reduce the manual work involved in cluster maintenance.
+Following is the series of posts on ElasticSearch on K8s.
+ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana The following management steps are not mandatory to be implemented in a cluster to be production ready, however having them in place would greatly reduce some of the common headaches involved in an ELK stack management.</description>
     </item>
     
     <item>
       <title>ElasticSearch on K8s: 05 - Visualization and Production Readying</title>
-      <link>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</link>
+      <link>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05---visualization-and-production-readying/</link>
       <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
       
-      <guid>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</guid>
-      <description>Woolshed Hut on Mt. Somers    This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Visualization Kibana is a web application which can be used to query data from an ElasticSearch cluster.</description>
+      <guid>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05---visualization-and-production-readying/</guid>
+      <description>Woolshed Hut on Mt. Somers This is part of a series of short articles on setting up an ELK deployment on K8s.
+ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana Visualization Kibana is a web application which can be used to query data from an ElasticSearch cluster.</description>
     </item>
     
     <item>
       <title>ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</title>
-      <link>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</link>
+      <link>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04---log-storage-and-search-with-elasticsearch/</link>
       <pubDate>Sat, 23 Nov 2019 16:01:40 +1300</pubDate>
       
-      <guid>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</guid>
-      <description>The morning shadow on the lower mountaineous plain beside Adam&amp;#39;s Peak, Sri Lanka    This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Storage and Indexing Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying.</description>
+      <guid>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04---log-storage-and-search-with-elasticsearch/</guid>
+      <description>The morning shadow on the lower mountaineous plain beside Adam&amp;#39;s Peak, Sri Lanka This is part of a series of short articles on setting up an ELK deployment on K8s.
+ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana Storage and Indexing Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying.</description>
     </item>
     
     <item>
@@ -116,8 +121,8 @@ kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kiba
       <pubDate>Fri, 22 Nov 2019 01:05:37 +1300</pubDate>
       
       <guid>https://chamila.dev/blog/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</guid>
-      <description>A stash of sugar cane ready to be processed into sugar and Arrack    This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Enrichment Now that the logs are being collected from the required sources, it’s time to start making some sense out of them.</description>
+      <description>A stash of sugar cane ready to be processed into sugar and Arrack This is part of a series of short articles on setting up an ELK deployment on K8s.
+ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana Log Enrichment Now that the logs are being collected from the required sources, it’s time to start making some sense out of them.</description>
     </item>
     
     <item>
@@ -127,7 +132,7 @@ kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kiba
       
       <guid>https://chamila.dev/blog/2019-10-20_medium-to-hugo/</guid>
       <description>Taking a minor break from the &amp;ldquo;ElasticSearch on K8s&amp;rdquo; series
- tl;dr: I&amp;rsquo;m moving back to maintaining my own site rather than depending on Medium as a platform for technical blogging, because of various reasons. Also introducing a tool to convert from Medium to Hugo.
+tl;dr: I&amp;rsquo;m moving back to maintaining my own site rather than depending on Medium as a platform for technical blogging, because of various reasons. Also introducing a tool to convert from Medium to Hugo.
 A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;ve been writing blog posts for more than a decade now, on various platforms, SaaS ones to self-hosted solutions.</description>
     </item>
     
@@ -138,7 +143,7 @@ A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;v
       
       <guid>https://chamila.dev/blog/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</guid>
       <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.</description>
+ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.</description>
     </item>
     
     <item>
@@ -156,7 +161,7 @@ A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;v
       <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
       
       <guid>https://chamila.dev/blog/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</guid>
-      <description>Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic   Morning sunlight on Horton Plains National Park   In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?</description>
+      <description>Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic Morning sunlight on Horton Plains National Park In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.</description>
     </item>
     
     <item>
@@ -204,7 +209,7 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
       
       <guid>https://chamila.dev/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</guid>
       <description>What should an Observability Framework address? In the previous post, we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design. Let’s explore the possibility of a structured approach for designing observable systems.
-  Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls   Why should there be a structured approach?</description>
+Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls Why should there be a structured approach? In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack.</description>
     </item>
     
     <item>
@@ -217,7 +222,7 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
 Monitoring is for operating software/systems
 Instrumentation is for writing software
 Observability is for understanding systems
-&amp;mdash; Charity Majors (@mipsytipsy) September 23, 2017  That’s Charity Majors, a well known voice on Observability and someone who has built a business doing it well.</description>
+&amp;mdash; Charity Majors (@mipsytipsy) September 23, 2017 That’s Charity Majors, a well known voice on Observability and someone who has built a business doing it well.</description>
     </item>
     
     <item>
@@ -237,8 +242,8 @@ Automation enables the machine driven initiation and management of these tasks a
       
       <guid>https://chamila.dev/blog/2018-06-05_in-other-good-news-microsoft-buys-github/</guid>
       <description>Or why you should cool down with the anti-Microsoft rhetoric, at least for now
- Disclaimer: This is an opinionated article.
- What a historic moment! May be only second to the moment Windows incorporated the Linux Subsystem, one-time anti-open source giantbuys off may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years. And my Facebook feed (yes, I’m still friends with that guy) is filled with rants on how Microsoft will kill Open Source.</description>
+Disclaimer: This is an opinionated article.
+What a historic moment! May be only second to the moment Windows incorporated the Linux Subsystem, one-time anti-open source giant buys off may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years. And my Facebook feed (yes, I’m still friends with that guy) is filled with rants on how Microsoft will kill Open Source.</description>
     </item>
     
     <item>
@@ -278,8 +283,8 @@ So today, there came a need to sort through a large access log file for a list o
       
       <guid>https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</guid>
       <description>This post and the sample code are the results of a particular issue I had to tackle recently. Though the sample code is my own, the idea and the approach have many authors, arising from the collective knowledge on the WSO2 Middleware Stack.
- The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,
- Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token  If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</description>
+The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,
+Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</description>
     </item>
     
     <item>
@@ -289,7 +294,7 @@ So today, there came a need to sort through a large access log file for a list o
       
       <guid>https://chamila.dev/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/</guid>
       <description>Or the SSL Cert Extension that saves your back during development
- I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</description>
+I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</description>
     </item>
     
     <item>
@@ -309,7 +314,7 @@ However if you try to upload a self-signed SSL Certificate to IAM or ACM using t
       
       <guid>https://chamila.dev/blog/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</guid>
       <description>Or why you should always Label your Docker Image.
- Imagine this.
+Imagine this.
 You’re working on a new project, an exciting one that’s Container native. You’re almost done, and now at the stage where you want to build the Docker Image that ships your little project out to the public. You build on top of Alpine Linux, and pack your tool in to a nifty 80Mb Image that you tag latest and push to the public Docker Hub.</description>
     </item>
     
@@ -343,8 +348,8 @@ Vim Syntax highlighting in Vim for HAProxy configuration has been available for 
       
       <guid>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
       <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
- The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
- Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
+The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
+Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship Pretty simple from the looks of it doesn’t it? The catch is this.</description>
     </item>
     
     <item>
@@ -401,8 +406,8 @@ jstack pid &amp;gt;&amp;gt; thread_dump.txt Turns out the system doesn’t know 
       
       <guid>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</guid>
       <description>Running WSO2 Products on Kubernetes
- Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.
- It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!</description>
+Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.
+It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!</description>
     </item>
     
     <item>
@@ -460,7 +465,7 @@ When it comes to message brokers, authentication is a crucial part of securing t
       
       <guid>https://chamila.dev/blog/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</guid>
       <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.</description>
+The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.</description>
     </item>
     
     <item>
@@ -470,7 +475,7 @@ When it comes to message brokers, authentication is a crucial part of securing t
       
       <guid>https://chamila.dev/blog/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</guid>
       <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.</description>
+One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.</description>
     </item>
     
     <item>
@@ -490,7 +495,7 @@ When the instances are spawned in Apache Stratos, there are a few requirements t
       
       <guid>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</guid>
       <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance.</description>
+When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance.</description>
     </item>
     
     <item>
@@ -543,7 +548,7 @@ Security in Web Services is covered by the WS-Security standard. There are vario
       <description>If you have customized your Ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu 14.04 and found the solution to be disabling overlay scrollbars that come as the default.
 To do this simply add an environment variable called LIBOVERLAY_SCROLLBAR with value0.
 export LIBOVERLAY_SCROLLBAR=0 Originally published at chamilad.github.io on July 9, 2014.
- Written on July 9, 2014 by chamila de alwis.</description>
+Written on July 9, 2014 by chamila de alwis.</description>
     </item>
     
     <item>
@@ -553,7 +558,7 @@ export LIBOVERLAY_SCROLLBAR=0 Originally published at chamilad.github.io on July
       
       <guid>https://chamila.dev/blog/2014-07-01_creating-a-web-service-using-apache-axis2/</guid>
       <description>Prerequisites We need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let’s use Tomcat as a container. So in the following order
- Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7) Download and install Axis2 on Tomcat  Oracle JDK7 Download and extract the JDK tarball.</description>
+Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7) Download and install Axis2 on Tomcat Oracle JDK7 Download and extract the JDK tarball.</description>
     </item>
     
   </channel>

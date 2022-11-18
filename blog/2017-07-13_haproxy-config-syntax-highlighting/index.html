@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.105.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2017",
-      "datePublished": "2017-07-13 05:26:55.729 \x2b0000 UTC",
-      "dateModified" : "2017-07-13 05:26:55.729 \x2b0000 UTC",
+      "datePublished": "2017-07-13 05:26:55.729 \u002b0000 UTC",
+      "dateModified" : "2017-07-13 05:26:55.729 \u002b0000 UTC",
       "url" : "https:\/\/chamila.dev\/blog\/2017-07-13_haproxy-config-syntax-highlighting\/",
       "keywords" : [ "Vim","Atom","Haproxy","Syntax", ]
   }
@@ -118,16 +118,16 @@ Vim Syntax highlighting in Vim for HAProxy configuration has been available for 
           <p>A brief post on getting this done on Atom and Vim.</p>
 <h4 id="atom">Atom</h4>
 <p>Just install <code>language-haproxy</code> Atom plugin through either Atom UI or <code>apm</code> .</p>
-<pre><code>apm install language-haproxy
+<pre tabindex="0"><code>apm install language-haproxy
 </code></pre><p>When opening an <code>haproxy.cfg</code> file, Atom will detect and highlight accordingly.</p>
 <p><img src="/blog/img/2017-07-13_haproxy-config-syntax-highlighting_0.png#layoutTextWidth" alt=""></p>
 <h4 id="vim">Vim</h4>
 <p>Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from <a href="http://vimawesome.com/plugin/haproxy">VimAwesome</a>. To enable this, just clone the Github repository, copy the <code>.vim</code> file inside <code>syntax/</code> folder to <code>$HOME/.vim/syntax</code> .</p>
-<pre><code>git clone https://github.com/vim-scripts/haproxy.git
+<pre tabindex="0"><code>git clone https://github.com/vim-scripts/haproxy.git
 mkdir -p $HOME/.vim/syntax 
 cp haproxy/syntax/haproxy.vim $HOME/.vim/syntax/
 </code></pre><p>Now add the following line to <code>$HOME/.vimrc</code> .</p>
-<pre><code>au BufRead,BufNewFile haproxy* set ft=haproxy
+<pre tabindex="0"><code>au BufRead,BufNewFile haproxy* set ft=haproxy
 </code></pre><p>Now you should be able to see syntax highlighting enabled for HAProxy configuration files in Vim.</p>
 <p><img src="/blog/img/2017-07-13_haproxy-config-syntax-highlighting_1.png#layoutTextWidth" alt=""></p>
 <hr>

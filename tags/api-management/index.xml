@@ -6,11 +6,7 @@
     <description>Recent content in Api Management on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Dec 2018 16:49:16 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamila.dev/tags/api-management/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 24 Dec 2018 16:49:16 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/api-management/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Design a WSO2 Docker Image</title>
       <link>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</link>

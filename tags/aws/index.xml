@@ -6,10 +6,15 @@
     <description>Recent content in AWS on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Nov 2018 09:51:30 +0000</lastBuildDate>
-    
-	<atom:link href="https://chamila.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Tue, 01 Nov 2022 07:09:49 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rotating AWS Secrets Manager Secrets with Lambda</title>
+      <link>https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/</link>
+      <pubDate>Tue, 01 Nov 2022 07:09:49 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/</guid>
+      <description>Again, the only photo with me for now that&amp;#39;s closest to the theme, a spider weaving a trap near Manigala, Sri Lanka Secrets Manager secret types AWS Secret Manager supports a several types of secrets. These are mainly to support effective secret management by integrating them closer with the AWS Services they support. These are mainly various types of database services offered by AWS, which is one of the key uses for using Secrets Manager to manage master credentials.</description>
+    </item>
     
     <item>
       <title>Server Immutability</title>
@@ -28,7 +33,7 @@ What is Immutability? Immutability, when it comes to server instances, is not ch
       
       <guid>https://chamila.dev/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/</guid>
       <description>Or the SSL Cert Extension that saves your back during development
- I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</description>
+I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</description>
     </item>
     
     <item>
@@ -48,8 +53,8 @@ However if you try to upload a self-signed SSL Certificate to IAM or ACM using t
       
       <guid>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
       <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
- The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
- Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
+The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
+Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship Pretty simple from the looks of it doesn’t it? The catch is this.</description>
     </item>
     
   </channel>

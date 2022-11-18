@@ -6,18 +6,14 @@
     <description>Recent content in Esb on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Jul 2021 13:21:12 +1200</lastBuildDate>
-    
-	<atom:link href="https://chamila.dev/tags/esb/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 17 Jul 2021 13:21:12 +1200</lastBuildDate><atom:link href="https://chamila.dev/tags/esb/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CI/CD for Apache Nifi 01 - Introduction and Set up</title>
       <link>https://chamila.dev/blog/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</link>
       <pubDate>Sat, 17 Jul 2021 13:21:12 +1200</pubDate>
       
       <guid>https://chamila.dev/blog/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</guid>
-      <description>Harbour on a misty day    I&amp;rsquo;m getting back to writing after more than an year of a gap. A lot happened during this period, moved from one city to another, changed employers, but mostly, I think I switched my writing time for some PS4 time. At one point though, you come to accept that your best K/D is going to be 0.2 and you&amp;rsquo;re too old to get better.</description>
+      <description>Harbour on a misty day I&amp;rsquo;m getting back to writing after more than an year of a gap. A lot happened during this period, moved from one city to another, changed employers, but mostly, I think I switched my writing time for some PS4 time. At one point though, you come to accept that your best K/D is going to be 0.2 and you&amp;rsquo;re too old to get better. In any case, I managed to do a few rounds of bug fixing to my Kibana Prometheus Exporter, and learn a few things in an area I didn&amp;rsquo;t have that much of experience in, Big Data.</description>
     </item>
     
     <item>
@@ -27,8 +23,8 @@
       
       <guid>https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</guid>
       <description>This post and the sample code are the results of a particular issue I had to tackle recently. Though the sample code is my own, the idea and the approach have many authors, arising from the collective knowledge on the WSO2 Middleware Stack.
- The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,
- Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token  If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</description>
+The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,
+Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</description>
     </item>
     
   </channel>

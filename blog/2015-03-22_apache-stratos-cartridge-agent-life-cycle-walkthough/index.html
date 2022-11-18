@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.105.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Apache Stratos Cartridge Agent: Life Cycle Walkthough",
       "headline" : "Apache Stratos Cartridge Agent: Life Cycle Walkthough",
-      "description" : "This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?\n The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.",
+      "description" : "This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?\nThe Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2015",
-      "datePublished": "2015-03-22 00:00:00 \x2b0000 UTC",
-      "dateModified" : "2015-03-22 00:00:00 \x2b0000 UTC",
+      "datePublished": "2015-03-22 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2015-03-22 00:00:00 \u002b0000 UTC",
       "url" : "https:\/\/chamila.dev\/blog\/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough\/",
       "keywords" : [ "DevOps","Apache Stratos","Scale", ]
   }
@@ -37,7 +37,7 @@
   <meta property="og:title" content="Apache Stratos Cartridge Agent: Life Cycle Walkthough - chamila.dev" />
   <meta property="og:type" content="article" />
   <meta name="description" content="This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting." />
+The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -134,12 +134,12 @@
 <p><img src="/blog/img/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough_0.png#layoutTextWidth" alt=""></p>
 <h3 id="deploying-the-application">Deploying the Application</h3>
 <p>The sample scripts and artifacts for our scenario is available in the samples folder of the Stratos source. You can deploy this sample in any one of the available IaaS options including the Mock IaaS that is available in Stratos for developer testing purposes. Following is how it can be deployed in the Mock IaaS.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># navigate to the sample application folder</span> 
-cd &lt;STRATOS_SOURCE&gt;/samples/applications/single-cartridge/scripts/mock
- 
-<span style="color:#75715e"># run deploy script</span> 
-./deploy.sh
-</code></pre></div><p>However the Mock IaaS does not involve the Cartridge Agent execution, and therefore is a bit irrelevant in our scenario. You can deploy the same application in OpenStack or Amazon EC2 to witness the Cartridge Agent execution. You can even use Docker on Kubernetes and deploy a Kubernetes cluster to deploy this Single PHP Cartridge application.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># navigate to the sample application folder </span>
+</span></span><span style="display:flex;"><span>cd &lt;STRATOS_SOURCE&gt;/samples/applications/single-cartridge/scripts/mock
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># run deploy script </span>
+</span></span><span style="display:flex;"><span>./deploy.sh
+</span></span></code></pre></div><p>However the Mock IaaS does not involve the Cartridge Agent execution, and therefore is a bit irrelevant in our scenario. You can deploy the same application in OpenStack or Amazon EC2 to witness the Cartridge Agent execution. You can even use Docker on Kubernetes and deploy a Kubernetes cluster to deploy this Single PHP Cartridge application.</p>
 <h3 id="what-to-lookfor">What to Look For</h3>
 <p>The steps that are explained here can be observed by looking at several sources. The Cartridge Agent logs and the Stratos log are the primary sources where published and received logs can be viewed. The Java Cartridge Agent logs are located in /var/logs/apache-stratos/cartridge-agent.log and the full Python Cartridge Agent logs can be located in the /tmp/agent.screen.log. The Python Cartridge Agent additionally has two other logs, agent.log which log the configured log level, INFO being the default, and the error.log which only log ERROR level logs. These two can be found in the Python Cartridge Agent home, by default in /mnt/apache-stratos-python-cartridge-agent-4.1.0/.</p>
 <h3 id="reference-image">Reference Image</h3>

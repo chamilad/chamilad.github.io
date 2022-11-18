@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.105.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Subject Alternative Names in SSL Certificates",
       "headline" : "Subject Alternative Names in SSL Certificates",
-      "description" : "Or the SSL Cert Extension that saves your back during development\n I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.",
+      "description" : "Or the SSL Cert Extension that saves your back during development\nI recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2017",
-      "datePublished": "2017-11-06 14:26:50.449 \x2b0000 UTC",
-      "dateModified" : "2017-11-06 14:26:50.449 \x2b0000 UTC",
+      "datePublished": "2017-11-06 14:26:50.449 \u002b0000 UTC",
+      "dateModified" : "2017-11-06 14:26:50.449 \u002b0000 UTC",
       "url" : "https:\/\/chamila.dev\/blog\/2017-11-06_subject-alternative-names-in-ssl-certificates\/",
       "keywords" : [ "Ssl","X509","AWS","Subject Alternative Name","DNS", ]
   }
@@ -37,7 +37,7 @@
   <meta property="og:title" content="Subject Alternative Names in SSL Certificates - chamila.dev" />
   <meta property="og:type" content="article" />
   <meta name="description" content="Or the SSL Cert Extension that saves your back during development
- I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses." />
+I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -117,17 +117,17 @@
 <ol>
 <li>Generate the private key</li>
 </ol>
-<pre><code>openssl genrsa 2048 &gt; private.key
+<pre tabindex="0"><code>openssl genrsa 2048 &gt; private.key
 </code></pre><ol start="2">
 <li>Generate the self-signed certificate with SAN fields</li>
 </ol>
-<pre><code>openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key private.key -extensions SAN -config &lt;(cat /etc/ssl/openssl.cnf &lt;(printf &quot;[SAN]\nsubjectAltName=DNS:*.us-east-1.elb.amazonaws.com,DNS:*.dev.acme.org&quot;)) &gt; public.crt
+<pre tabindex="0"><code>openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key private.key -extensions SAN -config &lt;(cat /etc/ssl/openssl.cnf &lt;(printf &#34;[SAN]\nsubjectAltName=DNS:*.us-east-1.elb.amazonaws.com,DNS:*.dev.acme.org&#34;)) &gt; public.crt
 </code></pre><ol start="3">
 <li>Upload to AWS ACM</li>
 </ol>
-<pre><code>aws acm import-certificate --certificate file://public.crt --private-key file://private.key --region us-east-1
+<pre tabindex="0"><code>aws acm import-certificate --certificate file://public.crt --private-key file://private.key --region us-east-1
 </code></pre><p>After generating the certificate with the SAN fields, you can check if your command succeeded by looking at the certificate. To do this execute the following command.</p>
-<pre><code>openssl x509 -in public.crt -noout -text
+<pre tabindex="0"><code>openssl x509 -in public.crt -noout -text
 </code></pre><p>You will see an output similar to the following.</p>
 <p><img src="/blog/img/2017-11-06_subject-alternative-names-in-ssl-certificates_0.png#layoutOutsetCenter" alt=""></p>
 <p>According to the above output, <code>public.crt</code> certificate will validate to any ELB created in the <code>us-east-1</code> region, along with any subdomain created under <code>dev.acme.org</code> .</p>

@@ -6,10 +6,42 @@
     <description>Recent content in Tags on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Nov 2021 19:32:16 +1300</lastBuildDate>
+    <lastBuildDate>Tue, 01 Nov 2022 07:09:49 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS</title>
+      <link>https://chamila.dev/tags/aws/</link>
+      <pubDate>Tue, 01 Nov 2022 07:09:49 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/aws/</guid>
+      <description></description>
+    </item>
     
-	<atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lambda</title>
+      <link>https://chamila.dev/tags/lambda/</link>
+      <pubDate>Tue, 01 Nov 2022 07:09:49 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/lambda/</guid>
+      <description></description>
+    </item>
     
+    <item>
+      <title>Secret Rotation</title>
+      <link>https://chamila.dev/tags/secret-rotation/</link>
+      <pubDate>Tue, 01 Nov 2022 07:09:49 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/secret-rotation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Secrets Manager</title>
+      <link>https://chamila.dev/tags/secrets-manager/</link>
+      <pubDate>Tue, 01 Nov 2022 07:09:49 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/secrets-manager/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Automation</title>
@@ -255,15 +287,6 @@
     </item>
     
     <item>
-      <title>Git</title>
-      <link>https://chamila.dev/tags/git/</link>
-      <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
-      
-      <guid>https://chamila.dev/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Github</title>
       <link>https://chamila.dev/tags/github/</link>
       <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
@@ -408,15 +431,6 @@
     </item>
     
     <item>
-      <title>AWS</title>
-      <link>https://chamila.dev/tags/aws/</link>
-      <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
-      
-      <guid>https://chamila.dev/tags/aws/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Aws Ecs</title>
       <link>https://chamila.dev/tags/aws-ecs/</link>
       <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
@@ -521,6 +535,15 @@
       <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
       
       <guid>https://chamila.dev/tags/tooling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>https://chamila.dev/tags/git/</link>
+      <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
+      
+      <guid>https://chamila.dev/tags/git/</guid>
       <description></description>
     </item>
     
@@ -750,15 +773,6 @@
     </item>
     
     <item>
-      <title>Ha</title>
-      <link>https://chamila.dev/tags/ha/</link>
-      <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
-      
-      <guid>https://chamila.dev/tags/ha/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Haproxy</title>
       <link>https://chamila.dev/tags/haproxy/</link>
       <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
@@ -935,6 +949,15 @@
       <pubDate>Tue, 17 Nov 2015 00:00:00 +0000</pubDate>
       
       <guid>https://chamila.dev/tags/activemq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ha</title>
+      <link>https://chamila.dev/tags/ha/</link>
+      <pubDate>Tue, 17 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://chamila.dev/tags/ha/</guid>
       <description></description>
     </item>
     
