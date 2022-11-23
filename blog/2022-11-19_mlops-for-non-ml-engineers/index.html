@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.105.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "MLOps for Non-ML Engineers 01 - Introduction",
+      "headline" : "MLOps for Non-ML Engineers 01 - Introduction",
+      "description" : "An introduction to ML practices from Software Engineering perspective",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2022",
+      "datePublished": "2022-11-19 05:49:28 \u002b1300 NZDT",
+      "dateModified" : "2022-11-19 05:49:28 \u002b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2022-11-19_mlops-for-non-ml-engineers\/",
+      "keywords" : [ "Machine Learning","Artificial Intelligence","DevOps","Software Engineering","MLOps","Cloud", ]
+  }
+</script>
+<title>MLOps for Non-ML Engineers 01 - Introduction - chamila.dev</title>
+  <meta property="og:title" content="MLOps for Non-ML Engineers 01 - Introduction - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="An introduction to ML practices from Software Engineering perspective" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <p>
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </p>
+    
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">MLOps for Non-ML Engineers 01 - Introduction</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2022-11-19 05:49:28 NZDT">
+                19 Nov 2022
+		<p><b>Read time:</b> 9m
+		<br /><b>Word count:</b> 1839</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#ml-and-learning-the-basics">ML and Learning the Basics</a></li>
+    <li><a href="#how-is-machine-learning-different">How is Machine Learning Different?</a>
+      <ul>
+        <li><a href="#end-product">End Product</a></li>
+        <li><a href="#understanding-data">Understanding Data</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <figure><img src="/blog/img/2022-11-19_mlops_01_header.jpeg"/><figcaption>
+            <h4>Bixby Creek Bridge on CA-01 highway, Monterey, California</h4>
+        </figcaption>
+</figure>
+
+<p>Last year I had an opportunity to work with a team of Data Scientists on
+developing an Enterprise AI/ML practice. As someone who had not interacted at
+development level with Machine Learning and AI before, I jumped on the chance
+to learn something new and find a challenge on a new area. The following are a
+couple of notes (more to myself) of key points I learnt as an engineer with only
+software development and DevOps experience.</p>
+<p>The aim of these articles is to give an introduction to Machine Learning
+practices and MLOps from a software development and Cloud point of view. Most
+concepts I mention here would not go too deep into the topics. If you are a DevOps
+engineer who is looking to play the role of an ML Engineer role in the team, the pointers
+in these articles could help you. On the other hand if you&rsquo;re looking to learn
+Machine Learning and looking for a starter, this is not it.</p>
+<p>I also should note that some of the methodologies and practices I mention
+related to Data Science may not be the way you might be practicing at your team.
+The more I worked with the Data Scientists, the more I could establish a common
+vocabulary for concepts that both of us would refer to. These terms could be a
+bit different from your usage as well. I&rsquo;m a software developer and will
+probably never be a data scientist.</p>
+<p>When I refer to <strong>&ldquo;software development&rdquo;</strong> in these articles, I&rsquo;m referring to
+the other types of software development and operational aspects of the projects
+and products that do not have Artificial Intelligence or Machine Learning
+components to them. While I&rsquo;m being a little pedantic here, I don&rsquo;t like the
+phrase &ldquo;<em>traditional</em> software engineering&rdquo; that similar articles use. Software
+Engineering is the umbrella term for all types of such practices and Machine
+Learning projects in the industry are part of Software Engineering as a
+practice.</p>
+<p>Putting everything into a single article quickly became a bad idea, so I have
+split this into a series of smaller ones. I will be updating this post in the
+future with all the links at the top for easy access.</p>
+<h2 id="ml-and-learning-the-basics">ML and Learning the Basics</h2>
+<p>When you&rsquo;re working in a multi-disciplinary team, the key quality to build first
+is a common language for communication. This would take priority over even the
+functional goals of the team since you need to be able to work efficiently
+together towards a common goal. As a non-ML engineer, this was the first
+challenge in my job.</p>
+<p>I&rsquo;m guessing most readers would have an understanding of what Machine Learning
+is. For me other than a Data Mining module I did in the university, I had no
+clear idea what ML was in the current landscape. It&rsquo;s practically impossible to
+avoid coming across the phrases &ldquo;<strong>AI</strong>&rdquo;, &ldquo;<strong>Model</strong>&rdquo;, &ldquo;<strong>Deep Learning</strong>&rdquo; on a
+daily basis unless you live under a rock these days (Edge AI and IPv6 could fix
+that), but a decade old memory on working through a KNN example isn&rsquo;t the
+greatest qualification for working on ML.</p>
+<p>I dedicated at least a month of extra work on building an understanding of what
+AI and ML is, and the &ldquo;language&rdquo; the Data Scientists use. I followed the age-old
+&ldquo;try building a model at first, fail and go back to learning&rdquo; method to
+the letter. After writing Python code to build a simple binary classification
+model (I didn&rsquo;t know this at the time) and not understanding why each line
+of code was doing what it did, I stepped down to learning basic ML. <a href="https://www.youtube.com/watch?v=cKxRvEZd3Mw&amp;list=PLOU2XLYxmsIIuiBfYad6rFYQU_jL2ryal">The Google
+Machine Learning Youtube
+Playlist</a>
+was helpful here to get a good start. It&rsquo;s old so there could be a few
+API changes in the libraries that you&rsquo;ll be using, but nothing a simple web
+search can&rsquo;t fix.</p>
+<p>You could also start with the
+<a href="https://www.youtube.com/watch?v=jGwO_UgTS7I&amp;list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU">Standford CS229 ML Course on
+Youtube</a>
+but I do not recommend getting bogged down in details at these early
+stages. However, once you have some experience working with ML, revisiting
+this is recommended. Andrew Ng is a giant in this space and brings a lot of
+knowledge and light into the learning.</p>
+<p>I also found that I needed to learn
+basic statistics and mathematics needed for ML. A few playlists in <a href="https://www.youtube.com/c/joshstarmer/playlists">StatQuest
+Youtube channel</a> helped a lot
+in this case. The author has also <a href="https://www.amazon.com/dp/B0BLM4TLPY">published a book on the topic</a>
+which can be helpful to any beginner.</p>
+<h2 id="how-is-machine-learning-different">How is Machine Learning Different?</h2>
+<p>Why does Machine Learning need a different perspective compared to software
+development? Because Machine Learning as a practice has the following key
+differences from other software development practices.</p>
+<h3 id="end-product">End Product</h3>
+<p>In software development solutions, the end product is a binary or a
+collection of binaries and associated artefacts. These are typically produced
+as a result of a build pipeline that compiles the source code and any
+supporting artefacts together and produces consistent results for a given
+version of the source code. By design, these artefacts for a given version
+should be reproducible. The released binary or package has a clear progression
+of features and bug-fixes in the release timeline.</p>
+<p>In Machine Learning, the build result is a <strong>Model</strong>, which is a sweet spot in
+the problem&rsquo;s solution space. This point is hard to
+reproduce in multiple builds of the same version of the source code. This is
+mostly because source code is just one part of the build process in Machine
+Learning. A build, or a <strong>Model training</strong> in Machine Learning, is using a data
+set that <strong>potentially</strong> contains a pattern (or called a <strong>hypothesis</strong>), and
+source code that determines how to traverse the data set to find this pattern
+which can be used to generate <strong>predictions</strong> on related but never before seen
+data sets, or as called later <strong>real world data</strong>. While the source code and the
+data set can be the same for a given two training runs, the pattern the
+algorithm ends up with could be (and almost always will be) different.</p>
+<figure><img src="/blog/img/2022-11-19_mlops_01_topographic.png"/><figcaption>
+            <h4>Image from Analysis of a wind turbine project in the city of Bouar (Central African Republic) - Scientific Figure on ResearchGate. Available from: https://www.researchgate.net/figure/3D-Elevation-map-of-Bangui-outskirts_fig7_340074762 [accessed 22 Nov, 2022]</h4>
+        </figcaption>
+</figure>
+
+<p>Imagine you have at your table a physical model of one of those topographic maps
+of a mountainous terrain. You&rsquo;d have mountain tops, valleys, and one or two
+trenches. You are tasked to find the lowest point (<strong>minima</strong>) in the map by
+only making <strong>finite small incremental steps of touches with your eyes closed</strong>.
+Each round starts with a clean state with you having to forget what you learnt
+from the earlier round (somehow, I don&rsquo;t know, let&rsquo;s say hypnosis is involved).
+In this case, you would find low points in the map just by touching, but
+multiple rounds would probably result in you deciding different valleys or
+trenches being the lowest point (you can&rsquo;t undo your steps), which are not the
+actual lowest point (<strong>local minima</strong>, not the <strong>true minima</strong>). You might even
+find the actual lowest point at one round as well. You can change factors like
+the distance each step would travel (the distance between two touch points), or
+the finite number of steps for each round.</p>
+<p>Think of training a Model as trying to find the <em>&ldquo;lowest&rdquo;</em> point in the
+solution space by a machine which has no vision, no memory between
+the rounds (training jobs), and no way to determine if it has actually reached
+the real lowest point. Each &ldquo;round&rdquo; or training job could end up on an
+good solution spot, but it might not be the optimal point, and you might not
+end up on the same spot twice.</p>
+<blockquote>
+<p>If you&rsquo;re a Data Scientist, you might go &ldquo;well, that&rsquo;s not the entire picture&rdquo;
+at this point. That is true, but I&rsquo;m using this description for two reasons.
+It&rsquo;s better to keep concepts simple for the learning experience. Most
+engineers who are not Data Scientists will be able to contribute without
+having an understanding of the other definitions and use cases (most of the
+time). You might also go &ldquo;that&rsquo;s wrong!&rdquo;. That&rsquo;s because I don&rsquo;t know better.
+For an introduction I think this is good enough.</p>
+</blockquote>
+<h3 id="understanding-data">Understanding Data</h3>
+<p>Observations made on a given problem and its possible solutions has a high
+importance in all software development. In fact, in software
+development understanding the problem and possible ways of solving is key to
+writing good software and doing it efficiently. However, other than structured
+test data, data points of the problem wouldn&rsquo;t normally play a key role in
+actual software development.</p>
+<p>In Machine Learning, data is the problem. Solving it involves figuring out the &ldquo;class&rdquo; of the
+problem, and figuring out possible approaches to solving it. To do this,
+understanding the data set involved and the potential data set the Model will
+have to work with is critical.</p>
+<p>To do this, the input data should be cleaned and only the important data should
+be focused on. Most of the time, Machine Learning works on Data Lakes with
+unorganised dumps of data, collected hoping future Machine Learning and Data
+Engineering work would be able to use them. This data should be cleaned up,
+normalised, and made into formats that Machine Learning understands and can work
+with. To do this effectively, a good understanding of the problem is important,
+since &ldquo;cleaning up&rdquo; data can mean different things with different problems that
+can be solved with the same data set.</p>
+<p>Data is worked on as columns rather than rows, which is important when working
+with big data for analytical purposes. Efficient columnar storage, retrieval,
+and querying is probably solved at this stage of the solution. Each column that
+might be of interest to the problem is known as a <strong>Feature</strong>. Getting the
+right set of Features as input to a problem solving algorithm is important as
+well. Too little, and your solution is plain wrong as it fails to capture the
+whole picture. Too much, and you might be wasting precious time and compute
+power on details that don&rsquo;t really matter. This is known as the <strong>Curse
+of Dimensionality</strong> since trying to find a pattern in a multi-dimensional problem
+space becomes increasingly difficult as the number of dimensions increase.</p>
+<p>It is critical that this phase is done right. The entire solution could be
+influenced by decisions made in this phase, or as the practioners say
+<em>&ldquo;garbage in, garbage out&rdquo;</em>. For an example cleaning up data in a way that rows
+with absent values for certain columns are dropped, could introduce a clear
+bias in the resulting Model. Likewise, selecting wrong Features, or Features
+with superficial patterns that don&rsquo;t really contribute to the solution could
+waste resources and lose support for the entire project. <strong>Feature
+Engineering</strong> is a sub topic that works on best practices for identifying,
+selecting, and deriving new Features.</p>
+<p>This part of the process is commonly known as <strong>Exploratory Data Analysis
+(EDA)</strong>.</p>
+<hr>
+<blockquote>
+<p>More comparison between Machine Learning and Software Development continued
+in the next article.</p>
+</blockquote>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/">&lt; Rotating AWS Secrets Manager Secrets with Lambda</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/">A Primer on Observability for Dynamic Organizations — Part 2</a></li>
+    
+    <li><a href="/blog/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/">A Primer on Observability for Dynamic Organizations — Part 1</a></li>
+    
+    <li><a href="/blog/2018-07-20_that-tricky-thing-called-automation/">That Tricky Thing Called Automation</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

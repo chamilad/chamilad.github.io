@@ -1,7 +1,11 @@
 /* global */
 
 body {
-  font-family: 'Montserrat', "Arvo", "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+  font-family: "Montserrat", "Arvo", "Helvetica Neue", Helvetica,
+    "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB",
+    "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN",
+    "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti",
+    SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
   margin: 0 20px;
 }
 
@@ -15,7 +19,7 @@ a:hover {
 }
 
 figcaption {
-  font-size: 11px; 
+  font-size: 11px;
   color: #999;
   margin: auto;
   text-align: center;
@@ -80,7 +84,7 @@ blockquote {
 }
 
 .markdown-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 15px;
 }
 
@@ -107,8 +111,8 @@ blockquote {
 }
 
 .signatures {
-  font-family: 'Montserrat', "Arvo", Helvetica, "Liberation Sans", sans-serif;
- }
+  font-family: "Montserrat", "Arvo", Helvetica, "Liberation Sans", sans-serif;
+}
 
 .signatures a {
   text-decoration: none;
@@ -132,7 +136,8 @@ blockquote {
   min-height: 70%;
 }
 
-.posts-date, .posts-title {
+.posts-date,
+.posts-title {
   font-size: 1em;
 }
 
@@ -193,7 +198,7 @@ blockquote {
 }
 
 .post-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 600;
 }
 
