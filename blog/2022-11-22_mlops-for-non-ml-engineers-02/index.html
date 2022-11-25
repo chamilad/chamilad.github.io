@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.105.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev",
+      "headline" : "MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev",
+      "description" : "An introduction to ML practices from a Software Engineering perspective",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2022",
+      "datePublished": "2022-11-22 06:32:18 \u002b1300 NZDT",
+      "dateModified" : "2022-11-22 06:32:18 \u002b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2022-11-22_mlops-for-non-ml-engineers-02\/",
+      "keywords" : [ "Machine Learning","Artificial Intelligence","DevOps","Software Engineering","MLOps","Cloud", ]
+  }
+</script>
+<title>MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev - chamila.dev</title>
+  <meta property="og:title" content="MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="An introduction to ML practices from a Software Engineering perspective" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <p>
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </p>
+    
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2022-11-22 06:32:18 NZDT">
+                22 Nov 2022
+		<p><b>Read time:</b> 9m
+		<br /><b>Word count:</b> 1709</p>
+              </time>
+              
+           </div>
+      
+      
+      
+         </div>
+          
+ 	<div class="toc">
+	<hr />
+        <h4>Table of Contents:</h4>
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-is-machine-learning-different">How is Machine Learning Different?</a>
+      <ul>
+        <li><a href="#understanding-the-solution">Understanding the solution</a></li>
+        <li><a href="#build-quality-metrics">Build Quality Metrics</a></li>
+        <li><a href="#build-time">Build Time</a></li>
+        <li><a href="#artefact-management">Artefact Management</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	<hr />
+	</div>
+       </header>
+        <div class="post-content markdown-body">
+          <figure><img src="/blog/img/2022-11-22_mlops_02_header.jpeg"/><figcaption>
+            <h4>Lighthouse, Galle, Sri Lanka</h4>
+        </figcaption>
+</figure>
+
+<h2 id="how-is-machine-learning-different">How is Machine Learning Different?</h2>
+<blockquote>
+<p>Continuing comparison between Machine Learning and Software Development, from
+the previous article in the series.</p>
+<ol>
+<li><a href="https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/">MLOps for Non-ML Engineers 01 - Introduction</a></li>
+<li>MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</li>
+</ol>
+</blockquote>
+<h3 id="understanding-the-solution">Understanding the solution</h3>
+<p>Various iterations of design and architecture of a software development
+project usually determines the approach of the solution for a software
+engineering problem. As the design becomes more verbose, the higher the
+likelihood that details can change based on new findings. These changes usually
+have a low cost of switching, and do not impact the end product and the
+development pipeline significantly. As much as initial understanding of key
+requirments of the problem is important, approaches like Agile Methodology
+try to avoid committing to a grand detailed design at the start of the project
+and instead develops the solution and detailed design in iterations.</p>
+<p>In Machine Learning, &ldquo;development&rdquo; phase is known as <strong>Experimenting</strong>.</p>
+<p>Experimenting is the phase where the correct approach for the solution has to
+be figured out. As in the EDA phase (refer to the <a href="https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/">previous article</a>), having a good understanding of
+the problem is important here as well. Various different algorithms for the
+particular class of problems can be tried out here, however rather than trying
+out each algorithm for the &ldquo;best result&rdquo; (more details on how to determine the
+best result later), it helps to use the best possible candidates for this phase
+to reduce waste in cost and time.</p>
+<p>Once a suitable approach is determined, iterations to get the best result for
+the problem starts. In software development projects, a compiled binary
+or package that passes all the testing effort is the release candidate (with
+sometimes voting involved in Open Source projects). In
+Machine Learning, this criteria of becoming a release candidate can vary from
+problem to problem. The aim of Experimentation is to
+figure out the best possible approach that results in the best success criteria
+for the given problem.</p>
+<p>Experimentation usually uses a subset of data available for the problem. This is
+important for the quick results that Experimentation needs since a &ldquo;build&rdquo; in
+Machine Learning takes a longer time to complete than a source code compilation.
+Full set of data is used during the <strong>Training</strong> phase when the correct solution
+is determined.</p>
+<p>In a branch of solutions known as <strong>Supervised Learning</strong>, input data set is
+split into <strong>Training set</strong> and <strong>Validation set</strong>. The input data set is
+(usually randomly) split in to two groups. The first group is used to train the
+Model and the second group is used to test the resulting Model. In some cases,
+this is done for multiple iterations (including randomly splitting training and
+test data sets) to arrive at a number of Models that would have some variation
+in the results they produce. Metrics, that we will be discussing later, are
+used to compare these Models to determine if the approach taken produces
+consistent results with limited variation or if it is too unstable to find a
+suitable pattern.</p>
+<p>In Supervised Learning training data should be properly labelled. In some
+classes of problems, labelling can be a cumbersome task itself, especially
+given the volume of data involved. Various ways, from manual labelling by humans,
+to using Machine Learning for labelling itself are being used to generate proper
+training data sets.</p>
+<p>As mentioned above, getting it right in EDA and Experimenting phases is critical
+for a Machine Learning project. Mistakes in these phases can result in the
+entire effort being scrapped and having to start again, which can mean the
+failure of an entire project. While other software projects can, and do, fail for
+the same overall reasons, the wiggle room available for fixing mistakes down
+the line for a Machine Learning project is slim.</p>
+<h3 id="build-quality-metrics">Build Quality Metrics</h3>
+<p>If the result of each iteration of an ML build from the same source code (and the
+same version of the data set) can be different, how would we determine which
+one to release?</p>
+<p>In software development projects, the problem of comparing quality of different
+build versions is solved with a mix of automated and manual testing. The version
+with the most tests passing or the most critical tests passing is typically
+released.</p>
+<p>In Machine Learning, the passing criteria are more nuanced. Accuracy of Model
+predictions is not the ultimate metric to perfect. The typical example here is
+Fraud Detection. A Model with 100% accurate predictions is really easy to
+build.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">is_fraud</span>(t: TransactionMeta) <span style="color:#f92672">-&gt;</span> bool:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
+</span></span></code></pre></div><p>With the above code, 100% all fraudulant transactions can be detected. However,
+100% of legitimate transactions will also be marked as fraud and the bank would
+be out of business by the end of the week.</p>
+<p>For a successful Model, all of the following metrics should be understood.</p>
+<ol>
+<li>True Positive - predicted actual fradulant transaction as fraudulant</li>
+<li>True Negative - predicted actual legitimate transaction as legitimate</li>
+<li>False Positive - predicted actual legitimate transaction as fraudulant</li>
+<li>False Negative - predicted actual fraudulant transaction as legitimate</li>
+</ol>
+<p>For <strong>multi-class classification problems</strong> like these, Machine Learning uses a
+<strong>Confusion Matrix</strong> to better understand the effectiveness of the Model.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Actual <code>Yes</code></th>
+<th>Actual <code>No</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Predicted <code>Yes</code></td>
+<td><strong>True Positive</strong></td>
+<td>False Positive</td>
+</tr>
+<tr>
+<td>Predicted <code>No</code></td>
+<td>False Negative</td>
+<td><strong>True Negative</strong></td>
+</tr>
+</tbody>
+</table>
+<p>For this specific case, True Positive and True Negative percentage should be
+high and False Positive and False Negative cases should be low.</p>
+<p>To standardise these measurements, derived metrics such as <strong>Recall</strong>
+(True Positive rate), <strong>Precision</strong> (percentage of relevant results),
+<strong>Specificity</strong> (True Negative rate), and <strong>RMSE</strong> (Root Mean Square Error, how
+deviant is prediction from actual case, commonly used for Regression class of
+problems) are used. The selection of which metric to base the passing criteria
+on, depends on the problem. For the above mentioned fraud detection case,
+Recall is a good candidate which focuses on reducing false negatives and false
+positives. In fraud
+detection the cost of false negatives is high. For cases where cost of false
+positives is high, such as drug testing, Precision could be a better metric to
+aim for.</p>
+<p>Experimentation should also focus on avoiding <strong>overfitting</strong> a Model to a
+specific training data set. This is where training process becomes too accurate
+for the training data, and localises on a specific pattern in the training data
+that doesn&rsquo;t really exist in the real world data. A Model should be adequately
+accurate and should have a percentage of errors for it to successfully work with
+real world data. Think of overfitting as hard coding a Model to training data.</p>
+<h3 id="build-time">Build Time</h3>
+<p>The time distribution during between developing and building of the project in typical
+software development is usually weighted towards development. Developers spend
+time designing, researching, writing, and testing code and automated pipelines
+do the final building process. Local compiling and building is optimised to
+use local caches, mirror repositories, and take at most tens of minutes to
+complete even a large Java project with Maven2 slowly replenishing the cache. New
+programming languages boast about reduced compile time. Even for extremely large
+code bases, builds that go beyond a few hours is rare (time spent in build
+queues is a different story).</p>
+<p>In Machine Learning, Training can take days to finish. While data analysis and
+experimentation can take more time, the training builds take more time to
+finish more than any software engineering build would ever take. Adding to this
+is the specific hardware requirements a training job has. Depending on the
+algorithm, the training time could be affected by adding more CPUs and/or GPUs
+to the mix. However, with the volume of data involved and the complexity of the
+calculations involved, little can be done about the &ldquo;build times&rdquo; involved in
+Machine Learning.</p>
+<h3 id="artefact-management">Artefact Management</h3>
+<p>As discussed before, while a software development product can be reproduced
+pretty easily, a trained ML Model that might be potentially usable has to be
+persisted for future reference and comparison. A newer Model version, trained
+with what was thought to be better logic, and with different data, could end up
+being worse than the earlier version. This isn&rsquo;t like regression bugs in software
+development. It&rsquo;s more because of the ambiguous and black box like nature of
+Models and the training process.</p>
+<p>Artefact Management isn&rsquo;t a new concept for Machine Learning. But, where
+software development projects can use the same registry for different
+artefacts (binaries, resources, libraries, and dependencies), Machine Learning
+projects have a variation in the type of registries it will have to interact
+with.</p>
+<h4 id="feature-stores-and-data-set-management">Feature Stores and Data Set Management</h4>
+<p>Features, <a href="https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/">as discussed
+before</a>, are
+engineered out of existing data and are used to develop Models out of a given
+data set. In an organisation,
+Features derived out of the data it has, could be used for different efforts in
+different projects. Instead of generating Features for each project, these could
+be made available for different teams as a Feature Store. Since EDA and Feature
+Engineering can take a lot of time out of a project, having a common repository
+of refined Features can accelerate a Machine Learning project. Likewise, having
+proper access to data sets for data engineering and Data Scientists avoids having
+to put processes in for data access.</p>
+<h4 id="model-registry">Model Registry</h4>
+<p>Each outcome of a training run will most likely end up as a
+version of a given Model type. These are usually stored in file or object
+storage services, however metadata related to each version is important as
+much as the Model itself. These metadata could include training details,
+validation metrics, and other useful data that can be used to compare
+versions and deploy into production. A Model Registry is such a metadata
+management registry.</p>
+<h4 id="library-and-dependency-management">Library and dependency management</h4>
+<p>Like other software development projects, software libraries and dependencies
+are part of the development process in Machine Learning projects. There will be
+the need to manage the supply chain for security and predictability. At the
+same time, in-house libraries will have to be developed to support Data
+Scientists to adhere to best practices when working with their development and
+training environment, and abstract away the platform management details from
+their part of the work. These will need to be stored, versioned, and made
+available under tight access control.</p>
+<hr>
+<blockquote>
+<p>More comparison between Machine Learning and Software Development continued
+in the next article.</p>
+</blockquote>
+
+        </div>
+	<div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/">&lt; MLOps for Non-ML Engineers 01 - Introduction</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2022-11-19_mlops-for-non-ml-engineers/">MLOps for Non-ML Engineers 01 - Introduction</a></li>
+    
+    <li><a href="/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/">A Primer on Observability for Dynamic Organizations — Part 2</a></li>
+    
+    <li><a href="/blog/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/">A Primer on Observability for Dynamic Organizations — Part 1</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>
