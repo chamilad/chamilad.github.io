@@ -43,7 +43,10 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
   
@@ -62,49 +65,61 @@
 <body>
   <article class="post " id="article">
     <div class="row">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div class="site-header">
           
 <header>
   <div class="signatures site-title">
-    <p>
+    <span class="breadcrumbs">
       <a href="https://chamila.dev/">chamila.dev</a> >
       <a href="https://chamila.dev//blog"> journal </a> >
-    </p>
-    
+    </span>
+
+    <span class="sm-icons">
+      <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+        <i class="fas fa-rss sm-icon"></i>
+      </a>
+      <a href="https://github.com/chamilad" target="_blank" title="github">
+        <i class="fab fa-github sm-icon"></i>
+      </a>
+      <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+        <i class="fab fa-mastodon sm-icon"></i>
+      </a>
+    </span>
   </div>
 </header>
 <div class="row end-xs">
    
 </div>
-<div class="header-line"></div>
+
 
         </div>
         <header class="post-header">
           <h1 class="post-title">A Standalone Prometheus Exporter for Kibana</h1>
           
           <div class="row post-desc">
-            <div class="col-xs-6">
+            <div class="pub-date col-xs-6">
               
-              <time class="post-date" datetime="2020-03-14 13:37:33 NZDT">
+              <time class="post-date" datetime=" 2020-03-14 13:37:33 NZDT">
                 14 Mar 2020
-		<p><b>Read time:</b> 3m
-		<br /><b>Word count:</b> 502</p>
               </time>
               
-           </div>
-      
-      
-      
-         </div>
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~3 minutes
+            </div>
+            
+            
+            
+          </div>
           
- 	<div class="toc">
-	<hr />
-        <h4>Table of Contents:</h4>
-	<nav id="TableOfContents"></nav>
-	<hr />
-	</div>
-       </header>
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents"></nav>
+            
+          </div>
+        </header>
         <div class="post-content markdown-body">
           <p>I wrote a <a href="https://github.com/chamilad/kibana-prometheus-exporter">Prometheus Exporter that converts and exposes some metrics from Kibana API</a>. This was mostly inspired by <a href="https://github.com/pjhampton/kibana-prometheus-exporter/">an already existing Exporter</a>, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password
@@ -212,7 +227,7 @@
 </blockquote>
 
         </div>
-	<div class="prev-next row">
+        <div class="prev-next row">
 	<div class="prev col-sm">
 	
 	<a href="https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03---multi-tenancy-with-keycloak-and-kibana/">&lt; Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</a>
@@ -246,13 +261,28 @@
 
         
         
-        <div style="height: 50px;"></div>
+        
         
         
 
         <div class="site-footer">
+  <div class="sm-icons">
+    <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+      <i class="fas fa-rss sm-icon"></i>
+    </a>
+    <a href="https://github.com/chamilad" target="_blank" title="github">
+      <i class="fab fa-github sm-icon"></i>
+    </a>
+    <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+      <i class="fab fa-mastodon sm-icon"></i>
+    </a>
+  </div>
   
-  
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
 </div>
 
       </div>

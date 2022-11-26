@@ -44,7 +44,10 @@ Stream Definition In order to publish data as a stream, the definition of the pa
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
   
@@ -63,46 +66,58 @@ Stream Definition In order to publish data as a stream, the definition of the pa
 <body>
   <article class="post " id="article">
     <div class="row">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div class="site-header">
           
 <header>
   <div class="signatures site-title">
-    <p>
+    <span class="breadcrumbs">
       <a href="https://chamila.dev/">chamila.dev</a> >
       <a href="https://chamila.dev//blog"> journal </a> >
-    </p>
-    
+    </span>
+
+    <span class="sm-icons">
+      <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+        <i class="fas fa-rss sm-icon"></i>
+      </a>
+      <a href="https://github.com/chamilad" target="_blank" title="github">
+        <i class="fab fa-github sm-icon"></i>
+      </a>
+      <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+        <i class="fab fa-mastodon sm-icon"></i>
+      </a>
+    </span>
   </div>
 </header>
 <div class="row end-xs">
    
 </div>
-<div class="header-line"></div>
+
 
         </div>
         <header class="post-header">
           <h1 class="post-title">Thrift Communication in Apache Stratos</h1>
           
           <div class="row post-desc">
-            <div class="col-xs-6">
+            <div class="pub-date col-xs-6">
               
-              <time class="post-date" datetime="2014-10-10 00:00:00 UTC">
+              <time class="post-date" datetime=" 2014-10-10 00:00:00 UTC">
                 10 Oct 2014
-		<p><b>Read time:</b> 6m
-		<br /><b>Word count:</b> 1089</p>
               </time>
               
-           </div>
-      
-      
-      
-         </div>
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~6 minutes
+            </div>
+            
+            
+            
+          </div>
           
- 	<div class="toc">
-	<hr />
-        <h4>Table of Contents:</h4>
-	<nav id="TableOfContents">
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -114,9 +129,9 @@ Stream Definition In order to publish data as a stream, the definition of the pa
     </li>
   </ul>
 </nav>
-	<hr />
-	</div>
-       </header>
+            
+          </div>
+        </header>
         <div class="post-content markdown-body">
           <p>In Apache Stratos, data publishing over Thrift is done via streaming. It uses WSO2 Carbon’s Data Bridge to serialize data in to a stream and publish to a given IP address and a Port. The use of DataBridge is explained <a href="http://wso2.com/library/articles/2012/07/creating-custom-agents-publish-events-bamcep/">here</a>.</p>
 <h3 id="stream-definition">Stream Definition</h3>
@@ -188,7 +203,7 @@ Stream Definition In order to publish data as a stream, the definition of the pa
 <p>Originally published on <a href="https://medium.com/@chamilad/thrift-communication-in-apache-stratos-e9518f2dedb5">Medium</a></p>
 
         </div>
-	<div class="prev-next row">
+        <div class="prev-next row">
 	<div class="prev col-sm">
 	
 	<a href="https://chamila.dev/blog/2014-08-05_pppoe-on-virtualbox/">&lt; PPPOE on VirtualBox</a>
@@ -209,13 +224,28 @@ Stream Definition In order to publish data as a stream, the definition of the pa
 
         
         
-        <div style="height: 50px;"></div>
+        
         
         
 
         <div class="site-footer">
+  <div class="sm-icons">
+    <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+      <i class="fas fa-rss sm-icon"></i>
+    </a>
+    <a href="https://github.com/chamilad" target="_blank" title="github">
+      <i class="fab fa-github sm-icon"></i>
+    </a>
+    <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+      <i class="fab fa-mastodon sm-icon"></i>
+    </a>
+  </div>
   
-  
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
 </div>
 
       </div>

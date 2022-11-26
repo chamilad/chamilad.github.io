@@ -41,7 +41,10 @@
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   
   <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
   
@@ -57,16 +60,17 @@
 </head>
 
 
-<body>
+<body class="home">
   <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <header class="post-header">
-          <h1 class="post-title">chamila</h1>
+          <span class="breadcrumbs">
+            <h1 class="post-title">chamila</h1>
+          </span>
         </header>
 
-        <div class="post-content markdown-body">
-	<figure><img src="/img/hagley_park.jpg"/><figcaption>
+        <div class="post-content markdown-body"><figure><img src="/img/hagley_park.jpg"/><figcaption>
             <h4>World Tree at the Hagley Park</h4>
         </figcaption>
 </figure>
@@ -79,12 +83,26 @@
 <li><a href="https://fosstodon.org/@chamilad">mastodon</a></li>
 <li><a href="https://twitter.com/chamilad">twitter</a></li>
 </ul>
-
-        </div>
+</div>
 
         <div class="site-footer">
+  <div class="sm-icons">
+    <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+      <i class="fas fa-rss sm-icon"></i>
+    </a>
+    <a href="https://github.com/chamilad" target="_blank" title="github">
+      <i class="fab fa-github sm-icon"></i>
+    </a>
+    <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+      <i class="fab fa-mastodon sm-icon"></i>
+    </a>
+  </div>
   
-  
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
 </div>
 
       </div>
@@ -103,9 +121,7 @@
     priority: true,
   });
 </script>
-
-  
-
+ 
 </body>
 
 </html>

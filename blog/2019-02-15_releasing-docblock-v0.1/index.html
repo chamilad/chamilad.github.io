@@ -43,7 +43,10 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
   
@@ -62,46 +65,58 @@
 <body>
   <article class="post " id="article">
     <div class="row">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div class="site-header">
           
 <header>
   <div class="signatures site-title">
-    <p>
+    <span class="breadcrumbs">
       <a href="https://chamila.dev/">chamila.dev</a> >
       <a href="https://chamila.dev//blog"> journal </a> >
-    </p>
-    
+    </span>
+
+    <span class="sm-icons">
+      <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+        <i class="fas fa-rss sm-icon"></i>
+      </a>
+      <a href="https://github.com/chamilad" target="_blank" title="github">
+        <i class="fab fa-github sm-icon"></i>
+      </a>
+      <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+        <i class="fab fa-mastodon sm-icon"></i>
+      </a>
+    </span>
   </div>
 </header>
 <div class="row end-xs">
    
 </div>
-<div class="header-line"></div>
+
 
         </div>
         <header class="post-header">
           <h1 class="post-title">Releasing DocBlock v0.1</h1>
           
           <div class="row post-desc">
-            <div class="col-xs-6">
+            <div class="pub-date col-xs-6">
               
-              <time class="post-date" datetime="2019-02-15 18:17:04 UTC">
+              <time class="post-date" datetime=" 2019-02-15 18:17:04 UTC">
                 15 Feb 2019
-		<p><b>Read time:</b> 7m
-		<br /><b>Word count:</b> 1407</p>
               </time>
               
-           </div>
-      
-      
-      
-         </div>
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~7 minutes
+            </div>
+            
+            
+            
+          </div>
           
- 	<div class="toc">
-	<hr />
-        <h4>Table of Contents:</h4>
-	<nav id="TableOfContents">
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -110,9 +125,9 @@
     </li>
   </ul>
 </nav>
-	<hr />
-	</div>
-       </header>
+            
+          </div>
+        </header>
         <div class="post-content markdown-body">
           <h4 id="a-tool-to-automate-technical-content-generation-for-configuration-files">A tool to automate technical content generation for configuration files</h4>
 <p>Many months ago, a technical writer colleague of mine complained about how they were struggling to keep up with the frequent releases that the company was doing at the time. There were multiple products in their plate, with each having multiple configuration files (sometimes numbering more than 10). Although the configuration files overlapped within each product, because of the componentized platform the company had built the products upon, each product in theory could have different release versions of the components that used these configuration files. All of these had to be documented into readable (and most importantly usable) technical content.</p>
@@ -175,7 +190,7 @@
 <p>Originally published on <a href="https://medium.com/@chamilad/releasing-docblock-v0-1-65757166e623">Medium</a></p>
 
         </div>
-	<div class="prev-next row">
+        <div class="prev-next row">
 	<div class="prev col-sm">
 	
 	<a href="https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/">&lt; How to Design a WSO2 Docker Image</a>
@@ -205,13 +220,28 @@
 
         
         
-        <div style="height: 50px;"></div>
+        
         
         
 
         <div class="site-footer">
+  <div class="sm-icons">
+    <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+      <i class="fas fa-rss sm-icon"></i>
+    </a>
+    <a href="https://github.com/chamilad" target="_blank" title="github">
+      <i class="fab fa-github sm-icon"></i>
+    </a>
+    <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+      <i class="fab fa-mastodon sm-icon"></i>
+    </a>
+  </div>
   
-  
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
 </div>
 
       </div>

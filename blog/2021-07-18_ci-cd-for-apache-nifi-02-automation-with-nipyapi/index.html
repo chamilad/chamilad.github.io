@@ -44,7 +44,10 @@ Though this shows three environments, we have only taken the dev -&gt; test step
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
   
@@ -63,46 +66,58 @@ Though this shows three environments, we have only taken the dev -&gt; test step
 <body>
   <article class="post " id="article">
     <div class="row">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div class="site-header">
           
 <header>
   <div class="signatures site-title">
-    <p>
+    <span class="breadcrumbs">
       <a href="https://chamila.dev/">chamila.dev</a> >
       <a href="https://chamila.dev//blog"> journal </a> >
-    </p>
-    
+    </span>
+
+    <span class="sm-icons">
+      <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+        <i class="fas fa-rss sm-icon"></i>
+      </a>
+      <a href="https://github.com/chamilad" target="_blank" title="github">
+        <i class="fab fa-github sm-icon"></i>
+      </a>
+      <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+        <i class="fab fa-mastodon sm-icon"></i>
+      </a>
+    </span>
   </div>
 </header>
 <div class="row end-xs">
    
 </div>
-<div class="header-line"></div>
+
 
         </div>
         <header class="post-header">
           <h1 class="post-title">CI/CD for Apache Nifi 02: Automation with NipyAPI</h1>
           
           <div class="row post-desc">
-            <div class="col-xs-6">
+            <div class="pub-date col-xs-6">
               
-              <time class="post-date" datetime="2021-07-18 22:20:47 NZST">
+              <time class="post-date" datetime=" 2021-07-18 22:20:47 NZST">
                 18 Jul 2021
-		<p><b>Read time:</b> 14m
-		<br /><b>Word count:</b> 2980</p>
               </time>
               
-           </div>
-      
-      
-      
-         </div>
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~14 minutes
+            </div>
+            
+            
+            
+          </div>
           
- 	<div class="toc">
-	<hr />
-        <h4>Table of Contents:</h4>
-	<nav id="TableOfContents">
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
   <ul>
     <li><a href="#exporting-process-groups">Exporting Process Groups</a>
       <ul>
@@ -132,9 +147,9 @@ Though this shows three environments, we have only taken the dev -&gt; test step
     </li>
   </ul>
 </nav>
-	<hr />
-	</div>
-       </header>
+            
+          </div>
+        </header>
         <div class="post-content markdown-body">
           <figure><img src="/blog/img/2021-07-18_nifi_cicd_02_header.jpeg"/><figcaption>
             <h4>Wharf on a good day</h4>
@@ -446,7 +461,7 @@ Though this shows three environments, we have only taken the dev -&gt; test step
 <p>The code and the config files referred to in these two posts are available at <a href="https://github.com/chamilad/nifi_cicd_poc"><code>chamilad/nifi_cicd_poc</code></a> repository. Please open an issue if you want to clarify anything.</p>
 
         </div>
-	<div class="prev-next row">
+        <div class="prev-next row">
 	<div class="prev col-sm">
 	
 	<a href="https://chamila.dev/blog/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/">&lt; CI/CD for Apache Nifi 01 - Introduction and Set up</a>
@@ -476,13 +491,28 @@ Though this shows three environments, we have only taken the dev -&gt; test step
 
         
         
-        <div style="height: 50px;"></div>
+        
         
         
 
         <div class="site-footer">
+  <div class="sm-icons">
+    <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+      <i class="fas fa-rss sm-icon"></i>
+    </a>
+    <a href="https://github.com/chamilad" target="_blank" title="github">
+      <i class="fab fa-github sm-icon"></i>
+    </a>
+    <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+      <i class="fab fa-mastodon sm-icon"></i>
+    </a>
+  </div>
   
-  
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
 </div>
 
       </div>

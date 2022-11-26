@@ -43,7 +43,10 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
   
@@ -62,49 +65,61 @@
 <body>
   <article class="post " id="article">
     <div class="row">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div class="site-header">
           
 <header>
   <div class="signatures site-title">
-    <p>
+    <span class="breadcrumbs">
       <a href="https://chamila.dev/">chamila.dev</a> >
       <a href="https://chamila.dev//blog"> journal </a> >
-    </p>
-    
+    </span>
+
+    <span class="sm-icons">
+      <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+        <i class="fas fa-rss sm-icon"></i>
+      </a>
+      <a href="https://github.com/chamilad" target="_blank" title="github">
+        <i class="fab fa-github sm-icon"></i>
+      </a>
+      <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+        <i class="fab fa-mastodon sm-icon"></i>
+      </a>
+    </span>
   </div>
 </header>
 <div class="row end-xs">
    
 </div>
-<div class="header-line"></div>
+
 
         </div>
         <header class="post-header">
           <h1 class="post-title">BreadPool — a Thread Pool for Python</h1>
           
           <div class="row post-desc">
-            <div class="col-xs-6">
+            <div class="pub-date col-xs-6">
               
-              <time class="post-date" datetime="2015-12-10 00:00:00 UTC">
+              <time class="post-date" datetime=" 2015-12-10 00:00:00 UTC">
                 10 Dec 2015
-		<p><b>Read time:</b> 3m
-		<br /><b>Word count:</b> 481</p>
               </time>
               
-           </div>
-      
-      
-      
-         </div>
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~3 minutes
+            </div>
+            
+            
+            
+          </div>
           
- 	<div class="toc">
-	<hr />
-        <h4>Table of Contents:</h4>
-	<nav id="TableOfContents"></nav>
-	<hr />
-	</div>
-       </header>
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents"></nav>
+            
+          </div>
+        </header>
         <div class="post-content markdown-body">
           <p>A thread pool is not a new concept. It’s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? Because the program wouldn’t be starting threads as it sees fit and somehow reach the maximum thread number soon. Simply said thread pools allows us to limit the number of threads spawned by our program execution. Trust me, you don’t want your code going to town spawning threads. It comes back to bite you in your behind, sooner than you think.</p>
 <p>Programming languages usually provide built in libraries implementing thread pools, however Python doesn’t seem to have a pooling strategy for threads. It does however have a <a href="https://pymotw.com/2/multiprocessing/communication.html#process-pools">Process Pool</a> concept, where a set of workers can be used to submit a function, but that involves more complexities (ex: function’s ability to be pickled or unpickled) than threads. It also involves processes, which differ drastically from threads when it comes to multi-threading requirements.</p>
@@ -125,7 +140,7 @@
 <p>Originally published on <a href="https://medium.com/@chamilad/breadpool-a-thread-pool-for-python-7a8697ded2bc">Medium</a></p>
 
         </div>
-	<div class="prev-next row">
+        <div class="prev-next row">
 	<div class="prev col-sm">
 	
 	<a href="https://chamila.dev/blog/2015-11-26_timing-out-of-long-running-methods-in-python/">&lt; Timing Out of Long Running Methods in Python</a>
@@ -157,13 +172,28 @@
 
         
         
-        <div style="height: 50px;"></div>
+        
         
         
 
         <div class="site-footer">
+  <div class="sm-icons">
+    <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+      <i class="fas fa-rss sm-icon"></i>
+    </a>
+    <a href="https://github.com/chamilad" target="_blank" title="github">
+      <i class="fab fa-github sm-icon"></i>
+    </a>
+    <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+      <i class="fab fa-mastodon sm-icon"></i>
+    </a>
+  </div>
   
-  
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
 </div>
 
       </div>

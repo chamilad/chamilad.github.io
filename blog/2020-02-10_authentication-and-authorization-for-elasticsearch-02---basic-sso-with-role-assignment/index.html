@@ -44,7 +44,10 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
   
@@ -63,46 +66,58 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 <body>
   <article class="post " id="article">
     <div class="row">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div class="site-header">
           
 <header>
   <div class="signatures site-title">
-    <p>
+    <span class="breadcrumbs">
       <a href="https://chamila.dev/">chamila.dev</a> >
       <a href="https://chamila.dev//blog"> journal </a> >
-    </p>
-    
+    </span>
+
+    <span class="sm-icons">
+      <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+        <i class="fas fa-rss sm-icon"></i>
+      </a>
+      <a href="https://github.com/chamilad" target="_blank" title="github">
+        <i class="fab fa-github sm-icon"></i>
+      </a>
+      <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+        <i class="fab fa-mastodon sm-icon"></i>
+      </a>
+    </span>
   </div>
 </header>
 <div class="row end-xs">
    
 </div>
-<div class="header-line"></div>
+
 
         </div>
         <header class="post-header">
           <h1 class="post-title">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</h1>
           
           <div class="row post-desc">
-            <div class="col-xs-6">
+            <div class="pub-date col-xs-6">
               
-              <time class="post-date" datetime="2020-02-10 20:26:46 NZDT">
+              <time class="post-date" datetime=" 2020-02-10 20:26:46 NZDT">
                 10 Feb 2020
-		<p><b>Read time:</b> 12m
-		<br /><b>Word count:</b> 2438</p>
               </time>
               
-           </div>
-      
-      
-      
-         </div>
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~12 minutes
+            </div>
+            
+            
+            
+          </div>
           
- 	<div class="toc">
-	<hr />
-        <h4>Table of Contents:</h4>
-	<nav id="TableOfContents">
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
   <ul>
     <li><a href="#configuring-keycloak---01---client-configuration">Configuring KeyCloak - 01 - Client Configuration</a></li>
     <li><a href="#configuring-elasticsearch---02---auth-realm-configuration">Configuring ElasticSearch - 02 - Auth Realm Configuration</a></li>
@@ -114,9 +129,9 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
     <li><a href="#role-mapping-for-authorization">Role Mapping for Authorization</a></li>
   </ul>
 </nav>
-	<hr />
-	</div>
-       </header>
+            
+          </div>
+        </header>
         <div class="post-content markdown-body">
           <p><img src="/blog/img/2020-02-10_authn_authr_elk_02_header.png" alt=""></p>
 <blockquote>
@@ -249,7 +264,7 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 <p>In the next article, let&rsquo;s explore an approach to inject multi-tenancy into this SSO model.</p>
 
         </div>
-	<div class="prev-next row">
+        <div class="prev-next row">
 	<div class="prev col-sm">
 	
 	<a href="https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01---a-blueprint-for-multi-tenant-sso/">&lt; Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</a>
@@ -283,13 +298,28 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 
         
         
-        <div style="height: 50px;"></div>
+        
         
         
 
         <div class="site-footer">
+  <div class="sm-icons">
+    <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+      <i class="fas fa-rss sm-icon"></i>
+    </a>
+    <a href="https://github.com/chamilad" target="_blank" title="github">
+      <i class="fab fa-github sm-icon"></i>
+    </a>
+    <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+      <i class="fab fa-mastodon sm-icon"></i>
+    </a>
+  </div>
   
-  
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
 </div>
 
       </div>

@@ -43,7 +43,10 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
   
@@ -62,46 +65,58 @@
 <body>
   <article class="post " id="article">
     <div class="row">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div class="site-header">
           
 <header>
   <div class="signatures site-title">
-    <p>
+    <span class="breadcrumbs">
       <a href="https://chamila.dev/">chamila.dev</a> >
       <a href="https://chamila.dev//blog"> journal </a> >
-    </p>
-    
+    </span>
+
+    <span class="sm-icons">
+      <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+        <i class="fas fa-rss sm-icon"></i>
+      </a>
+      <a href="https://github.com/chamilad" target="_blank" title="github">
+        <i class="fab fa-github sm-icon"></i>
+      </a>
+      <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+        <i class="fab fa-mastodon sm-icon"></i>
+      </a>
+    </span>
   </div>
 </header>
 <div class="row end-xs">
    
 </div>
-<div class="header-line"></div>
+
 
         </div>
         <header class="post-header">
           <h1 class="post-title">Monitoring WSO2 Logs with Elasticsearch, Logstash, and Kibana (or Grafana)</h1>
           
           <div class="row post-desc">
-            <div class="col-xs-6">
+            <div class="pub-date col-xs-6">
               
-              <time class="post-date" datetime="2016-09-10 21:26:48 UTC">
+              <time class="post-date" datetime=" 2016-09-10 21:26:48 UTC">
                 10 Sep 2016
-		<p><b>Read time:</b> 5m
-		<br /><b>Word count:</b> 925</p>
               </time>
               
-           </div>
-      
-      
-      
-         </div>
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~5 minutes
+            </div>
+            
+            
+            
+          </div>
           
- 	<div class="toc">
-	<hr />
-        <h4>Table of Contents:</h4>
-	<nav id="TableOfContents">
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -116,9 +131,9 @@
     </li>
   </ul>
 </nav>
-	<hr />
-	</div>
-       </header>
+            
+          </div>
+        </header>
         <div class="post-content markdown-body">
           <p>I’ve recently been doing some work involving analytics dashboards and the subject proved to be really interesting. It has a wide range starting from Big Data to UX. Starting at a point where you determine what kind of data is collected and what kind information you need to get out of the dashboard, going to data analysis and data processing (probably on top an engine like Apache Spark), it finalizes at the visualization stage which is really fun.</p>
 <p>WSO2 recently released the latest version of <a href="http://wso2.com/products/enterprise-service-bus/">WSO2 ESB</a>, with a <a href="https://docs.wso2.com/display/ESB500/WSO2+ESB+Analytics">new analytics solution</a> that integrates seamlessly. Built on <a href="http://wso2.com/products/data-analytics-server/">WSO2 Data Analytics Server</a>, it packs a lot of power in terms of customizability when it comes to large scale data processing and visualization (plus all the benefits that come with <a href="http://wso2.com/products/carbon/">WSO2 Carbon Platform</a>). You just need to download ESB 5 Analytics, <a href="https://docs.wso2.com/display/ESB500/Prerequisites+to+Publish+Statistics">change minimal configuration</a> options in the ESB deployment, and start it up. You’ll come across the following dashboard.</p>
@@ -189,7 +204,7 @@ log4j.appender.tcp.Application=esb500wso2carbon
 <p>Originally published on <a href="https://medium.com/@chamilad/monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana-1f880f6ed056">Medium</a></p>
 
         </div>
-	<div class="prev-next row">
+        <div class="prev-next row">
 	<div class="prev col-sm">
 	
 	<a href="https://chamila.dev/blog/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/">&lt; Extracting memory and thread dumps from a running JRE based JVM</a>
@@ -223,13 +238,28 @@ log4j.appender.tcp.Application=esb500wso2carbon
 
         
         
-        <div style="height: 50px;"></div>
+        
         
         
 
         <div class="site-footer">
+  <div class="sm-icons">
+    <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+      <i class="fas fa-rss sm-icon"></i>
+    </a>
+    <a href="https://github.com/chamilad" target="_blank" title="github">
+      <i class="fab fa-github sm-icon"></i>
+    </a>
+    <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+      <i class="fab fa-mastodon sm-icon"></i>
+    </a>
+  </div>
   
-  
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
 </div>
 
       </div>

@@ -44,7 +44,10 @@ Python has a nifty module called signal which exposes UNIX Signal numbers and a 
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
   
@@ -63,49 +66,61 @@ Python has a nifty module called signal which exposes UNIX Signal numbers and a 
 <body>
   <article class="post " id="article">
     <div class="row">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div class="site-header">
           
 <header>
   <div class="signatures site-title">
-    <p>
+    <span class="breadcrumbs">
       <a href="https://chamila.dev/">chamila.dev</a> >
       <a href="https://chamila.dev//blog"> journal </a> >
-    </p>
-    
+    </span>
+
+    <span class="sm-icons">
+      <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+        <i class="fas fa-rss sm-icon"></i>
+      </a>
+      <a href="https://github.com/chamilad" target="_blank" title="github">
+        <i class="fab fa-github sm-icon"></i>
+      </a>
+      <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+        <i class="fab fa-mastodon sm-icon"></i>
+      </a>
+    </span>
   </div>
 </header>
 <div class="row end-xs">
    
 </div>
-<div class="header-line"></div>
+
 
         </div>
         <header class="post-header">
           <h1 class="post-title">Timing Out of Long Running Methods in Python</h1>
           
           <div class="row post-desc">
-            <div class="col-xs-6">
+            <div class="pub-date col-xs-6">
               
-              <time class="post-date" datetime="2015-11-26 00:00:00 UTC">
+              <time class="post-date" datetime=" 2015-11-26 00:00:00 UTC">
                 26 Nov 2015
-		<p><b>Read time:</b> 4m
-		<br /><b>Word count:</b> 826</p>
               </time>
               
-           </div>
-      
-      
-      
-         </div>
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~4 minutes
+            </div>
+            
+            
+            
+          </div>
           
- 	<div class="toc">
-	<hr />
-        <h4>Table of Contents:</h4>
-	<nav id="TableOfContents"></nav>
-	<hr />
-	</div>
-       </header>
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents"></nav>
+            
+          </div>
+        </header>
         <div class="post-content markdown-body">
           <p>Sometimes there are conditions under which a function call could not return in a needed time period and would cause unexpected behavior. For example, a file read could take more time than anticipated and leave the code execution without proper control over what to do when such a situation occurs. This can be worse if the said function call directs to an external library which we can’t control.</p>
 <p>Python has a nifty module called signal which exposes <a href="https://en.wikipedia.org/wiki/Unix_signal#POSIX_signals">UNIX Signal</a> numbers and a way to register callbacks for each signal. Out of the UNIX Signals available, what interests us in this particular situation is the <a href="http://linux.die.net/man/2/alarm">SIGALRM</a> signal which allows us to sort of wind out an OS level alarm clock that would send a signal to the calling process after the set number of seconds. We can make use of this functionality (only in UNIX of course) to set a timeout before a function call with the possibility to hang or take unexpected durations to finish.</p>
@@ -215,7 +230,7 @@ After: 22:20
 <p>Originally published on <a href="https://medium.com/@chamilad/timing-out-of-long-running-methods-in-python-818b3582eed6">Medium</a></p>
 
         </div>
-	<div class="prev-next row">
+        <div class="prev-next row">
 	<div class="prev col-sm">
 	
 	<a href="https://chamila.dev/blog/2015-11-17_creating-a-simple-activemq-masterslave-setup/">&lt; Creating a Simple ActiveMQ Master/Slave Setup</a>
@@ -245,13 +260,28 @@ After: 22:20
 
         
         
-        <div style="height: 50px;"></div>
+        
         
         
 
         <div class="site-footer">
+  <div class="sm-icons">
+    <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+      <i class="fas fa-rss sm-icon"></i>
+    </a>
+    <a href="https://github.com/chamilad" target="_blank" title="github">
+      <i class="fab fa-github sm-icon"></i>
+    </a>
+    <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+      <i class="fab fa-mastodon sm-icon"></i>
+    </a>
+  </div>
   
-  
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
 </div>
 
       </div>
