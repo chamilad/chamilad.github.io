@@ -1,0 +1,311 @@
+/*
+* Colors for dark theme
+*
+*/
+:root {
+  --dark-links: #219ebc;
+  --dark-link-hover: #e63946;
+  --dark-captions: #abc2e3;
+  --dark-background: #313543;
+  --dark-blockquote: #313543;
+  --dark-background-contrast: #20232c;
+  --dark-post-background: #282c37;
+  --dark-theme: #e63946;
+  --dark-anti-theme: #ffffff;
+  --dark-dark-end: #eeeff3;
+  --dark-post-border: #474d64;
+  --dark-text: #eeeff3;
+  --dark-dark-end-shadow: rgb(171, 194, 224, 0.5);
+  --dark-page-outer-shadow: rgb(0, 0, 0, 0.6);
+  --dark-page-inner-shadow: rgb(0, 0, 0, 0.4);
+}
+
+/*
+* Light theme container
+*
+*/
+.theme-dark {
+  font-family: "Montserrat", "Arvo", "Helvetica Neue", Helvetica,
+    "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB",
+    "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN",
+    "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti",
+    SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+  margin: 0 20px;
+  /* for the background on the site */
+  background: var(--dark-background);
+
+  /* default text color */
+  color: var(--dark-text);
+}
+
+/*
+* The central column
+*/
+.theme-dark .container {
+  background: var(--dark-post-background);
+  border: 5px solid var(--dark-post-border);
+  /* outline: 4px solid var(--dark-dark-end); */
+  box-shadow: inset 3px -4px 8px 1px var(--dark-page-inner-shadow),
+    3px -4px 16px 1px var(--dark-page-outer-shadow);
+}
+
+/*
+* anchors
+*
+*/
+.theme-dark a:not(#floating-menu a) {
+  color: var(--dark-links);
+  text-decoration: none;
+}
+
+.theme-dark #floating-menu a,
+.theme-dark #floating-menu button {
+  color: var(--dark-dark-end);
+  text-decoration: none;
+}
+
+.theme-dark .markdown-body a {
+  color: var(--dark-links);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.theme-dark a:hover,
+.theme-dark .signatures a:hover,
+.theme-dark .markdown-body a:hover {
+  color: var(--dark-link-hover);
+  text-decoration: underline;
+  transition: 0.2s;
+}
+
+/*
+* Site title is the section on top with site name and blog name
+*
+*/
+.theme-dark .site-title,
+.theme-dark .site-title a {
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 32px;
+  overflow: auto;
+  max-height: 30px;
+  color: var(--dark-theme) !important;
+}
+
+.theme-dark .breadcrumbs {
+  float: left;
+  width: 300px;
+  display: block;
+  color: var(--dark-theme) !important;
+}
+
+.theme-dark .breadcrumbs a {
+  color: var(--dark-theme) !important;
+}
+
+.theme-dark .breadcrumbs a:hover,
+.theme-dark #posts-list a:hover {
+  color: var(--dark-theme);
+  text-shadow: 0px 0px 2px var(--dark-link-hover);
+  transition: 0.2s;
+}
+
+/* 
+* social media icons
+*
+*/
+.theme-dark .sm-icon {
+  font-size: 18px;
+  color: var(--dark-dark-end);
+}
+
+.theme-dark .sm-icons a:hover,
+.theme-dark .sm-icons i:hover {
+  color: var(--dark-link-hover);
+  transition: 0.3s;
+  /* doesn't need the underline or text shadows */
+  text-decoration: none;
+}
+
+/*
+* Section with published date, read time etc
+*
+*/
+.theme-dark .post-desc {
+  font-size: 9px;
+  color: var(--dark-dark-end);
+}
+
+/*
+* Table of contents
+* Keeping text small 
+*
+*/
+.theme-dark .toc a {
+  color: var(--dark-dark-end);
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+/* 
+* Rest of the post content
+* This is the parent class, so defaults can be set with scope
+*
+*/
+.theme-dark .markdown-body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  color: var(--dark-dark-end);
+}
+
+/*
+* figcaption needs minimal styling
+*
+*/
+.theme-dark figcaption {
+  font-size: 11px;
+  color: var(--dark-captions);
+  margin: auto;
+  text-align: center;
+}
+
+/*
+* Images
+*
+*/
+.theme-dark .post img {
+  max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+  box-shadow: 0 4px 8px 2px var(--dark-background);
+}
+
+/*
+* blockquote needs a theme streak
+*
+*/
+.theme-dark blockquote {
+  background-color: var(--dark-blockquote) !important;
+  border-left: 0.5em solid var(--dark-theme) !important;
+}
+
+/* 
+* Code sections 
+* overwrite github-markdown
+*
+*/
+.theme-dark .markdown-body code {
+  border: 1px solid var(--dark-background);
+  background: var(--dark-background-contrast);
+  border-radius: 0px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.theme-dark .markdown-body .highlight pre,
+.theme-dark .markdown-body pre {
+  border-radius: 0px !important;
+  box-shadow: 0 4px 8px 3px var(--dark-background);
+}
+
+/*
+* headers
+*
+*/
+.theme-dark .markdown-body h2 {
+  border-bottom: 1px solid var(--dark-theme);
+}
+
+.theme-dark .markdown-body strong {
+  font-weight: bold;
+  text-shadow: 0px 0px 1px var(--dark-dark-end-shadow);
+}
+
+/*
+* Tables
+*
+*/
+.theme-dark .markdown-body table tr {
+  background-color: var(--dark-post-background);
+}
+
+.theme-dark .markdown-body table td,
+.theme-dark .markdown-body table th {
+  border: 1px solid var(--dark-post-border);
+}
+
+/*
+* An HR like div, not used much
+*
+*/
+.theme-dark .header-line {
+  width: 100%;
+  border-width: 1px;
+  border-color: var(--dark-background);
+  border-style: solid none none none;
+  /* margin: 18px 0; */
+}
+
+/*
+* Section showing the previous and next article
+*
+*/
+.theme-dark .prev-next {
+  border-top: 1px solid var(--dark-dark-end);
+  padding-top: 10px;
+  font-size: 12px;
+}
+
+/*
+* Related content box
+*
+*/
+.theme-dark .releated-content {
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--dark-dark-end-shadow);
+  padding: 0 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+/*
+* Footer section
+*
+*/
+.theme-dark .site-footer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /* display: flex; */
+  /* justify-content: flex-end; */
+  padding: 12px 0;
+  border-width: 1px;
+  border-style: solid none none none;
+  border-color: var(--dark-background);
+  font-size: 10px;
+}
+
+/* 
+* Blog root
+*
+*/
+
+/*
+* The published date component of a blog post entry in the list
+*
+*/
+.theme-dark .site-date-catalog {
+  font-size: 2rem;
+  color: var(--dark-theme);
+}
+
+/*
+* Links in the post list becomes distracting if the same color is used
+*
+*/
+.theme-dark #posts-list a {
+  color: var(--dark-dark-end);
+}

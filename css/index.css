@@ -1,105 +1,84 @@
-/* global */
-
-:root {
-  /* --white: #ffffff;
-  --grey: #e5e5e5;
-  --yellow: #fca311;
-  --orange: #e76f51;
-  --blue: #14213d;
-  --black: #000000;
- */
-  --links: #219ebc;
-  /* --link-hover: #e76f51; */
-  --link-hover: #e63946;
-  --captions: #1d3557;
-  --background: #e5e5e5;
-  --background-contrast: #f5f5f5;
-  --post-background: #ffffff;
-  --theme: #e63946;
-  --anti-theme: #ffffff;
-  --dark-end: #14213d;
-  --dark-end-shadow: rgb(29, 53, 87, 0.5);
-}
+/* 
+* common styling 
+* anything missing from here is in the theme file 
+* /
 
 /* Selection color */
 ::-moz-selection {
   /* Code for Firefox */
-  color: var(--anti-theme);
-  background: var(--theme);
+  color: var(--light-anti-theme);
+  background: var(--light-theme);
 }
 
 ::selection {
-  color: var(--anti-theme);
-  background: var(--theme);
+  color: var(--light-anti-theme);
+  background: var(--light-theme);
 }
 
-/*
-* Background boxes on too wide screens
-*/
-body {
-  font-family: "Montserrat", "Arvo", "Helvetica Neue", Helvetica,
-    "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB",
-    "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN",
-    "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti",
-    SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
-  margin: 0 20px;
-  background: var(--background);
-  color: var(--dark-end);
-}
-
-.home {
-  background: var(--anti-theme);
-}
-
-/*
-* The central page
-*/
 .container {
-  background: var(--post-background);
   padding-right: 100px;
   padding-left: 100px;
   margin-top: 20px;
   margin-bottom: 50px;
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-  box-shadow: inset 0 0 4px var(--dark-end), 0 4px 8px 2px rgba(0, 0, 0, 0.7);
-  border: 1px solid var(--dark-end);
-  outline: 4px solid var(--dark-end);
+  position: relative;
 }
 
-a {
-  color: var(--links);
-  text-decoration: none;
+/*
+* home page has no theme switcher, yet
+*
+*/
+.home {
+  background: var(--light-anti-theme);
 }
 
-.markdown-body a {
-  color: var(--links);
-  text-decoration: none;
-  font-weight: bold;
+/*
+* floating menu with theme switcher
+*
+*/
+
+#floating-menu-wrapper {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  width: 20px;
 }
 
-a:hover,
-.signatures a:hover,
-.markdown-body a:hover {
-  color: var(--link-hover);
-  text-decoration: underline;
-  transition: 0.2s;
+#floating-menu {
+  position: fixed;
+  width: 40px;
+  height: 40px;
 }
 
+#floating-menu button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.current-theme {
+  display: none !important;
+}
+
+/*
+* anchors
+*
+*/
 a:hover {
   text-decoration: underline;
 }
 
-figcaption {
-  font-size: 11px;
-  color: var(--captions);
-  margin: auto;
-  text-align: center;
+/*
+* Section containing post title etc
+*
+*/
+.post-header {
+  margin-bottom: 10px;
 }
 
-.post-ads {
-  margin: 50px 0;
-}
-
+/*
+* Tags are not shown for the moment
+*
+*/
 .post-tags {
   font-size: 11px;
   text-align: right;
@@ -108,35 +87,39 @@ figcaption {
   padding-top: 3px;
 }
 
+/*
+* Published date
+*
+*/
 .post-date {
   font-weight: 800;
 }
 
-.post-author {
-  float: right;
-  font-weight: 600;
-}
-
-.post-header {
-  margin-bottom: 10px;
-}
-
-.post-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.post-desc {
-  font-size: 9px;
-  color: var(--dark-end);
-}
-
+/*
+* sub div for the published date
+* .post-date is an element inside this
+*
+*/
 .pub-date {
   text-align: left;
 }
 
 .reading-time {
   text-align: right;
+}
+
+/* 
+* Don't show post author for now
+*
+*/
+.post-author {
+  float: right;
+  font-weight: 600;
+}
+
+.post-title {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .toc {
@@ -152,16 +135,11 @@ figcaption {
   padding: 3px;
 }
 
-.toc a {
-  color: var(--dark-end);
-  text-decoration: none;
-  text-transform: capitalize;
-}
-
-.prev-next {
-  border-top: 1px solid var(--dark-end);
-  padding-top: 10px;
-  font-size: 12px;
+.markdown-body table {
+  display: table;
+  overflow: auto;
+  margin: auto;
+  width: auto;
 }
 
 .prev-next .prev {
@@ -172,73 +150,6 @@ figcaption {
 .prev-next .next {
   margin: auto;
   text-align: right;
-}
-
-/* overwrite github-markdown */
-
-blockquote {
-  background-color: var(--background) !important;
-  border-left: 0.5em solid var(--theme) !important;
-}
-
-.markdown-body h2 {
-  border-bottom: 1px solid var(--theme);
-}
-
-.markdown-body {
-  font-family: "Montserrat", sans-serif;
-  font-size: 15px;
-  color: var(--dark-end);
-}
-
-.markdown-body code {
-  border: 1px solid var(--background);
-  background: var(--background-contrast);
-  border-radius: 0px;
-  padding-top: 1px;
-  padding-bottom: 1px;
-}
-
-.markdown-body strong {
-  font-weight: bold;
-  text-shadow: 0px 0px 1px var(--dark-end-shadow);
-}
-
-.markdown-body .highlight pre,
-.markdown-body pre {
-  border-radius: 0px !important;
-  box-shadow: 0 4px 8px 3px var(--background);
-}
-
-/* header */
-
-.site-title,
-.site-title a {
-  /* font-family: Helvetica, "Liberation Sans", sans-serif; */
-  font-size: 1em;
-  font-weight: bold;
-  margin-top: 32px;
-  overflow: auto;
-  max-height: 30px;
-  color: var(--theme);
-}
-
-.breadcrumbs {
-  float: left;
-  width: 300px;
-  display: block;
-  color: var(--theme);
-}
-
-.breadcrumbs a {
-  color: var(--theme);
-}
-
-.breadcrumbs a:hover,
-#posts-list a:hover {
-  color: var(--theme);
-  text-shadow: 0px 0px 2px var(--link-hover);
-  transition: 0.2s;
 }
 
 .sm-icons {
@@ -262,24 +173,6 @@ blockquote {
   display: block;
   text-align: right;
 }
-
-.sm-icon {
-  font-size: 18px;
-  color: var(--dark-end);
-}
-
-.sm-icons a:hover,
-.sm-icons i:hover {
-  color: var(--link-hover);
-  transition: 0.3s;
-  text-decoration: none;
-}
-
-.site-date-catalog {
-  font-size: 2rem;
-  color: var(--theme);
-}
-
 .signatures {
   font-family: "Montserrat", "Arvo", Helvetica, "Liberation Sans", sans-serif;
 }
@@ -287,15 +180,6 @@ blockquote {
 .signatures a {
   text-decoration: none;
 }
-
-.header-line {
-  width: 100%;
-  border-width: 1px;
-  border-color: var(--background);
-  border-style: solid none none none;
-  /* margin: 18px 0; */
-}
-
 /* .lang-switch {
   font-weight: 600;
 } */
@@ -304,10 +188,6 @@ blockquote {
 
 #posts-list {
   min-height: 70%;
-}
-
-#posts-list a {
-  color: var(--dark-end);
 }
 
 .posts-date {
@@ -322,19 +202,6 @@ blockquote {
 .post-line {
   margin: 12px 0;
 }
-
-.site-footer {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  /* display: flex; */
-  /* justify-content: flex-end; */
-  padding: 12px 0;
-  border-width: 1px;
-  border-style: solid none none none;
-  border-color: var(--background);
-  font-size: 10px;
-}
-
 .site-footer-item {
   margin-right: 12px;
 }
@@ -353,15 +220,6 @@ blockquote {
   }
 }
 
-.post img {
-  max-width: 100%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 12px;
-  box-shadow: 0 4px 8px 2px var(--background);
-}
-
 .post-content {
   margin-bottom: 50px;
 }
@@ -373,16 +231,6 @@ blockquote {
   text-justify: ideographic;
   word-break: break-word;
   margin-bottom: 2em;
-}
-
-.releated-content {
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--dark-end-shadow);
-  padding: 0 10px;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  font-size: 12px;
 }
 
 .releated-content li {
@@ -420,3 +268,10 @@ blockquote {
   background: white;
 }
 */
+/*
+* Don't use ads for the moment
+*
+*/
+.post-ads {
+  margin: 50px 0;
+}

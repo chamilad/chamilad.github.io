@@ -1,0 +1,306 @@
+/*
+* Colors for light theme
+*
+*/
+:root {
+  --light-links: #219ebc;
+  --light-link-hover: #e63946;
+  --light-captions: #1d3557;
+  --light-background: #e5e5e5;
+  --light-blockquote: #e5e5e5;
+  --light-background-contrast: #f5f5f5;
+  --light-post-background: #ffffff;
+  --light-theme: #e63946;
+  --light-anti-theme: #ffffff;
+  --light-dark-end: #14213d;
+  --light-post-border: #14213d;
+  --light-text: #14213d;
+  --light-dark-end-shadow: rgb(29, 53, 87, 0.5);
+  --light-page-outer-shadow: rgb(0, 0, 0, 0.7);
+  --light-page-inner-shadow: rgb(0, 0, 0, 0.4);
+}
+
+/*
+* Light theme container
+*
+*/
+.theme-light {
+  font-family: "Montserrat", "Arvo", "Helvetica Neue", Helvetica,
+    "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB",
+    "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN",
+    "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti",
+    SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+  margin: 0 20px;
+  /* for the background on the site */
+  background: var(--light-background);
+
+  /* default text color */
+  color: var(--light-text);
+}
+
+/*
+* The central column
+*/
+.theme-light .container {
+  background: var(--light-post-background);
+  border: 5px solid var(--light-post-border);
+  /* outline: 4px solid var(--light-dark-end); */
+  box-shadow: inset 3px -4px 8px 1px var(--light-page-inner-shadow),
+    3px -4px 16px 1px var(--light-page-outer-shadow);
+}
+
+/*
+* anchors
+*
+*/
+.theme-light a:not(#floating-menu a) {
+  color: var(--light-links);
+  text-decoration: none;
+}
+
+.theme-light #floating-menu a,
+.theme-light #floating-menu button {
+  color: var(--light-dark-end);
+  text-decoration: none;
+}
+
+.theme-light .markdown-body a {
+  color: var(--light-links);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.theme-light a:hover,
+.theme-light .signatures a:hover,
+.theme-light .markdown-body a:hover {
+  color: var(--light-link-hover);
+  text-decoration: underline;
+  transition: 0.2s;
+}
+
+/*
+* Site title is the section on top with site name and blog name
+*
+*/
+.theme-light .site-title,
+.theme-light .site-title a {
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 32px;
+  overflow: auto;
+  max-height: 30px;
+  color: var(--light-theme) !important;
+}
+
+.theme-light .breadcrumbs {
+  float: left;
+  width: 300px;
+  display: block;
+  color: var(--light-theme) !important;
+}
+
+.theme-light .breadcrumbs a {
+  color: var(--light-theme) !important;
+}
+
+.theme-light .breadcrumbs a:hover,
+.theme-light #posts-list a:hover {
+  color: var(--light-theme);
+  text-shadow: 0px 0px 2px var(--light-link-hover);
+  transition: 0.2s;
+}
+
+/* 
+* social media icons
+*
+*/
+.theme-light .sm-icon {
+  font-size: 18px;
+  color: var(--light-dark-end);
+}
+
+.theme-light .sm-icons a:hover,
+.theme-light .sm-icons i:hover {
+  color: var(--light-link-hover);
+  transition: 0.3s;
+  /* doesn't need the underline or text shadows */
+  text-decoration: none;
+}
+
+/*
+* Section with published date, read time etc
+*
+*/
+.theme-light .post-desc {
+  font-size: 9px;
+  color: var(--light-dark-end);
+}
+
+/*
+* Table of contents
+* Keeping text small 
+*
+*/
+.theme-light .toc a {
+  color: var(--light-dark-end);
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+/* 
+* Rest of the post content
+* This is the parent class, so defaults can be set with scope
+*
+*/
+.theme-light .markdown-body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  color: var(--light-dark-end);
+}
+
+/*
+* figcaption needs minimal styling
+*
+*/
+.theme-light figcaption {
+  font-size: 11px;
+  color: var(--light-captions);
+  margin: auto;
+  text-align: center;
+}
+
+/*
+* Images
+*
+*/
+.theme-light .post img {
+  max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+  box-shadow: 0 4px 8px 2px var(--light-background);
+}
+
+/*
+* blockquote needs a theme streak
+*
+*/
+.theme-light blockquote {
+  background-color: var(--light-blockquote) !important;
+  border-left: 0.5em solid var(--light-theme) !important;
+}
+
+/* 
+* Code sections 
+* overwrite github-markdown
+*
+*/
+.theme-light .markdown-body code {
+  border: 1px solid var(--light-background);
+  background: var(--light-background-contrast);
+  border-radius: 0px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.theme-light .markdown-body .highlight pre,
+.theme-light .markdown-body pre {
+  border-radius: 0px !important;
+  box-shadow: 0 4px 8px 3px var(--light-background);
+}
+
+/*
+* headers
+*
+*/
+.theme-light .markdown-body h2 {
+  border-bottom: 1px solid var(--light-theme);
+}
+
+.theme-light .markdown-body strong {
+  font-weight: bold;
+  text-shadow: 0px 0px 1px var(--light-dark-end-shadow);
+}
+
+/*
+* Tables
+*
+*/
+.theme-light markdown-body table tr {
+  background-color: var(--light-post-background);
+}
+
+/*
+* An HR like div, not used much
+*
+*/
+.theme-light .header-line {
+  width: 100%;
+  border-width: 1px;
+  border-color: var(--light-background);
+  border-style: solid none none none;
+  /* margin: 18px 0; */
+}
+
+/*
+* Section showing the previous and next article
+*
+*/
+.theme-light .prev-next {
+  border-top: 1px solid var(--light-dark-end);
+  padding-top: 10px;
+  font-size: 12px;
+}
+
+/*
+* Related content box
+*
+*/
+.theme-light .releated-content {
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--light-dark-end-shadow);
+  padding: 0 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+/*
+* Footer section
+*
+*/
+.theme-light .site-footer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /* display: flex; */
+  /* justify-content: flex-end; */
+  padding: 12px 0;
+  border-width: 1px;
+  border-style: solid none none none;
+  border-color: var(--light-background);
+  font-size: 10px;
+}
+
+/* 
+* Blog root
+*
+*/
+
+/*
+* The published date component of a blog post entry in the list
+*
+*/
+.theme-light .site-date-catalog {
+  font-size: 2rem;
+  color: var(--light-theme);
+}
+
+/*
+* Links in the post list becomes distracting if the same color is used
+*
+*/
+.theme-light #posts-list a {
+  color: var(--light-dark-end);
+}

@@ -44,6 +44,8 @@ Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do,
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
   <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
 
   <link href="/fa/css/all.css" rel="stylesheet">
@@ -63,10 +65,21 @@ Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do,
 </head>
 
 
-<body>
+<body class="theme-light">
   <article class="post " id="article">
     <div class="row">
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark" title="dark theme">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" title="light theme" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
         <div class="site-header">
           
 <header>
@@ -75,18 +88,18 @@ Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do,
       <a href="https://chamila.dev/">chamila.dev</a> >
       <a href="https://chamila.dev//blog"> journal </a> >
     </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
 
-    <span class="sm-icons">
-      <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
-        <i class="fas fa-rss sm-icon"></i>
-      </a>
-      <a href="https://github.com/chamilad" target="_blank" title="github">
-        <i class="fab fa-github sm-icon"></i>
-      </a>
-      <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
-        <i class="fab fa-mastodon sm-icon"></i>
-      </a>
-    </span>
   </div>
 </header>
 <div class="row end-xs">
@@ -345,17 +358,20 @@ addReq.setNum2(8);
         
 
         <div class="site-footer">
+  
+
   <div class="sm-icons">
-    <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
-      <i class="fas fa-rss sm-icon"></i>
-    </a>
-    <a href="https://github.com/chamilad" target="_blank" title="github">
-      <i class="fab fa-github sm-icon"></i>
-    </a>
-    <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
-      <i class="fab fa-mastodon sm-icon"></i>
-    </a>
-  </div>
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
   
   <div class="site-footer-item">
     Modified
@@ -369,11 +385,12 @@ addReq.setNum2(8);
   </article>
 
   <script src="/js/highlight.pack.js"></script>
-<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+<script src="/js/theme.js"></script>
+
 
 <script>
   hljs.initHighlightingOnLoad();
-  
+
   var posts = document.getElementById('posts-list');
   posts && quicklink({
     el: posts,
