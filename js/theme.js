@@ -16,18 +16,24 @@ const theme = {
 };
 
 const setTheme = () => {
+  // skip themeing for home page
+  bodyClasses = document.querySelector("body")?.classList;
+  if (bodyClasses.contains("home")) {
+    return;
+  }
+
   theme.value = getThemPref();
   if (theme.value === "dark") {
-    document.querySelector("body")?.classList.remove("theme-light");
-    document.querySelector("body")?.classList.add("theme-dark");
+    bodyClasses.remove("theme-light");
+    bodyClasses.add("theme-dark");
 
     document
       .querySelector("#switch-to-light")
       ?.classList.remove("current-theme");
     document.querySelector("#switch-to-dark")?.classList.add("current-theme");
   } else {
-    document.querySelector("body")?.classList.remove("theme-dark");
-    document.querySelector("body")?.classList.add("theme-light");
+    bodyClasses.remove("theme-dark");
+    bodyClasses.add("theme-light");
 
     document.querySelector("#switch-to-light")?.classList.add("current-theme");
     document
