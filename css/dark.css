@@ -72,9 +72,10 @@
 
 .theme-dark a:hover,
 .theme-dark .signatures a:hover,
-.theme-dark .markdown-body a:hover {
-  color: var(--dark-link-hover);
-  text-decoration: underline;
+.theme-dark .markdown-body a:hover,
+.theme-dark a:not(#floating-menu a):hover {
+  color: var(--dark-link-hover) !important;
+  text-decoration: none;
   transition: 0.2s;
 }
 
