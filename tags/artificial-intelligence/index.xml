@@ -6,7 +6,17 @@
     <description>Recent content in Artificial Intelligence on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Nov 2022 06:32:18 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/artificial-intelligence/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Nov 2022 06:37:25 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/artificial-intelligence/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev</title>
+      <link>https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/</link>
+      <pubDate>Fri, 25 Nov 2022 06:37:25 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/</guid>
+      <description>Evans Bay, Wellington How is Machine Learning Different? Continuing comparison between Machine Learning and Software Development, from the previous article in the series.
+MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev Source Version Control Software development and version controlling is virtually impossible to separate. Yes, there are still people who treat attaching source code to emails and JIRA tickets as version control, and some developers may refuse to learn git citing &amp;ldquo;separation of concerns&amp;rdquo; or whatever.</description>
+    </item>
+    
     <item>
       <title>MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</title>
       <link>https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/</link>
@@ -14,7 +24,7 @@
       
       <guid>https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/</guid>
       <description>Lighthouse, Galle, Sri Lanka How is Machine Learning Different? Continuing comparison between Machine Learning and Software Development, from the previous article in the series.
-MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev Understanding the solution Various iterations of design and architecture of a software development project usually determines the approach of the solution for a software engineering problem. As the design becomes more verbose, the higher the likelihood that details can change based on new findings.</description>
+MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev Understanding the solution Various iterations of design and architecture of a software development project usually determines the approach of the solution for a software engineering problem.</description>
     </item>
     
     <item>
@@ -24,7 +34,7 @@ MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Dif
       
       <guid>https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/</guid>
       <description>Bixby Creek Bridge on CA-01 highway, Monterey, California This is the first part of a series of posts on the topic.
-MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev Last year I had an opportunity to work with a team of Data Scientists on developing an Enterprise AI/ML practice. As someone who had not interacted at development level with Machine Learning and AI before, I jumped on the chance to learn something new and find a challenge on a new area.</description>
+MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev Last year I had an opportunity to work with a team of Data Scientists on developing an Enterprise AI/ML practice.</description>
     </item>
     
   </channel>

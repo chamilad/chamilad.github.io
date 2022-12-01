@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.105.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev",
+      "headline" : "MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev",
+      "description" : "An introduction to ML practices from a Software Engineering perspective",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2022",
+      "datePublished": "2022-11-25 06:37:25 \u002b1300 NZDT",
+      "dateModified" : "2022-11-25 06:37:25 \u002b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2022-11-25_mlops-for-non-ml-engineers-03\/",
+      "keywords" : [ "Machine Learning","Artificial Intelligence","DevOps","Software Engineering","MLOps","Cloud", ]
+  }
+</script>
+<title>MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev - chamila.dev</title>
+  <meta property="og:title" content="MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="An introduction to ML practices from a Software Engineering perspective" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark" title="dark theme">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" title="light theme" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2022-11-25 06:37:25 NZDT">
+                25 Nov 2022
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~10 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-is-machine-learning-different">How is Machine Learning Different?</a>
+      <ul>
+        <li><a href="#source-version-control">Source Version Control</a></li>
+        <li><a href="#pipelines">Pipelines</a></li>
+        <li><a href="#change-management">Change Management</a></li>
+        <li><a href="#continuous-training">Continuous Training</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <figure><img src="/blog/img/2022-11-25_mlops_03_header.jpeg"/><figcaption>
+            <h4>Evans Bay, Wellington</h4>
+        </figcaption>
+</figure>
+
+<h2 id="how-is-machine-learning-different">How is Machine Learning Different?</h2>
+<blockquote>
+<p>Continuing comparison between Machine Learning and Software Development, from
+the <a href="/blog/2022-11-22_mlops-for-non-ml-engineers-02/">previous article</a> in the series.</p>
+<ol>
+<li><a href="/blog/2022-11-19_mlops-for-non-ml-engineers/">MLOps for Non-ML Engineers 01 - Introduction</a></li>
+<li><a href="/blog/2022-11-22_mlops-for-non-ml-engineers-02/">MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</a></li>
+<li>MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev</li>
+</ol>
+</blockquote>
+<h3 id="source-version-control">Source Version Control</h3>
+<p>Software development and version controlling is virtually impossible to
+separate. Yes, there are still people who treat attaching source code to emails
+and JIRA tickets as version control, and some developers may refuse to learn
+git citing &ldquo;separation of concerns&rdquo; or whatever. The world is not perfect. But
+overall, code progresses through the build and deployment lifecycle with version
+control closely supporting it.</p>
+<p>In Machine Learning development, this can be a bit tricky.</p>
+<p>As discussed before, source code and data both contribute to the final output
+of an ML build. Version controlling data is not entirely straight forward.
+Rather, Features and Data Sets can be better mapped with version control. At the
+same time, version controlling the code that does data analysis and engineering
+can be tricky based on the platform support as well. Some platforms encourage
+vendor specific Notebooks as the preferred method for writing and running code
+that analysis and manipulates data, while others encourage a pure SQL approach.
+In both cases, version controlling the source code has to be supported by the
+platform itself. Otherwise, it becomes an increasingly futile exercise of making
+sure that what is in the git repository is what is actually executed on the data.</p>
+<p>When it comes to version controlling the Model training code itself, things get
+more complicated. As I have observed, different teams take different approaches
+to coding experimentation and training. Some teams take the Notebook approach as
+supported by their platform of choice, while others write code in the
+development IDE of their choice.</p>
+<p>Notebooks are typically Markdown files that have code embedded in them. When
+used with Jupyter client, the Notebook renders as a series of &ldquo;cells&rdquo;. A cell
+can be a code cell or a Markdown cell. Code cells are executable pieces of
+code. A given Notebook session is a single execution of a Python process (think
+of the Python REPL, in fact Notebooks used to be called IPython Notebooks), so
+code cells can be run separately and repeatedly on the same Python execution session.
+This is useful for long running work like Model Training during Experimentation.
+Code cells also have outputs that are stored as part of the Notebook as well.
+Markdown cells are just that, a way to write down text, similar to commenting
+in the code.</p>
+<blockquote>
+<p>While personally I&rsquo;m not a fan of working on the Jupyter notebooks, I can see
+the apeal for the Data Scientists. Visualisations and long running sessions
+that are not usually part of software development have good support in the
+Notebooks. I like working on the IDE I&rsquo;m used to with the support features
+and the shortcuts that I have already trained with.</p>
+</blockquote>
+<p>Version controlling Notebooks takes some effort. Each execution of the Notebook
+can produce a diff, and none of the other factors will not have changed. This
+is because the Cell outputs are saved in Notebook Markdown itself. Whether to
+mark this as a change or not should be determined by the context.</p>
+<p>What is defined as &ldquo;clean code&rdquo; or best practices in typical software
+development also changes in Machine Learning, especially in Notebook based
+workflows. For an example, importing dependencies as the first task in a Python
+module, does not work very well with Jupyter Notebooks. The best practice here
+is to import as close as possible to the usage, to make things clearer, since
+code can be broken down to multiple pieces separated by large chunks of text.
+As always, there&rsquo;s a variation to these best practices as different teams adopt
+their own styles and standards.</p>
+<p>Another complex issue is Notebook based workflow. While a developer would have
+to go through the CI/CD pipelines to get a build done with testing and possibly
+a rollout in to the development environment, a Data Scientist would only need
+to execute the cells in order to get a Model training job running. Notebooks
+are Web UIs served over HTTP by a server, that could be in one of the Cloud
+providers. Typically, suitable compute resources will have been attached to the
+Notebook server. Because of this, the usual &ldquo;local dev&rdquo; environment is already
+attached to the Cloud. In a sense, Machine Learning development may be the
+first discipline to truly take local development step to a Cloud first
+approach.</p>
+<p>Except for the timeouts in the underlying platform, an Experiment execution
+kicked off from the Notebook could continue without the engineer having to
+commit anything to version control at all. This encourages making breaking
+changes (and most of the time irreversible changes as well since a given Model
+version is hard to be reproduced), without having a fallback in the source code.
+The only incentive to commit the Notebook to git is to fallback when you have
+written wrong logic, but once you find yourself at a point needing to revert to
+an earlier state, you may not have initiated a git repository at all.</p>
+<blockquote>
+<p>Various Cloud ML Platforms and PaaS products have streamlined their workflows
+to include these best practices to cover processes with features. They are
+general enough for team specific approaches to build on top of. User training
+and custom integrations would also help cover the gaps for each team.</p>
+</blockquote>
+<p>Reviewing code changes to Notebooks is another concern. Notebooks are worked on
+as a rendered version of the Markdown it is serialised in, and a diff produced
+from the two Markdown versions isn&rsquo;t really helpful to a reviewer. There are
+various options ranging from feature rich paid services such as
+<a href="https://www.reviewnb.com/">ReviewNB</a> to OpenSource tools like
+<a href="https://github.com/jupyter/nbdime">nbdime</a> that provide more
+control (and might be economically feasible for smaller &ldquo;hacker friendly&rdquo;
+teams). These tools and services aim to generate a more reviewer friendly diff
+for the Notebooks.</p>
+<h3 id="pipelines">Pipelines</h3>
+<p>While software development could distinguish Continuous Integration and
+Continuous Deployment as two separate pipelines, most of the time, these are
+two flavors of the same concept, executing commands in sequence for the given
+source code version or binary release, targetting a specific environment.</p>
+<p>For Machine Learning, there could be multiple different types of pipelines to
+implement.</p>
+<h4 id="experimentation-pipeline">Experimentation Pipeline</h4>
+<p>Experimentation phase discussed before can be done without having anything to
+do with a pipeline. However, most Machine Learning algorithms have hardware
+requirments that unless provided could slow down even a small training run.
+Additionally, because each version of a given Model could be useful and cannot
+be determined to be so without comparing all results, they have to be stored
+in the Model Registry with the training and validation metadata. Finally,
+changes to the Notebooks need to be version controlled.</p>
+<p>All of the above can be achieved by providing a pipeline that is triggered by a
+Notebook commit being pushed to the main branch. The pipeline will perform code
+quality checks (ex: <a href="https://github.com/nbQA-dev/nbQA">NbQA</a>), attach to runners
+on correct hardware (or provision requested hardware), and store the resulting Model and
+the metadata in the Model Registry on a successful run. This pipeline would need
+to focus on executing Notebooks (or direct code for IDE based workflows).</p>
+<h4 id="model-deployment-pipeline">Model Deployment Pipeline</h4>
+<p>Once a proper Model version has been selected for deployment, it has to be
+deployed to be available for prediction requests. There can be two different
+types of predictions, <strong>online</strong> prediction (synchronous prediction where a
+request is made, and an inference result is sent back. Usually made
+available as an API), and <strong>batch</strong> prediction (asynchronous, a series of
+prediction requests are made, and takes more time than typical HTTP connections
+can handle, callback endpoints could also be involved).</p>
+<p>Depending on the algorithm used, inference can also demand different types of
+hardware requirements. At the same time, there are release management concerns
+involved, where the newer Model&rsquo;s performance has to be tested before fully
+decomissioning the older version. This is done as a Canary deployment, where
+two (or more) Models are deployed to the same Endpoint with a traffic split.</p>
+<blockquote>
+<p>Different platforms support different methods of managing endpoint
+deployment. For an example, at the time of writing this, GCP Vertex offers
+easier management of traffic splits, where as Azure ML Platform provides more
+control with less ease of use.</p>
+</blockquote>
+<p>The Model Deployment Pipeline can focus on deployment aspect of the given Model
+version. However some teams implement Model deployment as a separate Notebook itself. This
+can be the approach for some use cases since Model testing can be ad-hoc to
+the Model and the deployment Endpoint. When Notebooks are used, the Model
+Deployment Pipeline becomes a Notebook execution pipeline with environment
+separation involved.</p>
+<h3 id="change-management">Change Management</h3>
+<p>As discussed above, source code version control can be tricky itself. However
+it becomes more complex when it comes to release version management. In typical
+software releases, a later version being deployed usually means progression.
+However, a training job on a branch tagged with an older version could produce
+a better suited Model that can be deployed on top of a Model that has a higher
+version number. Rules of semantic versioning as we know them are not really
+applicable in this case.</p>
+<p>Release versioning and the path to production for the Models have to be decided
+for each project context. A common pattern could be found after a few
+applications.</p>
+<h3 id="continuous-training">Continuous Training</h3>
+<p>When a software product is deployed into production, there is no deterioration
+of quality over time. There could be bugs, resource leaks, or data layer
+corruption, however all of these were technically properties of the specific
+release itself. Bugs were already there when the release was being rolled out,
+just hidden from everyone. Even the deployments that get restarted once a day
+as a strategy to keep it running (looking at a certain Email Marketing service I was
+associated with once) do not deteriorate as time progresses. They
+just have one or more bugs, unknown or known but too costly to fix, that make
+them unstable after sometime.</p>
+<p>This is not so much the case with most Machine Learning Model deployments. The
+data that is in scope for the solution for a problem, and the real world data
+that is used for prediction can drift over time for most use cases. This is
+because of realities like consumer trend changes, demographic changes, and
+various other unknown changes in the sample.</p>
+<p>Generally I have heard of a three month &ldquo;deadline&rdquo; when the accuracy of Models,
+especially that of the consumer data facing ones, starts to drastically fall.
+The data that the Model trained with, has now become far too different from the
+real world data that it has to work with. It is reasonable to expect this number
+to be different for various problem types and the scope of real world data the
+Model would work with.</p>
+<blockquote>
+<p>I can&rsquo;t quote anyone on this three month number, as I don&rsquo;t remember who I
+heard it from. Your results may vary.</p>
+</blockquote>
+<p>The process of <strong>Continuous Training</strong> is used to tackle this problem, where
+either source training data drift detection or Model inference accuracy
+reduction below a threshold, automatically triggers a training job. The new
+Model can be evaluated and deployed on approval. Unlike software builds that
+release on different source versions, Continuous Training is done with the same
+source code version and sometimes the same data set version.</p>
+<hr>
+<p>With these differences in place, Machine Learning engineering distinguishes
+itself from what would be typical DevOps responsibilities. More time and
+knowledge is needed to understand the requirements from a Data Scientist, and
+communicating the limitations of a platform back needs to be
+clear and understandable. Let&rsquo;s look at other aspects involved in being an ML
+Engineer in a Data Science team in the next article.</p>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/">&lt; MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2022-11-22_mlops-for-non-ml-engineers-02/">MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</a></li>
+    
+    <li><a href="/blog/2022-11-19_mlops-for-non-ml-engineers/">MLOps for Non-ML Engineers 01 - Introduction</a></li>
+    
+    <li><a href="/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/">A Primer on Observability for Dynamic Organizations — Part 2</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  
+
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

@@ -72,9 +72,10 @@
 
 .theme-light a:hover,
 .theme-light .signatures a:hover,
-.theme-light .markdown-body a:hover {
-  color: var(--light-link-hover);
-  text-decoration: underline;
+.theme-light .markdown-body a:hover,
+.theme-light a:not(#floating-menu a):hover {
+  color: var(--light-link-hover) !important;
+  text-decoration: none;
   transition: 0.2s;
 }
 
@@ -106,7 +107,7 @@
 .theme-light .breadcrumbs a:hover,
 .theme-light #posts-list a:hover {
   color: var(--light-theme);
-  text-shadow: 0px 0px 2px var(--light-link-hover);
+  text-shadow: 0px 0px 1px var(--light-link-hover);
   transition: 0.2s;
 }
 
