@@ -43,8 +43,8 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
       
       <guid>https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</guid>
       <description>This post and the sample code are the results of a particular issue I had to tackle recently. Though the sample code is my own, the idea and the approach have many authors, arising from the collective knowledge on the WSO2 Middleware Stack.
-The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,
-Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</description>
+ The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,
+ Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token  If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</description>
     </item>
     
     <item>
@@ -54,8 +54,8 @@ Talk to a Identity Management Service and obtain a token based on a kind of auth
       
       <guid>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
       <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
-The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
-Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship Pretty simple from the looks of it doesn’t it? The catch is this.</description>
+ The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
+ Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
     </item>
     
     <item>
@@ -101,8 +101,8 @@ Design solution architecture Estimate infrastructure specs Configure compute, ne
       
       <guid>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</guid>
       <description>Running WSO2 Products on Kubernetes
-Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.
-It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!</description>
+ Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.
+ It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!</description>
     </item>
     
     <item>
@@ -132,7 +132,7 @@ Security in Web Services is covered by the WS-Security standard. There are vario
       
       <guid>https://chamila.dev/blog/2014-07-01_creating-a-web-service-using-apache-axis2/</guid>
       <description>Prerequisites We need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let’s use Tomcat as a container. So in the following order
-Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7) Download and install Axis2 on Tomcat Oracle JDK7 Download and extract the JDK tarball.</description>
+ Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7) Download and install Axis2 on Tomcat  Oracle JDK7 Download and extract the JDK tarball.</description>
     </item>
     
   </channel>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,7 +50,8 @@
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -60,7 +61,6 @@
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -291,6 +291,15 @@ can be the approach for some use cases since Model testing can be ad-hoc to
 the Model and the deployment Endpoint. When Notebooks are used, the Model
 Deployment Pipeline becomes a Notebook execution pipeline with environment
 separation involved.</p>
+<blockquote>
+<p>Amazon SageMaker also provides a mechanism to pipeline multiple separate logical
+inference components so that inference request data can be transformed before
+the final model can do predictions. For an example, an inference request could
+contain raw data from a frontend which are not normalised, scaled, or one hot
+encoded. These could be incrementally done by different steps in the inference
+pipeline so that final model deployment code can be separate from data
+transformation.</p>
+</blockquote>
 <h3 id="change-management">Change Management</h3>
 <p>As discussed above, source code version control can be tricky itself. However
 it becomes more complex when it comes to release version management. In typical
@@ -333,6 +342,14 @@ reduction below a threshold, automatically triggers a training job. The new
 Model can be evaluated and deployed on approval. Unlike software builds that
 release on different source versions, Continuous Training is done with the same
 source code version and sometimes the same data set version.</p>
+<blockquote>
+<p>Amazon SageMaker also supports this through <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/incremental-training.html">Incremental
+Training</a>.
+You can point to a previously run training job and the dataset along with the
+trained Model and can result in a Model trained on the latest data with less
+time and resources spent on than a full retraining. This can be done for both
+built-in and custom algorithms.</p>
+</blockquote>
 <hr>
 <p>With these differences in place, Machine Learning engineering distinguishes
 itself from what would be typical DevOps responsibilities. More time and

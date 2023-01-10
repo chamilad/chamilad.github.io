@@ -13,7 +13,7 @@
       <pubDate>Tue, 01 Nov 2022 07:09:49 +1300</pubDate>
       
       <guid>https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/</guid>
-      <description>Again, the only photo with me for now that&amp;#39;s closest to the theme, a spider weaving a trap near Manigala, Sri Lanka Secrets Manager secret types AWS Secret Manager supports a several types of secrets. These are mainly to support effective secret management by integrating them closer with the AWS Services they support. These are mainly various types of database services offered by AWS, which is one of the key uses for using Secrets Manager to manage master credentials.</description>
+      <description>Again, the only photo with me for now that&amp;#39;s closest to the theme, a spider weaving a trap near Manigala, Sri Lanka   Secrets Manager secret types AWS Secret Manager supports a several types of secrets. These are mainly to support effective secret management by integrating them closer with the AWS Services they support. These are mainly various types of database services offered by AWS, which is one of the key uses for using Secrets Manager to manage master credentials.</description>
     </item>
     
   </channel>

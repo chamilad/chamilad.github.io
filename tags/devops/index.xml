@@ -13,8 +13,8 @@
       <pubDate>Fri, 25 Nov 2022 06:37:25 +1300</pubDate>
       
       <guid>https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/</guid>
-      <description>Evans Bay, Wellington How is Machine Learning Different? Continuing comparison between Machine Learning and Software Development, from the previous article in the series.
-MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev Source Version Control Software development and version controlling is virtually impossible to separate. Yes, there are still people who treat attaching source code to emails and JIRA tickets as version control, and some developers may refuse to learn git citing &amp;ldquo;separation of concerns&amp;rdquo; or whatever.</description>
+      <description>Evans Bay, Wellington   How is Machine Learning Different?  Continuing comparison between Machine Learning and Software Development, from the previous article in the series.
+ MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev   Source Version Control Software development and version controlling is virtually impossible to separate.</description>
     </item>
     
     <item>
@@ -23,8 +23,8 @@ MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Dif
       <pubDate>Tue, 22 Nov 2022 06:32:18 +1300</pubDate>
       
       <guid>https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/</guid>
-      <description>Lighthouse, Galle, Sri Lanka How is Machine Learning Different? Continuing comparison between Machine Learning and Software Development, from the previous article in the series.
-MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev Understanding the solution Various iterations of design and architecture of a software development project usually determines the approach of the solution for a software engineering problem.</description>
+      <description>Lighthouse, Galle, Sri Lanka   How is Machine Learning Different?  Continuing comparison between Machine Learning and Software Development, from the previous article in the series.
+ MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev   Understanding the solution Various iterations of design and architecture of a software development project usually determines the approach of the solution for a software engineering problem.</description>
     </item>
     
     <item>
@@ -33,8 +33,8 @@ MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Dif
       <pubDate>Sat, 19 Nov 2022 05:49:28 +1300</pubDate>
       
       <guid>https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/</guid>
-      <description>Bixby Creek Bridge on CA-01 highway, Monterey, California This is the first part of a series of posts on the topic.
-MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev Last year I had an opportunity to work with a team of Data Scientists on developing an Enterprise AI/ML practice.</description>
+      <description>Bixby Creek Bridge on CA-01 highway, Monterey, California    This is the first part of a series of posts on the topic.
+ MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev   Last year I had an opportunity to work with a team of Data Scientists on developing an Enterprise AI/ML practice.</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@ MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Dif
       
       <guid>https://chamila.dev/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</guid>
       <description>What should an Observability Framework address? In the previous post, we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design. Let’s explore the possibility of a structured approach for designing observable systems.
-Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls Why should there be a structured approach? In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack.</description>
+ Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls   Why should there be a structured approach?</description>
     </item>
     
     <item>
@@ -57,7 +57,7 @@ Massive industrial process of Sugar production where the mechanics are mostly li
 Monitoring is for operating software/systems
 Instrumentation is for writing software
 Observability is for understanding systems
-&amp;mdash; Charity Majors (@mipsytipsy) September 23, 2017 That’s Charity Majors, a well known voice on Observability and someone who has built a business doing it well.</description>
+&amp;mdash; Charity Majors (@mipsytipsy) September 23, 2017  That’s Charity Majors, a well known voice on Observability and someone who has built a business doing it well.</description>
     </item>
     
     <item>
@@ -135,7 +135,7 @@ When it comes to message brokers, authentication is a crucial part of securing t
       
       <guid>https://chamila.dev/blog/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</guid>
       <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
-The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.</description>
+ The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.</description>
     </item>
     
     <item>
@@ -145,7 +145,7 @@ The Cartridge Agent is (usually) the first service that starts in a spawned Cart
       
       <guid>https://chamila.dev/blog/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</guid>
       <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
-One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.</description>
+ One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.</description>
     </item>
     
     <item>
@@ -155,7 +155,7 @@ One of the main responsibilities of the Cartridge Agent is to start the services
       
       <guid>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</guid>
       <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
-When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance.</description>
+ When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance.</description>
     </item>
     
   </channel>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2",
       "headline" : "Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2",
-      "description" : "This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?\nOne of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.",
+      "description" : "This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?\n One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -37,7 +37,7 @@
   <meta property="og:title" content="Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2 - chamila.dev" />
   <meta property="og:type" content="article" />
   <meta name="description" content="This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
-One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent." />
+ One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -51,7 +51,8 @@ One of the main responsibilities of the Cartridge Agent is to start the services
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -61,7 +62,6 @@ One of the main responsibilities of the Cartridge Agent is to start the services
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -161,7 +161,7 @@ One of the main responsibilities of the Cartridge Agent is to start the services
 <p>The purpose of the base.pp in /etc/puppet/manifests/nodes/ folder is to serve as a super node definition which can be inherited by service type node definitions. It contains a list of variables that can be used by any module that inherits it. As of Stratos 4.1.0 release the contents of the base.pp file looks like as follows. The variables are pretty much self explanatory.</p>
 <pre tabindex="0"><code>node ‘base’ { 
     #essential variables 
-    $package_repo = ‘http://10.4.128.7&#39; 
+    $package_repo = ‘http://10.4.128.7' 
     $local_package_dir = ‘/mnt/packs’ 
     $mb_url = ‘tcp://127.0.0.1:1883’ 
     $mb_type = ‘activemq’ #in wso2 mb case, value should be ‘wso2mb’ 

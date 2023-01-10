@@ -34,7 +34,7 @@ When it comes to message brokers, authentication is a crucial part of securing t
       
       <guid>https://chamila.dev/blog/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</guid>
       <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
-The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.</description>
+ The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@ The Cartridge Agent is (usually) the first service that starts in a spawned Cart
       
       <guid>https://chamila.dev/blog/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</guid>
       <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
-One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.</description>
+ One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.</description>
     </item>
     
     <item>
@@ -64,7 +64,7 @@ When the instances are spawned in Apache Stratos, there are a few requirements t
       
       <guid>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</guid>
       <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
-When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance.</description>
+ When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance.</description>
     </item>
     
     <item>

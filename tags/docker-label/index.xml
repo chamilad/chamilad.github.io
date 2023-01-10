@@ -14,7 +14,7 @@
       
       <guid>https://chamila.dev/blog/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</guid>
       <description>Or why you should always Label your Docker Image.
-Imagine this.
+ Imagine this.
 You’re working on a new project, an exciting one that’s Container native. You’re almost done, and now at the stage where you want to build the Docker Image that ships your little project out to the public. You build on top of Alpine Linux, and pack your tool in to a nifty 80Mb Image that you tag latest and push to the public Docker Hub.</description>
     </item>
     

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Running WSO2 Products on Kubernetes",
       "headline" : "Running WSO2 Products on Kubernetes",
-      "description" : "Running WSO2 Products on Kubernetes\nPlease note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.\nIt’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!",
+      "description" : "Running WSO2 Products on Kubernetes\n Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.\n It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -37,8 +37,8 @@
   <meta property="og:title" content="Running WSO2 Products on Kubernetes - chamila.dev" />
   <meta property="og:type" content="article" />
   <meta name="description" content="Running WSO2 Products on Kubernetes
-Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.
-It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!" />
+ Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.
+ It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!" />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -52,7 +52,8 @@ It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -62,7 +63,6 @@ It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -235,7 +235,7 @@ It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get
 <h3 id="wso2-isimage">WSO2 IS Image</h3>
 <p>Navigate to <code>wso2is/docker/</code> folder. Inside you will see the Dockerfile and some Bash scripts which will make your life so much easier when it comes to building and rebuilding Docker images for test purposes.</p>
 <p>The <code>build.sh</code> builder script will be looking for the <code>PUPPET_HOME</code> environment variable. So before running <code>build.sh</code> point <code>PUPPET_HOME</code> to our Puppet home. Then run the <code>build.sh</code> file by providing the Docker image version to be built and the WSO2 Carbon profiles that should be built for this product. For WSO2 IS, there is only one Carbon profile, the <code>default</code> profile. So our commands will look like something as follows.</p>
-<pre tabindex="0"><code>export PUPPET_HOME=~/temp/puppet ./build.sh 1.0.0 &#39;default&#39;
+<pre tabindex="0"><code>export PUPPET_HOME=~/temp/puppet ./build.sh 1.0.0 'default'
 </code></pre><p>Use <strong>sudo</strong> when executing <code>build.sh</code> if your Docker daemon needs privileged access. Here the place where we unzipped our WSO2 Puppet distribution (and modified Hiera data accordingly) is <code>~/temp/puppet</code>, and we need our Docker image to be tagged as version <code>1.0.0</code>, and we only need to build the Docker image for the <code>default</code> Carbon profile for WSO2 IS. Specifying only <code>default</code> is optional.</p>
 <p>This will build the Docker image by configuring WSO2 IS using the <code>PUPPET_HOME</code> folder, and including the necessary <code>ENTRPOINT</code> scripts. List your docker images afterwards (<code>docker images</code>) and you will see something similar to the following.</p>
 <pre tabindex="0"><code>REPOSITORY               TAG                   IMAGE ID            CREATED             VIRTUAL SIZE
@@ -268,7 +268,7 @@ vagrant up
 <h3 id="load-dockerimage">Load Docker image</h3>
 <p>Let’s load our Docker image to the Node/s. You can run the <code>save.sh</code> file inside <code>wso2is/docker/</code> folder. It will save the Docker image to <code>~/docker/images/</code> folder as <code>.tar</code> file. Or you can simply call <code>docker save</code> and create the <code>.tar</code> file yourself.</p>
 <pre tabindex="0"><code>docker save wso2/is-5.1.0:1.0.0 &gt; wso2is-5.1.0-1.0.0.tar
-#insecure_private_key is the key to use to ssh inside the Vagrant boxes, 172.17.8.102 is the Node&#39;s IP
+#insecure_private_key is the key to use to ssh inside the Vagrant boxes, 172.17.8.102 is the Node's IP
 scp -i ~/.vagrant.d/insecure_private_key wso2is-5.1.0-1.0.0.tar core@172.17.8.102:.
 # ssh to the node and load the Docker image
 vagrant ssh node-01
@@ -297,21 +297,21 @@ spec:
         ports:
         -
           containerPort: 9763
-          protocol: &#34;TCP&#34;
+          protocol: &quot;TCP&quot;
         -
           containerPort: 9443
-          protocol: &#34;TCP&#34;
+          protocol: &quot;TCP&quot;
         -
           containerPort: 8000
-          protocol: &#34;TCP&#34;
+          protocol: &quot;TCP&quot;
         -
           containerPort: 10500
-          protocol: &#34;TCP&#34;
+          protocol: &quot;TCP&quot;
 </code></pre><p>Here, we have specified the image to use as <code>wso2/is-5.1.0:1.0.0</code>. If you built your image with a different name, change this value. Also, we have specified the number of replicas to be just one.</p>
 <p>Let’s deploy the Replication Controller. (If you used the Vagrant Setup, you can directly use the <code>deploy.sh</code> script included along with the Replication Controller in the same folder. It will also deploy the Service artifact and wait until the WSO2 IS server to come up, so for the purpose of understanding the process, let’s manually deploy the artifacts separately.)</p>
 <pre tabindex="0"><code>kubectl create -f wso2is-controller.yaml
 </code></pre><p>If you get an error like the following, it means that kubectl cannot find the Kubernetes API Server to communicate with it. So you have to point out where the API Server is to the kubectl.</p>
-<pre tabindex="0"><code>kubectl create -f wso2is-controller.yaml error: couldn&#39;t read version from server: Get http://localhost:8080/api: dial tcp 127.0.0.1:8080: connection refused export KUBERNETES_MASTER=http://172.17.8.101:8080 #If your Kubernetes Master IP and Port is different, change this accordingly
+<pre tabindex="0"><code>kubectl create -f wso2is-controller.yaml error: couldn't read version from server: Get http://localhost:8080/api: dial tcp 127.0.0.1:8080: connection refused export KUBERNETES_MASTER=http://172.17.8.101:8080 #If your Kubernetes Master IP and Port is different, change this accordingly
 </code></pre><p>On the other hand if your system simply doesn’t have kubectl installed, you first need to <a href="http://kubernetes.io/v1.1/docs/user-guide/prereqs.html">install it</a>.</p>
 <p>If everything went right Kubernetes will spawn a Pod with a WSO2 IS container inside it, in one of the Nodes. You can get the list of Pods deployed by issueing <code>kubectl get pods</code>.</p>
 <h3 id="kubernetes-service">Kubernetes Service</h3>
@@ -328,22 +328,22 @@ spec:
   ports:
     # ports that this service should serve on
     -
-      name: &#39;servlet-http&#39;
+      name: 'servlet-http'
       port: 9763
       targetPort: 9763
       nodePort: 32001
     -
-      name: &#39;servlet-https&#39;
+      name: 'servlet-https'
       port: 9443
       targetPort: 9443
       nodePort: 32002
     -
-      name: &#39;kdc-server&#39;
+      name: 'kdc-server'
       port: 8000
       targetPort: 8000
       nodePort: 32003
     -
-      name: &#39;thrift-entitlement&#39;
+      name: 'thrift-entitlement'
       port: 10500
       targetPort: 10500
       nodePort: 32004

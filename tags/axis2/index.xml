@@ -24,7 +24,7 @@ UsernameToken Before we dive in to the client side code let’s take a look at t
       
       <guid>https://chamila.dev/blog/2014-07-01_creating-a-web-service-using-apache-axis2/</guid>
       <description>Prerequisites We need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let’s use Tomcat as a container. So in the following order
-Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7) Download and install Axis2 on Tomcat Oracle JDK7 Download and extract the JDK tarball.</description>
+ Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7) Download and install Axis2 on Tomcat  Oracle JDK7 Download and extract the JDK tarball.</description>
     </item>
     
   </channel>

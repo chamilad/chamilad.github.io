@@ -14,7 +14,7 @@
       
       <guid>https://chamila.dev/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</guid>
       <description>What should an Observability Framework address? In the previous post, we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design. Let’s explore the possibility of a structured approach for designing observable systems.
-Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls Why should there be a structured approach? In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack.</description>
+ Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls   Why should there be a structured approach?</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@ Massive industrial process of Sugar production where the mechanics are mostly li
 Monitoring is for operating software/systems
 Instrumentation is for writing software
 Observability is for understanding systems
-&amp;mdash; Charity Majors (@mipsytipsy) September 23, 2017 That’s Charity Majors, a well known voice on Observability and someone who has built a business doing it well.</description>
+&amp;mdash; Charity Majors (@mipsytipsy) September 23, 2017  That’s Charity Majors, a well known voice on Observability and someone who has built a business doing it well.</description>
     </item>
     
   </channel>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2019",
-      "datePublished": "2019-11-25 22:29:57 \x2b1300 NZDT",
-      "dateModified" : "2019-11-25 22:29:57 \x2b1300 NZDT",
+      "datePublished": "2019-11-25 22:29:57 \u002b1300 NZDT",
+      "dateModified" : "2019-11-25 22:29:57 \u002b1300 NZDT",
       "url" : "https:\/\/chamila.dev\/blog\/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying\/",
       "keywords" : [ "K8s","Logging","ElasticSearch","Logstash","Filebeat","Log aggregation","ELKOnK8s", ]
   }
@@ -43,9 +43,15 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -55,51 +61,75 @@
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
-<body>
+<body class="theme-light">
   <article class="post " id="article">
     <div class="row">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark" title="dark theme">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" title="light theme" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
         <div class="site-header">
           
 <header>
   <div class="signatures site-title">
-    <a href="https://chamila.dev/">chamila.dev</a>
-   
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
   </div>
 </header>
 <div class="row end-xs">
-  
-  
+   
 </div>
-<div class="header-line"></div>
+
 
         </div>
         <header class="post-header">
           <h1 class="post-title">ElasticSearch on K8s: 05 - Visualization and Production Readying</h1>
           
           <div class="row post-desc">
-            <div class="col-xs-6">
+            <div class="pub-date col-xs-6">
               
-              <time class="post-date" datetime="2019-11-25 22:29:57 NZDT">
+              <time class="post-date" datetime=" 2019-11-25 22:29:57 NZDT">
                 25 Nov 2019
-		<p><b>Read time:</b> 12m
-		<br /><b>Word count:</b> 2417</p>
               </time>
               
-           </div>
-      
-      
-      
-         </div>
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~12 minutes
+            </div>
+            
+            
+            
+          </div>
           
- 	<div class="toc">
-	<hr />
-        <h4>Table of Contents:</h4>
-	<nav id="TableOfContents">
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
   <ul>
     <li><a href="#01-buffering-at-logstash-layer">01: Buffering at Logstash Layer</a>
       <ul>
@@ -112,12 +142,11 @@
     <li><a href="#04-shard-count">04: Shard Count</a></li>
   </ul>
 </nav>
-	<hr />
-	</div>
-       </header>
+            
+          </div>
+        </header>
         <div class="post-content markdown-body">
-          <figure>
-    <img src="/blog/img/2019-11-25_elasticsearch-on-k8s-05_01.jpeg"/> <figcaption>
+          <figure><img src="/blog/img/2019-11-25_elasticsearch-on-k8s-05_01.jpeg"/><figcaption>
             <h4>Woolshed Hut on Mt. Somers</h4>
         </figcaption>
 </figure>
@@ -175,7 +204,7 @@
 <p>The above method of disk based buffering is only half of the work that can be done to throttle input at the Logstash layer. Provided that we have an understanding of the wanted and unwanted events, we can restrict the load on the stack furthermore. This is an active method of throttling as opposed to the passive buffering method described above. During buffering, the events that are not acked by Logstash will be tried again by Filebeat later. With throttling, the unwanted events are typically dropped and will not be evaluated again (unless otherwise fed again into the Logstash pipeline. This however will be rare since use of throttling will mostly happen for unwanted events).</p>
 <p>How throttling is done at Logstash is using the <a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-throttle.html">Throttle Filter</a>. It defines a window based on the number of events passing through the filter, so that events outside that window are throttled. This window is defined by the properties, <code>before_count</code> and <code>after_count</code>. This window is reset from time to time, which is also configurable using properties <code>period</code> and <code>max_age</code>. Furthermore, the throttle filter can be selectively applied for sources that are only likely to produce spikes of data. There could be multiple such window counters based on a <code>key</code> that is defined to separate events into diffeerent buckets.</p>
 <p>For an example, to only allow a maximum of 1000 events from a single <code>webapp</code> Pod per minute, we can define a throttle filter like the following.</p>
-<pre><code>if [kubernetes][labels][app] in [&quot;webapp&quot;] {
+<pre tabindex="0"><code>if [kubernetes][labels][app] in [&quot;webapp&quot;] {
   throttle {
     after_count =&gt; 1000
     key =&gt; &quot;%{kubernetes.pod.name}&quot;
@@ -192,7 +221,7 @@
 <li>Each event that gets throttled is applied a tag named <code>throttled</code></li>
 </ol>
 <p>Based on this information, we can choose to drop any throttled event.</p>
-<pre><code>if &quot;throttled&quot; in [tags] { 
+<pre tabindex="0"><code>if &quot;throttled&quot; in [tags] { 
   drop {} 
 }
 </code></pre><blockquote>
@@ -213,14 +242,14 @@
 </ol>
 <p>This will make sure that only <code>elasticsearch</code> Pods that carry the matching tolerations, will get scheduled to the tainted Nodes.</p>
 <p>For an example, the Nodes that are supposed to host the ElasticSearch Pods can be tainted with the following.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl taint nodes elasticsearch-node-01 role<span style="color:#f92672">=</span>elasticsearch:NoSchedule
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl taint nodes elasticsearch-node-01 role<span style="color:#f92672">=</span>elasticsearch:NoSchedule
 kubectl taint nodes elasticsearch-node-02 role<span style="color:#f92672">=</span>elasticsearch:NoSchedule
 </code></pre></div><p>The <code>elasticsearch</code> StatefulSet should get the following tolerations.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">tolerations</span>:
-  - <span style="color:#66d9ef">key</span>: <span style="color:#e6db74">&#34;role&#34;</span>
-    <span style="color:#66d9ef">operator</span>: <span style="color:#e6db74">&#34;Equal&#34;</span>
-    <span style="color:#66d9ef">value</span>: <span style="color:#e6db74">&#34;elasticsearch&#34;</span>
-    <span style="color:#66d9ef">effect</span>: <span style="color:#e6db74">&#34;NoSchedule&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">tolerations</span>:
+  - <span style="color:#f92672">key</span>: <span style="color:#e6db74">&#34;role&#34;</span>
+    <span style="color:#f92672">operator</span>: <span style="color:#e6db74">&#34;Equal&#34;</span>
+    <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;elasticsearch&#34;</span>
+    <span style="color:#f92672">effect</span>: <span style="color:#e6db74">&#34;NoSchedule&#34;</span>
 </code></pre></div><p>After this change is done the Nodes will only carry the required <code>kube-system</code> Pods and <code>elasticsearch-*</code> Pods that match the tolerations. However, Filebeat Pods should also be scheduled in these Nodes for log collection to be completed. Therefore, the above tolerations that were added to ElasticSearch StatefulSet should also be added to the Filebeat DaemonSet.</p>
 <!-- raw HTML omitted -->
 <blockquote>
@@ -252,7 +281,7 @@ kubectl taint nodes elasticsearch-node-02 role<span style="color:#f92672">=</spa
 </blockquote>
 
         </div>
-	<div class="prev-next row">
+        <div class="prev-next row">
 	<div class="prev col-sm">
 	
 	<a href="https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/">&lt; ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</a>
@@ -286,13 +315,31 @@ kubectl taint nodes elasticsearch-node-02 role<span style="color:#f92672">=</spa
 
         
         
-        <div style="height: 50px;"></div>
+        
         
         
 
         <div class="site-footer">
   
+
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
   
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
 </div>
 
       </div>
@@ -300,11 +347,12 @@ kubectl taint nodes elasticsearch-node-02 role<span style="color:#f92672">=</spa
   </article>
 
   <script src="/js/highlight.pack.js"></script>
-<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+<script src="/js/theme.js"></script>
+
 
 <script>
   hljs.initHighlightingOnLoad();
-  
+
   var posts = document.getElementById('posts-list');
   posts && quicklink({
     el: posts,

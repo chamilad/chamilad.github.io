@@ -13,7 +13,7 @@
       <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
       
       <guid>https://chamila.dev/blog/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</guid>
-      <description>Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic Morning sunlight on Horton Plains National Park In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.</description>
+      <description>Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic  Morning sunlight on Horton Plains National Park   In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.</description>
     </item>
     
   </channel>

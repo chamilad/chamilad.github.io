@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Load Balancing and Reverse Proxying for Kubernetes Services",
       "headline" : "Load Balancing and Reverse Proxying for Kubernetes Services",
-      "description" : "Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic Morning sunlight on Horton Plains National Park In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.",
+      "description" : "Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic  Morning sunlight on Horton Plains National Park   In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,7 +36,7 @@
 <title>Load Balancing and Reverse Proxying for Kubernetes Services - chamila.dev</title>
   <meta property="og:title" content="Load Balancing and Reverse Proxying for Kubernetes Services - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic Morning sunlight on Horton Plains National Park In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2." />
+  <meta name="description" content="Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic  Morning sunlight on Horton Plains National Park   In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -50,7 +50,8 @@
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -60,7 +61,6 @@
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -206,7 +206,7 @@ spec:
 </blockquote>
 <p>This is the <a href="https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types">default type of Service</a> that would be created if the <code>type</code> field is not explicitly specified for a Service definition. A cluster-wide, but internal IP address, which is part of one of the Service network CIDR that is divided up when setting up Container Networking, will be provided as the fixed IP address of the Service. This IP address (and the Service <code>name</code>)is routable from anywhere within the K8s Overlay Network.</p>
 <pre tabindex="0"><code>curl http://myservice:8080/
-curl http://$(kubectl get svc myservice --template=&#39;{{.spec.clusterIP}}&#39;):8080/
+curl http://$(kubectl get svc myservice --template='{{.spec.clusterIP}}'):8080/
 </code></pre><p><img src="/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_1.png#layoutTextWidth" alt=""></p>
 <p>However, as mentioned above, this IP address is (sort of) useless on its own for the scope of this article. It is not routable from outside the cluster network unless you can somehow implement the following series of steps.</p>
 <ol>

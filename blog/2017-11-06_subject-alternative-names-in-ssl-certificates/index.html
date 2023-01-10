@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Subject Alternative Names in SSL Certificates",
       "headline" : "Subject Alternative Names in SSL Certificates",
-      "description" : "Or the SSL Cert Extension that saves your back during development\nI recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.",
+      "description" : "Or the SSL Cert Extension that saves your back during development\n I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -37,7 +37,7 @@
   <meta property="og:title" content="Subject Alternative Names in SSL Certificates - chamila.dev" />
   <meta property="og:type" content="article" />
   <meta name="description" content="Or the SSL Cert Extension that saves your back during development
-I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses." />
+ I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -51,7 +51,8 @@ I recently wrote an article on how to generate and upload a self-signed SSL Cert
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -61,7 +62,6 @@ I recently wrote an article on how to generate and upload a self-signed SSL Cert
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -151,7 +151,7 @@ I recently wrote an article on how to generate and upload a self-signed SSL Cert
 </code></pre><ol start="2">
 <li>Generate the self-signed certificate with SAN fields</li>
 </ol>
-<pre tabindex="0"><code>openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key private.key -extensions SAN -config &lt;(cat /etc/ssl/openssl.cnf &lt;(printf &#34;[SAN]\nsubjectAltName=DNS:*.us-east-1.elb.amazonaws.com,DNS:*.dev.acme.org&#34;)) &gt; public.crt
+<pre tabindex="0"><code>openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key private.key -extensions SAN -config &lt;(cat /etc/ssl/openssl.cnf &lt;(printf &quot;[SAN]\nsubjectAltName=DNS:*.us-east-1.elb.amazonaws.com,DNS:*.dev.acme.org&quot;)) &gt; public.crt
 </code></pre><ol start="3">
 <li>Upload to AWS ACM</li>
 </ol>

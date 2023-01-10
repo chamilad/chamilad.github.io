@@ -14,7 +14,7 @@
       
       <guid>https://chamila.dev/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/</guid>
       <description>Or the SSL Cert Extension that saves your back during development
-I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</description>
+ I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</description>
     </item>
     
   </channel>

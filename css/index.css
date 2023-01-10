@@ -31,6 +31,10 @@
   background: var(--light-anti-theme);
 }
 
+.markdown-body {
+  font-family: "Droid Sans", sans-serif;
+}
+
 /*
 * floating menu with theme switcher
 *
@@ -174,7 +178,7 @@ a:hover {
   text-align: right;
 }
 .signatures {
-  font-family: "Montserrat", "Arvo", Helvetica, "Liberation Sans", sans-serif;
+  font-family: "Droid Sans", "Arvo", Helvetica, "Liberation Sans", sans-serif;
 }
 
 .signatures a {
@@ -226,7 +230,7 @@ a:hover {
 
 .post-content p {
   hyphens: auto;
-  line-height: 1.5;
+  line-height: 1.6;
   text-align: justify;
   text-justify: ideographic;
   word-break: break-word;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,7 +50,8 @@
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -60,7 +61,6 @@
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -202,27 +202,28 @@ wso2am-default-8280-service.yaml
 wso2am-default-9443-service.yaml
 wso2am-default-9763-service.yaml
 </code></pre><p>The Service definition for the default Carbon port <strong>9443</strong> looks like the following. Notice that Service name has been changed to resemble the port that it exposes.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">serviceloadbalancer/lb.host</span>: <span style="color:#ae81ff">mgt-gateway.am.wso2.com</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">serviceloadbalancer/lb.sslTerm</span>: <span style="color:#e6db74">&#34;true&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">serviceloadbalancer/lb.cookie-sticky-session</span>: <span style="color:#e6db74">&#34;true&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">wso2am-default</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">port</span>: <span style="color:#ae81ff">wso2am-default-http-9443</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">gateway-443</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sessionAffinity</span>: <span style="color:#ae81ff">ClientIP</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
-</span></span><span style="display:flex;"><span>    -
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#39;servlet-https&#39;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">443</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">9443</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">wso2am-default</span>
-</span></span></code></pre></div><p>Another observation from the above are the following two additional Service annotations.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">annotations</span>:
+    <span style="color:#f92672">serviceloadbalancer/lb.host</span>: <span style="color:#ae81ff">mgt-gateway.am.wso2.com</span>
+    <span style="color:#f92672">serviceloadbalancer/lb.sslTerm</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+    <span style="color:#f92672">serviceloadbalancer/lb.cookie-sticky-session</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+  <span style="color:#f92672">labels</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">wso2am-default</span>
+    <span style="color:#f92672">port</span>: <span style="color:#ae81ff">wso2am-default-http-9443</span>
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">gateway-443</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">sessionAffinity</span>: <span style="color:#ae81ff">ClientIP</span>
+  <span style="color:#f92672">ports</span>:
+    -
+      <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#39;servlet-https&#39;</span>
+      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">443</span>
+      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">9443</span>
+  <span style="color:#f92672">selector</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">wso2am-default</span>
+
+</code></pre></div><p>Another observation from the above are the following two additional Service annotations.</p>
 <ol>
 <li><strong>serviceloadbalancer/lb.sslTerm</strong> — If set to “true”, the Service Load Balancer will terminate SSL and perform backend communication without SSL verification.</li>
 <li><strong>serviceloadbalancer/lb.cookie-sticky-session</strong>— If set to “true” the Service Load Balancer will set and check a cookie to handle Session Affinity based on it.</li>

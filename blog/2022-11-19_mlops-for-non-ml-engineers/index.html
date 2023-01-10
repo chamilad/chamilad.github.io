@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,7 +50,8 @@
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -60,7 +61,6 @@
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -119,7 +119,7 @@
               
             </div>
             <div class="reading-time col-xs-6" title="approximate read time">
-              ~9 minutes
+              ~10 minutes
             </div>
             
             
@@ -187,6 +187,14 @@ practice.</p>
 <p>Putting everything into a single article quickly became a bad idea, so I have
 split this into a series of smaller ones. I will be updating this post in the
 future with all the links at the top for easy access.</p>
+<blockquote>
+<p><em>Edit down the line:</em> I tried to keep the series provider-agnostic, but halfway
+through it, I could see that at least some concrete real-world examples of
+features have to be explained. In the above mentioned project I worked with
+GCP Vertex and Azure ML Studio, however I&rsquo;ve used Amazon SageMaker as the
+reference provider since AWS is what I work with the most these days. My work
+also involves AWS a lot, so remember to filter the bias.</p>
+</blockquote>
 <h2 id="ml-and-learning-the-basics">ML and Learning the Basics</h2>
 <p>When you&rsquo;re working in a multi-disciplinary team, the key quality to build first
 is a common language for communication. This would take priority over even the
@@ -245,7 +253,7 @@ source code that determines how to traverse the data set to find this pattern
 which can be used to generate <strong>predictions</strong> on related but never before seen
 data sets, or as called later <strong>real world data</strong>. While the source code and the
 data set can be the same for a given two training runs, the pattern the
-algorithm ends up with could be (and almost always will be) different.</p>
+algorithm ends up with could be different.</p>
 <figure><img src="/blog/img/2022-11-19_mlops_01_topographic.png"/><figcaption>
             <h4>Image from Analysis of a wind turbine project in the city of Bouar (Central African Republic) - Scientific Figure on ResearchGate. Available from: https://www.researchgate.net/figure/3D-Elevation-map-of-Bangui-outskirts_fig7_340074762 [accessed 22 Nov, 2022]</h4>
         </figcaption>
@@ -317,6 +325,30 @@ with superficial patterns that don&rsquo;t really contribute to the solution cou
 waste resources and lose support for the entire project. <strong>Feature
 Engineering</strong> is a sub topic that works on best practices for identifying,
 selecting, and deriving new Features.</p>
+<blockquote>
+<p>Amazon SageMaker helps in this aspect by making it possible to perform feature
+discovery and engineering in the Notebooks (we&rsquo;ll be discussing what Notebooks
+are later) themselves with integrated library
+functions. The <a href="https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-notebooks-now-support-git-integration-for-increased-persistence-collaboration-and-reproducibility/">well-documented Git
+integration</a>
+also allows packaging data
+transformation and loading logic as separate reusable functions so that
+different data sets and even different teams can reuse what has already been
+proven to work.</p>
+</blockquote>
+<p>The scale of data that has to be processed is also something to point out. With
+the massive volume of data involved in Machine Learning, efficient data storage
+and retrieval are problems of their own. Different data management platforms
+have been offered to tackle enterprise data management such as <a href="https://www.snowflake.com/en/data-cloud/workloads/data-warehouse/">Snowflake Data
+Warehousing</a>
+and <a href="https://docs.databricks.com/delta/index.html">DataBricks Delta Lake</a> that
+focus on data storage optimisation.</p>
+<blockquote>
+<p>Amazon SageMaker takes a step further with it&rsquo;s
+<a href="https://aws.amazon.com/blogs/machine-learning/using-streaming-ingestion-with-amazon-sagemaker-feature-store-to-make-ml-backed-decisions-in-near-real-time/">Streaming</a>
+functionality to make the data available as quickly as possible without having
+to copy an entire data set across to the compute instance.</p>
+</blockquote>
 <p>This part of the process is commonly known as <strong>Exploratory Data Analysis
 (EDA)</strong>.</p>
 <hr>

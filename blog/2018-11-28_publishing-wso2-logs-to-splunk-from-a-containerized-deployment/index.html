@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -51,7 +51,8 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -61,7 +62,6 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -147,13 +147,14 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
 <p>WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in &lt;CARBON_HOME&gt;/repository/conf folder, data in &lt;CARBON_HOME&gt;/repository/data, artifacts in &lt;CARBON_HOME&gt;/repository/deployment (or in &lt;CARBON_HOME&gt;/repository/tenants folder if you’re in to multi-tenancy). All the log files are written into &lt;CARBON_HOME&gt;/repository/logs folder.</p>
 <h4 id="log-aggregation">Log Aggregation</h4>
 <p>All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards &lt;CARBON_HOME&gt;/repository/logs folder. For an example, for ELK this could be something like <strong>FileBeat</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">filebeat.prospectors</span>:
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">input_type</span>: <span style="color:#ae81ff">log</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">paths</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">/mnt/wso2am-2.6.0/repository/logs/*.log</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">output.logstash</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">hosts</span>: [<span style="color:#e6db74">&#34;logstash.private.deployment.local:5044&#34;</span>]
-</span></span></code></pre></div><p>When it comes Splunk, the traditional approach for a story like this is to use the <a href="http://docs.splunk.com/Documentation/Forwarder/6.4.2/Forwarder/Abouttheuniversalforwarder">Universal Forwarder</a>. It is an agent process that will read the contents of a specified log file and push events to a specified Splunk receiver port.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">filebeat.prospectors</span>:
+- <span style="color:#f92672">input_type</span>: <span style="color:#ae81ff">log</span>
+  <span style="color:#f92672">paths</span>:
+    - <span style="color:#ae81ff">/mnt/wso2am-2.6.0/repository/logs/*.log</span>
+<span style="color:#f92672">output.logstash</span>:
+  <span style="color:#f92672">hosts</span>: [<span style="color:#e6db74">&#34;logstash.private.deployment.local:5044&#34;</span>]
+
+</code></pre></div><p>When it comes Splunk, the traditional approach for a story like this is to use the <a href="http://docs.splunk.com/Documentation/Forwarder/6.4.2/Forwarder/Abouttheuniversalforwarder">Universal Forwarder</a>. It is an agent process that will read the contents of a specified log file and push events to a specified Splunk receiver port.</p>
 <p>However, this approach is not a suitable one when it comes to dynamic deployments like Docker, K8s, or ECS where instances are prone to come and go down without prior planning and notice. The gap exists when part of the Universal Forwarder configuration has to be done in the Splunk side the deployment. This will not be able to register new instances that were spawned by Container Orchestration systems both for auto healing and scaling. Furthermore, a somewhat heavy process like the Universal Forwarder running along side a JVM inside the same Container is not exactly conforming to Containerization best practices.</p>
 <p>Fortunately the proper way to register log events from a Docker based deployment to Splunk is a much simpler approach.</p>
 <h4 id="docker-logging">Docker Logging</h4>
@@ -164,7 +165,7 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
 <p>The compromise in AWS Fargate is that you lose the detailed level of control you have over the Cluster Instances. At the moment, if you go for a Fargate managed ECS Cluster, you will only have <code>awslogs</code> (which publishes logs to AWS CloudWatch) and <code>none</code> as the logging options.</p>
 <p>To enable OOTB logging drivers in the Docker daemon through the ECS Agent running on the Cluster Instances, you have to go with the EC2 option for managing the Cluster.</p>
 <p>Now, the ECS Agent should be notified so that the Docker daemon is configured to support the list of Docker logging drivers. To do this, add the following entry to the ECS Agent configuration file and restart the ECS Agent.</p>
-<pre tabindex="0"><code>ECS_AVAILABLE_LOGGING_DRIVERS=[&#34;awslogs&#34;,&#34;splunk&#34;]
+<pre tabindex="0"><code>ECS_AVAILABLE_LOGGING_DRIVERS=[&quot;awslogs&quot;,&quot;splunk&quot;]
 </code></pre><p>As you probably have guessed by now, any number of <a href="https://docs.docker.com/config/containers/logging/configure/#supported-logging-drivers">supported Docker logging drivers </a>can be specified here.</p>
 <p>When creating a Task Definition for the WSO2 deployment, in the Container definition, go down <strong>Storage and Logging</strong>section. Select the drop down list for <strong>Log Configuration</strong> to view the list of OOTB supported logging drivers.</p>
 <p><img src="/blog/img/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment_0.png#layoutTextWidth" alt=""></p>

@@ -14,8 +14,8 @@
       
       <guid>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
       <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
-The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
-Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship Pretty simple from the looks of it doesn’t it? The catch is this.</description>
+ The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
+ Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
     </item>
     
   </channel>

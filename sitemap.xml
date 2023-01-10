@@ -110,7 +110,7 @@
     <loc>https://chamila.dev/tags/authentication/</loc>
     <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03---multi-tenancy-with-keycloak-and-kibana/</loc>
+    <loc>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</loc>
     <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/authorization/</loc>
@@ -143,16 +143,16 @@
     <loc>https://chamila.dev/tags/single-sign-on/</loc>
     <lastmod>2020-02-12T07:07:35+13:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02---basic-sso-with-role-assignment/</loc>
+    <loc>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</loc>
     <lastmod>2020-02-10T20:26:46+13:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01---a-blueprint-for-multi-tenant-sso/</loc>
+    <loc>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</loc>
     <lastmod>2019-11-27T19:43:20+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2019-11-26_elasticsearch-index-management/</loc>
     <lastmod>2019-11-26T22:03:00+13:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05---visualization-and-production-readying/</loc>
+    <loc>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</loc>
     <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/elkonk8s/</loc>
@@ -161,7 +161,7 @@
     <loc>https://chamila.dev/tags/filebeat/</loc>
     <lastmod>2019-11-25T22:29:57+13:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04---log-storage-and-search-with-elasticsearch/</loc>
+    <loc>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</loc>
     <lastmod>2019-11-23T16:01:40+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</loc>

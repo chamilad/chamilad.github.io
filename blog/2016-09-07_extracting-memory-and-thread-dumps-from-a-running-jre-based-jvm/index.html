@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -52,7 +52,8 @@ jstack pid &gt;&gt; thread_dump.txt Turns out the system doesn’t know what jst
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -62,7 +63,6 @@ jstack pid &gt;&gt; thread_dump.txt Turns out the system doesn’t know what jst
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -151,7 +151,7 @@ jstack pid &gt;&gt; thread_dump.txt Turns out the system doesn’t know what jst
 <p>So we march on to download and extract the JDK, and then to run the following.</p>
 <pre tabindex="0"><code>java -classpath &lt;JDK_HOME&gt;/lib/tools.jar sun.tools.jstack.JStack &lt;pid&gt; &gt;&gt; thread_dump.txt
 </code></pre><p>..and come across the following error.</p>
-<pre tabindex="0"><code>Exception in thread &#34;main&#34; java.lang.UnsatisfiedLinkError: no attach in java.library.path
+<pre tabindex="0"><code>Exception in thread &quot;main&quot; java.lang.UnsatisfiedLinkError: no attach in java.library.path
         at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1867)
         at java.lang.Runtime.loadLibrary0(Runtime.java:870)
         at java.lang.System.loadLibrary(System.java:1122)

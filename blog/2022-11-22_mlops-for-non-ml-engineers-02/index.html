@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,7 +50,8 @@
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -60,7 +61,6 @@
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -119,7 +119,7 @@
               
             </div>
             <div class="reading-time col-xs-6" title="approximate read time">
-              ~9 minutes
+              ~11 minutes
             </div>
             
             
@@ -207,16 +207,61 @@ classes of problems, labelling can be a cumbersome task itself, especially
 given the volume of data involved. Various ways, from manual labelling by humans,
 to using Machine Learning for labelling itself are being used to generate proper
 training data sets.</p>
+<blockquote>
+<p>Amazon SageMaker offers a service named <a href="https://aws.amazon.com/sagemaker/data-labeling/?sagemaker-data-wrangler-whats-new.sort-by=item.additionalFields.postDateTime&amp;sagemaker-data-wrangler-whats-new.sort-order=desc">Ground
+Truth</a>
+which is a manual labelling service that offsets tedius but accurate data
+labelling to humans on AWS side. Ground Truth provides fine grain control over
+what kind of labelling to be done on the datasets and how accurate labelling
+should be (ex: multiple labelling inputs per a class of objects). As far as I
+understand, Ground Truth is the most in detail service in this area, may be
+surpassed by a handful of other third party services that may not integrate with your
+AWS setup as neatly as Ground Truth does.</p>
+</blockquote>
+<blockquote>
+<p>In addition to manual labelling, Amazon SageMaker also offers <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-automated-labeling.html">automatic data
+labelling</a>
+which uses already built Machine Learning Models to do labelling (object
+detection, image classification etc).</p>
+</blockquote>
 <p>As mentioned above, getting it right in EDA and Experimenting phases is critical
 for a Machine Learning project. Mistakes in these phases can result in the
 entire effort being scrapped and having to start again, which can mean the
 failure of an entire project. While other software projects can, and do, fail for
 the same overall reasons, the wiggle room available for fixing mistakes down
 the line for a Machine Learning project is slim.</p>
+<blockquote>
+<p>Amazon SageMaker&rsquo;s Experiment (and Trial) concept makes it easy to track objective
+metrics across different experiments for comparison. This is fully integrated
+with the <a href="https://aws.amazon.com/sagemaker/studio/">SageMaker Studio, the web base IDE for Machine Learning work by
+AWS</a>, and the Amazon SageMaker SDK, so
+registering a particular training run as an Experiment is streamlined and easy
+to track afterwards. This is especially helpful if multiple members of the team
+are working on the same problem and are registering experiment runs on the same
+experiment version.</p>
+</blockquote>
+<blockquote>
+<p>As far as training compute goes, Amazon SageMaker makes it easier to scale in and
+out the training process for Experimentation. More data and more compute can
+be added to a training process, whether it is done using one of the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html">built-in
+algorithms</a> or a
+<a href="https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html">custom
+one</a>.
+Data can be distributed among multiple nodes or can be replicated fully between
+different training jobs.</p>
+</blockquote>
+<blockquote>
+<p>When it comes to trying out different solutions, Amazon SageMaker allows picking
+from a list of built-in algorithms or customise your model training to your
+needs by enabling custom container approach. Additionally, <a href="https://aws.amazon.com/blogs/machine-learning/use-the-amazon-sagemaker-local-mode-to-train-on-your-notebook-instance/">&ldquo;Local
+Mode&rdquo;</a>
+in SageMaker allows running containers built from your Docker image locally for
+quicker iterations during experimentation.</p>
+</blockquote>
 <h3 id="build-quality-metrics">Build Quality Metrics</h3>
 <p>If the result of each iteration of an ML build from the same source code (and the
-same version of the data set) can be different, how would we determine which
-one to release?</p>
+same version of the data set) can be different, how would we objectively
+determine which one to release?</p>
 <p>In software development projects, the problem of comparing quality of different
 build versions is solved with a mix of automated and manual testing. The version
 with the most tests passing or the most critical tests passing is typically
@@ -225,9 +270,9 @@ released.</p>
 predictions is not the ultimate metric to perfect. The typical example here is
 Fraud Detection. A Model with 100% accurate predictions is really easy to
 build.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">is_fraud</span>(t: TransactionMeta) <span style="color:#f92672">-&gt;</span> bool:
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
-</span></span></code></pre></div><p>With the above code, 100% all fraudulant transactions can be detected. However,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">is_fraud</span>(t: TransactionMeta) <span style="color:#f92672">-&gt;</span> bool:
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
+</code></pre></div><p>With the above code, 100% all fraudulant transactions can be detected. However,
 100% of legitimate transactions will also be marked as fraud and the bank would
 be out of business by the end of the week.</p>
 <p>For a successful Model, all of the following metrics should be understood.</p>
@@ -297,6 +342,11 @@ algorithm, the training time could be affected by adding more CPUs and/or GPUs
 to the mix. However, with the volume of data involved and the complexity of the
 calculations involved, little can be done about the &ldquo;build times&rdquo; involved in
 Machine Learning.</p>
+<p>The above mentioned SageMaker features like Local Mode could help in bringing
+down the time spent during testing. Features such as incremental training could
+help in doing the same for continuous training after being pushed to
+production. Continuous Training is a topic that will be covered later in the
+series.</p>
 <h3 id="artefact-management">Artefact Management</h3>
 <p>As discussed before, while a software development product can be reproduced
 pretty easily, a trained ML Model that might be potentially usable has to be
@@ -317,11 +367,11 @@ engineered out of existing data and are used to develop Models out of a given
 data set. In an organisation,
 Features derived out of the data it has, could be used for different efforts in
 different projects. Instead of generating Features for each project, these could
-be made available for different teams as a Feature Store. Since EDA and Feature
-Engineering can take a lot of time out of a project, having a common repository
-of refined Features can accelerate a Machine Learning project. Likewise, having
-proper access to data sets for data engineering and Data Scientists avoids having
-to put processes in for data access.</p>
+be made available for different teams as a Feature Store. Since EDA
+(Exploratory Data Analysis) and Feature Engineering can take a lot of time out
+of a project, having a common repository of refined Features can accelerate a
+Machine Learning project. Likewise, having proper access to data sets for data
+engineering and Data Scientists avoids having to put processes in for data access.</p>
 <h4 id="model-registry">Model Registry</h4>
 <p>Each outcome of a training run will most likely end up as a
 version of a given Model type. These are usually stored in file or object
@@ -330,6 +380,12 @@ much as the Model itself. These metadata could include training details,
 validation metrics, and other useful data that can be used to compare
 versions and deploy into production. A Model Registry is such a metadata
 management registry.</p>
+<p>Amazon SageMaker provides a fully featured Model Registry that can track a
+Model along with the metadata such as the hyper parameters used to train the
+specific version of the model and track the lineage of the Model across different
+Experiments and releases. It also allows an approval process to be incorporated
+into the Model training and deployment process to gatekeep production Model
+deployments.</p>
 <h4 id="library-and-dependency-management">Library and dependency management</h4>
 <p>Like other software development projects, software libraries and dependencies
 are part of the development process in Machine Learning projects. There will be

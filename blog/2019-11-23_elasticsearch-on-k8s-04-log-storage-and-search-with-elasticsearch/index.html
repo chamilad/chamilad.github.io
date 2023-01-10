@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2019",
-      "datePublished": "2019-11-23 16:01:40 \x2b1300 NZDT",
-      "dateModified" : "2019-11-23 16:01:40 \x2b1300 NZDT",
+      "datePublished": "2019-11-23 16:01:40 \u002b1300 NZDT",
+      "dateModified" : "2019-11-23 16:01:40 \u002b1300 NZDT",
       "url" : "https:\/\/chamila.dev\/blog\/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch\/",
       "keywords" : [ "K8s","Logging","ElasticSearch","Logstash","Filebeat","Log aggregation","ELKOnK8s", ]
   }
@@ -43,9 +43,15 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -55,63 +61,86 @@
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
-<body>
+<body class="theme-light">
   <article class="post " id="article">
     <div class="row">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark" title="dark theme">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" title="light theme" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
         <div class="site-header">
           
 <header>
   <div class="signatures site-title">
-    <a href="https://chamila.dev/">chamila.dev</a>
-   
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
   </div>
 </header>
 <div class="row end-xs">
-  
-  
+   
 </div>
-<div class="header-line"></div>
+
 
         </div>
         <header class="post-header">
           <h1 class="post-title">ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</h1>
           
           <div class="row post-desc">
-            <div class="col-xs-6">
+            <div class="pub-date col-xs-6">
               
-              <time class="post-date" datetime="2019-11-23 16:01:40 NZDT">
+              <time class="post-date" datetime=" 2019-11-23 16:01:40 NZDT">
                 23 Nov 2019
-		<p><b>Read time:</b> 8m
-		<br /><b>Word count:</b> 1517</p>
               </time>
               
-           </div>
-      
-      
-      
-         </div>
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~8 minutes
+            </div>
+            
+            
+            
+          </div>
           
- 	<div class="toc">
-	<hr />
-        <h4>Table of Contents:</h4>
-	<nav id="TableOfContents">
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
   <ul>
     <li><a href="#shards-and-indices">Shards and Indices</a></li>
     <li><a href="#scheduling-and-networking">Scheduling and Networking</a></li>
     <li><a href="#bootstrap-and-master-election-process">Bootstrap and Master Election Process</a></li>
   </ul>
 </nav>
-	<hr />
-	</div>
-       </header>
+            
+          </div>
+        </header>
         <div class="post-content markdown-body">
-          <figure>
-    <img src="/blog/img/2019-11-23_elasticsearch-on-k8s-04_01.jpeg"/> <figcaption>
+          <figure><img src="/blog/img/2019-11-23_elasticsearch-on-k8s-04_01.jpeg"/><figcaption>
             <h4>The morning shadow on the lower mountaineous plain beside Adam&#39;s Peak, Sri Lanka</h4>
         </figcaption>
 </figure>
@@ -168,30 +197,30 @@
 </ol>
 <p>Since these names are known before the Pods are actually spawned, including them in a ConfigMap and making ElasticSearch Pods use that configuration is possible. This would not have been the case if a Deployment and a typical Service were used in place of the StatefulSet and the Headless Service.</p>
 <p>The configuration for <code>elasticsearch.yml</code> could look like the following.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># bind to all IP addressses</span>
-<span style="color:#66d9ef">network.host</span>: <span style="color:#ae81ff">0.0.0.0</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># bind to all IP addressses</span>
+<span style="color:#f92672">network.host</span>: <span style="color:#ae81ff">0.0.0.0</span>
 
 <span style="color:#75715e"># production check</span>
-<span style="color:#66d9ef">bootstrap.memory_lock</span>: <span style="color:#66d9ef">false</span>
+<span style="color:#f92672">bootstrap.memory_lock</span>: <span style="color:#66d9ef">false</span>
 
 <span style="color:#75715e"># discovery method for master elections</span>
-<span style="color:#66d9ef">discovery.seed_hosts</span>:
-- elasticsearch-headless
+<span style="color:#f92672">discovery.seed_hosts</span>:
+- <span style="color:#ae81ff">elasticsearch-headless</span>
 
-<span style="color:#66d9ef">cluster.name</span>: elasticsearch
+<span style="color:#f92672">cluster.name</span>: <span style="color:#ae81ff">elasticsearch</span>
 
-<span style="color:#66d9ef">node.master</span>: <span style="color:#66d9ef">true</span>
-<span style="color:#66d9ef">node.data</span>: <span style="color:#66d9ef">true</span>
-<span style="color:#66d9ef">node.ingest</span>: <span style="color:#66d9ef">true</span>
+<span style="color:#f92672">node.master</span>: <span style="color:#66d9ef">true</span>
+<span style="color:#f92672">node.data</span>: <span style="color:#66d9ef">true</span>
+<span style="color:#f92672">node.ingest</span>: <span style="color:#66d9ef">true</span>
 
 <span style="color:#75715e"># master eligible endpoints for initial bootstrap process</span>
-<span style="color:#66d9ef">cluster.initial_master_nodes</span>:
-- elasticsearch<span style="color:#ae81ff">-0</span>
-- elasticsearch<span style="color:#ae81ff">-1</span>
+<span style="color:#f92672">cluster.initial_master_nodes</span>:
+- <span style="color:#ae81ff">elasticsearch-0</span>
+- <span style="color:#ae81ff">elasticsearch-1</span>
 </code></pre></div><p>With the successful and healthy <code>GREEN</code> ElasticSearch cluster, the data pushed from Logstash will correctly be stored and indexed. Now these can be queried for all kinds of purposes, through either the ElasticSearch REST API or the visualization tool, Kibana which will be discussed in the next article.</p>
 
         </div>
-	<div class="prev-next row">
+        <div class="prev-next row">
 	<div class="prev col-sm">
 	
 	<a href="https://chamila.dev/blog/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/">&lt; ElasticSearch on K8s: 03 - Log Enrichment with Logstash</a>
@@ -225,13 +254,31 @@
 
         
         
-        <div style="height: 50px;"></div>
+        
         
         
 
         <div class="site-footer">
   
+
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
   
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
 </div>
 
       </div>
@@ -239,11 +286,12 @@
   </article>
 
   <script src="/js/highlight.pack.js"></script>
-<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+<script src="/js/theme.js"></script>
+
 
 <script>
   hljs.initHighlightingOnLoad();
-  
+
   var posts = document.getElementById('posts-list');
   posts && quicklink({
     el: posts,

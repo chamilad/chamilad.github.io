@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.92.2" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "ElasticSearch on K8s: 02 — Log Collection with Filebeat",
       "headline" : "ElasticSearch on K8s: 02 — Log Collection with Filebeat",
-      "description" : "This is part of a series of short articles on setting up an ELK deployment on K8s.\nElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.",
+      "description" : "This is part of a series of short articles on setting up an ELK deployment on K8s.\n  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -37,7 +37,7 @@
   <meta property="og:title" content="ElasticSearch on K8s: 02 — Log Collection with Filebeat - chamila.dev" />
   <meta property="og:type" content="article" />
   <meta name="description" content="This is part of a series of short articles on setting up an ELK deployment on K8s.
-ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint." />
+  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -51,7 +51,8 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -61,7 +62,6 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -182,19 +182,19 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 <p>Or this Logstash could be part of a central Admin Cluster that hosts all the Ops and Administrative components of the stack. In that case, Logstash endpoint should be the publicly (or org-internally) resolvable URL. Note that, other than Filebeat, the log collection layer, all other layers of the stack could be part of a separate admin cluster.</p>
 </blockquote>
 <p>The configuration including all of the above aspects that will be included in the <code>filebeat.yml</code> configuration file would look like the following.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    <span style="color:#f92672">filebeat.inputs</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">container</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">paths</span>:
-</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">/var/log/containers/*.log</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">processors</span>:
-</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">add_kubernetes_metadata</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">in_cluster</span>: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">processors</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">add_cloud_metadata</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">add_host_metadata</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">output.logstash</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">hosts</span>: [<span style="color:#e6db74">&#34;logstash.default.svc.cluster.local:5044&#34;</span>]
-</span></span></code></pre></div><p>This is a slightly modified version of the configuration that is <a href="https://www.elastic.co/guide/en/beats/filebeat/current/running-on-kubernetes.html%5B">provided by Elastic</a>. This is a minimal configuration matching a minimal requirement set. It’s highly likely this will require modification before getting adapted to specific deployments</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    <span style="color:#f92672">filebeat.inputs</span>:
+    - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">container</span>
+      <span style="color:#f92672">paths</span>:
+        - <span style="color:#ae81ff">/var/log/containers/*.log</span>
+      <span style="color:#f92672">processors</span>:
+        - <span style="color:#f92672">add_kubernetes_metadata</span>:
+            <span style="color:#f92672">in_cluster</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">processors</span>:
+      - <span style="color:#f92672">add_cloud_metadata</span>:
+      - <span style="color:#f92672">add_host_metadata</span>:
+    <span style="color:#f92672">output.logstash</span>:
+      <span style="color:#f92672">hosts</span>: [<span style="color:#e6db74">&#34;logstash.default.svc.cluster.local:5044&#34;</span>]
+</code></pre></div><p>This is a slightly modified version of the configuration that is <a href="https://www.elastic.co/guide/en/beats/filebeat/current/running-on-kubernetes.html%5B">provided by Elastic</a>. This is a minimal configuration matching a minimal requirement set. It’s highly likely this will require modification before getting adapted to specific deployments</p>
 <!-- raw HTML omitted -->
 <blockquote>
 <p>There will be more configuration to set up for a proper production deployment requirement. These include,</p>
