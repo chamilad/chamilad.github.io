@@ -6,7 +6,17 @@
     <description>Recent content in DevOps on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 25 Nov 2022 06:37:25 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Nov 2022 09:11:34 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution</title>
+      <link>https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/</link>
+      <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/</guid>
+      <description>Whanganui War Memorial Centre    Continuing comparison between Machine Learning and Software Development, from the previous article in the series.
+ MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution   Differences between Software Development projects and Machine Learning projects were discussed in the previous articles.</description>
+    </item>
+    
     <item>
       <title>MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev</title>
       <link>https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/</link>

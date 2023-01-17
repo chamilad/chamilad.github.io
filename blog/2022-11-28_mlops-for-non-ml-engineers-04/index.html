@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution",
+      "headline" : "MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution",
+      "description" : "An introduction to ML practices from a DevOps perspective",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2022",
+      "datePublished": "2022-11-28 09:11:34 \u002b1300 NZDT",
+      "dateModified" : "2022-11-28 09:11:34 \u002b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2022-11-28_mlops-for-non-ml-engineers-04\/",
+      "keywords" : [ "Machine Learning","Artificial Intelligence","DevOps","Software Engineering","MLOps","Cloud", ]
+  }
+</script>
+<title>MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution - chamila.dev</title>
+  <meta property="og:title" content="MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="An introduction to ML practices from a DevOps perspective" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark" title="dark theme">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" title="light theme" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2022-11-28 09:11:34 NZDT">
+                28 Nov 2022
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~10 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#roles-in-a-machine-learning-project">Roles in a Machine Learning Project</a></li>
+    <li><a href="#machine-learning-platforms">Machine Learning Platforms</a></li>
+    <li><a href="#devops-vs-mlops">DevOps vs MLOps?</a></li>
+    <li><a href="#project-management">Project Management</a></li>
+    <li><a href="#licensing">Licensing</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <figure><img src="/blog/img/2022-11-28_mlops_04_header.jpeg"/><figcaption>
+            <h4>Whanganui War Memorial Centre</h4>
+        </figcaption>
+</figure>
+
+<blockquote>
+<p>Continuing comparison between Machine Learning and Software Development, from
+the <a href="/blog/2022-11-25_mlops-for-non-ml-engineers-03/">previous article</a> in the series.</p>
+<ol>
+<li><a href="/blog/2022-11-19_mlops-for-non-ml-engineers/">MLOps for Non-ML Engineers 01 - Introduction</a></li>
+<li><a href="/blog/2022-11-22_mlops-for-non-ml-engineers-02/">MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</a></li>
+<li><a href="/blog/2022-11-25_mlops-for-non-ml-engineers-03/">MLOps for Non-ML Engineers 03 - More Differences Between ML and SW
+Dev</a></li>
+<li>MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution</li>
+</ol>
+</blockquote>
+<p>Differences between Software Development projects and Machine
+Learning projects were discussed in the previous articles. Let&rsquo;s look at ML Engineering
+responsibilities and other unique aspects involved in a Machine Learning
+project.</p>
+<h2 id="roles-in-a-machine-learning-project">Roles in a Machine Learning Project</h2>
+<p>In a multi-disciplinary team, Data Scientists and ML Engineers will have
+separate responsibilities to contribute to.</p>
+<p>Data Scientists, as the people with knowledge and experience on working with
+data, can focus on the Machine Learning part of the process. They have a deep
+understanding of the type of solutions to follow, and a working knowledge on the
+Machine Learning offering of the platform they are working on. They will decide
+the data management, experiment, and training details of the Model and
+contribute to designing the deployment pipeline.</p>
+<p>ML Engineers, as engineers of other disciplines are called, are better equipped
+to handle the DevOps side of the process. They are experienced in software
+development, CI/CD, Cloud, and operations. They would also have an understanding of
+the Machine Learning lingo and platform administration knowledge and experience
+of the platform the team is working on. They will decide operational aspects of
+the platform, compute resource management, library, pipeline, and tools development,
+and adapting standard software development best practices into the process.</p>
+<p>One interesting pattern I have seen is engineers who are Data Scientists by
+training, having to work in the DevOps and software engineering space that
+has to be filled in the team, where the team is almost fully composed of Data
+Scientists. This could be by choice or as a result of the demand from the team.
+While this is a good thing for the engineer (while switching disciplines
+is hard, it can be a great learning tool, and I have utmost respect for people who do it anyway), the project might
+be losing precious Data Science competency trying to do all of it &ldquo;in house&rdquo;.
+You can&rsquo;t expect an engineer to watch a Youtube video and implement good
+DevOps (and no, Kubernetes does not &ldquo;solve&rdquo; DevOps). The project team should
+have a mix of Data Science and ML Engineering competencies for optimal work.</p>
+<h2 id="machine-learning-platforms">Machine Learning Platforms</h2>
+<p>Machine Learning having specific hardware requirements to do serious work is a
+limiting factor for adopting bare-metal platforms for
+development. In addition to this, most Cloud platforms that offer a Machine
+Learning Platform offer good integration with related services such as
+distributed and durable storage, elastic compute, and data analytics and ETL
+services.</p>
+<p>Amazon SageMaker, GCP Vertex, and Azure ML Workspaces provide Data Science
+oriented developer and deployment services that are directly integrated with
+the other services. They differ in their approaches to data and deployment
+management, and there are feature gaps between the providers depending on their
+feature roadmaps. However, all of them provide a Notebook interface, flexible
+Notebook compute, Dataset management, (limited) Feature Stores, Model
+Registries, and Experiment management. However, role separation between Data
+Science and platform administration work can be a bit blurred, especially when
+all three providers have Machine Learning Specialty qualifications that focus on
+platform administration as well. This could be a bit confusing to anyone without
+Cloud practice.</p>
+<blockquote>
+<p>At the time of writing this article, some features that I wanted to automate
+in Azure ML Platform, when writing a set of template Notebooks for the Data
+Scientists, were not available in the APIs for tools like Terraform to use.
+This could also be something to consider (albeit a somewhat smaller detail)
+when you&rsquo;re first evaluating platforms to base your solution on.</p>
+</blockquote>
+<blockquote>
+<p>Amazon SageMaker tries to separate the rest of the AWS services from Machine
+Learning services by separating out basic functionalities needed by a Data
+Science role from the DevOps functionalities. SageMaker has been introducing
+new features recently to optimise deployment costs and streamline Notebook version
+controlling. SageMaker also offers SageMaker studio that integrates the
+previously discussed features to offer an easy experience to train and deploy
+Machine Learning Models.</p>
+</blockquote>
+<blockquote>
+<p>Amazon SageMaker also offers good debugging, tracing, and visualisation
+capabilities during model training for better visibility into the process. This
+minimises the guess work to be done during training and provides better insight
+into (ex:) which parts of the Neural Network are effectively active during
+training.</p>
+</blockquote>
+<p>A different part of the industry is the multi-persona Platform as a Service
+providers. These include providers like Databricks, Dataiku, and Cloudera where
+different roles, fulfilled by different engineers, can work on the same
+platform with limited overlap between them required. These platforms provide integration
+support for most public Cloud storage services, and have varying degrees of
+vendor lock-in to suit your taste. They will require specialised training to
+get the maximum benefit out of the platform.</p>
+<p>Another option is to deploy a mix of Open Source solutions on the Cloud
+platform of your choice, only utilising the basic services such as compute,
+storage, naming, networking, and routing. Tools like Apache Airflow, KubeFlow
+and MLFlow could be useful, however I have not worked with these in conjunction enough to
+provide an opinion.</p>
+<p>Aspects like Auto scaling and resource management are still part of the process.
+Model deployment tends to drift towards Container based services or serverless
+offerings on public Cloud platforms. Custom images may need to be built for
+training and deployment processes. These are not so different from a software
+development project.</p>
+<h2 id="devops-vs-mlops">DevOps vs MLOps?</h2>
+<p>Most engineers who are new to Machine Learning and are interested in the
+operational side of things try to make meaning out of concepts they already
+know. This is why they would probably start searching for the phrase <em>&ldquo;devops vs
+mlops&rdquo;</em>. Most results for this term ends up being generic articles that mention
+something along the lines of <em>&ldquo;devops is about development, and mlops is about
+machine learning&rdquo;</em>. In my opinion this is a simplistic reduction of the two concepts.</p>
+<p>DevOps is not only about pipelines or pre-commit configs. It&rsquo;s about an
+organisation wide culture that emphasises on developer-operations
+collaboration. Contrary to popular definitions, using Terraform doesn&rsquo;t &ldquo;make
+you devops&rdquo;, unless you drive (in most cases) a paradigm shift in the way
+different teams work together for common business goals in development, unless
+you consider failure as normal and aim for optimal error rates, unless your
+culture is oriented towards accepting risk than avoiding it, unless there&rsquo;s close
+communication between the development teams and the operations teams on
+incident response, unless your product and service managers have stopped asking
+for &ldquo;five nines availability&rdquo; for products that have no business being that
+much available. Implementing DevOps in an organisation is sometimes a business
+process impacting change involving CoEs, consultations, and changing reporting
+lines.</p>
+<blockquote>
+<p>It&rsquo;s common for organisations to pick their existing operations engineers
+together to one team and call them DevOps or SRE, without a single top-down
+change management process to increase collaboration or to champion DevOps
+practices. Even worse, some would have separate teams named <em>SRE</em> and <em>DevOps</em> in
+the same company on the same product.</p>
+</blockquote>
+<p>On the other hand, MLOps is a specific pipeline implementation that aims to
+increase the Model development, training, and deployment cadence with project
+or team specific tools. These tools involve Model Registries, Feature and
+DataSet stores, Notebook servers and development compute resources, pipelines
+with special hardware attached runners, and specific monitoring set up to
+trigger Continuous training and reporting for the Data Scientists. It&rsquo;s rarely
+about non-technical processes, and has no impact on organisational culture
+(except may be for the way data is collected and treated from different sources
+like sales funnels and CRM solutions).</p>
+<p>The
+impact of implementing MLOps is local to your data engineering and data science
+teams, and needs no additional top-down support than what the ML project is
+already receiving. It&rsquo;s no different than chosing to use Terraform based
+automation for environment management instead of ClickOps for software
+development projects. Other than the initial business decision to commit to a
+platform service provider, there is no major business level decision to make.
+In most platforms mentioned above, MLOps has nothing extra to implement other
+than sticking to the vendor provided best practices and features. Organisations
+need more support and time for deliberation on actually deciding on investing on
+AI/ML projects than deciding which MLOps implementation to use.</p>
+<p>It sounds like I&rsquo;m reiterating the same point, but I have seen again and again
+how people at all levels of the industry misconstrue the meaning of DevOps down
+to CI/CD pipelines and comparing MLOps vs DevOps as two pipeline
+implementations. At the risk of sounding a bit too pedantic about the topic, I
+should emphasise the apples vs oranges nature of such comparisons.</p>
+<h2 id="project-management">Project Management</h2>
+<p>Unlike software development iterations which
+can be fairly short (two-week Sprints are common in software development
+projects), Machine Learning iterations can take a long time, especially in the<br>
+Experimentation phase. One problem we had to tackle in the project I took part
+in was the difference in cadence the software development tasks had when
+compared to the Machine Learning tasks in the same Sprint.</p>
+<p>Phases like Experimentation could take a long time to complete with no significant
+&ldquo;update&rdquo; to be provided back to project management other than &ldquo;that experiment
+was a failure&rdquo;. For project managers who might not be familiar with the way
+Machine Learning experimentation works, this could sound like no progress is
+being made with the same task being in the &ldquo;In Progress&rdquo; column for weeks, and
+sometimes months, while actual progress is being made that just does not have
+significant updates to be reported. It is important to understand this fact to
+accommodate every engineer in the team and to understand the project
+progression.</p>
+<h2 id="licensing">Licensing</h2>
+<p>Copyright management in Software Development is a complex topic itself. You
+have the age old copyright vs copyleft discussion (although more permissive
+and business friendly open source licensing, like Apache V2 and MIT, seems to
+have won the day for the moment, even with source open trend that companies like
+MongoDB started) in the front and center, with some companies backing Open
+Source communities with funds and technical contributions as a means of
+product development.</p>
+<p>Although the same could be applied to the source code that trains the Model in
+Machine Learning, licensing the Model itself could be a tricky case. Binaries
+or package distributions out of software development projects can be relatively easily
+licensed with the source licensing, upstream licensing, and business goals in
+mind.</p>
+<p>For Machine Learning Models, this could become a bit complex when it comes to
+considering the ownership of the data, the algorithm, and the library code used
+for various steps between data collection and Model training. Additionally,
+given how powerful some Models can become, there will be restrictions in place
+enforced by states on the potential users of the license. We have already seen
+restriction of hardware sales for specialised GPUs used for Model training
+introduced by the USA-China tech race, however I&rsquo;m sure we will soon be seeing
+deep discussions on which parts of a Model and its training can truly be Open
+Source and which parts will be proprietary while adhering to community oriented
+movements like Open Source and Free Software. Of course, this doesn&rsquo;t involve
+the API based proprietary model that most AI companies seem to follow at the
+moment.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>There are various other details that stands Machine Learning projects out from
+rest of the software engineering practices. However these can be apparent when
+you get to a certain level of detail. Furthermore, some areas like data
+engineering, big data storage optimisation, are not ones I can comfortably
+discuss without significant experience.</p>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/">&lt; MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2022-11-25_mlops-for-non-ml-engineers-03/">MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev</a></li>
+    
+    <li><a href="/blog/2022-11-22_mlops-for-non-ml-engineers-02/">MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</a></li>
+    
+    <li><a href="/blog/2022-11-19_mlops-for-non-ml-engineers/">MLOps for Non-ML Engineers 01 - Introduction</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  
+
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  
+  All photos published on this site are copyrighted.
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>
