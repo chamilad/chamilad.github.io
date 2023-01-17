@@ -189,6 +189,8 @@
 .theme-light blockquote {
   background-color: var(--light-blockquote) !important;
   border-left: 0.5em solid var(--light-theme) !important;
+  padding: 0 1em;
+  color: #6a737d;
 }
 
 /* 

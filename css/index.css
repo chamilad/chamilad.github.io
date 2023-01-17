@@ -169,6 +169,10 @@ a:hover {
   text-align: right;
 }
 
+.site-footer {
+  text-align: center;
+}
+
 .site-footer .sm-icons {
   float: left;
   height: 20px;
