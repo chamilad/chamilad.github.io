@@ -6,15 +6,14 @@
     <description>Recent content in journal on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Nov 2022 09:11:34 +1300</lastBuildDate><atom:link href="https://chamila.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Jan 2023 09:14:05 +1300</lastBuildDate><atom:link href="https://chamila.dev/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution</title>
-      <link>https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/</link>
-      <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
+      <title>AWS Backup: Introduction</title>
+      <link>https://chamila.dev/blog/2023-01-18_aws-backup-intro/</link>
+      <pubDate>Wed, 18 Jan 2023 09:14:05 +1300</pubDate>
       
-      <guid>https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/</guid>
-      <description>Whanganui War Memorial Centre    Continuing comparison between Machine Learning and Software Development, from the previous article in the series.
- MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution   Differences between Software Development projects and Machine Learning projects were discussed in the previous articles.</description>
+      <guid>https://chamila.dev/blog/2023-01-18_aws-backup-intro/</guid>
+      <description>What else is better than a photo of water being backed up   AWS Backup AWS Backup is a service introduced a few years ago to centrally manage backup options for various AWS services that deal with data persistence. These include RDS, DynamoDB, EBS, EFS, EC2, S3, and Amazon FSx. What was earlier at best by processes and architecture reviews and audits in different services with different strategies can be consolidated into a single service with a single Console.</description>
     </item>
     
     <item>

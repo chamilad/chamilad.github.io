@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2023-01-18_aws-backup-intro/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2023-01-18_aws-backup-intro/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "AWS Backup: Introduction",
+      "headline" : "AWS Backup: Introduction",
+      "description" : "How AWS Backup is designed",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-01-18 09:14:05 \u002b1300 NZDT",
+      "dateModified" : "2023-01-18 09:14:05 \u002b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2023-01-18_aws-backup-intro\/",
+      "keywords" : [ "AWS","Backup","Restore", ]
+  }
+</script>
+<title>AWS Backup: Introduction - chamila.dev</title>
+  <meta property="og:title" content="AWS Backup: Introduction - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="How AWS Backup is designed" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark" title="dark theme">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" title="light theme" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">AWS Backup: Introduction</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2023-01-18 09:14:05 NZDT">
+                18 Jan 2023
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~8 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#aws-backup">AWS Backup</a>
+      <ul>
+        <li><a href="#concepts">Concepts</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <figure><img src="/blog/img/2023-01-18_backups01_header.jpeg"/><figcaption>
+            <h4>What else is better than a photo of water being backed up</h4>
+        </figcaption>
+</figure>
+
+<h2 id="aws-backup">AWS Backup</h2>
+<p>AWS Backup is a service introduced a few years ago to centrally manage backup
+options for various AWS services that deal with data persistence. These include
+RDS, DynamoDB, EBS, EFS, EC2, S3, and Amazon FSx. What was earlier at best by
+processes and architecture reviews and audits in different services with
+different strategies can be consolidated into a single service with a single
+Console. For an example, what was earlier RDS specific backup design would be
+collected into an AWS Backup Plan that aligns the specific RDS instance with
+the rest of the data persistence in a solution without having to manually
+compare different approaches for backup with different services.</p>
+<p>In addition to making the operational overhead for implementing and managing
+backup for a given solution, AWS Backup also makes it easy to architect on AWS
+for specific backup strategies. Security and audit reviews are much easier and
+can be conducted with more confidence because of the centralised nature of the
+service.</p>
+<h3 id="concepts">Concepts</h3>
+<p>To bring disparate services and concepts together, AWS Backup introduces a few
+new concepts itself.</p>
+<p><img src="/blog/img/2023-01-18_backups01_concepts.png" alt="AWS Backup Concepts"></p>
+<h4 id="backup-vaults">Backup Vaults</h4>
+<p>A Backup Vault is a primary concept in AWS Backup. It refers to the central
+data storage of the backup recovery points being taken from the storage instances of
+interest. Access to Backup Vaults can be managed separately from the resources
+that store their recovery points in the vaults, or even the principals performing the
+backups themselves. Both adding recovery points and restoring from them can be
+controlled at the vault level with vault policies.</p>
+<p>Backup Vaults also have a locking feature that can be leveraged for compliance.
+The two modes, <code>governance</code> and <code>compliance</code> allow locking vaults to be
+accessed by only select principals with IAM permissions, or locking vaults for
+a specific period of time without anyone being able to modify the vault or the
+lock. Additionally, Legal Holds can be applied to AWS Backup Recovery Points at
+a granular level so that they cannot be deleted until all the applicable Legal
+Holds have expired. This is useful in situations where backups need to be
+maintained for a certain period beyond the usual retention period for external
+reasons.</p>
+<p>Vaults is encrypted with a user specified KMS key. While this can be the AWS
+managed region specific <code>aws/backup</code> key, it is advisable to use KMS Customer
+Master Keys (CMK) for vault encryption. While this is a more secure approach to
+encryption in AWS in general, some features as described below, depend on the
+vault being encrypted with CMKs.</p>
+<p>A Backup Vault will be the target for Backup operations performed on various
+supported resources. Depending on the resource type encryption of the recovery
+point will be done by either the Backup Vault key or the resource encryption key.</p>
+<h4 id="backup-plans">Backup Plans</h4>
+<p>A Backup Plan is the actual implementation of the backup strategy for the
+solution. It is a policy that expresses which resources should be backed up how
+frequently with how long of retention periods. A Backup Plan consists of one or
+more Backup Rules.</p>
+<p>A rule consists of the details for a backup operation. These
+are details such as frequency of the backup operation, backup window, the
+target vault for the backup result, and the retention period for the said
+result. The backup frequency can be as low as hourly. The target vault can
+be single or multiple, and the secondary vaults could be in the same
+account, different account, and different regions. In addition to the retention period of
+the backup recovery point, the lifecycle details such as rotation of the
+recovery point into low cost cold storage can also be defined here.</p>
+<p>Backup Plans are serialised as JSON definitions.</p>
+<h4 id="resource-associations">Resource Associations</h4>
+<p>After the backup operation details are specified, the resources that should be
+backed up can be included in the Backup Plan. This is done using a Resource
+Association. A Resource Association is defined as direct resource ARNs or a
+more general adaptable tag based selection. By decoupling Rules and Resource
+Associations, AWS Backup detaches the data protection strategy from the data
+sources while keeping the relationship between the two simple to build.</p>
+<p>When defining a Resource Association, a role with permissions to create backups
+with the target resources should also be specified. For this, a role with
+<code>AWSBackupServiceRolePolicyForBackup</code> and <code>AWSBackupServiceRolePolicyForRestores</code>
+policies attached can be created. This role will be assumed by AWS Backup when
+executing the Backup Plan against the specified resources.</p>
+<p>Although it is advisable to keep things simple, the same resource can be
+associated with multiple Backup Plans. When this is done, recovery points created by
+overlapping plans are retained in line with the plan with the longest retention
+period.</p>
+<h4 id="recovery-points">Recovery Points</h4>
+<p>Recovery Points are the result of the Backup Plans getting executed. They are
+the backups (full or incremental) of the source data. Recovery Points can be
+copied to multiple Vaults in the same Account or in different Account (and
+depending on the resource type, in a different Account in a different region as
+well).</p>
+<p>Recovery Points that are in other accounts cannot be used to restore data on
+the source Account. They have to be copied over to the source account for any
+restoration to work, so you should be mindful of the RTO goals of your solution
+when architecting cross-account backups.</p>
+<h4 id="backup-policies">Backup Policies</h4>
+<p>The above mentioned Backup Plans are a great way to automate the backup
+operations within a single AWS Account. Coupled with good design and periodic
+architecture reviews, the same strategy can be expanded to other Accounts in
+the AWS Organization.</p>
+<p>However, depending on the use case, it might be easier to define these Backup
+Plans at a higher level than within individual AWS Account&rsquo;s Backup service,
+such as at the AWS Account level, or at the Organizational Unit level. This is
+where Backup Policies come into play.</p>
+<p>For deployments that are more unified and are mostly singular project oriented,
+the former Backup Plan approach can work best. The implementation of the
+requirements are clearly defined and are visible in the Backup Console/API.
+Depending on the requirements, the Backup Plans can be defined separately for
+separate goals.</p>
+<p>For AWS Organizations that are more diverse and have different players working
+under the same root Node, the latter approach is better. This can enforce best
+practices on different AWS Accounts on the Organization without having to
+individually manage Backup Plans. Different Organizational Units can be used to
+enforce different backup strategies as needed without having to worry about the
+Account owners being responsible in their architectures.</p>
+<p>Backup Policies is a way for Backup Plans to be applied as Account Policies in
+the same manner Service Control Policies (SCPs) are applied to different Accounts and
+Organizational Units in an AWS Organization. While SCPs is a guardrail
+implementation concept, Backup Policies are more of application of Backup Plans
+to a wider scope.</p>
+<p>The effective Backup Plan for a given Account is the collection of Backup Plans
+defined in AWS Backup inside the particular Account, Backup Policies defined
+for the Account, and the list of Backup Policies defined in each Organizational
+Unit up to and including the Root Node.</p>
+<p>This provides a way to apply a Backup Plan across an Organizational Unit
+according to how broad the backup strategy requirements are. For an example,
+for an OU that is defined to contain critical business data in RDS instances,
+a Backup Policy can be defined so that any RDS instance that matches a given
+tag is backed up to the Account specific Vault and copied to a different
+vault in a central backup Account. By doing so, the responsibility of writing
+Backup Plans in those individual Accounts can be taken out of the Account
+owning parties while making sure the appropriate data protection strategy is
+implemented.</p>
+<p>Because Backup Policies are inherited similar to the way SCPs are, they can be
+partially defined at each level of specificity. Policies defined at different
+levels of a hierarchy with the same name are merged together. For an example,
+a Backup Policy
+can be partially defined at OU1 where Rules are defined with no backup
+operation interval defined, while child OUs, OU2 and OU3, can define their own
+intervals to match their specific needs. Another example is to add or modify
+Resource Associations in the Backup Plans, where tag selectors can be
+overridden to match each Account&rsquo;s usage. However, partially defining Backup
+Policies could easily break the effective Backup Plan for a specific Account,
+if the collection of all the Backup Policies do not add up to a functional
+Backup Plan. This can silently fail with the intended data not being backed up
+properly. Therefore, a better approach would be to define the Backup Policies
+fully while overriding the specific fields of the policy in each level. This
+provides a functional starting point for the Backup Plan.</p>
+<p>Backup Policies could also end up creating a fairly complex JSON definition
+that can be hard to debug. Ideally, Backup Policies could be divided along
+resource and strategy lines, which would make them much easier to handle.
+Generally, keeping it simple applies really well to Backup Policies since
+mistakes could end up costing a huge chunk off the project/business.</p>
+<blockquote>
+<p>Extending this to include cross-accont backups in AWS in the next article.</p>
+</blockquote>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/">&lt; MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2022-11-25_mlops-for-non-ml-engineers-03/">MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev</a></li>
+    
+    <li><a href="/blog/2022-11-22_mlops-for-non-ml-engineers-02/">MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</a></li>
+    
+    <li><a href="/blog/2022-11-19_mlops-for-non-ml-engineers/">MLOps for Non-ML Engineers 01 - Introduction</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  
+
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  
+  All photos published on this site are copyrighted.
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>
