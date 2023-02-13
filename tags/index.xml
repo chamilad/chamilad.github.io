@@ -37,7 +37,7 @@
     <item>
       <title>Artificial Intelligence</title>
       <link>https://chamila.dev/tags/artificial-intelligence/</link>
-      <pubDate>Fri, 25 Nov 2022 06:37:25 +1300</pubDate>
+      <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/artificial-intelligence/</guid>
       <description></description>
@@ -46,7 +46,7 @@
     <item>
       <title>Cloud</title>
       <link>https://chamila.dev/tags/cloud/</link>
-      <pubDate>Fri, 25 Nov 2022 06:37:25 +1300</pubDate>
+      <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/cloud/</guid>
       <description></description>
@@ -55,7 +55,7 @@
     <item>
       <title>DevOps</title>
       <link>https://chamila.dev/tags/devops/</link>
-      <pubDate>Fri, 25 Nov 2022 06:37:25 +1300</pubDate>
+      <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/devops/</guid>
       <description></description>
@@ -64,7 +64,7 @@
     <item>
       <title>Machine Learning</title>
       <link>https://chamila.dev/tags/machine-learning/</link>
-      <pubDate>Fri, 25 Nov 2022 06:37:25 +1300</pubDate>
+      <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/machine-learning/</guid>
       <description></description>
@@ -73,9 +73,18 @@
     <item>
       <title>MLOps</title>
       <link>https://chamila.dev/tags/mlops/</link>
-      <pubDate>Fri, 25 Nov 2022 06:37:25 +1300</pubDate>
+      <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/mlops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Software Engineering</title>
+      <link>https://chamila.dev/tags/software-engineering/</link>
+      <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/software-engineering/</guid>
       <description></description>
     </item>
     
@@ -85,15 +94,6 @@
       <pubDate>Fri, 25 Nov 2022 06:37:25 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/sagemaker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Software Engineering</title>
-      <link>https://chamila.dev/tags/software-engineering/</link>
-      <pubDate>Fri, 25 Nov 2022 06:37:25 +1300</pubDate>
-      
-      <guid>https://chamila.dev/tags/software-engineering/</guid>
       <description></description>
     </item>
     
