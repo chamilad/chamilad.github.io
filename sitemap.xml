@@ -3,24 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://chamila.dev/tags/aws/</loc>
-    <lastmod>2023-01-18T09:14:05+13:00</lastmod>
+    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/blog/2023-01-18_aws-backup-intro/</loc>
-    <lastmod>2023-01-18T09:14:05+13:00</lastmod>
+    <loc>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</loc>
+    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/backup/</loc>
-    <lastmod>2023-01-18T09:14:05+13:00</lastmod>
+    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/</loc>
-    <lastmod>2023-01-18T09:14:05+13:00</lastmod>
+    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/cmk/</loc>
+    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/disaster-recovery/</loc>
+    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/encryption/</loc>
+    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/</loc>
-    <lastmod>2023-01-18T09:14:05+13:00</lastmod>
+    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/kms/</loc>
+    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/restore/</loc>
-    <lastmod>2023-01-18T09:14:05+13:00</lastmod>
+    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/</loc>
+    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/blog/2023-01-18_aws-backup-intro/</loc>
     <lastmod>2023-01-18T09:14:05+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/artificial-intelligence/</loc>

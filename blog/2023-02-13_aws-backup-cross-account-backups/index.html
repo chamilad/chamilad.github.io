@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "AWS Backup: Cross-Account Backups",
+      "headline" : "AWS Backup: Cross-Account Backups",
+      "description" : "How to implement Offsite Backups with AWS",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-02-13 23:29:05 \u002b1300 NZDT",
+      "dateModified" : "2023-02-13 23:29:05 \u002b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2023-02-13_aws-backup-cross-account-backups\/",
+      "keywords" : [ "AWS","Backup","Restore","Encryption","KMS","CMK","Disaster Recovery", ]
+  }
+</script>
+<title>AWS Backup: Cross-Account Backups - chamila.dev</title>
+  <meta property="og:title" content="AWS Backup: Cross-Account Backups - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="How to implement Offsite Backups with AWS" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark" title="dark theme">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" title="light theme" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">AWS Backup: Cross-Account Backups</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2023-02-13 23:29:05 NZDT">
+                13 Feb 2023
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~9 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#offsite-backups">Offsite Backups</a>
+      <ul>
+        <li><a href="#offsite-backups-with-aws-cross-account-vaults">Offsite Backups with AWS Cross-Account Vaults</a></li>
+      </ul>
+    </li>
+    <li><a href="#encryption-in-backups">Encryption in Backups</a>
+      <ul>
+        <li><a href="#aws-backup-independant-encryption">AWS Backup Independant Encryption</a></li>
+        <li><a href="#resource-based-backup-encryption">Resource Based Backup Encryption</a></li>
+      </ul>
+    </li>
+    <li><a href="#restore-testing">Restore Testing</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <figure><img src="/blog/img/2023-02-13_backups02_header.jpeg"/><figcaption>
+            <h4>Mount Kaukau</h4>
+        </figcaption>
+</figure>
+
+<blockquote>
+<p>Continuing from the previous article on <a href="/blog/2023-01-18_aws-backup-intro/">introduction to AWS
+Backup</a></p>
+</blockquote>
+<h2 id="offsite-backups">Offsite Backups</h2>
+<p>Let&rsquo;s talk theory for a bit.</p>
+<p>Data protection in a give solution depends on how thoughtful the backup
+strategy is. While a simple Backup Plan in AWS Backup that periodically takes a
+backup of the database into the Account-local Vault could technically be
+considered as a backup strategy, it is not a good one. For an effective and
+resilient data protection policy, backups should exist in locations other than
+the solution deployment, with access to them separated by network and access
+levels.</p>
+<p>Offsite backups make sure that in an event that makes the primary site
+unavailable, a secondary site is ready to provide snapshots of the data to kick
+off another deployment. This is essential to implement the Recovery Time (RTO) and
+Recovery Point Objectives (RPO) of a solution, with properly scheduled and <strong>available</strong>
+backups being the key ingredient in implementing for RPO and RTO.</p>
+<p>Additionally, offsite backups provide a barrier in a security event that might
+potentially take out on-site backups. An actor that has compromised the primary
+site will easily be able to control the primary backups as well. An offsite
+vault that has different access requirements and is not directly connected to
+the primary site through networking will be significantly harder to compromise.</p>
+<p>Furthermore, based on the critical nature of the business data, potential for
+disruption, and the impact of disruption, government compliance directives
+could force solutions to include offsite backups in the Disaster Recovery and
+Business Continuity Plans. For example, <a href="https://www.nzism.gcsb.govt.nz/ism-document/">New Zealand Information Security Manual
+(NZISM)</a> contains processes for
+offsite backups as part of the <strong>6.4.6 Backup Strategy</strong> section, which is
+further elaborated on by the <a href="https://github.com/craigar-amazon/nzism-aws-ig/blob/main/nzism-awsig.v0.1.md#64-business-continuity-and-disaster-recovery">AWS Implementation Guide for
+NZISM</a>.
+Systems, where possible should always implement offsite backups for an
+effective DR strategy.</p>
+<p>Traditional wisdom on backing up data has been on the lines of <strong>3-2-1</strong> where
+three copies of the production data needs to be maintained in two different
+mediums with one being offsite. This is a minimal standard that can be added on
+to with each solution&rsquo;s requirements and as platform technologies progress on
+backup and storage features.</p>
+<h3 id="offsite-backups-with-aws-cross-account-vaults">Offsite Backups with AWS Cross-Account Vaults</h3>
+<p>In AWS, implementing offsite backups is made easy with Accounts, IAM
+permissions, and AWS Backup working together. A different account, removed from
+the primary deployment in both network level and IAM access level, can be used
+as the DR site. It can (and where possible should) be using a different AWS
+region selected with data sovereignty requirements of the solution in mind.</p>
+<p>AWS Backup Plans provide a simple method of copying each recovery point across to
+different Vaults. By using a Vault in a separate Account as the target for the
+copy operation, offsite backups can be easily implemented.</p>
+<p>Using a different Account brings a few features and advantages to the table.</p>
+<h4 id="separation-of-responsibilities">Separation of Responsibilities</h4>
+<p>While a Backup Vault can be created in a different region in the same Account,
+managing this will not be easy for several reasons. Data persistence will be
+spread out in different Accounts in a given deployment. Managing multiple
+Vaults in different regions in each Account and making sure they don&rsquo;t drift
+from the intended backup strategy will not be an easy task.
+Infrastructure-As-Code is as good as the person who codes the said
+infrastructure. Even with code-reviews in place, it does not take more than a
+single wrong commit to break the backup process without anyone easily
+noticing. Managing offsite backups in a separate Account brings this together
+to a single pane of glass view.</p>
+<p>Additionally, giving access for auditors, operations teams, and management users
+to view, verify, and manage backup implementation can be messy with the same
+account offiste backup Vault approach. Each Account&rsquo;s Role for these user types
+have to be meticulously defined and maintained. Managing access to a single
+Account which is guaranteed to be removed from the active compute and data
+stores is far easier and brings down the complexity by several degrees.</p>
+<h4 id="security-barrier">Security Barrier</h4>
+<p>Vault Policies can be used to define which Accounts can use a given Vault as
+the offsite, and which Accounts can be used to restore the snapshots. This is
+an effective way to separate users who need to perform backups and restore but not necessarily
+need access to the actual data while doing so.
+Additionally, IAM permissions and Roles can separate security auditors from the
+operations users, and provide granular access to reporting without having to
+give access to data.</p>
+<p>Furthermore, SCPs can be leveraged to make sure the Backup Vaults are not
+deleted by accident or on purpose.</p>
+<h4 id="cloud-native-3-2-1">Cloud-native 3-2-1</h4>
+<p>Going back to the 3-2-1 approach in traditional data protection strategies, AWS
+Backup helps easily implement a modified <strong>[2..*]-1-[1..*]</strong> approach for AWS services.
+That is, two or more copies of the production data can be available on a single
+medium with one or more of them being offsite. Implementing this strategy comes
+with minimal cost with usage based costs being applied as the other AWS
+services. At the moment, AWS Backup does not offer maintaining available
+recovery points in multiple mediums. Recovery Point retention and lifecycle policies allow
+transitioning older recovery points to low cost cold storage, however that would not
+count as two different mediums with available backups.</p>
+<blockquote>
+<p>While cross-account backups can be part of the Disaster Recovery strategy for
+an AWS deployment, unless Backup/Restore is decided as the DR strategy with the
+hours or days of recovery time and recovery points that come with it, taking
+cross-account backups needs to be supplemented with a fallback deployment for
+it to be considered a Disaster Recovery strategy. This
+can be a pilot light deployment in the secondary region, refreshed with each
+recovery point, or a passive (yet ready to be hydrated) database restored from the
+latest recovery point.</p>
+</blockquote>
+<h2 id="encryption-in-backups">Encryption in Backups</h2>
+<p>As mentioned above, AWS Backup Vaults are encrypted with AWS KMS keys. The AWS
+managed <code>aws/backup</code> key will be useful for simple use cases, however for
+some AWS Services to be properly backed up, the target Vaults must to be
+encrypted with CMKs that need to have their Key Policies modified to enable
+encrypt and decrypt by Service-linked Role for Backup that performs the
+snapshot and copy operations. Furthermore, Cross-Account backup operations need
+the destination Account Vault to be encrypted with a CMK.</p>
+<p>The reason for this is clear once how different services support AWS Backup is
+understood. AWS Services can be categorised into two groups on their level of
+support for AWS Backup encryption, as those that support independent
+encryption by AWS Backup, and those that do not.</p>
+<h3 id="aws-backup-independant-encryption">AWS Backup Independant Encryption</h3>
+<p>This is when AWS Backup as a service itself handles encryption of the recovery
+points and the cross-account copies of the recovery points. Backup and the
+resource association roles take care of encryption so that manual work to allow
+key access is minimal.</p>
+<p>DynamoDB is a service that supports independant encryption (when <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/advanced-ddb-backup.html">DynamoDB Advanced
+Backup</a>
+is enabled, which is the case for newer Accounts). When a service supports
+independent AWS Backup encryption, the Backup operation for the specific
+resource itself uses the Backup Vault key to encrypt the recovery point. This
+would be the case even for resources that do not encrypt their content (highly
+discouraged, but a possible scenario). Therefore, for these services, the
+source Vault (the Vault that performs the first Backup operation), the
+destination Vault (the Vault that the recovery point is copied across to), and
+the resource itself can be encrypted with AWS managed KMS keys. AWS Backup
+handles the backup and copy operation internally and the Key policies do not
+have to be modified.</p>
+<h3 id="resource-based-backup-encryption">Resource Based Backup Encryption</h3>
+<p>For services like RDS that do not support independent encryption, AWS Backup
+uses the resource specific KMS key to encrypt the recovery point in the first
+place. This happens when the backup is being taken, and the key is used by the
+Backup job role (the role we used when [creating Resource Associations above]
+(#resource-associations)) that performs the operation. The CMK associated with
+the resource should modify its key policy so that the Backup Job
+role is able to perform <code>Decrypt</code> (to decrypt the resource data) and <code>Encrypt</code>
+(to encrypt the recovery point) operations. Additionally, for
+the cross-account copy operation, the destination account has to be given access to the
+key as well, since it is the destination account&rsquo;s Backup Service-Linked role
+that performs the copy operation.</p>
+<p>The following shows the Key Policy statements for a CMK used to encrypt a
+DynamoDB table in the source account.</p>
+<blockquote>
+<p><code>yyyyyyyyyyyy</code> - source account number,
+<code>xxxxxxxxxxxx</code> - destination account number</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+  <span style="color:#f92672">&#34;Statement&#34;</span>: [
+    {
+      <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;Allow source account Backup to decrypt data to be encrypted with Vault key&#34;</span>,
+      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+      <span style="color:#f92672">&#34;Principal&#34;</span>: {
+        <span style="color:#f92672">&#34;AWS&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::yyyyyyyyyyyy:role/dynamodb-backup-role&#34;</span>
+      },
+      <span style="color:#f92672">&#34;Action&#34;</span>: [
+        <span style="color:#e6db74">&#34;kms:GenerateDataKey&#34;</span>,
+        <span style="color:#e6db74">&#34;kms:DescribeKey&#34;</span>,
+        <span style="color:#e6db74">&#34;kms:Decrypt&#34;</span>,
+        <span style="color:#e6db74">&#34;kms:Encrypt&#34;</span>,
+        <span style="color:#e6db74">&#34;kms:CreateGrant&#34;</span>
+      ],
+      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;&lt;resource_arns&gt;&#34;</span>
+    },
+    {
+      <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;Allow destination Backup to decrypt for Backup operations&#34;</span>,
+      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+      <span style="color:#f92672">&#34;Principal&#34;</span>: {
+        <span style="color:#f92672">&#34;AWS&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::xxxxxxxxxxxx:role/aws-service-role/backup.amazonaws.com/AWSServiceRoleForBackup&#34;</span>
+      },
+      <span style="color:#f92672">&#34;Action&#34;</span>: [
+        <span style="color:#e6db74">&#34;kms:GenerateDataKey&#34;</span>,
+        <span style="color:#e6db74">&#34;kms:DescribeKey&#34;</span>,
+        <span style="color:#e6db74">&#34;kms:Decrypt&#34;</span>,
+        <span style="color:#e6db74">&#34;kms:CreateGrant&#34;</span>
+      ],
+      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;&lt;resource_arns&gt;&#34;</span>
+    }
+  ]
+}
+</code></pre></div><p>KMS Multi-region keys could also be useful here, however Key Policies have to
+be setup according to the above model.</p>
+<h2 id="restore-testing">Restore Testing</h2>
+<p>No backup strategy is complete without restore testing. Talk to any engineer
+worth their salt and they will tell you horror stories about how their
+meticulous on schedule backups failed miserably when they actually needed do a
+restore because the backup format was wrong, backup medium was bad, or the
+vendor pushed recovery data format issues to the future. These are so common
+that for ISO27001 itself checks for evidence for periodic restore testing. With
+traditional vendors and self hosted solutions, restore testing could be a
+limited recovery of a subset of files/objects with an email confirmation from
+the vendor, which in a real situation could sometimes fail fantastically.
+Adding to that is the manual work overhead and room for error in performing the
+tests.</p>
+<p>In AWS Backup, restoring from a recovery point creates a new resource, to avoid
+overwriting existing data. This can be easily adapted into an automated restore
+testing plan which provides confidence in the backup strategy and auditable
+evidence of properly done restore testing at the same time.</p>
+<p>Performing a restore action and testing the validity and integrity of the
+restored data can be automated as a periodic (or triggered on each backup job
+completion) Lambda function. Resulting CloudWatch logs can be retained for the
+period of time reviewers and auditors might be interested in. CloudWatch Alarms
+that go off when restore or validation jobs fail can be configured to trigger
+p2/p3 incidents with high severity (since failure of a backup can be critical
+for business goals).</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>As a centralised service for solution wide backup strategy implementation, AWS
+Backup provides various constructs to build an automated backup and restore
+plan with minimal human intervention needed in the process. Encryption of the
+backups is a first-class concept with least-privilege permissions being
+leveraged to make sure data is protected at all layers. Disaster Recovery can
+be extended on the backup strategy by using automated cross-account backups
+that can use different regions to align Business Continuity goals to the
+technical implementation. APIs provided by Backup allow for low-intervention
+restore testing to be added into the mix for a complete backup/restore
+strategy.</p>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2023-01-18_aws-backup-intro/">&lt; AWS Backup: Introduction</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2023-01-18_aws-backup-intro/">AWS Backup: Introduction</a></li>
+    
+    <li><a href="/blog/2022-11-25_mlops-for-non-ml-engineers-03/">MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev</a></li>
+    
+    <li><a href="/blog/2022-11-22_mlops-for-non-ml-engineers-02/">MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  
+
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  
+  All photos published on this site are copyrighted.
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

@@ -153,7 +153,7 @@ options for various AWS services that deal with data persistence. These include
 RDS, DynamoDB, EBS, EFS, EC2, S3, and Amazon FSx. What was earlier at best by
 processes and architecture reviews and audits in different services with
 different strategies can be consolidated into a single service with a single
-Console. For an example, what was earlier RDS specific backup design would be
+Console. For example, what was earlier RDS specific backup design would be
 collected into an AWS Backup Plan that aligns the specific RDS instance with
 the rest of the data persistence in a solution without having to manually
 compare different approaches for backup with different services.</p>
@@ -260,7 +260,7 @@ defined in AWS Backup inside the particular Account, Backup Policies defined
 for the Account, and the list of Backup Policies defined in each Organizational
 Unit up to and including the Root Node.</p>
 <p>This provides a way to apply a Backup Plan across an Organizational Unit
-according to how broad the backup strategy requirements are. For an example,
+according to how broad the backup strategy requirements are. For example,
 for an OU that is defined to contain critical business data in RDS instances,
 a Backup Policy can be defined so that any RDS instance that matches a given
 tag is backed up to the Account specific Vault and copied to a different
@@ -270,7 +270,7 @@ owning parties while making sure the appropriate data protection strategy is
 implemented.</p>
 <p>Because Backup Policies are inherited similar to the way SCPs are, they can be
 partially defined at each level of specificity. Policies defined at different
-levels of a hierarchy with the same name are merged together. For an example,
+levels of a hierarchy with the same name are merged together. For example,
 a Backup Policy
 can be partially defined at OU1 where Rules are defined with no backup
 operation interval defined, while child OUs, OU2 and OU3, can define their own
@@ -289,7 +289,8 @@ resource and strategy lines, which would make them much easier to handle.
 Generally, keeping it simple applies really well to Backup Policies since
 mistakes could end up costing a huge chunk off the project/business.</p>
 <blockquote>
-<p>Extending this to include cross-accont backups in AWS in the next article.</p>
+<p>Extending this topic in the next article to talk about cross-account backups
+in AWS.</p>
 </blockquote>
 
         </div>
@@ -300,6 +301,8 @@ mistakes could end up costing a huge chunk off the project/business.</p>
 		
 	</div>        
 	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/">AWS Backup: Cross-Account Backups &gt;</a>
 		
 	</div>
 </div>

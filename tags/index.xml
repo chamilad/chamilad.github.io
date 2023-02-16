@@ -6,11 +6,11 @@
     <description>Recent content in Tags on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Jan 2023 09:14:05 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Feb 2023 23:29:05 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AWS</title>
       <link>https://chamila.dev/tags/aws/</link>
-      <pubDate>Wed, 18 Jan 2023 09:14:05 +1300</pubDate>
+      <pubDate>Mon, 13 Feb 2023 23:29:05 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/aws/</guid>
       <description></description>
@@ -19,16 +19,52 @@
     <item>
       <title>Backup</title>
       <link>https://chamila.dev/tags/backup/</link>
-      <pubDate>Wed, 18 Jan 2023 09:14:05 +1300</pubDate>
+      <pubDate>Mon, 13 Feb 2023 23:29:05 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/backup/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>CMK</title>
+      <link>https://chamila.dev/tags/cmk/</link>
+      <pubDate>Mon, 13 Feb 2023 23:29:05 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/cmk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Disaster Recovery</title>
+      <link>https://chamila.dev/tags/disaster-recovery/</link>
+      <pubDate>Mon, 13 Feb 2023 23:29:05 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/disaster-recovery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Encryption</title>
+      <link>https://chamila.dev/tags/encryption/</link>
+      <pubDate>Mon, 13 Feb 2023 23:29:05 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/encryption/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>KMS</title>
+      <link>https://chamila.dev/tags/kms/</link>
+      <pubDate>Mon, 13 Feb 2023 23:29:05 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/kms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Restore</title>
       <link>https://chamila.dev/tags/restore/</link>
-      <pubDate>Wed, 18 Jan 2023 09:14:05 +1300</pubDate>
+      <pubDate>Mon, 13 Feb 2023 23:29:05 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/restore/</guid>
       <description></description>

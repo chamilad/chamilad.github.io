@@ -6,7 +6,18 @@
     <description>Recent content in Backup on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Jan 2023 09:14:05 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/backup/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Feb 2023 23:29:05 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/backup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS Backup: Cross-Account Backups</title>
+      <link>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</link>
+      <pubDate>Mon, 13 Feb 2023 23:29:05 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</guid>
+      <description>Mount Kaukau    Continuing from the previous article on introduction to AWS Backup
+ Offsite Backups Let&amp;rsquo;s talk theory for a bit.
+Data protection in a give solution depends on how thoughtful the backup strategy is. While a simple Backup Plan in AWS Backup that periodically takes a backup of the database into the Account-local Vault could technically be considered as a backup strategy, it is not a good one.</description>
+    </item>
+    
     <item>
       <title>AWS Backup: Introduction</title>
       <link>https://chamila.dev/blog/2023-01-18_aws-backup-intro/</link>
