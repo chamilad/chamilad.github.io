@@ -15,7 +15,7 @@
       <guid>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</guid>
       <description>Mount Kaukau    Continuing from the previous article on introduction to AWS Backup
  Offsite Backups Let&amp;rsquo;s talk theory for a bit.
-Data protection in a give solution depends on how thoughtful the backup strategy is. While a simple Backup Plan in AWS Backup that periodically takes a backup of the database into the Account-local Vault could technically be considered as a backup strategy, it is not a good one.</description>
+Data protection in a given solution depends on how thoughtful the backup strategy is. While a simple Backup Plan in AWS Backup that periodically takes a backup of the database into the Account-local Vault could technically be considered as a backup strategy, it is not a good one.</description>
     </item>
     
     <item>
@@ -24,7 +24,7 @@ Data protection in a give solution depends on how thoughtful the backup strategy
       <pubDate>Wed, 18 Jan 2023 09:14:05 +1300</pubDate>
       
       <guid>https://chamila.dev/blog/2023-01-18_aws-backup-intro/</guid>
-      <description>What else is better than a photo of water being backed up   AWS Backup AWS Backup is a service introduced a few years ago to centrally manage backup options for various AWS services that deal with data persistence. These include RDS, DynamoDB, EBS, EFS, EC2, S3, and Amazon FSx. What was earlier at best by processes and architecture reviews and audits in different services with different strategies can be consolidated into a single service with a single Console.</description>
+      <description>What else is better than a photo of water being backed up - Birchville Dam   AWS Backup AWS Backup is a service introduced a few years ago to centrally manage backup options for various AWS services that deal with data persistence. These include RDS, DynamoDB, EBS, EFS, EC2, S3, and Amazon FSx. What was earlier at best by processes and architecture reviews and audits in different services with different strategies can be consolidated into a single service with a single Console.</description>
     </item>
     
     <item>
@@ -103,7 +103,7 @@ However if you try to upload a self-signed SSL Certificate to IAM or ACM using t
       
       <guid>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
       <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
- The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
+  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
  Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
     </item>
     

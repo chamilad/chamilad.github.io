@@ -6,7 +6,18 @@
     <description>Recent content in chamila on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Feb 2023 23:29:05 +1300</lastBuildDate><atom:link href="https://chamila.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Feb 2023 00:15:44 +1300</lastBuildDate><atom:link href="https://chamila.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS Backup: Implementing a Simple Cross-Account Backup Strategy</title>
+      <link>https://chamila.dev/blog/2023-02-20_aws-backup-implementing-a-simple-cross-account-backup-strategy/</link>
+      <pubDate>Mon, 20 Feb 2023 00:15:44 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2023-02-20_aws-backup-implementing-a-simple-cross-account-backup-strategy/</guid>
+      <description>Kothmale Valley view near Ramboda    Following up from the last two1 blog posts2 on AWS Backup, this post focuses on a technical implementation of a simple backup strategy implementation for AWS Organizations.
+ Let&amp;rsquo;s extend the last two posts on AWS Backup to an example.
+In this scenario, we have an AWS Organization with three accounts, management, production (prod), and central backup (backup). There is a DynamoDB table named tracking and an RDS MySQL instance named mydb that contains critical production data in the prod account.</description>
+    </item>
+    
     <item>
       <title>AWS Backup: Cross-Account Backups</title>
       <link>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</link>
@@ -15,7 +26,7 @@
       <guid>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</guid>
       <description>Mount Kaukau    Continuing from the previous article on introduction to AWS Backup
  Offsite Backups Let&amp;rsquo;s talk theory for a bit.
-Data protection in a give solution depends on how thoughtful the backup strategy is. While a simple Backup Plan in AWS Backup that periodically takes a backup of the database into the Account-local Vault could technically be considered as a backup strategy, it is not a good one.</description>
+Data protection in a given solution depends on how thoughtful the backup strategy is. While a simple Backup Plan in AWS Backup that periodically takes a backup of the database into the Account-local Vault could technically be considered as a backup strategy, it is not a good one.</description>
     </item>
     
     <item>
@@ -24,7 +35,7 @@ Data protection in a give solution depends on how thoughtful the backup strategy
       <pubDate>Wed, 18 Jan 2023 09:14:05 +1300</pubDate>
       
       <guid>https://chamila.dev/blog/2023-01-18_aws-backup-intro/</guid>
-      <description>What else is better than a photo of water being backed up   AWS Backup AWS Backup is a service introduced a few years ago to centrally manage backup options for various AWS services that deal with data persistence. These include RDS, DynamoDB, EBS, EFS, EC2, S3, and Amazon FSx. What was earlier at best by processes and architecture reviews and audits in different services with different strategies can be consolidated into a single service with a single Console.</description>
+      <description>What else is better than a photo of water being backed up - Birchville Dam   AWS Backup AWS Backup is a service introduced a few years ago to centrally manage backup options for various AWS services that deal with data persistence. These include RDS, DynamoDB, EBS, EFS, EC2, S3, and Amazon FSx. What was earlier at best by processes and architecture reviews and audits in different services with different strategies can be consolidated into a single service with a single Console.</description>
     </item>
     
     <item>
@@ -240,7 +251,7 @@ A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;v
       
       <guid>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
       <description>What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
-Docker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind.</description>
+Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.</description>
     </item>
     
     <item>
@@ -408,7 +419,7 @@ Vim Syntax highlighting in Vim for HAProxy configuration has been available for 
       
       <guid>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
       <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
- The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
+  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
  Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
     </item>
     

@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Infrastructure as Code : AWS CloudFormation",
       "headline" : "Infrastructure as Code : AWS CloudFormation",
-      "description" : "This blog post is based on a talk I did on AWS CloudFormation as an introduction.\n The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.\n Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?",
+      "description" : "This blog post is based on a talk I did on AWS CloudFormation as an introduction.\n  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.\n Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -37,7 +37,7 @@
   <meta property="og:title" content="Infrastructure as Code : AWS CloudFormation - chamila.dev" />
   <meta property="og:type" content="article" />
   <meta name="description" content="This blog post is based on a talk I did on AWS CloudFormation as an introduction.
- The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
+  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
  Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?" />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
@@ -121,7 +121,7 @@
               
             </div>
             <div class="reading-time col-xs-6" title="approximate read time">
-              ~19 minutes
+              ~20 minutes
             </div>
             
             
@@ -147,7 +147,7 @@
           <blockquote>
 <p>This blog post is based on a talk I did on AWS CloudFormation as an introduction.</p>
 </blockquote>
-<!-- raw HTML omitted -->
+<iframe src="https://www.slideshare.net/slideshow/embed_code/key/8br68UFQtb7qpF" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; " allowfullscreen> </iframe>
 <h4 id="the-case-for-infrastructure-ascode">The case for Infrastructure as Code</h4>
 <p>Imagine a typical deployment of a software stack. The process might look like the following.</p>
 <ol>
@@ -191,7 +191,7 @@
 <h4 id="aws-cloudformation">AWS CloudFormation</h4>
 <p>AWS CloudFormation is one of the pioneers in Infrastructure as Code, as CloudFormation existed as a Service in the stack in as far as 2011. It is an AWS specific service that allows you to define a deployment of AWS resources in to “<strong>Templates</strong>”, that once provided to the CloudFormation service will create “<strong>Stacks</strong>” that can be managed. Once these “Stacks” are deployed, it becomes far easier to manage the resources “Stack”-wise to (say) rollout application updates or manage resource limitations.</p>
 <p>The resources and their metadata are defined in JSON or YAML files. There is little learning curve to get started because of this. AWS also provides a visual diagramming tool, that could improve a lot at the moment this is being written.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2017-07-03_infrastructure-as-code-aws-cloudformation_0.png#layoutTextWidth"><figcaption>AWS CloudFormation Designer</figcaption></figure>
 <p>A CloudFormation (CF) template consists of several sections.</p>
 <ol>
 <li><strong>Resources</strong></li>
@@ -631,7 +631,7 @@
 <p>To make this process a thousand times easy, <a href="https://www.packer.io/">HashiCorp’s Packer</a> can be used. Packer is a tool to easily create machine images across various providers. It’s not AWS specific, but provides a super efficient way to tackle problems involved with the typical AMI creation process, including scripted configuration of the instance, and distributing the AMI across regions.</p>
 <p>Using Packer, the required Puppet scripts can be embedded in the AMI. At instance initiation, these scripts can be executed using something like <code>puppet apply</code>.</p>
 <h4 id="piecing-together">Piecing together</h4>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2017-07-03_infrastructure-as-code-aws-cloudformation_4.png#layoutTextWidth"><figcaption>A Process for CD using AWS CF, Packer, and Puppet</figcaption></figure>
 <p>With all these tools at our disposal, we can now define an outline of a process that would be automated end to end.</p>
 <ol>
 <li>Development of the CloudFormation template can be done initially with related Puppet Scripts. Packer can be used to easily create new AMIs with modified Puppet scripts. This step would be iterative until the solution can be shipped with confidence. At that moment, the AMI can be distributed across regions using AMI.</li>

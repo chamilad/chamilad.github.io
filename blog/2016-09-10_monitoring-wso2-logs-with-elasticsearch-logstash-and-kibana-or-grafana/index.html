@@ -150,7 +150,7 @@
         <div class="post-content markdown-body">
           <p>I’ve recently been doing some work involving analytics dashboards and the subject proved to be really interesting. It has a wide range starting from Big Data to UX. Starting at a point where you determine what kind of data is collected and what kind information you need to get out of the dashboard, going to data analysis and data processing (probably on top an engine like Apache Spark), it finalizes at the visualization stage which is really fun.</p>
 <p>WSO2 recently released the latest version of <a href="http://wso2.com/products/enterprise-service-bus/">WSO2 ESB</a>, with a <a href="https://docs.wso2.com/display/ESB500/WSO2+ESB+Analytics">new analytics solution</a> that integrates seamlessly. Built on <a href="http://wso2.com/products/data-analytics-server/">WSO2 Data Analytics Server</a>, it packs a lot of power in terms of customizability when it comes to large scale data processing and visualization (plus all the benefits that come with <a href="http://wso2.com/products/carbon/">WSO2 Carbon Platform</a>). You just need to download ESB 5 Analytics, <a href="https://docs.wso2.com/display/ESB500/Prerequisites+to+Publish+Statistics">change minimal configuration</a> options in the ESB deployment, and start it up. You’ll come across the following dashboard.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana_0.jpg#layoutOutsetCenter"><figcaption>Dark, mysterious, and cool</figcaption></figure>
 <p>So I wanted to see how easily WSO2 products would integrate with a platform like Elasticsearch. And I followed through to setup log collection and monitoring for WSO2 ESB 5.0.0 with Logstash, Elasticsearch, and Kibana (LEK, preserve the order!).</p>
 <p>I didn’t start at absolute zero knowledge, however I had no real experience with ELK as well. I went through a <a href="https://www.elastic.co/webinars/logstash-0-60-in-60">simple video</a> explaining the concepts of ELK with a simple demo.</p>
 <h3 id="0hrs">+0hrs</h3>
@@ -192,26 +192,27 @@ log4j.appender.tcp.RemoteHost=localhost
 log4j.appender.tcp.ReconnectionDelay=10000
 log4j.appender.tcp.threshold=DEBUG
 log4j.appender.tcp.Application=esb500wso2carbon
-</code></pre><!-- raw HTML omitted -->
+</code></pre><figure><img src="/blog/img/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana_1.png#layoutOutsetCenter"><figcaption>Split screen! Hacker mode ON (yeah I know that’s lame)</figcaption></figure>
 <h3 id="-175hrs">+ 1.75hrs</h3>
 <p>With my logs being indexed now, visualization was the next step.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana_2.png#layoutOutsetCenter"><figcaption>Enter Kibana</figcaption></figure>
 <p>The UI is simple, but it took me sometime to get around and understand the concepts. I went through the Discover page, found useful information, and was able to navigate to the visualization creation page. Somehow the search didn’t feel natural to me. It took me several more tries to get a nice line chart going.</p>
 <h3 id="-25hrs">+ 2.5hrs</h3>
 <p>In the ESB server I had a few dummy <strong>Proxy Services</strong> which would have <strong>Log Mediators</strong> that log the message being processed along with a few other meta data. The following line chart tracks the number of those log entries made by the “<strong>TestProxyService2</strong>”.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana_3.png#layoutTextWidth"><figcaption>A line chart for a search</figcaption></figure>
+![](/blog/img/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana_4.jpg#layoutTextWidth)<figure><img src="/blog/img/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana_5.png#layoutTextWidth"><figcaption>Dark, mysterious, and cool….again!</figcaption></figure>
 <h3 id="conclusion">Conclusion</h3>
 <p>In about effective 3 hours, I was able to learn a little bit of basics and get ELK to collect, index, and visualize the WSO2 Carbon based logs. I didn’t need to understand in depth the inner workings of the stack, but that would’ve certainly helped. I’m pretty sure if I had spent another 2 hours, I would have come up with a skeletal but better dashboard with more insights in to the logs.</p>
 <p>However it’s worth to note that what ELK does here is different from what WSO2 Analytics for ESB does. In the latter, the metrics are being published to WSO2 DAS through Apache Thrift. The metrics collected include Synapse mediation statistics and API statistics (new in ESB 5.0.0) with various records like processing times, fail counts, and endpoint response times.</p>
 <p>Logs do not necessarily reflect these information and most of the time it’s hard to track the path of an individual request. Furthermore, there doesn’t seem to be a readily available Thrift receiver for Logstash, to receive the detailed statistics from ESB.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana_6.jpg#layoutFillWidth"><figcaption>Message tracing in ESB 5 Analytics</figcaption></figure>
 <p>So as I mentioned earlier, these two dashboards would look at the system at different points of views, and would serve different purposes. If you want an Ops view in to the system, ELK will provide that. With added <a href="https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jmx.html">JMX</a> based statistics, ELK would probably provide a deeper insight. However if you want a detailed view in to the operations of the ESB, WSO2 Analytics is able to go deeper than ELK can. Starting from ESB 5.0.0 the statistics that are published from ESB are more detailed, and robust, providing an almost transparent view in to the system.</p>
 <h3 id="bonus">Bonus</h3>
 <h4 id="-325hrs">+ 3.25hrs</h4>
 <blockquote>
 <p>I just completed a Grafana dashboard with two minimal line charts, that look way cooler than Kibana. The integration with Elasticsearch is <a href="http://docs.grafana.org/datasources/elasticsearch/">simple</a> and works out of the box.</p>
 </blockquote>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana_7.png#layoutOutsetCenter"><figcaption>Super Spy Dashboard. Dark, mysterious.. you get the idea!</figcaption></figure>
 <hr>
 <p>Written on September 10, 2016 by chamila de alwis.</p>
 <p>Originally published on <a href="https://medium.com/@chamilad/monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana-1f880f6ed056">Medium</a></p>

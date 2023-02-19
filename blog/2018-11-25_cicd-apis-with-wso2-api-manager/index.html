@@ -119,7 +119,7 @@
               
             </div>
             <div class="reading-time col-xs-6" title="approximate read time">
-              ~11 minutes
+              ~12 minutes
             </div>
             
             
@@ -259,7 +259,8 @@
         successful <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>create_api(create_req_body, apimgt_url, access_token, verify_ssl)
 </code></pre></div><p><a href="https://github.com/chamilad/apim_cicd/blob/master/api_create.py">The complete script can be found in the Github Repository</a>. There are additional logic that involves loading configuration parameters, obtains access tokens, and handles errors.</p>
 <p>This script would turn the requests contained in <a href="https://github.com/chamilad/apim_cicd/tree/master/api_definitions">these JSON files</a> to the following APIs in <code>CREATED</code> state in WSO2 API Manager Publisher.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2018-11-25_cicd-apis-with-wso2-api-manager_1.png#layoutTextWidth"><figcaption>Executing the api_create.py script with configuration pointing to a local WSO2 API Manager 2.6.0 Docker Container</figcaption></figure>
+<figure><img src="/blog/img/2018-11-25_cicd-apis-with-wso2-api-manager_2.png#layoutTextWidth"><figcaption>The WSO2 API Manager Publisher UI after the above script execution</figcaption></figure>
 <p>It’s the responsibility of the implementation party to add necessary implementation details and publish the APIs.</p>
 <blockquote>
 <p>In a different story, where all the required details are obtained in the API creation request, the script itself can create the APIs in the <code>PUBLISHED</code> state. This would eliminate the need for end users to get involved <strong>after</strong> the APIs are created, but it will have to put faith in the correctness of the API requests created by the end users.</p>
@@ -314,7 +315,9 @@ print <span style="color:#e6db74">&#34;Checking for API status in ENV2...&#34;</
 <p>As a demonstration of mutability of API information during this migration, <a href="https://github.com/chamilad/apim_cicd/blob/master/api_propagate.py#L138-L153">API name, context, and backend URL has been modified to contain environment specific details</a>.</p>
 </blockquote>
 <p>The execution of<a href="https://github.com/chamilad/apim_cicd/blob/master/api_propagate.py"> this script </a>will result in an output similar to the following in the two environments.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2018-11-25_cicd-apis-with-wso2-api-manager_4.png#layoutTextWidth"><figcaption>Executing the api_propagate.py script with configurations pointing to two WSO2 API Manager 2.6.0 Docker Containers running in the same host</figcaption></figure>
+<figure><img src="/blog/img/2018-11-25_cicd-apis-with-wso2-api-manager_5.png#layoutTextWidth"><figcaption>WSO2 API Manager Publisher UI showing the existing APIs in the lower level environment. The above script execution will promote these APIs to the next upper level environment</figcaption></figure>
+<figure><img src="/blog/img/2018-11-25_cicd-apis-with-wso2-api-manager_6.png#layoutTextWidth"><figcaption>WSO2 API Manager Publisher UI in the upper level environment where the APIs were promoted to after the above script execution. The modified API names are visible here.</figcaption></figure>
 <p>This script could be part of an automation pipeline (e.g. Jenkins Pipeline) where the next step is the execution of a set of API tests. The API tests make sure the API contracts are not broken and will result in delivery confidence. This is crucial for a Continuous Delivery process. Otherwise the tendency will be towards manual intervention that halts seamless integration of the changes through the environments towards production, because there is not enough trust on the process to not break the APIs. This API test can be something simple as a JMeter or SOAPUI test suite that makes API specific calls to verify responses received. Without such a testing phase, the APIs should never be automatically pushed to production. Doing so may result in frequent API changes experienced by the consumers that will reduce the confidence they have on your APIs.</p>
 <h4 id="what-about-importexport">What about Import/Export?</h4>
 <p>The traditional approach to API migration between deployments is the <a href="https://docs.wso2.com/display/AM260/Migrating+the+APIs+and+Applications+to+a+Different+Environment">WSO2 API Manager Import/Export Tool</a>. However, this tool does not handle the create/update granularity for each API successfully, as it assumes APIs to not exist in the new environment. Import/Export handles APIs in bulk. In contrast, Continuous Delivery might have to consider a granularity at each API. Therefore, standard <a href="https://docs.wso2.com/display/AM260/apidocs/publisher/">WSO2 API Manager Publisher REST APIs</a> are used in the above CI/CD process implementation.</p>
@@ -326,7 +329,7 @@ print <span style="color:#e6db74">&#34;Checking for API status in ENV2...&#34;</
 <p>The Containers are networked as bridged to the default Docker bridge on the Host, and therefore will share IP addresses from the range <code>172.17.0.1/16</code></p>
 </blockquote>
 <p>Once the testing is done, the deployment can be torn down with the script <a href="https://github.com/chamilad/apim_cicd/blob/master/stop_test_containers.sh"><code>stop_test_containers.sh</code></a>.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2018-11-25_cicd-apis-with-wso2-api-manager_7.png#layoutTextWidth"><figcaption>Starting the Docker Containers for WSO2 API Manager 2.6.0 for testing</figcaption></figure>
 <p>The Python scripts take the required parameters as environment variables. Therefore, any automation tool that executes these scripts should inject the environment variables with the proper values during execution. For an example, Jenkins can make use of <a href="https://plugins.jenkins.io/envinject">EnvInject</a> plugin to load environment variabels from a pre-populated properties file for a build job.</p>
 <p>The environment variables required for each script are as follows.</p>
 <p><a href="https://github.com/chamilad/apim_cicd/blob/master/api_create.py"><code>api_create.py</code></a></p>
@@ -361,7 +364,7 @@ print <span style="color:#e6db74">&#34;Checking for API status in ENV2...&#34;</
 <li><a href="https://github.com/chamilad/apim_cicd/blob/master/test_local_propagate_same_instance.sh"><code>test_local_propagate_same_instance.sh</code></a> - This does the same as #2 above, but with both environments pointing to the same API Manager deployment.</li>
 </ol>
 <p>Simply start the Docker Containers as <a href="https://github.com/chamilad/apim_cicd#setup">mentioned above</a>, and execute scripts <a href="https://github.com/chamilad/apim_cicd/blob/master/test_local_create.sh"><code>test_local_create.sh</code></a>, <a href="https://github.com/chamilad/apim_cicd/blob/master/test_local_propagate.sh"><code>test_local_propagate.sh</code></a>, and <a href="https://github.com/chamilad/apim_cicd/blob/master/test_local_propagate_same_instance.sh"><code>test_local_propagate_same_instance.sh</code></a> in that order. You can visit the pages <a href="https://localhost:9443/publisher">ENV1 Publisher</a> and <a href="https://localhost:9543/publisher">ENV2 Publisher</a> to see the APIs getting created as the scripts are executed.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2018-11-25_cicd-apis-with-wso2-api-manager_8.png#layoutTextWidth"><figcaption>Running the api_propagate.py script pointing the configuration of both environments to the same WSO2 API Manager 2.6.0 Docker Container</figcaption></figure>
 <h4 id="conclusion">Conclusion</h4>
 <p>There are various approaches when it comes to adopting CI/CD for APIs with WSO2 API Manager. With the flexibility of the <a href="https://docs.wso2.com/display/AM260/apidocs/publisher/">Publisher APIs</a>, almost any unique set of requirements could be satisfied with proper design and implementation. Though the above explained PoC makes use of Jenkins and Python, I have seen deployments that make use of Chef and private Git repositories along with structured email based request to automate the CI/CD process. This existence of different implementations of the same concept is evidence of how flexible of a product WSO2 API Manager is when enabling proper DevOps processes.</p>
 <hr>

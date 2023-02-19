@@ -212,7 +212,7 @@ echo &quot;$timestamp,$cpu_mem_usage,$tcp_cons,$tcount&quot; &gt;&gt; $csv_filen
 <p>If we look at our Bash script line which writes to the CSV file, we can see that the second column contains the CPU metrics, while the first column contains the time stamp value.</p>
 <p>We can plot the memory usage (third column) on the same graph.</p>
 <pre tabindex="0"><code>&quot;$csv_filename&quot; using 3:xticlabels(1) with lines smooth unique lw 2 lt rgb &quot;#b40000&quot; t &quot;Memory Usage %&quot;
-</code></pre><!-- raw HTML omitted -->
+</code></pre><figure><img src="/blog/img/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux_0.png#layoutTextWidth"><figcaption>Anti-aliased because we used `pngcairo`</figcaption></figure>
 <p>Likewise the other metrics can be plotted separately,</p>
 <pre tabindex="0"><code># TCP count
 set output &quot;${dir_name}/tcp-count.png&quot;

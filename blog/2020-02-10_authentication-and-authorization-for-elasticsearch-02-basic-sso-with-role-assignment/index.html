@@ -187,7 +187,7 @@
 <p>Additionally, one or more valid redirect URLs should be specified. If the incoming SAML request doesn&rsquo;t have a redirect URL matching any in that list, the SSO request will be denied.</p>
 <p><img src="/blog/img/2020-02-10_authn_authr_elk_02_kc_client1.png" alt="KeyCloak Client Configurations">
 <img src="/blog/img/2020-02-10_authn_authr_elk_02_kc_client2.png" alt="KeyCloak Client Configurations - Redirect URLs"></p>
-<!-- raw HTML omitted -->
+<figcaption>Sample KeyCloak Client Configurations</figcaption>
 <h2 id="configuring-elasticsearch---02---auth-realm-configuration">Configuring ElasticSearch - 02 - Auth Realm Configuration</h2>
 <p>On ElasticSearch, a SAML authentication configuration, otherwise known as <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/saml-guide-authentication.html">an authentication realm</a>, has to be created. This is specified in the <code>elasticsearch.yml</code> configuration file. This configuration contains the following information (for more information for the flow described here, refer to the <a href="https://chamilad.github.io/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/">previous article</a>).</p>
 <ol>

@@ -195,7 +195,7 @@
     <span style="color:#f92672">output.logstash</span>:
       <span style="color:#f92672">hosts</span>: [<span style="color:#e6db74">&#34;logstash.default.svc.cluster.local:5044&#34;</span>]
 </code></pre></div><p>This is a slightly modified version of the configuration that is <a href="https://www.elastic.co/guide/en/beats/filebeat/current/running-on-kubernetes.html%5B">provided by Elastic</a>. This is a minimal configuration matching a minimal requirement set. It’s highly likely this will require modification before getting adapted to specific deployments</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_2.png#layoutTextWidth"><figcaption>Filebeat DaemonSet and the Pod (in a single Node setup)</figcaption></figure>
 <blockquote>
 <p>There will be more configuration to set up for a proper production deployment requirement. These include,</p>
 </blockquote>

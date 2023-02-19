@@ -161,7 +161,7 @@ Backup</a></p>
 </blockquote>
 <h2 id="offsite-backups">Offsite Backups</h2>
 <p>Let&rsquo;s talk theory for a bit.</p>
-<p>Data protection in a give solution depends on how thoughtful the backup
+<p>Data protection in a given solution depends on how thoughtful the backup
 strategy is. While a simple Backup Plan in AWS Backup that periodically takes a
 backup of the database into the Account-local Vault could technically be
 considered as a backup strategy, it is not a good one. For an effective and
@@ -283,8 +283,7 @@ have to be modified.</p>
 <p>For services like RDS that do not support independent encryption, AWS Backup
 uses the resource specific KMS key to encrypt the recovery point in the first
 place. This happens when the backup is being taken, and the key is used by the
-Backup job role (the role we used when [creating Resource Associations above]
-(#resource-associations)) that performs the operation. The CMK associated with
+Backup job role (the role we used when <a href="#resource-associations">creating Resource Associations above</a>) that performs the operation. The CMK associated with
 the resource should modify its key policy so that the Backup Job
 role is able to perform <code>Decrypt</code> (to decrypt the resource data) and <code>Encrypt</code>
 (to encrypt the recovery point) operations. Additionally, for
@@ -376,6 +375,8 @@ strategy.</p>
 		
 	</div>        
 	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/blog/2023-02-20_aws-backup-implementing-a-simple-cross-account-backup-strategy/">AWS Backup: Implementing a Simple Cross-Account Backup Strategy &gt;</a>
 		
 	</div>
 </div>

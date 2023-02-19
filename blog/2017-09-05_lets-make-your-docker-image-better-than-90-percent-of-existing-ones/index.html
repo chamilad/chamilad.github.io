@@ -221,7 +221,7 @@ LABEL org.label-schema.url=&quot;http://ballerinalang.org/&quot;
 LABEL org.label-schema.vcs-url=&quot;https://github.com/ballerinalang/container-support&quot;
 LABEL org.label-schema.vcs-ref=$VCS_REFLABEL org.label-schema.vendor=&quot;WSO2&quot;
 LABEL org.label-schema.version=$BUILD_VERSIONLABEL org.label-schema.docker.cmd=&quot;docker run -v ~/ballerina/packages:/ballerina/files -p 9090:9090 -d ballerinalang/ballerina&quot;
-</code></pre><!-- raw HTML omitted -->
+</code></pre><figure><img src="/blog/img/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones_0.png#layoutTextWidth"><figcaption>Nice little visualization of the layers!</figcaption></figure>
 <p>There you go! How to improve your Docker Image a bit more. Also it goes without saying that if you’re intending your public Docker Hub repository to be made an <a href="https://docs.docker.com/docker-hub/official_repos/">official one</a>, <a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#label">labeling is one of the stated Dockerfile best practices</a> that is considered in the process.</p>
 <p>So should you use Labels for every Image that you’re going to push to public Docker Hub? Most probably!</p>
 <blockquote>

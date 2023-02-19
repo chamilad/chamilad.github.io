@@ -14,7 +14,7 @@
       
       <guid>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
       <description>What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
-Docker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind.</description>
+Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.</description>
     </item>
     
     <item>
@@ -54,7 +54,7 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
       
       <guid>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
       <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
- The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
+  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
  Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
     </item>
     

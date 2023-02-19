@@ -146,7 +146,7 @@
           <p><img src="/blog/img/2017-02-21_ballerina-with-container-support_0.png#layoutFillWidth" alt=""></p>
 <p>WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the <a href="http://us17.wso2con.com/">WSO2Con 2017 in San Fransisco</a>. Ballerina is a <a href="http://ballerinalang.org/">general purpose language with a focus on integration and a visual approach to coding</a>. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “<strong>Connectors</strong>” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.</p>
 <p>Ballerina offers two downloads, a minimal <strong>Runtime</strong>, and a fully featured <strong>Tools</strong> distribution. The Tools distribution packs a list of developer tools required to build Ballerina programs, in addition to the Runtime itself.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2017-02-21_ballerina-with-container-support_1.png#layoutTextWidth"><figcaption>Ballerina Composer</figcaption></figure>
 <ol>
 <li>Ballerina Composer, a visual Editor through which Ballerina can be coded as Sequence Diagrams</li>
 <li>Docerina to generate API documentation</li>
@@ -190,7 +190,7 @@ ballerina-pkg latest 2547078bf268 13 hours ago 138 MB
 </code></pre><p>This will prompt for you to continue building the Docker image, and confirmed it will build the Docker image and show helpful text to continue the next steps.</p>
 <p><img src="/blog/img/2017-02-21_ballerina-with-container-support_3.png#layoutTextWidth" alt=""></p>
 <p>Test the Docker image by running a Container. Copy the command displayed to run the Container, which will do so in the background. Query for Container logs to see if the Ballerina Service was successfully deployed, and verify by making an HTTP call.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2017-02-21_ballerina-with-container-support_4.png#layoutOutsetCenter"><figcaption>voila!</figcaption></figure>
 <p>You have now completed Dockerizing a Ballerina Service.</p>
 <p>Dockerizing a Ballerina Main program is just as easy. Just package the Main program to a <strong>bmz</strong> archive and issue the same command <strong>ballerina docker</strong> to create a Docker image.</p>
 <p><img src="/blog/img/2017-02-21_ballerina-with-container-support_5.png#layoutOutsetCenter" alt=""></p>

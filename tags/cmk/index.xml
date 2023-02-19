@@ -15,7 +15,7 @@
       <guid>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</guid>
       <description>Mount Kaukau    Continuing from the previous article on introduction to AWS Backup
  Offsite Backups Let&amp;rsquo;s talk theory for a bit.
-Data protection in a give solution depends on how thoughtful the backup strategy is. While a simple Backup Plan in AWS Backup that periodically takes a backup of the database into the Account-local Vault could technically be considered as a backup strategy, it is not a good one.</description>
+Data protection in a given solution depends on how thoughtful the backup strategy is. While a simple Backup Plan in AWS Backup that periodically takes a backup of the database into the Account-local Vault could technically be considered as a backup strategy, it is not a good one.</description>
     </item>
     
   </channel>

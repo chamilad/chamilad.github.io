@@ -177,16 +177,16 @@
 <h1 id="the-problem-of-multi-tenancy">The Problem of Multi-Tenancy</h1>
 <p>A multi-tenant deployment is <strong>one that can accommodate different organizational units of users (called <em>tenants</em>) during service utilization without compromising the logical separation between those units</strong>. Achieving this design is the responsibility of the deployment stack (including hardware and software). It could be either a fully separated multi-tenant system, where different organizational units (tenants) will be served out of different physical (or virtual) stacks of software, where the code is somewhat free from having knowledge on the multi-tenant complexities of the larger system, or an in-software multi-tenant design where the code itself if fully aware of tenancy in the request-response flow and handles partition of tenant data accordingly.</p>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_07.png" alt=""></p>
-<!-- raw HTML omitted -->
+<figcaption>Physically separate multi-tenancy</figcaption>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_08.png" alt=""></p>
-<!-- raw HTML omitted -->
+<figcaption>In-Software multi-tenancy</figcaption>
 <p>There are various pros and cons of both approaches, however physically separate multi-tenancy, being a simpler approach to implement at first, could easily become operational burden if not done correctly. It can also easily evolve (or devolve depending on the Ops perspective) into a serverless design if the software architecture can support it.</p>
 <h2 id="support-from-sp-and-idp">Support from SP and IDP</h2>
 <p>When it comes to the ELK stack, what should be tenant aware is Kibana, the main user interface of the stack. Kibana offers an in-software multi-tenancy model where a feature called <code>Spaces</code> along with ElasticSearch <code>Roles</code> act in combination to provide tenant specific experiences of Kibana. In other words, different tenants could have access to different Spaces in Kibana, that may provide isolation between tenants and avoid having to share the same set of data and configuration between tenants.</p>
 <p>On the other side of the process, KeyCloak has a well built-in model for multi-tenancy called <code>Realms</code> (that we already are familiar with after enabling single tenant SSO in the previous post). As the IDP, KeyCloak provides logical separation between tenants with this concept of Realms.</p>
 <p>We can simply map these two functionalities so that a set of users from one KeyCloak Realm are assumed to be of the same Tenant and assign them one or more Roles in Kibana (to be precise, ElasticSearch) so that they all have access to a single Space, and only to that Space. <strong>This is the basis of our multi-tenant design for Kibana</strong>. This results in a simple user model, where a single user may only be part of a single tenant. Note that there could be more complex user models with a single user having the ability to be part of different tenants. For the purposes of this article, a 1-1 mapping between a user and tenant is enough.</p>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_09.png" alt=""></p>
-<!-- raw HTML omitted -->
+<figcaption>Mapping Kibana Spaces to KeyCloak Realms</figcaption>
 <h2 id="tenant-discovery-and-the-lack-of-it">Tenant Discovery and the Lack of it</h2>
 <p>In theory, Kibana and KeyCloak having support for multi-tenancy should be the end of story. Unfortunately it is not. There is another part of multi-tenancy outside of just having support for logical separation. The initiating component of the multi-tenant design should be able to figure out which users belong to which tenants, using some distinguishing feature in the request. This is called <strong>tenant/realm discovery</strong>. For an example, this could be a design based on URL segments, where a user visiting <code>https://saas.my.org/tenant1/</code> is assumed to be part of the tenant <code>tenant1</code>. There are multiple other ways of doing realm discovery (ex: using a custom header or deriving information from standard headers, additional prompts where the user is allowed to specify the tenant they wish to be part of). Because this is such an open ended approach, different service providers may decide how they want to do tenant discovery on their own terms.</p>
 <p>As the Service Provider in this SSO scenario, Kibana is the main component of contact, that would initiate the SSO flow. This means, it should be Kibana that should start separating users to their respective tenants. If there was no authentication for Kibana, on visiting the UI, Kibana would present the list of Spaces to be selected. However, with authentication in place, by the time the Space selection interface is presented, the user should already be granted proper roles.</p>
@@ -213,10 +213,10 @@
 <li>Add the entry details created in #2 as a redirect URL in the OIDC client created in #1 to complete the plumbing</li>
 </ol>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_13.png" alt=""></p>
-<!-- raw HTML omitted -->
+<figcaption>OIDC Client configuration in the `org1` Tenant Realm</figcaption>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_11.png" alt="">
 <img src="/blog/img/2020-02-12_multitenant_sso_12.png" alt=""></p>
-<!-- raw HTML omitted -->
+<figcaption>IDP Federation configuration in the `federator` Realm</figcaption>
 <p>Doing these simple tasks will create the basic connectivity between the federated and the federating realms. A few things to note are,</p>
 <ol>
 <li>As mentioned above, the federation process happens here using OIDC as the protocol. However additionally SAML or OAuth2 could also be used as the federation protocol. For the authorization needs in our design, either OIDC or SAML is a must in this case.</li>

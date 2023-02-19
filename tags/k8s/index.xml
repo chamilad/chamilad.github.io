@@ -114,7 +114,7 @@ kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kiba
       
       <guid>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
       <description>What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
-Docker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind.</description>
+Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.</description>
     </item>
     
   </channel>

@@ -264,7 +264,7 @@ Admin services deployed on this server:
 <h3 id="soapui-requests">SoapUI Requests</h3>
 <p>Having obtained the WSDL, let’s proceed to create a SoapUI request from it.</p>
 <p>Open SoapUI and create a new SOAP Project (<strong>File</strong> -&gt; <strong>New SOAP Project</strong>). Provide the WSDL file (or the above <strong>?wsdl</strong> URL). Check <strong>Create Requests</strong> so that SoapUI will create sample requests for the operations in the WSDL.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_1.png#layoutTextWidth"><figcaption>New SOAP Project</figcaption></figure>
 <p>Click <strong>Ok</strong> and you will see the set of operations (in CarbonAppUploader, there is one operation, <strong>uploadApp</strong>) created in the SoapUI Project view.</p>
 <p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_2.png#layoutTextWidth" alt=""></p>
 <p>Open <strong>Request1</strong> under <strong>CarbonAppUploaderSoap11Binding.uploadApp</strong> and you will see the already created Soap Envelope with <strong>?</strong> as a placeholder for values. For the <strong>uploadApp</strong> operation three inputs are needed.</p>
@@ -289,7 +289,8 @@ Admin services deployed on this server:
 <p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_5.png#layoutTextWidth" alt=""><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_6.png#layoutTextWidth" alt=""></p>
 <h3 id="upload-the-carfile">Upload the CAR File</h3>
 <p>We are all done now. What’s left is to just go ahead and make the SOAP request. The file will be uploaded, and a response will be returned, with the status of the upload. After a maximum of one minute, the Carbon App will be processed and the artifacts will be deployed.</p>
-<!-- raw HTML omitted -->
+<figure><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_7.png#layoutFillWidth"><figcaption>Upload Successful!</figcaption></figure>
+![](/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_8.png#layoutFillWidth)
 <hr>
 <p>Written on September 17, 2016 by chamila de alwis.</p>
 <p>Originally published on <a href="https://medium.com/@chamilad/how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server-e323447a99ce">Medium</a></p>
