@@ -219,7 +219,7 @@ AWS Organization to copy snapshots into the destination vault.</p>
 <h2 id="set-up-source-account-databases">Set up Source Account databases</h2>
 <p>As discussed in the last post, DynamoDB and RDS instances behave differently
 when working with AWS Backup. For the cross-account scenario to function
-properly they need to be set up with encryption is a specific way.</p>
+properly they need to be set up with encryption in a specific way.</p>
 <p>For this scenario, we specify a single KMS CMK named <code>critical_data</code>. This key
 is supposed to encrypt all business critical data in our solution in
 production. The key policy for this key is modified so that it can be used for
