@@ -6,7 +6,17 @@
     <description>Recent content in AWS on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Feb 2023 23:29:05 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Feb 2023 07:00:19 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Malware Protection on AWS</title>
+      <link>https://chamila.dev/blog/2023-02-17_malware-protection-on-aws/</link>
+      <pubDate>Sat, 25 Feb 2023 07:00:19 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2023-02-17_malware-protection-on-aws/</guid>
+      <description>Point Dorset, Wellington   Malware protection in compute workloads in AWS is a topic that I&amp;rsquo;ve been looking into recently. After working with security auditors for a few weeks (adding up a few months now), I was essentially forced to evaluate all the possible scenarios for malware protection in AWS for typical workloads.
+Typical Malware Protection Requirements The following key features can be identified as typical malware protection requirements for most solutions.</description>
+    </item>
+    
     <item>
       <title>AWS Backup: Cross-Account Backups</title>
       <link>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</link>

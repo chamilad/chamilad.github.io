@@ -2,17 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://chamila.dev/blog/2023-02-20_aws-backup-implementing-a-simple-cross-account-backup-strategy/</loc>
-    <lastmod>2023-02-20T00:15:44+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/</loc>
-    <lastmod>2023-02-20T00:15:44+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/blog/</loc>
-    <lastmod>2023-02-20T00:15:44+13:00</lastmod>
+    <loc>https://chamila.dev/tags/amazon-inspector/</loc>
+    <lastmod>2023-02-25T07:00:19+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/aws/</loc>
-    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
+    <lastmod>2023-02-25T07:00:19+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/</loc>
+    <lastmod>2023-02-25T07:00:19+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/guardduty/</loc>
+    <lastmod>2023-02-25T07:00:19+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/iso27001/</loc>
+    <lastmod>2023-02-25T07:00:19+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/blog/</loc>
+    <lastmod>2023-02-25T07:00:19+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/malware-protection/</loc>
+    <lastmod>2023-02-25T07:00:19+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/blog/2023-02-17_malware-protection-on-aws/</loc>
+    <lastmod>2023-02-25T07:00:19+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/nzism/</loc>
+    <lastmod>2023-02-25T07:00:19+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/</loc>
+    <lastmod>2023-02-25T07:00:19+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/blog/2023-02-20_aws-backup-implementing-a-simple-cross-account-backup-strategy/</loc>
+    <lastmod>2023-02-20T00:15:44+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</loc>
     <lastmod>2023-02-13T23:29:05+13:00</lastmod>
@@ -33,9 +54,6 @@
     <lastmod>2023-02-13T23:29:05+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/restore/</loc>
-    <lastmod>2023-02-13T23:29:05+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/tags/</loc>
     <lastmod>2023-02-13T23:29:05+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2023-01-18_aws-backup-intro/</loc>

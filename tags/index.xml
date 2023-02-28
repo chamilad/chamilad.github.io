@@ -6,13 +6,58 @@
     <description>Recent content in Tags on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Feb 2023 23:29:05 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Feb 2023 07:00:19 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Amazon Inspector</title>
+      <link>https://chamila.dev/tags/amazon-inspector/</link>
+      <pubDate>Sat, 25 Feb 2023 07:00:19 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/amazon-inspector/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>AWS</title>
       <link>https://chamila.dev/tags/aws/</link>
-      <pubDate>Mon, 13 Feb 2023 23:29:05 +1300</pubDate>
+      <pubDate>Sat, 25 Feb 2023 07:00:19 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GuardDuty</title>
+      <link>https://chamila.dev/tags/guardduty/</link>
+      <pubDate>Sat, 25 Feb 2023 07:00:19 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/guardduty/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISO27001</title>
+      <link>https://chamila.dev/tags/iso27001/</link>
+      <pubDate>Sat, 25 Feb 2023 07:00:19 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/iso27001/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Malware Protection</title>
+      <link>https://chamila.dev/tags/malware-protection/</link>
+      <pubDate>Sat, 25 Feb 2023 07:00:19 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/malware-protection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NZISM</title>
+      <link>https://chamila.dev/tags/nzism/</link>
+      <pubDate>Sat, 25 Feb 2023 07:00:19 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/nzism/</guid>
       <description></description>
     </item>
     
