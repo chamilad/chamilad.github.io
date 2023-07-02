@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Pi-hole Restore CLI Tool",
+      "headline" : "Pi-hole Restore CLI Tool",
+      "description" : "A CLI tool to restore a Pi-hole teleporter archive",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-06-19 00:09:59 \u002b1200 NZST",
+      "dateModified" : "2023-06-19 00:09:59 \u002b1200 NZST",
+      "url" : "https:\/\/chamila.dev\/blog\/2023-06-19_pi-hole-restore-cli-tool\/",
+      "keywords" : [ "Pi-hole","Rust","PHP", ]
+  }
+</script>
+<title>Pi-hole Restore CLI Tool - chamila.dev</title>
+  <meta property="og:title" content="Pi-hole Restore CLI Tool - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="A CLI tool to restore a Pi-hole teleporter archive" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark" title="dark theme">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" title="light theme" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Pi-hole Restore CLI Tool</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2023-06-19 00:09:59 NZST">
+                19 Jun 2023
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~5 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introducing-pihole_restore">Introducing <code>pihole_restore</code></a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#learnings">Learnings</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <figure><img src="/blog/img/2023-06-19_pihole_restore.png"/><figcaption>
+            <h4>A loading tunnel in Wrights Hill Fortress</h4>
+        </figcaption>
+</figure>
+
+<p>I made a thing (this time more niche than the last project).</p>
+<p>I&rsquo;ve been using Pi-hole as a DNS ad-blocker and an overall local DNS
+solution for about two years now. I lived dangerously for most of this time
+with only a single old Raspberry Pi 2 with Pi-hole in it as the sole DNS server for
+the local network.</p>
+<p>That changed recently when I added another couple of Docker containers as
+Pi-hole servers to the network.</p>
+<p>I quickly found that maintaining configuration between these multiple Pi-holes
+was becoming a pain. I&rsquo;ve been introducing a lot of local services recently,
+and each new local DNS entry had to be replicated manually to the other
+instances. This would be a manual export, manual copy, and a manual import,
+repeated on each node.</p>
+<p>The first thing I did was to see if Pi-hole CLI supports these two operations.
+While it does support creating a new backup through the CLI, restoring
+that backup with the CLI was strangely not an option. The next natural step is
+to write a tool myself.</p>
+<h2 id="introducing-pihole_restore">Introducing <code>pihole_restore</code></h2>
+<p><a href="https://github.com/chamilad/pihole-restore/"><code>pihole_restore</code></a> is a CLI tool
+to import a pi-hole backup archive file to a running pi-hole instance. It is a
+pretty straight forward task, so nothing more to elaborate here.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pihole_restore -f pihole-backup.tar.gz
+</code></pre></div><p><img src="/blog/img/2023-06-19_pihole_restore_output.png" alt="pihole_restore"></p>
+<p>It also allows you to selectively restore only a few configurations, such as
+DNS entries, adlists etc. I&rsquo;ve essentially duplicated the functionality in the
+Web UI into a CLI.</p>
+<p><img src="/blog/img/2023-06-19_pihole_restore_pihole.png" alt="Web UI"></p>
+<p>The CLI shippped with Pi-hole distribution is a Bash wrapper around the PHP
+scripts for the Web UI for the most part. This is especially true for the admin
+sub-command (<code>pihole -a</code>), where it just calls the PHP script directly as
+needed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># the cli command</span>
+pihole -a teleporter
+
+<span style="color:#75715e"># translates into</span>
+php <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>webroot<span style="color:#e6db74">}</span><span style="color:#e6db74">/admin/scripts/pi-hole/php/teleporter.php&#34;</span>
+</code></pre></div><p>This is why creating a backup archive is possible through the CLI and not
+restoring it. There&rsquo;s only one PHP script for both of these functions,
+<code>teleporter.php</code>. Only the backup code branch can be directly invoked through
+the <code>php</code> interpreter. The restore functionality is behind a decision based on
+a request variable (which is established by the server when the Web UI form is
+submitted).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isset</span>($_POST[<span style="color:#e6db74">&#39;action&#39;</span>])) {
+  <span style="color:#75715e">// import configuration
+</span><span style="color:#75715e"></span>} <span style="color:#66d9ef">else</span> {
+  <span style="color:#75715e">// backup configuration
+</span><span style="color:#75715e"></span>}
+</code></pre></div><blockquote>
+<p>I first tried to see if I can wrangle <code>php</code> to somehow inject variables into
+the <code>$_REQUEST</code> object. It&rsquo;s been 12 years since I last touched PHP, but the PTSD
+kicked in pretty soon.</p>
+</blockquote>
+<p>After reading this part of the code base and finding the related scripts, it
+was a straightforward task to write a CLI tool. So I decided to complicate
+things and try to learn Rust while doing so.</p>
+<p>Learning a new programming language is fun. It&rsquo;s even more fun when you
+actually write something useful while learning it. I learnt Go while writing
+another side project which didn&rsquo;t see the light of the day (a Docker registry
+UI for the Docker registry of the company I worked for at the time). No reason
+that magic can&rsquo;t be replicated.</p>
+<p>Learning Rust was a challenge indeed. The last language I learnt was Type
+Script (and I guess ECMA16), and Rust is&hellip; a bit different (fun times with
+borrowing).</p>
+<p>One of the best perks about being a late adapter is having the tool chains and
+the eco system already well established. It was fairly easy for me to learn the
+tools and start writing code, and learn common practices along the way.</p>
+<h2 id="usage">Usage</h2>
+<p>Now that I&rsquo;m coming down from the high of finishing a project, let&rsquo;s discuss
+more about the potential usage of this binary.</p>
+<p>What I do is to use it along side <a href="https://syncthing.net/">syncthing</a> and
+perform the task of creating a backup as a manual step. While I would still
+keep on introducing more changes to my local setup, for the time being I want to have some
+control over when the changes are propagated. This would probably change to a
+cron job in the future.</p>
+<p>When I&rsquo;d perform a change in the &ldquo;primary&rdquo; Pi-hole server, I perform a <code>pihole -a teleporter</code> on it. This produces the backup archive I need. I have
+<code>syncthing</code> synching this directory across to the two secondary Pi-hole
+servers. This usually happens within the minute.</p>
+<p>On the secondary nodes, I have a <code>systemd</code> service that keeps watching the
+target directories for incoming files (technically, for <code>inotify</code> <code>moved_to</code>
+events, since <code>syncthing</code> first starts copying contents to a <code>.tmp</code> file and
+then renames it). Once a file is detected, it runs <code>pihole_restore</code> with the
+new file as the input. <code>systemd-journal</code> logs help me debug if things don&rsquo;t go
+according to plan.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">inotifywait -q -m -e moved_to --format <span style="color:#e6db74">&#39;%f&#39;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>WATCH_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> | <span style="color:#66d9ef">while</span> read f; <span style="color:#66d9ef">do</span>
+  <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $f <span style="color:#f92672">==</span> *.tar.gz <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+    RUST_LOG<span style="color:#f92672">=</span>debug /usr/bin/pihole-restore -f <span style="color:#e6db74">${</span>WATCH_DIR<span style="color:#e6db74">}</span>/<span style="color:#e6db74">${</span>f<span style="color:#e6db74">}</span> -c
+  <span style="color:#66d9ef">else</span>
+    echo <span style="color:#e6db74">&#34;not using this file: </span><span style="color:#e6db74">${</span>f<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+  <span style="color:#66d9ef">fi</span>
+<span style="color:#66d9ef">done</span>
+</code></pre></div><p>There were only a few assumptions made during development of this tool, so it
+can work with almost any setup you can think of, as long as the workflow is through the
+CLI.</p>
+<h2 id="learnings">Learnings</h2>
+<p>Reading pi-hole code was fun. There were few past decisions that I could not
+derive from the code itself, that the friendly community was able to help with.
+It was also good to understand the Gravity database structure, especially as a
+product I&rsquo;m going to have to maintain.</p>
+<p>One of the best outcomes for me personally was getting comfortable enough with Rust to
+start using it for other projects that would come along. Hopefully, ones that
+I&rsquo;d do a better job at maintaining.</p>
+<p>Cross-compiling the code for ARM architecture was interesting. I&rsquo;ll try and
+write a small article on it in the future.</p>
+<p>A somewhat challenging task would be keep the project up to date with the changes
+rolled out with pi-hole future releases. I&rsquo;m just going to have to keep an eye
+on the release notes for now.</p>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2023-02-25_malware-protection-on-aws/">&lt; Malware Protection on AWS</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  
+
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  
+  All photos published on this site are copyrighted.
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

@@ -6,7 +6,17 @@
     <description>Recent content in chamila on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Feb 2023 07:00:19 +1300</lastBuildDate><atom:link href="https://chamila.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Jun 2023 00:09:59 +1200</lastBuildDate><atom:link href="https://chamila.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pi-hole Restore CLI Tool</title>
+      <link>https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/</link>
+      <pubDate>Mon, 19 Jun 2023 00:09:59 +1200</pubDate>
+      
+      <guid>https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/</guid>
+      <description>A loading tunnel in Wrights Hill Fortress   I made a thing (this time more niche than the last project).
+I&amp;rsquo;ve been using Pi-hole as a DNS ad-blocker and an overall local DNS solution for about two years now. I lived dangerously for most of this time with only a single old Raspberry Pi 2 with Pi-hole in it as the sole DNS server for the local network.</description>
+    </item>
+    
     <item>
       <title>Malware Protection on AWS</title>
       <link>https://chamila.dev/blog/2023-02-25_malware-protection-on-aws/</link>
