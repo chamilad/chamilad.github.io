@@ -23,10 +23,25 @@
     <loc>https://chamila.dev/tags/</loc>
     <lastmod>2023-06-19T00:09:59+12:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/tags/amazon-inspector/</loc>
-    <lastmod>2023-02-25T07:00:19+13:00</lastmod>
+    <loc>https://chamila.dev/tags/audit/</loc>
+    <lastmod>2023-06-04T19:30:02+12:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/aws/</loc>
+    <lastmod>2023-06-04T19:30:02+12:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/aws-config/</loc>
+    <lastmod>2023-06-04T19:30:02+12:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/blog/2023-06-04_information-security-compliance-in-aws-solutions/</loc>
+    <lastmod>2023-06-04T19:30:02+12:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/iso/</loc>
+    <lastmod>2023-06-04T19:30:02+12:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/nzism/</loc>
+    <lastmod>2023-06-04T19:30:02+12:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/amazon-inspector/</loc>
     <lastmod>2023-02-25T07:00:19+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/guardduty/</loc>
@@ -39,9 +54,6 @@
     <lastmod>2023-02-25T07:00:19+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2023-02-25_malware-protection-on-aws/</loc>
-    <lastmod>2023-02-25T07:00:19+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/tags/nzism/</loc>
     <lastmod>2023-02-25T07:00:19+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2023-02-20_aws-backup-implementing-a-simple-cross-account-backup-strategy/</loc>

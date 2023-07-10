@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2023-06-04_information-security-compliance-in-aws-solutions/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2023-06-04_information-security-compliance-in-aws-solutions/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Information Security Compliance in AWS Solutions",
+      "headline" : "Information Security Compliance in AWS Solutions",
+      "description" : "A look at aiming for better information security compliance in an AWS solution",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-06-04 19:30:02 \u002b1200 NZST",
+      "dateModified" : "2023-06-04 19:30:02 \u002b1200 NZST",
+      "url" : "https:\/\/chamila.dev\/blog\/2023-06-04_information-security-compliance-in-aws-solutions\/",
+      "keywords" : [ "AWS","ISO","NZISM","AWS Config","Audit", ]
+  }
+</script>
+<title>Information Security Compliance in AWS Solutions - chamila.dev</title>
+  <meta property="og:title" content="Information Security Compliance in AWS Solutions - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="A look at aiming for better information security compliance in an AWS solution" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark" title="dark theme">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" title="light theme" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Information Security Compliance in AWS Solutions</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2023-06-04 19:30:02 NZST">
+                04 Jun 2023
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~9 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#infosec-compliance-for-the-cloud">InfoSec Compliance for the Cloud</a></li>
+    <li><a href="#cloud-security">Cloud Security</a></li>
+    <li><a href="#three-lines-model-of-risk-management">Three-Lines Model of Risk Management</a></li>
+    <li><a href="#recap">Recap</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <figure><img src="/blog/img/2023-06-04_compliance_header.png"/>
+</figure>
+
+<p>Information Security Compliance can be a tiring exercise for all parties
+involved. Making a solution compliant for the set of security standards and
+controls is a massive effort, especially if the architecting stage did not
+think about these requirements in the first place.</p>
+<p>It&rsquo;s even more complex when it comes to proving the compliance level of the
+solution to internal or external auditors. The language InfoSec and Security
+Auditors speak is vastly different from the language used by engineers.</p>
+<blockquote>
+<p>and I don&rsquo;t mean that engineers use Python or Terraform. I mean that InfoSec
+would ask &ldquo;why wouldn&rsquo;t you mention the checklist that you used to review a
+change request when you sign off?&rdquo; when the engineers ask &ldquo;why would I ever
+mention anything other than <em>LGTM</em> when approving a PR?&rdquo;. The motivations and
+the contextual understanding these two parties have about the same solution
+can be vastly different.</p>
+</blockquote>
+<p>This
+can be painful if the compliance effort is being carried out at the same time as
+development phase of a project, where it will become a confusing exercise of
+InfoSec trying to put in process guard rails into day to day development
+processes.</p>
+<blockquote>
+<p>This blog post is a high level serialisation of a talk I did on the AWS Twitch Stream.
+The scope of it is to understand better ways of performing compliance workloads
+on the AWS solutions.</p>
+</blockquote>
+<h2 id="infosec-compliance-for-the-cloud">InfoSec Compliance for the Cloud</h2>
+<p>There are various information security control frameworks, objectives, and
+activities defined in the industry already. These can be generic such as
+<strong>ISO27001</strong> or business domain specific such as <strong>PCI DSS</strong> or <strong>HIPAA</strong>.</p>
+<p>These have been around for sometime and Information System auditing has
+developed to form really specific control activities to check for in a given
+system. However, in most discussions you would have with InfoSec and auditors,
+you&rsquo;ll quickly see a disconnect when it comes to auditing Cloud based
+solutions. Most of the existing frameworks are built around on-premise thinking
+patterns (although standards like <strong>ISO27017</strong> exist, they too tend to be too
+general for an auditor to focus on a specific Cloud provider).</p>
+<p>Concepts such as Shared Responsibility Model in the Cloud seems to throw
+auditors off, where they would have a hard time being convinced that IaaS and
+PaaS services would have different levels of responsibility for the client, and
+therefore needs a more granular level of evaluation for different controls.
+Most times, auditors find themselves asking questions that are irrelevent to
+the Cloud eco-system or even missing critical questions that might actually be
+important to evaluate the solution that are specific to the Cloud.</p>
+<p>On the other side, engineers rarely understand the complexities of InfoSec
+compliance landscape. They would probably be aware of business domain specific
+frameworks, however the regulatory requirements may put more checks to be done
+for a given solution. Almost any country has a spelled out Information Security
+framework. This can be even more restrictive for government agency related
+solutions.</p>
+<p>In discussions with auditors, the engineers may feel questions as repetitive,
+and sometimes unnecessary because of how they perceive a system. Project
+implementation timeline constraints can then jump in and disrupt the whole
+effort by pushing any kind of additional work that is needed to make the
+solution and the development process compliant.</p>
+<p>Because of these reasons, it is important to understand the gap that exists
+between modern Cloud solutions and the thinking around typical information
+security control frameworks. Doing so helps the engineers to build better
+solutions and spend less time on retrofitting compliance in to the system.
+Auditors and InfoSec then also understands the nuances in a Cloud solution, how
+to define control validation activities in a Cloud context, and what to look
+for in the modern Cloud environment.</p>
+<blockquote>
+<p>In the following sections, I mainly refer to technical controls, as process
+controls can vary greately outside of the AWS component.</p>
+</blockquote>
+<h2 id="cloud-security">Cloud Security</h2>
+<p>Although technically the Cloud is &ldquo;someone else&rsquo;s computer&rdquo;, the client that
+utilises the said computer has a certain responsibility for security as well.
+Public Cloud Service providers define a Shared Responsibility Model based on
+this divided responsibility for a solution in the Cloud. A good example of this
+is the <a href="https://aws.amazon.com/compliance/shared-responsibility-model/">AWS Shared Responsibility
+Model</a>.</p>
+<p>These typically talk about Security <strong>OF</strong> the Cloud and Security <strong>IN</strong> the Cloud. The
+former is part of the cloud service provider&rsquo;s responsibility, where aspects
+like data center security, physical hardware management and disposal, tenant
+paritioning and separation should be (and can only be) done by the service
+provider. The service provider is usually audited by third party independent
+auditors for these activities. For AWS, the reports of these audits are
+available in <a href="https://docs.aws.amazon.com/artifact/latest/ug/what-is-aws-artifact.html">AWS
+Artifact</a>. Therefore, any control that tries to validate
+activities such as above should look for reports available under AWS Artifacts.
+AWS cannot be audited by a particular solution audit effort, so all you get is
+AWS Artifacts. As an auditor, you should be able to understand the Shared
+Responsibility Model and how it applies for these activities to be comfortable
+enough to accept these independent reports as evidence.</p>
+<p><img src="/blog/img/2023-06-04_compliance_aws_artifact.png" alt="AWS Artifact"></p>
+<p>The latter, Security <strong>IN</strong> the Cloud, is the responsibility of the client. The
+client should utilise the features available on the Cloud to architect a
+secure compliant solution, and should provide evidence of the said
+implementation using the Cloud platform when the auditors come knocking. The
+type of evidence needed can be different for different services, and the Shared
+Responsibility matrix tends to be more nuanced in these areas where different
+services would provide different levels of management features to the users.
+For an example, a part of the architecture that uses EC2 will have to provide
+evidence of hardening efforts and vulnerability detection features being used
+to mitigate risks and adhere to related controls, where as another part that
+uses an ECS cluster on a Fargate backend will have different applicability
+levels and different kind of evidence to provide. In my personal experience,
+this is where auditors find themselves in trouble, where they have to evaluate
+the compliance level of a solution with having almost zero idea about the Cloud
+services the solution uses.</p>
+<p><a href="https://aws.amazon.com/financial-services/security-compliance/compliance-center">AWS Compliance
+Center</a> can help in the early stages of a project to understand
+the level of regulatory requirements involved, especially if the solution is
+centered around the financial industry.</p>
+<p><img src="/blog/img/2023-06-04_compliance_aws_compliance_center.png" alt="AWS ComplianceCenter"></p>
+<h2 id="three-lines-model-of-risk-management">Three-Lines Model of Risk Management</h2>
+<p>Three-Lines model is a risk based thinking pattern to be utilised during
+solution architecture work. This orients the architecture decisions around,</p>
+<ol>
+<li>understanding the risks involved in the Cloud solution and implementing
+baseline controls - <strong>Manage Risks</strong></li>
+<li>having a single pane of glass view into the current status of risk
+management at a given time - <strong>Oversee risks</strong></li>
+<li>having the ability to provide assurances of the risk management efforts when
+requested - <strong>Provide Assurance</strong></li>
+</ol>
+<p>In an ideal scenario, the risk register of the solution would available in some
+form at the start of the project. However, in real world, this might not be the
+case. You would keep identifying new risks as the implementation life cycle
+progresses. With a structured thinking like the Three-Lines Model, the decision
+making process on how to mitigate these risks in a way that can be tracked and
+maintained becomes a lot easier.</p>
+<p>For AWS, the architecture and implementation work can be oriented around the
+Three-Lines model by utilising <a href="https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html">AWS
+Config</a> in the solution. AWS Config provides
+a well established method to implement baseline controls across the solution in
+a way that tracks the history of the level of compliance. This makes is easy to
+understand the level of compliance for those controls at a given point in time.
+Additionally, automated remediation can be implemented for the relevant
+controls that would free up human intervention needed to maintain the
+compliance of a solution. This is especially helpful for a Cloud solution
+because of the speed at which an architecture can evolve enabled by the
+elasticity and cost efficiency inherent in the Cloud.</p>
+<p>AWS Config can also help in adhering to control frameworks by making use of
+<a href="https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html">Conformance
+Packs</a>
+such as [NZISM Conformance Pack]
+(<a href="https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-nzism.html)">https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-nzism.html)</a>. AWS also provides extensive
+documentation on architecting for the specific control frameworks such as
+NZISM.</p>
+<p>Service specific baseline controls can be put in with services such as</p>
+<ol>
+<li><a href="https://aws.amazon.com/firewall-manager/">AWS Firewall Manager</a> - manage access policies in resources such as Security Groups
+and Network Firewalls</li>
+<li><a href="https://aws.amazon.com/backup/">AWS Backup</a> - define a baseline backup strategy for
+resources across the solution</li>
+<li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html">CloudFormation</a>
+and <a href="https://docs.aws.amazon.com/cfn-guard/latest/ug/what-is-guard.html">CloudFormation Guard</a> - define
+Infrastructure as Code standards and policies as code</li>
+<li><a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-compliance.html">AWS Systems Manager
+Compliance</a> - manage level of compliance across your fleet of instances</li>
+<li>a combination of <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html">Service Control
+Policies</a>,
+<a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html">Permission Boundaries</a>, and IAM
+policies - manage level of access granted to users in the solution</li>
+</ol>
+<p>AWS Config
+can supplement these by keeping track of the said baseline controls and
+notifying stakeholders when they drift from the intended states.</p>
+<p><img src="/blog/img/2023-06-04_compliance_aws_config.png" alt="AWS Config"></p>
+<p><a href="https://aws.amazon.com/security-hub/">AWS Security Hub</a> can be used as a single pane of glass view in to the
+compliance level of the solution. Although AWS Config does provide such a view,
+it can be oriented around Config Rules alone and could only make sense to the
+engineers who worked on the solution implementation. AWS Security Hub provides
+a more generalised view into compliance by Framework level (ex: CSI Benchmark
+L2) with more information gathered from services such as
+<a href="https://aws.amazon.com/guardduty/">GuardDuty</a> which can
+make sense to a stakeholder a bit removed from day to day
+implementation work.</p>
+<p><a href="https://docs.aws.amazon.com/audit-manager/latest/userguide/what-is.html">AWS Audit
+Manager</a> can use data gathered by AWS Config and AWS Security Hub to
+provide a report centered around a selected control framework, which can bridge
+the gap between engineering and auditing a lot. The security control framework
+library provides almost all major control frameworks out of the box. These can
+then be used to generate reports that show the level of compliance for the
+entire solution in a language that auditors and InfoSec speak, which might
+reduce the need for auditors to understand complex Cloud service nuances to
+properly evaluate a system.</p>
+<p><img src="/blog/img/2023-06-04_compliance_audit_manager2.png" alt="AWS Audit Manager report">
+<img src="/blog/img/2023-06-04_compliance_audit_manager.png" alt="AWS Audit Manager report"></p>
+<h2 id="recap">Recap</h2>
+<p>To put it simply, in an AWS solution, use</p>
+<ol>
+<li>AWS Compliance Center to understand regulatory and InfoSec context for your
+solution</li>
+<li>AWS Artifact to provide evidence for Security OF the Cloud</li>
+<li>AWS services to put in baseline controls</li>
+<li>AWS Config to keep track of the baseline controls and get notified when your
+solution drifts away from compliance</li>
+<li>AWS Security Hub and AWS Audit Manager to consolidate and provide assurance
+of solution wide compliance</li>
+</ol>
+<p>In general, keep the Three Lines model in mind, as it helps you orient the
+thinking around a risk based approach. These should set you up for success.</p>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2023-02-25_malware-protection-on-aws/">&lt; Malware Protection on AWS</a>
+		
+	</div>        
+	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/">Pi-hole Restore CLI Tool &gt;</a>
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2023-02-25_malware-protection-on-aws/">Malware Protection on AWS</a></li>
+    
+    <li><a href="/blog/2023-02-13_aws-backup-cross-account-backups/">AWS Backup: Cross-Account Backups</a></li>
+    
+    <li><a href="/blog/2023-01-18_aws-backup-intro/">AWS Backup: Introduction</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  
+
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  
+  All photos published on this site are copyrighted.
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

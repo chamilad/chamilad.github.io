@@ -43,10 +43,10 @@
 */
 .theme-light .container {
   background: var(--light-post-background);
-  border: 5px solid var(--light-post-border);
+  border: 3px solid var(--light-post-border);
   /* outline: 4px solid var(--light-dark-end); */
-  box-shadow: inset 3px -4px 8px 1px var(--light-page-inner-shadow),
-    3px -4px 16px 1px var(--light-page-outer-shadow);
+  /* box-shadow: inset 3px -4px 8px 1px var(--light-page-inner-shadow), */
+  /* 3px -4px 16px 1px var(--light-page-outer-shadow); */
 }
 
 /*
