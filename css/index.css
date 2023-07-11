@@ -23,19 +23,6 @@
   position: relative;
 }
 
-/*
-* home page has no theme switcher, yet
-*
-*/
-.home {
-  background: var(--light-anti-theme);
-}
-
-.home pre {
-  font-size: 10px;
-  font-family: monospace;
-}
-
 .markdown-body {
   font-family: "Droid Sans", sans-serif;
 }

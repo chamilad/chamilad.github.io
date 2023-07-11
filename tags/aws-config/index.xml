@@ -13,7 +13,7 @@
       <pubDate>Sun, 04 Jun 2023 19:30:02 +1200</pubDate>
       
       <guid>https://chamila.dev/blog/2023-06-04_information-security-compliance-in-aws-solutions/</guid>
-      <description>Information Security Compliance can be a tiring exercise for all parties involved. Making a solution compliant for the set of security standards and controls is a massive effort, especially if the architecting stage did not think about these requirements in the first place.
+      <description>Information Security Compliance can be a tiring and complicated exercise for all parties involved. Making a solution compliant for the set of security standards and controls is a massive effort, especially if the architecting stage did not think about these requirements in the first place.
 It&amp;rsquo;s even more complex when it comes to proving the compliance level of the solution to internal or external auditors. The language InfoSec and Security Auditors speak is vastly different from the language used by engineers.</description>
     </item>
     

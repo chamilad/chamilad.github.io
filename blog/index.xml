@@ -5,8 +5,7 @@
     <link>https://chamila.dev/blog/</link>
     <description>Recent content in journal on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 19 Jun 2023 00:09:59 +1200</lastBuildDate><atom:link href="https://chamila.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://chamila.dev/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pi-hole Restore CLI Tool</title>
       <link>https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/</link>
@@ -23,7 +22,7 @@ I&amp;rsquo;ve been using Pi-hole as a DNS ad-blocker and an overall local DNS s
       <pubDate>Sun, 04 Jun 2023 19:30:02 +1200</pubDate>
       
       <guid>https://chamila.dev/blog/2023-06-04_information-security-compliance-in-aws-solutions/</guid>
-      <description>Information Security Compliance can be a tiring exercise for all parties involved. Making a solution compliant for the set of security standards and controls is a massive effort, especially if the architecting stage did not think about these requirements in the first place.
+      <description>Information Security Compliance can be a tiring and complicated exercise for all parties involved. Making a solution compliant for the set of security standards and controls is a massive effort, especially if the architecting stage did not think about these requirements in the first place.
 It&amp;rsquo;s even more complex when it comes to proving the compliance level of the solution to internal or external auditors. The language InfoSec and Security Auditors speak is vastly different from the language used by engineers.</description>
     </item>
     
