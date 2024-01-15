@@ -43,7 +43,7 @@
 */
 .theme-light .container {
   background: var(--light-post-background);
-  border: 3px solid var(--light-post-border);
+  border: 5px solid var(--light-post-border);
   /* outline: 4px solid var(--light-dark-end); */
   /* box-shadow: inset 3px -4px 8px 1px var(--light-page-inner-shadow), */
   /* 3px -4px 16px 1px var(--light-page-outer-shadow); */
@@ -60,8 +60,35 @@
 
 .theme-light #floating-menu a,
 .theme-light #floating-menu button {
-  color: var(--light-dark-end);
+  /* color: var(--dark-dark-end); */
+  color: #6a737d;
   text-decoration: none;
+  z-index: 1;
+}
+
+.theme-light .current-theme {
+  color: var(--dark-dark-end) !important;
+}
+
+.theme-light #floating-menu::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 2px;
+  left: 0;
+  transform: translateX(24px);
+  background-color: var(--light-dark-end);
+  border-radius: 50px;
+  z-index: 0;
+  transition: var(--default-transition);
+}
+
+.theme-light #floating-menu {
+  background-color: var(--light-blockquote);
+  border-color: var(--light-post-border);
+  /* box-shadow: inset 1px 0px 1px 1px var(--light-page-inner-shadow); */
+  /* box-shadow: 1px 0px 4px 0px var(--light-page-outer-shadow); */
 }
 
 .theme-light .markdown-body a {

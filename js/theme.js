@@ -4,10 +4,10 @@ const getThemPref = () => {
   if (localStorage.getItem(themeKey)) {
     return localStorage.getItem(themeKey);
   } else {
-    // return window.matchMedia("(prefers-color-scheme: dark)").matches
-    // ? "dark"
-    // : "light";
-    return "light";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+    // return "light";
   }
 };
 
@@ -47,6 +47,15 @@ const saveThemeSelection = function(theme) {
   setTheme();
 };
 
+const flipTheme = () => {
+  currentTheme = getThemPref();
+  if (currentTheme == "dark") {
+    saveThemeSelection("light");
+  } else {
+    saveThemeSelection("dark");
+  }
+};
+
 const switchToDark = () => {
   saveThemeSelection("dark");
 };
@@ -60,9 +69,13 @@ setTheme();
 window.onload = () => {
   setTheme();
   document
-    .querySelector("#switch-to-dark")
-    .addEventListener("click", switchToDark);
-  document
-    .querySelector("#switch-to-light")
-    .addEventListener("click", switchToLight);
+    .querySelector("#floating-menu")
+    .addEventListener("click", flipTheme);
+  
+  // document
+  //   .querySelector("#switch-to-dark")
+  //   .addEventListener("click", switchToDark);
+  // document
+  //   .querySelector("#switch-to-light")
+  //   .addEventListener("click", switchToLight);
 };

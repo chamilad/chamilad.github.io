@@ -7,6 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://chamila.dev/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Getting Started with AWS Rust SDK</title>
+      <link>https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/</link>
+      <pubDate>Mon, 15 Jan 2024 05:26:45 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/</guid>
+      <description>Some building in Washington DC. It&amp;#39;s just pretty, not related to Rust or AWS   AWS re:Invent 2023 announced the GA versions of the Rust and Kotlin SDKs. The SDK was in developer preview for sometime, and this release allows the use of it in production. Following is an introduction to the Rust SDK, its defaults, and a few detailed scenarios that are different from the default cases.</description>
+    </item>
+    
+    <item>
       <title>Pi-hole Restore CLI Tool</title>
       <link>https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/</link>
       <pubDate>Mon, 19 Jun 2023 00:09:59 +1200</pubDate>

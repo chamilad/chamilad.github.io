@@ -60,8 +60,35 @@
 
 .theme-dark #floating-menu a,
 .theme-dark #floating-menu button {
-  color: var(--dark-dark-end);
+  /* color: var(--light-dark-end); */
+  color: #6a737d;
   text-decoration: none;
+  z-index: 1;
+}
+
+.theme-dark .current-theme {
+  color: var(--light-dark-end) !important;
+}
+
+
+.theme-dark #floating-menu::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 2px;
+  left: 0;
+  transform: translateX(2px);
+  background-color: var(--dark-dark-end);
+  border-radius: 50px;
+  z-index: 0;
+  transition: var(--default-transition);
+}
+
+.theme-dark #floating-menu {
+  background-color: var(--dark-blockquote);
+  border-color: var(--dark-post-border);
+  /* box-shadow: inset 1px 0px 2px 1px var(--dark-page-inner-shadow); */
 }
 
 .theme-dark .markdown-body a {

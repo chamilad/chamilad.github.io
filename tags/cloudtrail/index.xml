@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloudtrail on chamila.dev</title>
+    <link>https://chamila.dev/tags/cloudtrail/</link>
+    <description>Recent content in cloudtrail on chamila.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Jan 2024 05:26:45 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/cloudtrail/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Getting Started with AWS Rust SDK</title>
+      <link>https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/</link>
+      <pubDate>Mon, 15 Jan 2024 05:26:45 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/</guid>
+      <description>Some building in Washington DC. It&amp;#39;s just pretty, not related to Rust or AWS   AWS re:Invent 2023 announced the GA versions of the Rust and Kotlin SDKs. The SDK was in developer preview for sometime, and this release allows the use of it in production. Following is an introduction to the Rust SDK, its defaults, and a few detailed scenarios that are different from the default cases.</description>
+    </item>
+    
+  </channel>
+</rss>

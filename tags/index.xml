@@ -6,7 +6,34 @@
     <description>Recent content in Tags on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Jun 2023 00:09:59 +1200</lastBuildDate><atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Jan 2024 05:26:45 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS</title>
+      <link>https://chamila.dev/tags/aws/</link>
+      <pubDate>Mon, 15 Jan 2024 05:26:45 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cloudtrail</title>
+      <link>https://chamila.dev/tags/cloudtrail/</link>
+      <pubDate>Mon, 15 Jan 2024 05:26:45 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/cloudtrail/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rust</title>
+      <link>https://chamila.dev/tags/rust/</link>
+      <pubDate>Mon, 15 Jan 2024 05:26:45 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/rust/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>PHP</title>
       <link>https://chamila.dev/tags/php/</link>
@@ -26,29 +53,11 @@
     </item>
     
     <item>
-      <title>Rust</title>
-      <link>https://chamila.dev/tags/rust/</link>
-      <pubDate>Mon, 19 Jun 2023 00:09:59 +1200</pubDate>
-      
-      <guid>https://chamila.dev/tags/rust/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Audit</title>
       <link>https://chamila.dev/tags/audit/</link>
       <pubDate>Sun, 04 Jun 2023 19:30:02 +1200</pubDate>
       
       <guid>https://chamila.dev/tags/audit/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>AWS</title>
-      <link>https://chamila.dev/tags/aws/</link>
-      <pubDate>Sun, 04 Jun 2023 19:30:02 +1200</pubDate>
-      
-      <guid>https://chamila.dev/tags/aws/</guid>
       <description></description>
     </item>
     

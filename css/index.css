@@ -1,7 +1,11 @@
 /* 
 * common styling 
 * anything missing from here is in the theme file 
-* /
+*/
+
+:root {
+  --default-transition: color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out, fill .3s ease-in-out, transform .3s ease-in-out;
+}
 
 /* Selection color */
 ::-moz-selection {
@@ -24,6 +28,7 @@
   margin-left: auto;
   margin-right: auto;
   max-width: 900px;
+  transition: var(--default-transition);
 }
 
 .markdown-body {
@@ -37,26 +42,34 @@
 
 #floating-menu-wrapper {
   position: absolute;
-  right: 10px;
+  right: 40px;
   top: 12px;
   width: 20px;
 }
 
 #floating-menu {
   position: fixed;
-  width: 40px;
-  height: 40px;
+  width: 43px;
+  height: 22px;
+  border-radius: 50px;
+  border-width: 2px;
+  border-style: solid;
+  display: flex;
+  gap: 2px;
+  cursor: pointer;
+  transition: var(--default-transition);
 }
 
 #floating-menu button {
   background: none;
   border: none;
   cursor: pointer;
+  font-size: 13px;
 }
 
-.current-theme {
+/* .current-theme {
   display: none !important;
-}
+} */
 
 /*
 * anchors
