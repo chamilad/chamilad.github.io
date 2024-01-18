@@ -70,10 +70,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -296,37 +296,37 @@ DynamoDB table in the source account.</p>
 <p><code>yyyyyyyyyyyy</code> - source account number,
 <code>xxxxxxxxxxxx</code> - destination account number</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
-  <span style="color:#f92672">&#34;Statement&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;Version&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;2012-10-17&#34;</span>,
+  <span style="font-weight:bold">&#34;Statement&#34;</span>: [
     {
-      <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;Allow source account Backup to decrypt data to be encrypted with Vault key&#34;</span>,
-      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
-      <span style="color:#f92672">&#34;Principal&#34;</span>: {
-        <span style="color:#f92672">&#34;AWS&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::yyyyyyyyyyyy:role/dynamodb-backup-role&#34;</span>
+      <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow source account Backup to decrypt data to be encrypted with Vault key&#34;</span>,
+      <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
+      <span style="font-weight:bold">&#34;Principal&#34;</span>: {
+        <span style="font-weight:bold">&#34;AWS&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;arn:aws:iam::yyyyyyyyyyyy:role/dynamodb-backup-role&#34;</span>
       },
-      <span style="color:#f92672">&#34;Action&#34;</span>: [
-        <span style="color:#e6db74">&#34;kms:GenerateDataKey&#34;</span>,
-        <span style="color:#e6db74">&#34;kms:DescribeKey&#34;</span>,
-        <span style="color:#e6db74">&#34;kms:Decrypt&#34;</span>,
-        <span style="color:#e6db74">&#34;kms:Encrypt&#34;</span>,
-        <span style="color:#e6db74">&#34;kms:CreateGrant&#34;</span>
+      <span style="font-weight:bold">&#34;Action&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;kms:GenerateDataKey&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;kms:DescribeKey&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;kms:Decrypt&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;kms:Encrypt&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;kms:CreateGrant&#34;</span>
       ],
-      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;&lt;resource_arns&gt;&#34;</span>
+      <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;&lt;resource_arns&gt;&#34;</span>
     },
     {
-      <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;Allow destination Backup to decrypt for Backup operations&#34;</span>,
-      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
-      <span style="color:#f92672">&#34;Principal&#34;</span>: {
-        <span style="color:#f92672">&#34;AWS&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::xxxxxxxxxxxx:role/aws-service-role/backup.amazonaws.com/AWSServiceRoleForBackup&#34;</span>
+      <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow destination Backup to decrypt for Backup operations&#34;</span>,
+      <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
+      <span style="font-weight:bold">&#34;Principal&#34;</span>: {
+        <span style="font-weight:bold">&#34;AWS&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;arn:aws:iam::xxxxxxxxxxxx:role/aws-service-role/backup.amazonaws.com/AWSServiceRoleForBackup&#34;</span>
       },
-      <span style="color:#f92672">&#34;Action&#34;</span>: [
-        <span style="color:#e6db74">&#34;kms:GenerateDataKey&#34;</span>,
-        <span style="color:#e6db74">&#34;kms:DescribeKey&#34;</span>,
-        <span style="color:#e6db74">&#34;kms:Decrypt&#34;</span>,
-        <span style="color:#e6db74">&#34;kms:CreateGrant&#34;</span>
+      <span style="font-weight:bold">&#34;Action&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;kms:GenerateDataKey&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;kms:DescribeKey&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;kms:Decrypt&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;kms:CreateGrant&#34;</span>
       ],
-      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;&lt;resource_arns&gt;&#34;</span>
+      <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;&lt;resource_arns&gt;&#34;</span>
     }
   ]
 }

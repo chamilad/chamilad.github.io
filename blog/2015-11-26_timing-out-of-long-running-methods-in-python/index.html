@@ -71,10 +71,10 @@ Python has a nifty module called signal which exposes UNIX Signal numbers and a 
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -137,31 +137,31 @@ Python has a nifty module called signal which exposes UNIX Signal numbers and a 
         <div class="post-content markdown-body">
           <p>Sometimes there are conditions under which a function call could not return in a needed time period and would cause unexpected behavior. For example, a file read could take more time than anticipated and leave the code execution without proper control over what to do when such a situation occurs. This can be worse if the said function call directs to an external library which we can’t control.</p>
 <p>Python has a nifty module called signal which exposes <a href="https://en.wikipedia.org/wiki/Unix_signal#POSIX_signals">UNIX Signal</a> numbers and a way to register callbacks for each signal. Out of the UNIX Signals available, what interests us in this particular situation is the <a href="http://linux.die.net/man/2/alarm">SIGALRM</a> signal which allows us to sort of wind out an OS level alarm clock that would send a signal to the calling process after the set number of seconds. We can make use of this functionality (only in UNIX of course) to set a timeout before a function call with the possibility to hang or take unexpected durations to finish.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> signal
-<span style="color:#f92672">import</span> time
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> signal
+<span style="color:#fff;font-weight:bold">import</span> time
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">timeout_handler</span>(num, stack):
-    print(<span style="color:#e6db74">&#34;Received SIGALRM&#34;</span>)
-    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">&#34;FUBAR&#34;</span>)
+<span style="color:#fff;font-weight:bold">def</span> timeout_handler(num, stack):
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Received SIGALRM&#34;</span>)
+    <span style="color:#fff;font-weight:bold">raise</span> Exception(<span style="color:#0ff;font-weight:bold">&#34;FUBAR&#34;</span>)
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">long_function</span>():
-    print(<span style="color:#e6db74">&#34;LEEEEROYYY JENKINSSSSS!!!&#34;</span>)
-    time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">60</span>)
+<span style="color:#fff;font-weight:bold">def</span> long_function():
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;LEEEEROYYY JENKINSSSSS!!!&#34;</span>)
+    time.sleep(<span style="color:#ff0;font-weight:bold">60</span>)
 
-signal<span style="color:#f92672">.</span>signal(signal<span style="color:#f92672">.</span>SIGALRM, timeout_handler)
-signal<span style="color:#f92672">.</span>alarm(<span style="color:#ae81ff">10</span>)
+signal.signal(signal.SIGALRM, timeout_handler)
+signal.alarm(<span style="color:#ff0;font-weight:bold">10</span>)
 
-<span style="color:#66d9ef">try</span>:
-    print(<span style="color:#e6db74">&#34;Before: </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> time<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;%M:%S&#34;</span>))
+<span style="color:#fff;font-weight:bold">try</span>:
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Before: </span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">&#34;</span> % time.strftime(<span style="color:#0ff;font-weight:bold">&#34;%M:%S&#34;</span>))
     long_function()
-<span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> ex:
-    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;FUBAR&#34;</span> <span style="color:#f92672">in</span> ex:
-        print(<span style="color:#e6db74">&#34;Gotcha!&#34;</span>)
-    <span style="color:#66d9ef">else</span>:
-        print(<span style="color:#e6db74">&#34;We&#39;re gonna need a bigger boat!&#34;</span>)
-<span style="color:#66d9ef">finally</span>:
-    signal<span style="color:#f92672">.</span>alarm(<span style="color:#ae81ff">0</span>)
-    print(<span style="color:#e6db74">&#34;After: </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> time<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;%M:%S&#34;</span>))
+<span style="color:#fff;font-weight:bold">except</span> Exception <span style="color:#fff;font-weight:bold">as</span> ex:
+    <span style="color:#fff;font-weight:bold">if</span> <span style="color:#0ff;font-weight:bold">&#34;FUBAR&#34;</span> in ex:
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Gotcha!&#34;</span>)
+    <span style="color:#fff;font-weight:bold">else</span>:
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;We&#39;re gonna need a bigger boat!&#34;</span>)
+<span style="color:#fff;font-weight:bold">finally</span>:
+    signal.alarm(<span style="color:#ff0;font-weight:bold">0</span>)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;After: </span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">&#34;</span> % time.strftime(<span style="color:#0ff;font-weight:bold">&#34;%M:%S&#34;</span>))
 </code></pre></div><p>If you run this Python code, you will see an output similar to the following.</p>
 <pre tabindex="0"><code>Before: 22:10 
 LEEEEROYYY JENKINSSSSS!!! 
@@ -170,30 +170,30 @@ Gotcha!
 After: 22:20
 </code></pre><p>Let us take a walk through the code.</p>
 <p>First let’s look at the supposedly long running function. What this does is to simply wait for 60 seconds before continuing. This is to emulate a blocked file read, or a hung server connection.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">long_function</span>():
-    print(<span style="color:#e6db74">&#34;LEEEEROYYY JENKINSSSSS!!!&#34;</span>)
-    time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">60</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">def</span> long_function():
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;LEEEEROYYY JENKINSSSSS!!!&#34;</span>)
+    time.sleep(<span style="color:#ff0;font-weight:bold">60</span>)
 </code></pre></div><p>We need to tell the signal module to execute our own function when SIGALRM signal is received by the process. So let’s first write a handler function.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">timeout_handler</span>(num, stack):
-    print(<span style="color:#e6db74">&#34;Received SIGALRM&#34;</span>)
-    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">&#34;FUBAR&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">def</span> timeout_handler(num, stack):
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Received SIGALRM&#34;</span>)
+    <span style="color:#fff;font-weight:bold">raise</span> Exception(<span style="color:#0ff;font-weight:bold">&#34;FUBAR&#34;</span>)
 </code></pre></div><p>Notice that in the timeout_handler function we are raising an exception. This is to make our decision making process a bit easier. More on that later. Now let’s register this with the SIGALRM signal.</p>
 <pre tabindex="0"><code>signal.signal(signal.SIGALRM, timeout_handler)
 </code></pre><p>Now when this Python process receives a SIGALRM signal, it will execute the timeout_handler function.</p>
 <p>signal.alarm(10) tells the OS to send a SIGALRM after 10 seconds from this point onwards. After setting the alarm clock we invoke the long running function.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">signal<span style="color:#f92672">.</span>alarm(<span style="color:#ae81ff">10</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">signal.alarm(<span style="color:#ff0;font-weight:bold">10</span>)
 
-<span style="color:#66d9ef">try</span>:
-    print(<span style="color:#e6db74">&#34;Before: </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> time<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;%M:%S&#34;</span>))
+<span style="color:#fff;font-weight:bold">try</span>:
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Before: </span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">&#34;</span> % time.strftime(<span style="color:#0ff;font-weight:bold">&#34;%M:%S&#34;</span>))
     long_function()
-<span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> ex:
-    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;FUBAR&#34;</span> <span style="color:#f92672">in</span> ex:
-        print(<span style="color:#e6db74">&#34;Gotcha!&#34;</span>)
-    <span style="color:#66d9ef">else</span>:
-        print(<span style="color:#e6db74">&#34;We&#39;re gonna need a bigger boat!&#34;</span>)
-<span style="color:#66d9ef">finally</span>:
-    signal<span style="color:#f92672">.</span>alarm(<span style="color:#ae81ff">0</span>)
-    print(<span style="color:#e6db74">&#34;After: </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> time<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;%M:%S&#34;</span>))
+<span style="color:#fff;font-weight:bold">except</span> Exception <span style="color:#fff;font-weight:bold">as</span> ex:
+    <span style="color:#fff;font-weight:bold">if</span> <span style="color:#0ff;font-weight:bold">&#34;FUBAR&#34;</span> in ex:
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Gotcha!&#34;</span>)
+    <span style="color:#fff;font-weight:bold">else</span>:
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;We&#39;re gonna need a bigger boat!&#34;</span>)
+<span style="color:#fff;font-weight:bold">finally</span>:
+    signal.alarm(<span style="color:#ff0;font-weight:bold">0</span>)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;After: </span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">&#34;</span> % time.strftime(<span style="color:#0ff;font-weight:bold">&#34;%M:%S&#34;</span>))
 </code></pre></div><p>10 seconds after invoking the long_function, the execution will be interrupted and timeout_handler function will raise the exception FUBAR. We are catching that at line 6 and based on that we can make a decision on what to do since our function with a possibility to hang has in fact seems to be hung and did not terminate in a healthy or unhealthy manner.</p>
 <p>Notice that we set the alarm to 0 seconds after all is done. That is to do one thing, cancel the previously set alarm (although in our case it <a href="https://media.giphy.com/media/Vuw9m5wXviFIQ/giphy.gif">doesn’t even matter</a>).</p>
 <p>If we check the output of this program again, you will see that we received the SIGALRM exactly after 10 seconds.</p>
@@ -204,32 +204,32 @@ Gotcha!
 After: 22:20
 </code></pre><p>Clear as a bell right?</p>
 <p>Let’s do some tweaking. Let’s not set the OS alarm clock. Let’s send the signal ourselves.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> signal
-<span style="color:#f92672">import</span> time
-<span style="color:#f92672">import</span> os
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> signal
+<span style="color:#fff;font-weight:bold">import</span> time
+<span style="color:#fff;font-weight:bold">import</span> os
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">timeout_handler</span>(num, stack):
-    print(<span style="color:#e6db74">&#34;Received SIGALRM [</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">]&#34;</span> <span style="color:#f92672">%</span> num)
-    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">&#34;FUBAR&#34;</span>)
+<span style="color:#fff;font-weight:bold">def</span> timeout_handler(num, stack):
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Received SIGALRM [</span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">]&#34;</span> % num)
+    <span style="color:#fff;font-weight:bold">raise</span> Exception(<span style="color:#0ff;font-weight:bold">&#34;FUBAR&#34;</span>)
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">long_function</span>():
-    print(<span style="color:#e6db74">&#34;LEEEEROYYY JENKINSSSSS!!!&#34;</span>)
-    time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">60</span>)
+<span style="color:#fff;font-weight:bold">def</span> long_function():
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;LEEEEROYYY JENKINSSSSS!!!&#34;</span>)
+    time.sleep(<span style="color:#ff0;font-weight:bold">60</span>)
 
-print(<span style="color:#e6db74">&#34;PID: </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> os<span style="color:#f92672">.</span>getpid())
-signal<span style="color:#f92672">.</span>signal(signal<span style="color:#f92672">.</span>SIGALRM, timeout_handler)
-<span style="color:#75715e"># signal.alarm(10)</span>
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;PID: </span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">&#34;</span> % os.getpid())
+signal.signal(signal.SIGALRM, timeout_handler)
+<span style="color:#007f7f"># signal.alarm(10)</span>
 
-<span style="color:#66d9ef">try</span>:
-    print(<span style="color:#e6db74">&#34;Before: </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> time<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;%M:%S&#34;</span>))
+<span style="color:#fff;font-weight:bold">try</span>:
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Before: </span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">&#34;</span> % time.strftime(<span style="color:#0ff;font-weight:bold">&#34;%M:%S&#34;</span>))
     long_function()
-<span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> ex:
-    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;FUBAR&#34;</span> <span style="color:#f92672">in</span> ex:
-        print(<span style="color:#e6db74">&#34;Gotcha!&#34;</span>)
-    <span style="color:#66d9ef">else</span>:
-        print(<span style="color:#e6db74">&#34;We&#39;re gonna need a bigger boat!&#34;</span>)
+<span style="color:#fff;font-weight:bold">except</span> Exception <span style="color:#fff;font-weight:bold">as</span> ex:
+    <span style="color:#fff;font-weight:bold">if</span> <span style="color:#0ff;font-weight:bold">&#34;FUBAR&#34;</span> in ex:
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Gotcha!&#34;</span>)
+    <span style="color:#fff;font-weight:bold">else</span>:
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;We&#39;re gonna need a bigger boat!&#34;</span>)
 
-print(<span style="color:#e6db74">&#34;After: </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> time<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;%M:%S&#34;</span>))
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;After: </span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">&#34;</span> % time.strftime(<span style="color:#0ff;font-weight:bold">&#34;%M:%S&#34;</span>))
 </code></pre></div><p>We have commented out the alarm clock setting in line 15 and in line 13 we have printed out the process ID of the Python process. We are going to send the SIGALRM signal using the kill command to that process ID.</p>
 <p>Open two terminals and run the above script in one terminal. Note the process ID and in the other terminal execute the following command.</p>
 <pre tabindex="0"><code>kill -14 {pid}

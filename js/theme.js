@@ -31,6 +31,10 @@ const setTheme = () => {
       .querySelector("#switch-to-light")
       ?.classList.remove("current-theme");
     document.querySelector("#switch-to-dark")?.classList.add("current-theme");
+
+    document
+      .querySelector("#floating-menu")
+      .title = "switch to light theme";
   } else {
     bodyClasses.remove("theme-dark");
     bodyClasses.add("theme-light");
@@ -39,6 +43,10 @@ const setTheme = () => {
     document
       .querySelector("#switch-to-dark")
       ?.classList.remove("current-theme");
+
+    document
+      .querySelector("#floating-menu")
+      .title = "switch to dark theme";
   }
 };
 

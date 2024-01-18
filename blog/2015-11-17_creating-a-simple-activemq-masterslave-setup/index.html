@@ -70,10 +70,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -144,44 +144,44 @@
         </header>
         <div class="post-content markdown-body">
           <p>ActiveMQ is a high performing message broker, however if clustering is needed, it supports <a href="http://activemq.apache.org/clustering.html">a number of methods</a>. Out of these, the <a href="http://activemq.apache.org/masterslave.html">Master/Slave</a> is a pattern where the persistence layer is shared between multiple broker instances. A Single Master broker connects to the persistence, and the rest of the Slave brokers keep waiting to attain the lock on the persistence. If the Master node goes down the lock for the persistence is released and a Slave quickly acquires it, allowing a client to continue operation without any data loss. The clients should connect to the Master/Slave setup, using the failover: transport, or they should implement a manual failover mechanism to automatically connect to the next available broker when the first one goes down.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">connectionfactoryName</span><span style="color:#f92672">=</span><span style="color:#e6db74">TopicConnectionFactory</span>
-<span style="color:#a6e22e">java.naming.provider.url</span><span style="color:#f92672">=</span><span style="color:#e6db74">failover:(tcp://localhost:61617,tcp://localhost:61618,tcp://localhost:61619)?initialReconnectDelay=100</span>
-<span style="color:#a6e22e">java.naming.factory.initial</span><span style="color:#f92672">=</span><span style="color:#e6db74">org.apache.activemq.jndi.ActiveMQInitialContextFactory</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#007f7f">connectionfactoryName</span>=<span style="color:#0ff;font-weight:bold">TopicConnectionFactory</span>
+<span style="color:#007f7f">java.naming.provider.url</span>=<span style="color:#0ff;font-weight:bold">failover:(tcp://localhost:61617,tcp://localhost:61618,tcp://localhost:61619)?initialReconnectDelay=100</span>
+<span style="color:#007f7f">java.naming.factory.initial</span>=<span style="color:#0ff;font-weight:bold">org.apache.activemq.jndi.ActiveMQInitialContextFactory</span>
 </code></pre></div><p>Let’s setup two broker instances in the same machine. The two instances will open different ports for the protocols, so there will be no conflicts. They will use the flat file based embedded KahaDB as the persistence layer and the two instances will share the KahaDB instance.</p>
 <h3 id="creating-two-broker-instances">Creating Two Broker Instances</h3>
 <p>Unzip the ActiveMQ distribution to two places and offset port values in the second one to use different ports so that there will be no conflicts for ports used by the different protocol connectors. The places to change are in &lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml and &lt;ACTIVEMQ_HOME&gt;/conf/jetty.xml.</p>
 <h4 id="activemqxml">activemq.xml</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;transportConnectors&gt;</span>
-    <span style="color:#75715e">&lt;!-- DOS protection, limit concurrent connections to 1000 and frame size to 100MB --&gt;</span>
-    <span style="color:#f92672">&lt;transportConnector</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;openwire&#34;</span> <span style="color:#a6e22e">uri=</span><span style="color:#e6db74">&#34;tcp://0.0.0.0:61626?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&#34;</span><span style="color:#f92672">/&gt;</span>
-    <span style="color:#f92672">&lt;transportConnector</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;amqp&#34;</span> <span style="color:#a6e22e">uri=</span><span style="color:#e6db74">&#34;amqp://0.0.0.0:5682?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&#34;</span><span style="color:#f92672">/&gt;</span>
-    <span style="color:#f92672">&lt;transportConnector</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;stomp&#34;</span> <span style="color:#a6e22e">uri=</span><span style="color:#e6db74">&#34;stomp://0.0.0.0:61623?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&#34;</span><span style="color:#f92672">/&gt;</span>
-    <span style="color:#f92672">&lt;transportConnector</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;mqtt&#34;</span> <span style="color:#a6e22e">uri=</span><span style="color:#e6db74">&#34;mqtt://0.0.0.0:1893?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&#34;</span><span style="color:#f92672">/&gt;</span>
-    <span style="color:#f92672">&lt;transportConnector</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ws&#34;</span> <span style="color:#a6e22e">uri=</span><span style="color:#e6db74">&#34;ws://0.0.0.0:61624?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&#34;</span><span style="color:#f92672">/&gt;</span>
-<span style="color:#f92672">&lt;/transportConnectors&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="font-weight:bold">&lt;transportConnectors&gt;</span>
+    <span style="color:#007f7f">&lt;!-- DOS protection, limit concurrent connections to 1000 and frame size to 100MB --&gt;</span>
+    <span style="font-weight:bold">&lt;transportConnector</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;openwire&#34;</span> <span style="color:#007f7f">uri=</span><span style="color:#0ff;font-weight:bold">&#34;tcp://0.0.0.0:61626?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&#34;</span><span style="font-weight:bold">/&gt;</span>
+    <span style="font-weight:bold">&lt;transportConnector</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;amqp&#34;</span> <span style="color:#007f7f">uri=</span><span style="color:#0ff;font-weight:bold">&#34;amqp://0.0.0.0:5682?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&#34;</span><span style="font-weight:bold">/&gt;</span>
+    <span style="font-weight:bold">&lt;transportConnector</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;stomp&#34;</span> <span style="color:#007f7f">uri=</span><span style="color:#0ff;font-weight:bold">&#34;stomp://0.0.0.0:61623?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&#34;</span><span style="font-weight:bold">/&gt;</span>
+    <span style="font-weight:bold">&lt;transportConnector</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;mqtt&#34;</span> <span style="color:#007f7f">uri=</span><span style="color:#0ff;font-weight:bold">&#34;mqtt://0.0.0.0:1893?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&#34;</span><span style="font-weight:bold">/&gt;</span>
+    <span style="font-weight:bold">&lt;transportConnector</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;ws&#34;</span> <span style="color:#007f7f">uri=</span><span style="color:#0ff;font-weight:bold">&#34;ws://0.0.0.0:61624?maximumConnections=1000&amp;amp;wireFormat.maxFrameSize=104857600&#34;</span><span style="font-weight:bold">/&gt;</span>
+<span style="font-weight:bold">&lt;/transportConnectors&gt;</span>
 </code></pre></div><h4 id="jettyxml">jetty.xml</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;jettyPort&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;org.apache.activemq.web.WebConsolePort&#34;</span> <span style="color:#a6e22e">init-method=</span><span style="color:#e6db74">&#34;start&#34;</span><span style="color:#f92672">&gt;</span>
-  <span style="color:#75715e">&lt;!-- the default port number for the web console --&gt;</span>
-  <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;host&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span><span style="color:#f92672">/&gt;</span>
-  <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;port&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;8171&#34;</span><span style="color:#f92672">/&gt;</span>
-<span style="color:#f92672">&lt;/bean&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="font-weight:bold">&lt;bean</span> <span style="color:#007f7f">id=</span><span style="color:#0ff;font-weight:bold">&#34;jettyPort&#34;</span> <span style="color:#007f7f">class=</span><span style="color:#0ff;font-weight:bold">&#34;org.apache.activemq.web.WebConsolePort&#34;</span> <span style="color:#007f7f">init-method=</span><span style="color:#0ff;font-weight:bold">&#34;start&#34;</span><span style="font-weight:bold">&gt;</span>
+  <span style="color:#007f7f">&lt;!-- the default port number for the web console --&gt;</span>
+  <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;host&#34;</span> <span style="color:#007f7f">value=</span><span style="color:#0ff;font-weight:bold">&#34;0.0.0.0&#34;</span><span style="font-weight:bold">/&gt;</span>
+  <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;port&#34;</span> <span style="color:#007f7f">value=</span><span style="color:#0ff;font-weight:bold">&#34;8171&#34;</span><span style="font-weight:bold">/&gt;</span>
+<span style="font-weight:bold">&lt;/bean&gt;</span>
 </code></pre></div><p>Now let’s point the KahaDB persistence to the same location. This will result in only one instance at a time being able to acquire the lock to the DB and when the lock is released the other instance will be able get it from the same location.</p>
 <p>Modify the persistenceAdapter tag inside &lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml as follows.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;persistenceAdapter&gt;</span>
-    <span style="color:#f92672">&lt;kahaDB</span> <span style="color:#a6e22e">directory=</span><span style="color:#e6db74">&#34;/tmp/mq/kahadb&#34;</span><span style="color:#f92672">/&gt;</span>
-<span style="color:#f92672">&lt;/persistenceAdapter&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="font-weight:bold">&lt;persistenceAdapter&gt;</span>
+    <span style="font-weight:bold">&lt;kahaDB</span> <span style="color:#007f7f">directory=</span><span style="color:#0ff;font-weight:bold">&#34;/tmp/mq/kahadb&#34;</span><span style="font-weight:bold">/&gt;</span>
+<span style="font-weight:bold">&lt;/persistenceAdapter&gt;</span>
 </code></pre></div><p>Do this change for both of the instances.</p>
 <p>Now, let’s introduce the two instances to each other by adding a networkConnector pointing to each other. Add the following block to the &lt;ACTIVEMQ_HOME&gt;/conf/activemq.xml after the persistenceAdapter block in the master.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;networkConnectors&gt;</span>
-    <span style="color:#f92672">&lt;networkConnector</span> <span style="color:#a6e22e">uri=</span><span style="color:#e6db74">&#34;static:(tcp://localhost:61626)&#34;</span> <span style="color:#f92672">/&gt;</span>
-<span style="color:#f92672">&lt;/networkConnectors&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="font-weight:bold">&lt;networkConnectors&gt;</span>
+    <span style="font-weight:bold">&lt;networkConnector</span> <span style="color:#007f7f">uri=</span><span style="color:#0ff;font-weight:bold">&#34;static:(tcp://localhost:61626)&#34;</span> <span style="font-weight:bold">/&gt;</span>
+<span style="font-weight:bold">&lt;/networkConnectors&gt;</span>
 </code></pre></div><p>Port 61626 is the OpenWire port in the Slave instance. Similarly add the same block in the Slave activemq.xml file, pointing to the Master’s OpenWire port. Static discovery is used here to statically point to the existing broker instances.</p>
 <h3 id="starting-the-instances">Starting the instances</h3>
 <p>Now let’s start the Master broker instance.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd &lt;ACTIVEMQ_HOME&gt;/bin
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#fff;font-weight:bold">cd</span> &lt;ACTIVEMQ_HOME&gt;/bin
 ./activemq start
 
-<span style="color:#75715e"># tail the logs just for the fun of it</span>
+<span style="color:#007f7f"># tail the logs just for the fun of it</span>
 tail -100f ../data/activemq.log
 </code></pre></div><p>When observing the logs you will see some log entries similar to the following repeatedly appearing.</p>
 <pre tabindex="0"><code>2015-11-17 19:10:19,731 | INFO  | Establishing network connection from vm://localhost?async=false&amp;network=true to tcp://localhost:61626 | org.apache.activemq.network.DiscoveryNetworkConnector | ActiveMQ Task-61

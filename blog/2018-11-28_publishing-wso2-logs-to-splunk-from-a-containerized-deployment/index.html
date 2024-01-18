@@ -71,10 +71,10 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -147,12 +147,12 @@ Log Aggregation All log events are output as entries to files through Log4J. Bec
 <p>WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in &lt;CARBON_HOME&gt;/repository/conf folder, data in &lt;CARBON_HOME&gt;/repository/data, artifacts in &lt;CARBON_HOME&gt;/repository/deployment (or in &lt;CARBON_HOME&gt;/repository/tenants folder if you’re in to multi-tenancy). All the log files are written into &lt;CARBON_HOME&gt;/repository/logs folder.</p>
 <h4 id="log-aggregation">Log Aggregation</h4>
 <p>All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards &lt;CARBON_HOME&gt;/repository/logs folder. For an example, for ELK this could be something like <strong>FileBeat</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">filebeat.prospectors</span>:
-- <span style="color:#f92672">input_type</span>: <span style="color:#ae81ff">log</span>
-  <span style="color:#f92672">paths</span>:
-    - <span style="color:#ae81ff">/mnt/wso2am-2.6.0/repository/logs/*.log</span>
-<span style="color:#f92672">output.logstash</span>:
-  <span style="color:#f92672">hosts</span>: [<span style="color:#e6db74">&#34;logstash.private.deployment.local:5044&#34;</span>]
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">filebeat.prospectors</span>:
+- <span style="font-weight:bold">input_type</span>: log
+  <span style="font-weight:bold">paths</span>:
+    - /mnt/wso2am-2.6.0/repository/logs/*.log
+<span style="font-weight:bold">output.logstash</span>:
+  <span style="font-weight:bold">hosts</span>: [<span style="color:#0ff;font-weight:bold">&#34;logstash.private.deployment.local:5044&#34;</span>]
 
 </code></pre></div><p>When it comes Splunk, the traditional approach for a story like this is to use the <a href="http://docs.splunk.com/Documentation/Forwarder/6.4.2/Forwarder/Abouttheuniversalforwarder">Universal Forwarder</a>. It is an agent process that will read the contents of a specified log file and push events to a specified Splunk receiver port.</p>
 <p>However, this approach is not a suitable one when it comes to dynamic deployments like Docker, K8s, or ECS where instances are prone to come and go down without prior planning and notice. The gap exists when part of the Universal Forwarder configuration has to be done in the Splunk side the deployment. This will not be able to register new instances that were spawned by Container Orchestration systems both for auto healing and scaling. Furthermore, a somewhat heavy process like the Universal Forwarder running along side a JVM inside the same Container is not exactly conforming to Containerization best practices.</p>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Deploying Rust on Lambda",
+      "headline" : "Deploying Rust on Lambda",
+      "description" : "Dead (not a professional opinion) Pine tree on the coastal California   Following up from the last post let\u0026rsquo;s explore how to use Rust in Lambda functions.\nAWS has introduced a neat cargo command to make life easier and focus on building the business logic rather than get bogged down in deployment details. This is the cargo lambda command. Installing the command is pretty straightforward on a linux environment.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-01-16 12:57:07 \u002b1300 NZDT",
+      "dateModified" : "2024-01-16 12:57:07 \u002b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2024-01-16_deploying-rust-on-lambda\/",
+      "keywords" : [ "aws","rust","lambda","cargo", ]
+  }
+</script>
+<title>Deploying Rust on Lambda - chamila.dev</title>
+  <meta property="og:title" content="Deploying Rust on Lambda - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Dead (not a professional opinion) Pine tree on the coastal California   Following up from the last post let&rsquo;s explore how to use Rust in Lambda functions.
+AWS has introduced a neat cargo command to make life easier and focus on building the business logic rather than get bogged down in deployment details. This is the cargo lambda command. Installing the command is pretty straightforward on a linux environment." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Deploying Rust on Lambda</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2024-01-16 12:57:07 NZDT">
+                16 Jan 2024
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~7 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#creating-a-lambda-function">Creating a Lambda Function</a></li>
+    <li><a href="#watch-and-invoke-commands">Watch and Invoke Commands</a></li>
+    <li><a href="#deploying-the-function">Deploying the Function</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <figure><img src="/blog/img/2024-01-16_header.jpeg"/><figcaption>
+            <h4>Dead (not a professional opinion) Pine tree on the coastal California</h4>
+        </figcaption>
+</figure>
+
+<p>Following up from the <a href="/blog/2024-01-15_getting-started-with-aws-rust-sdk/">last post</a>
+let&rsquo;s explore how to use Rust in Lambda functions.</p>
+<p>AWS has introduced a neat <code>cargo</code> command to make life easier and focus on
+building the business logic rather than get bogged down in deployment details.
+This is the <a href="https://www.cargo-lambda.info/guide/getting-started.html"><code>cargo lambda</code>
+command</a>. Installing
+the command is pretty straightforward on a linux environment.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip3 install cargo-lambda
+</code></pre></div><p>One detail to note is that <code>cargo lambda</code> command uses <code>zig</code> toolchain to
+facilitate cross compiling the Rust code. This is important because Rust in
+Lambda runs on the OS only runtimes which run on <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-provided.html">Amazon Linux
+versions</a>.
+So, unless you&rsquo;re developing on a Linux workstation, chances are you&rsquo;d probably
+be cross compiling your code. <code>zig</code> toolchain is used because it comes built in
+with the <code>cargo-zigbuild</code> crate. More information on cross-compiling and known
+issues can be found <a href="https://www.cargo-lambda.info/guide/cross-compiling.html">on the
+documentation</a>.</p>
+<p>With that detail aside (and wondering why you should install <code>zig</code> for a Rust
+project (which you don&rsquo;t have to manually do if you use <code>pip</code> to install the
+<code>cargo lambda</code> command)), let&rsquo;s dive into the code.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ol>
+<li>Rust + basic knowledge on Rust</li>
+<li><code>cargo lambda</code> command</li>
+<li>AWS access</li>
+</ol>
+<h2 id="creating-a-lambda-function">Creating a Lambda Function</h2>
+<p>Like we use <code>cargo new</code> to create a new Rust project, <code>cargo lambda new</code>
+command can be used to create a new Rust Lambda project.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cargo lambda new lambda-hello-world
+</code></pre></div><p>This requires a couple of questions that would then generate the boilerplate
+code needed for a bare minimum Lambda function. The first question is about how
+the function is triggered. If the function is triggered by an AWS service
+related event, the second question will be to select the service that will
+trigger the Lambda function.</p>
+<p><img src="/blog/img/2024-01-16_cargo_lambda_new.png" alt="cargo lambda new"></p>
+<p>For either type, the skeletal code that is generated consists of the following
+structure.</p>
+<ol>
+<li>async main function that enables tracing and invokes the function handler</li>
+<li>the function handler code that gets passed the incoming event</li>
+</ol>
+<p>This is similar to what the other supported languages (like with managed
+runtimes such as Python) but without the main function entrypoint. Since Rust
+on Lambda runs on the OS only runtimes, the main function entrypoint is
+required.</p>
+<p>A detail of interest is the use of the <code>tracing_subscriber</code> which enables
+outputting trace information from the code. Lambda function execution runtime
+gathers the output from <code>stdout</code> and <code>tracing_subscriber</code> to CloudWatch logs.
+Furthermore, <code>tracing_subscriber</code>&rsquo;s <code>instrument</code> feature can be used to inject
+the request ID for each log line generated this way to make debugging easier.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#0f0;font-weight:bold">#[tokio::main]</span>
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> main() -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
+    tracing_subscriber::fmt()
+        .with_max_level(tracing::Level::INFO)
+        <span style="color:#007f7f">// disable printing the name of the module in every log line.
+</span><span style="color:#007f7f"></span>        .with_target(<span style="color:#fff;font-weight:bold">false</span>)
+        <span style="color:#007f7f">// disabling time is handy because CloudWatch will add the ingestion time.
+</span><span style="color:#007f7f"></span>        .without_time()
+        .init();
+
+    run(service_fn(function_handler)).<span style="color:#fff;font-weight:bold">await</span>
+}
+</code></pre></div><p>More information on the Lambda function logging for Rust can be found <a href="https://docs.aws.amazon.com/lambda/latest/dg/rust-logging.html">in the
+documentation</a>.</p>
+<p>For HTTP requests, the type of the struct passed to the function handler
+function is <code>lambda_http::Request</code>. The crate <code>lambda_http</code> provides the type
+definitions for the HTTP functions. You&rsquo;ll notice that this is already in
+<code>Cargo.toml</code> along with <code>lambda_runtime</code>. This is what is made convenient by
+the <code>cargo lambda</code> command, and it is just getting started.</p>
+<p>For Event trigger based functions, the type definitions are provided by
+<code>aws_lambda_events</code> crate (with somewhat inconsistent naming convention as I
+noticed). This dependency is added if the type of the function is selected to
+be an Event trigger (answered with <code>n</code> for the first question during <code>cargo lambda new</code> command). Unlike the code generated for an HTTP triggered function,
+the function handler in an AWS service Event triggered function will have the
+specific service Event type as the input parameter type. For an example, for a
+function that is triggered by S3 Events, the type of the parameter is
+<code>aws_lambda_events::events::s3::S3Event</code>. Note that <code>cargo lambda new</code> adds the
+<code>aws_lambda_events</code> dependency with the specific service feature only. So if
+your Lambda function code deals with multiple services and needs to use those
+type definitions, you&rsquo;ll have to manually add <a href="https://docs.rs/crate/aws_lambda_events/latest/features">the features for the additional
+services</a> through
+<code>cargo add</code> command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> function_handler(event: LambdaEvent&lt;S3Event&gt;) -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
+    <span style="color:#007f7f">// Extract some useful information from the request
+</span><span style="color:#007f7f"></span>
+    <span style="color:#fff;font-weight:bold">Ok</span>(())
+}
+</code></pre></div><p>Each Event type&rsquo;s
+<a href="https://docs.rs/aws_lambda_events/latest/aws_lambda_events/event/s3/struct.S3Event.html">documentation</a>
+can help on understading the fields available after deserialisation.</p>
+<h2 id="watch-and-invoke-commands">Watch and Invoke Commands</h2>
+<p>The true beauty of <code>cargo lambda</code> starts after the code generation part. <code>cargo lambda watch</code> and <code>cargo lambda invoke</code> commands help iteratively develop and
+test the Lambda function code with minimal round trip time for a test cycle.
+While at a certain point, the function will have to be uploaded and run on
+actual AWS environment (or if you have something like <code>localstack</code>, there),
+initial development rounds can benefit a lot from a hot reload <code>npm start</code> like
+process.</p>
+<p><code>cargo lambda watch</code> keeps watching the source code files and recompiles and
+runs the function code. For HTTP triggered functions this makes the function
+available on <code>http://localhost:9000</code>. For Event triggered lambda functions, the
+command <code>cargo lambda invoke</code> can be used. This can use <a href="https://github.com/awslabs/aws-lambda-rust-runtime/tree/main/lambda-events">the sample request
+repository</a>
+that contains sample JSON requests for most of the services supported by Lambda
+functions as triggeres. For an example, for a Lambda function that is triggered
+by an S3 Event, the following command can be used to test function trigger.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cargo lambda invoke --data-example s3-event
+</code></pre></div><p>The flag <code>--data-example</code> refers to the file name without the prefix <code>example-</code>
+in <a href="https://github.com/awslabs/aws-lambda-rust-runtime/blob/main/lambda-events/src/fixtures/example-s3-event.json">the <code>lambda-events</code> directory in the <code>aws-lambda-rust-runtime</code>
+repository</a>.</p>
+<p>If this sample request needs to be customised, it can be downloaded,
+customised, and used with the <a href="https://www.cargo-lambda.info/commands/invoke.html#file-data"><code>--data-file</code>
+flag</a>.</p>
+<h2 id="deploying-the-function">Deploying the Function</h2>
+<p>After a few rounds of iterative development you&rsquo;d finally want to deploy the
+function to an actual AWS account. For this the easiest way is to use <code>cargo lambda build</code> and <code>cargo lambda deploy</code> commands together.</p>
+<p><code>cargo lambda build</code> compiles (or cross-compiles if you&rsquo;re in a non Linux
+environment) the function code and builds the bootstrap binary file. It can be
+used to build an optimised binary with minimal file size and optimised for the
+Lambda runtime by using the <code>--release</code> flag. Additionally, it can also
+cross-compile for target architecture <code>arm64</code>, the result of which can be run on
+Lambda Graviton2 processors, enabling more price performance on top of what you
+would already get by using Rust (instead of the obvious underdog, Java).</p>
+<p><code>cargo lambda invoke</code> is used to create/update the function with the code built
+by the above <code>build</code> command. Something to note about this command is the use
+of appropriate AWS credentials. When deploying as a new function, <code>cargo lambda</code>
+will create the IAM role to be used as the function execution role. If your
+credentials cannot do this for some reason (lack of permissions or MFA), the
+<code>invoke</code> command will fail to deploy the function. If your credentials have the
+necessary permissions but still fail at the above command, check that</p>
+<ol>
+<li>the credentials are not generated at AWS IAM Identity Center
+(previously known as AWS SSO - which was a <em><strong>perfectly suitable name</strong></em>).
+Rust SDK does not still support credentials generated by AWS SSO.</li>
+<li>credentials aren&rsquo;t temporary ones generated by STS without an MFA. STS
+credentials generated without an MFA cannot perform IAM API operations.</li>
+</ol>
+<p>Also note that the <code>invoke</code> command does not create the peripheral
+configuration such as the actual trigger for the function. Those details still
+have to be created, either manually or by the IaC run you&rsquo;ll probably execute.</p>
+<p>With the <code>tracing_subscriber</code> modified to output structured JSON logging, and
+with a trace log added with <code>info</code> level, the following line can be seen in
+CloudWatch logs when the trigger is appropriately configured and the function
+executed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#0f0;font-weight:bold">#[tokio::main]</span>
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> main() -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
+    tracing_subscriber::fmt()
+        <span style="color:#007f7f">// setting structured JSON output
+</span><span style="color:#007f7f"></span>        .json()
+        .with_max_level(tracing::Level::INFO)
+        <span style="color:#007f7f">// disable printing the name of the module in every log line.
+</span><span style="color:#007f7f"></span>        .with_target(<span style="color:#fff;font-weight:bold">false</span>)
+        <span style="color:#007f7f">// disabling time is handy because CloudWatch will add the ingestion time.
+</span><span style="color:#007f7f"></span>        .without_time()
+        .init();
+
+    run(service_fn(function_handler)).<span style="color:#fff;font-weight:bold">await</span>
+}
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> function_handler(event: LambdaEvent&lt;S3Event&gt;) -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
+    <span style="color:#007f7f">// Extract some useful information from the request
+</span><span style="color:#007f7f"></span>    tracing::info!(<span style="color:#0ff;font-weight:bold">&#34;s3 event received: [principal] {}&#34;</span>, event.payload.records[<span style="color:#ff0;font-weight:bold">0</span>].principal_id.principal_id.as_ref().unwrap());
+
+    <span style="color:#fff;font-weight:bold">Ok</span>(())
+}
+</code></pre></div><p><img src="/blog/img/2024-01-16_cloudwatch_logs.png" alt="CloudWatch logs for the functionexecution"></p>
+<p>More configuration options for the function such as the environment variables
+and resources can be configured either through the command flags or <a href="https://www.cargo-lambda.info/commands/deploy.html#deploy-configuration-in-cargo-s-metadata">entries in
+the <code>Cargo.toml</code> file under the section
+<code>package.metadata.lambda.deploy</code></a>.</p>
+<p>With the configuration in <code>Cargo.toml</code>, and with additional support from <a href="https://github.com/cargo-lambda/cargo-lambda-cdk">the
+AWS construct for Rust for
+Lambda</a>, CDK can be used to
+deploy and manage the state for the Lambda function.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>There are a lot of discussions around the runtime efficiency of Rust compared
+to managed runtimes or other contendors when running Lambda functions. Whatever
+the reasons, the toolkit provided by AWS provides a comfortable bridge for
+getting started with Rust for Lambda functions.</p>
+<p>The same toolkit can also be used to develop <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html">Lambda function
+extensions</a>
+, although this is out of scope for this post for now.</p>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/">&lt; Getting Started with AWS Rust SDK</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2024-01-15_getting-started-with-aws-rust-sdk/">Getting Started with AWS Rust SDK</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

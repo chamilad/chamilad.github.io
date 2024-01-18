@@ -70,10 +70,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -154,109 +154,109 @@
 <p><img src="/blog/img/2018-11-25_cicd-apis-with-wso2-api-manager_0.jpeg#layoutTextWidth" alt=""></p>
 <p>During this API creation, the number of inputs expected of the requesting party is something that can vary based on the story. For an example, some stories may only require a few metadata like name, context, and description whereas other stories may demand more details like backend URLs, tagging metadata, resource configuration, etc. It’s the responsibility of the party who designs this process to come up with the level of details required in the process initiation and codify it to a proper structured request format.</p>
 <p>For an example, a minimal API creation request could look like the following JSON document.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;username&#34;</span>: <span style="color:#e6db74">&#34;Username of the user&#34;</span>,
-  <span style="color:#f92672">&#34;department&#34;</span>: <span style="color:#e6db74">&#34;Department of the user&#34;</span>,
-  <span style="color:#f92672">&#34;apis&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;username&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Username of the user&#34;</span>,
+  <span style="font-weight:bold">&#34;department&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Department of the user&#34;</span>,
+  <span style="font-weight:bold">&#34;apis&#34;</span>: [
     {
-      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;SampleAPI_dev1&#34;</span>,
-      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Sample API description&#34;</span>,
-      <span style="color:#f92672">&#34;context&#34;</span>: <span style="color:#e6db74">&#34;/api/dev1/sample&#34;</span>,
-      <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;v1&#34;</span>
+      <span style="font-weight:bold">&#34;name&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;SampleAPI_dev1&#34;</span>,
+      <span style="font-weight:bold">&#34;description&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Sample API description&#34;</span>,
+      <span style="font-weight:bold">&#34;context&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;/api/dev1/sample&#34;</span>,
+      <span style="font-weight:bold">&#34;version&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;v1&#34;</span>
     }
   ]
 }
 </code></pre></div><p>The JSON-Schema for this is as follows.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;$schema&#34;</span>: <span style="color:#e6db74">&#34;http://json-schema.org/draft-04/schema#&#34;</span>,
-  <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
-  <span style="color:#f92672">&#34;properties&#34;</span>: {
-    <span style="color:#f92672">&#34;username&#34;</span>: {
-      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;$schema&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;http://json-schema.org/draft-04/schema#&#34;</span>,
+  <span style="font-weight:bold">&#34;type&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span>,
+  <span style="font-weight:bold">&#34;properties&#34;</span>: {
+    <span style="font-weight:bold">&#34;username&#34;</span>: {
+      <span style="font-weight:bold">&#34;type&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;string&#34;</span>
     },
-    <span style="color:#f92672">&#34;department&#34;</span>: {
-      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
+    <span style="font-weight:bold">&#34;department&#34;</span>: {
+      <span style="font-weight:bold">&#34;type&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;string&#34;</span>
     },
-    <span style="color:#f92672">&#34;apis&#34;</span>: {
-      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;array&#34;</span>,
-      <span style="color:#f92672">&#34;items&#34;</span>: [
+    <span style="font-weight:bold">&#34;apis&#34;</span>: {
+      <span style="font-weight:bold">&#34;type&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;array&#34;</span>,
+      <span style="font-weight:bold">&#34;items&#34;</span>: [
         {
-          <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
-          <span style="color:#f92672">&#34;properties&#34;</span>: {
-            <span style="color:#f92672">&#34;name&#34;</span>: {
-              <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
+          <span style="font-weight:bold">&#34;type&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span>,
+          <span style="font-weight:bold">&#34;properties&#34;</span>: {
+            <span style="font-weight:bold">&#34;name&#34;</span>: {
+              <span style="font-weight:bold">&#34;type&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;string&#34;</span>
             },
-            <span style="color:#f92672">&#34;description&#34;</span>: {
-              <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
+            <span style="font-weight:bold">&#34;description&#34;</span>: {
+              <span style="font-weight:bold">&#34;type&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;string&#34;</span>
             },
-            <span style="color:#f92672">&#34;context&#34;</span>: {
-              <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
+            <span style="font-weight:bold">&#34;context&#34;</span>: {
+              <span style="font-weight:bold">&#34;type&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;string&#34;</span>
             },
-            <span style="color:#f92672">&#34;version&#34;</span>: {
-              <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
+            <span style="font-weight:bold">&#34;version&#34;</span>: {
+              <span style="font-weight:bold">&#34;type&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;string&#34;</span>
             }
           },
-          <span style="color:#f92672">&#34;required&#34;</span>: [
-            <span style="color:#e6db74">&#34;name&#34;</span>,
-            <span style="color:#e6db74">&#34;description&#34;</span>,
-            <span style="color:#e6db74">&#34;context&#34;</span>,
-            <span style="color:#e6db74">&#34;version&#34;</span>
+          <span style="font-weight:bold">&#34;required&#34;</span>: [
+            <span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>,
+            <span style="color:#0ff;font-weight:bold">&#34;description&#34;</span>,
+            <span style="color:#0ff;font-weight:bold">&#34;context&#34;</span>,
+            <span style="color:#0ff;font-weight:bold">&#34;version&#34;</span>
           ]
         }
       ]
     }
   },
-  <span style="color:#f92672">&#34;required&#34;</span>: [
-    <span style="color:#e6db74">&#34;username&#34;</span>,
-    <span style="color:#e6db74">&#34;department&#34;</span>,
-    <span style="color:#e6db74">&#34;apis&#34;</span>
+  <span style="font-weight:bold">&#34;required&#34;</span>: [
+    <span style="color:#0ff;font-weight:bold">&#34;username&#34;</span>,
+    <span style="color:#0ff;font-weight:bold">&#34;department&#34;</span>,
+    <span style="color:#0ff;font-weight:bold">&#34;apis&#34;</span>
   ]
 }
 </code></pre></div><p>Since this example only takes the minimal parameters for an API creation, the APIs will be created with the status <code>CREATED</code> which enables to submit minimal data in the creation request.</p>
 <p>It’s the job of the automation tool to make sense of this request format and perform the necessary actions. I have implemented a sample Python script that does this (and performs Continuous Delivery in the next section) and uploaded the <a href="https://github.com/chamilad/apim_cicd">code to Github</a>. This script can be invoked in the automation tool (e.g. as a Shell Task in Jenkins) during a job that is triggered by a post-commit hook from a Git repository that contains the API requests.</p>
 <p>Let’s briefly go over the Python code to understand the basic implementation of a CI flow.</p>
 <p>First task is to parse the JSON requests so that each API request can be made.’</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">for</span> api_request_file <span style="color:#f92672">in</span> glob<span style="color:#f92672">.</span>glob(<span style="color:#e6db74">&#34;api_definitions/*_apis.json&#34;</span>):
-        request_json_content <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(open(api_request_file)<span style="color:#f92672">.</span>read())
-        requesting_user <span style="color:#f92672">=</span> request_json_content[<span style="color:#e6db74">&#34;username&#34;</span>]
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#fff;font-weight:bold">for</span> api_request_file in glob.glob(<span style="color:#0ff;font-weight:bold">&#34;api_definitions/*_apis.json&#34;</span>):
+        request_json_content = json.loads(<span style="color:#fff;font-weight:bold">open</span>(api_request_file).read())
+        requesting_user = request_json_content[<span style="color:#0ff;font-weight:bold">&#34;username&#34;</span>]
 
-        print <span style="color:#e6db74">&#34;Parsing create requests for [user] </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> [department] </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> [requests] </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">...&#34;</span> <span style="color:#f92672">%</span> (
-            requesting_user, request_json_content[<span style="color:#e6db74">&#34;department&#34;</span>], len(request_json_content[<span style="color:#e6db74">&#34;apis&#34;</span>]))
+        <span style="color:#fff;font-weight:bold">print</span> <span style="color:#0ff;font-weight:bold">&#34;Parsing create requests for [user] </span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold"> [department] </span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold"> [requests] </span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">...&#34;</span> % (
+            requesting_user, request_json_content[<span style="color:#0ff;font-weight:bold">&#34;department&#34;</span>], <span style="color:#fff;font-weight:bold">len</span>(request_json_content[<span style="color:#0ff;font-weight:bold">&#34;apis&#34;</span>]))
 
 </code></pre></div><p>The JSON requests are contained as files inside a particular folder, <code>api_definintions</code> . The reason why JSON was selected as the DSL for this PoC is clear here. Python support for JSON is brilliant.</p>
 <p>The parsed data then have to be converted to API create requests. But before that can happen, the existence of each API in the environment has to be checked. If an API <strong>CREATE</strong> request is made for an existing API (matching name, version, and context), the REST API will return an error. In this case, there should not be any <strong>CREATE</strong>requests.</p>
 <blockquote>
 <p>There is another edge case where the API already exists by name and context but <strong>not by version.</strong> In this case, the request should be to create a new version of the existing API.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># If there is no matching API, an API create request is done.</span>
-<span style="color:#75715e"># If a matching API is there, but no matching version, a version would be added</span>
-<span style="color:#75715e"># If both a matching API with a matching version exists, the API would not be created.</span>
-<span style="color:#66d9ef">for</span> api_request <span style="color:#f92672">in</span> request_json_content[<span style="color:#e6db74">&#34;apis&#34;</span>]:
-    api_name_exists, api_id <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>api_name_exists(api_request[<span style="color:#e6db74">&#34;name&#34;</span>], apimgt_url, access_token,
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># If there is no matching API, an API create request is done.</span>
+<span style="color:#007f7f"># If a matching API is there, but no matching version, a version would be added</span>
+<span style="color:#007f7f"># If both a matching API with a matching version exists, the API would not be created.</span>
+<span style="color:#fff;font-weight:bold">for</span> api_request in request_json_content[<span style="color:#0ff;font-weight:bold">&#34;apis&#34;</span>]:
+    api_name_exists, api_id = api_utils.api_name_exists(api_request[<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>], apimgt_url, access_token,
                                                         verify_ssl)
 
-    <span style="color:#66d9ef">if</span> api_name_exists:
-        <span style="color:#75715e"># Check if the same version exists</span>
-        api_version_exists, _ <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>api_version_exists(api_request[<span style="color:#e6db74">&#34;name&#34;</span>], api_request[<span style="color:#e6db74">&#34;version&#34;</span>],
+    <span style="color:#fff;font-weight:bold">if</span> api_name_exists:
+        <span style="color:#007f7f"># Check if the same version exists</span>
+        api_version_exists, _ = api_utils.api_version_exists(api_request[<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>], api_request[<span style="color:#0ff;font-weight:bold">&#34;version&#34;</span>],
                                                              apimgt_url, access_token, verify_ssl)
-        <span style="color:#66d9ef">if</span> api_version_exists:
-            <span style="color:#75715e"># Do not create the same version</span>
-            print <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">:</span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> </span><span style="color:#ae81ff">\t</span><span style="color:#e6db74"> :Exists. Skipping...&#34;</span> <span style="color:#f92672">%</span> (api_request[<span style="color:#e6db74">&#34;name&#34;</span>], api_request[<span style="color:#e6db74">&#34;version&#34;</span>])
-            <span style="color:#66d9ef">continue</span>
-        <span style="color:#66d9ef">else</span>:
-            <span style="color:#75715e"># Add as a new version</span>
-            print <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">:</span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> </span><span style="color:#ae81ff">\t</span><span style="color:#e6db74"> :Adding version...&#34;</span> <span style="color:#f92672">%</span> (api_request[<span style="color:#e6db74">&#34;name&#34;</span>], api_request[<span style="color:#e6db74">&#34;version&#34;</span>])
-            api_utils<span style="color:#f92672">.</span>add_api_version(api_id, api_request[<span style="color:#e6db74">&#34;version&#34;</span>], apimgt_url, access_token, verify_ssl)
-    <span style="color:#66d9ef">else</span>:
-        <span style="color:#75715e"># Create API</span>
-        print <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">:</span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> </span><span style="color:#ae81ff">\t</span><span style="color:#e6db74"> :Creating...&#34;</span> <span style="color:#f92672">%</span> (api_request[<span style="color:#e6db74">&#34;name&#34;</span>], api_request[<span style="color:#e6db74">&#34;version&#34;</span>])
+        <span style="color:#fff;font-weight:bold">if</span> api_version_exists:
+            <span style="color:#007f7f"># Do not create the same version</span>
+            <span style="color:#fff;font-weight:bold">print</span> <span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">\t</span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">:</span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold"> </span><span style="color:#0ff;font-weight:bold">\t</span><span style="color:#0ff;font-weight:bold"> :Exists. Skipping...&#34;</span> % (api_request[<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>], api_request[<span style="color:#0ff;font-weight:bold">&#34;version&#34;</span>])
+            <span style="color:#fff;font-weight:bold">continue</span>
+        <span style="color:#fff;font-weight:bold">else</span>:
+            <span style="color:#007f7f"># Add as a new version</span>
+            <span style="color:#fff;font-weight:bold">print</span> <span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">\t</span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">:</span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold"> </span><span style="color:#0ff;font-weight:bold">\t</span><span style="color:#0ff;font-weight:bold"> :Adding version...&#34;</span> % (api_request[<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>], api_request[<span style="color:#0ff;font-weight:bold">&#34;version&#34;</span>])
+            api_utils.add_api_version(api_id, api_request[<span style="color:#0ff;font-weight:bold">&#34;version&#34;</span>], apimgt_url, access_token, verify_ssl)
+    <span style="color:#fff;font-weight:bold">else</span>:
+        <span style="color:#007f7f"># Create API</span>
+        <span style="color:#fff;font-weight:bold">print</span> <span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">\t</span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">:</span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold"> </span><span style="color:#0ff;font-weight:bold">\t</span><span style="color:#0ff;font-weight:bold"> :Creating...&#34;</span> % (api_request[<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>], api_request[<span style="color:#0ff;font-weight:bold">&#34;version&#34;</span>])
 
-        <span style="color:#75715e"># build create request</span>
-        <span style="color:#75715e"># ....</span>
-        <span style="color:#75715e"># ....</span>
-        <span style="color:#75715e"># ....</span>
+        <span style="color:#007f7f"># build create request</span>
+        <span style="color:#007f7f"># ....</span>
+        <span style="color:#007f7f"># ....</span>
+        <span style="color:#007f7f"># ....</span>
 
-        successful <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>create_api(create_req_body, apimgt_url, access_token, verify_ssl)
+        successful = api_utils.create_api(create_req_body, apimgt_url, access_token, verify_ssl)
 </code></pre></div><p><a href="https://github.com/chamilad/apim_cicd/blob/master/api_create.py">The complete script can be found in the Github Repository</a>. There are additional logic that involves loading configuration parameters, obtains access tokens, and handles errors.</p>
 <p>This script would turn the requests contained in <a href="https://github.com/chamilad/apim_cicd/tree/master/api_definitions">these JSON files</a> to the following APIs in <code>CREATED</code> state in WSO2 API Manager Publisher.</p>
 <figure><img src="/blog/img/2018-11-25_cicd-apis-with-wso2-api-manager_1.png#layoutTextWidth"><figcaption>Executing the api_create.py script with configuration pointing to a local WSO2 API Manager 2.6.0 Docker Container</figcaption></figure>
@@ -269,39 +269,39 @@
 <p>Continuous Delivery of APIs into production, promoting them from lower level environments with proper testing a well designed dream to have. Once the APIs are created in the lowest environment, there can be a periodic or manually triggered automation job that reads API details from one environment, create or update them in the next environment, and ideally run API tests on the higher level environment that make sure no contract is broken by the changes introduced.</p>
 <p><img src="/blog/img/2018-11-25_cicd-apis-with-wso2-api-manager_3.jpeg#layoutTextWidth" alt=""></p>
 <p>In the <a href="https://github.com/chamilad/apim_cicd">PoC scripts in my Github Repository</a>, the API read and propagation step is implemented as <a href="https://github.com/chamilad/apim_cicd/blob/master/api_propagate.py">another Python script</a>. Given the details of the two environments, it will iterate through each API read from the lower level environment, check if it exists in the upper level environment, and do a <strong>CREATE</strong> or <strong>UPDATE</strong> request as needed.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 1. Get list of APIs from env1</span>
-print <span style="color:#e6db74">&#34;Getting the list of APIs from ENV1...&#34;</span>
-all_apis_in_env1 <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>get_all_apis(env1_apimgt_url, env1_access_token, verify_ssl)
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># 1. Get list of APIs from env1</span>
+<span style="color:#fff;font-weight:bold">print</span> <span style="color:#0ff;font-weight:bold">&#34;Getting the list of APIs from ENV1...&#34;</span>
+all_apis_in_env1 = api_utils.get_all_apis(env1_apimgt_url, env1_access_token, verify_ssl)
 
-<span style="color:#75715e">#...</span>
-<span style="color:#75715e">#...</span>
-<span style="color:#75715e">#...</span>
+<span style="color:#007f7f">#...</span>
+<span style="color:#007f7f">#...</span>
+<span style="color:#007f7f">#...</span>
 
-<span style="color:#75715e"># 2. Iterate through APIs and check if exists in env2</span>
-print <span style="color:#e6db74">&#34;Checking for API status in ENV2...&#34;</span>
-<span style="color:#66d9ef">for</span> api_to_propagate <span style="color:#f92672">in</span> all_apis_in_env1[<span style="color:#e6db74">&#34;list&#34;</span>]:
+<span style="color:#007f7f"># 2. Iterate through APIs and check if exists in env2</span>
+<span style="color:#fff;font-weight:bold">print</span> <span style="color:#0ff;font-weight:bold">&#34;Checking for API status in ENV2...&#34;</span>
+<span style="color:#fff;font-weight:bold">for</span> api_to_propagate in all_apis_in_env1[<span style="color:#0ff;font-weight:bold">&#34;list&#34;</span>]:
     
-    <span style="color:#75715e">#...</span>
-    <span style="color:#75715e"># get the api definition from env 1</span>
-    api_definition_env1 <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>get_api_by_id(api_to_propagate[<span style="color:#e6db74">&#34;id&#34;</span>], env1_apimgt_url, env1_access_token,
+    <span style="color:#007f7f">#...</span>
+    <span style="color:#007f7f"># get the api definition from env 1</span>
+    api_definition_env1 = api_utils.get_api_by_id(api_to_propagate[<span style="color:#0ff;font-weight:bold">&#34;id&#34;</span>], env1_apimgt_url, env1_access_token,
                                                   verify_ssl)
-    <span style="color:#75715e">#...</span>
-    <span style="color:#75715e">#...</span>
+    <span style="color:#007f7f">#...</span>
+    <span style="color:#007f7f">#...</span>
     
-    <span style="color:#75715e"># check if API exists in env2</span>
-    api_exists_in_env2, api_id <span style="color:#f92672">=</span> api_utils<span style="color:#f92672">.</span>api_version_exists(api_definition_env1[<span style="color:#e6db74">&#34;name&#34;</span>],
-                                                              api_definition_env1[<span style="color:#e6db74">&#34;version&#34;</span>],
+    <span style="color:#007f7f"># check if API exists in env2</span>
+    api_exists_in_env2, api_id = api_utils.api_version_exists(api_definition_env1[<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>],
+                                                              api_definition_env1[<span style="color:#0ff;font-weight:bold">&#34;version&#34;</span>],
                                                               env2_apimgt_url, env2_access_token, verify_ssl)
-    <span style="color:#66d9ef">if</span> api_exists_in_env2:
-        <span style="color:#75715e"># 3. If exists, update API</span>
-        api_definition_env1[<span style="color:#e6db74">&#34;id&#34;</span>] <span style="color:#f92672">=</span> api_id
+    <span style="color:#fff;font-weight:bold">if</span> api_exists_in_env2:
+        <span style="color:#007f7f"># 3. If exists, update API</span>
+        api_definition_env1[<span style="color:#0ff;font-weight:bold">&#34;id&#34;</span>] = api_id
 
-        print <span style="color:#e6db74">&#34;Updating API </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> in ENV2...&#34;</span> <span style="color:#f92672">%</span> api_definition_env1[<span style="color:#e6db74">&#34;name&#34;</span>]
-        api_utils<span style="color:#f92672">.</span>update_api(api_definition_env1, env2_apimgt_url, env2_access_token, verify_ssl)
-    <span style="color:#66d9ef">else</span>:
-        <span style="color:#75715e"># 4 If doesn&#39;t exist, create API in env2</span>
-        print <span style="color:#e6db74">&#34;Creating API </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> in ENV2...&#34;</span> <span style="color:#f92672">%</span> api_definition_env1[<span style="color:#e6db74">&#34;name&#34;</span>]
-        api_utils<span style="color:#f92672">.</span>create_api(api_definition_env1, env2_apimgt_url, env2_access_token, verify_ssl)
+        <span style="color:#fff;font-weight:bold">print</span> <span style="color:#0ff;font-weight:bold">&#34;Updating API </span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold"> in ENV2...&#34;</span> % api_definition_env1[<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>]
+        api_utils.update_api(api_definition_env1, env2_apimgt_url, env2_access_token, verify_ssl)
+    <span style="color:#fff;font-weight:bold">else</span>:
+        <span style="color:#007f7f"># 4 If doesn&#39;t exist, create API in env2</span>
+        <span style="color:#fff;font-weight:bold">print</span> <span style="color:#0ff;font-weight:bold">&#34;Creating API </span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold"> in ENV2...&#34;</span> % api_definition_env1[<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>]
+        api_utils.create_api(api_definition_env1, env2_apimgt_url, env2_access_token, verify_ssl)
 </code></pre></div><p>The logic here is straightforward.</p>
 <ol>
 <li>The list of APIs is retrieved from <strong>ENV1</strong></li>

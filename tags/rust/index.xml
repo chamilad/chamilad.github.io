@@ -6,7 +6,17 @@
     <description>Recent content in Rust on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jan 2024 05:26:45 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Jan 2024 12:57:07 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deploying Rust on Lambda</title>
+      <link>https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/</link>
+      <pubDate>Tue, 16 Jan 2024 12:57:07 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/</guid>
+      <description>Dead (not a professional opinion) Pine tree on the coastal California   Following up from the last post let&amp;rsquo;s explore how to use Rust in Lambda functions.
+AWS has introduced a neat cargo command to make life easier and focus on building the business logic rather than get bogged down in deployment details. This is the cargo lambda command. Installing the command is pretty straightforward on a linux environment.</description>
+    </item>
+    
     <item>
       <title>Getting Started with AWS Rust SDK</title>
       <link>https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/</link>

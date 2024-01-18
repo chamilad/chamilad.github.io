@@ -71,10 +71,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -182,18 +182,18 @@
 <p>Or this Logstash could be part of a central Admin Cluster that hosts all the Ops and Administrative components of the stack. In that case, Logstash endpoint should be the publicly (or org-internally) resolvable URL. Note that, other than Filebeat, the log collection layer, all other layers of the stack could be part of a separate admin cluster.</p>
 </blockquote>
 <p>The configuration including all of the above aspects that will be included in the <code>filebeat.yml</code> configuration file would look like the following.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    <span style="color:#f92672">filebeat.inputs</span>:
-    - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">container</span>
-      <span style="color:#f92672">paths</span>:
-        - <span style="color:#ae81ff">/var/log/containers/*.log</span>
-      <span style="color:#f92672">processors</span>:
-        - <span style="color:#f92672">add_kubernetes_metadata</span>:
-            <span style="color:#f92672">in_cluster</span>: <span style="color:#66d9ef">true</span>
-    <span style="color:#f92672">processors</span>:
-      - <span style="color:#f92672">add_cloud_metadata</span>:
-      - <span style="color:#f92672">add_host_metadata</span>:
-    <span style="color:#f92672">output.logstash</span>:
-      <span style="color:#f92672">hosts</span>: [<span style="color:#e6db74">&#34;logstash.default.svc.cluster.local:5044&#34;</span>]
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    <span style="font-weight:bold">filebeat.inputs</span>:
+    - <span style="font-weight:bold">type</span>: container
+      <span style="font-weight:bold">paths</span>:
+        - /var/log/containers/*.log
+      <span style="font-weight:bold">processors</span>:
+        - <span style="font-weight:bold">add_kubernetes_metadata</span>:
+            <span style="font-weight:bold">in_cluster</span>: <span style="color:#fff;font-weight:bold">true</span>
+    <span style="font-weight:bold">processors</span>:
+      - <span style="font-weight:bold">add_cloud_metadata</span>:
+      - <span style="font-weight:bold">add_host_metadata</span>:
+    <span style="font-weight:bold">output.logstash</span>:
+      <span style="font-weight:bold">hosts</span>: [<span style="color:#0ff;font-weight:bold">&#34;logstash.default.svc.cluster.local:5044&#34;</span>]
 </code></pre></div><p>This is a slightly modified version of the configuration that is <a href="https://www.elastic.co/guide/en/beats/filebeat/current/running-on-kubernetes.html%5B">provided by Elastic</a>. This is a minimal configuration matching a minimal requirement set. It’s highly likely this will require modification before getting adapted to specific deployments</p>
 <figure><img src="/blog/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_2.png#layoutTextWidth"><figcaption>Filebeat DaemonSet and the Pod (in a single Node setup)</figcaption></figure>
 <blockquote>

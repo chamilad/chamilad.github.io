@@ -70,10 +70,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -135,7 +135,7 @@
         </header>
         <div class="post-content markdown-body">
           <p>I wrote a <a href="https://github.com/chamilad/kibana-prometheus-exporter">Prometheus Exporter that converts and exposes some metrics from Kibana API</a>. This was mostly inspired by <a href="https://github.com/pjhampton/kibana-prometheus-exporter/">an already existing Exporter</a>, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password
 </code></pre></div><p>The Exporter is pretty basic one written in less than 500 lines of collective Go code. The following metrics are exposed to be scraped by Prometheus.</p>
 <table>
 <thead>
@@ -209,24 +209,24 @@
 </tbody>
 </table>
 <p>The Exporter is distributed as a statically linked binary that can be started with no dependencies. In addition to the binaries that can be found <a href="https://github.com/chamilad/kibana-prometheus-exporter/releases">on the GitHub releases page</a>, the Exporter is also distributed <a href="https://hub.docker.com/r/chamilad/kibana-prometheus-exporter">as a Docker image on Docker Hub</a>. How to use, report bugs, and contribute can be found on the <a href="https://github.com/chamilad/kibana-prometheus-exporter/blob/master/README.md">project README</a>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -p 9684:9684 -it chamilad/kibana-prometheus-exporter:v7.5.x.1 -kibana.username elastic -kibana.password password -kibana.uri https://elasticcloud.kibana.aws.found.io
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -p 9684:9684 -it chamilad/kibana-prometheus-exporter:v7.5.x.1 -kibana.username elastic -kibana.password password -kibana.uri https://elasticcloud.kibana.aws.found.io
 </code></pre></div><p>Additionally, definitions for a K8s Deployment and a Service is also provided that may be of help to quickly deploy this Exporter in a K8s environment. When done so, the following Prometheus scrape config can be used to collect metrics.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    - <span style="color:#f92672">job_name</span>: <span style="color:#e6db74">&#34;kibana&#34;</span>
-      <span style="color:#f92672">scrape_interval</span>: <span style="color:#ae81ff">1m</span>
-      <span style="color:#f92672">metrics_path</span>: <span style="color:#e6db74">&#34;/metrics&#34;</span>
-      <span style="color:#f92672">kubernetes_sd_configs</span>:
-        - <span style="color:#f92672">role</span>: <span style="color:#ae81ff">service</span>
-      <span style="color:#f92672">relabel_configs</span>:
-        - <span style="color:#f92672">source_labels</span>: [<span style="color:#ae81ff">__meta_kubernetes_service_label_app]</span>
-          <span style="color:#f92672">regex</span>: <span style="color:#e6db74">&#34;kibana-exporter&#34;</span>
-          <span style="color:#f92672">action</span>: <span style="color:#ae81ff">keep</span>
-        - <span style="color:#f92672">source_labels</span>: [<span style="color:#ae81ff">__meta_kubernetes_namespace]</span>
-          <span style="color:#f92672">action</span>: <span style="color:#ae81ff">replace</span>
-          <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">kubernetes_namespace</span>
-        - <span style="color:#f92672">source_labels</span>: [<span style="color:#ae81ff">__address__, __meta_kubernetes_service_annotation_prometheus_io_port]</span>
-          <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">__address__</span>
-          <span style="color:#f92672">regex</span>: <span style="color:#ae81ff">([^:]+)(?::\d+)?;(\d+)</span>
-          <span style="color:#f92672">replacement</span>: <span style="color:#ae81ff">$1:$2</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    - <span style="font-weight:bold">job_name</span>: <span style="color:#0ff;font-weight:bold">&#34;kibana&#34;</span>
+      <span style="font-weight:bold">scrape_interval</span>: 1m
+      <span style="font-weight:bold">metrics_path</span>: <span style="color:#0ff;font-weight:bold">&#34;/metrics&#34;</span>
+      <span style="font-weight:bold">kubernetes_sd_configs</span>:
+        - <span style="font-weight:bold">role</span>: service
+      <span style="font-weight:bold">relabel_configs</span>:
+        - <span style="font-weight:bold">source_labels</span>: [__meta_kubernetes_service_label_app]
+          <span style="font-weight:bold">regex</span>: <span style="color:#0ff;font-weight:bold">&#34;kibana-exporter&#34;</span>
+          <span style="font-weight:bold">action</span>: keep
+        - <span style="font-weight:bold">source_labels</span>: [__meta_kubernetes_namespace]
+          <span style="font-weight:bold">action</span>: replace
+          <span style="font-weight:bold">target_label</span>: kubernetes_namespace
+        - <span style="font-weight:bold">source_labels</span>: [__address__, __meta_kubernetes_service_annotation_prometheus_io_port]
+          <span style="font-weight:bold">target_label</span>: __address__
+          <span style="font-weight:bold">regex</span>: ([^:]+)(?::\d+)?;(\d+)
+          <span style="font-weight:bold">replacement</span>: $1:$2
 </code></pre></div><p>If you don&rsquo;t like my project, you can checkout others on the <a href="https://github.com/prometheus/prometheus/wiki/Default-port-allocations">Prometheus Exporter Collection page</a>.</p>
 <p>Enjoy!</p>
 <blockquote>

@@ -70,10 +70,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -211,32 +211,32 @@ nifi.registry.web.https.host=
 </code></pre><p>By default, the Registry is configured to use the file system as the Flow persistence provider. We will change this so that the dev Registry points to the <code>chamilad/nifi-registry-dev</code> and test Registry points to <code>chamilad/nifi-registry-test</code> repositories.</p>
 <p>We do this by modifying the configuration inside <code>conf/providers.xml</code> file. The XPath of the configuration we are looking for is <code>//providers/flowPersistenceProvider[contains(class, &quot;FileSystemFlowPersistenceProvider&quot;)]</code>.</p>
 <h5 id="default-configuration">default configuration</h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">    <span style="color:#f92672">&lt;flowPersistenceProvider&gt;</span>
-        <span style="color:#f92672">&lt;class&gt;</span>org.apache.nifi.registry.provider.flow.FileSystemFlowPersistenceProvider<span style="color:#f92672">&lt;/class&gt;</span>
-        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Flow Storage Directory&#34;</span><span style="color:#f92672">&gt;</span>./flow_storage<span style="color:#f92672">&lt;/property&gt;</span>
-    <span style="color:#f92672">&lt;/flowPersistenceProvider&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">    <span style="font-weight:bold">&lt;flowPersistenceProvider&gt;</span>
+        <span style="font-weight:bold">&lt;class&gt;</span>org.apache.nifi.registry.provider.flow.FileSystemFlowPersistenceProvider<span style="font-weight:bold">&lt;/class&gt;</span>
+        <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;Flow Storage Directory&#34;</span><span style="font-weight:bold">&gt;</span>./flow_storage<span style="font-weight:bold">&lt;/property&gt;</span>
+    <span style="font-weight:bold">&lt;/flowPersistenceProvider&gt;</span>
 </code></pre></div><p>Let&rsquo;s comment this block out and add the following block, which points the persistence layer to the <code>chamilad/nifi-registry-dev</code> repository.</p>
 <h5 id="modified-configuration">modified configuration</h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">    <span style="color:#f92672">&lt;flowPersistenceProvider&gt;</span>
-        <span style="color:#f92672">&lt;class&gt;</span>org.apache.nifi.registry.provider.flow.git.GitFlowPersistenceProvider<span style="color:#f92672">&lt;/class&gt;</span>
-        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Flow Storage Directory&#34;</span><span style="color:#f92672">&gt;</span>./flow_storage<span style="color:#f92672">&lt;/property&gt;</span>
-        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Remote To Push&#34;</span><span style="color:#f92672">&gt;</span>origin<span style="color:#f92672">&lt;/property&gt;</span>
-        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Remote Access User&#34;</span><span style="color:#f92672">&gt;</span>chamilad<span style="color:#f92672">&lt;/property&gt;</span>
-        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Remote Access Password&#34;</span><span style="color:#f92672">&gt;</span>mypersonalaccesstoken<span style="color:#f92672">&lt;/property&gt;</span>
-        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Remote Clone Repository&#34;</span><span style="color:#f92672">&gt;</span>https://github.com/chamilad/nifi-registry-dev.git<span style="color:#f92672">&lt;/property&gt;</span>
-    <span style="color:#f92672">&lt;/flowPersistenceProvider&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">    <span style="font-weight:bold">&lt;flowPersistenceProvider&gt;</span>
+        <span style="font-weight:bold">&lt;class&gt;</span>org.apache.nifi.registry.provider.flow.git.GitFlowPersistenceProvider<span style="font-weight:bold">&lt;/class&gt;</span>
+        <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;Flow Storage Directory&#34;</span><span style="font-weight:bold">&gt;</span>./flow_storage<span style="font-weight:bold">&lt;/property&gt;</span>
+        <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;Remote To Push&#34;</span><span style="font-weight:bold">&gt;</span>origin<span style="font-weight:bold">&lt;/property&gt;</span>
+        <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;Remote Access User&#34;</span><span style="font-weight:bold">&gt;</span>chamilad<span style="font-weight:bold">&lt;/property&gt;</span>
+        <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;Remote Access Password&#34;</span><span style="font-weight:bold">&gt;</span>mypersonalaccesstoken<span style="font-weight:bold">&lt;/property&gt;</span>
+        <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;Remote Clone Repository&#34;</span><span style="font-weight:bold">&gt;</span>https://github.com/chamilad/nifi-registry-dev.git<span style="font-weight:bold">&lt;/property&gt;</span>
+    <span style="font-weight:bold">&lt;/flowPersistenceProvider&gt;</span>
 </code></pre></div><blockquote>
 <p>Replace <code>mypersonalaccesstoken</code> with a GitHub Personal Access Token you&rsquo;ve generated for this task. This token should be able to read from and push to the repository you have chosen as the backend.</p>
 </blockquote>
 <p>Let&rsquo;s do the same for the <code>test</code> Registry instance and point it towards <code>chamilad/nifi-registry-test</code> repository.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">    <span style="color:#f92672">&lt;flowPersistenceProvider&gt;</span>
-        <span style="color:#f92672">&lt;class&gt;</span>org.apache.nifi.registry.provider.flow.git.GitFlowPersistenceProvider<span style="color:#f92672">&lt;/class&gt;</span>
-        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Flow Storage Directory&#34;</span><span style="color:#f92672">&gt;</span>./flow_storage<span style="color:#f92672">&lt;/property&gt;</span>
-        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Remote To Push&#34;</span><span style="color:#f92672">&gt;</span>origin<span style="color:#f92672">&lt;/property&gt;</span>
-        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Remote Access User&#34;</span><span style="color:#f92672">&gt;</span>chamilad<span style="color:#f92672">&lt;/property&gt;</span>
-        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Remote Access Password&#34;</span><span style="color:#f92672">&gt;</span>mypersonalaccesstoken<span style="color:#f92672">&lt;/property&gt;</span>
-        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Remote Clone Repository&#34;</span><span style="color:#f92672">&gt;</span>https://github.com/chamilad/nifi-registry-test.git<span style="color:#f92672">&lt;/property&gt;</span>
-    <span style="color:#f92672">&lt;/flowPersistenceProvider&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">    <span style="font-weight:bold">&lt;flowPersistenceProvider&gt;</span>
+        <span style="font-weight:bold">&lt;class&gt;</span>org.apache.nifi.registry.provider.flow.git.GitFlowPersistenceProvider<span style="font-weight:bold">&lt;/class&gt;</span>
+        <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;Flow Storage Directory&#34;</span><span style="font-weight:bold">&gt;</span>./flow_storage<span style="font-weight:bold">&lt;/property&gt;</span>
+        <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;Remote To Push&#34;</span><span style="font-weight:bold">&gt;</span>origin<span style="font-weight:bold">&lt;/property&gt;</span>
+        <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;Remote Access User&#34;</span><span style="font-weight:bold">&gt;</span>chamilad<span style="font-weight:bold">&lt;/property&gt;</span>
+        <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;Remote Access Password&#34;</span><span style="font-weight:bold">&gt;</span>mypersonalaccesstoken<span style="font-weight:bold">&lt;/property&gt;</span>
+        <span style="font-weight:bold">&lt;property</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;Remote Clone Repository&#34;</span><span style="font-weight:bold">&gt;</span>https://github.com/chamilad/nifi-registry-test.git<span style="font-weight:bold">&lt;/property&gt;</span>
+    <span style="font-weight:bold">&lt;/flowPersistenceProvider&gt;</span>
 </code></pre></div><p>We are now ready to start the Registry instances properly. Run <code>bin/nifi-registry.sh start</code> and <code>tail -100f ../logs/nifi-registry-app.log</code> to monitor startup process. After the Registry starts up, visit the address <code>http://localhost:18080/nifi-registry</code> on the browser and you&rsquo;ll be presented with something similar to the below.</p>
 <p><img src="/blog/img/2021-07-17_nifi_cicd_reg_ui.png" alt="Nifi Registry UI"></p>
 <p>Let&rsquo;s complete the Registry set up by creating a Registry Bucket to act as a Container for the Flows that we&rsquo;ll be pushing to the Registry. Click on the Spanner icon on the top right corner (or visit the administration UI at <code>http://localhost:18080/nifi-registry/#/administration</code>) and select <code>New Bucket</code>. Let&rsquo;s use <code>realtimestats</code> as the Bucket name.</p>

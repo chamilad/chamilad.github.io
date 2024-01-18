@@ -71,10 +71,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -164,10 +164,10 @@
 <p><img src="/blog/img/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough_0.png#layoutTextWidth" alt=""></p>
 <h3 id="deploying-the-application">Deploying the Application</h3>
 <p>The sample scripts and artifacts for our scenario is available in the samples folder of the Stratos source. You can deploy this sample in any one of the available IaaS options including the Mock IaaS that is available in Stratos for developer testing purposes. Following is how it can be deployed in the Mock IaaS.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># navigate to the sample application folder </span>
-cd &lt;STRATOS_SOURCE&gt;/samples/applications/single-cartridge/scripts/mock
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#007f7f"># navigate to the sample application folder </span>
+<span style="color:#fff;font-weight:bold">cd</span> &lt;STRATOS_SOURCE&gt;/samples/applications/single-cartridge/scripts/mock
  
-<span style="color:#75715e"># run deploy script </span>
+<span style="color:#007f7f"># run deploy script </span>
 ./deploy.sh
 </code></pre></div><p>However the Mock IaaS does not involve the Cartridge Agent execution, and therefore is a bit irrelevant in our scenario. You can deploy the same application in OpenStack or Amazon EC2 to witness the Cartridge Agent execution. You can even use Docker on Kubernetes and deploy a Kubernetes cluster to deploy this Single PHP Cartridge application.</p>
 <h3 id="what-to-lookfor">What to Look For</h3>

@@ -223,12 +223,17 @@
 * overwrite github-markdown
 *
 */
-.theme-dark .markdown-body code {
-  /* border: 1px solid var(--dark-background); */
-  /* background: var(--dark-background-contrast); */
-  border-radius: 0px;
+.theme-dark .markdown-body code{
+  border: 1px solid var(--dark-background);
+  background: var(--dark-background-contrast);
+  border-radius: 1px;
   padding-top: 1px;
   padding-bottom: 1px;
+}
+
+.theme-dark .highlight code {
+  border: 0px !important;
+  background-color: unset;
 }
 
 .theme-dark .markdown-body .highlight pre,

@@ -71,10 +71,10 @@ ActiveMQ supports various types of clustering patterns. Out of these, Master/Sla
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -138,16 +138,16 @@ ActiveMQ supports various types of clustering patterns. Out of these, Master/Sla
           <p>In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to <a href="/secure-message-broker-communication-in-apache-stratos-with-apache-activemq-609542eb8b81">secure the message broker communication</a>. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.</p>
 <p>ActiveMQ supports <a href="http://activemq.apache.org/clustering.html">various types of clustering patterns</a>. Out of these, <a href="http://activemq.apache.org/masterslave.html">Master/Slave</a> is a deployment pattern where the message store is replicated or shared between the clustered brokers. This makes it possible for a client to failover from the master to the slave in case the master broker goes down, and continue the communication without any data loss.</p>
 <p>Earlier, the Cartridge Agent implementation was in Java and the ActiveMQ client used in Apache Stratos allowed the failover transport to be used right out of the box, by using the failover transport in the JNDI configuration.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">connectionfactoryName</span><span style="color:#f92672">=</span><span style="color:#e6db74">TopicConnectionFactory</span>
-<span style="color:#a6e22e">java.naming.provider.url</span><span style="color:#f92672">=</span><span style="color:#e6db74">failover:(tcp://localhost:61617,tcp://localhost:61618,tcp://localhost:61619)?initialReconnectDelay=100</span>
-<span style="color:#a6e22e">java.naming.factory.initial</span><span style="color:#f92672">=</span><span style="color:#e6db74">org.apache.activemq.jndi.ActiveMQInitialContextFactory</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#007f7f">connectionfactoryName</span>=<span style="color:#0ff;font-weight:bold">TopicConnectionFactory</span>
+<span style="color:#007f7f">java.naming.provider.url</span>=<span style="color:#0ff;font-weight:bold">failover:(tcp://localhost:61617,tcp://localhost:61618,tcp://localhost:61619)?initialReconnectDelay=100</span>
+<span style="color:#007f7f">java.naming.factory.initial</span>=<span style="color:#0ff;font-weight:bold">org.apache.activemq.jndi.ActiveMQInitialContextFactory</span>
 </code></pre></div><p>However when the Python implementation of the Cartridge Agent was done this support was not implemented initially. Therefore, it was only possible for Python Cartridge Agent to connect to only one given message broker making it a possible point of failure.</p>
 <p>However the upcoming 4.1.5 release contains the fix for the Python Cartridge Agent which enables it to accept a list of message brokers. This is provided via the agent.conf configuration file as follows.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[agent]</span>
-<span style="color:#a6e22e">mb.urls</span>                               <span style="color:#f92672">=</span><span style="color:#e6db74">localhost:1885,localhost:1886,localhost:1887</span>
-<span style="color:#a6e22e">mb.username</span>                           <span style="color:#f92672">=</span><span style="color:#e6db74">system</span>
-<span style="color:#a6e22e">mb.password</span>                           <span style="color:#f92672">=</span><span style="color:#e6db74">manager</span>
-<span style="color:#a6e22e">mb.publisher.timeout</span>                  <span style="color:#f92672">=</span><span style="color:#e6db74">900</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#fff;font-weight:bold">[agent]</span>
+<span style="color:#007f7f">mb.urls</span>                               =<span style="color:#0ff;font-weight:bold">localhost:1885,localhost:1886,localhost:1887</span>
+<span style="color:#007f7f">mb.username</span>                           =<span style="color:#0ff;font-weight:bold">system</span>
+<span style="color:#007f7f">mb.password</span>                           =<span style="color:#0ff;font-weight:bold">manager</span>
+<span style="color:#007f7f">mb.publisher.timeout</span>                  =<span style="color:#0ff;font-weight:bold">900</span>
 </code></pre></div><p>The crucial change is from mb.username and mb.password to mb.urls. This will be a comma separated list of host:port values of the available broker list.</p>
 <p>When communicating with the message broker, the Python Cartridge Agent will go through the provided URL list and connect to the first broker that is available.</p>
 <p>The listening subscriber client will always make an effort to keep a connection to one of the brokers. i.e. if the connected broker goes down (the Python Cartridge Agent will periodically check if the connected message broker is in fact alive or not), it will go through the message broker list and select the first available broker. If none of the provided message brokers are online, the subscribing client will keep retrying until one broker becomes available. This logic will separately execute for each topic subscription.</p>

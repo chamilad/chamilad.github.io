@@ -71,10 +71,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -186,35 +186,35 @@
 <h2 id="exporting-process-groups">Exporting Process Groups</h2>
 <h3 id="connecting-to-the-dev-environment">Connecting to the <code>dev</code> environment</h3>
 <p>Before we do anything, we need to point the SDK to the <code>dev</code> environment. We do this by using the <code>util.set_endpoint()</code> function.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> nipyapi
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> nipyapi
 
-<span style="color:#75715e">#...</span>
-<span style="color:#75715e">#...</span>
+<span style="color:#007f7f">#...</span>
+<span style="color:#007f7f">#...</span>
 
-<span style="color:#75715e"># just to keep the logs simple</span>
-urllib3<span style="color:#f92672">.</span>disable_warnings(urllib3<span style="color:#f92672">.</span>exceptions<span style="color:#f92672">.</span>InsecureRequestWarning)
+<span style="color:#007f7f"># just to keep the logs simple</span>
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-<span style="color:#75715e"># disable TLS check, do at your own risk</span>
-nipyapi<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>nifi_config<span style="color:#f92672">.</span>verify_ssl <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
-nipyapi<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>registry_config<span style="color:#f92672">.</span>verify_ssl <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+<span style="color:#007f7f"># disable TLS check, do at your own risk</span>
+nipyapi.config.nifi_config.verify_ssl = <span style="color:#fff;font-weight:bold">False</span>
+nipyapi.config.registry_config.verify_ssl = <span style="color:#fff;font-weight:bold">False</span>
 
-<span style="color:#75715e"># connect to Nifi</span>
-nipyapi<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>set_endpoint(<span style="color:#e6db74">&#34;https://localhost:8443/nifi-api&#34;</span>)
-<span style="color:#75715e"># wait for connection to be set up</span>
-connected <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>wait_to_complete(
-    test_function<span style="color:#f92672">=</span>nipyapi<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>is_endpoint_up,
-    endpoint_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://localhost:8443/nifi&#34;</span>,
-    nipyapi_delay<span style="color:#f92672">=</span>nipyapi<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>long_retry_delay,
-    nipyapi_max_wait<span style="color:#f92672">=</span>nipyapi<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>short_max_wait
+<span style="color:#007f7f"># connect to Nifi</span>
+nipyapi.utils.set_endpoint(<span style="color:#0ff;font-weight:bold">&#34;https://localhost:8443/nifi-api&#34;</span>)
+<span style="color:#007f7f"># wait for connection to be set up</span>
+connected = nipyapi.utils.wait_to_complete(
+    test_function=nipyapi.utils.is_endpoint_up,
+    endpoint_url=<span style="color:#0ff;font-weight:bold">&#34;https://localhost:8443/nifi&#34;</span>,
+    nipyapi_delay=nipyapi.config.long_retry_delay,
+    nipyapi_max_wait=nipyapi.config.short_max_wait
 )
 
-<span style="color:#75715e"># connect to Nifi Registry</span>
-nipyapi<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>set_endpoint(<span style="color:#e6db74">&#34;http://localhost:18080/nifi-registry-api&#34;</span>)
-connected <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>wait_to_complete(
-    test_function<span style="color:#f92672">=</span>nipyapi<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>is_endpoint_up,
-    endpoint_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:18080/nifi-registry&#34;</span>,
-    nipyapi_delay<span style="color:#f92672">=</span>nipyapi<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>long_retry_delay,
-    nipyapi_max_wait<span style="color:#f92672">=</span>nipyapi<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>short_max_wait
+<span style="color:#007f7f"># connect to Nifi Registry</span>
+nipyapi.utils.set_endpoint(<span style="color:#0ff;font-weight:bold">&#34;http://localhost:18080/nifi-registry-api&#34;</span>)
+connected = nipyapi.utils.wait_to_complete(
+    test_function=nipyapi.utils.is_endpoint_up,
+    endpoint_url=<span style="color:#0ff;font-weight:bold">&#34;http://localhost:18080/nifi-registry&#34;</span>,
+    nipyapi_delay=nipyapi.config.long_retry_delay,
+    nipyapi_max_wait=nipyapi.config.short_max_wait
 )
 
 </code></pre></div><p>The method <code>util.wait_to_complete()</code> is an interesting one. As you can see, it allows a blocking operation that waits for a given endpoint to be up and available, so technically, the script can start execution before the Nifi and Registry instances are up and ready to receive requests.</p>
@@ -231,49 +231,49 @@ connected <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672
 <p>However, if the specific Process Group is not committed to version control, the Registry will not know about it. So it makes sense, from automation perspective, to do a check that the Process Group is committed to version control on the Canvas.</p>
 <p>Furthermore, there could be uncommitted changes on the Nifi Canvas, that may have been missed from being added to version control. We can check this using the Nifi API, just to make sure that we are not unintentionally leaving wanted changes behind.</p>
 <p>With these in mind, let&rsquo;s start writing the export logic.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> nypiapi <span style="color:#f92672">import</span> versioning
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> nypiapi <span style="color:#fff;font-weight:bold">import</span> versioning
 
-<span style="color:#75715e">#...</span>
-<span style="color:#75715e">#...</span>
+<span style="color:#007f7f">#...</span>
+<span style="color:#007f7f">#...</span>
 
-<span style="color:#75715e"># define the list of Process Groups</span>
-process_groups <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;RandomEvents&#34;</span> ]
+<span style="color:#007f7f"># define the list of Process Groups</span>
+process_groups = [ <span style="color:#0ff;font-weight:bold">&#34;RandomEvents&#34;</span> ]
 
-<span style="color:#75715e"># store exported flows</span>
-exported_flows <span style="color:#f92672">=</span> {}
-ExportedFlow <span style="color:#f92672">=</span> namedtuple(<span style="color:#e6db74">&#34;ExportedFlow&#34;</span>, [<span style="color:#e6db74">&#34;name&#34;</span>, <span style="color:#e6db74">&#34;bucket_name&#34;</span>, <span style="color:#e6db74">&#34;definition&#34;</span>])
+<span style="color:#007f7f"># store exported flows</span>
+exported_flows = {}
+ExportedFlow = namedtuple(<span style="color:#0ff;font-weight:bold">&#34;ExportedFlow&#34;</span>, [<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;bucket_name&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;definition&#34;</span>])
 
-<span style="color:#66d9ef">for</span> pgn <span style="color:#f92672">in</span> process_groups:
-    <span style="color:#75715e"># make sure there&#39;s a Process Group on the Canvas</span>
-    pg <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672">.</span>canvas<span style="color:#f92672">.</span>get_process_group(pgn, greedy<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+<span style="color:#fff;font-weight:bold">for</span> pgn in process_groups:
+    <span style="color:#007f7f"># make sure there&#39;s a Process Group on the Canvas</span>
+    pg = nipyapi.canvas.get_process_group(pgn, greedy=<span style="color:#fff;font-weight:bold">False</span>)
     
-    <span style="color:#66d9ef">if</span> pg <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
-        print(<span style="color:#e6db74">F</span><span style="color:#e6db74">&#34;process group </span><span style="color:#e6db74">{</span>pgn<span style="color:#e6db74">}</span><span style="color:#e6db74"> was not found in the Nifi Canvas&#34;</span>)
-        exit(<span style="color:#ae81ff">1</span>)
+    <span style="color:#fff;font-weight:bold">if</span> pg is <span style="color:#fff;font-weight:bold">None</span>:
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">F</span><span style="color:#0ff;font-weight:bold">&#34;process group </span><span style="color:#0ff;font-weight:bold">{</span>pgn<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold"> was not found in the Nifi Canvas&#34;</span>)
+        exit(<span style="color:#ff0;font-weight:bold">1</span>)
   
-    <span style="color:#75715e"># make sure the process group is in the Registry</span>
-    <span style="color:#66d9ef">if</span> pg<span style="color:#f92672">.</span>component<span style="color:#f92672">.</span>version_control_information <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
-        print(<span style="color:#e6db74">F</span><span style="color:#e6db74">&#34;process group </span><span style="color:#e6db74">{</span>pgn<span style="color:#e6db74">}</span><span style="color:#e6db74"> is not added to version control&#34;</span>)
-        exit(<span style="color:#ae81ff">1</span>)
+    <span style="color:#007f7f"># make sure the process group is in the Registry</span>
+    <span style="color:#fff;font-weight:bold">if</span> pg.component.version_control_information is <span style="color:#fff;font-weight:bold">None</span>:
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">F</span><span style="color:#0ff;font-weight:bold">&#34;process group </span><span style="color:#0ff;font-weight:bold">{</span>pgn<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold"> is not added to version control&#34;</span>)
+        exit(<span style="color:#ff0;font-weight:bold">1</span>)
   
-    <span style="color:#75715e"># make sure there are no uncommitted changes on the Canvas</span>
-    diff <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672">.</span>nifi<span style="color:#f92672">.</span>apis<span style="color:#f92672">.</span>process_groups_api<span style="color:#f92672">.</span>ProcessGroupsApi()<span style="color:#f92672">.</span>get_local_modifications(pg<span style="color:#f92672">.</span>id)
-    diffn <span style="color:#f92672">=</span> len(diff<span style="color:#f92672">.</span>component_differences)
-    <span style="color:#66d9ef">if</span> diffn <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
-        print(<span style="color:#e6db74">F</span><span style="color:#e6db74">&#34;there are uncommitted changes in the process group </span><span style="color:#e6db74">{</span>pgn<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-        exit(<span style="color:#ae81ff">1</span>)
+    <span style="color:#007f7f"># make sure there are no uncommitted changes on the Canvas</span>
+    diff = nipyapi.nifi.apis.process_groups_api.ProcessGroupsApi().get_local_modifications(pg.id)
+    diffn = <span style="color:#fff;font-weight:bold">len</span>(diff.component_differences)
+    <span style="color:#fff;font-weight:bold">if</span> diffn &gt; <span style="color:#ff0;font-weight:bold">0</span>:
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">F</span><span style="color:#0ff;font-weight:bold">&#34;there are uncommitted changes in the process group </span><span style="color:#0ff;font-weight:bold">{</span>pgn<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#34;</span>)
+        exit(<span style="color:#ff0;font-weight:bold">1</span>)
   
     
-    <span style="color:#75715e"># since we are here, we found no issue with this Process Group</span>
-    <span style="color:#75715e"># let&#39;s export it</span>
+    <span style="color:#007f7f"># since we are here, we found no issue with this Process Group</span>
+    <span style="color:#007f7f"># let&#39;s export it</span>
   
-    bucket_id <span style="color:#f92672">=</span> pg<span style="color:#f92672">.</span>component<span style="color:#f92672">.</span>version_control_information<span style="color:#f92672">.</span>bucket_id
-    bucket_name <span style="color:#f92672">=</span> pg<span style="color:#f92672">.</span>component<span style="color:#f92672">.</span>version_control_information<span style="color:#f92672">.</span>bucket_name
-    flow_id <span style="color:#f92672">=</span> pg<span style="color:#f92672">.</span>component<span style="color:#f92672">.</span>version_control_information<span style="color:#f92672">.</span>flow_id
+    bucket_id = pg.component.version_control_information.bucket_id
+    bucket_name = pg.component.version_control_information.bucket_name
+    flow_id = pg.component.version_control_information.flow_id
   
-    <span style="color:#75715e"># export the latest version from the Registry</span>
-    flow_json <span style="color:#f92672">=</span> versioning<span style="color:#f92672">.</span>export_flow_version(bucket_id, flow_id, version<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>)
-    exported_flows[pgn] <span style="color:#f92672">=</span> ExportedFlow(pgn, bucket_name, flow_json)
+    <span style="color:#007f7f"># export the latest version from the Registry</span>
+    flow_json = versioning.export_flow_version(bucket_id, flow_id, version=<span style="color:#fff;font-weight:bold">None</span>)
+    exported_flows[pgn] = ExportedFlow(pgn, bucket_name, flow_json)
 </code></pre></div><p>There are few things to elaborate on in this part of the script.</p>
 <ol>
 <li>Notice that we are talking to <code>canvas.*</code> functions to understand the Canvas status. With the response we get from the Canvas, we can build the data we need for the subsequent API calls.</li>
@@ -284,31 +284,31 @@ ExportedFlow <span style="color:#f92672">=</span> namedtuple(<span style="color:
 <h2 id="importing-back-to-test-environment">Importing back to <code>test</code> environment</h2>
 <h3 id="connecting-to-the-test-environment">Connecting to the <code>test</code> environment</h3>
 <p>Before we perform any API calls, we need to switch the connection to the <code>test</code> environment.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># connect to Nifi</span>
-nipyapi<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>set_endpoint(<span style="color:#e6db74">&#34;https://localhost:8444/nifi-api&#34;</span>)
-<span style="color:#75715e"># wait for connection to be set up</span>
-connected <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>wait_to_complete(
-    test_function<span style="color:#f92672">=</span>nipyapi<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>is_endpoint_up,
-    endpoint_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://localhost:8444/nifi&#34;</span>,
-    nipyapi_delay<span style="color:#f92672">=</span>nipyapi<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>long_retry_delay,
-    nipyapi_max_wait<span style="color:#f92672">=</span>nipyapi<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>short_max_wait
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># connect to Nifi</span>
+nipyapi.utils.set_endpoint(<span style="color:#0ff;font-weight:bold">&#34;https://localhost:8444/nifi-api&#34;</span>)
+<span style="color:#007f7f"># wait for connection to be set up</span>
+connected = nipyapi.utils.wait_to_complete(
+    test_function=nipyapi.utils.is_endpoint_up,
+    endpoint_url=<span style="color:#0ff;font-weight:bold">&#34;https://localhost:8444/nifi&#34;</span>,
+    nipyapi_delay=nipyapi.config.long_retry_delay,
+    nipyapi_max_wait=nipyapi.config.short_max_wait
 )
 
-<span style="color:#75715e"># connect to Nifi Registry</span>
-nipyapi<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>set_endpoint(<span style="color:#e6db74">&#34;http://localhost:28080/nifi-registry-api&#34;</span>)
-connected <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>wait_to_complete(
-    test_function<span style="color:#f92672">=</span>nipyapi<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>is_endpoint_up,
-    endpoint_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:28080/nifi-registry&#34;</span>,
-    nipyapi_delay<span style="color:#f92672">=</span>nipyapi<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>long_retry_delay,
-    nipyapi_max_wait<span style="color:#f92672">=</span>nipyapi<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>short_max_wait
+<span style="color:#007f7f"># connect to Nifi Registry</span>
+nipyapi.utils.set_endpoint(<span style="color:#0ff;font-weight:bold">&#34;http://localhost:28080/nifi-registry-api&#34;</span>)
+connected = nipyapi.utils.wait_to_complete(
+    test_function=nipyapi.utils.is_endpoint_up,
+    endpoint_url=<span style="color:#0ff;font-weight:bold">&#34;http://localhost:28080/nifi-registry&#34;</span>,
+    nipyapi_delay=nipyapi.config.long_retry_delay,
+    nipyapi_max_wait=nipyapi.config.short_max_wait
 )
 </code></pre></div><h3 id="registry-bucket">Registry Bucket</h3>
 <p>As mentioned before, the Registry Bucket we are going to use across environments is the same. Therefore, in the <code>test</code> environment, we can perform a check to see if the Registry Bucket exists, and create if not.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># check if the Bucket already exists</span>
-bucket <span style="color:#f92672">=</span> versioning<span style="color:#f92672">.</span>get_registry_bucket(bucket_name)
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># check if the Bucket already exists</span>
+bucket = versioning.get_registry_bucket(bucket_name)
 
-<span style="color:#66d9ef">if</span> bucket <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
-  bucket <span style="color:#f92672">=</span> versioning<span style="color:#f92672">.</span>create_registry_bucket(bucket_name)
+<span style="color:#fff;font-weight:bold">if</span> bucket is <span style="color:#fff;font-weight:bold">None</span>:
+  bucket = versioning.create_registry_bucket(bucket_name)
 </code></pre></div><h3 id="extra-checks">Extra checks</h3>
 <p>We need to consider several scenarios in the case of the <code>test</code> environment.</p>
 <ol>
@@ -316,27 +316,27 @@ bucket <span style="color:#f92672">=</span> versioning<span style="color:#f92672
 <li>The Process Group could be in the Registry Bucket, and in the Nifi Canvas, but there could be changes in the Canvas, that are not committed to version control. Ideally, a <code>test</code> or <code>production</code> environment should not have local changes, as any change should properly propagate along the path to production. However, a tester could do some tweaking to see which changes would solve a specific bug, or there could be a business requirement that forces local changes to be done on the environments other than <code>dev</code>. In any case, the APIs can&rsquo;t be used to import Process Groups with conflicting names, where there are uncommitted changes. These can be automatically <em>cleaned</em>, however, it&rsquo;s always advisable to keep this cleaning as a manual task, since vital information could also be lost during such a cleaning.</li>
 </ol>
 <p>If all these checks pass, we can proceed with importing the Process Groups on to Canvas.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> flow_name, exported_flow <span style="color:#f92672">in</span> exported_flows<span style="color:#f92672">.</span>items():
-    bucket <span style="color:#f92672">=</span> versioning<span style="color:#f92672">.</span>get_registry_bucket(exported_flow<span style="color:#f92672">.</span>bucket_name)
-    <span style="color:#66d9ef">if</span> bucket <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
-        bucket <span style="color:#f92672">=</span> versioning<span style="color:#f92672">.</span>create_registry_bucket(bucket_name)
-        pg <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672">.</span>canvas<span style="color:#f92672">.</span>get_process_group(flow_name, greedy<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
-        <span style="color:#66d9ef">if</span> pg <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
-            print(<span style="color:#e6db74">F</span><span style="color:#e6db74">&#34;process group exists on Canvas, but not in Registry: </span><span style="color:#e6db74">{</span>flow_name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-            exit(<span style="color:#ae81ff">1</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">for</span> flow_name, exported_flow in exported_flows.items():
+    bucket = versioning.get_registry_bucket(exported_flow.bucket_name)
+    <span style="color:#fff;font-weight:bold">if</span> bucket is <span style="color:#fff;font-weight:bold">None</span>:
+        bucket = versioning.create_registry_bucket(bucket_name)
+        pg = nipyapi.canvas.get_process_group(flow_name, greedy=<span style="color:#fff;font-weight:bold">False</span>)
+        <span style="color:#fff;font-weight:bold">if</span> pg is not <span style="color:#fff;font-weight:bold">None</span>:
+            <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">F</span><span style="color:#0ff;font-weight:bold">&#34;process group exists on Canvas, but not in Registry: </span><span style="color:#0ff;font-weight:bold">{</span>flow_name<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#34;</span>)
+            exit(<span style="color:#ff0;font-weight:bold">1</span>)
 
-    <span style="color:#66d9ef">else</span>:
-        bflow <span style="color:#f92672">=</span> versioning<span style="color:#f92672">.</span>get_flow_in_bucket(bucket<span style="color:#f92672">.</span>identifier, flow_name)
-        pg <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672">.</span>canvas<span style="color:#f92672">.</span>get_process_group(flow_name, greedy<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
-        <span style="color:#66d9ef">if</span> bflow <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span> <span style="color:#f92672">and</span> pg <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
-            print(<span style="color:#e6db74">F</span><span style="color:#e6db74">&#34;process group exists on Canvas, but not in Registry: </span><span style="color:#e6db74">{</span>flow_name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-            exit(<span style="color:#ae81ff">1</span>)
+    <span style="color:#fff;font-weight:bold">else</span>:
+        bflow = versioning.get_flow_in_bucket(bucket.identifier, flow_name)
+        pg = nipyapi.canvas.get_process_group(flow_name, greedy=<span style="color:#fff;font-weight:bold">False</span>)
+        <span style="color:#fff;font-weight:bold">if</span> bflow is <span style="color:#fff;font-weight:bold">None</span> and pg is not <span style="color:#fff;font-weight:bold">None</span>:
+            <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">F</span><span style="color:#0ff;font-weight:bold">&#34;process group exists on Canvas, but not in Registry: </span><span style="color:#0ff;font-weight:bold">{</span>flow_name<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#34;</span>)
+            exit(<span style="color:#ff0;font-weight:bold">1</span>)
 
-        diff <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672">.</span>nifi<span style="color:#f92672">.</span>apis<span style="color:#f92672">.</span>process_groups_api<span style="color:#f92672">.</span>ProcessGroupsApi()<span style="color:#f92672">.</span>get_local_modifications(pg<span style="color:#f92672">.</span>id)
-        diffn <span style="color:#f92672">=</span> len(diff<span style="color:#f92672">.</span>component_differences)
-        <span style="color:#66d9ef">if</span> bflow <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span> <span style="color:#f92672">and</span> pg <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span> <span style="color:#f92672">and</span> diffn <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
-            print(<span style="color:#e6db74">F</span><span style="color:#e6db74">&#34;there are uncommitted changes in the process group </span><span style="color:#e6db74">{</span>pgn<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-            exit(<span style="color:#ae81ff">1</span>)
+        diff = nipyapi.nifi.apis.process_groups_api.ProcessGroupsApi().get_local_modifications(pg.id)
+        diffn = <span style="color:#fff;font-weight:bold">len</span>(diff.component_differences)
+        <span style="color:#fff;font-weight:bold">if</span> bflow is not <span style="color:#fff;font-weight:bold">None</span> and pg is not <span style="color:#fff;font-weight:bold">None</span> and diffn &gt; <span style="color:#ff0;font-weight:bold">0</span>:
+            <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">F</span><span style="color:#0ff;font-weight:bold">&#34;there are uncommitted changes in the process group </span><span style="color:#0ff;font-weight:bold">{</span>pgn<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#34;</span>)
+            exit(<span style="color:#ff0;font-weight:bold">1</span>)
     
     
 </code></pre></div><h3 id="parameter-contexts">Parameter Contexts</h3>
@@ -348,97 +348,97 @@ bucket <span style="color:#f92672">=</span> versioning<span style="color:#f92672
 <h3 id="create-or-update">Create or Update?</h3>
 <p>After sanitization, we are finally ready to perform an import. After an import, we have to update Nifi Canvas so that the latest version imported into the Registry is reflected on the Canvas. However the way to do this differs if we are updating an existing flow. Therefore, we have to  first check if we need to perform an update API call instead of a create one, by checking if the Registry Bucket already has a Flow with the same name (a minor detail to note, if the Flow existed on the Canvas and not on the Registry, we&rsquo;d have errored out during the checks above).</p>
 <p>With these considerations in mind, we can start writing the rest of the logic.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sanitize_pg</span>(pg_def):
-    <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">    sanitize the processGroup section from parameterContext references, does a
-</span><span style="color:#e6db74">      recursive cleanup of the processGroups if multiple levels are found.
-</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#fff;font-weight:bold">def</span> sanitize_pg(pg_def):
+    <span style="color:#0ff;font-weight:bold">&#34;&#34;&#34;
+</span><span style="color:#0ff;font-weight:bold">    sanitize the processGroup section from parameterContext references, does a
+</span><span style="color:#0ff;font-weight:bold">      recursive cleanup of the processGroups if multiple levels are found.
+</span><span style="color:#0ff;font-weight:bold">    &#34;&#34;&#34;</span>
 
-    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;parameterContextName&#34;</span> <span style="color:#f92672">in</span> pg_def:
-        pg_def<span style="color:#f92672">.</span>pop(<span style="color:#e6db74">&#34;parameterContextName&#34;</span>)
+    <span style="color:#fff;font-weight:bold">if</span> <span style="color:#0ff;font-weight:bold">&#34;parameterContextName&#34;</span> in pg_def:
+        pg_def.pop(<span style="color:#0ff;font-weight:bold">&#34;parameterContextName&#34;</span>)
 
-    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;processGroups&#34;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> pg_def <span style="color:#f92672">or</span> len(pg_def[<span style="color:#e6db74">&#34;processGroups&#34;</span>]) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
-        <span style="color:#66d9ef">return</span> pg_def
+    <span style="color:#fff;font-weight:bold">if</span> <span style="color:#0ff;font-weight:bold">&#34;processGroups&#34;</span> not in pg_def or <span style="color:#fff;font-weight:bold">len</span>(pg_def[<span style="color:#0ff;font-weight:bold">&#34;processGroups&#34;</span>]) == <span style="color:#ff0;font-weight:bold">0</span>:
+        <span style="color:#fff;font-weight:bold">return</span> pg_def
 
-    <span style="color:#66d9ef">for</span> pg <span style="color:#f92672">in</span> pg_def[<span style="color:#e6db74">&#34;processGroups&#34;</span>]:
+    <span style="color:#fff;font-weight:bold">for</span> pg in pg_def[<span style="color:#0ff;font-weight:bold">&#34;processGroups&#34;</span>]:
         sanitize_pg(pg)
 
-<span style="color:#75715e">#...</span>
-<span style="color:#75715e">#...</span>
+<span style="color:#007f7f">#...</span>
+<span style="color:#007f7f">#...</span>
 
-<span style="color:#75715e"># get the registry client for the test environment, we need this to import</span>
-<span style="color:#75715e"># process groups</span>
-reg_clients <span style="color:#f92672">=</span> versioning<span style="color:#f92672">.</span>list_registry_clients()
-test_reg_client <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+<span style="color:#007f7f"># get the registry client for the test environment, we need this to import</span>
+<span style="color:#007f7f"># process groups</span>
+reg_clients = versioning.list_registry_clients()
+test_reg_client = <span style="color:#fff;font-weight:bold">None</span>
 
-<span style="color:#75715e"># just getting the first registry client we find, assuming we only have one</span>
-<span style="color:#66d9ef">for</span> reg_client <span style="color:#f92672">in</span> reg_clients<span style="color:#f92672">.</span>registries:
-    test_reg_client <span style="color:#f92672">=</span> reg_client<span style="color:#f92672">.</span>component
-    <span style="color:#66d9ef">break</span>
+<span style="color:#007f7f"># just getting the first registry client we find, assuming we only have one</span>
+<span style="color:#fff;font-weight:bold">for</span> reg_client in reg_clients.registries:
+    test_reg_client = reg_client.component
+    <span style="color:#fff;font-weight:bold">break</span>
 
-<span style="color:#75715e"># read the Canvas root element ID to attach Process Groups</span>
-root_pg <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672">.</span>canvas<span style="color:#f92672">.</span>get_root_pg_id()
+<span style="color:#007f7f"># read the Canvas root element ID to attach Process Groups</span>
+root_pg = nipyapi.canvas.get_root_pg_id()
 
-<span style="color:#66d9ef">for</span> flow_name, exported_flow <span style="color:#f92672">in</span> exported_flows<span style="color:#f92672">.</span>items():
-    flow <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(exported_flow<span style="color:#f92672">.</span>definition)
+<span style="color:#fff;font-weight:bold">for</span> flow_name, exported_flow in exported_flows.items():
+    flow = json.loads(exported_flow.definition)
   
-    <span style="color:#75715e"># get the bucket details</span>
-    bucket <span style="color:#f92672">=</span> versioning<span style="color:#f92672">.</span>get_registry_bucket(exported_flow<span style="color:#f92672">.</span>bucket_name)
+    <span style="color:#007f7f"># get the bucket details</span>
+    bucket = versioning.get_registry_bucket(exported_flow.bucket_name)
   
-    <span style="color:#75715e"># remove from top level Process Group</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;parameterContexts&#34;</span> <span style="color:#f92672">in</span> flow:
-        param_ctx <span style="color:#f92672">=</span> flow[<span style="color:#e6db74">&#34;parameterContexts&#34;</span>]
-        flow[<span style="color:#e6db74">&#34;parameterContexts&#34;</span>] <span style="color:#f92672">=</span> {}
-        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;parameterContextName&#34;</span> <span style="color:#f92672">in</span> flow[<span style="color:#e6db74">&#34;flowContents&#34;</span>]:
-            flow[<span style="color:#e6db74">&#34;flowContents&#34;</span>]<span style="color:#f92672">.</span>pop(<span style="color:#e6db74">&#34;parameterContextName&#34;</span>)
+    <span style="color:#007f7f"># remove from top level Process Group</span>
+    <span style="color:#fff;font-weight:bold">if</span> <span style="color:#0ff;font-weight:bold">&#34;parameterContexts&#34;</span> in flow:
+        param_ctx = flow[<span style="color:#0ff;font-weight:bold">&#34;parameterContexts&#34;</span>]
+        flow[<span style="color:#0ff;font-weight:bold">&#34;parameterContexts&#34;</span>] = {}
+        <span style="color:#fff;font-weight:bold">if</span> <span style="color:#0ff;font-weight:bold">&#34;parameterContextName&#34;</span> in flow[<span style="color:#0ff;font-weight:bold">&#34;flowContents&#34;</span>]:
+            flow[<span style="color:#0ff;font-weight:bold">&#34;flowContents&#34;</span>].pop(<span style="color:#0ff;font-weight:bold">&#34;parameterContextName&#34;</span>)
     
-    <span style="color:#75715e"># additionally, sanitize inner Process Groups</span>
-    <span style="color:#66d9ef">for</span> pg <span style="color:#f92672">in</span> flow[<span style="color:#e6db74">&#34;flowContents&#34;</span>][<span style="color:#e6db74">&#34;processGroups&#34;</span>]:
+    <span style="color:#007f7f"># additionally, sanitize inner Process Groups</span>
+    <span style="color:#fff;font-weight:bold">for</span> pg in flow[<span style="color:#0ff;font-weight:bold">&#34;flowContents&#34;</span>][<span style="color:#0ff;font-weight:bold">&#34;processGroups&#34;</span>]:
           sanitize_pg(pg)
     
-    sanitized_flow_def <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>dumps(flow)
+    sanitized_flow_def = json.dumps(flow)
   
-    <span style="color:#75715e"># check if the process group exists in the bucket </span>
-    existing_flow <span style="color:#f92672">=</span> versioning<span style="color:#f92672">.</span>get_flow_in_bucket(bucket<span style="color:#f92672">.</span>identifier, flow_name)
-    <span style="color:#66d9ef">if</span> existing flow <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
-        <span style="color:#75715e"># import anew into the Registry</span>
-        vflow <span style="color:#f92672">=</span> versioning<span style="color:#f92672">.</span>import_flow_version(
-                                bucket<span style="color:#f92672">.</span>identifier,
-                                encoded_flow<span style="color:#f92672">=</span>sanitized_flow_def,
-                                flow_name<span style="color:#f92672">=</span>flow_name)
-        time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">5</span>)
+    <span style="color:#007f7f"># check if the process group exists in the bucket </span>
+    existing_flow = versioning.get_flow_in_bucket(bucket.identifier, flow_name)
+    <span style="color:#fff;font-weight:bold">if</span> existing flow is <span style="color:#fff;font-weight:bold">None</span>:
+        <span style="color:#007f7f"># import anew into the Registry</span>
+        vflow = versioning.import_flow_version(
+                                bucket.identifier,
+                                encoded_flow=sanitized_flow_def,
+                                flow_name=flow_name)
+        time.sleep(<span style="color:#ff0;font-weight:bold">5</span>)
     
-        <span style="color:#75715e"># deploy anew into the Canvas</span>
-        versioning<span style="color:#f92672">.</span>deploy_flow_version(
-                parent_id<span style="color:#f92672">=</span>root_pg,
-                location<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>),
-                bucket_id<span style="color:#f92672">=</span>bucket<span style="color:#f92672">.</span>identifier,
-                flow_id<span style="color:#f92672">=</span>vflow<span style="color:#f92672">.</span>flow<span style="color:#f92672">.</span>identifier,
-                reg_client_id<span style="color:#f92672">=</span>test_reg_client<span style="color:#f92672">.</span>id,
+        <span style="color:#007f7f"># deploy anew into the Canvas</span>
+        versioning.deploy_flow_version(
+                parent_id=root_pg,
+                location=(<span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>),
+                bucket_id=bucket.identifier,
+                flow_id=vflow.flow.identifier,
+                reg_client_id=test_reg_client.id,
                 )
-    <span style="color:#66d9ef">else</span>:
-        <span style="color:#75715e"># update Flow in Registry in place</span>
-        vflow <span style="color:#f92672">=</span> versioning<span style="color:#f92672">.</span>import_flow_version(
-                bucket_id<span style="color:#f92672">=</span>bucket<span style="color:#f92672">.</span>identifier,
-                encoded_flow<span style="color:#f92672">=</span>sanitized_flow_def,
-                flow_id<span style="color:#f92672">=</span>existing_flow<span style="color:#f92672">.</span>identifier)
-        time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">5</span>)
+    <span style="color:#fff;font-weight:bold">else</span>:
+        <span style="color:#007f7f"># update Flow in Registry in place</span>
+        vflow = versioning.import_flow_version(
+                bucket_id=bucket.identifier,
+                encoded_flow=sanitized_flow_def,
+                flow_id=existing_flow.identifier)
+        time.sleep(<span style="color:#ff0;font-weight:bold">5</span>)
     
-        <span style="color:#75715e"># check if the Canvas already has the Process Group</span>
-        pg <span style="color:#f92672">=</span> nipyapi<span style="color:#f92672">.</span>canvas<span style="color:#f92672">.</span>get_process_group(flow_name, greedy<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
-        <span style="color:#66d9ef">if</span> pg <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
-            <span style="color:#75715e"># deploy anew into the Canvas</span>
-            versioning<span style="color:#f92672">.</span>deploy_flow_version(
-                    parent_id<span style="color:#f92672">=</span>root_pg,
-                    location<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>),
-                    bucket_id<span style="color:#f92672">=</span>bucket<span style="color:#f92672">.</span>identifier,
-                    flow_id<span style="color:#f92672">=</span>vflow<span style="color:#f92672">.</span>flow<span style="color:#f92672">.</span>identifier,
-                    reg_client_id<span style="color:#f92672">=</span>test_reg_client<span style="color:#f92672">.</span>id,
+        <span style="color:#007f7f"># check if the Canvas already has the Process Group</span>
+        pg = nipyapi.canvas.get_process_group(flow_name, greedy=<span style="color:#fff;font-weight:bold">False</span>)
+        <span style="color:#fff;font-weight:bold">if</span> pg is <span style="color:#fff;font-weight:bold">None</span>:
+            <span style="color:#007f7f"># deploy anew into the Canvas</span>
+            versioning.deploy_flow_version(
+                    parent_id=root_pg,
+                    location=(<span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>),
+                    bucket_id=bucket.identifier,
+                    flow_id=vflow.flow.identifier,
+                    reg_client_id=test_reg_client.id,
                     )
-        <span style="color:#66d9ef">else</span>:
-            <span style="color:#75715e"># update Canvas in place</span>
-            versioning<span style="color:#f92672">.</span>update_flow_ver(process_group<span style="color:#f92672">=</span>pg)
+        <span style="color:#fff;font-weight:bold">else</span>:
+            <span style="color:#007f7f"># update Canvas in place</span>
+            versioning.update_flow_ver(process_group=pg)
 </code></pre></div><p>Things to note in this part of the script are,</p>
 <ol>
 <li><code>sanitize_pg()</code> function, which is a recursive function to clean any Process Group found at any level to strip Parameter Context information.</li>

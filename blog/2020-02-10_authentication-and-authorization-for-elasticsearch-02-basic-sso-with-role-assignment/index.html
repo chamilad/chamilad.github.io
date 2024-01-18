@@ -71,10 +71,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -199,20 +199,20 @@
 <li><code>attributes.principal</code> and <code>attributes.groups</code> - The names of the attributes on the SAML Assertion (response) that should be treated as the username and the group name of the authenticated user. These are information that will determine the authorization aspects of the process. Although these are required for the whole process of user authentication to complete, we&rsquo;ll forget about these two for the moment, and will soon revisit with more contextual information.</li>
 </ol>
 <p>Following is the configuration that should end up in the <code>elasticsearch.yml</code> file. Note that the key, <code>xpack.security.authc.realms.saml.cloud-saml</code> could be changed for on-premise deployment to be one that uniquely identifies this IDP configuration. However for ElasticCloud deployments, the existence of <code>cloud-saml</code> as the key is a must for SAML (and apparently OIDC) to work at this moment. ElasticCloud seems to work in a different way than you&rsquo;d expect a managed ELK deployment to work, being restrictive about which configurations should be used in what way.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">xpack</span>:
-  <span style="color:#f92672">security</span>:
-    <span style="color:#f92672">authc</span>:
-      <span style="color:#f92672">realms</span>:
-        <span style="color:#f92672">saml</span>:
-          <span style="color:#f92672">cloud-saml</span>:
-            <span style="color:#f92672">order</span>: <span style="color:#ae81ff">2</span>
-            <span style="color:#f92672">attributes.principal</span>: <span style="color:#e6db74">&#34;email&#34;</span>
-            <span style="color:#f92672">attributes.groups</span>: <span style="color:#e6db74">&#34;realm&#34;</span>
-            <span style="color:#f92672">idp.metadata.path</span>: <span style="color:#e6db74">&#34;/app/config/saml/metadata.xml&#34;</span>
-            <span style="color:#f92672">idp.entity_id</span>: <span style="color:#e6db74">&#34;https://keycloak.my.org/auth/realms/elastic&#34;</span>
-            <span style="color:#f92672">sp.entity_id</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/&#34;</span>
-            <span style="color:#f92672">sp.acs</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
-            <span style="color:#f92672">sp.logout</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/logout&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">xpack</span>:
+  <span style="font-weight:bold">security</span>:
+    <span style="font-weight:bold">authc</span>:
+      <span style="font-weight:bold">realms</span>:
+        <span style="font-weight:bold">saml</span>:
+          <span style="font-weight:bold">cloud-saml</span>:
+            <span style="font-weight:bold">order</span>: <span style="color:#ff0;font-weight:bold">2</span>
+            <span style="font-weight:bold">attributes.principal</span>: <span style="color:#0ff;font-weight:bold">&#34;email&#34;</span>
+            <span style="font-weight:bold">attributes.groups</span>: <span style="color:#0ff;font-weight:bold">&#34;realm&#34;</span>
+            <span style="font-weight:bold">idp.metadata.path</span>: <span style="color:#0ff;font-weight:bold">&#34;/app/config/saml/metadata.xml&#34;</span>
+            <span style="font-weight:bold">idp.entity_id</span>: <span style="color:#0ff;font-weight:bold">&#34;https://keycloak.my.org/auth/realms/elastic&#34;</span>
+            <span style="font-weight:bold">sp.entity_id</span>: <span style="color:#0ff;font-weight:bold">&#34;https://kibana.my.org:443/&#34;</span>
+            <span style="font-weight:bold">sp.acs</span>: <span style="color:#0ff;font-weight:bold">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
+            <span style="font-weight:bold">sp.logout</span>: <span style="color:#0ff;font-weight:bold">&#34;https://kibana.my.org:443/logout&#34;</span>
 </code></pre></div><blockquote>
 <p>Note that <strong>exactly the same URLs</strong> specified earlier in KeyCloak SAML Client configuration, have to be specified here for Kibana for validations in the SAML requests and responses to work.</p>
 </blockquote>
@@ -222,12 +222,12 @@
 <li>Make Kibana use <code>saml</code> and <code>basic</code> authentication realms in that order. <code>basic</code> is used here as a fallback authentication mechanism if <code>saml</code> fails. This would be the case for API access as most of the time, since there is no way for a browser based login flow to be initiated during API calls. If SAML SSO is to be associated with API calls, that has to be done using an auth flow done through browsers and using the resulting sessions details for the API calls.</li>
 <li>Specify the details of the proxy that is fronting Kibana publicly for URL building. In our case, the URL <code>https://kibana.my.org:443</code> should be used <strong>with the port number 443</strong>.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">xpack.security.authProviders</span>: [<span style="color:#ae81ff">saml, basic]</span>
-<span style="color:#f92672">server.xsrf.whitelist</span>: [<span style="color:#ae81ff">/api/security/v1/saml]</span>
-<span style="color:#f92672">xpack.security.public</span>:
-  <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">https</span>
-  <span style="color:#f92672">hostname</span>: <span style="color:#ae81ff">kibana.my.org</span>
-  <span style="color:#f92672">port</span>: <span style="color:#ae81ff">443</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">xpack.security.authProviders</span>: [saml, basic]
+<span style="font-weight:bold">server.xsrf.whitelist</span>: [/api/security/v1/saml]
+<span style="font-weight:bold">xpack.security.public</span>:
+  <span style="font-weight:bold">protocol</span>: https
+  <span style="font-weight:bold">hostname</span>: kibana.my.org
+  <span style="font-weight:bold">port</span>: <span style="color:#ff0;font-weight:bold">443</span>
 </code></pre></div><p>At this point, the basic configurations that point the Service Provider and the Identity Provider at each other are done. Ideally these should be enough to make SSO happen for Kibana based on KeyCloak.</p>
 <p>However, the user that will get authenticated through this process is still not properly authorized to be performing any actions on the ElasticSearch cluster. Next set of configuration steps will try to assign an ElasticSearch <code>Role</code> to the User through a <code>RoleMapping</code>, otherwise known as <strong>Role Based Access Control</strong>.</p>
 <h1 id="authorization">Authorization</h1>
@@ -239,13 +239,13 @@
 <p>How these permissions are granted to users in ElasticSearch is through <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/authorization.html"><code>Roles</code></a>. An ElasticSearch <code>Role</code> is a grouping of Permissions, action-index lists (that specify which actions can be done on which indices), and action-space lists (that specify which actions can be done within which Kibana Spaces). In addition to the custom roles that can be created, ElasticSearch also has <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/built-in-roles.html">a few built-in Roles</a> that enable leveraging RBAC right out of the box. For the purposes of this article, we can use one of these roles, specifically <code>superuser</code> Role to grant the authenticating user every permission on the ELK cluster (because Security should only be an afterthought! Yes, I am not serious).</p>
 <h2 id="role-mapping-for-authorization">Role Mapping for Authorization</h2>
 <p>To assign the role <code>superuser</code> to every user authenticating through KeyCloak, there should be a document that gets evaluated during the process of authorization. A <code>RoleMapping</code> is this document that contains the set of rules for the user (or to be more specific, the authentication response from the IDP) to match, and the final role (or roles, since multiple roles can be assigned to a user) to be assigned. This document has to be created by hand.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#e6db74">&#34;true&#34;</span>,
-    <span style="color:#f92672">&#34;roles&#34;</span>: [<span style="color:#e6db74">&#34;superuser&#34;</span>],
-    <span style="color:#f92672">&#34;rules&#34;</span>: {<span style="color:#f92672">&#34;all&#34;</span>: [
-        {<span style="color:#f92672">&#34;field&#34;</span>: {<span style="color:#f92672">&#34;realm.name&#34;</span>: <span style="color:#e6db74">&#34;cloud-saml&#34;</span>}}
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="font-weight:bold">&#34;enabled&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;true&#34;</span>,
+    <span style="font-weight:bold">&#34;roles&#34;</span>: [<span style="color:#0ff;font-weight:bold">&#34;superuser&#34;</span>],
+    <span style="font-weight:bold">&#34;rules&#34;</span>: {<span style="font-weight:bold">&#34;all&#34;</span>: [
+        {<span style="font-weight:bold">&#34;field&#34;</span>: {<span style="font-weight:bold">&#34;realm.name&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;cloud-saml&#34;</span>}}
     ]},
-    <span style="color:#f92672">&#34;metadata&#34;</span>: {<span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>}
+    <span style="font-weight:bold">&#34;metadata&#34;</span>: {<span style="font-weight:bold">&#34;version&#34;</span>: <span style="color:#ff0;font-weight:bold">1</span>}
 }
 </code></pre></div><p>The above role mapping definition contains the following information.</p>
 <ol>
@@ -253,16 +253,16 @@
 <li>The roles to assign to the subject if the rules match - The built-in role <code>superuser</code> is specified as the role to assign to the user upon successful authorization.</li>
 </ol>
 <p>The above role mapping can be created in ElasticSearch using an API call (since as of version 7.4 a Kibana UI feature for the same option cannot be found). Note that the definition can slightly change if your ELK stack version is different (Elastic is notoriously careless about keeping contract in its API).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -XPOST https://elasticsearch.my.org/_xpack/security/role_mapping/maxsecurityrole -d<span style="color:#e6db74">&#39;
-</span><span style="color:#e6db74">{
-</span><span style="color:#e6db74">    &#34;enabled&#34;: &#34;true&#34;,
-</span><span style="color:#e6db74">    &#34;roles&#34;: [&#34;superuser&#34;],
-</span><span style="color:#e6db74">    &#34;rules&#34;: {&#34;all&#34;: [
-</span><span style="color:#e6db74">        {&#34;field&#34;: {&#34;realm.name&#34;: &#34;cloud-saml&#34;}}
-</span><span style="color:#e6db74">    ]},
-</span><span style="color:#e6db74">    &#34;metadata&#34;: {&#34;version&#34;: 1}
-</span><span style="color:#e6db74">}
-</span><span style="color:#e6db74">&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -XPOST https://elasticsearch.my.org/_xpack/security/role_mapping/maxsecurityrole -d<span style="color:#0ff;font-weight:bold">&#39;
+</span><span style="color:#0ff;font-weight:bold">{
+</span><span style="color:#0ff;font-weight:bold">    &#34;enabled&#34;: &#34;true&#34;,
+</span><span style="color:#0ff;font-weight:bold">    &#34;roles&#34;: [&#34;superuser&#34;],
+</span><span style="color:#0ff;font-weight:bold">    &#34;rules&#34;: {&#34;all&#34;: [
+</span><span style="color:#0ff;font-weight:bold">        {&#34;field&#34;: {&#34;realm.name&#34;: &#34;cloud-saml&#34;}}
+</span><span style="color:#0ff;font-weight:bold">    ]},
+</span><span style="color:#0ff;font-weight:bold">    &#34;metadata&#34;: {&#34;version&#34;: 1}
+</span><span style="color:#0ff;font-weight:bold">}
+</span><span style="color:#0ff;font-weight:bold">&#39;</span>
 </code></pre></div><p>At this point, the users authenticating through KeyCloak should be able to perform any task inside Kibana. We have achieved a basic level of authentication and authorization with KeyCloak SSO for ELK!</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>Any unauthenticated user visiting <code>https://kibana.my.org</code> should now be redirected to the KeyCloak web UI (specifically the UI for the realm <code>elastic</code> and the Client for Kibana). If they have credentials for users in <code>elastic</code> KeyCloak realm, they should be able to use those credentials to log in to KeyCloak, which will then send a proper SAML Assertion document for ElasticSearch to evaluate. The role mapping that was added to ElasticSearch will kick in and assign the role <code>superuser</code> to the user, who will be granted access to Kibana web UI afterwards.</p>

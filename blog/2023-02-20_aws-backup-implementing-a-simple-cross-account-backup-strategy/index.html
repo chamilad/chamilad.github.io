@@ -70,10 +70,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -184,36 +184,36 @@ administration account makes more sense.</p>
 <p>To perform cross-account backups, a Backup Vault is created in the central
 <code>backup</code> account. This is encrypted with a CMK although you don&rsquo;t really need a
 CMK in this scenario <a href="https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/">as explained in the last post</a>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_backup_vault&#34;</span> <span style="color:#e6db74">&#34;central&#34;</span> {
-  <span style="color:#a6e22e">name</span>        = <span style="color:#e6db74">&#34;prod&#34;</span>
-  <span style="color:#a6e22e">kms_key_arn</span> = <span style="color:#a6e22e">aws_kms_key</span>.<span style="color:#a6e22e">central_vault</span>.<span style="color:#a6e22e">arn</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#fff;font-weight:bold">resource</span> <span style="color:#0ff;font-weight:bold">&#34;aws_backup_vault&#34;</span> <span style="color:#0ff;font-weight:bold">&#34;central&#34;</span> {
+  <span style="color:#007f7f">name</span>        = <span style="color:#0ff;font-weight:bold">&#34;prod&#34;</span>
+  <span style="color:#007f7f">kms_key_arn</span> = aws_kms_key.central_vault.arn
 }
 </code></pre></div><p>A Backup Vault Policy is also specified which allows other accounts in the
 AWS Organization to copy snapshots into the destination vault.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_backup_vault_policy&#34;</span> <span style="color:#e6db74">&#34;central&#34;</span> {
-  <span style="color:#a6e22e">backup_vault_name</span> = <span style="color:#a6e22e">aws_backup_vault</span>.<span style="color:#a6e22e">central</span>.<span style="color:#a6e22e">name</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#fff;font-weight:bold">resource</span> <span style="color:#0ff;font-weight:bold">&#34;aws_backup_vault_policy&#34;</span> <span style="color:#0ff;font-weight:bold">&#34;central&#34;</span> {
+  <span style="color:#007f7f">backup_vault_name</span> = aws_backup_vault.central.name
 
-  <span style="color:#a6e22e">policy</span> = <span style="color:#f92672">&lt;&lt;POLICY</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">{
-</span><span style="color:#e6db74">    &#34;Version&#34;: &#34;2012-10-17&#34;,
-</span><span style="color:#e6db74">    &#34;Statement&#34;: [
-</span><span style="color:#e6db74">        {
-</span><span style="color:#e6db74">            &#34;Sid&#34;: &#34;Allow all accounts under the Organisation to copy into central backup account&#34;,
-</span><span style="color:#e6db74">            &#34;Effect&#34;: &#34;Allow&#34;,
-</span><span style="color:#e6db74">            &#34;Action&#34;: &#34;backup:CopyIntoBackupVault&#34;,
-</span><span style="color:#e6db74">            &#34;Resource&#34;: &#34;*&#34;,
-</span><span style="color:#e6db74">            &#34;Principal&#34;: &#34;*&#34;,
-</span><span style="color:#e6db74">            &#34;Condition&#34;: {
-</span><span style="color:#e6db74">                &#34;StringEquals&#34;: {
-</span><span style="color:#e6db74">                    &#34;aws:PrincipalOrgID&#34;: [
-</span><span style="color:#e6db74">                        &#34;${data.aws_organizations_organization.current.id}&#34;
-</span><span style="color:#e6db74">                    ]
-</span><span style="color:#e6db74">                }
-</span><span style="color:#e6db74">            }
-</span><span style="color:#e6db74">        }
-</span><span style="color:#e6db74">    ]
-</span><span style="color:#e6db74">}
-</span><span style="color:#e6db74"></span><span style="color:#f92672">POLICY</span>
+  <span style="color:#007f7f">policy</span> = &lt;&lt;POLICY<span style="color:#0ff;font-weight:bold">
+</span><span style="color:#0ff;font-weight:bold">{
+</span><span style="color:#0ff;font-weight:bold">    &#34;Version&#34;: &#34;2012-10-17&#34;,
+</span><span style="color:#0ff;font-weight:bold">    &#34;Statement&#34;: [
+</span><span style="color:#0ff;font-weight:bold">        {
+</span><span style="color:#0ff;font-weight:bold">            &#34;Sid&#34;: &#34;Allow all accounts under the Organisation to copy into central backup account&#34;,
+</span><span style="color:#0ff;font-weight:bold">            &#34;Effect&#34;: &#34;Allow&#34;,
+</span><span style="color:#0ff;font-weight:bold">            &#34;Action&#34;: &#34;backup:CopyIntoBackupVault&#34;,
+</span><span style="color:#0ff;font-weight:bold">            &#34;Resource&#34;: &#34;*&#34;,
+</span><span style="color:#0ff;font-weight:bold">            &#34;Principal&#34;: &#34;*&#34;,
+</span><span style="color:#0ff;font-weight:bold">            &#34;Condition&#34;: {
+</span><span style="color:#0ff;font-weight:bold">                &#34;StringEquals&#34;: {
+</span><span style="color:#0ff;font-weight:bold">                    &#34;aws:PrincipalOrgID&#34;: [
+</span><span style="color:#0ff;font-weight:bold">                        &#34;${data.aws_organizations_organization.current.id}&#34;
+</span><span style="color:#0ff;font-weight:bold">                    ]
+</span><span style="color:#0ff;font-weight:bold">                }
+</span><span style="color:#0ff;font-weight:bold">            }
+</span><span style="color:#0ff;font-weight:bold">        }
+</span><span style="color:#0ff;font-weight:bold">    ]
+</span><span style="color:#0ff;font-weight:bold">}
+</span><span style="color:#0ff;font-weight:bold"></span>POLICY
 }
 </code></pre></div><p>That is essentially all to be done for the central account.</p>
 <h2 id="set-up-source-account-databases">Set up Source Account databases</h2>
@@ -226,146 +226,146 @@ production. The key policy for this key is modified so that it can be used for
 RDS instances in conjunction with AWS Backup. This modification includes
 allowing <a href="https://github.com/chamilad/aws-cross-account-backup-example/blob/main/source/data.tf#L5-L69">Source and Central Account Backup to use the key for encryption and
 decryption</a>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform">  <span style="color:#a6e22e">statement</span> {
-    <span style="color:#a6e22e">sid</span>    = <span style="color:#e6db74">&#34;Allow source account to take backups of resources that don&#39;t support independent encryption&#34;</span>
-    <span style="color:#a6e22e">effect</span> = <span style="color:#e6db74">&#34;Allow&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform">  statement {
+    <span style="color:#007f7f">sid</span>    = <span style="color:#0ff;font-weight:bold">&#34;Allow source account to take backups of resources that don&#39;t support independent encryption&#34;</span>
+    <span style="color:#007f7f">effect</span> = <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>
 
-    <span style="color:#a6e22e">principals</span> {
-      <span style="color:#a6e22e">type</span> = <span style="color:#e6db74">&#34;AWS&#34;</span>
-      <span style="color:#a6e22e">identifiers</span> = [
-        <span style="color:#a6e22e">aws_iam_role</span>.<span style="color:#a6e22e">backup_rds</span>.<span style="color:#a6e22e">arn</span>,
+    principals {
+      <span style="color:#007f7f">type</span> = <span style="color:#0ff;font-weight:bold">&#34;AWS&#34;</span>
+      <span style="color:#007f7f">identifiers</span> = [
+        aws_iam_role.backup_rds.arn,
       ]
     }
 
-    <span style="color:#a6e22e">actions</span> = [
-      <span style="color:#e6db74">&#34;kms:GenerateDataKey&#34;</span>,
-      <span style="color:#e6db74">&#34;kms:DescribeKey&#34;</span>,
-      <span style="color:#e6db74">&#34;kms:Decrypt&#34;</span>,
-      <span style="color:#e6db74">&#34;kms:Encrypt&#34;</span>,
-      <span style="color:#e6db74">&#34;kms:CreateGrant&#34;</span>,
+    <span style="color:#007f7f">actions</span> = [
+      <span style="color:#0ff;font-weight:bold">&#34;kms:GenerateDataKey&#34;</span>,
+      <span style="color:#0ff;font-weight:bold">&#34;kms:DescribeKey&#34;</span>,
+      <span style="color:#0ff;font-weight:bold">&#34;kms:Decrypt&#34;</span>,
+      <span style="color:#0ff;font-weight:bold">&#34;kms:Encrypt&#34;</span>,
+      <span style="color:#0ff;font-weight:bold">&#34;kms:CreateGrant&#34;</span>,
     ]
 
-    <span style="color:#a6e22e">resources</span> = [<span style="color:#e6db74">&#34;*&#34;</span>]
+    <span style="color:#007f7f">resources</span> = [<span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>]
   }
 
-  <span style="color:#a6e22e">statement</span> {
-    <span style="color:#a6e22e">sid</span>    = <span style="color:#e6db74">&#34;Allow destination account AWS Backup to copy snapshots made from this key, for resources that don&#39;t support independent encryption&#34;</span>
-    <span style="color:#a6e22e">effect</span> = <span style="color:#e6db74">&#34;Allow&#34;</span>
+  statement {
+    <span style="color:#007f7f">sid</span>    = <span style="color:#0ff;font-weight:bold">&#34;Allow destination account AWS Backup to copy snapshots made from this key, for resources that don&#39;t support independent encryption&#34;</span>
+    <span style="color:#007f7f">effect</span> = <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>
 
-    <span style="color:#a6e22e">principals</span> {
-      <span style="color:#a6e22e">type</span> = <span style="color:#e6db74">&#34;AWS&#34;</span>
-      <span style="color:#a6e22e">identifiers</span> = [
-        var.<span style="color:#a6e22e">destination_backup_service_linked_role_arn</span>,
+    principals {
+      <span style="color:#007f7f">type</span> = <span style="color:#0ff;font-weight:bold">&#34;AWS&#34;</span>
+      <span style="color:#007f7f">identifiers</span> = [
+        <span style="color:#fff;font-weight:bold">var</span>.destination_backup_service_linked_role_arn,
       ]
     }
 
-    <span style="color:#a6e22e">actions</span> = [
-      <span style="color:#e6db74">&#34;kms:GenerateDataKey&#34;</span>,
-      <span style="color:#e6db74">&#34;kms:DescribeKey&#34;</span>,
-      <span style="color:#e6db74">&#34;kms:Decrypt&#34;</span>,
-      <span style="color:#e6db74">&#34;kms:CreateGrant&#34;</span>,
+    <span style="color:#007f7f">actions</span> = [
+      <span style="color:#0ff;font-weight:bold">&#34;kms:GenerateDataKey&#34;</span>,
+      <span style="color:#0ff;font-weight:bold">&#34;kms:DescribeKey&#34;</span>,
+      <span style="color:#0ff;font-weight:bold">&#34;kms:Decrypt&#34;</span>,
+      <span style="color:#0ff;font-weight:bold">&#34;kms:CreateGrant&#34;</span>,
     ]
 
-    <span style="color:#a6e22e">resources</span> = [<span style="color:#e6db74">&#34;*&#34;</span>]
+    <span style="color:#007f7f">resources</span> = [<span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>]
   }
 </code></pre></div><p>We also need to set up <strong>Advanced Features for DynamoDB backups</strong> in the Backup
 service. This can be done in the console by navigating to the Source Account
 Backup console Settings view and enabling the feature. The terraform module
 handles this through the API.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_backup_region_settings&#34;</span> <span style="color:#e6db74">&#34;settings&#34;</span> {
-  <span style="color:#a6e22e">resource_type_opt_in_preference</span> = {
-    <span style="color:#e6db74">&#34;Aurora&#34;</span>          <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
-    <span style="color:#e6db74">&#34;DocumentDB&#34;</span>      <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
-    <span style="color:#e6db74">&#34;DynamoDB&#34;</span>        <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
-    <span style="color:#e6db74">&#34;EBS&#34;</span>             <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
-    <span style="color:#e6db74">&#34;EC2&#34;</span>             <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
-    <span style="color:#e6db74">&#34;EFS&#34;</span>             <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
-    <span style="color:#e6db74">&#34;FSx&#34;</span>             <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
-    <span style="color:#e6db74">&#34;Neptune&#34;</span>         <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
-    <span style="color:#e6db74">&#34;RDS&#34;</span>             <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
-    <span style="color:#e6db74">&#34;Storage Gateway&#34;</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
-    <span style="color:#e6db74">&#34;VirtualMachine&#34;</span>  <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
-    <span style="color:#e6db74">&#34;Redshift&#34;</span>        <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
-    <span style="color:#e6db74">&#34;Timestream&#34;</span>      <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
-    <span style="color:#e6db74">&#34;CloudFormation&#34;</span>  <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
-    <span style="color:#e6db74">&#34;S3&#34;</span>              <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
-  }<span style="color:#75715e">
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">  # Enable advanced features for dynamodb backups
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">resource_type_management_preference</span> = {
-    <span style="color:#e6db74">&#34;DynamoDB&#34;</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
-    <span style="color:#e6db74">&#34;EFS&#34;</span>      <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#fff;font-weight:bold">resource</span> <span style="color:#0ff;font-weight:bold">&#34;aws_backup_region_settings&#34;</span> <span style="color:#0ff;font-weight:bold">&#34;settings&#34;</span> {
+  <span style="color:#007f7f">resource_type_opt_in_preference</span> = {
+    <span style="color:#0ff;font-weight:bold">&#34;Aurora&#34;</span>          = <span style="color:#fff;font-weight:bold">false</span>
+    <span style="color:#0ff;font-weight:bold">&#34;DocumentDB&#34;</span>      = <span style="color:#fff;font-weight:bold">false</span>
+    <span style="color:#0ff;font-weight:bold">&#34;DynamoDB&#34;</span>        = <span style="color:#fff;font-weight:bold">true</span>
+    <span style="color:#0ff;font-weight:bold">&#34;EBS&#34;</span>             = <span style="color:#fff;font-weight:bold">true</span>
+    <span style="color:#0ff;font-weight:bold">&#34;EC2&#34;</span>             = <span style="color:#fff;font-weight:bold">true</span>
+    <span style="color:#0ff;font-weight:bold">&#34;EFS&#34;</span>             = <span style="color:#fff;font-weight:bold">true</span>
+    <span style="color:#0ff;font-weight:bold">&#34;FSx&#34;</span>             = <span style="color:#fff;font-weight:bold">false</span>
+    <span style="color:#0ff;font-weight:bold">&#34;Neptune&#34;</span>         = <span style="color:#fff;font-weight:bold">false</span>
+    <span style="color:#0ff;font-weight:bold">&#34;RDS&#34;</span>             = <span style="color:#fff;font-weight:bold">true</span>
+    <span style="color:#0ff;font-weight:bold">&#34;Storage Gateway&#34;</span> = <span style="color:#fff;font-weight:bold">false</span>
+    <span style="color:#0ff;font-weight:bold">&#34;VirtualMachine&#34;</span>  = <span style="color:#fff;font-weight:bold">false</span>
+    <span style="color:#0ff;font-weight:bold">&#34;Redshift&#34;</span>        = <span style="color:#fff;font-weight:bold">false</span>
+    <span style="color:#0ff;font-weight:bold">&#34;Timestream&#34;</span>      = <span style="color:#fff;font-weight:bold">false</span>
+    <span style="color:#0ff;font-weight:bold">&#34;CloudFormation&#34;</span>  = <span style="color:#fff;font-weight:bold">false</span>
+    <span style="color:#0ff;font-weight:bold">&#34;S3&#34;</span>              = <span style="color:#fff;font-weight:bold">false</span>
+  }<span style="color:#007f7f">
+</span><span style="color:#007f7f">
+</span><span style="color:#007f7f">  # Enable advanced features for dynamodb backups
+</span><span style="color:#007f7f"></span>  <span style="color:#007f7f">resource_type_management_preference</span> = {
+    <span style="color:#0ff;font-weight:bold">&#34;DynamoDB&#34;</span> = <span style="color:#fff;font-weight:bold">true</span>
+    <span style="color:#0ff;font-weight:bold">&#34;EFS&#34;</span>      = <span style="color:#fff;font-weight:bold">true</span>
   }
 }
 </code></pre></div><p>We then set up a simple DynamoDB table and an RDS instance. The contents of
 these instances are out of scope for this exercise.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_dynamodb_table&#34;</span> <span style="color:#e6db74">&#34;tracking&#34;</span> {
-  <span style="color:#a6e22e">name</span>         = <span style="color:#e6db74">&#34;tracking&#34;</span>
-  <span style="color:#a6e22e">billing_mode</span> = <span style="color:#e6db74">&#34;PAY_PER_REQUEST&#34;</span>
-  <span style="color:#a6e22e">hash_key</span>     = <span style="color:#e6db74">&#34;cust_id&#34;</span>
-  <span style="color:#a6e22e">range_key</span>    = <span style="color:#e6db74">&#34;location&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#fff;font-weight:bold">resource</span> <span style="color:#0ff;font-weight:bold">&#34;aws_dynamodb_table&#34;</span> <span style="color:#0ff;font-weight:bold">&#34;tracking&#34;</span> {
+  <span style="color:#007f7f">name</span>         = <span style="color:#0ff;font-weight:bold">&#34;tracking&#34;</span>
+  <span style="color:#007f7f">billing_mode</span> = <span style="color:#0ff;font-weight:bold">&#34;PAY_PER_REQUEST&#34;</span>
+  <span style="color:#007f7f">hash_key</span>     = <span style="color:#0ff;font-weight:bold">&#34;cust_id&#34;</span>
+  <span style="color:#007f7f">range_key</span>    = <span style="color:#0ff;font-weight:bold">&#34;location&#34;</span>
 
-  <span style="color:#a6e22e">server_side_encryption</span> {
-    <span style="color:#a6e22e">enabled</span>     = <span style="color:#66d9ef">true</span>
-    <span style="color:#a6e22e">kms_key_arn</span> = <span style="color:#a6e22e">aws_kms_key</span>.<span style="color:#a6e22e">critical_data</span>.<span style="color:#a6e22e">arn</span>
+  server_side_encryption {
+    <span style="color:#007f7f">enabled</span>     = <span style="color:#fff;font-weight:bold">true</span>
+    <span style="color:#007f7f">kms_key_arn</span> = aws_kms_key.critical_data.arn
   }
 
-  <span style="color:#a6e22e">attribute</span> {
-    <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;cust_id&#34;</span>
-    <span style="color:#a6e22e">type</span> = <span style="color:#e6db74">&#34;S&#34;</span>
+  attribute {
+    <span style="color:#007f7f">name</span> = <span style="color:#0ff;font-weight:bold">&#34;cust_id&#34;</span>
+    <span style="color:#007f7f">type</span> = <span style="color:#0ff;font-weight:bold">&#34;S&#34;</span>
   }
 
-  <span style="color:#a6e22e">attribute</span> {
-    <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;location&#34;</span>
-    <span style="color:#a6e22e">type</span> = <span style="color:#e6db74">&#34;S&#34;</span>
+  attribute {
+    <span style="color:#007f7f">name</span> = <span style="color:#0ff;font-weight:bold">&#34;location&#34;</span>
+    <span style="color:#007f7f">type</span> = <span style="color:#0ff;font-weight:bold">&#34;S&#34;</span>
   }
 }
-<span style="color:#66d9ef">
-</span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_db_instance&#34;</span> <span style="color:#e6db74">&#34;mydb&#34;</span> {
-  <span style="color:#a6e22e">allocated_storage</span>    = <span style="color:#ae81ff">10</span>
-  <span style="color:#a6e22e">db_name</span>              = <span style="color:#e6db74">&#34;mydb&#34;</span>
-  <span style="color:#a6e22e">identifier</span>           = <span style="color:#e6db74">&#34;mydb&#34;</span>
-  <span style="color:#a6e22e">engine</span>               = <span style="color:#e6db74">&#34;mysql&#34;</span>
-  <span style="color:#a6e22e">engine_version</span>       = <span style="color:#e6db74">&#34;5.7&#34;</span>
-  <span style="color:#a6e22e">instance_class</span>       = <span style="color:#e6db74">&#34;db.t3.micro&#34;</span>
-  <span style="color:#a6e22e">username</span>             = <span style="color:#e6db74">&#34;foo&#34;</span>
-  <span style="color:#a6e22e">password</span>             = <span style="color:#e6db74">&#34;foobarbaz&#34;</span>
-  <span style="color:#a6e22e">parameter_group_name</span> = <span style="color:#e6db74">&#34;default.mysql5.7&#34;</span>
-  <span style="color:#a6e22e">skip_final_snapshot</span>  = <span style="color:#66d9ef">true</span>
+<span style="color:#fff;font-weight:bold">
+</span><span style="color:#fff;font-weight:bold">resource</span> <span style="color:#0ff;font-weight:bold">&#34;aws_db_instance&#34;</span> <span style="color:#0ff;font-weight:bold">&#34;mydb&#34;</span> {
+  <span style="color:#007f7f">allocated_storage</span>    = <span style="color:#ff0;font-weight:bold">10</span>
+  <span style="color:#007f7f">db_name</span>              = <span style="color:#0ff;font-weight:bold">&#34;mydb&#34;</span>
+  <span style="color:#007f7f">identifier</span>           = <span style="color:#0ff;font-weight:bold">&#34;mydb&#34;</span>
+  <span style="color:#007f7f">engine</span>               = <span style="color:#0ff;font-weight:bold">&#34;mysql&#34;</span>
+  <span style="color:#007f7f">engine_version</span>       = <span style="color:#0ff;font-weight:bold">&#34;5.7&#34;</span>
+  <span style="color:#007f7f">instance_class</span>       = <span style="color:#0ff;font-weight:bold">&#34;db.t3.micro&#34;</span>
+  <span style="color:#007f7f">username</span>             = <span style="color:#0ff;font-weight:bold">&#34;foo&#34;</span>
+  <span style="color:#007f7f">password</span>             = <span style="color:#0ff;font-weight:bold">&#34;foobarbaz&#34;</span>
+  <span style="color:#007f7f">parameter_group_name</span> = <span style="color:#0ff;font-weight:bold">&#34;default.mysql5.7&#34;</span>
+  <span style="color:#007f7f">skip_final_snapshot</span>  = <span style="color:#fff;font-weight:bold">true</span>
 
-  <span style="color:#a6e22e">kms_key_id</span>        = <span style="color:#a6e22e">aws_kms_key</span>.<span style="color:#a6e22e">critical_data</span>.<span style="color:#a6e22e">arn</span>
-  <span style="color:#a6e22e">storage_encrypted</span> = <span style="color:#66d9ef">true</span>
+  <span style="color:#007f7f">kms_key_id</span>        = aws_kms_key.critical_data.arn
+  <span style="color:#007f7f">storage_encrypted</span> = <span style="color:#fff;font-weight:bold">true</span>
 }
 </code></pre></div><p>The Backup Vault for the Source Account can then be set up.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_backup_vault&#34;</span> <span style="color:#e6db74">&#34;source&#34;</span> {
-  <span style="color:#a6e22e">name</span>        = <span style="color:#e6db74">&#34;prod&#34;</span>
-  <span style="color:#a6e22e">kms_key_arn</span> = <span style="color:#a6e22e">aws_kms_key</span>.<span style="color:#a6e22e">source_vault</span>.<span style="color:#a6e22e">arn</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#fff;font-weight:bold">resource</span> <span style="color:#0ff;font-weight:bold">&#34;aws_backup_vault&#34;</span> <span style="color:#0ff;font-weight:bold">&#34;source&#34;</span> {
+  <span style="color:#007f7f">name</span>        = <span style="color:#0ff;font-weight:bold">&#34;prod&#34;</span>
+  <span style="color:#007f7f">kms_key_arn</span> = aws_kms_key.source_vault.arn
 }
-<span style="color:#66d9ef">
-</span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_backup_vault_policy&#34;</span> <span style="color:#e6db74">&#34;source&#34;</span> {
-  <span style="color:#a6e22e">backup_vault_name</span> = <span style="color:#a6e22e">aws_backup_vault</span>.<span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">name</span>
+<span style="color:#fff;font-weight:bold">
+</span><span style="color:#fff;font-weight:bold">resource</span> <span style="color:#0ff;font-weight:bold">&#34;aws_backup_vault_policy&#34;</span> <span style="color:#0ff;font-weight:bold">&#34;source&#34;</span> {
+  <span style="color:#007f7f">backup_vault_name</span> = aws_backup_vault.source.name
 
-  <span style="color:#a6e22e">policy</span> = <span style="color:#f92672">&lt;&lt;POLICY</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">{
-</span><span style="color:#e6db74">    &#34;Version&#34;: &#34;2012-10-17&#34;,
-</span><span style="color:#e6db74">    &#34;Statement&#34;: [
-</span><span style="color:#e6db74">        {
-</span><span style="color:#e6db74">            &#34;Sid&#34;: &#34;Allow all accounts under the Organisation to copy into central backup account&#34;,
-</span><span style="color:#e6db74">            &#34;Effect&#34;: &#34;Allow&#34;,
-</span><span style="color:#e6db74">            &#34;Action&#34;: &#34;backup:CopyIntoBackupVault&#34;,
-</span><span style="color:#e6db74">            &#34;Resource&#34;: &#34;*&#34;,
-</span><span style="color:#e6db74">            &#34;Principal&#34;: &#34;*&#34;,
-</span><span style="color:#e6db74">            &#34;Condition&#34;: {
-</span><span style="color:#e6db74">                &#34;StringEquals&#34;: {
-</span><span style="color:#e6db74">                    &#34;aws:PrincipalOrgID&#34;: [
-</span><span style="color:#e6db74">                        &#34;${data.aws_organizations_organization.current.id}&#34;
-</span><span style="color:#e6db74">                    ]
-</span><span style="color:#e6db74">                }
-</span><span style="color:#e6db74">            }
-</span><span style="color:#e6db74">        }
-</span><span style="color:#e6db74">    ]
-</span><span style="color:#e6db74">}
-</span><span style="color:#e6db74"></span><span style="color:#f92672">POLICY</span>
+  <span style="color:#007f7f">policy</span> = &lt;&lt;POLICY<span style="color:#0ff;font-weight:bold">
+</span><span style="color:#0ff;font-weight:bold">{
+</span><span style="color:#0ff;font-weight:bold">    &#34;Version&#34;: &#34;2012-10-17&#34;,
+</span><span style="color:#0ff;font-weight:bold">    &#34;Statement&#34;: [
+</span><span style="color:#0ff;font-weight:bold">        {
+</span><span style="color:#0ff;font-weight:bold">            &#34;Sid&#34;: &#34;Allow all accounts under the Organisation to copy into central backup account&#34;,
+</span><span style="color:#0ff;font-weight:bold">            &#34;Effect&#34;: &#34;Allow&#34;,
+</span><span style="color:#0ff;font-weight:bold">            &#34;Action&#34;: &#34;backup:CopyIntoBackupVault&#34;,
+</span><span style="color:#0ff;font-weight:bold">            &#34;Resource&#34;: &#34;*&#34;,
+</span><span style="color:#0ff;font-weight:bold">            &#34;Principal&#34;: &#34;*&#34;,
+</span><span style="color:#0ff;font-weight:bold">            &#34;Condition&#34;: {
+</span><span style="color:#0ff;font-weight:bold">                &#34;StringEquals&#34;: {
+</span><span style="color:#0ff;font-weight:bold">                    &#34;aws:PrincipalOrgID&#34;: [
+</span><span style="color:#0ff;font-weight:bold">                        &#34;${data.aws_organizations_organization.current.id}&#34;
+</span><span style="color:#0ff;font-weight:bold">                    ]
+</span><span style="color:#0ff;font-weight:bold">                }
+</span><span style="color:#0ff;font-weight:bold">            }
+</span><span style="color:#0ff;font-weight:bold">        }
+</span><span style="color:#0ff;font-weight:bold">    ]
+</span><span style="color:#0ff;font-weight:bold">}
+</span><span style="color:#0ff;font-weight:bold"></span>POLICY
 }
 </code></pre></div><p>Note that, the vault itself is encrypted with a separate CMK.</p>
 <h2 id="write-backup-plans">Write Backup Plans</h2>
@@ -376,62 +376,62 @@ designed, so that troubleshooting the process can be quicker.</p>
 <p>Separate IAM Roles for DynamoDB and RDS to perform backups are created.
 However at this point, the permission policy for both roles look the same, as the
 AWS Managed Policies are directly attached to each of them for ease of use.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_iam_role&#34;</span> <span style="color:#e6db74">&#34;backup_dynamodb&#34;</span> {
-  <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;backup_dynamodb&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#fff;font-weight:bold">resource</span> <span style="color:#0ff;font-weight:bold">&#34;aws_iam_role&#34;</span> <span style="color:#0ff;font-weight:bold">&#34;backup_dynamodb&#34;</span> {
+  <span style="color:#007f7f">name</span> = <span style="color:#0ff;font-weight:bold">&#34;backup_dynamodb&#34;</span>
 
-  <span style="color:#a6e22e">assume_role_policy</span> = jsonencode({
-    <span style="color:#e6db74">&#34;Version&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
-    <span style="color:#e6db74">&#34;Statement&#34;</span> <span style="color:#f92672">:</span> [
+  <span style="color:#007f7f">assume_role_policy</span> =<span style="color:#fff;font-weight:bold"> jsonencode</span>({
+    <span style="color:#0ff;font-weight:bold">&#34;Version&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;2012-10-17&#34;</span>,
+    <span style="color:#0ff;font-weight:bold">&#34;Statement&#34;</span> : [
       {
-        <span style="color:#e6db74">&#34;Effect&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Allow&#34;</span>,
-        <span style="color:#e6db74">&#34;Principal&#34;</span> <span style="color:#f92672">:</span> {
-          <span style="color:#e6db74">&#34;Service&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;backup.amazonaws.com&#34;</span>
+        <span style="color:#0ff;font-weight:bold">&#34;Effect&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;Principal&#34;</span> : {
+          <span style="color:#0ff;font-weight:bold">&#34;Service&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;backup.amazonaws.com&#34;</span>
         },
-        <span style="color:#e6db74">&#34;Action&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;sts:AssumeRole&#34;</span>
+        <span style="color:#0ff;font-weight:bold">&#34;Action&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;sts:AssumeRole&#34;</span>
       }
     ]
   })
 
-  <span style="color:#a6e22e">managed_policy_arns</span> = [
-    <span style="color:#e6db74">&#34;arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForBackup&#34;</span>,
-    <span style="color:#e6db74">&#34;arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForRestores&#34;</span>
+  <span style="color:#007f7f">managed_policy_arns</span> = [
+    <span style="color:#0ff;font-weight:bold">&#34;arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForBackup&#34;</span>,
+    <span style="color:#0ff;font-weight:bold">&#34;arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForRestores&#34;</span>
   ]
 }
 </code></pre></div><p>The Backup plan for DynamoDB takes hourly backups, starting from 0500UTC. The
 resulting snapshots are copied into the central Backup Account. The retention
 period of the recovery points are set to 30 days.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_backup_plan&#34;</span> <span style="color:#e6db74">&#34;dynamodb&#34;</span> {
-  <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;dynamodb&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#fff;font-weight:bold">resource</span> <span style="color:#0ff;font-weight:bold">&#34;aws_backup_plan&#34;</span> <span style="color:#0ff;font-weight:bold">&#34;dynamodb&#34;</span> {
+  <span style="color:#007f7f">name</span> = <span style="color:#0ff;font-weight:bold">&#34;dynamodb&#34;</span>
 
-  <span style="color:#a6e22e">rule</span> {
-    <span style="color:#a6e22e">rule_name</span>         = <span style="color:#e6db74">&#34;dynamodb_hourly&#34;</span>
-    <span style="color:#a6e22e">schedule</span>          = <span style="color:#e6db74">&#34;cron(0 5/1 ? * * *)&#34;</span>
-    <span style="color:#a6e22e">target_vault_name</span> = <span style="color:#a6e22e">aws_backup_vault</span>.<span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">name</span>
-    <span style="color:#a6e22e">start_window</span>      = <span style="color:#ae81ff">480</span>
-    <span style="color:#a6e22e">completion_window</span> = <span style="color:#ae81ff">10080</span>
+  rule {
+    <span style="color:#007f7f">rule_name</span>         = <span style="color:#0ff;font-weight:bold">&#34;dynamodb_hourly&#34;</span>
+    <span style="color:#007f7f">schedule</span>          = <span style="color:#0ff;font-weight:bold">&#34;cron(0 5/1 ? * * *)&#34;</span>
+    <span style="color:#007f7f">target_vault_name</span> = aws_backup_vault.source.name
+    <span style="color:#007f7f">start_window</span>      = <span style="color:#ff0;font-weight:bold">480</span>
+    <span style="color:#007f7f">completion_window</span> = <span style="color:#ff0;font-weight:bold">10080</span>
 
-    <span style="color:#a6e22e">lifecycle</span> {
-      <span style="color:#a6e22e">delete_after</span> = <span style="color:#ae81ff">30</span>
+    lifecycle {
+      <span style="color:#007f7f">delete_after</span> = <span style="color:#ff0;font-weight:bold">30</span>
     }
 
-    <span style="color:#a6e22e">copy_action</span> {
-      <span style="color:#a6e22e">destination_vault_arn</span> = var.<span style="color:#a6e22e">destination_vault_arn</span>
+    copy_action {
+      <span style="color:#007f7f">destination_vault_arn</span> = <span style="color:#fff;font-weight:bold">var</span>.destination_vault_arn
 
-      <span style="color:#a6e22e">lifecycle</span> {
-        <span style="color:#a6e22e">delete_after</span> = <span style="color:#ae81ff">30</span>
+      lifecycle {
+        <span style="color:#007f7f">delete_after</span> = <span style="color:#ff0;font-weight:bold">30</span>
       }
     }
   }
 }
 </code></pre></div><p>With the backup rule in place, we then include the DynamoDB table by ARN into
 the Backup Plan.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_backup_selection&#34;</span> <span style="color:#e6db74">&#34;dynamodb_tracking&#34;</span> {
-  <span style="color:#a6e22e">iam_role_arn</span> = <span style="color:#a6e22e">aws_iam_role</span>.<span style="color:#a6e22e">backup_dynamodb</span>.<span style="color:#a6e22e">arn</span>
-  <span style="color:#a6e22e">name</span>         = <span style="color:#e6db74">&#34;dynamodb-tracking&#34;</span>
-  <span style="color:#a6e22e">plan_id</span>      = <span style="color:#a6e22e">aws_backup_plan</span>.<span style="color:#a6e22e">dynamodb</span>.<span style="color:#a6e22e">id</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#fff;font-weight:bold">resource</span> <span style="color:#0ff;font-weight:bold">&#34;aws_backup_selection&#34;</span> <span style="color:#0ff;font-weight:bold">&#34;dynamodb_tracking&#34;</span> {
+  <span style="color:#007f7f">iam_role_arn</span> = aws_iam_role.backup_dynamodb.arn
+  <span style="color:#007f7f">name</span>         = <span style="color:#0ff;font-weight:bold">&#34;dynamodb-tracking&#34;</span>
+  <span style="color:#007f7f">plan_id</span>      = aws_backup_plan.dynamodb.id
 
-  <span style="color:#a6e22e">resources</span> = [
-    <span style="color:#a6e22e">aws_dynamodb_table</span>.<span style="color:#a6e22e">tracking</span>.<span style="color:#a6e22e">arn</span>
+  <span style="color:#007f7f">resources</span> = [
+    aws_dynamodb_table.tracking.arn
   ]
 }
 </code></pre></div><p>Virtually the same is done for the RDS instance, where a Backup Plan with the

@@ -70,10 +70,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -234,20 +234,20 @@ repository</a>.</p>
 invoked. This is provided to the Lambda function as an Execution Role.</p>
 <p>When creating the function, define a new Execution Role with the
 following permissions.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
-  <span style="color:#f92672">&#34;Statement&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;Version&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;2012-10-17&#34;</span>,
+  <span style="font-weight:bold">&#34;Statement&#34;</span>: [
     {
-      <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;Allow managing the secret from Lambda&#34;</span>,
-      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
-      <span style="color:#f92672">&#34;Action&#34;</span>: [
-        <span style="color:#e6db74">&#34;secretsmanager:GetSecretValue&#34;</span>,
-        <span style="color:#e6db74">&#34;secretsmanager:DescribeSecret&#34;</span>,
-        <span style="color:#e6db74">&#34;secretsmanager:PutSecretValue&#34;</span>,
-        <span style="color:#e6db74">&#34;secretsmanager:UpdateSecretVersionStage&#34;</span>,
-        <span style="color:#e6db74">&#34;secretsmanager:ListSecretVersionIds&#34;</span>
+      <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow managing the secret from Lambda&#34;</span>,
+      <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
+      <span style="font-weight:bold">&#34;Action&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;secretsmanager:GetSecretValue&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;secretsmanager:DescribeSecret&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;secretsmanager:PutSecretValue&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;secretsmanager:UpdateSecretVersionStage&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;secretsmanager:ListSecretVersionIds&#34;</span>
       ],
-      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;&lt;secret-arn&gt;&#34;</span>
+      <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;&lt;secret-arn&gt;&#34;</span>
     }
   ]
 }
@@ -282,68 +282,68 @@ to <code>AWSPREVIOUS</code></li>
 </ol>
 <p>As mentioned above, each invocation of the Lambda function during the rotation
 process receives a payload similar to the following.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;Step&#34;</span>: <span style="color:#e6db74">&#34;createSecret&#34;</span>,
-  <span style="color:#f92672">&#34;SecretId&#34;</span>: <span style="color:#e6db74">&#34;&lt;secretARN&gt;&#34;</span>,
-  <span style="color:#f92672">&#34;ClientRequestToken&#34;</span>: <span style="color:#e6db74">&#34;&lt;rotation unique token to be used as version ID&gt;&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;Step&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;createSecret&#34;</span>,
+  <span style="font-weight:bold">&#34;SecretId&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;&lt;secretARN&gt;&#34;</span>,
+  <span style="font-weight:bold">&#34;ClientRequestToken&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;&lt;rotation unique token to be used as version ID&gt;&#34;</span>
 }
 </code></pre></div><p>When writing the Lambda function, we can check the <code>Step</code> value in each
 invocation and implement the different steps as needed. When persisting the new
 value, the <code>ClientRequestToken</code> should be used as the version ID.</p>
 <p>The handler function for the Lambda function is <code>handle_event()</code>. We&rsquo;ll be
 checking the step that invoked the function execution in this function.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">if</span> event[<span style="color:#e6db74">&#34;Step&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;createSecret&#34;</span>:
-    <span style="color:#75715e"># first step of the process, we are generating a new value for the next</span>
-    <span style="color:#75715e"># version of the secret here.</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#fff;font-weight:bold">if</span> event[<span style="color:#0ff;font-weight:bold">&#34;Step&#34;</span>] == <span style="color:#0ff;font-weight:bold">&#34;createSecret&#34;</span>:
+    <span style="color:#007f7f"># first step of the process, we are generating a new value for the next</span>
+    <span style="color:#007f7f"># version of the secret here.</span>
 
-    <span style="color:#75715e"># ...</span>
+    <span style="color:#007f7f"># ...</span>
 
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">None</span>
 
-<span style="color:#66d9ef">elif</span> event[<span style="color:#e6db74">&#34;Step&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;setSecret&#34;</span>:
-    <span style="color:#75715e"># in the next step, we apply the new version of the secret to the</span>
-    <span style="color:#75715e"># remote server. There can be situations where a secret is not</span>
-    <span style="color:#75715e"># necessarily about a service credential. In those cases, this step can</span>
-    <span style="color:#75715e"># be skipped.</span>
+<span style="color:#fff;font-weight:bold">elif</span> event[<span style="color:#0ff;font-weight:bold">&#34;Step&#34;</span>] == <span style="color:#0ff;font-weight:bold">&#34;setSecret&#34;</span>:
+    <span style="color:#007f7f"># in the next step, we apply the new version of the secret to the</span>
+    <span style="color:#007f7f"># remote server. There can be situations where a secret is not</span>
+    <span style="color:#007f7f"># necessarily about a service credential. In those cases, this step can</span>
+    <span style="color:#007f7f"># be skipped.</span>
 
-    <span style="color:#75715e"># ...</span>
+    <span style="color:#007f7f"># ...</span>
 
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">None</span>
 
-<span style="color:#66d9ef">elif</span> event[<span style="color:#e6db74">&#34;Step&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;testSecret&#34;</span>:
-    <span style="color:#75715e"># in this step, the remote server change is tested to be successful.</span>
-    <span style="color:#75715e"># Like the previous step, if the secret is not a service credential or</span>
-    <span style="color:#75715e"># has nothing to do with an external service, this step can be skipped.</span>
+<span style="color:#fff;font-weight:bold">elif</span> event[<span style="color:#0ff;font-weight:bold">&#34;Step&#34;</span>] == <span style="color:#0ff;font-weight:bold">&#34;testSecret&#34;</span>:
+    <span style="color:#007f7f"># in this step, the remote server change is tested to be successful.</span>
+    <span style="color:#007f7f"># Like the previous step, if the secret is not a service credential or</span>
+    <span style="color:#007f7f"># has nothing to do with an external service, this step can be skipped.</span>
 
-    <span style="color:#75715e"># ...</span>
+    <span style="color:#007f7f"># ...</span>
 
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">None</span>
 
-<span style="color:#66d9ef">elif</span> event[<span style="color:#e6db74">&#34;Step&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;finishSecret&#34;</span>:
-    <span style="color:#75715e"># final step of the rotation process. We are transitioning the new</span>
-    <span style="color:#75715e"># secret version to be the actual &#34;current&#34; version. The previous</span>
-    <span style="color:#75715e"># version is preserved, however default reads point to the new version</span>
-    <span style="color:#75715e"># only.</span>
+<span style="color:#fff;font-weight:bold">elif</span> event[<span style="color:#0ff;font-weight:bold">&#34;Step&#34;</span>] == <span style="color:#0ff;font-weight:bold">&#34;finishSecret&#34;</span>:
+    <span style="color:#007f7f"># final step of the rotation process. We are transitioning the new</span>
+    <span style="color:#007f7f"># secret version to be the actual &#34;current&#34; version. The previous</span>
+    <span style="color:#007f7f"># version is preserved, however default reads point to the new version</span>
+    <span style="color:#007f7f"># only.</span>
 
-    <span style="color:#75715e"># ...</span>
+    <span style="color:#007f7f"># ...</span>
 
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">None</span>
 </code></pre></div><p>Each execution retuning <code>None</code> is a successful execution for Python3.9 runtime
 for Lambda. Let&rsquo;s dive into the sample implementation steps next.</p>
 <h3 id="createsecret"><code>createSecret</code></h3>
 <p>This is the first invocation of the Lambda function in the rotation process. We
 should generate what should be the next version of the secret in this step. For
 our sample scenario, we generate a random password.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#75715e"># generate a new password</span>
-new_pwd <span style="color:#f92672">=</span> generate_password(<span style="color:#ae81ff">16</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#007f7f"># generate a new password</span>
+new_pwd = generate_password(<span style="color:#ff0;font-weight:bold">16</span>)
 
-<span style="color:#75715e"># persist as a new secret version setting version stage to AWSPENDING,</span>
-<span style="color:#75715e"># the new password isn&#39;t usable yet</span>
-secret_client<span style="color:#f92672">.</span>put_secret_value(
-    ClientRequestToken<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;ClientRequestToken&#34;</span>],
-    SecretId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;SecretId&#34;</span>],
-    SecretString<span style="color:#f92672">=</span>new_pwd,
-    VersionStages<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;AWSPENDING&#34;</span>],
+<span style="color:#007f7f"># persist as a new secret version setting version stage to AWSPENDING,</span>
+<span style="color:#007f7f"># the new password isn&#39;t usable yet</span>
+secret_client.put_secret_value(
+    ClientRequestToken=event[<span style="color:#0ff;font-weight:bold">&#34;ClientRequestToken&#34;</span>],
+    SecretId=event[<span style="color:#0ff;font-weight:bold">&#34;SecretId&#34;</span>],
+    SecretString=new_pwd,
+    VersionStages=[<span style="color:#0ff;font-weight:bold">&#34;AWSPENDING&#34;</span>],
 )
 </code></pre></div><p>When persisting the new version, we label it as <code>AWSPENDING</code>. Ideally, a given
 secret would have a version labelled <code>AWSPENDING</code> only during the brief
@@ -360,39 +360,39 @@ being retried. Typically, a failed rotation is retried and given up after 5
 attempts. After fixing the versions, go back and enable Secret Rotation
 again.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># list secret versions</span>
-aws secretsmanager list-secret-version-ids <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --secret-id &lt;secret-arn&gt; <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --no-cli-pager
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#007f7f"># list secret versions</span>
+aws secretsmanager list-secret-version-ids <span style="color:#0ff;font-weight:bold">\
+</span><span style="color:#0ff;font-weight:bold"></span>  --secret-id &lt;secret-arn&gt; <span style="color:#0ff;font-weight:bold">\
+</span><span style="color:#0ff;font-weight:bold"></span>  --no-cli-pager
 </code></pre></div><p><img src="/blog/img/2022-11-01_secret_versions_error_state.png" alt="AWSPENDING staginglabel"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># remove unwanted AWSPENDING version (more accurately, remove AWSPENDING label</span>
-<span style="color:#75715e"># from that version</span>
-aws secretsmanager update-secret-version-stage <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --secret-id &lt;secret-arn&gt; <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --no-cli-pager <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --remove-from-version-id &lt;version-id-with-awspending-label&gt; <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --version-stage AWSPENDING
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#007f7f"># remove unwanted AWSPENDING version (more accurately, remove AWSPENDING label</span>
+<span style="color:#007f7f"># from that version</span>
+aws secretsmanager update-secret-version-stage <span style="color:#0ff;font-weight:bold">\
+</span><span style="color:#0ff;font-weight:bold"></span>  --secret-id &lt;secret-arn&gt; <span style="color:#0ff;font-weight:bold">\
+</span><span style="color:#0ff;font-weight:bold"></span>  --no-cli-pager <span style="color:#0ff;font-weight:bold">\
+</span><span style="color:#0ff;font-weight:bold"></span>  --remove-from-version-id &lt;version-id-with-awspending-label&gt; <span style="color:#0ff;font-weight:bold">\
+</span><span style="color:#0ff;font-weight:bold"></span>  --version-stage AWSPENDING
 </code></pre></div><p><img src="/blog/img/2022-11-01_secret_versions_error_fixed.png" alt="AWSPENDING staginglabel removed"></p>
 <p>You can alternatively write this into the rotation logic instead. For any
 failures after writing the <code>AWSPENDING</code> version, you can execute an
 <code>update_secret_version_stage()</code> call.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">secret_client<span style="color:#f92672">.</span>update_secret_version_stage(
-    SecretId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;SecretId&#34;</span>],
-    VersionStage<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;AWSPENDING&#34;</span>,
-    RemoveFromVersionId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;ClientRequestToken&#34;</span>],
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">secret_client.update_secret_version_stage(
+    SecretId=event[<span style="color:#0ff;font-weight:bold">&#34;SecretId&#34;</span>],
+    VersionStage=<span style="color:#0ff;font-weight:bold">&#34;AWSPENDING&#34;</span>,
+    RemoveFromVersionId=event[<span style="color:#0ff;font-weight:bold">&#34;ClientRequestToken&#34;</span>],
 )
 </code></pre></div><h3 id="setsecret"><code>setSecret</code></h3>
 <p>The second step of the process is intended to be used to apply credentials and
 other types of secrets that are to do with external services. For an example,
 for a database credential, this could be applying the new value (with the
 <code>AWSPENDING</code> label) as the user password.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">secret_version <span style="color:#f92672">=</span> secret_client<span style="color:#f92672">.</span>get_secret_value(
-    SecretId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;SecretId&#34;</span>],
-    VersionId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;ClientRequestToken&#34;</span>],
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">secret_version = secret_client.get_secret_value(
+    SecretId=event[<span style="color:#0ff;font-weight:bold">&#34;SecretId&#34;</span>],
+    VersionId=event[<span style="color:#0ff;font-weight:bold">&#34;ClientRequestToken&#34;</span>],
 )
 
-new_value <span style="color:#f92672">=</span> secret_version[<span style="color:#e6db74">&#34;SecretString&#34;</span>]
-print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;changing password in the remote server with value </span><span style="color:#e6db74">{</span>new_value<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+new_value = secret_version[<span style="color:#0ff;font-weight:bold">&#34;SecretString&#34;</span>]
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">f</span><span style="color:#0ff;font-weight:bold">&#34;changing password in the remote server with value </span><span style="color:#0ff;font-weight:bold">{</span>new_value<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#34;</span>)
 </code></pre></div><p>For cases where the secret has nothing to with an external service directly or
 if the external service does not support an API to rotate credentials or tokens
 with, this step and the next <code>testSecret</code> step can be skipped.</p>
@@ -415,25 +415,25 @@ the background.</li>
 </ol>
 <p>To make the transition we need two version IDs, of the version
 with the <code>AWSPENDING</code> label and the version with the <code>AWSCURRENT</code> label.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#75715e"># find the version ID to which AWSCURRENT is attached to now</span>
-versions <span style="color:#f92672">=</span> secret_client<span style="color:#f92672">.</span>list_secret_version_ids(
-    SecretId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;SecretId&#34;</span>])
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#007f7f"># find the version ID to which AWSCURRENT is attached to now</span>
+versions = secret_client.list_secret_version_ids(
+    SecretId=event[<span style="color:#0ff;font-weight:bold">&#34;SecretId&#34;</span>])
 
-prev_version_id: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
-<span style="color:#66d9ef">for</span> version <span style="color:#f92672">in</span> versions[<span style="color:#e6db74">&#34;Versions&#34;</span>]:
-    <span style="color:#66d9ef">for</span> stage <span style="color:#f92672">in</span> version[<span style="color:#e6db74">&#34;VersionStages&#34;</span>]:
-        <span style="color:#66d9ef">if</span> stage <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;AWSCURRENT&#34;</span>:
-            prev_version_id <span style="color:#f92672">=</span> version[<span style="color:#e6db74">&#34;VersionId&#34;</span>]
+prev_version_id: <span style="color:#fff;font-weight:bold">str</span> = <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>
+<span style="color:#fff;font-weight:bold">for</span> version in versions[<span style="color:#0ff;font-weight:bold">&#34;Versions&#34;</span>]:
+    <span style="color:#fff;font-weight:bold">for</span> stage in version[<span style="color:#0ff;font-weight:bold">&#34;VersionStages&#34;</span>]:
+        <span style="color:#fff;font-weight:bold">if</span> stage == <span style="color:#0ff;font-weight:bold">&#34;AWSCURRENT&#34;</span>:
+            prev_version_id = version[<span style="color:#0ff;font-weight:bold">&#34;VersionId&#34;</span>]
 
-<span style="color:#66d9ef">if</span> prev_version_id <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span>:
-    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">RuntimeError</span>(<span style="color:#e6db74">&#34;could not find the previous version ID&#34;</span>)
+<span style="color:#fff;font-weight:bold">if</span> prev_version_id == <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>:
+    <span style="color:#fff;font-weight:bold">raise</span> RuntimeError(<span style="color:#0ff;font-weight:bold">&#34;could not find the previous version ID&#34;</span>)
 
-<span style="color:#75715e"># set the new value to AWSCURRENT</span>
-secret_client<span style="color:#f92672">.</span>update_secret_version_stage(
-    SecretId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;SecretId&#34;</span>],
-    VersionStage<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;AWSCURRENT&#34;</span>,
-    MoveToVersionId<span style="color:#f92672">=</span>event[<span style="color:#e6db74">&#34;ClientRequestToken&#34;</span>],
-    RemoveFromVersionId<span style="color:#f92672">=</span>prev_version_id,
+<span style="color:#007f7f"># set the new value to AWSCURRENT</span>
+secret_client.update_secret_version_stage(
+    SecretId=event[<span style="color:#0ff;font-weight:bold">&#34;SecretId&#34;</span>],
+    VersionStage=<span style="color:#0ff;font-weight:bold">&#34;AWSCURRENT&#34;</span>,
+    MoveToVersionId=event[<span style="color:#0ff;font-weight:bold">&#34;ClientRequestToken&#34;</span>],
+    RemoveFromVersionId=prev_version_id,
 )
 </code></pre></div><p>After executing this step, we are done! The secret has been successfully
 rotated, and the new value will be returned for all the read operations from

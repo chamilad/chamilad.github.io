@@ -71,10 +71,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -251,74 +251,74 @@
 <h5 id="elasticsearch-roles">ElasticSearch Roles</h5>
 <p>The following two roles, <code>roaccess</code> and <code>writeaccess</code> could be created in ElasticSearch to encapsulate the two levels of permissions the users would get.</p>
 <p><strong><code>roaccess</code></strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;applications&#34;</span>: [],
-  <span style="color:#f92672">&#34;transient_metadata&#34;</span>: {
-    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;applications&#34;</span>: [],
+  <span style="font-weight:bold">&#34;transient_metadata&#34;</span>: {
+    <span style="font-weight:bold">&#34;enabled&#34;</span>: <span style="color:#fff;font-weight:bold">true</span>
   },
-  <span style="color:#f92672">&#34;run_as&#34;</span>: [],
-  <span style="color:#f92672">&#34;cluster&#34;</span>: [
-    <span style="color:#e6db74">&#34;monitor&#34;</span>
+  <span style="font-weight:bold">&#34;run_as&#34;</span>: [],
+  <span style="font-weight:bold">&#34;cluster&#34;</span>: [
+    <span style="color:#0ff;font-weight:bold">&#34;monitor&#34;</span>
   ],
-  <span style="color:#f92672">&#34;indices&#34;</span>: [
+  <span style="font-weight:bold">&#34;indices&#34;</span>: [
     {
-      <span style="color:#f92672">&#34;privileges&#34;</span>: [
-        <span style="color:#e6db74">&#34;read&#34;</span>,
-        <span style="color:#e6db74">&#34;monitor&#34;</span>,
-        <span style="color:#e6db74">&#34;view_index_metadata&#34;</span>
+      <span style="font-weight:bold">&#34;privileges&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;read&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;monitor&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;view_index_metadata&#34;</span>
       ],
-      <span style="color:#f92672">&#34;field_security&#34;</span>: {
-        <span style="color:#f92672">&#34;except&#34;</span>: [],
-        <span style="color:#f92672">&#34;grant&#34;</span>: [
-          <span style="color:#e6db74">&#34;*&#34;</span>
+      <span style="font-weight:bold">&#34;field_security&#34;</span>: {
+        <span style="font-weight:bold">&#34;except&#34;</span>: [],
+        <span style="font-weight:bold">&#34;grant&#34;</span>: [
+          <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
         ]
       },
-      <span style="color:#f92672">&#34;allow_restricted_indices&#34;</span>: <span style="color:#66d9ef">false</span>,
-      <span style="color:#f92672">&#34;names&#34;</span>: [
-        <span style="color:#e6db74">&#34;*&#34;</span>
+      <span style="font-weight:bold">&#34;allow_restricted_indices&#34;</span>: <span style="color:#fff;font-weight:bold">false</span>,
+      <span style="font-weight:bold">&#34;names&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
       ]
     }
   ],
-  <span style="color:#f92672">&#34;metadata&#34;</span>: {}
+  <span style="font-weight:bold">&#34;metadata&#34;</span>: {}
 }
 </code></pre></div><p><strong><code>writeaccess</code></strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;applications&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;applications&#34;</span>: [
       {
-        <span style="color:#f92672">&#34;application&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
-        <span style="color:#f92672">&#34;privileges&#34;</span>: [
-          <span style="color:#e6db74">&#34;*&#34;</span>
+        <span style="font-weight:bold">&#34;application&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>,
+        <span style="font-weight:bold">&#34;privileges&#34;</span>: [
+          <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
         ],
-        <span style="color:#f92672">&#34;resources&#34;</span>: [
-          <span style="color:#e6db74">&#34;*&#34;</span>
+        <span style="font-weight:bold">&#34;resources&#34;</span>: [
+          <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
         ]
       }
     ],
-  <span style="color:#f92672">&#34;transient_metadata&#34;</span>: {
-    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>
+  <span style="font-weight:bold">&#34;transient_metadata&#34;</span>: {
+    <span style="font-weight:bold">&#34;enabled&#34;</span>: <span style="color:#fff;font-weight:bold">true</span>
   },
-  <span style="color:#f92672">&#34;run_as&#34;</span>: [],
-  <span style="color:#f92672">&#34;cluster&#34;</span>: [
-    <span style="color:#e6db74">&#34;monitor&#34;</span>
+  <span style="font-weight:bold">&#34;run_as&#34;</span>: [],
+  <span style="font-weight:bold">&#34;cluster&#34;</span>: [
+    <span style="color:#0ff;font-weight:bold">&#34;monitor&#34;</span>
   ],
-  <span style="color:#f92672">&#34;indices&#34;</span>: [
+  <span style="font-weight:bold">&#34;indices&#34;</span>: [
     {
-      <span style="color:#f92672">&#34;privileges&#34;</span>: [
-        <span style="color:#e6db74">&#34;all&#34;</span>
+      <span style="font-weight:bold">&#34;privileges&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;all&#34;</span>
       ],
-      <span style="color:#f92672">&#34;field_security&#34;</span>: {
-        <span style="color:#f92672">&#34;except&#34;</span>: [],
-        <span style="color:#f92672">&#34;grant&#34;</span>: [
-          <span style="color:#e6db74">&#34;*&#34;</span>
+      <span style="font-weight:bold">&#34;field_security&#34;</span>: {
+        <span style="font-weight:bold">&#34;except&#34;</span>: [],
+        <span style="font-weight:bold">&#34;grant&#34;</span>: [
+          <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
         ]
       },
-      <span style="color:#f92672">&#34;allow_restricted_indices&#34;</span>: <span style="color:#66d9ef">false</span>,
-      <span style="color:#f92672">&#34;names&#34;</span>: [
-        <span style="color:#e6db74">&#34;*&#34;</span>
+      <span style="font-weight:bold">&#34;allow_restricted_indices&#34;</span>: <span style="color:#fff;font-weight:bold">false</span>,
+      <span style="font-weight:bold">&#34;names&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
       ]
     }
   ],
-  <span style="color:#f92672">&#34;metadata&#34;</span>: {}
+  <span style="font-weight:bold">&#34;metadata&#34;</span>: {}
 }
 </code></pre></div><blockquote>
 <p>Note that due to frequent ElasticSearch and Kibana API changes, these definitions could slightly change.</p>
@@ -326,51 +326,51 @@
 <h5 id="elasticsearch-role-mappings">ElasticSearch Role Mappings</h5>
 <p>With the name of the SAML attribute decided, we can create the following two role mappings, <code>roaccessmapping</code> and <code>writeaccessmapping</code> to map the above two roles to the authenticating users.</p>
 <p><strong><code>writeaccessmapping</code></strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;rules&#34;</span>: {
-    <span style="color:#f92672">&#34;all&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;rules&#34;</span>: {
+    <span style="font-weight:bold">&#34;all&#34;</span>: [
       {
-        <span style="color:#f92672">&#34;field&#34;</span>: {
-          <span style="color:#f92672">&#34;realm.name&#34;</span>: <span style="color:#e6db74">&#34;cloud-saml&#34;</span>
+        <span style="font-weight:bold">&#34;field&#34;</span>: {
+          <span style="font-weight:bold">&#34;realm.name&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;cloud-saml&#34;</span>
         }
       },
       {
-        <span style="color:#f92672">&#34;field&#34;</span>: {
-          <span style="color:#f92672">&#34;metadata.saml_kibanaAdmin&#34;</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+        <span style="font-weight:bold">&#34;field&#34;</span>: {
+          <span style="font-weight:bold">&#34;metadata.saml_kibanaAdmin&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;true&#34;</span>
         }
       }
     ]
   },
-  <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
-  <span style="color:#f92672">&#34;roles&#34;</span>: [
-    <span style="color:#e6db74">&#34;writeaccess&#34;</span>
+  <span style="font-weight:bold">&#34;enabled&#34;</span>: <span style="color:#fff;font-weight:bold">true</span>,
+  <span style="font-weight:bold">&#34;roles&#34;</span>: [
+    <span style="color:#0ff;font-weight:bold">&#34;writeaccess&#34;</span>
   ],
-  <span style="color:#f92672">&#34;metadata&#34;</span>: {
-    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>
+  <span style="font-weight:bold">&#34;metadata&#34;</span>: {
+    <span style="font-weight:bold">&#34;version&#34;</span>: <span style="color:#ff0;font-weight:bold">1</span>
   }
 }
 </code></pre></div><p><strong><code>roaccessmapping</code></strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;rules&#34;</span>: {
-    <span style="color:#f92672">&#34;all&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;rules&#34;</span>: {
+    <span style="font-weight:bold">&#34;all&#34;</span>: [
       {
-        <span style="color:#f92672">&#34;field&#34;</span>: {
-          <span style="color:#f92672">&#34;realm.name&#34;</span>: <span style="color:#e6db74">&#34;cloud-saml&#34;</span>
+        <span style="font-weight:bold">&#34;field&#34;</span>: {
+          <span style="font-weight:bold">&#34;realm.name&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;cloud-saml&#34;</span>
         }
       },
       {
-        <span style="color:#f92672">&#34;field&#34;</span>: {
-          <span style="color:#f92672">&#34;metadata.saml_kibanaAdmin&#34;</span>: <span style="color:#e6db74">&#34;false&#34;</span>
+        <span style="font-weight:bold">&#34;field&#34;</span>: {
+          <span style="font-weight:bold">&#34;metadata.saml_kibanaAdmin&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;false&#34;</span>
         }
       }
     ]
   },
-  <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
-  <span style="color:#f92672">&#34;roles&#34;</span>: [
-    <span style="color:#e6db74">&#34;roaccess&#34;</span>
+  <span style="font-weight:bold">&#34;enabled&#34;</span>: <span style="color:#fff;font-weight:bold">true</span>,
+  <span style="font-weight:bold">&#34;roles&#34;</span>: [
+    <span style="color:#0ff;font-weight:bold">&#34;roaccess&#34;</span>
   ],
-  <span style="color:#f92672">&#34;metadata&#34;</span>: {
-    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>
+  <span style="font-weight:bold">&#34;metadata&#34;</span>: {
+    <span style="font-weight:bold">&#34;version&#34;</span>: <span style="color:#ff0;font-weight:bold">1</span>
   }
 }
 </code></pre></div><blockquote>
@@ -383,30 +383,30 @@
 <p>We can start embedding all the client roles in the JWT in the OIDC Client, however for the sake of simplicity we can also embed another Claim that has the values <code>true</code> and <code>false</code> under the Claim name <code>kibanaAdmin</code>. For this we can use the Script Mapper, a feature in KeyCloak that lets us extend the functionality a bit.</p>
 <p>With a Script Mapper, we can use JavaScript to programmatically create or modify the Claims in the JWT. The JavaScript is executed using Nashorn runtime inside the JVM so there are certain changes from the common JavaScript dialect on how to access certain data embedded from the JVM runtime, however, including a custom boolean type Claim is a simple code.</p>
 <p>The Script Mapper attached to the OIDC Client for federation would look like the following.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">/**
-</span><span style="color:#75715e"> * Available variables: 
-</span><span style="color:#75715e"> * user - the current user
-</span><span style="color:#75715e"> * realm - the current realm
-</span><span style="color:#75715e"> * token - the current token
-</span><span style="color:#75715e"> * userSession - the current userSession
-</span><span style="color:#75715e"> * keycloakSession - the current userSession
-</span><span style="color:#75715e"> */</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#007f7f">/**
+</span><span style="color:#007f7f"> * Available variables: 
+</span><span style="color:#007f7f"> * user - the current user
+</span><span style="color:#007f7f"> * realm - the current realm
+</span><span style="color:#007f7f"> * token - the current token
+</span><span style="color:#007f7f"> * userSession - the current userSession
+</span><span style="color:#007f7f"> * keycloakSession - the current userSession
+</span><span style="color:#007f7f"> */</span>
 
-<span style="color:#a6e22e">kibana_admin</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+kibana_admin = <span style="color:#fff;font-weight:bold">false</span>;
 
-<span style="color:#75715e">// get all client roles for this client
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ArrayList</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Java</span>.<span style="color:#a6e22e">type</span>(<span style="color:#e6db74">&#34;java.util.ArrayList&#34;</span>);
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">roles</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ArrayList</span>();
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">keycloakSession</span>.<span style="color:#a6e22e">getContext</span>().<span style="color:#a6e22e">getClient</span>();
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">forEach</span> <span style="color:#f92672">=</span> Array.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">forEach</span>;
-<span style="color:#a6e22e">forEach</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">getClientRoleMappings</span>(<span style="color:#a6e22e">client</span>).<span style="color:#a6e22e">toArray</span>(), <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">roleModel</span>) {
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">roleModel</span>.<span style="color:#a6e22e">getName</span>() <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;kibana_admin&#34;</span>){
-        <span style="color:#a6e22e">kibana_admin</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+<span style="color:#007f7f">// get all client roles for this client
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">var</span> ArrayList = Java.type(<span style="color:#0ff;font-weight:bold">&#34;java.util.ArrayList&#34;</span>);
+<span style="color:#fff;font-weight:bold">var</span> roles = <span style="color:#fff;font-weight:bold">new</span> ArrayList();
+<span style="color:#fff;font-weight:bold">var</span> client = keycloakSession.getContext().getClient();
+<span style="color:#fff;font-weight:bold">var</span> forEach = <span style="color:#fff;font-weight:bold">Array</span>.prototype.forEach;
+forEach.call(user.getClientRoleMappings(client).toArray(), <span style="color:#fff;font-weight:bold">function</span>(roleModel) {
+    <span style="color:#fff;font-weight:bold">if</span> (roleModel.getName() === <span style="color:#0ff;font-weight:bold">&#34;kibana_admin&#34;</span>){
+        kibana_admin = <span style="color:#fff;font-weight:bold">true</span>;
     }
 });
 
-<span style="color:#75715e">// set Claim 
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">setOtherClaims</span>(<span style="color:#e6db74">&#34;kibanaAdmin&#34;</span>, <span style="color:#a6e22e">kibana_admin</span>);
+<span style="color:#007f7f">// set Claim 
+</span><span style="color:#007f7f"></span>token.setOtherClaims(<span style="color:#0ff;font-weight:bold">&#34;kibanaAdmin&#34;</span>, kibana_admin);
 </code></pre></div><p>After this Mapper gets evaluated, the JWT will contain a Claim named <code>kibanaAdmin</code> with either <code>true</code> or <code>false</code> set to the value.</p>
 <h5 id="keycloak-idp-and-saml-client-mappers">KeyCloak IDP and SAML Client Mappers</h5>
 <p>With the proper values in the incoming JWT, we can now programme the rest of the process to propagate it through federation into the SAML document.</p>
@@ -416,42 +416,42 @@
 <p><img src="/blog/img/2020-02-12_multitenant_sso_02.png" alt=""></p>
 <p>With all these in place, the final SAML response from KeyCloak should contain the following SAML Attribute, that can be evaluated by ElasticSearch.</p>
 <p>The value of <code>Response.Assertion.AttributeStatement[.FriendlyName == 'kibanaAdmin'].AttributeValue</code> will be what the above created ElasticSearch Role Mappings would be evaluating.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;samlp:Response</span> <span style="color:#a6e22e">xmlns:samlp=</span><span style="color:#e6db74">&#34;urn:oasis:names:tc:SAML:2.0:protocol&#34;</span>
-                <span style="color:#a6e22e">xmlns:saml=</span><span style="color:#e6db74">&#34;urn:oasis:names:tc:SAML:2.0:assertion&#34;</span>
-                <span style="color:#a6e22e">Destination=</span><span style="color:#e6db74">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
-                <span style="color:#960050;background-color:#1e0010">...</span>
-                <span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;saml:Issuer&gt;</span>https://keycloak.my.org/auth/realms/federator<span style="color:#f92672">&lt;/saml:Issuer&gt;</span>
-    <span style="color:#f92672">&lt;dsig:Signature</span> <span style="color:#a6e22e">xmlns:dsig=</span><span style="color:#e6db74">&#34;http://www.w3.org/2000/09/xmldsig#&#34;</span><span style="color:#f92672">&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="font-weight:bold">&lt;samlp:Response</span> <span style="color:#007f7f">xmlns:samlp=</span><span style="color:#0ff;font-weight:bold">&#34;urn:oasis:names:tc:SAML:2.0:protocol&#34;</span>
+                <span style="color:#007f7f">xmlns:saml=</span><span style="color:#0ff;font-weight:bold">&#34;urn:oasis:names:tc:SAML:2.0:assertion&#34;</span>
+                <span style="color:#007f7f">Destination=</span><span style="color:#0ff;font-weight:bold">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
+                <span style="color:#f00">...</span>
+                <span style="font-weight:bold">&gt;</span>
+    <span style="font-weight:bold">&lt;saml:Issuer&gt;</span>https://keycloak.my.org/auth/realms/federator<span style="font-weight:bold">&lt;/saml:Issuer&gt;</span>
+    <span style="font-weight:bold">&lt;dsig:Signature</span> <span style="color:#007f7f">xmlns:dsig=</span><span style="color:#0ff;font-weight:bold">&#34;http://www.w3.org/2000/09/xmldsig#&#34;</span><span style="font-weight:bold">&gt;</span>
        ...
-    <span style="color:#f92672">&lt;/dsig:Signature&gt;</span>
+    <span style="font-weight:bold">&lt;/dsig:Signature&gt;</span>
     ...
-    <span style="color:#f92672">&lt;saml:Assertion&gt;</span>
-        <span style="color:#f92672">&lt;saml:Issuer&gt;</span>https://keycloak.my.org/auth/realms/federator<span style="color:#f92672">&lt;/saml:Issuer&gt;</span>
-        <span style="color:#f92672">&lt;saml:Subject&gt;</span>
+    <span style="font-weight:bold">&lt;saml:Assertion&gt;</span>
+        <span style="font-weight:bold">&lt;saml:Issuer&gt;</span>https://keycloak.my.org/auth/realms/federator<span style="font-weight:bold">&lt;/saml:Issuer&gt;</span>
+        <span style="font-weight:bold">&lt;saml:Subject&gt;</span>
             ...
-        <span style="color:#f92672">&lt;/saml:Subject&gt;</span>
-        <span style="color:#f92672">&lt;saml:Conditions&gt;</span>
+        <span style="font-weight:bold">&lt;/saml:Subject&gt;</span>
+        <span style="font-weight:bold">&lt;saml:Conditions&gt;</span>
             ...
-        <span style="color:#f92672">&lt;/saml:Conditions&gt;</span>
-        <span style="color:#f92672">&lt;saml:AuthnStatement&gt;</span>
+        <span style="font-weight:bold">&lt;/saml:Conditions&gt;</span>
+        <span style="font-weight:bold">&lt;saml:AuthnStatement&gt;</span>
             ...
-        <span style="color:#f92672">&lt;/saml:AuthnStatement&gt;</span>
-        <span style="color:#f92672">&lt;saml:AttributeStatement&gt;</span>
+        <span style="font-weight:bold">&lt;/saml:AuthnStatement&gt;</span>
+        <span style="font-weight:bold">&lt;saml:AttributeStatement&gt;</span>
             ...
-            <span style="color:#f92672">&lt;saml:Attribute</span> <span style="color:#a6e22e">FriendlyName=</span><span style="color:#e6db74">&#34;kibanaAdmin&#34;</span>
-                            <span style="color:#a6e22e">Name=</span><span style="color:#e6db74">&#34;kibanaAdmin&#34;</span>
-                            <span style="color:#a6e22e">NameFormat=</span><span style="color:#e6db74">&#34;urn:oasis:names:tc:SAML:2.0:attrname-format:basic&#34;</span>
-                            <span style="color:#f92672">&gt;</span>
-                <span style="color:#f92672">&lt;saml:AttributeValue</span> <span style="color:#a6e22e">xmlns:xs=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema&#34;</span>
-                                     <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-                                     <span style="color:#a6e22e">xsi:type=</span><span style="color:#e6db74">&#34;xs:string&#34;</span>
-                                     <span style="color:#f92672">&gt;</span>true<span style="color:#f92672">&lt;/saml:AttributeValue&gt;</span>
-            <span style="color:#f92672">&lt;/saml:Attribute&gt;</span>
+            <span style="font-weight:bold">&lt;saml:Attribute</span> <span style="color:#007f7f">FriendlyName=</span><span style="color:#0ff;font-weight:bold">&#34;kibanaAdmin&#34;</span>
+                            <span style="color:#007f7f">Name=</span><span style="color:#0ff;font-weight:bold">&#34;kibanaAdmin&#34;</span>
+                            <span style="color:#007f7f">NameFormat=</span><span style="color:#0ff;font-weight:bold">&#34;urn:oasis:names:tc:SAML:2.0:attrname-format:basic&#34;</span>
+                            <span style="font-weight:bold">&gt;</span>
+                <span style="font-weight:bold">&lt;saml:AttributeValue</span> <span style="color:#007f7f">xmlns:xs=</span><span style="color:#0ff;font-weight:bold">&#34;http://www.w3.org/2001/XMLSchema&#34;</span>
+                                     <span style="color:#007f7f">xmlns:xsi=</span><span style="color:#0ff;font-weight:bold">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+                                     <span style="color:#007f7f">xsi:type=</span><span style="color:#0ff;font-weight:bold">&#34;xs:string&#34;</span>
+                                     <span style="font-weight:bold">&gt;</span>true<span style="font-weight:bold">&lt;/saml:AttributeValue&gt;</span>
+            <span style="font-weight:bold">&lt;/saml:Attribute&gt;</span>
             ...
-        <span style="color:#f92672">&lt;/saml:AttributeStatement&gt;</span>
-    <span style="color:#f92672">&lt;/saml:Assertion&gt;</span>
-<span style="color:#f92672">&lt;/samlp:Response&gt;</span>
+        <span style="font-weight:bold">&lt;/saml:AttributeStatement&gt;</span>
+    <span style="font-weight:bold">&lt;/saml:Assertion&gt;</span>
+<span style="font-weight:bold">&lt;/samlp:Response&gt;</span>
 </code></pre></div><p>This is a somewhat detailed example of how to do fine grained authorization based on information passed through federation in KeyCloak. Let&rsquo;s consider another scenario where authorization should be done to implement multi-tenancy.</p>
 <h3 id="tenant-separation">Tenant Separation</h3>
 <p>Since users can now be authorized into different levels of access, let&rsquo;s consider how to do that within the confinements of separate tenants.</p>
@@ -464,46 +464,46 @@
 </ol>
 <h4 id="keycloak-mappers-for-tenant-name">KeyCloak Mappers for Tenant Name</h4>
 <p>As we dynamically added a Claim in the JWT and propagated that through to the SAML document, we can dynamically add the original realm name. Another Script Mapper can be made use in this case too. This mapper would be far simpler than the earlier one, since we have access to the information we need as JavaScript variables injected by the JVM runtime.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">/**
-</span><span style="color:#75715e"> * Available variables: 
-</span><span style="color:#75715e"> * user - the current user
-</span><span style="color:#75715e"> * realm - the current realm
-</span><span style="color:#75715e"> * token - the current token
-</span><span style="color:#75715e"> * userSession - the current userSession
-</span><span style="color:#75715e"> * keycloakSession - the current userSession
-</span><span style="color:#75715e"> */</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#007f7f">/**
+</span><span style="color:#007f7f"> * Available variables: 
+</span><span style="color:#007f7f"> * user - the current user
+</span><span style="color:#007f7f"> * realm - the current realm
+</span><span style="color:#007f7f"> * token - the current token
+</span><span style="color:#007f7f"> * userSession - the current userSession
+</span><span style="color:#007f7f"> * keycloakSession - the current userSession
+</span><span style="color:#007f7f"> */</span>
 
-<span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">setOtherClaims</span>(<span style="color:#e6db74">&#34;tenant&#34;</span>, <span style="color:#a6e22e">realm</span>.<span style="color:#a6e22e">getName</span>());
+token.setOtherClaims(<span style="color:#0ff;font-weight:bold">&#34;tenant&#34;</span>, realm.getName());
 </code></pre></div><p>We&rsquo;ll propagate this Claim in the JWT using Attribute Importer and Mapper.</p>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_03.png" alt="">
 <img src="/blog/img/2020-02-12_multitenant_sso_04.png" alt=""></p>
 <p>This should result in an additional SAML Attribute in the Attribute Statement section of the SAML response.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;saml:Attribute</span> <span style="color:#a6e22e">FriendlyName=</span><span style="color:#e6db74">&#34;tenant&#34;</span>
-                <span style="color:#a6e22e">Name=</span><span style="color:#e6db74">&#34;tenant&#34;</span>
-                <span style="color:#a6e22e">NameFormat=</span><span style="color:#e6db74">&#34;urn:oasis:names:tc:SAML:2.0:attrname-format:basic&#34;</span>
-                <span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;saml:AttributeValue</span> <span style="color:#a6e22e">xmlns:xs=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema&#34;</span>
-                         <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-                         <span style="color:#a6e22e">xsi:type=</span><span style="color:#e6db74">&#34;xs:string&#34;</span>
-                         <span style="color:#f92672">&gt;</span>org1<span style="color:#f92672">&lt;/saml:AttributeValue&gt;</span>
-<span style="color:#f92672">&lt;/saml:Attribute&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="font-weight:bold">&lt;saml:Attribute</span> <span style="color:#007f7f">FriendlyName=</span><span style="color:#0ff;font-weight:bold">&#34;tenant&#34;</span>
+                <span style="color:#007f7f">Name=</span><span style="color:#0ff;font-weight:bold">&#34;tenant&#34;</span>
+                <span style="color:#007f7f">NameFormat=</span><span style="color:#0ff;font-weight:bold">&#34;urn:oasis:names:tc:SAML:2.0:attrname-format:basic&#34;</span>
+                <span style="font-weight:bold">&gt;</span>
+    <span style="font-weight:bold">&lt;saml:AttributeValue</span> <span style="color:#007f7f">xmlns:xs=</span><span style="color:#0ff;font-weight:bold">&#34;http://www.w3.org/2001/XMLSchema&#34;</span>
+                         <span style="color:#007f7f">xmlns:xsi=</span><span style="color:#0ff;font-weight:bold">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+                         <span style="color:#007f7f">xsi:type=</span><span style="color:#0ff;font-weight:bold">&#34;xs:string&#34;</span>
+                         <span style="font-weight:bold">&gt;</span>org1<span style="font-weight:bold">&lt;/saml:AttributeValue&gt;</span>
+<span style="font-weight:bold">&lt;/saml:Attribute&gt;</span>
 </code></pre></div><h4 id="elasticsearch-changes-to-lookup-the-new-saml-attribute">ElasticSearch Changes to Lookup the New SAML Attribute</h4>
 <p>To read this SAML Attribute at the ElasticSearch side of things, we could follow the same approach as the earlier one. However, we can make use of an ElasticSearch SAML configuration, that let&rsquo;s us specify what should be translated as the <code>group</code> variable for a particular subject (i.e. authenticating user). Doing this instead of treating <code>tenant</code> as just another SAML Attribute makes certain sense, since it is the actual grouping factor for a KeyCloak user.</p>
 <p>To do this, we should edit the ElasticSearch SAML configuration that was added in the previous post, with a slight modification to the field <code>xpack.security.authc.realms.saml.cloud-saml.attributes.groups</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">xpack</span>:
-  <span style="color:#f92672">security</span>:
-    <span style="color:#f92672">authc</span>:
-      <span style="color:#f92672">realms</span>:
-        <span style="color:#f92672">saml</span>:
-          <span style="color:#f92672">cloud-saml</span>:
-            <span style="color:#f92672">order</span>: <span style="color:#ae81ff">2</span>
-            <span style="color:#f92672">attributes.principal</span>: <span style="color:#e6db74">&#34;email&#34;</span>
-            <span style="color:#f92672">attributes.groups</span>: <span style="color:#e6db74">&#34;tenant&#34;</span>
-            <span style="color:#f92672">idp.metadata.path</span>: <span style="color:#e6db74">&#34;/app/config/saml/metadata.xml&#34;</span>
-            <span style="color:#f92672">idp.entity_id</span>: <span style="color:#e6db74">&#34;https://keycloak.my.org/auth/realms/elastic&#34;</span>
-            <span style="color:#f92672">sp.entity_id</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/&#34;</span>
-            <span style="color:#f92672">sp.acs</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
-            <span style="color:#f92672">sp.logout</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/logout&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">xpack</span>:
+  <span style="font-weight:bold">security</span>:
+    <span style="font-weight:bold">authc</span>:
+      <span style="font-weight:bold">realms</span>:
+        <span style="font-weight:bold">saml</span>:
+          <span style="font-weight:bold">cloud-saml</span>:
+            <span style="font-weight:bold">order</span>: <span style="color:#ff0;font-weight:bold">2</span>
+            <span style="font-weight:bold">attributes.principal</span>: <span style="color:#0ff;font-weight:bold">&#34;email&#34;</span>
+            <span style="font-weight:bold">attributes.groups</span>: <span style="color:#0ff;font-weight:bold">&#34;tenant&#34;</span>
+            <span style="font-weight:bold">idp.metadata.path</span>: <span style="color:#0ff;font-weight:bold">&#34;/app/config/saml/metadata.xml&#34;</span>
+            <span style="font-weight:bold">idp.entity_id</span>: <span style="color:#0ff;font-weight:bold">&#34;https://keycloak.my.org/auth/realms/elastic&#34;</span>
+            <span style="font-weight:bold">sp.entity_id</span>: <span style="color:#0ff;font-weight:bold">&#34;https://kibana.my.org:443/&#34;</span>
+            <span style="font-weight:bold">sp.acs</span>: <span style="color:#0ff;font-weight:bold">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
+            <span style="font-weight:bold">sp.logout</span>: <span style="color:#0ff;font-weight:bold">&#34;https://kibana.my.org:443/logout&#34;</span>
 </code></pre></div><p>This would enable us to query for the <code>groups</code> field in the Role Mappings to figure out the Space specific Role to assign.</p>
 <p>For an example, for the tenant <code>org1</code>, the following two Role Mappings can be added to determine,</p>
 <ol>
@@ -511,148 +511,148 @@
 <li>whether the user should be able to do write operations on the tenant <code>org1</code></li>
 </ol>
 <p><strong>Write Access</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;rules&#34;</span>: {
-    <span style="color:#f92672">&#34;all&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;rules&#34;</span>: {
+    <span style="font-weight:bold">&#34;all&#34;</span>: [
       {
-        <span style="color:#f92672">&#34;field&#34;</span>: {
-          <span style="color:#f92672">&#34;realm.name&#34;</span>: <span style="color:#e6db74">&#34;cloud-saml&#34;</span>
+        <span style="font-weight:bold">&#34;field&#34;</span>: {
+          <span style="font-weight:bold">&#34;realm.name&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;cloud-saml&#34;</span>
         }
       },
       {
-        <span style="color:#f92672">&#34;field&#34;</span>: {
-          <span style="color:#f92672">&#34;groups&#34;</span>: <span style="color:#e6db74">&#34;org1&#34;</span>
+        <span style="font-weight:bold">&#34;field&#34;</span>: {
+          <span style="font-weight:bold">&#34;groups&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;org1&#34;</span>
         }
       },
       {
-        <span style="color:#f92672">&#34;field&#34;</span>: {
-          <span style="color:#f92672">&#34;metadata.saml_KibanaAdmin&#34;</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+        <span style="font-weight:bold">&#34;field&#34;</span>: {
+          <span style="font-weight:bold">&#34;metadata.saml_KibanaAdmin&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;true&#34;</span>
         }
       }
     ]
   },
-  <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
-  <span style="color:#f92672">&#34;roles&#34;</span>: [
-    <span style="color:#e6db74">&#34;org1writeaccess&#34;</span>
+  <span style="font-weight:bold">&#34;enabled&#34;</span>: <span style="color:#fff;font-weight:bold">true</span>,
+  <span style="font-weight:bold">&#34;roles&#34;</span>: [
+    <span style="color:#0ff;font-weight:bold">&#34;org1writeaccess&#34;</span>
   ],
-  <span style="color:#f92672">&#34;metadata&#34;</span>: {
-    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>
+  <span style="font-weight:bold">&#34;metadata&#34;</span>: {
+    <span style="font-weight:bold">&#34;version&#34;</span>: <span style="color:#ff0;font-weight:bold">1</span>
   }
 }
 </code></pre></div><p><strong>Read-only Access</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;rules&#34;</span>: {
-    <span style="color:#f92672">&#34;all&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;rules&#34;</span>: {
+    <span style="font-weight:bold">&#34;all&#34;</span>: [
       {
-        <span style="color:#f92672">&#34;field&#34;</span>: {
-          <span style="color:#f92672">&#34;realm.name&#34;</span>: <span style="color:#e6db74">&#34;cloud-saml&#34;</span>
+        <span style="font-weight:bold">&#34;field&#34;</span>: {
+          <span style="font-weight:bold">&#34;realm.name&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;cloud-saml&#34;</span>
         }
       },
       {
-        <span style="color:#f92672">&#34;field&#34;</span>: {
-          <span style="color:#f92672">&#34;groups&#34;</span>: <span style="color:#e6db74">&#34;org1&#34;</span>
+        <span style="font-weight:bold">&#34;field&#34;</span>: {
+          <span style="font-weight:bold">&#34;groups&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;org1&#34;</span>
         }
       },
       {
-        <span style="color:#f92672">&#34;field&#34;</span>: {
-          <span style="color:#f92672">&#34;metadata.saml_KibanaAdmin&#34;</span>: <span style="color:#e6db74">&#34;false&#34;</span>
+        <span style="font-weight:bold">&#34;field&#34;</span>: {
+          <span style="font-weight:bold">&#34;metadata.saml_KibanaAdmin&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;false&#34;</span>
         }
       }
     ]
   },
-  <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
-  <span style="color:#f92672">&#34;roles&#34;</span>: [
-    <span style="color:#e6db74">&#34;org1roaccess&#34;</span>
+  <span style="font-weight:bold">&#34;enabled&#34;</span>: <span style="color:#fff;font-weight:bold">true</span>,
+  <span style="font-weight:bold">&#34;roles&#34;</span>: [
+    <span style="color:#0ff;font-weight:bold">&#34;org1roaccess&#34;</span>
   ],
-  <span style="color:#f92672">&#34;metadata&#34;</span>: {
-    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>
+  <span style="font-weight:bold">&#34;metadata&#34;</span>: {
+    <span style="font-weight:bold">&#34;version&#34;</span>: <span style="color:#ff0;font-weight:bold">1</span>
   }
 }
 </code></pre></div><p>These evaluations will result in either of the following roles being assigned to the user.</p>
 <p><strong><code>org1writeaccess</code></strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;applications&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;applications&#34;</span>: [
     {
-      <span style="color:#f92672">&#34;application&#34;</span>: <span style="color:#e6db74">&#34;kibana-.kibana&#34;</span>,
-      <span style="color:#f92672">&#34;privileges&#34;</span>: [
-        <span style="color:#e6db74">&#34;feature_discover.all&#34;</span>,
-        <span style="color:#e6db74">&#34;feature_visualize.all&#34;</span>,
-        <span style="color:#e6db74">&#34;feature_dashboard.all&#34;</span>,
-        <span style="color:#e6db74">&#34;feature_dev_tools.all&#34;</span>,
-        <span style="color:#e6db74">&#34;feature_indexPatterns.all&#34;</span>,
-        <span style="color:#e6db74">&#34;feature_savedObjectsManagement.all&#34;</span>
+      <span style="font-weight:bold">&#34;application&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;kibana-.kibana&#34;</span>,
+      <span style="font-weight:bold">&#34;privileges&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;feature_discover.all&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;feature_visualize.all&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;feature_dashboard.all&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;feature_dev_tools.all&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;feature_indexPatterns.all&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;feature_savedObjectsManagement.all&#34;</span>
       ],
-      <span style="color:#f92672">&#34;resources&#34;</span>: [
-        <span style="color:#e6db74">&#34;space:org1&#34;</span>
+      <span style="font-weight:bold">&#34;resources&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;space:org1&#34;</span>
       ]
     }
   ],
-  <span style="color:#f92672">&#34;transient_metadata&#34;</span>: {
-    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>
+  <span style="font-weight:bold">&#34;transient_metadata&#34;</span>: {
+    <span style="font-weight:bold">&#34;enabled&#34;</span>: <span style="color:#fff;font-weight:bold">true</span>
   },
-  <span style="color:#f92672">&#34;run_as&#34;</span>: [],
-  <span style="color:#f92672">&#34;cluster&#34;</span>: [],
-  <span style="color:#f92672">&#34;indices&#34;</span>: [
+  <span style="font-weight:bold">&#34;run_as&#34;</span>: [],
+  <span style="font-weight:bold">&#34;cluster&#34;</span>: [],
+  <span style="font-weight:bold">&#34;indices&#34;</span>: [
     {
-      <span style="color:#f92672">&#34;privileges&#34;</span>: [
-        <span style="color:#e6db74">&#34;all&#34;</span>
+      <span style="font-weight:bold">&#34;privileges&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;all&#34;</span>
       ],
-      <span style="color:#f92672">&#34;field_security&#34;</span>: {
-        <span style="color:#f92672">&#34;except&#34;</span>: [],
-        <span style="color:#f92672">&#34;grant&#34;</span>: [
-          <span style="color:#e6db74">&#34;*&#34;</span>
+      <span style="font-weight:bold">&#34;field_security&#34;</span>: {
+        <span style="font-weight:bold">&#34;except&#34;</span>: [],
+        <span style="font-weight:bold">&#34;grant&#34;</span>: [
+          <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
         ]
       },
-      <span style="color:#f92672">&#34;allow_restricted_indices&#34;</span>: <span style="color:#66d9ef">false</span>,
-      <span style="color:#f92672">&#34;names&#34;</span>: [
-        <span style="color:#e6db74">&#34;logstash*org1*&#34;</span>
+      <span style="font-weight:bold">&#34;allow_restricted_indices&#34;</span>: <span style="color:#fff;font-weight:bold">false</span>,
+      <span style="font-weight:bold">&#34;names&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;logstash*org1*&#34;</span>
       ]
     }
   ],
-  <span style="color:#f92672">&#34;metadata&#34;</span>: {}
+  <span style="font-weight:bold">&#34;metadata&#34;</span>: {}
 }
 </code></pre></div><p><strong><code>org1roaccess</code></strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;applications&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;applications&#34;</span>: [
     {
-      <span style="color:#f92672">&#34;application&#34;</span>: <span style="color:#e6db74">&#34;kibana-.kibana&#34;</span>,
-      <span style="color:#f92672">&#34;privileges&#34;</span>: [
-        <span style="color:#e6db74">&#34;feature_discover.read&#34;</span>,
-        <span style="color:#e6db74">&#34;feature_visualize.read&#34;</span>,
-        <span style="color:#e6db74">&#34;feature_dashboard.read&#34;</span>,
-        <span style="color:#e6db74">&#34;feature_indexPatterns.read&#34;</span>,
-        <span style="color:#e6db74">&#34;feature_savedObjectsManagement.read&#34;</span>
+      <span style="font-weight:bold">&#34;application&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;kibana-.kibana&#34;</span>,
+      <span style="font-weight:bold">&#34;privileges&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;feature_discover.read&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;feature_visualize.read&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;feature_dashboard.read&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;feature_indexPatterns.read&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;feature_savedObjectsManagement.read&#34;</span>
       ],
-      <span style="color:#f92672">&#34;resources&#34;</span>: [
-        <span style="color:#e6db74">&#34;space:org1&#34;</span>
+      <span style="font-weight:bold">&#34;resources&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;space:org1&#34;</span>
       ]
     }
   ],
-  <span style="color:#f92672">&#34;transient_metadata&#34;</span>: {
-    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>
+  <span style="font-weight:bold">&#34;transient_metadata&#34;</span>: {
+    <span style="font-weight:bold">&#34;enabled&#34;</span>: <span style="color:#fff;font-weight:bold">true</span>
   },
-  <span style="color:#f92672">&#34;run_as&#34;</span>: [],
-  <span style="color:#f92672">&#34;cluster&#34;</span>: [],
-  <span style="color:#f92672">&#34;indices&#34;</span>: [
+  <span style="font-weight:bold">&#34;run_as&#34;</span>: [],
+  <span style="font-weight:bold">&#34;cluster&#34;</span>: [],
+  <span style="font-weight:bold">&#34;indices&#34;</span>: [
     {
-      <span style="color:#f92672">&#34;privileges&#34;</span>: [
-        <span style="color:#e6db74">&#34;read&#34;</span>,
-        <span style="color:#e6db74">&#34;view_index_metadata&#34;</span>,
-        <span style="color:#e6db74">&#34;monitor&#34;</span>
+      <span style="font-weight:bold">&#34;privileges&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;read&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;view_index_metadata&#34;</span>,
+        <span style="color:#0ff;font-weight:bold">&#34;monitor&#34;</span>
       ],
-      <span style="color:#f92672">&#34;field_security&#34;</span>: {
-        <span style="color:#f92672">&#34;except&#34;</span>: [],
-        <span style="color:#f92672">&#34;grant&#34;</span>: [
-          <span style="color:#e6db74">&#34;*&#34;</span>
+      <span style="font-weight:bold">&#34;field_security&#34;</span>: {
+        <span style="font-weight:bold">&#34;except&#34;</span>: [],
+        <span style="font-weight:bold">&#34;grant&#34;</span>: [
+          <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
         ]
       },
-      <span style="color:#f92672">&#34;allow_restricted_indices&#34;</span>: <span style="color:#66d9ef">false</span>,
-      <span style="color:#f92672">&#34;names&#34;</span>: [
-        <span style="color:#e6db74">&#34;logstash*org1*&#34;</span>
+      <span style="font-weight:bold">&#34;allow_restricted_indices&#34;</span>: <span style="color:#fff;font-weight:bold">false</span>,
+      <span style="font-weight:bold">&#34;names&#34;</span>: [
+        <span style="color:#0ff;font-weight:bold">&#34;logstash*org1*&#34;</span>
       ]
     }
   ],
-  <span style="color:#f92672">&#34;metadata&#34;</span>: {}
+  <span style="font-weight:bold">&#34;metadata&#34;</span>: {}
 }
 </code></pre></div><blockquote>
 <p>Note how the roles restrict access to one Space named <code>org1</code> and only Indices that match the name pattern <code>logstash*org1*</code>.</p>
