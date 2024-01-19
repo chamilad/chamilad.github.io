@@ -6,13 +6,49 @@
     <description>Recent content in Tags on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Jan 2024 12:57:07 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Jan 2024 16:30:03 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AWS</title>
       <link>https://chamila.dev/tags/aws/</link>
-      <pubDate>Tue, 16 Jan 2024 12:57:07 +1300</pubDate>
+      <pubDate>Thu, 18 Jan 2024 16:30:03 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fido</title>
+      <link>https://chamila.dev/tags/fido/</link>
+      <pubDate>Thu, 18 Jan 2024 16:30:03 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/fido/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mfa</title>
+      <link>https://chamila.dev/tags/mfa/</link>
+      <pubDate>Thu, 18 Jan 2024 16:30:03 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/mfa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>totp</title>
+      <link>https://chamila.dev/tags/totp/</link>
+      <pubDate>Thu, 18 Jan 2024 16:30:03 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/totp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>yubikey</title>
+      <link>https://chamila.dev/tags/yubikey/</link>
+      <pubDate>Thu, 18 Jan 2024 16:30:03 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/yubikey/</guid>
       <description></description>
     </item>
     

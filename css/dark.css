@@ -74,9 +74,9 @@
 .theme-dark #floating-menu::before {
   content: '';
   position: absolute;
-  width: 18px;
-  height: 18px;
-  top: 2px;
+  width: 16px;
+  height: 16px;
+  top: 1px;
   left: 0;
   transform: translateX(2px);
   background-color: var(--dark-dark-end);

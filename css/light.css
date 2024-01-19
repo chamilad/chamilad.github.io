@@ -61,7 +61,7 @@
 .theme-light #floating-menu a,
 .theme-light #floating-menu button {
   /* color: var(--dark-dark-end); */
-  color: #6a737d;
+  color: #b4beca; /* random because I can't think of a name for this */
   text-decoration: none;
   z-index: 1;
 }
@@ -73,11 +73,11 @@
 .theme-light #floating-menu::before {
   content: '';
   position: absolute;
-  width: 18px;
-  height: 18px;
-  top: 2px;
+  width: 16px;
+  height: 16px;
+  top: 1px;
   left: 0;
-  transform: translateX(24px);
+  transform: translateX(23px);
   background-color: var(--light-dark-end);
   border-radius: 50px;
   z-index: 0;

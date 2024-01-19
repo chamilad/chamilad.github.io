@@ -3,22 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://chamila.dev/tags/aws/</loc>
-    <lastmod>2024-01-16T12:57:07+13:00</lastmod>
+    <lastmod>2024-01-19T01:59:26+13:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/tags/cargo/</loc>
-    <lastmod>2024-01-16T12:57:07+13:00</lastmod>
+    <loc>https://chamila.dev/tags/fido/</loc>
+    <lastmod>2024-01-19T01:59:26+13:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/</loc>
-    <lastmod>2024-01-16T12:57:07+13:00</lastmod>
+    <loc>https://chamila.dev/tags/mfa/</loc>
+    <lastmod>2024-01-19T01:59:26+13:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/tags/lambda/</loc>
-    <lastmod>2024-01-16T12:57:07+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/tags/rust/</loc>
-    <lastmod>2024-01-16T12:57:07+13:00</lastmod>
+    <loc>https://chamila.dev/blog/2024-01-18_setting-yubikey-mfa-for-aws-cli-temporary-credentials/</loc>
+    <lastmod>2024-01-19T01:59:26+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/</loc>
-    <lastmod>2024-01-16T12:57:07+13:00</lastmod>
+    <lastmod>2024-01-19T01:59:26+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/totp/</loc>
+    <lastmod>2024-01-19T01:59:26+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/yubikey/</loc>
+    <lastmod>2024-01-19T01:59:26+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/cargo/</loc>
+    <lastmod>2024-01-19T01:59:26+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/</loc>
+    <lastmod>2024-01-19T01:59:26+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/lambda/</loc>
+    <lastmod>2024-01-19T01:59:26+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/rust/</loc>
+    <lastmod>2024-01-19T01:59:26+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/cloudtrail/</loc>
     <lastmod>2024-01-15T21:22:11+13:00</lastmod>

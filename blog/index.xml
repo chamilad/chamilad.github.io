@@ -7,6 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://chamila.dev/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Setting Yubikey MFA for AWS CLI temporary credentials</title>
+      <link>https://chamila.dev/blog/2024-01-18_setting-yubikey-mfa-for-aws-cli-temporary-credentials/</link>
+      <pubDate>Thu, 18 Jan 2024 16:30:03 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-01-18_setting-yubikey-mfa-for-aws-cli-temporary-credentials/</guid>
+      <description>Walkway harness on a Redwood tree in Redwoods Tree Walk, Rotorua   It is a good practice to use temporary credentials in AWS instead of permanent IAM generated credentials that are long term and potentially leaked. AWS has different services that issue temporary credentials with given permission policies such as IAM Instance Profiles for EC2 instances, Lambda Execution Roles, ECS Task Roles, and IAM Roles Anywhere for those cases that require providing trusted access permissions to a process running outside of AWS.</description>
+    </item>
+    
+    <item>
       <title>Deploying Rust on Lambda</title>
       <link>https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/</link>
       <pubDate>Tue, 16 Jan 2024 12:57:07 +1300</pubDate>
