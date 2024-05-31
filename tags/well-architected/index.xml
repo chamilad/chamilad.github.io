@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Well-Architected on chamila.dev</title>
+    <link>https://chamila.dev/tags/well-architected/</link>
+    <description>Recent content in Well-Architected on chamila.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 31 May 2024 09:48:59 +1200</lastBuildDate><atom:link href="https://chamila.dev/tags/well-architected/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hit the ground Running with FinOps in AWS</title>
+      <link>https://chamila.dev/blog/2024-05-31_aws-finops-basics/</link>
+      <pubDate>Fri, 31 May 2024 09:48:59 +1200</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-05-31_aws-finops-basics/</guid>
+      <description>Sydney Harbour Bridge, about 9 years of build time   Understanding and managing Cloud Expenditure is an increasingly sought after topic with companies as the focus on Cloud Financial Management is increasing. Existing AWS customers with migrated workloads in the Cloud that are mature are looking to optimise their Cloud Costs and realise the dream of low-cost elasticity.
+At the same time, new projects that start their journey in the Cloud can also find themselves out of control of their Cloud Expenditure, without being able to control and react to unexpected spending patterns.</description>
+    </item>
+    
+  </channel>
+</rss>

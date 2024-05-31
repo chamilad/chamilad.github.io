@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2024-05-31_aws-finops-basics/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2024-05-31_aws-finops-basics/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Hit the ground Running with FinOps in AWS",
+      "headline" : "Hit the ground Running with FinOps in AWS",
+      "description" : "How to set up an AWS Organization for an optimal FinOps Maturity Journey",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-05-31 09:48:59 \u002b1200 NZST",
+      "dateModified" : "2024-05-31 09:48:59 \u002b1200 NZST",
+      "url" : "https:\/\/chamila.dev\/blog\/2024-05-31_aws-finops-basics\/",
+      "keywords" : [ "AWS","FinOps","Cloud Financial Management","Cost Optmisation","Well-Architected", ]
+  }
+</script>
+<title>Hit the ground Running with FinOps in AWS - chamila.dev</title>
+  <meta property="og:title" content="Hit the ground Running with FinOps in AWS - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="How to set up an AWS Organization for an optimal FinOps Maturity Journey" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Hit the ground Running with FinOps in AWS</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2024-05-31 09:48:59 NZST">
+                31 May 2024
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~8 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents"></nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <p><figure><img src="/blog/img/2024_05_31_aws_finops_banner.jpeg"/><figcaption>
+            <h4>Sydney Harbour Bridge, about 9 years of build time</h4>
+        </figcaption>
+</figure>
+
+Understanding and managing Cloud Expenditure is an increasingly sought after topic with companies as the focus on Cloud Financial Management is increasing. Existing AWS customers with migrated workloads in the Cloud that are mature are looking to optimise their Cloud Costs and realise the dream of low-cost elasticity.</p>
+<p>At the same time, new projects that start their journey in the Cloud can also find themselves out of control of their Cloud Expenditure, without being able to control and react to unexpected spending patterns. The main offering the Cloud, elasticity, that enables easy access to infrastructure that would otherwise take a long time to be provisioned, also provide an easy way accidentally end up with a large bill. A slight misconfiguration of the permission policies could allow a new developer to unintentionally rack up recurring Cloud costs.</p>
+<p>Managing this in the long term requires a focus on technical guardrails, processes, and culture of cost awareness. This organisational maturity is not achieved on a single day and should be a target for a long-term transformation across several teams. FinOps Foundation defines a maturity journey in their <a href="https://www.finops.org/framework/">FinOps Framework</a> for this exact reason.</p>
+<p>When it comes to AWS specifically, depending on the size of the AWS Organization, this maturity journey can take form of a months-long effort. However, as a foundation there are three basic AWS services that can be used with very little effort to gain visibility into the Cloud Expenditure and build a more robust reactive capability to address unexpected spending patterns before they get out of hand. By doing so, an organisation that is starting their FinOps maturity journey for the AWS deployments, can build a strong <a href="https://www.finops.org/framework/phases/">Inform phase of visibility and allocation</a> , so that the Optimise and Operate phases can be implemented on strong foundations.</p>
+<p>The following content assumes that <a href="https://docs.aws.amazon.com/cost-management/latest/userguide/ce-enable.html">AWS Cost Explorer</a> along with Consolidated Billing is enabled on the AWS Organization Management Account. Cost Explorer helps to track costs, perform Root Cause Analysis on Cloud Costs, and generate periodical reports. The following services enables performing these tasks in a more meaningful manner by,</p>
+<ol>
+<li>Setting up a cost allocation strategy for the overall AWS Organization (FinOps Allocation Capability)</li>
+<li>Establishing visibility into spending patterns and proactive capability to unexpected expenditures (FinOps Budgeting Capability)</li>
+<li>Enabling automated anomaly detection for Cloud Cost (FinOps Anomaly Management Capability)</li>
+</ol>
+<p><img src="/blog/img/2024_05_31_aws_finops_ce.png" alt="AWS Cost Explorer on a New Account"></p>
+<h1 id="cost-allocation-tagging">Cost Allocation Tagging</h1>
+<p>AWS Tags are key value pairs that can be used to assign metadata to different resources. Tags enable an additional dimensions of data points to be attached to make meaning out of potentially a vast number of resources that will be spawned in the entire AWS Organization.</p>
+<p>When used as a standardised tagging framework, a pre-defined set of tags can be used as Cost Allocation Tags, as <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">classes of cost expenditure in the Organization</a>. These can then be used for later cost analysis and as a platform to build a shareback or chargeback model of consolidated AWS cost down the line. AWS Cost Explorer, AWS Budgets, and Cost Anomaly Detection has first class support for Cost Allocation Tags, so enabling and using them form the foundation of <a href="https://www.finops.org/framework/capabilities/allocation/">cost allocation FinOps Capability</a>.</p>
+<p>AWS also generates some Cost Allocation Tags for resources that can be activated to be allocated based on the context of the resource creation. For an example, the tag <code>aws:createdBy</code> that can be activated in the Cost Allocation Tags console to be applied to resources to track the AWS principals involved in creating them.</p>
+<p><img src="/blog/img/2024_05_31_aws_finops_cost_alloc_tags.png" alt="AWS Generated Cost Allocation Tags"></p>
+<p>A major part of implementing a tag based cost allocation strategy is to ensure that the appropriate tags are being applied to resources when they are created. This can be enforced by using AWS Organization Tag Policies where necessary Tags are marked as enforced to prevent non-compliant resources from being launched. It should be noted that enforcement of a Tag Policy will have direct impact on the end user experience for developers, devops, and other engineers who interact with AWS. Effective rollout of a tagging policy should be closely aligned with proper communication and process changes to make sure every stakeholder is aware of the enforced changes.</p>
+<p><a href="https://docs.aws.amazon.com/ARG/latest/userguide/resource-groups.html">AWS Resource Groups and Tag Editor Service</a> can be used to monitor for tagging compliance across the Organization if a soft enforcement approach is needed.</p>
+<p><img src="/blog/img/2024_05_31_aws_finops_tag_editor.png" alt="AWS Tag Editor to monitor compliance of tagging"></p>
+<p>In addition to building a basis for cost allocation, a Cost Allocating Tagging strategy will also help build an overall cost-aware culture in the AWS Organization users, especially if the users who spawn resources are distributed owners of different Organization Units (OU) in the AWS Organization.</p>
+<h1 id="aws-budgets">AWS Budgets</h1>
+<p>AWS Budgets is a mature Service that provides the capability to specify soft and hard limits on AWS Cloud Spending to raise notifications when those limits are exceeded. This is the perfect AWS Service to implement <a href="https://www.finops.org/framework/capabilities/budgeting/">FinOps Budgeting capability</a>  to build a proactive approach to addressing Cloud Cost Expenditure. This can be done by</p>
+<ol>
+<li>Specifying a budget for part of or the entire AWS usage</li>
+<li>Specify actual and forecasted Cloud spending thresholds to generate alerts to</li>
+<li>Optionally, specify automated actions to trigger when those thresholds are met</li>
+</ol>
+<p>The main business offers of AWS Budgets as a Service are,</p>
+<ol>
+<li>Monitor cost usage on multiple dimensions and granularity and generate Alerts</li>
+<li>Generate scheduled reports</li>
+<li>Respond to generated Alerts through attached Actions</li>
+</ol>
+<p>Budgets can be defined for various types of cost expenditures. These include,</p>
+<ol>
+<li>Cost budgets – actual cloud costs as defined by a dollar amount</li>
+<li>Usage budgets – usage of specific AWS services</li>
+<li>Reservation budgets – monitoring utilisation and coverage of Reserved Instance pricing resources</li>
+<li>Savings Plan budgets – monitoring utilisation and coverage of resources that can be included in AWS Savings Plans</li>
+</ol>
+<p><img src="/blog/img/2024_05_31_aws_finops_budget_type.png" alt="AWS Budget Types"></p>
+<p>Additionally, these Budgets can be defined as periodic recurring budget on a daily, monthly, quarterly, or yearly cadence, or as a <a href="https://docs.aws.amazon.com/cost-management/latest/userguide/create-cost-budget.html">fixed expiring budget that does not reset</a>.</p>
+<p>When it comes to the granularity of monitoring for budget exhaustion, AWS Budgets offer a number of different dimensions. Budgets can be for the overall AWS Organization, specific Linked Accounts, services, instances types, tags, usage types, or even for specific API operations (among other dimensions). This enables organisations to monitor for part of the AWS cost that they are mostly focusing on.</p>
+<p><img src="/blog/img/2024_05_31_aws_finops_budget_scope.png" alt="Different Budget Scope Dimensions"></p>
+<p><img src="/blog/img/2024_05_31_aws_finops_budget_scope_drill_down.png" alt="Drilling Down to Service Usage Categories"></p>
+<p>In addition to being able to react to unexpected cost expenditures quickly, using AWS Budgets also help during Optimize phases of FinOps journey, as granular budgets can expose spending patterns in areas of the Cloud Architecture that is not expected during design.</p>
+<h1 id="aws-cost-anomaly-detection">AWS Cost Anomaly Detection</h1>
+<p><a href="https://aws.amazon.com/aws-cost-management/aws-cost-anomaly-detection/">Cost Anomaly Detection</a> is an AWS Service to automatically detect anomalous spending patterns, including sudden increases in the expected AWS Bill out of the usual spending. AWS uses a multi-layered Machine Learning approach to learn the history of the AWS spending for the specific AWS Organization to then detect outliers in the patterns. While AWS Budgets help set up spending thresholds manually, AWS Cost Anomaly Detection fills the gap of identifying abnormal spending patterns with automatic thresholds as learnt from past usage. This is a good Service to use to establish <a href="https://www.finops.org/framework/capabilities/anomaly-management/">Anomaly Management Capability of FinOps</a>.</p>
+<p>Like AWS Budgets, Cost Anomaly Detectors can be set up for various dimensions of the AWS Organization. This could be for AWS Services, Linked Accounts, specific Cost Allocation Tags, or specific Cost Categories.</p>
+<p><img src="/blog/img/2024_05_31_aws_finops_cad_types.png" alt="Cost Anomaly Detection Types"></p>
+<p>When an anomalous pattern is detected, which is usually done as soon as cost data is consolidated in Cost Explorer, AWS tries to identify a best estimate of the largest contributor of the spending pattern. This is then marked as the Root Cause and presented to the user for Root Causes Analysis that can be done on the Cost Explorer Web Console. In some cases, there could be multiple root causes for the anomalous spending pattern, where AWS will elect the top most possible two causes for RCA.</p>
+<p>New Cost Explorer users (Payer or Regular AWS Accounts that enabled Cost Explorer since March 2023) get a default AWS Services Monitor with a daily alert email at no cost. This is to set up new AWS users with standard best practices to minimise unexpected spending from getting out of hand.</p>
+<h1 id="bonus-aws-cost-categories">Bonus: AWS Cost Categories</h1>
+<p><a href="https://aws.amazon.com/aws-cost-management/aws-cost-categories/">AWS Cost Categories</a> is a feature of Billing and Cost Management, where a more complex cost allocation method can be established on top of Cost Allocation Tags. Cost Categories allow defining rules that collect different types of cost sources to classes of cost expenditure. These sources can be</p>
+<ol>
+<li>AWS Account</li>
+<li>Charge Type</li>
+<li>AWS Service</li>
+<li>Region</li>
+<li>Usage Type</li>
+<li>Cost Allocation Tags</li>
+<li>Other Cost Categories</li>
+</ol>
+<p><img src="/blog/img/2024_05_31_aws_finops_cost_categories_split_charge.png" alt="Cost Category Rules"></p>
+<p>What Cost Categories enables is a detailed allocation of granular costs to different classes that would represent different participants in the overall AWS bill. These classes can be different teams, departments, or projects that can be included a shareback or chargeback approach. Cost Categories also allow splitting certain charges by proportion or on a fixed amount, which further allows dividing cost components among different units within the organisation. By doing so, users can address minute details in AWS spending that cannot be zeroed in with just using Cost Allocation Tags.</p>
+<p>Cost Categories have first class support in Cost Explorer, Cost Anomaly Detection, and AWS Budgets.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>FinOps maturity takes many iterations of the FinOps phases being implemented to build the Capabilities in the Cloud. The above basic AWS Services can be utilised with minimum effort to start the process, wherever the user is in the maturity journey. They are built with these Capabilities in mind, and helps the users to establish best practices in Cost Management in AWS.</p>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2024-01-18_setting-yubikey-mfa-for-aws-cli-temporary-credentials/">&lt; Setting Yubikey MFA for AWS CLI temporary credentials</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2023-06-04_information-security-compliance-in-aws-solutions/">Information Security Compliance in AWS Solutions</a></li>
+    
+    <li><a href="/blog/2023-02-25_malware-protection-on-aws/">Malware Protection on AWS</a></li>
+    
+    <li><a href="/blog/2023-02-13_aws-backup-cross-account-backups/">AWS Backup: Cross-Account Backups</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>
