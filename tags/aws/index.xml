@@ -6,7 +6,17 @@
     <description>Recent content in AWS on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 31 May 2024 09:48:59 +1200</lastBuildDate><atom:link href="https://chamila.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 Jun 2024 05:34:43 +1200</lastBuildDate><atom:link href="https://chamila.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using Multiple AWS CLI Profiles in the Rust AWS SDK</title>
+      <link>https://chamila.dev/blog/2024-06-01_rust-profiles-in-aws-sdk/</link>
+      <pubDate>Sat, 01 Jun 2024 05:34:43 +1200</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-06-01_rust-profiles-in-aws-sdk/</guid>
+      <description>I wrote a blog post on getting started with Rust AWS SDK a few months ago. I also started my youtube channel with a video on the same topic. If you haven&amp;rsquo;t yet seen it, my channel is sliced array (the name would probably change, but this is good enough for now).
+One of the comments asked about how to use different AWS CLI profiles in the Rust SDK, and I did a follow up video on the topic.</description>
+    </item>
+    
     <item>
       <title>Hit the ground Running with FinOps in AWS</title>
       <link>https://chamila.dev/blog/2024-05-31_aws-finops-basics/</link>

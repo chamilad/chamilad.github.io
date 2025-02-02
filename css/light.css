@@ -61,7 +61,8 @@
 .theme-light #floating-menu a,
 .theme-light #floating-menu button {
   /* color: var(--dark-dark-end); */
-  color: #b4beca; /* random because I can't think of a name for this */
+  color: #b4beca;
+  /* random because I can't think of a name for this */
   text-decoration: none;
   z-index: 1;
 }
@@ -236,6 +237,16 @@
 .theme-light .highlight code {
   border: 0px !important;
   background-color: unset;
+}
+
+
+pre {
+  background: var(--dark-background-contrast) !important;
+}
+
+pre code {
+  background: var(--dark-background-contrast) !important;
+  border: 0px solid var(--dark-background) !important;
 }
 
 .theme-light .markdown-body .highlight pre,

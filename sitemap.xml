@@ -3,7 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://chamila.dev/tags/aws/</loc>
-    <lastmod>2024-05-31T16:14:09+12:00</lastmod>
+    <lastmod>2024-06-01T05:34:43+12:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/aws-cli/</loc>
+    <lastmod>2024-06-01T05:34:43+12:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/rust/</loc>
+    <lastmod>2024-06-01T05:34:43+12:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/</loc>
+    <lastmod>2024-06-01T05:34:43+12:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/blog/2024-06-01_rust-profiles-in-aws-sdk/</loc>
+    <lastmod>2024-06-01T05:34:43+12:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/cloud-financial-management/</loc>
     <lastmod>2024-05-31T16:14:09+12:00</lastmod>
@@ -17,11 +29,11 @@
     <loc>https://chamila.dev/blog/2024-05-31_aws-finops-basics/</loc>
     <lastmod>2024-05-31T16:14:09+12:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/tags/</loc>
-    <lastmod>2024-05-31T16:14:09+12:00</lastmod>
-  </url><url>
     <loc>https://chamila.dev/tags/well-architected/</loc>
     <lastmod>2024-05-31T16:14:09+12:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/</loc>
+    <lastmod>2024-03-11T17:04:21+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/fido/</loc>
     <lastmod>2024-01-19T23:30:48+13:00</lastmod>
@@ -45,9 +57,6 @@
     <lastmod>2024-01-19T01:59:26+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/lambda/</loc>
-    <lastmod>2024-01-19T01:59:26+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/tags/rust/</loc>
     <lastmod>2024-01-19T01:59:26+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/cloudtrail/</loc>

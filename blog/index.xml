@@ -7,6 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://chamila.dev/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Using Multiple AWS CLI Profiles in the Rust AWS SDK</title>
+      <link>https://chamila.dev/blog/2024-06-01_rust-profiles-in-aws-sdk/</link>
+      <pubDate>Sat, 01 Jun 2024 05:34:43 +1200</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-06-01_rust-profiles-in-aws-sdk/</guid>
+      <description>I wrote a blog post on getting started with Rust AWS SDK a few months ago. I also started my youtube channel with a video on the same topic. If you haven&amp;rsquo;t yet seen it, my channel is sliced array (the name would probably change, but this is good enough for now).
+One of the comments asked about how to use different AWS CLI profiles in the Rust SDK, and I did a follow up video on the topic.</description>
+    </item>
+    
+    <item>
       <title>Hit the ground Running with FinOps in AWS</title>
       <link>https://chamila.dev/blog/2024-05-31_aws-finops-basics/</link>
       <pubDate>Fri, 31 May 2024 09:48:59 +1200</pubDate>
@@ -14,6 +24,16 @@
       <guid>https://chamila.dev/blog/2024-05-31_aws-finops-basics/</guid>
       <description>Sydney Harbour Bridge, about 9 years of build time   Understanding and managing Cloud Expenditure is an increasingly sought after topic with companies as the focus on Cloud Financial Management is increasing. Existing AWS customers with migrated workloads in the Cloud that are mature are looking to optimise their Cloud Costs and realise the dream of low-cost elasticity.
 At the same time, new projects that start their journey in the Cloud can also find themselves out of control of their Cloud Expenditure, without being able to control and react to unexpected spending patterns.</description>
+    </item>
+    
+    <item>
+      <title>Deriving AWS Account ID from Access Key</title>
+      <link>https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/</link>
+      <pubDate>Mon, 11 Mar 2024 17:04:21 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/</guid>
+      <description>AWS Account IDs are interesting. They are not directly considered as sensitive, but on the other hand everyone seems to consider them as sensitive.
+It&amp;rsquo;s probably for good reason. You shouldn&amp;rsquo;t give out anything that isn&amp;rsquo;t needed to get work done, even if those data are not &amp;ldquo;sensitive&amp;rdquo; in particular. Your name isn&amp;rsquo;t sensitive in particular, but you don&amp;rsquo;t usually walk around with your name on your tshirt either.</description>
     </item>
     
     <item>
