@@ -6,7 +6,17 @@
     <description>Recent content in Cloud on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Nov 2022 09:11:34 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Mar 2024 17:04:21 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deriving AWS Account ID from Access Key</title>
+      <link>https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/</link>
+      <pubDate>Mon, 11 Mar 2024 17:04:21 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/</guid>
+      <description>AWS Account IDs are interesting. They are not directly considered as sensitive, but on the other hand everyone seems to consider them as sensitive.
+It&amp;rsquo;s probably for good reason. You shouldn&amp;rsquo;t give out anything that isn&amp;rsquo;t needed to get work done, even if those data are not &amp;ldquo;sensitive&amp;rdquo; in particular. Your name isn&amp;rsquo;t sensitive in particular, but you don&amp;rsquo;t usually walk around with your name on your tshirt either.</description>
+    </item>
+    
     <item>
       <title>MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution</title>
       <link>https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/</link>

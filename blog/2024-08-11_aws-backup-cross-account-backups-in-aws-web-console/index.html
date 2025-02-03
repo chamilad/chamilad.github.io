@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "AWS Backup Cross-Account Backups in AWS Web Console",
+      "headline" : "AWS Backup Cross-Account Backups in AWS Web Console",
+      "description" : "So my last post on AWS Backup uses a lot of Terraform code that I had written even before the post. When doing a video on the subject, I realised that for a beginner, explaining something like AWS Backup with Terraform presents two fronts to understand at the same time.\nSo I\u0026rsquo;m following up with another video and a blog post that does the same demo but only using the AWS Web Console.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-08-11 18:03:37 \u002b1300 \u002b1300",
+      "dateModified" : "2024-08-11 18:03:37 \u002b1300 \u002b1300",
+      "url" : "https:\/\/chamila.dev\/blog\/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console\/",
+      "keywords" : [ "AWS","Backup","Restore","Encryption","KMS","CMK","Disaster Recovery", ]
+  }
+</script>
+<title>AWS Backup Cross-Account Backups in AWS Web Console - chamila.dev</title>
+  <meta property="og:title" content="AWS Backup Cross-Account Backups in AWS Web Console - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="So my last post on AWS Backup uses a lot of Terraform code that I had written even before the post. When doing a video on the subject, I realised that for a beginner, explaining something like AWS Backup with Terraform presents two fronts to understand at the same time.
+So I&rsquo;m following up with another video and a blog post that does the same demo but only using the AWS Web Console." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">AWS Backup Cross-Account Backups in AWS Web Console</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2024-08-11 18:03:37 &#43;1300">
+                11 Aug 2024
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~8 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#setup">Setup</a></li>
+    <li><a href="#creating-vaults-and-backup-plans">Creating Vaults and Backup Plans</a>
+      <ul>
+        <li><a href="#creating-the-vault">Creating the Vault</a></li>
+        <li><a href="#creating-the-external-vault">Creating the External Vault</a></li>
+        <li><a href="#creating-the-backup-plan">Creating the Backup Plan</a></li>
+      </ul>
+    </li>
+    <li><a href="#monitoring-backup-process">Monitoring Backup Process</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/iY8jwTfQCPU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>So my last post on AWS Backup uses a lot of Terraform code that I had written
+even before the post. When doing a video on the subject, I realised that for a
+beginner, explaining something like AWS Backup with Terraform presents two
+fronts to understand at the same time.</p>
+<p>So I&rsquo;m following up with another video and a blog post that does the same demo
+but only using the AWS Web Console.</p>
+<p>In this, I&rsquo;m going to,</p>
+<ol>
+<li>create the vaults and the backup plans,</li>
+<li>monitor backup operations, using the web console</li>
+</ol>
+<p>The encryption keys and the resources being used to backup data are already
+created. Details of creating KMS keys, DynamoDB tables, and RDS instances is
+out of scope of this aritcle.</p>
+<h2 id="setup">Setup</h2>
+<p>I&rsquo;m going to use two AWS accounts in the demo.</p>
+<p><img src="/blog/img/2024-08-11_backup1.png" alt=""></p>
+<p><code>workload_a</code> account has the resources that should be backed up, and <code>backup</code> will
+be the cross-account backup vault. If you&rsquo;re unfamiliar with cross-account
+backup concepts, refer to <a href="/blog/2023-02-13_aws-backup-cross-account-backups/">my earlier blog
+post</a> and the video on the subject.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/u1ohjqhzTvw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>I&rsquo;ll set up AWS Backup in <code>workload_a</code> to backup resources to the vault in the same
+account, and then make a copy of the backup in the cross-account vault in the
+<code>backup</code> account.</p>
+<p>There is a DynamoDB table called <code>tracking</code> in the <code>workload_a</code> account.</p>
+<p><img src="/blog/img/2024-08-11_backup2.png" alt=""></p>
+<p>There is also an RDS instance called <code>mydb</code> in the same account.</p>
+<p><img src="/blog/img/2024-08-11_backup3.png" alt=""></p>
+<p>Both of these resources are encrypted at rest with the same KMS key which has
+the following starting key policy.</p>
+<blockquote>
+<p>Dividing your KMS keys along the data classification system you have is
+always a good idea. A single key is being used here for demo purposes only.</p>
+</blockquote>
+<p><img src="/blog/img/2024-08-11_backup5.png" alt=""></p>
+<p>A separate KMS key is used to encrypt the Backup Vault contents.</p>
+<p><img src="/blog/img/2024-08-11_backup6.png" alt=""></p>
+<p>A similar KMS key is present in the <code>backup</code> account which can be used to
+encrypt vaults in that account.</p>
+<p><img src="/blog/img/2024-08-11_backup9.png" alt=""></p>
+<p>The following architecture is going to be implemented with this aritcle.</p>
+<p><img src="/blog/img/2024-08-11_backup4.png" alt=""></p>
+<h2 id="creating-vaults-and-backup-plans">Creating Vaults and Backup Plans</h2>
+<p>With the above resources to be backed up with a cross-account backup strategy,
+let&rsquo;s first create a Backup Vault in the <code>workload_a</code> account.</p>
+<h3 id="creating-the-vault">Creating the Vault</h3>
+<p>In the Backup Console, go to &ldquo;Vaults&rdquo; and click &ldquo;Create new vault&rdquo;.</p>
+<p><img src="/blog/img/2024-08-11_backup7.png" alt=""></p>
+<p>Use the KMS key created for vault encryption in the dropdown list.</p>
+<p><img src="/blog/img/2024-08-11_backup8.png" alt=""></p>
+<h3 id="creating-the-external-vault">Creating the External Vault</h3>
+<p>Log in to the <code>backup</code> account, and follow the same steps to create a vault.
+This time however, a Backup Vault Policy should be attached to this vault to
+allow other Accounts in the same Organization to be able to copy snapshots into
+it.</p>
+<p><img src="/blog/img/2024-08-11_backup10.png" alt="">
+<img src="/blog/img/2024-08-11_backup11.png" alt="">
+<img src="/blog/img/2024-08-11_backup12.png" alt=""></p>
+<p>After the policy is added, the vault is ready to be used.</p>
+<blockquote>
+<p>The same policy has to be added to the source vaults if recovery points need
+to be copied across accounts. We&rsquo;ll do this when we get back to the
+<code>workload_a</code> account.</p>
+</blockquote>
+<p>After the vault is created, two information from this vault is needed for the
+Backup Plans to be successfully set up for cross-account backups.</p>
+<ol>
+<li>The Backup Vault ARN - since the vault is in another account, it doesn&rsquo;t
+appear in a dropdown in the web console</li>
+<li>The Backup Service-linked Role URL - to provide it access to the KMS key
+used to encrypt the RDS instance (since Backup doesn&rsquo;t handle encryption for
+snapshots for RDS - more details in the previous article), so that it would be able to
+decrypt the content before copying them over.</li>
+</ol>
+<p>The ARN for the Backup Service-linked Role is available in the IAM console.</p>
+<p><img src="/blog/img/2024-08-11_backup13.png" alt=""></p>
+<blockquote>
+<p>If this role cannot be found in IAM (which is highly unlikely if you&rsquo;re
+following this in order), visit the AWS Backup Console in that account.
+Chances are, AWS Backup hasn&rsquo;t been visited for this to be created yet.</p>
+</blockquote>
+<h3 id="creating-the-backup-plan">Creating the Backup Plan</h3>
+<p>Then it&rsquo;s time to create a Backup Plan so that the resources, the DynamoDB
+table, and the RDS instance, will be included in backup jobs.</p>
+<blockquote>
+<p>These concepts are discussed in depth in the previous articles I wrote and
+the videos I did on the topic.</p>
+</blockquote>
+<p>In the <code>workload_a</code> account, go to the Backup console, and select &ldquo;Create
+backup plan&rdquo; in &ldquo;Backup Plans&rdquo; section.</p>
+<p><img src="/blog/img/2024-08-11_backup14.png" alt=""></p>
+<p>After giving a name for the plan, you can define one or more rules to be
+executed in the Backup plan (more details about what rules are in the previous
+article on the subject).</p>
+<p>Define a schedule for the rule, and select the in-account vault in the
+<code>workload_a</code> account to associate the plan-rule.</p>
+<p><img src="/blog/img/2024-08-11_backup15.png" alt=""></p>
+<p>Define the backup operation window.</p>
+<p><img src="/blog/img/2024-08-11_backup16.png" alt=""></p>
+<p>You can configure additional details like Point-in-time-Recovery for resources
+that support it, and Cold Storage, but for this case, those features aren&rsquo;t
+needed.</p>
+<h4 id="configuring-cross-account-copying">Configuring Cross-account Copying</h4>
+<p>Under &ldquo;Copy to Destination&rdquo; section, paste in the cross-account Backup vault
+ARN that was copied in the previous section. When you do this, Backup warns
+yuou that the source account does not have a policy that allows the destination
+vault to copy snapshots. This sounds counter-intuitive, when we are trying to
+copy <em>from</em> the source account to the destination account. However, Backup is
+warning us about tomorrow, the SHTF situation, where we&rsquo;ll actually need to
+copy data from the destination vault <em>to</em> the source vault so that data
+recovery can be done. Resources can&rsquo;t be recovered from recovery points in an
+external vault. They have to be in the same account for recovery to happen.</p>
+<p><img src="/blog/img/2024-08-11_backup17.png" alt=""></p>
+<p>Click on the &ldquo;Allow&rdquo; button to add a policy that allows the <code>backup</code> account
+to copy data into this vault.</p>
+<p><img src="/blog/img/2024-08-11_backup18.png" alt="">
+<img src="/blog/img/2024-08-11_backup19.png" alt=""></p>
+<p>Click on &ldquo;Create Plan&rdquo; to continue.</p>
+<h4 id="selecting-resources-to-be-included-in-the-plan">Selecting Resources to be Included in the Plan</h4>
+<p>The next step is to include resources in this backup plan. Next screen provides
+the way to do this. For each resource, a new Resource Assignment can be
+created, but if the resources are tagged in an orderly manner, it could be same
+Resource Assignment. Additionally, the same Resource Assignment can define
+mutiple specific types of resources. AWS Backup plans are really flexible in
+this manner.</p>
+<p>Resources Assignments can also be created, after a plan is fully created, by
+clicking on &ldquo;Assign Resources&rdquo; in the &ldquo;Resource Assignments&rdquo; section.</p>
+<p>Give a name to the Resource Assignment and define the IAM role to be used when
+the resources are backed up. This IAM role should have decrypt permissions on
+the KMS keys used by the resources for encryption at rest, and encrypt
+permissions on the KMS key used by the in-account vault (the vault in the
+<code>workload_a</code> account. This can be the default role created by AWS, or it could
+be a custom role. In any case, the role should work if the
+<code>AWSBackupServiceRolePolicyForBackup</code> and
+<code>AWSBackupServiceRolePolicyForRestores</code> managed policies are attached.</p>
+<p><img src="/blog/img/2024-08-11_backup20.png" alt=""></p>
+<p>Select &ldquo;Include specific resource types&rdquo; and select the DynamoDB table and the
+RDS instance.</p>
+<p><img src="/blog/img/2024-08-11_backup21.png" alt=""></p>
+<p>Click on &ldquo;Assign Resources&rdquo; to complete this step.</p>
+<h4 id="configuring-kms-key-permissions-for-backup-and-cross-account-copying">Configuring KMS Key Permissions for Backup and Cross-Account Copying</h4>
+<p>There&rsquo;s one more step to perform before a successful cross-account backup can
+be done.</p>
+<p>First, how AWS Backup handles encryption and decryption of resource data
+differs from resource type to resource type. This was explained in detail in
+the previous articles on this topic, but in brief, DynamoDB encryption and
+decryption is managed by AWS Backup because it supports &ldquo;Independant
+Encryption&rdquo; where as RDS does not. Because of this, the KMS key policy for RDS
+data (which is the same key for DynamoDB in this case) needs to be modified to
+allow in-account AWS Backup service-linked role to perform encryption and
+decryption.</p>
+<p>Secondly, if you refer to the design diagram above, I&rsquo;ve mentioned that the
+service-linked role for Backup in the <code>backup</code> needs the decrypt permissions on the RDS
+instance KMS key (<code>critical_data</code>), for the copy operation to be successful.
+This too has to be included in the KMS key policy.</p>
+<p>Add the following statements to the KMS key policy, replacing the Principal ARNs with proper values.
+(the ARN of the
+service-linked Role for Backup in the <code>workload_a</code> account for the first
+statement, and the ARN of the service-linked Role for Backup in the <code>prod</code>
+account that was copied in the step that created the
+vault in the <code>backup</code> account)</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Enable in account Backup service specific encryption&#34;</span>,
+    <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
+    <span style="font-weight:bold">&#34;Principal&#34;</span>: {
+        <span style="font-weight:bold">&#34;AWS&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;&lt;ARN of the service-linked role for Backup in workload_a account&gt;&#34;</span>
+    },
+    <span style="font-weight:bold">&#34;Action&#34;</span>: [
+                        <span style="color:#0ff;font-weight:bold">&#34;kms:GenerateDataKey&#34;</span>,
+                        <span style="color:#0ff;font-weight:bold">&#34;kms:DescribeKey&#34;</span>,
+                        <span style="color:#0ff;font-weight:bold">&#34;kms:Decrypt&#34;</span>,
+                        <span style="color:#0ff;font-weight:bold">&#34;kms:Encrypt&#34;</span>,
+                        <span style="color:#0ff;font-weight:bold">&#34;kms:CreateGrant&#34;</span>
+    ],
+    <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
+}<span style="color:#f00">,</span>
+{
+    <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow cross-account backup service specific encryption&#34;</span>,
+    <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
+    <span style="font-weight:bold">&#34;Principal&#34;</span>: {
+        <span style="font-weight:bold">&#34;AWS&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;&lt;ARN of the service-linked role for Backup in backup account&gt;&#34;</span>
+    },
+    <span style="font-weight:bold">&#34;Action&#34;</span>: [
+                        <span style="color:#0ff;font-weight:bold">&#34;kms:GenerateDataKey&#34;</span>,
+                        <span style="color:#0ff;font-weight:bold">&#34;kms:DescribeKey&#34;</span>,
+                        <span style="color:#0ff;font-weight:bold">&#34;kms:Decrypt&#34;</span>,
+                        <span style="color:#0ff;font-weight:bold">&#34;kms:CreateGrant&#34;</span>
+    ],
+    <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
+}<span style="color:#f00">,</span></code></pre></div>
+<h2 id="monitoring-backup-process">Monitoring Backup Process</h2>
+<p>Now that the vaults and the backup plans are created, and permissions are taken
+care of, AWS Backup will start executing Backup jobs in the scheduled window.
+The progress of these jobs can be monitored in the &ldquo;Jobs&rdquo; section, where there
+are separate tabs for &ldquo;Backup Jobs&rdquo; and &ldquo;Copy Jobs&rdquo; (and &ldquo;Recovery Jobs&rdquo; which
+is another article).</p>
+<p>The jobs in the &ldquo;Backup Jobs&rdquo; tab indicates data being copied from resources to
+the in-account vault in the <code>workload_a</code> account.</p>
+<p><img src="/blog/img/2024-08-11_backup22.png" alt=""></p>
+<p>The Recovery Points can be seen in the vault in the <code>workload_a</code> account.</p>
+<p><img src="/blog/img/2024-08-11_backup24.png" alt=""></p>
+<p>When a &ldquo;Backup Job&rdquo; is completed, if the rule that created the job is
+configured to copy data to another vault, a &ldquo;Copy Job&rdquo; will soon be created.
+That indicates the recovery points being copied from the source vault (in
+<code>workload_a</code> account) to cross-account vault (in <code>prod</code> account).</p>
+<p><img src="/blog/img/2024-08-11_backup23.png" alt=""></p>
+<p>When these jobs are done, the Recovery Points can be seen in the cross-account
+vault in the <code>backup</code> account.</p>
+<p><img src="/blog/img/2024-08-11_backup25.png" alt=""></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>This is basically how the entire design discussed in the article on
+<a href="/blog/2023-02-13_aws-backup-cross-account-backups/">cross-account backups</a> is implemented.
+<a href="/blog/2023-02-20_aws-backup-implementing-a-simple-cross-account-backup-strategy/">Another
+article</a> discussed in detail how to do the same with Terraform.</p>
+<p>There are newer features like automated recovery testing to be explored, and
+I&rsquo;ll follow this up with a video and an article on those areas soon.</p>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2024-06-01_rust-profiles-in-aws-sdk/">&lt; Using Multiple AWS CLI Profiles in the Rust AWS SDK</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2023-02-13_aws-backup-cross-account-backups/">AWS Backup: Cross-Account Backups</a></li>
+    
+    <li><a href="/blog/2023-01-18_aws-backup-intro/">AWS Backup: Introduction</a></li>
+    
+    <li><a href="/blog/2023-06-04_information-security-compliance-in-aws-solutions/">Information Security Compliance in AWS Solutions</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

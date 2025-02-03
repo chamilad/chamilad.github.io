@@ -6,7 +6,17 @@
     <description>Recent content in Restore on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Feb 2023 23:29:05 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/restore/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Aug 2024 18:03:37 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/restore/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS Backup Cross-Account Backups in AWS Web Console</title>
+      <link>https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/</link>
+      <pubDate>Sun, 11 Aug 2024 18:03:37 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/</guid>
+      <description>So my last post on AWS Backup uses a lot of Terraform code that I had written even before the post. When doing a video on the subject, I realised that for a beginner, explaining something like AWS Backup with Terraform presents two fronts to understand at the same time.
+So I&amp;rsquo;m following up with another video and a blog post that does the same demo but only using the AWS Web Console.</description>
+    </item>
+    
     <item>
       <title>AWS Backup: Cross-Account Backups</title>
       <link>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</link>
