@@ -6,7 +6,17 @@
     <description>Recent content in KMS on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 11 Aug 2024 18:03:37 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/kms/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Sep 2024 00:26:50 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/kms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS Backup: Restoring Data and Automated Restore Testing</title>
+      <link>https://chamila.dev/blog/2024-09-23_aws-backup-restoring-data-and-automated-restore-testing/</link>
+      <pubDate>Mon, 23 Sep 2024 00:26:50 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-09-23_aws-backup-restoring-data-and-automated-restore-testing/</guid>
+      <description>Intro   I covered establishing a comprehensive cross-account backup strategy in AWS Organizations in the previous articles and videos.
+However, as an architect, one of the most frequent patterns I come across in the real world in this space is organisations having an imbalance of backup and recovery strategies. This is when there is a really detailed backup process that includes all the production resources in the backup jobs, with encrypted and replicated copies, but having minimum or even zero effort in testing recoverability of the backed up data and having playbooks for such scenarios.</description>
+    </item>
+    
     <item>
       <title>AWS Backup Cross-Account Backups in AWS Web Console</title>
       <link>https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/</link>
