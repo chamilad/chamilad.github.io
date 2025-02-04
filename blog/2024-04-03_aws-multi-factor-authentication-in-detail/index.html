@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2024-04-03_aws-multi-factor-authentication-in-detail/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2024-04-03_aws-multi-factor-authentication-in-detail/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "AWS Multi-factor Authentication in Detail",
+      "headline" : "AWS Multi-factor Authentication in Detail",
+      "description" : "Multi-factor Authentication (MFA) is an easy way to enhance the security of your AWS cloud architecture with minimal work. It takes two minutes to enable, and minimizes the possibility of an account being compromised by tenfolds. This post and the associated video explores MFA in AWS and how to use it to control access to critical parts of your cloud architecture\nSingle factor vs Multi factor The \u0026ldquo;multi\u0026rdquo; in MFA is as opposed to \u0026ldquo;single\u0026rdquo; factor authentication.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-04-03 11:21:09 \u002b1300 NZDT",
+      "dateModified" : "2024-04-03 11:21:09 \u002b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2024-04-03_aws-multi-factor-authentication-in-detail\/",
+      "keywords" : [ "aws","mfa","yubikey","fido","totp", ]
+  }
+</script>
+<title>AWS Multi-factor Authentication in Detail - chamila.dev</title>
+  <meta property="og:title" content="AWS Multi-factor Authentication in Detail - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Multi-factor Authentication (MFA) is an easy way to enhance the security of your AWS cloud architecture with minimal work. It takes two minutes to enable, and minimizes the possibility of an account being compromised by tenfolds. This post and the associated video explores MFA in AWS and how to use it to control access to critical parts of your cloud architecture
+Single factor vs Multi factor The &ldquo;multi&rdquo; in MFA is as opposed to &ldquo;single&rdquo; factor authentication." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">AWS Multi-factor Authentication in Detail</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2024-04-03 11:21:09 NZDT">
+                03 Apr 2024
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~11 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#single-factor-vs-multi-factor">Single factor vs Multi factor</a></li>
+    <li><a href="#mfa-standards">MFA Standards</a></li>
+    <li><a href="#mfa-in-aws">MFA in AWS</a>
+      <ul>
+        <li><a href="#mfa-for-iam-users">MFA for IAM Users</a></li>
+        <li><a href="#mfa-for-iam-identity-center-users">MFA for IAM Identity Center Users</a></li>
+        <li><a href="#mfa-for-api-calls">MFA for API Calls</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/_QegkHWsJSc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Multi-factor Authentication (MFA) is an easy way to enhance the security of your AWS cloud architecture with minimal work.
+It takes two minutes to enable, and minimizes the possibility of an account being compromised by tenfolds.
+This post and the associated video explores MFA in AWS and how to use it to control access to critical parts of your cloud architecture</p>
+<h2 id="single-factor-vs-multi-factor">Single factor vs Multi factor</h2>
+<p>The &ldquo;multi&rdquo; in MFA is as opposed to &ldquo;single&rdquo; factor authentication. These
+&ldquo;factors&rdquo; are,</p>
+<ol>
+<li>Something you <strong>know</strong> - a password, a pin</li>
+<li>Something you <strong>have</strong> - a token of some sort you have with you, yubikeys, RSA
+keys etc (not you SMS!!, (technically yes, SMS is something you <em>have</em>, but
+on a different topic, it has been proven <a href="https://krebsonsecurity.com/2016/09/the-limits-of-sms-for-2-factor-authentication/">many times</a> to be easily crackable))</li>
+<li>Something you <strong>are</strong> - a biometric detail, like a fingerprint or face scan</li>
+</ol>
+<p>If you only use a single factor out of the above, it&rsquo;s &ldquo;single factor
+authentication&rdquo;. However, in practice, single factor authentication usually
+points to just using a password, i.e. <em>something you know</em>. In my belief, &ldquo;passwordless&rdquo; methods
+like sending a one time link or a password to an email account is
+<em>something you have</em> because you have access to a place <em>that you have</em>. How
+you got access there is another matter.</p>
+<p>MFA, makes use of 2 or more factors to authenticate a user. This is usually
+done as a combination of &ldquo;something that you know&rdquo; and &ldquo;something that you
+have&rdquo;, but this is not the only pattern.</p>
+<blockquote>
+<p>The term <strong>Two-factor Authentication</strong> or <strong>2FA</strong> is basically the same,
+except for fact that it only allows two, and exactly two factors. In my mind,
+<strong>MFA</strong> is the term, and <strong>2FA</strong> is to be left behind.</p>
+</blockquote>
+<p>Unless you took a big break from the Internet in late 2000s, you might have
+already used MFA in one or more online services you use. Most social media
+services enforce, or at least encourage MFA. If you&rsquo;ve been working with AWS
+for even a few days, you might have seen the &ldquo;No hardware MFA&rdquo; warning in some
+Root accounts (which is a different topic altogether in some sense). In short,
+MFA has been around for sometime, and it has proven to be an effective way to
+avoid being compromised for most cases.</p>
+<p>The point of MFA is to increase the number of data points that a user should
+use to authenticate themselves. This is under the assumption that the
+difficulty of compromising two data points (two factors) of the same user is
+order of magnitude higher than the difficulty of compromising just a single
+data point.</p>
+<p>There are some nuances here when biometrics are involved in some
+legal frameworks, but let&rsquo;s be honest. We are not worried about a your own state coming after you.</p>
+<p>We are worried about scenarios ranging from a teenager who learnt scamming recently trying
+out passwords he bought off a market place so that he can get some money to
+gift designer handbags to random girls at the nightclub, to a sophisticated spear-phishing
+campaign done by groups that may or may not be enemy state actors, who are
+definitely not trying to increase their GDP or fund invasions.</p>
+<p>In most of these cases, a strong, unique password, paired with a
+secure MFA token, and sensible practices like using a password manager, and
+being cool headed (I admit is probably easier to say than do) could easily
+deter the attack.</p>
+<h2 id="mfa-standards">MFA Standards</h2>
+<p>There are various standards out there, but mostly <code>FIDO U2F</code> and <code>OATH-TOTP</code> are
+important to us. This is because, these two are the main standards used by AWS
+in MFA. FIDO-U2F is used in AWS Web Console MFA authentication if you are using
+something like a Yubikey, and OATH-TOTP is used when providing MFA details in the
+CLI (if you&rsquo;re using a virtual MFA device, only OATH-TOTP is involved).</p>
+<blockquote>
+<p>I went into details about FIDO-U2F and OATH-TOTP usage in AWS in <a href="/blog/2024-01-18_setting-yubikey-mfa-for-aws-cli-temporary-credentials/">my previous
+post about enabling Yubikeys for AWS CLI and API
+operations</a></p>
+</blockquote>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/SC16gBxok-w" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>OATH-TOTP is a TOTP (Time based One Tim Password) protocol, where a pre-shared
+secret is used along with the current time to generate a reproducible token.
+Since both parties have this information, if the pre-shared key didn&rsquo;t get
+compromised, and if there&rsquo;s no major time error in either of the devices, the
+resulting token should be the same, and should act as &ldquo;something that you
+have&rdquo;.</p>
+<blockquote>
+<p>The pre-shared key is usually a base32 encoded string, which is usually
+shared as a QR code. But it doesn&rsquo;t have to be. As long as you can read the
+base32 string and type it down, you can have a desktop application generate
+the tokens for you. Major password managers provide the functionality where
+ALthe MFA token can also be generated by it (in my opinion, this is not
+advisable, because it provides a single place where both factors can be
+siphoned out, but there are arguments out there that are on the opposite
+side).</p>
+</blockquote>
+<p>FIDO-U2F on the other hand makes use of Public Key Cryptography, where the
+public keys of the user and the service are exchanged. The tokens are then
+generated and signed with the self public keys which are cryptographically
+secure to provide authentication function.</p>
+<p>Compared to OATH-TOTP, FIDO-U2F provides verification of the service in
+addition to authentication. This is a huge improvement from OATH-TOTP which is
+vulnerable to phishing attacks, where a user could input the correct token to
+an incorrect interface. There is no computational guarantee that a user will
+not be tricked to expose the token.</p>
+<p>In fact, a few of the most recent cryptocurrency wallet
+hacks have been facilitated by this kind of non-PKI backed MFA methods (sources
+for these I can&rsquo;t find unfortunately, but if you have been keeping an ear on
+that subject, you might be able to think of a few scenarios). The usual story
+is Google or Facebook &ldquo;support&rdquo; calling you up to &ldquo;verify that you are in fact
+the owner&rdquo; to &ldquo;block a current hacking attempt&rdquo; where they trigger the MFA
+sequence to siphon the token off you. FIDO-U2F only goes through if the public
+key registered for the service matches the public key provided by the service
+that is asking for the token.</p>
+<blockquote>
+<p>Passkeys is also a protocol based on FIDO-U2F</p>
+</blockquote>
+<h2 id="mfa-in-aws">MFA in AWS</h2>
+<p>AWS supports MFA for IAM users and built-in SSO (IAM Identity Center) user store.</p>
+<blockquote>
+<p>Both these services can have users from federated identity providers, so MFA
+for those users is a matter for those external identity providers to
+implement.</p>
+</blockquote>
+<p>It takes 2 minutes to enable MFA on both these places.</p>
+<h3 id="mfa-for-iam-users">MFA for IAM Users</h3>
+<p>In IAM, the place to enable MFA is in the &ldquo;Security Credentials&rdquo; tab for the
+user. There, select &ldquo;Assign MFA Device&rdquo;.</p>
+<p><img src="/blog/img/2024-04-03_iam1.png" alt="Security Credentials tab"></p>
+<p>AWS provides three options to select as an MFA device.</p>
+<ol>
+<li>Virtual Device - phone (or desktop) applications such as Aegis, or Google
+Authenticator</li>
+<li>Security Key - FIDO-U2F enabled key like Yubikey</li>
+<li>Hardware TOTP token - older RSA keys that used to be around about 10 years
+ago</li>
+</ol>
+<blockquote>
+<p>&ldquo;Fun Fact&rdquo;, if you are using Google Authenticator, and if you&rsquo;re backing it to
+the Cloud (AFAIK this is enabled by default), you&rsquo;re breaching MFA, and
+anyone that gets access to your email immediately gets access to all the MFA
+tokens for any other service you might be using.</p>
+<p>Don&rsquo;t use Google Authenticator! I have had success using
+<a href="https://getaegis.app/">Aegis</a>, and Open
+Source application that also provides the capability to backup the vault with
+a password.</p>
+</blockquote>
+<p><img src="/blog/img/2024-04-03_iam2.png" alt="MFA options"></p>
+<h4 id="virtual-mfa">Virtual MFA</h4>
+<p>This uses the OATH-TOTP method I talked about, and provides the usual method of
+sharing the PSK through a QR code or the base32 encoded string. Scan the QR
+code with your virtual MFA application (or copy the base32 string to your app),
+and provide two consecutive tokens generated afterwards, to finish the process.</p>
+<p><img src="/blog/img/2024-04-03_iam3.png" alt="Virtual MFA setup"></p>
+<h4 id="security-key">Security Key</h4>
+<blockquote>
+<p>Before selecting this option, or better, before buying a Yubikey, make sure
+it <a href="https://www.yubico.com/nz/store/compare/">supports both FIDO-U2F and OATH-TOTP</a>. The intersection of these two
+features cover only a limited set of devices.</p>
+</blockquote>
+<blockquote>
+<p>Also, Security Keys that use FIDO-U2F and WebAuthn standards has a limit of
+&ldquo;slots&rdquo; that can be used to store external service public keys. So this is
+essentially a limit on the number of relying parties you can use with (ex:) a
+single Yubikey. This is a direct disadvantage of security keys.</p>
+</blockquote>
+<blockquote>
+<p>Always try to buy security keys in pairs, and register both of them in the
+services you use. This way, if you lose the main physical device, you have a
+backup device to avoid getting locked out of your accounts.</p>
+</blockquote>
+<p>Select the &ldquo;Security Key&rdquo; <img src="/blog/img/2024-04-03_sso2.png" alt="Options in IIC"></p>
+<p><img src="/blog/img/2024-04-03_yk1.png" alt="Security Key option"></p>
+<p>In the next screen, connect your Yubikey and activate it.</p>
+<p><img src="/blog/img/2024-04-03_yk2.png" alt="Security key input"></p>
+<h3 id="mfa-for-iam-identity-center-users">MFA for IAM Identity Center Users</h3>
+<p>The steps are more or less the same for IAM Identity Center. The place to start
+is in the &ldquo;MFA Devices&rdquo; tab in the user screen.</p>
+<p><img src="/blog/img/2024-04-03_sso1.png" alt="MFA devices tab in IIC"></p>
+<p>In IAM Identity Center however, the hardware token option is not there. This is
+probably a product design decision than anything else, one which I can support.</p>
+<p><img src="/blog/img/2024-04-03_sso2.png" alt="Options in IIC"></p>
+<p>The steps are the same as in IAM users after this.</p>
+<h3 id="mfa-for-api-calls">MFA for API Calls</h3>
+<p>Now that MFA is enabled, whenever you login to AWS console, you&rsquo;d get prompted to add the MFA token.
+This secures the console.</p>
+<p>But what about the API calls?</p>
+<p>Usually, when you access the AWS API with security credentials (either
+short-term credentials through AWS STS or long-term credentials through AWS IAM),
+your  credentials will not be MFA authenticated.</p>
+<p>If you take a look at the SessionContext in CloudTrail for an API call you make without MFA, you&rsquo;d see <code>mfaAuthenticated</code> set to <code>false</code>.</p>
+<p><img src="/blog/img/2024-04-03_api1.png" alt="SessionContext without MFA"></p>
+<p>To get this to show up as true, we&rsquo;d need to satisfy a few conditions.</p>
+<ol>
+<li>Short-term credentials should be used. MFA authentication doesn&rsquo;t apply to long term credentials as they don&rsquo;t have an expiry</li>
+<li>Short-term credentials need to be generated with valid MFA details attached (kinda obvious)</li>
+</ol>
+<p>To satisfy these conditions, we can use  AWS STS <code>GetSessionToken</code> API  operation.
+<code>GetSessionToken</code> and <code>AssumeRole</code> are the only two AWS STS operations that allow specifying MFA details in the request (in contrast to other operations like <code>AssumeRoleWithWebIdentity</code>).
+However <code>AssumeRole</code> response doesn&rsquo;t include MFA auth details (so it doesn&rsquo;t satisfy condition #2 above), and we have to use <code>GetSessionToken</code>.</p>
+<p>Based on this, you can write AWS resource or identity policies to limit access to
+critical parts of your cloud architecture unless the credentials are generated with MFA involved.
+You can say if the request context doesn&rsquo;t have MFA authenticated don&rsquo;t allow certain API actions.</p>
+<p>Let&rsquo;s take a look at a sample.
+I&rsquo;m going to restrict <code>GetObject</code> action in an S3 bucket if the session context doesn&rsquo;t have MFA authentication details.</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="1"><a style="outline: none; text-decoration:none; color:inherit" href="#1"> 1</a>
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="2"><a style="outline: none; text-decoration:none; color:inherit" href="#2"> 2</a>
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="3"><a style="outline: none; text-decoration:none; color:inherit" href="#3"> 3</a>
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="4"><a style="outline: none; text-decoration:none; color:inherit" href="#4"> 4</a>
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="5"><a style="outline: none; text-decoration:none; color:inherit" href="#5"> 5</a>
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="6"><a style="outline: none; text-decoration:none; color:inherit" href="#6"> 6</a>
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="7"><a style="outline: none; text-decoration:none; color:inherit" href="#7"> 7</a>
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="8"><a style="outline: none; text-decoration:none; color:inherit" href="#8"> 8</a>
+</span><span style="display:block;width:100%;background-color:#191919"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="9"><a style="outline: none; text-decoration:none; color:inherit" href="#9"> 9</a>
+</span></span><span style="display:block;width:100%;background-color:#191919"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="10"><a style="outline: none; text-decoration:none; color:inherit" href="#10">10</a>
+</span></span><span style="display:block;width:100%;background-color:#191919"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="11"><a style="outline: none; text-decoration:none; color:inherit" href="#11">11</a>
+</span></span><span style="display:block;width:100%;background-color:#191919"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="12"><a style="outline: none; text-decoration:none; color:inherit" href="#12">12</a>
+</span></span><span style="display:block;width:100%;background-color:#191919"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="13"><a style="outline: none; text-decoration:none; color:inherit" href="#13">13</a>
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="14"><a style="outline: none; text-decoration:none; color:inherit" href="#14">14</a>
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="15"><a style="outline: none; text-decoration:none; color:inherit" href="#15">15</a>
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="16"><a style="outline: none; text-decoration:none; color:inherit" href="#16">16</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="font-weight:bold">&#34;Version&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;2012-10-17&#34;</span>,
+    <span style="font-weight:bold">&#34;Statement&#34;</span>: [
+        {
+            <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Deny&#34;</span>,
+            <span style="font-weight:bold">&#34;Principal&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>,
+            <span style="font-weight:bold">&#34;Action&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;s3:GetObject&#34;</span>,
+            <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;arn:aws:s3:::butcher-5556667777888999-private/*&#34;</span>,
+<span style="display:block;width:100%;background-color:#191919">            <span style="font-weight:bold">&#34;Condition&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#191919">                <span style="font-weight:bold">&#34;BoolIfExists&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#191919">                    <span style="font-weight:bold">&#34;aws:MultiFactorAuthPresent&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;false&#34;</span>
+</span><span style="display:block;width:100%;background-color:#191919">                }
+</span><span style="display:block;width:100%;background-color:#191919">            }
+</span>        }
+    ]
+}</code></pre></td></tr></table>
+</div>
+</div>
+<p>The condition I am using here is <code>aws:MultiFactorAuthPresent</code>.
+I&rsquo;m denying <code>GetObject</code> if this is not present or is present and set to false (<code>BoolIfExists</code> behaviour).</p>
+<p>Now I&rsquo;m going to try to download this file with,</p>
+<ol>
+<li>long term credentials</li>
+<li>short-term credentials from an <code>AssumeRole</code> operation</li>
+<li>short-term credentials from a <code>GetSessionToken</code> operation</li>
+</ol>
+<blockquote>
+<p>For API calls, AWS uses OATH-TOTP based MFA tokens, NOT FIDO-U2F if you&rsquo;re
+using a Security Key as your MFA device. My blog post that I linked above
+(and the video) on Yubikey usage goes into detail about it.</p>
+<p>If your MFA device is a Virtual Device, you don&rsquo;t have to worry about this.
+You&rsquo;re already using OATH-TOTP for both the Web Console MFA and the API call
+MFA.</p>
+</blockquote>
+<h4 id="testing-with-long-term-credentials-without-mfa">Testing with Long Term Credentials without MFA</h4>
+<p>My first attempt is to try and access this file through long term credentials. They
+don&rsquo;t have a <code>SessionContext</code> and in turn, no MFA auth details attached in the request context.
+So this gets denied!</p>
+<p><img src="/blog/img/2024-04-03_api2.png" alt="Using long term credentials"></p>
+<p><img src="/blog/img/2024-04-03_api3.png" alt="CloutTrail event for the request shows that this doesn&rsquo;t have a SessionContext"></p>
+<h4 id="testing-short-term-credentials-from-an-assumerole-operation">Testing Short Term Credentials from an AssumeRole Operation</h4>
+<p>Then I&rsquo;ll try and access this through IAM identity center short term credentials which are basically results of an <code>AssumeRole</code> operation.</p>
+<p><img src="/blog/img/2024-04-03_api4.png" alt="Getting temporary credentials in AWS IIC"></p>
+<p>The request context will have a <code>SessionContext</code> object, but <code>mfaAuthenticated</code> will be set to false.
+This is true even though my SSO user has an MFA device attached to it. This is because <code>AssumeRole</code> response doesn&rsquo;t have MFA auth details attached to it.</p>
+<p><img src="/blog/img/2024-04-03_api6.png" alt=""></p>
+<p>So this gets denied!</p>
+<p><img src="/blog/img/2024-04-03_api5.png" alt="Access denied when using AWS IIC temporary credentials">
+<img src="/blog/img/2024-04-03_api7.png" alt="CloudTrail event for a request with AssumeRole short-term credentials"></p>
+<blockquote>
+<p>IMPORTANT: You might be horrified by the fact that I&rsquo;m exposing quite a few details in
+these screenshots. These accounts were sandbox accounts, and they are not
+active anymore. Don&rsquo;t look at my screenhots and be &ldquo;emboldened&rdquo; to blatantly
+post CloudTrail logs in public. They can contain highly sensitive details.</p>
+<p>Do as I say, not as I do. Please, and thank you!</p>
+</blockquote>
+<p>Even if I try to get temporary credentials from an <code>AssumeRole</code> operation in
+the CLI, I&rsquo;d still be getting the same response.</p>
+<p><img src="/blog/img/2024-04-03_api11.png" alt=""></p>
+<p>The result of the operation run in a session with the above temporary
+credentials is the same, DENIED!</p>
+<p><img src="/blog/img/2024-04-03_api12.png" alt=""></p>
+<h4 id="testing-short-term-credentials-from-a-getsessiontoken-operation">Testing Short Term Credentials from a GetSessionToken Operation</h4>
+<p>Now I&rsquo;m going to generate some temporary credentials with <code>GetSessionToken</code>
+operation.
+You can generate temporary credentials without MFA with <code>GetSessionToken</code> even if the IAM user has an MFA device registered.
+The response will just not have MFA authentication details attached to it
+In this case, I&rsquo;m specifying the MFA details by using two arguments, <code>--serial-number</code> and <code>--token-code</code>.</p>
+<p><code>--serial-number</code> is the ARN generated for the MFA device when you registered
+it in either IAM or IAM Identity Center (depending on which user you&rsquo;re using
+for <code>GetSessionToken</code>).</p>
+<p><code>--token-code</code> will be the OATH-TOTP token generated by the virtual device or
+the security key.</p>
+<p>The resulting response will be valid for 15 minutes and will have MFA auth details attached</p>
+<p><img src="/blog/img/2024-04-03_api8.png" alt=""></p>
+<p>When I use these short term credentials to establish a session and download the
+object, it goes through!</p>
+<p><img src="/blog/img/2024-04-03_api9.png" alt=""></p>
+<p>This is because these credentials satisfied the two conditions above,
+short-term, and generated with MFA details attached.</p>
+<p>Let&rsquo;s take a look at the request context.</p>
+<p><img src="/blog/img/2024-04-03_api10.png" alt=""></p>
+<p><code>mfaAuthenticated</code> is set to <code>true</code> and our request is allowed.</p>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/">&lt; Deriving AWS Account ID from Access Key</a>
+		
+	</div>        
+	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/blog/2024-05-31_aws-finops-basics/">Hit the ground Running with FinOps in AWS &gt;</a>
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2024-01-18_setting-yubikey-mfa-for-aws-cli-temporary-credentials/">Setting Yubikey MFA for AWS CLI temporary credentials</a></li>
+    
+    <li><a href="/blog/2024-03-11_deriving-aws-account-id-from-access-key/">Deriving AWS Account ID from Access Key</a></li>
+    
+    <li><a href="/blog/2024-01-16_deploying-rust-on-lambda/">Deploying Rust on Lambda</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

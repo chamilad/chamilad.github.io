@@ -48,6 +48,16 @@ At the same time, new projects that start their journey in the Cloud can also fi
     </item>
     
     <item>
+      <title>AWS Multi-factor Authentication in Detail</title>
+      <link>https://chamila.dev/blog/2024-04-03_aws-multi-factor-authentication-in-detail/</link>
+      <pubDate>Wed, 03 Apr 2024 11:21:09 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-04-03_aws-multi-factor-authentication-in-detail/</guid>
+      <description>Multi-factor Authentication (MFA) is an easy way to enhance the security of your AWS cloud architecture with minimal work. It takes two minutes to enable, and minimizes the possibility of an account being compromised by tenfolds. This post and the associated video explores MFA in AWS and how to use it to control access to critical parts of your cloud architecture
+Single factor vs Multi factor The &amp;ldquo;multi&amp;rdquo; in MFA is as opposed to &amp;ldquo;single&amp;rdquo; factor authentication.</description>
+    </item>
+    
+    <item>
       <title>Deriving AWS Account ID from Access Key</title>
       <link>https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/</link>
       <pubDate>Mon, 11 Mar 2024 17:04:21 +1300</pubDate>
