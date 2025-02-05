@@ -7,6 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://chamila.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Becoming a CNCF Kubestronaut</title>
+      <link>https://chamila.dev/blog/2024-11-17_becoming-a-cncf-kubestronaut/</link>
+      <pubDate>Sun, 17 Nov 2024 23:06:10 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-11-17_becoming-a-cncf-kubestronaut/</guid>
+      <description>In early July this year, I became a Kubestronaut, the 2nd (or 3rd, I&amp;rsquo;m not exactly sure) in New Zealand.
+The Programme The CNCF Kubestronaut programme is a developer recognition programme launched by Cloud Native Computing Foundation. The aim of the programme is to appreciate the engineers who put &amp;ldquo;consistent effort into building skills and education&amp;rdquo; in Kubernetes (and related CNCF areas).
+It officially launched in 2024 February, but records show that the idea did start in late 2022.</description>
+    </item>
+    
+    <item>
+      <title>Completing 11 Professional Certifications in 8 Weeks</title>
+      <link>https://chamila.dev/blog/2024-10-28_completing-11-professional-certifications-in-8-weeks/</link>
+      <pubDate>Mon, 28 Oct 2024 21:36:19 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-10-28_completing-11-professional-certifications-in-8-weeks/</guid>
+      <description>I wanted to write these details down for a long time, but I wanted to wait until I received the Golden Jacket. In this article, I&amp;rsquo;m going to talk about how I planned, prepped for each exam, and some generalised lessons from my experience
+From end of May to mid of July, I studied for, and completed 11 professional certification exams. 9 out of those were AWS certifications, and the other two were the recently introduced CNCF foundational exams, Kubernetes and Cloud Native Associate (KCNA) and Kubernetes and Cloud native Secutiy Associate (KCSA).</description>
+    </item>
+    
+    <item>
+      <title>Receiving my AWS Golden Jacket</title>
+      <link>https://chamila.dev/blog/2024-10-13_receiving-my-aws-golden-jacket/</link>
+      <pubDate>Sun, 13 Oct 2024 00:00:19 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-10-13_receiving-my-aws-golden-jacket/</guid>
+      <description>So this article and the video is my congratulating myself for getting the coveted AWS Golden Jacket.
+Seriously though, it is a really good feeling to finally have the physical jacket with me. Not that I can wear it during the coming spring and summer. To be honest though, not that I&amp;rsquo;ll be wearing this outside anyways. It&amp;rsquo;s so shiny that I&amp;rsquo;ll get pulled over for blinding other drivers.</description>
+    </item>
+    
+    <item>
       <title>AWS Backup: Restoring Data and Automated Restore Testing</title>
       <link>https://chamila.dev/blog/2024-09-23_aws-backup-restoring-data-and-automated-restore-testing/</link>
       <pubDate>Mon, 23 Sep 2024 00:26:50 +1300</pubDate>
