@@ -7,6 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://chamila.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Why I don&#39;t like taking Remote Proctored Exams</title>
+      <link>https://chamila.dev/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/</link>
+      <pubDate>Thu, 16 Jan 2025 22:47:18 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/</guid>
+      <description>I recently renewed my Certified Kubernetes Security Specialty certification, and it reminded me, hard, why I don&amp;rsquo;t like taking remote proctored exams. This is going to be rant, probably not educative.
+All CNCF certification exams are remote proctored. This means that you book the exam online and then take it online at a place of your choosing. Sounds unbelievably simple right? There&amp;rsquo;s a reason why it&amp;rsquo;s unbelievable.</description>
+    </item>
+    
+    <item>
       <title>Deep Dive in to AWS Resource Control Policies</title>
       <link>https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/</link>
       <pubDate>Sun, 15 Dec 2024 23:35:34 +1300</pubDate>

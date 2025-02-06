@@ -2,23 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://chamila.dev/tags/aws/</loc>
-    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
+    <loc>https://chamila.dev/tags/cncf/</loc>
+    <lastmod>2025-01-16T22:47:18+13:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/</loc>
-    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
+    <loc>https://chamila.dev/tags/exam/</loc>
+    <lastmod>2025-01-16T22:47:18+13:00</lastmod>
   </url><url>
-    <loc>https://chamila.dev/tags/iam/</loc>
-    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/tags/identity/</loc>
-    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/tags/security/</loc>
-    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
+    <loc>https://chamila.dev/tags/kubernetes/</loc>
+    <lastmod>2025-01-16T22:47:18+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/</loc>
-    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
+    <lastmod>2025-02-06T22:46:55+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/</loc>
+    <lastmod>2025-01-16T22:47:18+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/aws/</loc>
+    <lastmod>2025-02-06T22:46:55+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/</loc>
+    <lastmod>2025-02-06T22:46:55+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/iam/</loc>
+    <lastmod>2025-02-06T22:46:55+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/identity/</loc>
+    <lastmod>2025-02-06T22:46:55+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/security/</loc>
+    <lastmod>2025-02-06T22:46:55+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2024-11-17_becoming-a-cncf-kubestronaut/</loc>
     <lastmod>2025-02-05T23:38:34+13:00</lastmod>
@@ -342,9 +354,6 @@
     <lastmod>2021-11-12T14:29:42+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/ingress/</loc>
-    <lastmod>2021-11-12T14:29:42+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/tags/kubernetes/</loc>
     <lastmod>2021-11-12T14:29:42+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/load-balancing/</loc>
