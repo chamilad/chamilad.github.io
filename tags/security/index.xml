@@ -6,7 +6,18 @@
     <description>Recent content in security on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Mar 2024 17:04:21 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Dec 2024 23:35:34 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deep Dive in to AWS Resource Control Policies</title>
+      <link>https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/</link>
+      <pubDate>Sun, 15 Dec 2024 23:35:34 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/</guid>
+      <description>This article is on one of the new features AWS released recently, called Resource Control Policies (RCPs).
+RCPs are a new way to enforce policies on data (resources) rather than principals in AWS. For principals, the way to enforce policies is to use Service Control Policies (SCPs), which if you&amp;rsquo;re already familiar with AWS would know plenty about. However, RCPs can still be a little confusing.
+What are RCPs?</description>
+    </item>
+    
     <item>
       <title>Deriving AWS Account ID from Access Key</title>
       <link>https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/</link>

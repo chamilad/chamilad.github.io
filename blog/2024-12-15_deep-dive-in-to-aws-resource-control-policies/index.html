@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Deep Dive in to AWS Resource Control Policies",
+      "headline" : "Deep Dive in to AWS Resource Control Policies",
+      "description" : "This article is on one of the new features AWS released recently, called Resource Control Policies (RCPs).\nRCPs are a new way to enforce policies on data (resources) rather than principals in AWS. For principals, the way to enforce policies is to use Service Control Policies (SCPs), which if you\u0026rsquo;re already familiar with AWS would know plenty about. However, RCPs can still be a little confusing.\nWhat are RCPs?",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-12-15 23:35:34 \u002b1300 NZDT",
+      "dateModified" : "2024-12-15 23:35:34 \u002b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2024-12-15_deep-dive-in-to-aws-resource-control-policies\/",
+      "keywords" : [ "aws","identity","security","iam", ]
+  }
+</script>
+<title>Deep Dive in to AWS Resource Control Policies - chamila.dev</title>
+  <meta property="og:title" content="Deep Dive in to AWS Resource Control Policies - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="This article is on one of the new features AWS released recently, called Resource Control Policies (RCPs).
+RCPs are a new way to enforce policies on data (resources) rather than principals in AWS. For principals, the way to enforce policies is to use Service Control Policies (SCPs), which if you&rsquo;re already familiar with AWS would know plenty about. However, RCPs can still be a little confusing.
+What are RCPs?" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Deep Dive in to AWS Resource Control Policies</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2024-12-15 23:35:34 NZDT">
+                15 Dec 2024
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~6 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-are-rcps">What are RCPs?</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/dLA8R3M-cVU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>This article is on one of the new features AWS released recently, called
+<a href="https://aws.amazon.com/blogs/aws/introducing-resource-control-policies-rcps-a-new-authorization-policy/">Resource Control Policies
+(RCPs)</a>.</p>
+<p>RCPs are a new way to enforce policies on data (resources) rather than
+principals in AWS. For principals, the way to enforce policies is to use
+Service Control Policies (SCPs), which if you&rsquo;re already familiar with AWS
+would know plenty about. However, RCPs can still be a little confusing.</p>
+<h2 id="what-are-rcps">What are RCPs?</h2>
+<p>If we consider an AWS account as a single &ldquo;permission domain&rdquo;, there are
+mutltiple artefacts involved when determining whether a principal can perform a
+given action or not.</p>
+<p>There are permission policies, permission boundaries, session policies, and
+SCPs involved in the Policy Evaluation Logic.</p>
+<p>Out of these permission policies can be divided into two types.</p>
+<ol>
+<li>identity policies that apply to principals (users, roles, service
+principals, and groups. technically groups are not a principal type)</li>
+<li>resource policies that are applied to resources like S3 bucket policies, SQS
+policies etc</li>
+</ol>
+<p>In a permission policy, you specify statements that contain a list of
+permissions that are either allowed or denied to a set of principals on a set
+of resources, under a set of conditions.</p>
+<p>While permission policies grant permissions, there should be a mechanism to
+limit the maximum boundary of permissions granted by these policies.</p>
+<p>This is because, in most cases, the persona that handles the overall
+organisation security and configuration posture is different from the persona
+that works with the granted permissions, or even the persona that grants
+permissions. There are distinct job role differences between these parties, and
+AWS provides mechanisms for all of them to work together.</p>
+<p>Permission boundaries provide this functionality while being coupled to a specific
+principal.</p>
+<p>SCPs provide another side of this policy enforcement where it determines the
+maximum of permissions coupled to a permission domain, an account, an
+Organization Unit, or even the entire Organization.</p>
+<p>Even if a identity policy grants a certain permission, if an SCP denies it, or
+if the Permission Boundary doesn&rsquo;t contain the permission, the action is denied
+for that principal.</p>
+<p>However, both of these control features apply to principals, i.e. permissions
+granted with identity policies.</p>
+<p>RCPs are a way to apply policy enforcement to data at rest, permissions granted
+by resource policies.</p>
+<p><img src="/blog/img/2024-12-15_1.png" alt=""></p>
+<h2 id="usage">Usage</h2>
+<p>Like SCPs, RCPs can be applied at any level of the Organization hierarchy,
+starting from the Root to individual accounts. It is accumulative, which means
+RCPs applied at the top of the hierarchy are inherited by child nodes.</p>
+<blockquote>
+<p>While RCPs can be applied at any level, it is advisable to start testing RCPs
+at a lower level, like a sandbox account, and then &ldquo;graduate&rdquo; them to proper
+level once tested. Otherwise, there&rsquo;s a chance that you&rsquo;ll break existing
+functionality of the systems deployed in AWS.</p>
+</blockquote>
+<p>Because they both target the same problem space, SCPs and RCPS both can be used
+to tackle the same problem sometimes, but RCPs are mostly advisable to be
+deployed to build a &ldquo;data perimeter&rdquo; as AWS calls it. You can use RCPs to
+determine which level of access your data resources will provide, irrespective
+of who is accessing it. It&rsquo;s a resource oriented (pivoted) view of the
+policy enforcement model.</p>
+<p>For an example, with RCPs, you can define a policy that will not allow anyone
+to open up S3 buckets in your AWS Organization. If this was to be done with
+SCPs, you may have to restrict operations that change bucket policy content,
+which is a different point of view than actually guarding the resources. SCPs
+guard user actions, while RCPs guard resources.</p>
+<p><img src="/blog/img/2024-12-15_2.png" alt=""></p>
+<p>With the above policy applied to your specific &ldquo;sensitive&rdquo; OU or even the Root
+of the Organization, you can comfortably delegate full control of the AWS
+accounts or OUs under it to different parts of the organisation, or even
+outside parties as needed. You don&rsquo;t have to worry about their full control
+since the level of access that they can grant to the S3 buckets is dictated by
+the RCP that is applied at level higher than those accounts.</p>
+<h2 id="demo">Demo</h2>
+<p>There&rsquo;s an demo of the feature in the AWS blog post that I linked above,
+however, &ldquo;off the beaten path&rdquo; is always good. I came up with another example,
+just to see if there are limits to advertised features.</p>
+<p>In this setup, I have two accounts, <code>workload_a</code> and <code>backup</code>, and I&rsquo;ve created
+a KMS key with a key policy in the <code>workload_a</code> account that allows users from
+the <code>backup</code> account to describe it.</p>
+<p><img src="/blog/img/2024-12-15_3.png" alt=""></p>
+<p><img src="/blog/img/2024-12-15_4.png" alt=""></p>
+<p>With this policy in place (and with matching identity policies for
+cross-account access) I can successfully describe the key.</p>
+<p><img src="/blog/img/2024-12-15_5.png" alt=""></p>
+<p>Now, conditions change, and <code>workload_a</code> is designated as an account that has
+sensitive data. It&rsquo;s KMS keys should not be exposed to any party outside the
+account. I can implement this as an RCP that is applied to the <code>workload_a</code>
+account.</p>
+<p><img src="/blog/img/2024-12-15_6.png" alt=""></p>
+<p>To do this, RCPs have to be enabled as a feature. This has to be done at the
+Organization Management account.</p>
+<p>Go to AWS Organizations console in the Management account, then to the Policies
+page, and scroll down to check if RCPs are enabled. If not, it&rsquo;s a simple click
+to enable it. This action has no cost attached to it.</p>
+<p><img src="/blog/img/2024-12-15_7.png" alt=""></p>
+<p>After the RCPs are enabled, a new policy can be created for our requirement.</p>
+<p><img src="/blog/img/2024-12-15_8.png" alt=""></p>
+<blockquote>
+<p>When RCPs are enabled, a default RCP called <code>RCPFullAWSAccess</code> is created and
+attached to the Organization Root. This has an umbrella Allow All statement,
+which makes sure that existing operations will not break, just by enabling
+the feature.
+<img src="/blog/img/2024-12-15_11.png" alt=""></p>
+</blockquote>
+<p>What this statement does is to deny <code>kms:DescribeKey</code> permission to any
+principal if they are not from the <code>workload_a</code> account or if they are not an
+AWS Service.</p>
+<blockquote>
+<p>Using Allow statements in SCPs or RCPs <strong>do not grant</strong> permissions. They
+just enable granting that permission.</p>
+</blockquote>
+<p>I then attach this RCP to the <code>workload_a</code> account.</p>
+<p><img src="/blog/img/2024-12-15_9.png" alt=""></p>
+<p>With this RCP attached, if I try to perform the above <code>kms describe-key</code> action
+again, I&rsquo;m going to get an access denied message, because even though the Key
+policy grants <code>kms:DescribeKey</code>, there&rsquo;s an explicit deny in the mix provided
+by the RCP.</p>
+<p><img src="/blog/img/2024-12-15_10.png" alt=""></p>
+<blockquote>
+<p>Having a RCP that denies a permission doesn&rsquo;t mean you can&rsquo;t apply resource
+policies that allow that specific permission. The RCP comes into play during
+the Policy Evaluation logic, not during the policy attachment to resources.</p>
+</blockquote>
+<h2 id="conclusion">Conclusion</h2>
+<ol>
+<li>Use RCPs to setup a &ldquo;data perimeter&rdquo;</li>
+<li>RCPs (or SCPs) do not &ldquo;grant&rdquo; permissions, they define the maximum boundary for permission policies</li>
+<li>RCPs are SCPs but for resource policies (with some caveats)</li>
+</ol>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2024-11-17_becoming-a-cncf-kubestronaut/">&lt; Becoming a CNCF Kubestronaut</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2024-03-11_deriving-aws-account-id-from-access-key/">Deriving AWS Account ID from Access Key</a></li>
+    
+    <li><a href="/blog/2024-06-01_rust-profiles-in-aws-sdk/">Using Multiple AWS CLI Profiles in the Rust AWS SDK</a></li>
+    
+    <li><a href="/blog/2024-05-31_aws-finops-basics/">Hit the ground Running with FinOps in AWS</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

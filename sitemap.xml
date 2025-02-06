@@ -2,17 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://chamila.dev/tags/aws/</loc>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/</loc>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/iam/</loc>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/identity/</loc>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/security/</loc>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
+  </url><url>
+    <loc>https://chamila.dev/tags/</loc>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
+  </url><url>
     <loc>https://chamila.dev/blog/2024-11-17_becoming-a-cncf-kubestronaut/</loc>
-    <lastmod>2024-11-17T23:06:10+13:00</lastmod>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2024-10-28_completing-11-professional-certifications-in-8-weeks/</loc>
-    <lastmod>2024-10-28T21:36:19+13:00</lastmod>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2024-10-13_receiving-my-aws-golden-jacket/</loc>
-    <lastmod>2025-02-05T00:05:08+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/tags/aws/</loc>
-    <lastmod>2025-02-05T00:05:08+13:00</lastmod>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2024-09-23_aws-backup-restoring-data-and-automated-restore-testing/</loc>
     <lastmod>2025-02-04T23:59:01+13:00</lastmod>
@@ -34,9 +49,6 @@
   </url><url>
     <loc>https://chamila.dev/tags/restore/</loc>
     <lastmod>2025-02-04T23:59:01+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/tags/</loc>
-    <lastmod>2025-02-05T00:05:08+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/</loc>
     <lastmod>2025-02-04T23:59:01+13:00</lastmod>
@@ -66,27 +78,24 @@
     <lastmod>2025-02-02T20:43:22+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2024-04-03_aws-multi-factor-authentication-in-detail/</loc>
-    <lastmod>2025-02-05T00:05:08+13:00</lastmod>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/fido/</loc>
-    <lastmod>2025-02-05T00:05:08+13:00</lastmod>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/mfa/</loc>
-    <lastmod>2025-02-05T00:05:08+13:00</lastmod>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/totp/</loc>
-    <lastmod>2025-02-05T00:05:08+13:00</lastmod>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/yubikey/</loc>
-    <lastmod>2025-02-05T00:05:08+13:00</lastmod>
+    <lastmod>2025-02-05T23:38:34+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/cloud/</loc>
     <lastmod>2025-02-04T00:22:31+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/</loc>
-    <lastmod>2025-02-04T00:22:31+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/tags/security/</loc>
     <lastmod>2025-02-04T00:22:31+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2024-01-18_setting-yubikey-mfa-for-aws-cli-temporary-credentials/</loc>
@@ -471,9 +480,6 @@
     <lastmod>2021-11-12T14:29:42+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/caching/</loc>
-    <lastmod>2021-11-12T14:29:42+13:00</lastmod>
-  </url><url>
-    <loc>https://chamila.dev/tags/iam/</loc>
     <lastmod>2021-11-12T14:29:42+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</loc>

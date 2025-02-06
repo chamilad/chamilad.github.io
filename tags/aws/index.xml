@@ -6,7 +6,18 @@
     <description>Recent content in AWS on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Sep 2024 00:26:50 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Dec 2024 23:35:34 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deep Dive in to AWS Resource Control Policies</title>
+      <link>https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/</link>
+      <pubDate>Sun, 15 Dec 2024 23:35:34 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/</guid>
+      <description>This article is on one of the new features AWS released recently, called Resource Control Policies (RCPs).
+RCPs are a new way to enforce policies on data (resources) rather than principals in AWS. For principals, the way to enforce policies is to use Service Control Policies (SCPs), which if you&amp;rsquo;re already familiar with AWS would know plenty about. However, RCPs can still be a little confusing.
+What are RCPs?</description>
+    </item>
+    
     <item>
       <title>AWS Backup: Restoring Data and Automated Restore Testing</title>
       <link>https://chamila.dev/blog/2024-09-23_aws-backup-restoring-data-and-automated-restore-testing/</link>

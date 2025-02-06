@@ -6,13 +6,40 @@
     <description>Recent content in Tags on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Sep 2024 00:26:50 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Dec 2024 23:35:34 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AWS</title>
       <link>https://chamila.dev/tags/aws/</link>
-      <pubDate>Mon, 23 Sep 2024 00:26:50 +1300</pubDate>
+      <pubDate>Sun, 15 Dec 2024 23:35:34 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Iam</title>
+      <link>https://chamila.dev/tags/iam/</link>
+      <pubDate>Sun, 15 Dec 2024 23:35:34 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/iam/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>identity</title>
+      <link>https://chamila.dev/tags/identity/</link>
+      <pubDate>Sun, 15 Dec 2024 23:35:34 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/identity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>security</title>
+      <link>https://chamila.dev/tags/security/</link>
+      <pubDate>Sun, 15 Dec 2024 23:35:34 +1300</pubDate>
+      
+      <guid>https://chamila.dev/tags/security/</guid>
       <description></description>
     </item>
     
@@ -166,15 +193,6 @@
       <pubDate>Mon, 11 Mar 2024 17:04:21 +1300</pubDate>
       
       <guid>https://chamila.dev/tags/cloud/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>security</title>
-      <link>https://chamila.dev/tags/security/</link>
-      <pubDate>Mon, 11 Mar 2024 17:04:21 +1300</pubDate>
-      
-      <guid>https://chamila.dev/tags/security/</guid>
       <description></description>
     </item>
     
@@ -967,15 +985,6 @@
       <pubDate>Sun, 12 Nov 2017 14:30:44 +0000</pubDate>
       
       <guid>https://chamila.dev/tags/caching/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Iam</title>
-      <link>https://chamila.dev/tags/iam/</link>
-      <pubDate>Sun, 12 Nov 2017 14:30:44 +0000</pubDate>
-      
-      <guid>https://chamila.dev/tags/iam/</guid>
       <description></description>
     </item>
     
