@@ -6,7 +6,26 @@
     <description>Recent content in security on chamila.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Dec 2024 23:35:34 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 Feb 2025 00:04:06 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS Authentication for K8s: EKS Pod Identities Deep Dive</title>
+      <link>https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/</link>
+      <pubDate>Sat, 01 Feb 2025 00:04:06 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/</guid>
+      <description>In the last article, I covered in brief, the solutions for the problem of authenticating into AWS from K8s workloads. This is the first detailed article (and the video) I promised I&amp;rsquo;ll follow up that with, going into to details on EKS Pod Identities. I&amp;rsquo;m hoping to make this the most detailed, most in-depth video on the topic, but this article would probably have less details, so I highly recommend watching the video.</description>
+    </item>
+    
+    <item>
+      <title>AWS Authentication for K8s: Introduction</title>
+      <link>https://chamila.dev/blog/2025-01-27_aws-authentication-for-k8s-introduction/</link>
+      <pubDate>Mon, 27 Jan 2025 00:01:44 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2025-01-27_aws-authentication-for-k8s-introduction/</guid>
+      <description>This is an introductory post on the problem of authenticating into AWS from K8s workloads, either from within AWS or from outside of it. I&amp;rsquo;m going to discuss three major approaches to this problem and compare them against each other. I&amp;rsquo;ll follow this up with more detailed articles (and videos) on each approach, where I&amp;rsquo;ll go into details as much as possible.
+Problem Statement The key problem I&amp;rsquo;m trying to tackle here is how to authenticate into AWS from workloads running in K8s.</description>
+    </item>
+    
     <item>
       <title>Deep Dive in to AWS Resource Control Policies</title>
       <link>https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/</link>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2025-01-27_aws-authentication-for-k8s-introduction/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2025-01-27_aws-authentication-for-k8s-introduction/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "AWS Authentication for K8s: Introduction",
+      "headline" : "AWS Authentication for K8s: Introduction",
+      "description" : "This is an introductory post on the problem of authenticating into AWS from K8s workloads, either from within AWS or from outside of it. I\u0026rsquo;m going to discuss three major approaches to this problem and compare them against each other. I\u0026rsquo;ll follow this up with more detailed articles (and videos) on each approach, where I\u0026rsquo;ll go into details as much as possible.\nProblem Statement The key problem I\u0026rsquo;m trying to tackle here is how to authenticate into AWS from workloads running in K8s.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-01-27 00:01:44 \u002b1300 NZDT",
+      "dateModified" : "2025-01-27 00:01:44 \u002b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2025-01-27_aws-authentication-for-k8s-introduction\/",
+      "keywords" : [ "aws","kubernetes","k8s","authentication","identity","security","iam","oidc", ]
+  }
+</script>
+<title>AWS Authentication for K8s: Introduction - chamila.dev</title>
+  <meta property="og:title" content="AWS Authentication for K8s: Introduction - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="This is an introductory post on the problem of authenticating into AWS from K8s workloads, either from within AWS or from outside of it. I&rsquo;m going to discuss three major approaches to this problem and compare them against each other. I&rsquo;ll follow this up with more detailed articles (and videos) on each approach, where I&rsquo;ll go into details as much as possible.
+Problem Statement The key problem I&rsquo;m trying to tackle here is how to authenticate into AWS from workloads running in K8s." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">AWS Authentication for K8s: Introduction</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2025-01-27 00:01:44 NZDT">
+                27 Jan 2025
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~8 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#problem-statement">Problem Statement</a></li>
+    <li><a href="#approach-1-the-worst-way">Approach 1: The worst way</a></li>
+    <li><a href="#approach-2-eks-pod-identities">Approach 2: EKS Pod Identities</a></li>
+    <li><a href="#approach-3-iam-roles-for-service-accounts-irsa">Approach 3: IAM Roles for Service Accounts (IRSA)</a></li>
+    <li><a href="#approach-4-external-tools">Approach 4: External Tools</a></li>
+    <li><a href="#conclusion">Conclusion?</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/8Ym1tAZRyyM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>This is an introductory post on the problem of authenticating into AWS from K8s
+workloads, either from within AWS or from outside of it. I&rsquo;m going to discuss
+three major approaches to this problem and compare them against each other.
+I&rsquo;ll follow this up with more detailed articles (and videos) on each approach,
+where I&rsquo;ll go into details as much as possible.</p>
+<h2 id="problem-statement">Problem Statement</h2>
+<p>The key problem I&rsquo;m trying to tackle here is how to authenticate into AWS from
+workloads running in K8s.</p>
+<p>The solution could be as easy as hardcoding IAM user credentials in the
+code/environment variables and calling it a day, to fully automated approaches
+like EKS Pod Identities. Which one you should take depends on a list of
+factors.</p>
+<ol>
+<li>Do you care about security? (if not, this is the universe giving you a
+signal to do so)</li>
+<li>Is your K8s cluster in AWS or outside of it?</li>
+<li>Is your K8s cluster on EKS or outside of it?</li>
+<li>Can you tolerate umbrella IAM policies (opposite of Least Privilege)? (if
+you can, this is another small signal to not tolerate)</li>
+<li>How comfortable are you with third party solutions?</li>
+</ol>
+<p>To define the problem more, <strong>the workloads in K8s should be able to authenticate
+into AWS</strong>,</p>
+<ol>
+<li>with <strong>short term credentials</strong></li>
+<li>with <strong>workload specific IAM permissions</strong></li>
+<li>with an approach that <strong>scales well</strong> to different types of workloads</li>
+</ol>
+<h2 id="approach-1-the-worst-way">Approach 1: The worst way</h2>
+<p><img src="/blog/img/2025-01-27_1.png" alt=""></p>
+<p>The easiest and the worst way to solve this problem would be create an IAM user
+in AWS, generate long term credentials, and provide the access key and the
+secret access key to the Pod as environment variables, secrets, or if you&rsquo;re
+looking to hit all the points of absolute worst security, as hardcoded values
+in the code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">spec</span>:
+  <span style="font-weight:bold">containers</span>:
+  - ...
+    <span style="font-weight:bold">env</span>:
+    - <span style="font-weight:bold">name</span>: AWS_ACCESS_KEY_ID
+      <span style="font-weight:bold">value</span>: AKIASPMZNYEHREAKQQLI
+    - <span style="font-weight:bold">name</span>: AWS_SECRET_ACCESS_KEY
+      <span style="font-weight:bold">value</span>: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    <span style="font-weight:bold">image</span>: amazon/aws-cli:latest
+    <span style="font-weight:bold">imagePullPolicy</span>: Always
+    <span style="font-weight:bold">name</span>: pod1
+    ...
+</code></pre></div><p>It is imperative that you do <strong>NOT</strong> do this ever, even as a way to test
+something in <em>5 mins</em>. It&rsquo;s not a broken window, it&rsquo;s building a skycraper on
+flood plains. Seriously, don&rsquo;t build a habit of writing credentials in source
+code.</p>
+<p>Credentials have no business being in a git repository, and they shouldn&rsquo;t
+ideally be in environment variables as well. K8s Secrets are not really secrets
+(unless you encrypt your ETCD cluster, even then, it&rsquo;s not the best of
+secrets).</p>
+<p>In addition to the bad practice, this checks off none of our requirements
+above. This approach uses long term credentials, which is heavily discouraged
+by AWS. You could probably follow Principle of Least Privilege here, but if
+you&rsquo;re creating IAM users for this purposes, chances are the practices aren&rsquo;t
+really incentivising attention to detail like that. And finally, you&rsquo;ll be
+creating IAM users for each workload type, which is not really scalable even
+with something like Infrastructure as Code (IAC) involved.</p>
+<p>So if you&rsquo;re already following this practice, read on, you might find ways to
+get a better chance at hitting that sweet ISO27001 compliance.</p>
+<h2 id="approach-2-eks-pod-identities">Approach 2: EKS Pod Identities</h2>
+<p>EKS Pod Identities is a relatively new feature introduced by AWS to solve this
+specific problem. It maps K8s Service Accounts to IAM Roles, and manages the
+complexity of providing temporary credentials for the Role in the Pod in the
+background.</p>
+<p><img src="/blog/img/2025-01-27_2.png" alt=""></p>
+<p>Like the name suggests, EKS Pod Identities can only be used in full EKS
+clusters. You can&rsquo;t use Pod Identities in external K8s clusters, even if they
+are in AWS EC2. You can&rsquo;t even use Pod Identities in EKS clusters if the
+workloads are in Fargate, or if they are backed by external compute, such as
+when you register an external K8s cluster in EKS through EKS Connector. You
+also can&rsquo;t use Pod Identities in EKS Anywhere based clusters. This
+functionality is fully backed by features in AWS control plane, that cannot be
+easily replicated outside.</p>
+<p>The cluster administrator will need to enable Pod Identities plugin, and then
+map Service Accounts to specific IAM roles in AWS.</p>
+<p>The workloads in Pods will be provided necessary environment variables and
+values to obtain short term credentials through the Pod Identity Agent. The
+improvements in later AWS SDKs help here as well.</p>
+<blockquote>
+<p>I&rsquo;ll follow this article up with a detailed article and a video with a  deep
+dive into EKS Pod Identities. I&rsquo;ll explain the details involved in the Pod
+Identities process to the most detailed level possible there.</p>
+<p>UPDATE: New article and the video <a href="/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/">is
+here</a>.</p>
+</blockquote>
+<p>Compared to Approach 1 above, this is light years ahead in terms of security,
+ease of use, and scalability. You don&rsquo;t have to worry about long term
+credentials. You&rsquo;re not keeping any credentials on K8s side of the puzzle. The
+end users (in this case, the developers and the application administrators)
+don&rsquo;t have care about the authentication details, they just need to write and
+configure their applications assuming the credentials will be there.</p>
+<p>On the cons side, you can only use EKS Pod Identities on full EKS clusters, on
+workloads running on EKS. You need to make sure you&rsquo;re using the latest AWS SDK
+in the application as well.</p>
+<p>So if your cluster is not a full EKS cluster, or if your workload has legacy
+code that you can&rsquo;t realistically upgrade, then you&rsquo;re out of luck with this
+approach.</p>
+<h2 id="approach-3-iam-roles-for-service-accounts-irsa">Approach 3: IAM Roles for Service Accounts (IRSA)</h2>
+<p>The next best approach would be something called IAM Roles for Service Accounts
+(IRSA). The core idea of IRSA is basically the same as Pod Identities (in fact,
+IRSA was the recommended approach for EKS before Pod Identities was
+introduced). The SDK in the Pod will be provided with appropriate environment
+variables so that it can get temporary credentials to talk to AWS.</p>
+<p>However, several other key details are different in IRSA.</p>
+<p>The way the SDK gets temporary credentials is different from Pod Identities. In
+Pod identities, a new credentials provider method called Container Credentials
+is used, where as in IRSA, the old <code>AssumeRoleWithWebIdentity</code> is used. The
+&ldquo;web identity&rdquo; in this case is established by using the OpenID Connect (OIDC)
+issuer functionality in K8s as a federated identity provider in AWS IAM. So, to
+keep the details brief, the Pods that have a Service Account token (through the
+TokenRequest API) can authenticate as federated IAM users and assume roles,
+because AWS can verify the token through the OIDC endpoint in K8s.</p>
+<blockquote>
+<p>As the Pod Identities, expecte a detailed article and a video on IRSA in the
+future.</p>
+</blockquote>
+<p>IRSA are notoriously a PITA to set up. For each Cluster you
+have to setup an IAM identity provider. If you cluster control plane changes
+for some reason, you have to redo the steps, if the OIDC token signing keys
+(JWKS) change.</p>
+<p><img src="/blog/img/2025-01-27_3.png" alt=""></p>
+<p>However, you can use IRSA with almost any kind of K8s cluster, that needs to
+access AWS. Whether the cluster is in or outside of AWS is irrelevant, as long
+as IAM can verify the JWT provided by the workload as an authentication token.
+So this makes it attractive to workloads that run on isolated compute but still
+needs partial access to AWS.</p>
+<h2 id="approach-4-external-tools">Approach 4: External Tools</h2>
+<p>Other than the above two &ldquo;built-in&rdquo; approaches, there are external tool based
+approaches we can take to solve this problem. There are tools like <code>kube2iam</code>
+that act as credential proxies. The basic idea for most of these tools is
+something like this.</p>
+<p><img src="/blog/img/2025-01-27_4.png" alt=""></p>
+<p>When the AWS SDK inside a Pod tries to make an API call, it will eventually try
+to get credentials from the Instance Metadata Service (IMDS). Tools like
+<code>kube2iam</code> intercept this call, based on a mapping on the Pod definition
+(ex: Service Account annotation) will try to assume different IAM Roles for
+different Pods, then return the resulting credentials to the Pod. This is kind
+of like a credentials server (used in the EKS Pod Identities approach in the
+background), but as far as the SDK on the Pod is concerned, it received the
+credentials from IMDSv2.</p>
+<p>In approaches like these, you&rsquo;ll be setting up trust policies on the target
+roles to allow the Instance Profile to assume them. This could in rare cases,
+allow untrusted worloads to assume Roles that were not intended for them, but
+if you have good defense in depth (Service Account management, node isolation
+etc), this should not be a problem. Also, since these are third party tools,
+you&rsquo;ll have to depend on their community or a third party service provider for
+support. The above two approaches will have full support from AWS.</p>
+<p>You can use these third party tools in clusters outside of AWS too. However,
+you&rsquo;ll need to setup trust between the compute layer and AWS in some way, using
+something like IAM Roles Anywhere. In that case, the trust relationships of the
+target Roles should trust the Role associated with the IAM Roles Anywhere Trust
+Anchor.</p>
+<h2 id="conclusion">Conclusion?</h2>
+<p>Well, not exactly. I&rsquo;m planning to do follow up videos and articles on each of
+these approaches after this. There are some interesting details about each that
+I can&rsquo;t really cover in a generic article like this. So expect more in this
+space!!</p>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/">&lt; Why I don&#39;t like taking Remote Proctored Exams</a>
+		
+	</div>        
+	<div class="next col-sm">
+	
+	<a href="https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/">AWS Authentication for K8s: EKS Pod Identities Deep Dive &gt;</a>
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/">Deep Dive in to AWS Resource Control Policies</a></li>
+    
+    <li><a href="/blog/2024-03-11_deriving-aws-account-id-from-access-key/">Deriving AWS Account ID from Access Key</a></li>
+    
+    <li><a href="/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/">Why I don&#39;t like taking Remote Proctored Exams</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>
