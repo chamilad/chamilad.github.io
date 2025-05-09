@@ -2,38 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://chamila.dev/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/</loc>
+    <lastmod>2025-03-10T15:59:36+13:00</lastmod>
+  </url><url>
     <loc>https://chamila.dev/tags/authentication/</loc>
-    <lastmod>2025-02-22T17:05:31+13:00</lastmod>
+    <lastmod>2025-02-22T17:07:33+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/aws/</loc>
-    <lastmod>2025-02-22T17:05:31+13:00</lastmod>
+    <lastmod>2025-02-22T17:07:33+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/</loc>
-    <lastmod>2025-02-22T17:05:31+13:00</lastmod>
+    <lastmod>2025-02-22T17:07:33+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/iam/</loc>
-    <lastmod>2025-02-22T17:05:31+13:00</lastmod>
+    <lastmod>2025-02-22T17:07:33+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/identity/</loc>
-    <lastmod>2025-02-22T17:05:31+13:00</lastmod>
+    <lastmod>2025-02-22T17:07:33+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/k8s/</loc>
-    <lastmod>2025-02-22T17:05:31+13:00</lastmod>
+    <lastmod>2025-02-22T17:07:33+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/kubernetes/</loc>
-    <lastmod>2025-02-22T17:05:31+13:00</lastmod>
+    <lastmod>2025-02-22T17:07:33+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/oidc/</loc>
-    <lastmod>2025-02-22T17:05:31+13:00</lastmod>
+    <lastmod>2025-02-22T17:07:33+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/security/</loc>
-    <lastmod>2025-02-22T17:05:31+13:00</lastmod>
+    <lastmod>2025-02-22T17:07:33+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/</loc>
-    <lastmod>2025-02-22T17:05:31+13:00</lastmod>
+    <lastmod>2025-02-22T17:07:33+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/blog/2025-01-27_aws-authentication-for-k8s-introduction/</loc>
-    <lastmod>2025-02-22T17:05:31+13:00</lastmod>
+    <lastmod>2025-02-22T17:07:33+13:00</lastmod>
   </url><url>
     <loc>https://chamila.dev/tags/cncf/</loc>
     <lastmod>2025-02-07T00:07:44+13:00</lastmod>

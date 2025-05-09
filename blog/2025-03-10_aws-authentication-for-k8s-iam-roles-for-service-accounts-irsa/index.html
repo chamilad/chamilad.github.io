@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA)",
+      "headline" : "AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA)",
+      "description" : "Deep dive and how-to on IRSA",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-03-10 15:59:36 \u002b1300 NZDT",
+      "dateModified" : "2025-03-10 15:59:36 \u002b1300 NZDT",
+      "url" : "https:\/\/chamila.dev\/blog\/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa\/",
+      "keywords" : [ "", ]
+  }
+</script>
+<title>AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA) - chamila.dev</title>
+  <meta property="og:title" content="AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA) - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Deep dive and how-to on IRSA" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA)</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2025-03-10 15:59:36 NZDT">
+                10 Mar 2025
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~19 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#architecture">Architecture</a>
+      <ul>
+        <li><a href="#iam-identity-provider">IAM Identity Provider</a></li>
+        <li><a href="#configure-pod-environment-variables">Configure Pod Environment Variables</a></li>
+        <li><a href="#iam-role-and-the-service-account">IAM Role and the Service Account</a></li>
+        <li><a href="#creating-the-pod-and-testing-access">Creating the Pod and Testing Access</a></li>
+      </ul>
+    </li>
+    <li><a href="#optmisations">Optmisations</a>
+      <ul>
+        <li><a href="#restrict-who-can-assume-role-based-on-service-account-name">Restrict Who Can Assume Role based on Service Account Name</a></li>
+        <li><a href="#deploying-the-webhook-in-a-dedicated-namespace">Deploying the Webhook in a Dedicated Namespace</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <blockquote>
+<p>This is going to be multiple videos for various reasons. First video is
+below.</p>
+</blockquote>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/-bgB6F-2GWw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>In this installment of the series on authenticating into AWS from K8s
+workloads, I&rsquo;m going to go into details on another major approach that can be
+used. This approach is called <strong>IAM Roles for Service Accounts (IRSA)</strong>, and that
+adds nothing to explaining what this approach is. If you remember from the first video,
+almost all approaches use IAM Roles that are mapped to Service Accounts somehow
+(unless you&rsquo;re embedding IAM user credentials in the Pod definition, for the
+upteenth time, let me strongly advise you not to do that).</p>
+<p>What&rsquo;s different about IRSA is how trust is established between K8s and AWS for
+that mapping to work.</p>
+<p>In EKS Pod Identities, this isn&rsquo;t a big deal. Pod Identities can only be used
+in EKS (even then in certain EKS worker nodes), so setting up trust is a matter
+of assigning the correct IAM Intance Profile to the EKS worker nodes.</p>
+<p>So what&rsquo;s the actual design for this approach?</p>
+<h2 id="architecture">Architecture</h2>
+<p><img src="/blog/img/2025-03-10_01.png" alt="IRSA Architecture at a Glance"></p>
+<p>Unlike the last video, I&rsquo;ll go directly to explaining the architecture here,
+because this approach needs a lot of setup. Setting IRSA up requires knowing
+about the design complexities. You might recall from the last video, one of the
+most attractive features of EKS Pod Identities was how it hid the underlying
+complexity from the end user. It does it so well that I could do a demo first,
+and then go to an architecture discussion, without confusing the viewer.</p>
+<p>That is not the case for IRSA, and that was why EKS Pod Identities was developed in
+the fist place. <em>IRSA was too complex to set up and maintain as far as a
+solution for identity management goes.</em></p>
+<p>Well, if EKS Pod Identities have superceded IRSA, why am I talking about it
+anymore?</p>
+<p>As I discussed in the last video, EKS Pod Identities have several limitations.
+They can only be used on EKS, and even in EKS, you can only use it on EC2
+backed Pods, not Fargate. You can&rsquo;t use it on K8s clusters that are outside
+EKS, even if your control plane is in EC2. Forget clusters that are outside
+AWS, but still need to access AWS services.</p>
+<p>This is where IRSA comes in. It can be used on almost any case to build a trust
+relationship between workloads in K8s and AWS.</p>
+<p>So enough preamble, let&rsquo;s get into the details.</p>
+<p>IRSA at its core is about getting access into AWS as federated IAM principals.</p>
+<p>That&rsquo;s the single sentence pitch. Now let&rsquo;s break that down a bit.</p>
+<p>I talked about self-contained tokens (a.k.a. JWT) issued by Service Account
+Projected Token Volume type in the last video a bit. This was helpful in EKS
+Pod Identities scenario if we wanted to implement more granular trust policies
+for the IAM Roles. In IRSA, this is going to be the key aspect of the
+implementation.</p>
+<p>The process in the K8s Pod will present a token to AWS that is signed by a
+party that AWS already trusts. Federated IAM Users is an existing concept that
+has been used to allow more users than the hard limit of 5000 IAM users per
+region. We can use this to present the K8s workloads as federated IAM
+principals.</p>
+<p>After this hurdle, it&rsquo;s a matter of scoping the level of access per workload.
+We should be able to map the workload token to a certain IAM Role so that the
+holder of that token is able to assume only the roles assigned to it.</p>
+<p>If we break down these two high level steps, at a slightly more detailed level,
+the process is to,</p>
+<ol>
+<li>establish an IAM federated identity provider that uses the K8s Service
+Account Issuer Discovery details</li>
+<li>configure K8s so that after being assigned a mapped Service Account,
+when the AWS SDK in the Pod
+triggers the Credentials Provider Chain, it uses the <a href="https://docs.aws.amazon.com/sdkref/latest/guide/access-assume-role-web.html#webidentity">Assume Role Provider
+for Web Identity or
+OIDC</a></li>
+<li>map a Service Account to an IAM Role by annotating the Service Account</li>
+<li>AWS verifying the token provided as a valid IAM principal, and allowing the
+<code>AssumeRoleWithWebIdentity</code> operation</li>
+<li>the Pod using the short term credentials retrieved through the Assume Role
+operation</li>
+</ol>
+<p>Now, this sounds easy enough right? It&rsquo;s just a few simple steps right?</p>
+<p>Not exactly. Nothing in life really is.</p>
+<p>Let&rsquo;s take a look at a somewhat more detailed diagram.</p>
+<p><img src="/blog/img/2025-03-10_02.png" alt="IRSA Architecture with inadequately more details"></p>
+<h3 id="iam-identity-provider">IAM Identity Provider</h3>
+<p>The key step in IRSA, the main step that establishes the trust is not so
+straightforward as registering a federated Identity Provider in IAM. There are
+few details involved here as this is not a typical federated IDP vs relying
+party situation.</p>
+<p>In AWS, federated Identity Providers are supported as long as they are either
+SAML or OIDC compliant. That means, the IDP should implement SAML or OIDC API
+endpoints that AWS will use to</p>
+<ol>
+<li>discover identity provider details such as signing keys etc</li>
+<li>verify tokens provided by users against the provider</li>
+</ol>
+<p>In most cases, this require a full implementation of either SAML or OIDC
+specifications. However K8s does not provide any full implementation of SAML or
+OIDC.</p>
+<p>What it does provide is a partial (or what barely passes as partial)
+implementation of the OIDC discovery endpoint, where the OIDC configuration
+details such as issuer ID, signing key location, and signing algorithms. It
+also provides an API that provides the signing public key that can be used to
+verify any token signed by the private key.</p>
+<p>These are available at <code>&lt;API_ENDPOINT&gt;/.well-known/openid-configuration</code> and
+<code>&lt;API_ENDPOINT&gt;/oidc/v1/jwks</code> URLs. These are standard URLs as specified by the
+<a href="https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationRequest">OIDC
+specification</a>,
+but I should re-iterate that K8s is not a full-blown OIDC
+compliant IDP. It just implements these two endpoints to provide a wayt to
+provide the additional details that might be needed by an external relying party
+to verify the tokens that K8s issues.</p>
+<p>Following are sample OpenID Configuration
+and signing key configuration responses you would see if you ping these two
+endpoints.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;issuer&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;https://kubernetes.default.svc.cluster.local&#34;</span>,
+  <span style="font-weight:bold">&#34;jwks_uri&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;https://172.20.0.2:6443/openid/v1/jwks&#34;</span>,
+  <span style="font-weight:bold">&#34;response_types_supported&#34;</span>: [
+    <span style="color:#0ff;font-weight:bold">&#34;id_token&#34;</span>
+  ],
+  <span style="font-weight:bold">&#34;subject_types_supported&#34;</span>: [
+    <span style="color:#0ff;font-weight:bold">&#34;public&#34;</span>
+  ],
+  <span style="font-weight:bold">&#34;id_token_signing_alg_values_supported&#34;</span>: [
+    <span style="color:#0ff;font-weight:bold">&#34;RS256&#34;</span>
+  ]
+}
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;keys&#34;</span>: [
+    {
+      <span style="font-weight:bold">&#34;use&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;sig&#34;</span>,
+      <span style="font-weight:bold">&#34;kty&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;RSA&#34;</span>,
+      <span style="font-weight:bold">&#34;kid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;JDsL136WibCBwUlFaU9_UpPYwYYONrM5xgBh85d_JC0&#34;</span>,
+      <span style="font-weight:bold">&#34;alg&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;RS256&#34;</span>,
+      <span style="font-weight:bold">&#34;n&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;4u1ye6SUKCCLcziQj4__uJI77U-RElqPqchgoCeU9OQHc7UugvuF2uqlMKgVK8qVm7Yb69TAvJ3bGD53MgsYTh0qqQTH8BjkLP0WCm4ri9QVrMzmJkJd5yW8ERJizEHks84nLKYv5DcCYyJVFWrd9eKnAAnQcDJVDSydG0mkhnjMzZOeb3gvibgzQ0hlmvgYKyeYMNR63KTJv-mKlyDeJS7sanyHSwBD1CE81-WFM61QuRC9hWwclpH33BaKuV9-URYHdcf0MVKrzBtwWVOXBBIIFVEZT_-Qi3CmcDXLy6-9R2R-dQjb1FWmfl6Cb6n3UFfCBYacQH1rZ8AiQkbCDw&#34;</span>,
+      <span style="font-weight:bold">&#34;e&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;AQAB&#34;</span>
+    }
+  ]
+}
+</code></pre></div><p>So in theory, all we have to do is to point AWS IAM Provider registration to
+these endpoints and the registration should be done, right?</p>
+<p>Not exactly (I keep using that phrase a lot).</p>
+<p>That could have been the case if the K8s Control Plane API was public for AWS
+IAM to reach it. However, most K8s Control Plane APIs are not public, and
+exposing it publicly is usually a huge security risk.</p>
+<p>The workaround here is to offset the OIDC discovery details to a place that is
+actually publicly reachable. That is to move the OIDC configuration file and
+the signing key file in JWKS (JSON Web Key Set) format to an S3 Bucket that is
+publicly reachable.</p>
+<p>However, this also means the OIDC configuration details like Issuer URL and the
+JWKS URL should also change to reflect the location change. For an example the
+above OpenID Configuration should change to reflect the real HTTP URL of the S3
+bucket hosting the files.</p>
+<p>One way to do this to download the configuration from the K8s API and change it
+manually, however the tokens generated by the Service Accounts also need to
+reflect the same changes, such as their <code>iss</code> claim (which contains the Issuer)
+if the token is to be verified correctly.</p>
+<p>So these values have to be &ldquo;baked into&rdquo; the API server for the change to be
+effective.</p>
+<p>That is, even before we download these two artefacts, we should create the S3 bucket
+that we are going to host them in.</p>
+<p>You can use an entire S3 bucket per K8s cluster in this case, or it could be a
+single S3 bucket that you can re-use for other clusters or even other purposes
+depending on the bucket access policy.</p>
+<p>For this case, I&rsquo;m going to re-use a bucket that I have for public access and
+later host the OIDC discovery spec under a specific prefix.</p>
+<p>Once the S3 bucket is created, the following details should be updated in the
+K8s API server configuration.</p>
+<ol>
+<li><code>--service-account-issuer</code> - This should reflect the full HTTP URL for the
+location inside the S3 bucket. If the S3 bucket you&rsquo;re using is a fresh one,
+then you can build this URL with the format
+<code>https://&lt;BUCKET_NAME&gt;.s3.&lt;REGION&gt;.amazonaws.com/&lt;PREFIX&gt;/</code>. If you&rsquo;re editing
+this value for a cluster that has been running for some time, and has existing
+relying parties that are verifying existing JWTs, then you can add the new S3
+URL as a new argument (there can be multiple occurrances of this argument) at
+the end. K8s will sill vouch for tokens with the older issuer URLs, but only
+issue tokens with the new (the last specified) URL.</li>
+<li><code>--service-account-key-file</code> - This value is usually unchanged, unless
+you&rsquo;re switching to your own signing keys. In this case, I&rsquo;m going to keep
+the value the same.</li>
+<li><code>--service-account-signing-key-file</code> - same as #2 above, keep the same
+unless you have a specific signing key setup.</li>
+<li><code>--api-audiences</code> - This specifies the value for the <code>aud</code> claim in the JWTs
+issued by K8s. For this case, I&rsquo;m going to specify <code>awssts</code> as the audience
+to be used if the audience is not specified at the time the token is
+created. We can override this at the Service Account level as well.</li>
+</ol>
+<p>After the values are updated, restart the API server. If you&rsquo;re using a
+<code>kubeadm</code> setup, this is probably just a matter of editing the static pod
+configuration for the API server at <code>/etc/kubernetes/manifests</code> (by default,
+find the manifests location by checking the <code>kubelet</code> configuration if you
+can&rsquo;t find the manifests files here).</p>
+<p>After the API server comes back up, make an HTTP request to the above two
+endpoints and write the stdout to files.</p>
+<blockquote>
+<p>If you don&rsquo;t have direct HTTP access to the control plane API, you can use
+<code>kubectl proxy</code> to start a local proxy server. Only the <code>API_ENDPOINT</code> value
+would change to reflect the proxy server URL which would be something like
+<code>http://127.0.0.1:8001</code>.</p>
+</blockquote>
+<p>After downloading the <code>openid-configuration</code> file, modify the <code>.jwks_uri</code> field
+to reflect the S3 bucket HTTP URL. This is where any relying party should look
+for the keys, not the internal K8s URL.</p>
+<p>After the <code>openid-configuration</code> and <code>jwks</code> files are created from the
+responses from the OIDC discovery endpoints in the K8s cluster, we can upload
+them to the S3 bucket. When doing this, they should be uploaded to the same
+locations as the OIDC discovery spec. That means, the two files should be
+available at <code>&lt;S3_BUCKET_URL&gt;/.well-known/openid-configuration</code> and
+<code>&lt;S3_BUCKET_URL&gt;/openid/v1/jwks</code>.</p>
+<p>Now we should expose these two files to be publicly accessible. For that I&rsquo;m
+going to add a bucket policy that allows <code>s3:GetObject</code> operations by any
+principal (even unauthenticated) to go through if the resources are these two
+files.</p>
+<p>For this, I&rsquo;m first going to modify the Public Access settings so that it
+allows new bucket policies that allow public access. This is why you should
+probably use a dedicated bucket that will not have potentially sensitive
+documents in the bucket. If you use a bucket that contains or could contain
+sensitive data, they will be only a bucket policy away from being exposed.
+Security is job zero innit</p>
+<p>I&rsquo;m going to add this bucket policy then to the bucket, which as granular as it
+can be.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+	<span style="font-weight:bold">&#34;Version&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;2012-10-17&#34;</span>,
+	<span style="font-weight:bold">&#34;Statement&#34;</span>: [
+		{
+			<span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;AllowOpenIDConfigPUBLICAccess&#34;</span>,
+			<span style="font-weight:bold">&#34;Resource&#34;</span>: [
+			    <span style="color:#0ff;font-weight:bold">&#34;arn:aws:s3:::772237238044736-k8s/prefix/.well-known/openid-configuration&#34;</span>,
+			    <span style="color:#0ff;font-weight:bold">&#34;arn:aws:s3:::772237238044736-k8s/prefix/openid/v1/jwks&#34;</span>
+			    ],
+			<span style="font-weight:bold">&#34;Principal&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>,
+			<span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
+			<span style="font-weight:bold">&#34;Action&#34;</span>: [
+			    <span style="color:#0ff;font-weight:bold">&#34;s3:GetObject&#34;</span>
+			    ]
+		}
+	]
+}
+</code></pre></div><p>After adding this policy, I&rsquo;m going to go back and &ldquo;close the door&rdquo;, and block
+any new bucket policy allowing new public access. It&rsquo;s good to practice these
+this even if you think you are not at risk. You are always at risk.</p>
+<p>Okay, so now that the OIDC discovery spec for the K8s cluster has been offset
+to the S3 bucket, we can finally start registering it as an IAM federated
+provider.</p>
+<p><img src="/blog/img/2025-03-10_03.png" alt="Registering the IAM Federated Provider"></p>
+<h3 id="configure-pod-environment-variables">Configure Pod Environment Variables</h3>
+<p>In the last video, I talked about the AWS SDK Credentials Loading Chain. In Pod
+Identities, one of the latest providers in the chain is being used, the
+Container Credentials Provider.</p>
+<p>In IRSA we are going to depend on the same provider chain, but a different
+provider called Assume Role with Web Identity Provider. The environment
+variables that if present will trigger this provider are,</p>
+<ol>
+<li><code>AWS_ROLE_ARN</code> - the ARN of the AWS role to assume</li>
+<li><code>AWS_WEB_IDENTITY_TOKEN_FILE</code> - the location of the token that should be
+used to authenticate into AWS</li>
+</ol>
+<p>If we have a valid AWS IAM role ARN that allows assuming it using the token
+file provided by the 2nd environment variable, then we are all set to get
+temporary credentials.</p>
+<p>We can specify the Role ARN manually for different Pods if needed. However,
+like EKS Pod Identities, Roles are better mapped to Service Accounts than
+individual Pods as a concept, because you&rsquo;d be separating different kinds of
+access along the Service Account level.</p>
+<p>The token itself we&rsquo;re using is the Projected Token that is generated by the
+Service Account mount operation.</p>
+<p>So there should be a way to,</p>
+<ol>
+<li>map a Service Account to Role and specify the role ARN as the value for
+<code>AWS_ROLE_ARN</code></li>
+<li>mount the Service Account token as a projected volume and specify the
+location of the token as the value for <code>AWS_WEB_IDENTITY_TOKEN_FILE</code></li>
+</ol>
+<p>The best way to get this done is to use something we are already familiar with,
+the EKS Pod Identity Webhook.</p>
+<p>Despite its name, the EKS Pod Identity Webhook at its core is a mutating
+webhook that can inject AWS SDK related environment variables for both the
+Container Credentials provider and the Assume Role provider. In fact, the
+webhook original code is for injecting Assume Role provider related environment
+variables, not the Container Credentials provider related ones. The latter is a
+feature added by a PR last year.</p>
+<p>In the last video, I only had to enable Pod Identity Agent to add the Pod
+Identity Webhook to the EKS cluster. In this demo, I&rsquo;m going to manually
+install the Webhook from the public Docker image.</p>
+<p>CertManager is a dependency for Webhook, which takes care of the mTLS when it
+comes to clients talking the the Webhook endpoint.</p>
+<p>The Webhook is a registered HTTPS endpoint that the K8s API will talk to when a
+Pod is scheduled (it can be called for more events, but Pod creation is the
+only event we are going to register the Webhook for). It needs to be secured
+over a TLS connection, and CertManager takes care of issueing certificates in
+such a scenario.</p>
+<blockquote>
+<p>I&rsquo;ve noticed some issues when installing CertManager from the static
+artefacts, and complete reinstallation seems to be the way to go.</p>
+</blockquote>
+<p>After CertManager is installed, we can go ahead and install the Webhook using
+the artefacts provided in the <a href="https://github.com/aws/amazon-eks-pod-identity-webhook#in-cluster">Webhook Github
+repository</a>.</p>
+<p>Before applying these artefacts on K8s cluster, a couple of changes have to be
+made.</p>
+<ol>
+<li>the image of the Webhook deployment has to be configured to
+<code>amazon/amazon-eks-pod-identity-webhook:latest</code></li>
+<li>the default value for the token audience claim has to be configured to the correct value
+(the value we used above was <code>awssts</code>)</li>
+</ol>
+<p>After changing these two values, the resources can be deployed by applying the
+following files in order.</p>
+<ol>
+<li><code>deploy/auth.yaml</code></li>
+<li><code>deploy/deployment-base.yaml</code></li>
+<li><code>deploy/service.yaml</code></li>
+<li><code>deploy/mutatingwebhook.yaml</code></li>
+</ol>
+<blockquote>
+<p>By default, these are deployed in the <code>default</code> namespace. This can get
+messy, and generally it&rsquo;s a good idea to keep things like mutating webhooks
+in their own namespaces. To do this, a couple namespace values have to be
+changed in the artefacts in addition to another couple of places that has
+values like URLs and certificate names. I&rsquo;ll cover this briefly after the
+main part of the video.</p>
+</blockquote>
+<blockquote>
+<p>If there&rsquo;s an issue with the deployment, the resources can be deleted and
+recreated. However, the Secret that gets created after the Certificate is
+signed by CertManager does not get deleted if you use <code>kubectl delete -f &lt;file.yaml&gt;</code>. If you are redeploying the Webhook, make sure to delete the
+Secret <code>pod-identity-webhook-cert</code> manually.</p>
+</blockquote>
+<p>Wait until the Webhook pod comes up to Ready state and you&rsquo;re ready for your
+pods to be mutated.</p>
+<p>Now, the Webhook will get called on every Pod creation request. It will,</p>
+<ol>
+<li>check if there&rsquo;s a Service Account attached to the the Pod</li>
+<li>check if the Service Account has a specific annotation that has the value of
+an IAM role ARN</li>
+<li>create a Projected Volume Token for the Service Account and mount it to a
+specific location inside the Pod</li>
+<li>add the above two environment variables
+(<code>AWS_ROLE_ARN</code>,<code>AWS_WEB_IDENTITY_TOKEN_FILE</code>) to the Pod specification
+before the Pod is started</li>
+</ol>
+<blockquote>
+<p>There&rsquo;s a tiny bit of a detail I&rsquo;m keeping out. The Webhook actually keeps
+tabs of the Service Account configuration in an in-memory cache, that it
+keeps refreshed after it starts. When a Pod creation request is passed to the
+mutating webhook, it looks up the Service Account from this cache to see if
+it&rsquo;s something that needs the above work. Of course, this detail isn&rsquo;t really
+necessary for an end-user (Cloud/DevOps engineer) to configure IRSA.</p>
+</blockquote>
+<p>Now we have a scalable method to inject specific details into the Pod to be
+able to perform an <code>AssumeRoleWithWebIdentity</code> call.</p>
+<p><img src="/blog/img/2025-03-10_04.png" alt="Mutating Webhook to Inject Environment Variables"></p>
+<h3 id="iam-role-and-the-service-account">IAM Role and the Service Account</h3>
+<p>Now we can create a Service Account and an IAM Role for that Service Account to
+assume.</p>
+<p>Like the first step of creating the IAM federated provider step, we are going
+to need information from both sides to complete both steps.</p>
+<p>Let&rsquo;s first create a Service Account. This is not special knowledge, just a
+plain old <code>kubectl create sa read-s3-hello</code> will create Service Account named
+<code>read-s3-hello</code> in the namespace you need.</p>
+<p>The next step is to create the IAM Role that Service Account will try to
+assume.</p>
+<p>I&rsquo;m going to use the same IAM role that I used in the last video, that has
+a permission policy that allows access to a specific S3 bucket (not the same
+one we used above the IAM federated identity discovery). We just have to edit
+the trust policy so that the Pod with the Service Account is able to assume
+that role.</p>
+<p>For this we are going to need the ARN of the Federated IDP we configured in
+IAM. As a first step, I&rsquo;m going to allow any token that is issued by this IDP
+to be a valid for assuming this role.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;AllowIRSAAssume&#34;</span>,
+    <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
+    <span style="font-weight:bold">&#34;Principal&#34;</span>: {
+        <span style="font-weight:bold">&#34;Federated&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;arn:aws:iam::528757791498:oidc-provider/772237238044736-k8s.s3.ap-southeast-2.amazonaws.com/prefix/&#34;</span>
+    },
+    <span style="font-weight:bold">&#34;Action&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;sts:AssumeRoleWithWebIdentity&#34;</span>
+}
+</code></pre></div><p>On the K8s side, we have to annotate the Service Account so that the Webhook
+knows which value to set to <code>AWS_ROLE_ARN</code> environment variable. For this, the
+annotation <code>eks.amazonaws.com/role-arn</code> is used with the ARN of the role as the
+value.</p>
+<blockquote>
+<p>The default audience value of <code>awssts</code> can also be overridden per Service
+Account, using the annotation <code>eks.amazonaws.com/audience</code>.</p>
+</blockquote>
+<blockquote>
+<p>The annotation prefix <code>eks.amazonaws.com</code> is also configurable. If you&rsquo;re
+running your k8s cluster outside of EKS and this prefix bothers you, override
+it in the Webhook configuration using the flag <code>--annotation-prefix</code> flag.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"></code></pre></div><p><img src="/blog/img/2025-03-10_05.png" alt="IAM Role and the Service Account"></p>
+<h3 id="creating-the-pod-and-testing-access">Creating the Pod and Testing Access</h3>
+<p>We&rsquo;ve finally completed IRSA configuration. Now let&rsquo;s test this setup by trying
+to access the specific object in S3 that our Role allows in its permissions.</p>
+<p>For this I&rsquo;m going to launch a Pod with the AWS CLI base image and keep it
+running for 1 hour to <code>exec</code> in and perform <code>s3api get-object</code>. I&rsquo;m going to
+modify the Pod specification so that it uses the Service Account I created in
+the previous step.</p>
+<p>After launching this Pod, we can see the two environment variables and the
+volume mount in the Pod description.</p>
+<p>If I <code>exec</code> into the Pod and run <code>aws s3api get-object</code> I&rsquo;m able to download
+the specific object because I&rsquo;ve been provided temporary credentials from the
+<code>AssumeRoleWithWebIdentity</code> operation.</p>
+<p><img src="/blog/img/2025-03-10_06.png" alt="IAM Role and the Service Account"></p>
+<h2 id="optmisations">Optmisations</h2>
+<p>Now, although it took some time, we have a basic IRSA setup. Let&rsquo;s optimise
+this a bit more to cut down broad trust policies and even move some of the
+generic stuff we deployed in the <code>default</code> namespace.</p>
+<h3 id="restrict-who-can-assume-role-based-on-service-account-name">Restrict Who Can Assume Role based on Service Account Name</h3>
+<p>When modifying the IAM Role&rsquo;s trust policy, I specified that any token issued
+by the federated provider, i.e. K8s API server, can be used to assume the role.
+This could be too broad of a trust policy in some cases, especially if you run
+a setup where different namespaces are delegated to different teams, or event
+if you have multiple workloads with different levels of access running in the
+same namespace.</p>
+<p>In these cases, you will need to restrict the trust policy by specifying more
+conditions.</p>
+<p>For an example, if I launch another Pod with another Service Account with this
+Role&rsquo;s ARN as the annotation value in a different namespace, AWS will still let
+the assume role operation through.</p>
+<p>I can lock that down by specifying a condition that let&rsquo;s Service Accounts from
+only a specific namespace (in this case <code>default</code>) are able to assume the role.
+For this, we can filter based on the claims present in the JWT passed in from
+the Pod, the specific claim being <code>&quot;kubernetes.io&quot;.namespace</code>.</p>
+<p>We can lock this down further by only letting a single Service Account from
+that namespace to assume the role by specifying a condition that
+depends on the <code>sub</code> claim where the value would be
+<code>system:serviceaccount:&lt;namespace&gt;:&lt;service-account-name&gt;</code>. This could be way
+to achieve the true end goal of Role per Service Account mapping.</p>
+<h3 id="deploying-the-webhook-in-a-dedicated-namespace">Deploying the Webhook in a Dedicated Namespace</h3>
+<p>In the previous steps, we forged through to get the IRSA deployment done, so we
+kinda let go of some best practices. One of these is not deploying Control
+Plane related workloads in the <code>default</code> namespace. We deployed the Pod
+Identity Webhook in the <code>default</code> namespace, because that&rsquo;s what the provided
+artefacts specify.</p>
+<p>Let&rsquo;s remove this Webhook and redeploy it properly in a dedicated namespace.
+I&rsquo;m going to remove the Pods that are already deployed as well.</p>
+<p>Let&rsquo;s first create a dedicated namespace called <code>irsa-webhook</code>.</p>
+<p>There are couple of places the artefacts specify the <code>default</code> namespace. The
+obvious places are the <code>metadata.namespace</code> field. However there are few other
+places that require changes as well.</p>
+<ol>
+<li>the <code>--namespace</code> flag for the Webhook Pod should be <code>irsa-webhook</code></li>
+<li>the <code>spec.commonName</code> for the Pod Identity Webhook Certificate is
+<code>pod-identity-webhook.default.svc</code>, which should be changed to
+<code>pod-identity-webhook.irsa-webhook.svc</code></li>
+<li>the <code>spec.dnsNames</code> array that contains values like
+<code>pod-identity-webhook.default</code> should change to
+<code>pod-identity-webhook.irsa-webhook</code></li>
+<li>the <code>metadata.annotations.cert-manager.io/inject-ca-from</code> value for the
+<code>MutatingWebhookConfiguration</code> should reflect the namespace change</li>
+</ol>
+<p>After these places are changed, redeploy the artefacts, and you should be good
+to use it as before. Let&rsquo;s test it with a Pod deployment.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>So that was a detailed breakdown of the IRSA architecture and a demo to make
+things clear.</p>
+<p>As it&rsquo;s clear from the demo, it&rsquo;s almost impossible to do a &ldquo;simple&rdquo; demo first
+and then talk about the architecture, because everything that needs to happen
+in the demo needs an explanation. If you don&rsquo;t know the architecture, you&rsquo;ll
+have a hard time following the demo.</p>
+<p>This is why I mentioned in the last video that EKS Pod Identities hide the
+complexity below a nice opaque layer to provide a simple experience (let&rsquo;s call
+it OX, Operational eXperience amirite).</p>
+<p>IRSA is the total opposite. It doesn&rsquo;t hide any complexity. It&rsquo;s too complex?
+f**k you deploy it. Here, use these artefacts with the almost outdated
+documentation too.</p>
+<p>On the upside, you&rsquo;d probably go for IRSA if you can&rsquo;t use EKS Pod Identities
+for some reason. This could be if your K8s cluster is outside of AWS, or even
+if it in AWS it&rsquo;s not using the proper EKS cluster type (well, you can&rsquo;t really
+use IRSA in EKS in this manner because you need to be able to modify the API
+server manifest).</p>
+<p>At least, if it comes to it, now you know how to deploy IRSA.</p>
+
+        </div>
+        <div class="prev-next row">
+	<div class="prev col-sm">
+	
+	<a href="https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/">&lt; AWS Authentication for K8s: EKS Pod Identities Deep Dive</a>
+		
+	</div>        
+	<div class="next col-sm">
+		
+	</div>
+</div>
+
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2024-11-17_becoming-a-cncf-kubestronaut/">Becoming a CNCF Kubestronaut</a></li>
+    
+    <li><a href="/blog/2024-10-28_completing-11-professional-certifications-in-8-weeks/">Completing 11 Professional Certifications in 8 Weeks</a></li>
+    
+    <li><a href="/blog/2024-10-13_receiving-my-aws-golden-jacket/">Receiving my AWS Golden Jacket</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

@@ -7,6 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://chamila.dev/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA)</title>
+      <link>https://chamila.dev/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/</link>
+      <pubDate>Mon, 10 Mar 2025 15:59:36 +1300</pubDate>
+      
+      <guid>https://chamila.dev/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/</guid>
+      <description>This is going to be multiple videos for various reasons. First video is below.
+   In this installment of the series on authenticating into AWS from K8s workloads, I&amp;rsquo;m going to go into details on another major approach that can be used. This approach is called IAM Roles for Service Accounts (IRSA), and that adds nothing to explaining what this approach is. If you remember from the first video, almost all approaches use IAM Roles that are mapped to Service Accounts somehow (unless you&amp;rsquo;re embedding IAM user credentials in the Pod definition, for the upteenth time, let me strongly advise you not to do that).</description>
+    </item>
+    
+    <item>
       <title>AWS Authentication for K8s: EKS Pod Identities Deep Dive</title>
       <link>https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/</link>
       <pubDate>Sat, 01 Feb 2025 00:04:06 +1300</pubDate>
