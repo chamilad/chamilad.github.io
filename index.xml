@@ -7,6 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://chamila.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Is it that easy to make stupid mistakes? - Trying to Reproduce the Tea App Situation</title>
+      <link>https://chamila.dev/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes-trying-to-reproduce-the-tea-app-situation/</link>
+      <pubDate>Tue, 05 Aug 2025 16:28:16 +1200</pubDate>
+      
+      <guid>https://chamila.dev/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes-trying-to-reproduce-the-tea-app-situation/</guid>
+      <description>Tea app getting hacked is an interesting case.
+It&amp;rsquo;s not technically a hack. No existing security measures were breached, there wasn&amp;rsquo;t any complicated social engineering, or zero-days or unpatched CVEs getting exploited. What happened is what&amp;rsquo;s called a Data Extraction. Data that should have been private was public, and naturally, people extracted it, twice!!
+Typically, when any solution worth its salt goes into production (i.e. subjected to government oversight, has some regulatory pressure, or has some critical impact on a business), it gets a risk evaluation, and Data Extraction is a key risk that gets focus.</description>
+    </item>
+    
+    <item>
       <title>AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA)</title>
       <link>https://chamila.dev/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/</link>
       <pubDate>Mon, 10 Mar 2025 15:59:36 +1300</pubDate>
