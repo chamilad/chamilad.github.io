@@ -4,18 +4,16 @@
     <title>Audit on chamila.dev</title>
     <link>https://chamila.dev/tags/audit/</link>
     <description>Recent content in Audit on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 04 Jun 2023 19:30:02 +1200</lastBuildDate><atom:link href="https://chamila.dev/tags/audit/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Jun 2023 19:30:02 +1200</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/audit/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Information Security Compliance in AWS Solutions</title>
       <link>https://chamila.dev/blog/2023-06-04_information-security-compliance-in-aws-solutions/</link>
       <pubDate>Sun, 04 Jun 2023 19:30:02 +1200</pubDate>
-      
       <guid>https://chamila.dev/blog/2023-06-04_information-security-compliance-in-aws-solutions/</guid>
-      <description>Information Security Compliance can be a tiring and complicated exercise for all parties involved. Making a solution compliant for the set of security standards and controls is a massive effort, especially if the architecting stage did not think about these requirements in the first place.
-It&amp;rsquo;s even more complex when it comes to proving the compliance level of the solution to internal or external auditors. The language InfoSec and Security Auditors speak is vastly different from the language used by engineers.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2023-06-04_compliance_header.png&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;Information Security Compliance can be a tiring and complicated exercise for all parties&#xA;involved. Making a solution compliant for the set of security standards and&#xA;controls is a massive effort, especially if the architecting stage did not&#xA;think about these requirements in the first place.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s even more complex when it comes to proving the compliance level of the&#xA;solution to internal or external auditors. The language InfoSec and Security&#xA;Auditors speak is vastly different from the language used by engineers.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

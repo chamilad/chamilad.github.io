@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pi-hole on chamila.dev</title>
+    <title>Pi-Hole on chamila.dev</title>
     <link>https://chamila.dev/tags/pi-hole/</link>
-    <description>Recent content in Pi-hole on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Pi-Hole on chamila.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Jun 2023 00:09:59 +1200</lastBuildDate><atom:link href="https://chamila.dev/tags/pi-hole/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Jun 2023 00:09:59 +1200</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/pi-hole/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pi-hole Restore CLI Tool</title>
       <link>https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/</link>
       <pubDate>Mon, 19 Jun 2023 00:09:59 +1200</pubDate>
-      
       <guid>https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/</guid>
-      <description>A loading tunnel in Wrights Hill Fortress   I made a thing (this time more niche than the last project).
-I&amp;rsquo;ve been using Pi-hole as a DNS ad-blocker and an overall local DNS solution for about two years now. I lived dangerously for most of this time with only a single old Raspberry Pi 2 with Pi-hole in it as the sole DNS server for the local network.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2023-06-19_pihole_restore.png&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;A loading tunnel in Wrights Hill Fortress&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;I made a thing (this time more niche than the last project).&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been using Pi-hole as a DNS ad-blocker and an overall local DNS&#xA;solution for about two years now. I lived dangerously for most of this time&#xA;with only a single old Raspberry Pi 2 with Pi-hole in it as the sole DNS server for&#xA;the local network.&lt;/p&gt;&#xA;&lt;p&gt;That changed recently when I added another couple of Docker containers as&#xA;Pi-hole servers to the network.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

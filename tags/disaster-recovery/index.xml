@@ -4,39 +4,30 @@
     <title>Disaster Recovery on chamila.dev</title>
     <link>https://chamila.dev/tags/disaster-recovery/</link>
     <description>Recent content in Disaster Recovery on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Sep 2024 00:26:50 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/disaster-recovery/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Sep 2024 00:26:50 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/disaster-recovery/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AWS Backup: Restoring Data and Automated Restore Testing</title>
       <link>https://chamila.dev/blog/2024-09-23_aws-backup-restoring-data-and-automated-restore-testing/</link>
       <pubDate>Mon, 23 Sep 2024 00:26:50 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-09-23_aws-backup-restoring-data-and-automated-restore-testing/</guid>
-      <description>Intro   I covered establishing a comprehensive cross-account backup strategy in AWS Organizations in the previous articles and videos.
-However, as an architect, one of the most frequent patterns I come across in the real world in this space is organisations having an imbalance of backup and recovery strategies. This is when there is a really detailed backup process that includes all the production resources in the backup jobs, with encrypted and replicated copies, but having minimum or even zero effort in testing recoverability of the backed up data and having playbooks for such scenarios.</description>
+      <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;&#xA;&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/IWHU6pQXJDg?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;I covered establishing a comprehensive cross-account backup strategy in AWS&#xA;Organizations in the previous articles and videos.&lt;/p&gt;&#xA;&lt;p&gt;However, as an architect, one of the most frequent patterns I come across in&#xA;the real world in this space is organisations having an imbalance of backup and&#xA;recovery strategies. This is when there is a really detailed backup process&#xA;that includes all the production resources in the backup jobs, with encrypted&#xA;and replicated copies, but having minimum or even zero effort in testing&#xA;recoverability of the backed up data and having playbooks for such scenarios.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS Backup Cross-Account Backups in AWS Web Console</title>
       <link>https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/</link>
       <pubDate>Sun, 11 Aug 2024 18:03:37 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/</guid>
-      <description>So my last post on AWS Backup uses a lot of Terraform code that I had written even before the post. When doing a video on the subject, I realised that for a beginner, explaining something like AWS Backup with Terraform presents two fronts to understand at the same time.
-So I&amp;rsquo;m following up with another video and a blog post that does the same demo but only using the AWS Web Console.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/iY8jwTfQCPU?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;So my last post on AWS Backup uses a lot of Terraform code that I had written&#xA;even before the post. When doing a video on the subject, I realised that for a&#xA;beginner, explaining something like AWS Backup with Terraform presents two&#xA;fronts to understand at the same time.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS Backup: Cross-Account Backups</title>
       <link>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</link>
       <pubDate>Mon, 13 Feb 2023 23:29:05 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</guid>
-      <description>Mount Kaukau    Continuing from the previous article on introduction to AWS Backup
- Offsite Backups Let&amp;rsquo;s talk theory for a bit.
-Data protection in a given solution depends on how thoughtful the backup strategy is. While a simple Backup Plan in AWS Backup that periodically takes a backup of the database into the Account-local Vault could technically be considered as a backup strategy, it is not a good one.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2023-02-13_backups02_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Mount Kaukau&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Continuing from the previous article on &lt;a href=&#34;https://chamila.dev/blog/2023-01-18_aws-backup-intro/&#34;&gt;introduction to AWS&#xA;Backup&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;offsite-backups&#34;&gt;Offsite Backups&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s talk theory for a bit.&lt;/p&gt;&#xA;&lt;p&gt;Data protection in a given solution depends on how thoughtful the backup&#xA;strategy is. While a simple Backup Plan in AWS Backup that periodically takes a&#xA;backup of the database into the Account-local Vault could technically be&#xA;considered as a backup strategy, it is not a good one. For an effective and&#xA;resilient data protection policy, backups should exist in locations other than&#xA;the solution deployment, with access to them separated by network and access&#xA;levels.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Subject Alternative Names in SSL Certificates",
       "headline" : "Subject Alternative Names in SSL Certificates",
-      "description" : "Or the SSL Cert Extension that saves your back during development\n I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.",
+      "description" : "\u003cblockquote\u003e\n\u003cp\u003eOr the SSL Cert Extension that saves your back during development\u003c\/p\u003e\u003c\/blockquote\u003e\n\u003cp\u003eI recently wrote an article on \u003ca href=\u0022\/adding-a-self-signed-ssl-certificate-to-aws-acm-88a123a04301\u0022\u003ehow to generate and upload a self-signed SSL Certificate\u003c\/a\u003e to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,9 @@
 <title>Subject Alternative Names in SSL Certificates - chamila.dev</title>
   <meta property="og:title" content="Subject Alternative Names in SSL Certificates - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="Or the SSL Cert Extension that saves your back during development
- I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses." />
+  <meta name="description" content="
+Or the SSL Cert Extension that saves your back during development
+I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -136,8 +137,7 @@
         </header>
         <div class="post-content markdown-body">
           <blockquote>
-<p>Or the SSL Cert Extension that saves your back during development</p>
-</blockquote>
+<p>Or the SSL Cert Extension that saves your back during development</p></blockquote>
 <p>I recently wrote an article on <a href="/adding-a-self-signed-ssl-certificate-to-aws-acm-88a123a04301">how to generate and upload a self-signed SSL Certificate</a> to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</p>
 <p><strong>Subject Alternative Name</strong>, or <strong>SAN</strong>, allows to specify a list of hostnames, IP addresses, and other common names, addition to the Common Name (<strong>CN</strong>) field specified in the certificate. If the SAN field is populated and if the CN hostname verification during the SSL Certificate verification, the values in the SAN field are matched against the hostname. This is where the flexibility of the SAN field becomes evident.</p>
 <p>Suppose you’re using an AWS ELB to front your cluster of servers, and perform SSL termination at the ELB. In this case, the public DNS name of the ELB would be of the format <code>elb-name.region.elb.amazonaws.com</code> . Out of this format, the latter part <code>region.elb.amazonaws.com</code> is fairly constant (as long as you don’t start expanding to different regions).</p>
@@ -151,7 +151,7 @@
 </code></pre><ol start="2">
 <li>Generate the self-signed certificate with SAN fields</li>
 </ol>
-<pre tabindex="0"><code>openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key private.key -extensions SAN -config &lt;(cat /etc/ssl/openssl.cnf &lt;(printf &quot;[SAN]\nsubjectAltName=DNS:*.us-east-1.elb.amazonaws.com,DNS:*.dev.acme.org&quot;)) &gt; public.crt
+<pre tabindex="0"><code>openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key private.key -extensions SAN -config &lt;(cat /etc/ssl/openssl.cnf &lt;(printf &#34;[SAN]\nsubjectAltName=DNS:*.us-east-1.elb.amazonaws.com,DNS:*.dev.acme.org&#34;)) &gt; public.crt
 </code></pre><ol start="3">
 <li>Upload to AWS ACM</li>
 </ol>
@@ -170,18 +170,17 @@
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/">&lt; Adding a Self-Signed SSL Certificate to AWS ACM</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/">Sample: WSO2 EI Cache Mediator based Token Caching &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/">&lt; Adding a Self-Signed SSL Certificate to AWS ACM</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/">Sample: WSO2 EI Cache Mediator based Token Caching &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

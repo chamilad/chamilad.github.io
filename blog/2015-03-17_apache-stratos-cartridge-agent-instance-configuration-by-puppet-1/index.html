@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Apache Stratos Cartridge Agent: Instance Configuration by Puppet 1",
       "headline" : "Apache Stratos Cartridge Agent: Instance Configuration by Puppet 1",
-      "description" : "This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?\n When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance.",
+      "description" : "\u003cblockquote\u003e\n\u003cp\u003eThis is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the \u003ca href=\u0022\/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz\u0022\u003efirst article\u003c\/a\u003e?\u003c\/p\u003e\u003c\/blockquote\u003e\n\u003cp\u003eWhen an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance. So how does the actual configuration of a spawned Virtual Machine happen? (We will discuss the exciting Kubernetes \u002b Docker work flow separately)\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,9 @@
 <title>Apache Stratos Cartridge Agent: Instance Configuration by Puppet 1 - chamila.dev</title>
   <meta property="og:title" content="Apache Stratos Cartridge Agent: Instance Configuration by Puppet 1 - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance." />
+  <meta name="description" content="
+This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
+When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance. So how does the actual configuration of a spawned Virtual Machine happen? (We will discuss the exciting Kubernetes &#43; Docker work flow separately)" />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -147,8 +148,7 @@
         </header>
         <div class="post-content markdown-body">
           <blockquote>
-<p>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the <a href="/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz">first article</a>?</p>
-</blockquote>
+<p>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the <a href="/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz">first article</a>?</p></blockquote>
 <p>When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance. So how does the actual configuration of a spawned Virtual Machine happen? (We will discuss the exciting Kubernetes + Docker work flow separately)</p>
 <p>The answer, my friend, is dancing in the wind, like a puppet.</p>
 <p>Yes, with that bad pun sentence thingy, I’ve introduced you to Puppet, the tool which configures each and every instance spawned by Stratos.</p>
@@ -238,18 +238,17 @@ PARTITION_ID =p1
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2014-10-10_thrift-communication-in-apache-stratos/">&lt; Thrift Communication in Apache Stratos</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-day-0/">Apache Stratos Cartridge Agent: Day 0 &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2014-10-10_thrift-communication-in-apache-stratos/">&lt; Thrift Communication in Apache Stratos</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-day-0/">Apache Stratos Cartridge Agent: Day 0 &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Setting Yubikey MFA for AWS CLI temporary credentials",
       "headline" : "Setting Yubikey MFA for AWS CLI temporary credentials",
-      "description" : "Walkway harness on a Redwood tree in Redwoods Tree Walk, Rotorua   It is a good practice to use temporary credentials in AWS instead of permanent IAM generated credentials that are long term and potentially leaked. AWS has different services that issue temporary credentials with given permission policies such as IAM Instance Profiles for EC2 instances, Lambda Execution Roles, ECS Task Roles, and IAM Roles Anywhere for those cases that require providing trusted access permissions to a process running outside of AWS.",
+      "description" : "\u003cfigure\u003e\u003cimg src=\u0022\/blog\/img\/2024-01-18_mfa_header.jpeg\u0022\u003e\u003cfigcaption\u003e\n      \u003ch4\u003eWalkway harness on a Redwood tree in Redwoods Tree Walk, Rotorua\u003c\/h4\u003e\n    \u003c\/figcaption\u003e\n\u003c\/figure\u003e\n\n\u003cp\u003eIt is a good practice to use temporary credentials in AWS instead of permanent\nIAM generated credentials that are long term and potentially leaked. AWS has\ndifferent services that issue temporary credentials with given permission\npolicies such as IAM Instance Profiles for EC2 instances, Lambda Execution\nRoles, ECS Task Roles, and IAM Roles Anywhere for those cases that require\nproviding trusted access permissions to a process running outside of AWS.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,7 +36,17 @@
 <title>Setting Yubikey MFA for AWS CLI temporary credentials - chamila.dev</title>
   <meta property="og:title" content="Setting Yubikey MFA for AWS CLI temporary credentials - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="Walkway harness on a Redwood tree in Redwoods Tree Walk, Rotorua   It is a good practice to use temporary credentials in AWS instead of permanent IAM generated credentials that are long term and potentially leaked. AWS has different services that issue temporary credentials with given permission policies such as IAM Instance Profiles for EC2 instances, Lambda Execution Roles, ECS Task Roles, and IAM Roles Anywhere for those cases that require providing trusted access permissions to a process running outside of AWS." />
+  <meta name="description" content="
+      Walkway harness on a Redwood tree in Redwoods Tree Walk, Rotorua
+    
+
+
+It is a good practice to use temporary credentials in AWS instead of permanent
+IAM generated credentials that are long term and potentially leaked. AWS has
+different services that issue temporary credentials with given permission
+policies such as IAM Instance Profiles for EC2 instances, Lambda Execution
+Roles, ECS Task Roles, and IAM Roles Anywhere for those cases that require
+providing trusted access permissions to a process running outside of AWS." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -140,9 +150,9 @@
           </div>
         </header>
         <div class="post-content markdown-body">
-          <figure><img src="/blog/img/2024-01-18_mfa_header.jpeg"/><figcaption>
-            <h4>Walkway harness on a Redwood tree in Redwoods Tree Walk, Rotorua</h4>
-        </figcaption>
+          <figure><img src="/blog/img/2024-01-18_mfa_header.jpeg"><figcaption>
+      <h4>Walkway harness on a Redwood tree in Redwoods Tree Walk, Rotorua</h4>
+    </figcaption>
 </figure>
 
 <p>It is a good practice to use temporary credentials in AWS instead of permanent
@@ -188,18 +198,17 @@ OATH-TOTP generation tool</li>
 <blockquote>
 <p>The following assumes an Ubuntu Linux environment, however other Linux
 distributions will also have the dependencies required for the Yubikey CLI
-tool.</p>
-</blockquote>
+tool.</p></blockquote>
 <h2 id="installing-ykman">Installing <code>ykman</code></h2>
 <p><a href="https://github.com/Yubico/yubikey-manager"><code>ykman</code></a> is the Yubico provided
 CLI key management tool. Installing this on Ubuntu is straightforward.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#007f7f"># Install the dependencies needed</span>
-sudo apt update &amp;&amp; <span style="color:#0ff;font-weight:bold">\
-</span><span style="color:#0ff;font-weight:bold"></span>  sudo apt install pcscd libpcsclite-dev swig
-
-<span style="color:#007f7f"># Install ykman</span>
-pip3 install yubikey-manager
-</code></pre></div><h2 id="configuring-mfa-with-oath-totp">Configuring MFA with OATH-TOTP</h2>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># Install the dependencies needed</span>
+</span></span><span style="display:flex;"><span>sudo apt update <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>  sudo apt install pcscd libpcsclite-dev swig
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># Install ykman</span>
+</span></span><span style="display:flex;"><span>pip3 install yubikey-manager
+</span></span></code></pre></div><h2 id="configuring-mfa-with-oath-totp">Configuring MFA with OATH-TOTP</h2>
 <p>This step involves the following.</p>
 <ol>
 <li>Registering a new Virtual MFA device in AWS IAM</li>
@@ -220,8 +229,8 @@ secret key for the next step.</p>
 <p><img src="/blog/img/2024-01-18_mfa_2.png" alt="Retrieving the secret key"></p>
 <p>Open the terminal and execute the following command using the appropriate
 values for <code>account_id</code> and the <code>device_name</code> (ex: <code>ykman_test</code>).</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ykman oath accounts add -t arn:aws:iam::account_id:mfa/device_id
-</code></pre></div><p><code>ykman</code> will ask to input the (base32 encoded) secret key. Note that the value
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ykman oath accounts add -t arn:aws:iam::account_id:mfa/device_id
+</span></span></code></pre></div><p><code>ykman</code> will ask to input the (base32 encoded) secret key. Note that the value
 copied from the AWS console is already base32 encoded so just directly paste
 the value. This also specifies that the Yubikey should be touched to generate the key
 by using the <code>-t</code> flag.</p>
@@ -236,8 +245,8 @@ them as invalid.</p>
 <code>account_id</code> and <code>device_id</code> with proper values. Wait 30 seconds before the
 next token is generated since the time slice configuration is usually set to 30
 seconds.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ykman oath accounts code --single arn:aws:iam::account_id:mfa/device_id
-</code></pre></div><p><img src="/blog/img/2024-01-18_mfa_4.png" alt="Generating 2 consecutive TOTP codes"></p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ykman oath accounts code --single arn:aws:iam::account_id:mfa/device_id
+</span></span></code></pre></div><p><img src="/blog/img/2024-01-18_mfa_4.png" alt="Generating 2 consecutive TOTP codes"></p>
 <p>Now that the device is registered in <code>ykman</code> and AWS, it can be directly used
 when invoking <code>GetSessionToken</code> action.</p>
 <p>For the CLI command <code>get-session-token</code> to use MFA in the process (in an AWS context with
@@ -246,19 +255,19 @@ used, which will trigger the touch request. Not providing these two flags will
 generate credentials without MFA.</p>
 <p>The MFA device serial can be copied from the AWS IAM console.</p>
 <p><img src="/blog/img/2024-01-18_mfa_5.png" alt="MFA device ARN in the AWS IAM console"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws sts get-session-token --serial-number arn:aws:iam::account_id:mfa/device_id  <span style="color:#0ff;font-weight:bold">\
-</span><span style="color:#0ff;font-weight:bold"></span>  --token-code <span style="color:#fff;font-weight:bold">$(</span>ykman oath accounts code --single arn:aws:iam::account_id:mfa/device_id<span style="color:#fff;font-weight:bold">)</span>
-</code></pre></div><p><img src="/blog/img/2024-01-18_mfa_6.png" alt="Running get-session-token with MFA directives"></p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws sts get-session-token --serial-number arn:aws:iam::account_id:mfa/device_id  <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>  --token-code <span style="color:#cba6f7">$(</span>ykman oath accounts code --single arn:aws:iam::account_id:mfa/device_id<span style="color:#cba6f7">)</span>
+</span></span></code></pre></div><p><img src="/blog/img/2024-01-18_mfa_6.png" alt="Running get-session-token with MFA directives"></p>
 <p>Additionally, for <code>AssumeRole</code> operation, the MFA device and the code
 generation command to use can be provided through the AWS config file. To do
 this add <code>mfa_serial</code> and <code>mfa_process</code> directives
 under the proper profile in <code>$HOME/.aws/config</code> file (replacing
 <code>account_id</code> and <code>device_id</code> with proper values).</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#fff;font-weight:bold">[profile ccl-test]</span>
-<span style="color:#007f7f">region</span>=<span style="color:#0ff;font-weight:bold">ap-southeast-2</span>
-<span style="color:#007f7f">mfa_serial</span>=<span style="color:#0ff;font-weight:bold">arn:aws:iam::account_id:mfa/device_id</span>
-<span style="color:#007f7f">mfa_process</span>=<span style="color:#0ff;font-weight:bold">ykman oath accounts code --single arn:aws:iam::account_id:mfa/device_id</span>
-</code></pre></div><p>That&rsquo;s it! That&rsquo;s the entire process.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#cba6f7">[profile ccl-test]</span>
+</span></span><span style="display:flex;"><span><span style="color:#89b4fa">region</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">ap-southeast-2</span>
+</span></span><span style="display:flex;"><span><span style="color:#89b4fa">mfa_serial</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">arn:aws:iam::account_id:mfa/device_id</span>
+</span></span><span style="display:flex;"><span><span style="color:#89b4fa">mfa_process</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">ykman oath accounts code --single arn:aws:iam::account_id:mfa/device_id</span>
+</span></span></code></pre></div><p>That&rsquo;s it! That&rsquo;s the entire process.</p>
 <p>Now whenever temporary credentials are generated through <code>AssumeRole</code>, the AWS
 SDK credentials provider will use <code>ykman</code> with the above command to trigger a
 Yubikey touch to generate an OATH-TOTP
@@ -266,18 +275,17 @@ token, ensuring the temporary credentials are generated with MFA involved.</p>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/">&lt; Deploying Rust on Lambda</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/">Deriving AWS Account ID from Access Key &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/">&lt; Deploying Rust on Lambda</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/">Deriving AWS Account ID from Access Key &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

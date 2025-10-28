@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2",
       "headline" : "Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2",
-      "description" : "This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?\n One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.",
+      "description" : "\u003cblockquote\u003e\n\u003cp\u003eThis is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the \u003ca href=\u0022\/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz\u0022\u003efirst article\u003c\/a\u003e?\u003c\/p\u003e\u003c\/blockquote\u003e\n\u003cp\u003eOne of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the \u003ca href=\u0022http:\/\/code.chamiladealwis.com\/blog\/2015\/03\/17\/apache-stratos-cartridge-agent-instance-configuration-by-puppet\/\u0022\u003elast article\u003c\/a\u003e, Puppet can be used to install, configure and start the Cartridge Agent. In this article, we will discuss how this is done in detail.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,9 @@
 <title>Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2 - chamila.dev</title>
   <meta property="og:title" content="Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2 - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent." />
+  <meta name="description" content="
+This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
+One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent. In this article, we will discuss how this is done in detail." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -146,8 +147,7 @@
         </header>
         <div class="post-content markdown-body">
           <blockquote>
-<p>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the <a href="/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz">first article</a>?</p>
-</blockquote>
+<p>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the <a href="/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz">first article</a>?</p></blockquote>
 <p>One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the <a href="http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-instance-configuration-by-puppet/">last article</a>, Puppet can be used to install, configure and start the Cartridge Agent. In this article, we will discuss how this is done in detail.</p>
 <p>The Cartridge Agent needs several parameters to start functioning correctly.</p>
 <ol>
@@ -161,7 +161,7 @@
 <p>The purpose of the base.pp in /etc/puppet/manifests/nodes/ folder is to serve as a super node definition which can be inherited by service type node definitions. It contains a list of variables that can be used by any module that inherits it. As of Stratos 4.1.0 release the contents of the base.pp file looks like as follows. The variables are pretty much self explanatory.</p>
 <pre tabindex="0"><code>node ‘base’ { 
     #essential variables 
-    $package_repo = ‘http://10.4.128.7' 
+    $package_repo = ‘http://10.4.128.7&#39; 
     $local_package_dir = ‘/mnt/packs’ 
     $mb_url = ‘tcp://127.0.0.1:1883’ 
     $mb_type = ‘activemq’ #in wso2 mb case, value should be ‘wso2mb’ 
@@ -220,18 +220,17 @@ class {‘python_agent’:
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-day-0/">&lt; Apache Stratos Cartridge Agent: Day 0</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/">Apache Stratos Cartridge Agent: Life Cycle Walkthough &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-day-0/">&lt; Apache Stratos Cartridge Agent: Day 0</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/">Apache Stratos Cartridge Agent: Life Cycle Walkthough &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

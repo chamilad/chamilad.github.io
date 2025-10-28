@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "AWS Authentication for K8s: Introduction",
       "headline" : "AWS Authentication for K8s: Introduction",
-      "description" : "This is an introductory post on the problem of authenticating into AWS from K8s workloads, either from within AWS or from outside of it. I\u0026rsquo;m going to discuss three major approaches to this problem and compare them against each other. I\u0026rsquo;ll follow this up with more detailed articles (and videos) on each approach, where I\u0026rsquo;ll go into details as much as possible.\nProblem Statement The key problem I\u0026rsquo;m trying to tackle here is how to authenticate into AWS from workloads running in K8s.",
+      "description" : "\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n      \u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/8Ym1tAZRyyM?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n    \u003c\/div\u003e\n\n\u003cp\u003eThis is an introductory post on the problem of authenticating into AWS from K8s\nworkloads, either from within AWS or from outside of it. I\u0026rsquo;m going to discuss\nthree major approaches to this problem and compare them against each other.\nI\u0026rsquo;ll follow this up with more detailed articles (and videos) on each approach,\nwhere I\u0026rsquo;ll go into details as much as possible.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,15 @@
 <title>AWS Authentication for K8s: Introduction - chamila.dev</title>
   <meta property="og:title" content="AWS Authentication for K8s: Introduction - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="This is an introductory post on the problem of authenticating into AWS from K8s workloads, either from within AWS or from outside of it. I&rsquo;m going to discuss three major approaches to this problem and compare them against each other. I&rsquo;ll follow this up with more detailed articles (and videos) on each approach, where I&rsquo;ll go into details as much as possible.
-Problem Statement The key problem I&rsquo;m trying to tackle here is how to authenticate into AWS from workloads running in K8s." />
+  <meta name="description" content="
+      
+    
+
+This is an introductory post on the problem of authenticating into AWS from K8s
+workloads, either from within AWS or from outside of it. I&rsquo;m going to discuss
+three major approaches to this problem and compare them against each other.
+I&rsquo;ll follow this up with more detailed articles (and videos) on each approach,
+where I&rsquo;ll go into details as much as possible." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -144,10 +151,9 @@ Problem Statement The key problem I&rsquo;m trying to tackle here is how to auth
           </div>
         </header>
         <div class="post-content markdown-body">
-          
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/8Ym1tAZRyyM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/8Ym1tAZRyyM?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <p>This is an introductory post on the problem of authenticating into AWS from K8s
 workloads, either from within AWS or from outside of it. I&rsquo;m going to discuss
@@ -184,19 +190,19 @@ in AWS, generate long term credentials, and provide the access key and the
 secret access key to the Pod as environment variables, secrets, or if you&rsquo;re
 looking to hit all the points of absolute worst security, as hardcoded values
 in the code.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">spec</span>:
-  <span style="font-weight:bold">containers</span>:
-  - ...
-    <span style="font-weight:bold">env</span>:
-    - <span style="font-weight:bold">name</span>: AWS_ACCESS_KEY_ID
-      <span style="font-weight:bold">value</span>: AKIASPMZNYEHREAKQQLI
-    - <span style="font-weight:bold">name</span>: AWS_SECRET_ACCESS_KEY
-      <span style="font-weight:bold">value</span>: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-    <span style="font-weight:bold">image</span>: amazon/aws-cli:latest
-    <span style="font-weight:bold">imagePullPolicy</span>: Always
-    <span style="font-weight:bold">name</span>: pod1
-    ...
-</code></pre></div><p>It is imperative that you do <strong>NOT</strong> do this ever, even as a way to test
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#cba6f7">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">containers</span>:
+</span></span><span style="display:flex;"><span>  - ...
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">env</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#cba6f7">name</span>: AWS_ACCESS_KEY_ID
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">value</span>: AKIASPMZNYEHREAKQQLI
+</span></span><span style="display:flex;"><span>    - <span style="color:#cba6f7">name</span>: AWS_SECRET_ACCESS_KEY
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">value</span>: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">image</span>: amazon/aws-cli:latest
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">imagePullPolicy</span>: Always
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">name</span>: pod1
+</span></span><span style="display:flex;"><span>    ...
+</span></span></code></pre></div><p>It is imperative that you do <strong>NOT</strong> do this ever, even as a way to test
 something in <em>5 mins</em>. It&rsquo;s not a broken window, it&rsquo;s building a skycraper on
 flood plains. Seriously, don&rsquo;t build a habit of writing credentials in source
 code.</p>
@@ -237,8 +243,7 @@ improvements in later AWS SDKs help here as well.</p>
 dive into EKS Pod Identities. I&rsquo;ll explain the details involved in the Pod
 Identities process to the most detailed level possible there.</p>
 <p>UPDATE: New article and the video <a href="/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/">is
-here</a>.</p>
-</blockquote>
+here</a>.</p></blockquote>
 <p>Compared to Approach 1 above, this is light years ahead in terms of security,
 ease of use, and scalability. You don&rsquo;t have to worry about long term
 credentials. You&rsquo;re not keeping any credentials on K8s side of the puzzle. The
@@ -268,8 +273,7 @@ TokenRequest API) can authenticate as federated IAM users and assume roles,
 because AWS can verify the token through the OIDC endpoint in K8s.</p>
 <blockquote>
 <p>As the Pod Identities, expecte a detailed article and a video on IRSA in the
-future.</p>
-</blockquote>
+future.</p></blockquote>
 <p>IRSA are notoriously a PITA to set up. For each Cluster you
 have to setup an IAM identity provider. If you cluster control plane changes
 for some reason, you have to redo the steps, if the OIDC token signing keys
@@ -314,18 +318,17 @@ space!!</p>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/">&lt; Why I don&#39;t like taking Remote Proctored Exams</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/">AWS Authentication for K8s: EKS Pod Identities Deep Dive &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/">&lt; Why I don&#39;t like taking Remote Proctored Exams</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/">AWS Authentication for K8s: EKS Pod Identities Deep Dive &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "How to Upload a Carbon App (CAR File) to a Remote WSO2 Server",
       "headline" : "How to Upload a Carbon App (CAR File) to a Remote WSO2 Server",
-      "description" : "Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.",
+      "description" : "\u003cp\u003eCarbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -248,8 +248,7 @@ Admin services deployed on this server:
 76. FileUploadService, FileUploadService, https://chamilad-ubuntu:8243/services/FileUploadService 
 77. ClassMediatorAdmin, ClassMediatorAdmin, https://chamilad-ubuntu:8243/services/ClassMediatorAdmin
 </code></pre><blockquote>
-<p>Although all admin services are listed here, some of those are not exposed by default, and some do not have authorization parameters set. Therefore, those are blocked from being accessed. If these need to be desperately accessed follow {future blog post} steps.</p>
-</blockquote>
+<p>Although all admin services are listed here, some of those are not exposed by default, and some do not have authorization parameters set. Therefore, those are blocked from being accessed. If these need to be desperately accessed follow {future blog post} steps.</p></blockquote>
 <p><img src="/blog/img/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server_0.png#layoutTextWidth" alt=""></p>
 <p>Getting back to the topic, one of the admin services in this list is of interest to us. Using the service <strong>CarbonAppUploader,</strong> CAR files can be uploaded to the respective server. Let’s try this scenario using SoapUI for WSO2 ESB 4.9.0.</p>
 <h3 id="service-definition">Service Definition</h3>
@@ -259,8 +258,7 @@ Admin services deployed on this server:
 </code></pre><p>After this you will able to obtain the WSDL of a service by appending <strong>?wsdl</strong> to the end of the Service URL. For example, the WSDL of the CarbonAppUpload service of a locally run ESB server will be at the following location.</p>
 <pre tabindex="0"><code>https://localhost:8243/services/CarbonAppUploader?wsdl
 </code></pre><blockquote>
-<p>Notice the port mentioned in the above URL, <strong>8243</strong>, and in the resulting WSDL, is different from the port that I have included in the <a href="https://gist.github.com/chamilad/7fe796bfa9773496bddeaefaec16c302">WSDL in the Gist above</a>? This is to do with the difference between the <a href="https://docs.wso2.com/display/ESB500/Default+Ports+of+WSO2+Products"><strong>Servlet ports</strong> and the <strong>Synapse Mediation port</strong></a><strong>s</strong>. Because Synapse accepts mediation through (by default) port 8243, the WSDL is shown on it. However the admin services are available through the Servlet port, <strong>9443</strong>.</p>
-</blockquote>
+<p>Notice the port mentioned in the above URL, <strong>8243</strong>, and in the resulting WSDL, is different from the port that I have included in the <a href="https://gist.github.com/chamilad/7fe796bfa9773496bddeaefaec16c302">WSDL in the Gist above</a>? This is to do with the difference between the <a href="https://docs.wso2.com/display/ESB500/Default+Ports+of+WSO2+Products"><strong>Servlet ports</strong> and the <strong>Synapse Mediation port</strong></a><strong>s</strong>. Because Synapse accepts mediation through (by default) port 8243, the WSDL is shown on it. However the admin services are available through the Servlet port, <strong>9443</strong>.</p></blockquote>
 <h3 id="soapui-requests">SoapUI Requests</h3>
 <p>Having obtained the WSDL, let’s proceed to create a SoapUI request from it.</p>
 <p>Open SoapUI and create a new SOAP Project (<strong>File</strong> -&gt; <strong>New SOAP Project</strong>). Provide the WSDL file (or the above <strong>?wsdl</strong> URL). Check <strong>Create Requests</strong> so that SoapUI will create sample requests for the operations in the WSDL.</p>
@@ -274,8 +272,7 @@ Admin services deployed on this server:
 <li><strong>fileType</strong> — File compression, only the value “jar” is supported</li>
 </ol>
 <blockquote>
-<p>The port confusion comes in to play again. If you loaded the WSDL from the remote URL with 8243, you will have to change the port in the request from 8243 to <strong>9443</strong>.</p>
-</blockquote>
+<p>The port confusion comes in to play again. If you loaded the WSDL from the remote URL with 8243, you will have to change the port in the request from 8243 to <strong>9443</strong>.</p></blockquote>
 <h3 id="attaching-the-carfile">Attaching the CAR File</h3>
 <p>We need to serialize the CAR file as a base64 encoded string and add it in the SOAP request. SoapUI provides this functionality as Attachments.</p>
 <p>On the request, click on <strong>Attachments</strong>, and then add CAR file as an attachment. Navigate to the CAR file and select it. Select <strong>No</strong> to cache the attachment, as I found it to sometimes upload the file in an incomplete manner.</p>
@@ -297,18 +294,17 @@ Admin services deployed on this server:
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/">&lt; Monitoring WSO2 Logs with Elasticsearch, Logstash, and Kibana (or Grafana)</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/">Thinking of Moving Your WSO2 Deployment On to Kubernetes? &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/">&lt; Monitoring WSO2 Logs with Elasticsearch, Logstash, and Kibana (or Grafana)</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/">Thinking of Moving Your WSO2 Deployment On to Kubernetes? &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

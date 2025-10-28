@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Using Multiple AWS CLI Profiles in the Rust AWS SDK",
       "headline" : "Using Multiple AWS CLI Profiles in the Rust AWS SDK",
-      "description" : "I wrote a blog post on getting started with Rust AWS SDK a few months ago. I also started my youtube channel with a video on the same topic. If you haven\u0026rsquo;t yet seen it, my channel is sliced array (the name would probably change, but this is good enough for now).\nOne of the comments asked about how to use different AWS CLI profiles in the Rust SDK, and I did a follow up video on the topic.",
+      "description" : "\u003cp\u003eI wrote a \u003ca href=\u0022\/blog\/2024-01-15_getting-started-with-aws-rust-sdk\/\u0022\u003eblog post on getting started with Rust AWS SDK a few months\nago\u003c\/a\u003e. I\nalso started my youtube channel with a video on the same topic. If you haven\u0026rsquo;t\nyet seen it, my channel is \u003ca href=\u0022https:\/\/www.youtube.com\/channel\/UCATSehvfY6mjOHbfYlH7z_A\u0022\u003e\u003ccode\u003esliced array\u003c\/code\u003e\u003c\/a\u003e (the name would probably change, but\nthis is good enough for now).\u003c\/p\u003e\n\u003cp\u003eOne of the comments asked about how to use different \u003ca href=\u0022https:\/\/docs.aws.amazon.com\/cli\/v1\/userguide\/cli-configure-files.html\u0022\u003eAWS CLI\nprofiles\u003c\/a\u003e in the\nRust SDK, and I did a follow up video on the topic. This post is a\nsupplementary post for that video.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,15 @@
 <title>Using Multiple AWS CLI Profiles in the Rust AWS SDK - chamila.dev</title>
   <meta property="og:title" content="Using Multiple AWS CLI Profiles in the Rust AWS SDK - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="I wrote a blog post on getting started with Rust AWS SDK a few months ago. I also started my youtube channel with a video on the same topic. If you haven&rsquo;t yet seen it, my channel is sliced array (the name would probably change, but this is good enough for now).
-One of the comments asked about how to use different AWS CLI profiles in the Rust SDK, and I did a follow up video on the topic." />
+  <meta name="description" content="I wrote a blog post on getting started with Rust AWS SDK a few months
+ago. I
+also started my youtube channel with a video on the same topic. If you haven&rsquo;t
+yet seen it, my channel is sliced array (the name would probably change, but
+this is good enough for now).
+One of the comments asked about how to use different AWS CLI
+profiles in the
+Rust SDK, and I did a follow up video on the topic. This post is a
+supplementary post for that video." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -149,10 +156,9 @@ this is good enough for now).</p>
 profiles</a> in the
 Rust SDK, and I did a follow up video on the topic. This post is a
 supplementary post for that video.</p>
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/gT-A4TocvDE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/gT-A4TocvDE?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <p>The rust aws sdk is pretty straightforward when working on the majority use case.
 However, <a href="https://github.com/awslabs/aws-sdk-rust/">the SDK documentation</a> can
@@ -164,8 +170,7 @@ For anything outside the examples provided, you need to start digging into the s
 in <a href="https://docs.rs/aws-config/latest/aws_config/"><code>aws-config</code> crate</a>.</p>
 <blockquote>
 <p><code>load_from_env()</code> method is deprecated now and they advise to use <code>load_defaults()</code> instead.
-A few methods used in my earlier video on the rust aws sdk have been deprecated, but new ones are pretty easy to be adapted.</p>
-</blockquote>
+A few methods used in my earlier video on the rust aws sdk have been deprecated, but new ones are pretty easy to be adapted.</p></blockquote>
 <p>When looking at the source code, we can find that there is a field on the
 <code>ConfigLoader</code> struct called <a href="https://docs.rs/aws-config/latest/src/aws_config/lib.rs.html#283"><code>profile_name_override</code></a>.
 And that leads us to the method <a href="https://docs.rs/aws-config/latest/aws_config/struct.ConfigLoader.html#method.profile_name"><code>profile_name()</code></a>
@@ -173,8 +178,7 @@ implemented for the ConfigLoader struct. This is what should be used.</p>
 <p>So lets think of an example scenario.
 Let&rsquo;s list the buckets for multiple profiles as specified in the CLI config files.</p>
 <blockquote>
-<p>For this I&rsquo;m going to use the same credentials for the same account, but this can easily be for different accounts or roles.</p>
-</blockquote>
+<p>For this I&rsquo;m going to use the same credentials for the same account, but this can easily be for different accounts or roles.</p></blockquote>
 <p>So the first thing I&rsquo;m going to do is to set up the profile config in <code>credentials</code> and <code>config</code> files.
 These are the two AWS CLI configuration files that the SDKs and CLI works with.
 In Linux, these are usually found as <code>$HOME/.aws/credentials</code> and
@@ -182,126 +186,122 @@ In Linux, these are usually found as <code>$HOME/.aws/credentials</code> and
 I used the temporary credentials for my account under two different profiles,
 in the <code>credentials</code> file.
 The two profiles that I&rsquo;m going to use, are <code>test1</code> and <code>test2</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#fff;font-weight:bold">[test1]</span>
-<span style="color:#007f7f">aws_access_key_id</span>=<span style="color:#0ff;font-weight:bold">ASIAIOSFODNN7EXAMPLE</span>
-<span style="color:#007f7f">aws_secret_access_key</span>=<span style="color:#0ff;font-weight:bold">wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</span>
-<span style="color:#007f7f">aws_session_token</span> = <span style="color:#0ff;font-weight:bold">IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZVERYLONGSTRINGEXAMPLE</span>
-
-<span style="color:#fff;font-weight:bold">[test2]</span>
-<span style="color:#007f7f">aws_access_key_id</span>=<span style="color:#0ff;font-weight:bold">ASIAI44QH8DHBEXAMPLE</span>
-<span style="color:#007f7f">aws_secret_access_key</span>=<span style="color:#0ff;font-weight:bold">je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY</span>
-<span style="color:#007f7f">aws_session_token</span> = <span style="color:#0ff;font-weight:bold">fcZib3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZVERYLONGSTRINGEXAMPLE</span>
-</code></pre></div><p>I also specify the default region to use in the config file for these two profiles, in the <code>config</code> file.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#fff;font-weight:bold">[profile test]</span>
-<span style="color:#007f7f">region</span>=<span style="color:#0ff;font-weight:bold">ap-southeast-2</span>
-
-<span style="color:#fff;font-weight:bold">[profile test2]</span>
-<span style="color:#007f7f">region</span>=<span style="color:#0ff;font-weight:bold">ap-southeast-2</span>
-
-</code></pre></div><p>Now these profile names can be used in the Rust code I&rsquo;m going to write and list the S3 buckets in the account using those credentials.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#cba6f7">[test1]</span>
+</span></span><span style="display:flex;"><span><span style="color:#89b4fa">aws_access_key_id</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">ASIAIOSFODNN7EXAMPLE</span>
+</span></span><span style="display:flex;"><span><span style="color:#89b4fa">aws_secret_access_key</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</span>
+</span></span><span style="display:flex;"><span><span style="color:#89b4fa">aws_session_token</span> <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZVERYLONGSTRINGEXAMPLE</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">[test2]</span>
+</span></span><span style="display:flex;"><span><span style="color:#89b4fa">aws_access_key_id</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">ASIAI44QH8DHBEXAMPLE</span>
+</span></span><span style="display:flex;"><span><span style="color:#89b4fa">aws_secret_access_key</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY</span>
+</span></span><span style="display:flex;"><span><span style="color:#89b4fa">aws_session_token</span> <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">fcZib3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZVERYLONGSTRINGEXAMPLE</span>
+</span></span></code></pre></div><p>I also specify the default region to use in the config file for these two profiles, in the <code>config</code> file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#cba6f7">[profile test]</span>
+</span></span><span style="display:flex;"><span><span style="color:#89b4fa">region</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">ap-southeast-2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">[profile test2]</span>
+</span></span><span style="display:flex;"><span><span style="color:#89b4fa">region</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">ap-southeast-2</span>
+</span></span></code></pre></div><p>Now these profile names can be used in the Rust code I&rsquo;m going to write and list the S3 buckets in the account using those credentials.</p>
 <p>So let&rsquo;s start with a new Cargo project.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cargo new aws-profiles
-</code></pre></div><p>And let&rsquo;s import the AWS SDK crates, config and the client crate for S3.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cargo add aws-config aws-sdk-s3 tokio --features tokio/full
-</code></pre></div><p>After that I&rsquo;m going to quickly test that my credentials work, by writing the basic code to list buckets using default credentials.
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cargo new aws-profiles
+</span></span></code></pre></div><p>And let&rsquo;s import the AWS SDK crates, config and the client crate for S3.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cargo add aws-config aws-sdk-s3 tokio --features tokio/full
+</span></span></code></pre></div><p>After that I&rsquo;m going to quickly test that my credentials work, by writing the basic code to list buckets using default credentials.
 For this, I&rsquo;m going to use the <code>load_defaults()</code> method.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#fff;font-weight:bold">use</span> aws_sdk_s3::{Client, Error};
-<span style="color:#fff;font-weight:bold">use</span> std::env;
-
-<span style="color:#0f0;font-weight:bold">#[tokio::main]</span>
-<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> main() -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
-    <span style="color:#fff;font-weight:bold">let</span> shared_config = aws_config::load_defaults(BehaviorVersion::latest()).<span style="color:#fff;font-weight:bold">await</span>;
-    <span style="color:#fff;font-weight:bold">let</span> client = Client::new(&amp;shared_config);
-    <span style="color:#fff;font-weight:bold">let</span> req = client.list_buckets();
-    <span style="color:#fff;font-weight:bold">let</span> resp = req.send().<span style="color:#fff;font-weight:bold">await</span>.unwrap();
-
-    <span style="color:#fff;font-weight:bold">let</span> buckets = resp.buckets();
-    <span style="color:#fff;font-weight:bold">if</span> buckets.len() &gt;= <span style="color:#ff0;font-weight:bold">1</span> {
-        <span style="color:#fff;font-weight:bold">for</span> bucket <span style="color:#fff;font-weight:bold">in</span> buckets {
-            println!(<span style="color:#0ff;font-weight:bold">&#34;{}&#34;</span>, bucket.name().unwrap());
-        }
-    } <span style="color:#fff;font-weight:bold">else</span> {
-        println!(<span style="color:#0ff;font-weight:bold">&#34;no buckets found&#34;</span>);
-    }
-
-    println!(<span style="color:#0ff;font-weight:bold">&#34;================================================================================&#34;</span>);
-
-    <span style="color:#fff;font-weight:bold">Ok</span>(())
-}
-</code></pre></div><p>When running this with <code>cargo run</code>, we get the list of buckets, so that&rsquo;s a good sign.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#cba6f7">use</span> aws_sdk_s3::{Client, Error};
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">use</span> std::env;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#[tokio::main]</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#cba6f7">fn</span> <span style="color:#89b4fa">main</span>() -&gt; <span style="color:#89dceb">Result</span><span style="color:#89dceb;font-weight:bold">&lt;</span>(), Error<span style="color:#89dceb;font-weight:bold">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> shared_config <span style="color:#89dceb;font-weight:bold">=</span> aws_config::load_defaults(BehaviorVersion::latest()).<span style="color:#cba6f7">await</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> client <span style="color:#89dceb;font-weight:bold">=</span> Client::new(<span style="color:#89dceb;font-weight:bold">&amp;</span>shared_config);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> req <span style="color:#89dceb;font-weight:bold">=</span> client.list_buckets();
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> resp <span style="color:#89dceb;font-weight:bold">=</span> req.send().<span style="color:#cba6f7">await</span>.unwrap();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> buckets <span style="color:#89dceb;font-weight:bold">=</span> resp.buckets();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> buckets.len() <span style="color:#89dceb;font-weight:bold">&gt;=</span> <span style="color:#fab387">1</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span> bucket <span style="color:#cba6f7">in</span> buckets {
+</span></span><span style="display:flex;"><span>            <span style="color:#89b4fa">println!</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#a6e3a1">{}</span><span style="color:#a6e3a1">&#34;</span>, bucket.name().unwrap());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    } <span style="color:#cba6f7">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#89b4fa">println!</span>(<span style="color:#a6e3a1">&#34;no buckets found&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">println!</span>(<span style="color:#a6e3a1">&#34;================================================================================&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb">Ok</span>(())
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>When running this with <code>cargo run</code>, we get the list of buckets, so that&rsquo;s a good sign.</p>
 <p>Now let&rsquo;s modify this code so that it reads the list of profiles to use as a comma separated value from an environment variable.</p>
 <blockquote>
 <p>One of my pet peeves is reviewing code and seeing someone not using a prefix for the specific env var name they are using.
 Using a prefix will instantly make your code predictable, as there is no way it will interfere with any other setting,
-even for libraries your own code might be loading. So instead of just <code>PROFILES</code> or even <code>AWS_PROFILES</code> I&rsquo;m going to use <code>MY_PROFILE_NAMES</code>.</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust">...
-    <span style="color:#fff;font-weight:bold">let</span> profile_names = <span style="color:#fff;font-weight:bold">match</span> env::var(<span style="color:#0ff;font-weight:bold">&#34;MY_PROFILE_NAMES&#34;</span>) {
-        <span style="color:#fff;font-weight:bold">Ok</span>(v) =&gt; v,
-        <span style="color:#fff;font-weight:bold">Err</span>(_) =&gt; {
-            eprintln!(<span style="color:#0ff;font-weight:bold">&#34;env var MY_PROFILE_NAMES is not set&#34;</span>);
-            std::process::exit(<span style="color:#ff0;font-weight:bold">1</span>);
-        },
-    };
-...
-
-</code></pre></div><p>After reading the value from the env var, I&rsquo;m going to split it on comma, and iterate the resulting list.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust">...
-    <span style="color:#fff;font-weight:bold">let</span> prof_names: <span style="color:#fff;font-weight:bold">Vec</span>&lt;&amp;<span style="color:#fff;font-weight:bold">str</span>&gt; = profile_names.split(<span style="color:#0ff;font-weight:bold">&#34;,&#34;</span>).collect();
-    <span style="color:#fff;font-weight:bold">for</span> prof_name <span style="color:#fff;font-weight:bold">in</span> prof_names {
-        ...
-    }
-...
-</code></pre></div><p>Inside the loop, I can start using the profile name to build a config struct
+even for libraries your own code might be loading. So instead of just <code>PROFILES</code> or even <code>AWS_PROFILES</code> I&rsquo;m going to use <code>MY_PROFILE_NAMES</code>.</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">..</span>.
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> profile_names <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">match</span> env::var(<span style="color:#a6e3a1">&#34;MY_PROFILE_NAMES&#34;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#89dceb">Ok</span>(v) <span style="color:#89dceb;font-weight:bold">=&gt;</span> v,
+</span></span><span style="display:flex;"><span>        <span style="color:#89dceb">Err</span>(_) <span style="color:#89dceb;font-weight:bold">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#89b4fa">eprintln!</span>(<span style="color:#a6e3a1">&#34;env var MY_PROFILE_NAMES is not set&#34;</span>);
+</span></span><span style="display:flex;"><span>            std::process::exit(<span style="color:#fab387">1</span>);
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">..</span>.
+</span></span></code></pre></div><p>After reading the value from the env var, I&rsquo;m going to split it on comma, and iterate the resulting list.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">..</span>.
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> prof_names: <span style="color:#89dceb">Vec</span><span style="color:#89dceb;font-weight:bold">&lt;&amp;</span><span style="color:#f38ba8">str</span><span style="color:#89dceb;font-weight:bold">&gt;</span> <span style="color:#89dceb;font-weight:bold">=</span> profile_names.split(<span style="color:#a6e3a1">&#34;,&#34;</span>).collect();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> prof_name <span style="color:#cba6f7">in</span> prof_names {
+</span></span><span style="display:flex;"><span>        <span style="color:#89dceb;font-weight:bold">..</span>.
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">..</span>.
+</span></span></code></pre></div><p>Inside the loop, I can start using the profile name to build a config struct
 with the SDK.
 The key difference from using the default credentials and config is the switch to <code>from_env()</code> method.
 Instead of the direct <code>SdkConfig</code> struct, we get the <code>ConfigLoader</code> struct that we can use to override values before starting the loading chain.
 With that I&rsquo;m going to override the profile name with the loop value.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust">...
-        <span style="color:#fff;font-weight:bold">let</span> shared_config = aws_config::from_env().profile_name(prof_name).load().<span style="color:#fff;font-weight:bold">await</span>;
-...
-</code></pre></div><p>The complete modified code looks like the following.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#fff;font-weight:bold">use</span> aws_sdk_s3::{Client, Error};
-<span style="color:#fff;font-weight:bold">use</span> std::env;
-
-<span style="color:#0f0;font-weight:bold">#[tokio::main]</span>
-<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> main() -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
-    <span style="color:#fff;font-weight:bold">let</span> profile_names = <span style="color:#fff;font-weight:bold">match</span> env::var(<span style="color:#0ff;font-weight:bold">&#34;MY_PROFILE_NAMES&#34;</span>) {
-        <span style="color:#fff;font-weight:bold">Ok</span>(v) =&gt; v,
-        <span style="color:#fff;font-weight:bold">Err</span>(_) =&gt; {
-            eprintln!(<span style="color:#0ff;font-weight:bold">&#34;env var MY_PROFILE_NAMES is not set&#34;</span>);
-            std::process::exit(<span style="color:#ff0;font-weight:bold">1</span>);
-        },
-    };
-
-    <span style="color:#fff;font-weight:bold">let</span> prof_names: <span style="color:#fff;font-weight:bold">Vec</span>&lt;&amp;<span style="color:#fff;font-weight:bold">str</span>&gt; = profile_names.split(<span style="color:#0ff;font-weight:bold">&#34;,&#34;</span>).collect();
-    <span style="color:#fff;font-weight:bold">for</span> prof_name <span style="color:#fff;font-weight:bold">in</span> prof_names {
-        <span style="color:#fff;font-weight:bold">let</span> shared_config = aws_config::from_env().profile_name(prof_name).load().<span style="color:#fff;font-weight:bold">await</span>;
-        <span style="color:#fff;font-weight:bold">let</span> client = Client::new(&amp;shared_config);
-        <span style="color:#fff;font-weight:bold">let</span> req = client.list_buckets();
-        <span style="color:#fff;font-weight:bold">let</span> resp = req.send().<span style="color:#fff;font-weight:bold">await</span>.unwrap();
-
-        <span style="color:#fff;font-weight:bold">let</span> buckets = resp.buckets();
-        <span style="color:#fff;font-weight:bold">if</span> buckets.len() &gt;= <span style="color:#ff0;font-weight:bold">1</span> {
-            <span style="color:#fff;font-weight:bold">for</span> bucket <span style="color:#fff;font-weight:bold">in</span> buckets {
-                println!(<span style="color:#0ff;font-weight:bold">&#34;profile {prof_name}: {}&#34;</span>, bucket.name().unwrap());
-            }
-        } <span style="color:#fff;font-weight:bold">else</span> {
-            println!(<span style="color:#0ff;font-weight:bold">&#34;no buckets found for profile {prof_name}&#34;</span>);
-        }
-
-        println!(<span style="color:#0ff;font-weight:bold">&#34;================================================================================&#34;</span>);
-    }
-
-    <span style="color:#fff;font-weight:bold">Ok</span>(())
-}
-</code></pre></div><p>When testing this I&rsquo;m setting the <code>MY_PROFILE_NAMES</code> environment variable with
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">..</span>.
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">let</span> shared_config <span style="color:#89dceb;font-weight:bold">=</span> aws_config::from_env().profile_name(prof_name).load().<span style="color:#cba6f7">await</span>;
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">..</span>.
+</span></span></code></pre></div><p>The complete modified code looks like the following.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#cba6f7">use</span> aws_sdk_s3::{Client, Error};
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">use</span> std::env;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#[tokio::main]</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#cba6f7">fn</span> <span style="color:#89b4fa">main</span>() -&gt; <span style="color:#89dceb">Result</span><span style="color:#89dceb;font-weight:bold">&lt;</span>(), Error<span style="color:#89dceb;font-weight:bold">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> profile_names <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">match</span> env::var(<span style="color:#a6e3a1">&#34;MY_PROFILE_NAMES&#34;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#89dceb">Ok</span>(v) <span style="color:#89dceb;font-weight:bold">=&gt;</span> v,
+</span></span><span style="display:flex;"><span>        <span style="color:#89dceb">Err</span>(_) <span style="color:#89dceb;font-weight:bold">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#89b4fa">eprintln!</span>(<span style="color:#a6e3a1">&#34;env var MY_PROFILE_NAMES is not set&#34;</span>);
+</span></span><span style="display:flex;"><span>            std::process::exit(<span style="color:#fab387">1</span>);
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> prof_names: <span style="color:#89dceb">Vec</span><span style="color:#89dceb;font-weight:bold">&lt;&amp;</span><span style="color:#f38ba8">str</span><span style="color:#89dceb;font-weight:bold">&gt;</span> <span style="color:#89dceb;font-weight:bold">=</span> profile_names.split(<span style="color:#a6e3a1">&#34;,&#34;</span>).collect();
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> prof_name <span style="color:#cba6f7">in</span> prof_names {
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">let</span> shared_config <span style="color:#89dceb;font-weight:bold">=</span> aws_config::from_env().profile_name(prof_name).load().<span style="color:#cba6f7">await</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">let</span> client <span style="color:#89dceb;font-weight:bold">=</span> Client::new(<span style="color:#89dceb;font-weight:bold">&amp;</span>shared_config);
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">let</span> req <span style="color:#89dceb;font-weight:bold">=</span> client.list_buckets();
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">let</span> resp <span style="color:#89dceb;font-weight:bold">=</span> req.send().<span style="color:#cba6f7">await</span>.unwrap();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">let</span> buckets <span style="color:#89dceb;font-weight:bold">=</span> resp.buckets();
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> buckets.len() <span style="color:#89dceb;font-weight:bold">&gt;=</span> <span style="color:#fab387">1</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">for</span> bucket <span style="color:#cba6f7">in</span> buckets {
+</span></span><span style="display:flex;"><span>                <span style="color:#89b4fa">println!</span>(<span style="color:#a6e3a1">&#34;profile </span><span style="color:#a6e3a1">{prof_name}</span><span style="color:#a6e3a1">: </span><span style="color:#a6e3a1">{}</span><span style="color:#a6e3a1">&#34;</span>, bucket.name().unwrap());
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#cba6f7">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#89b4fa">println!</span>(<span style="color:#a6e3a1">&#34;no buckets found for profile </span><span style="color:#a6e3a1">{prof_name}</span><span style="color:#a6e3a1">&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#89b4fa">println!</span>(<span style="color:#a6e3a1">&#34;================================================================================&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb">Ok</span>(())
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>When testing this I&rsquo;m setting the <code>MY_PROFILE_NAMES</code> environment variable with
 the value of <code>test1,test2</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#fff;font-weight:bold">export</span> MY_PROFILE_NAMES=test1,test2
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#89dceb">export</span> <span style="color:#f5e0dc">MY_PROFILE_NAMES</span><span style="color:#89dceb;font-weight:bold">=</span>test1,test2
+</span></span></code></pre></div><blockquote>
 <p>Because I used the credentials from the same account, the list of buckets
-are the same. But you get the idea.</p>
-</blockquote>
+are the same. But you get the idea.</p></blockquote>
 <h2 id="tldr">tl:dr;</h2>
 <p>So in brief,</p>
 <ol>
@@ -312,18 +312,17 @@ from the <code>from_env()</code> method</li>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-05-31_aws-finops-basics/">&lt; Hit the ground Running with FinOps in AWS</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/">AWS Backup Cross-Account Backups in AWS Web Console &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-05-31_aws-finops-basics/">&lt; Hit the ground Running with FinOps in AWS</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/">AWS Backup Cross-Account Backups in AWS Web Console &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

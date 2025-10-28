@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Infrastructure As Code on chamila.dev</title>
+    <title>Infrastructure as Code on chamila.dev</title>
     <link>https://chamila.dev/tags/infrastructure-as-code/</link>
-    <description>Recent content in Infrastructure As Code on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Infrastructure as Code on chamila.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Jul 2017 11:40:50 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/infrastructure-as-code/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:14:53 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/infrastructure-as-code/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Infrastructure as Code : AWS CloudFormation</title>
       <link>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</link>
       <pubDate>Mon, 03 Jul 2017 11:40:50 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
-      <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
-  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
- Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This blog post is based on a talk I did on AWS CloudFormation as an introduction.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;iframe src=&#34;https://www.slideshare.net/slideshow/embed_code/key/8br68UFQtb7qpF&#34; width=&#34;595&#34; height=&#34;485&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; &#34; allowfullscreen&gt; &lt;/iframe&gt;&#xA;&lt;h4 id=&#34;the-case-for-infrastructure-ascode&#34;&gt;The case for Infrastructure as Code&lt;/h4&gt;&#xA;&lt;p&gt;Imagine a typical deployment of a software stack. The process might look like the following.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Design solution architecture&lt;/li&gt;&#xA;&lt;li&gt;Estimate infrastructure specs&lt;/li&gt;&#xA;&lt;li&gt;Configure compute, network, and database resources manually&lt;/li&gt;&#xA;&lt;li&gt;Deploy the applications and prepare databases&lt;/li&gt;&#xA;&lt;li&gt;Test and ship&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Pretty simple from the looks of it doesn’t it? The catch is this. This is just half of the solution maintenance. There are several more scenarios involved that can quickly turn this in to a complex fragile piece of engineering.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

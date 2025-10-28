@@ -4,18 +4,16 @@
     <title>Scale on chamila.dev</title>
     <link>https://chamila.dev/tags/scale/</link>
     <description>Recent content in Scale on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Mar 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/scale/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:14:09 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/scale/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Apache Stratos Cartridge Agent: Life Cycle Walkthough</title>
       <link>https://chamila.dev/blog/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</link>
       <pubDate>Sun, 22 Mar 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</guid>
-      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the &lt;a href=&#34;https://chamila.dev/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz&#34;&gt;first article&lt;/a&gt;?&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting. In this article we will discuss in detail, in which order these tasks are performed.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

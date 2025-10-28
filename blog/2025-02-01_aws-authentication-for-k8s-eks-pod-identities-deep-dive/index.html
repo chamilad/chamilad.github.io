@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "AWS Authentication for K8s: EKS Pod Identities Deep Dive",
       "headline" : "AWS Authentication for K8s: EKS Pod Identities Deep Dive",
-      "description" : "In the last article, I covered in brief, the solutions for the problem of authenticating into AWS from K8s workloads. This is the first detailed article (and the video) I promised I\u0026rsquo;ll follow up that with, going into to details on EKS Pod Identities. I\u0026rsquo;m hoping to make this the most detailed, most in-depth video on the topic, but this article would probably have less details, so I highly recommend watching the video.",
+      "description" : "\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n      \u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/bDsy21eTXHw?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n    \u003c\/div\u003e\n\n\u003cp\u003eIn the last article, I covered in brief, the solutions for the problem of\nauthenticating into AWS from K8s workloads. This is the first detailed article\n(and the video) I promised I\u0026rsquo;ll follow up that with, going into to details on\nEKS Pod Identities. I\u0026rsquo;m hoping to make this the most detailed, most in-depth\nvideo on the topic, but this article would probably have less details, so I\nhighly recommend watching the video. It also has a full demo on how to create\nan EKS cluster for Pod Identities.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,7 +36,17 @@
 <title>AWS Authentication for K8s: EKS Pod Identities Deep Dive - chamila.dev</title>
   <meta property="og:title" content="AWS Authentication for K8s: EKS Pod Identities Deep Dive - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="In the last article, I covered in brief, the solutions for the problem of authenticating into AWS from K8s workloads. This is the first detailed article (and the video) I promised I&rsquo;ll follow up that with, going into to details on EKS Pod Identities. I&rsquo;m hoping to make this the most detailed, most in-depth video on the topic, but this article would probably have less details, so I highly recommend watching the video." />
+  <meta name="description" content="
+      
+    
+
+In the last article, I covered in brief, the solutions for the problem of
+authenticating into AWS from K8s workloads. This is the first detailed article
+(and the video) I promised I&rsquo;ll follow up that with, going into to details on
+EKS Pod Identities. I&rsquo;m hoping to make this the most detailed, most in-depth
+video on the topic, but this article would probably have less details, so I
+highly recommend watching the video. It also has a full demo on how to create
+an EKS cluster for Pod Identities." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -151,10 +161,9 @@
           </div>
         </header>
         <div class="post-content markdown-body">
-          
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/bDsy21eTXHw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/bDsy21eTXHw?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <p>In the last article, I covered in brief, the solutions for the problem of
 authenticating into AWS from K8s workloads. This is the first detailed article
@@ -183,8 +192,7 @@ the Pod and AWS.</p>
 blog post. The video format works better here to explain details jumping
 between the demo and the architecture diagram.</p>
 <p>If the details here are not that clear, make sure to check my video out. I go
-into more details than the blog post in the video.</p>
-</blockquote>
+into more details than the blog post in the video.</p></blockquote>
 <p>The architecture of how Pod Identities work behind the scenes is a bit complex,
 compared to how easy it is to get it working as an end user. AWS does a pretty
 good job of hiding this complexity, but it is still interesting explore, how
@@ -194,8 +202,7 @@ this area.</p>
 <blockquote>
 <p>I found most of these details by going through the documentation, the code
 for these components that are open source, and then some details from github
-issues that talk about a few undocumented scenarios.</p>
-</blockquote>
+issues that talk about a few undocumented scenarios.</p></blockquote>
 <p>There are several moving parts involved in Pod Identities.</p>
 <h3 id="eks-pod-identity-addon">EKS Pod Identity Addon</h3>
 <p>When you create an EKS cluster, you can add several addons to it to enable
@@ -212,30 +219,30 @@ Privilege, no Confused Deputies, etc.</p>
 <p>Additionally, it should allow EKS to assume to role, or more specifically, the
 principal <code>pods.eks.amazonaws.com</code> to assume to it. This would be the principal
 EKS uses when a Pod is created to give it the temporary credentials.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="font-weight:bold">&#34;Version&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;2012-10-17&#34;</span>,
-    <span style="font-weight:bold">&#34;Statement&#34;</span>: [
-        {
-            <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
-            <span style="font-weight:bold">&#34;Principal&#34;</span>: {
-                <span style="font-weight:bold">&#34;Service&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;pods.eks.amazonaws.com&#34;</span>
-            },
-            <span style="font-weight:bold">&#34;Action&#34;</span>: [
-                <span style="color:#0ff;font-weight:bold">&#34;sts:AssumeRole&#34;</span>,
-                <span style="color:#0ff;font-weight:bold">&#34;sts:TagSession&#34;</span>
-            ]
-        }
-    ]
-}
-</code></pre></div><h3 id="k8s-service-accounts-and-mapping-to-iam-role">K8s Service Accounts and Mapping to IAM Role</h3>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Version&#34;</span>: <span style="color:#a6e3a1">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Principal&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">&#34;Service&#34;</span>: <span style="color:#a6e3a1">&#34;pods.eks.amazonaws.com&#34;</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;sts:AssumeRole&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;sts:TagSession&#34;</span>
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="k8s-service-accounts-and-mapping-to-iam-role">K8s Service Accounts and Mapping to IAM Role</h3>
 <p>Service Accounts are going to  be used to map a Role to a given Pod.
 Essentially, a Service Account is mapped to the above IAM Role, which tells EKS
 to use the specific Role to generate temporary credentials.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">❯ kubectl create sa pod-identity-test
-
-❯ aws eks create-pod-identity-association --cluster-name &lt;cluster-name&gt;
---service-account pod-identity-test --namespace default --role-arn &lt;role-arn&gt;
-</code></pre></div><h3 id="aws-sdk-crdentials-lookup-chain">AWS SDK Crdentials Lookup Chain</h3>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ kubectl create sa pod-identity-test
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>❯ aws eks create-pod-identity-association --cluster-name &lt;cluster-name&gt;
+</span></span><span style="display:flex;"><span>--service-account pod-identity-test --namespace default --role-arn &lt;role-arn&gt;
+</span></span></code></pre></div><h3 id="aws-sdk-crdentials-lookup-chain">AWS SDK Crdentials Lookup Chain</h3>
 <p>The AWS SDK, when trying to make an authenticated call to AWS, will try to
 locate credentials from a list of sources. This is called <a href="https://docs.aws.amazon.com/sdkref/latest/guide/standardized-credentials.html#credentialProviderChain">the credentials
 provider
@@ -247,19 +254,19 @@ way to get credentials from an external credentials server.</p>
 <p>The SDK will source details for these different providers through different
 environment variables. For Container Credentials provider, the following two
 environment variables should be found.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">spec</span>:
-  <span style="font-weight:bold">containers</span>:
-  - ...
-    <span style="font-weight:bold">env</span>:
-    - <span style="font-weight:bold">name</span>: AWS_CONTAINER_CREDENTIALS_FULL_URI
-      <span style="font-weight:bold">value</span>: https://169.254.170.23/v1/credentials
-    - <span style="font-weight:bold">name</span>: AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE
-      <span style="font-weight:bold">value</span>: /var/run/secrets/eks.amazonaws.com/serviceaccount/token
-    <span style="font-weight:bold">image</span>: amazon/aws-cli:latest
-    <span style="font-weight:bold">imagePullPolicy</span>: Always
-    <span style="font-weight:bold">name</span>: pod1
-    ...
-</code></pre></div><p>The values I&rsquo;ve used above are the default values you would see in EKS Pod
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#cba6f7">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">containers</span>:
+</span></span><span style="display:flex;"><span>  - ...
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">env</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#cba6f7">name</span>: AWS_CONTAINER_CREDENTIALS_FULL_URI
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">value</span>: https://169.254.170.23/v1/credentials
+</span></span><span style="display:flex;"><span>    - <span style="color:#cba6f7">name</span>: AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">value</span>: /var/run/secrets/eks.amazonaws.com/serviceaccount/token
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">image</span>: amazon/aws-cli:latest
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">imagePullPolicy</span>: Always
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">name</span>: pod1
+</span></span><span style="display:flex;"><span>    ...
+</span></span></code></pre></div><p>The values I&rsquo;ve used above are the default values you would see in EKS Pod
 Identities scenario. There&rsquo;s a process that runs on the link local address
 <code>169.254.170.23</code> on every Node in the cluster, and the token to provide to it
 (and all the way through to AWS through it) is in the Service Account token in
@@ -297,29 +304,29 @@ temporary credentials. For this to work, the EKS Node Instance profile should
 have the permission <code>eks-auth:AssumeRoleForPodIdentity</code> attached to it. The
 easiest way to make sure this happens is to attach the AWS managed policy
 <code>AmazonEKSWorkerNodePolicy</code> to the Node role when creating it.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="font-weight:bold">&#34;Version&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;2012-10-17&#34;</span>,
-    <span style="font-weight:bold">&#34;Statement&#34;</span>: [
-        {
-            <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;WorkerNodePermissions&#34;</span>,
-            <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
-            <span style="font-weight:bold">&#34;Action&#34;</span>: [
-                <span style="color:#0ff;font-weight:bold">&#34;ec2:DescribeInstances&#34;</span>,
-                <span style="color:#0ff;font-weight:bold">&#34;ec2:DescribeInstanceTypes&#34;</span>,
-                <span style="color:#0ff;font-weight:bold">&#34;ec2:DescribeRouteTables&#34;</span>,
-                <span style="color:#0ff;font-weight:bold">&#34;ec2:DescribeSecurityGroups&#34;</span>,
-                <span style="color:#0ff;font-weight:bold">&#34;ec2:DescribeSubnets&#34;</span>,
-                <span style="color:#0ff;font-weight:bold">&#34;ec2:DescribeVolumes&#34;</span>,
-                <span style="color:#0ff;font-weight:bold">&#34;ec2:DescribeVolumesModifications&#34;</span>,
-                <span style="color:#0ff;font-weight:bold">&#34;ec2:DescribeVpcs&#34;</span>,
-                <span style="color:#0ff;font-weight:bold">&#34;eks:DescribeCluster&#34;</span>,
-                <span style="color:#0ff;font-weight:bold">&#34;eks-auth:AssumeRoleForPodIdentity&#34;</span>
-            ],
-            <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
-        }
-    ]
-}
-</code></pre></div><p>After this operation, the EKS Pod identity is returrned the temporary
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Version&#34;</span>: <span style="color:#a6e3a1">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;WorkerNodePermissions&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ec2:DescribeInstances&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ec2:DescribeInstanceTypes&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ec2:DescribeRouteTables&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ec2:DescribeSecurityGroups&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ec2:DescribeSubnets&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ec2:DescribeVolumes&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ec2:DescribeVolumesModifications&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ec2:DescribeVpcs&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;eks:DescribeCluster&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;eks-auth:AssumeRoleForPodIdentity&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Resource&#34;</span>: <span style="color:#a6e3a1">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>After this operation, the EKS Pod identity is returrned the temporary
 credentials which passes it back to the SDK on the Pod.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>The complexity of the architecture is not really visible to the end user in EKS
@@ -347,18 +354,17 @@ I will explore IAM Roles for Service Accounts (IRSA) in the next video.</p>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2025-01-27_aws-authentication-for-k8s-introduction/">&lt; AWS Authentication for K8s: Introduction</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/">AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA) &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2025-01-27_aws-authentication-for-k8s-introduction/">&lt; AWS Authentication for K8s: Introduction</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/">AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA) &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

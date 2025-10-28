@@ -4,842 +4,604 @@
     <title>journal on chamila.dev</title>
     <link>https://chamila.dev/blog/</link>
     <description>Recent content in journal on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://chamila.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Oct 2025 22:50:51 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What AWS outtage really means</title>
+      <link>https://chamila.dev/blog/2025-10-21_what-aws-outtage-really-means/</link>
+      <pubDate>Tue, 21 Oct 2025 22:50:51 +1300</pubDate>
+      <guid>https://chamila.dev/blog/2025-10-21_what-aws-outtage-really-means/</guid>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/wU6trkvcUtM?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;So it&amp;rsquo;s been a couple of hours since the last major AWS outtage has been set to&#xA;&lt;code&gt;RESOLVED&lt;/code&gt;. This was a major outtage in the AWS &lt;code&gt;us-east-1&lt;/code&gt; region, an incident&#xA;that went on for more than 15 hours!&lt;/p&gt;&#xA;&lt;p&gt;What resulted was a global outtage of several major service providers,&#xA;including accounting software, messaging software, even banking systems. There&#xA;seems to be multiple millions or billions of loss estimated as a direct result&#xA;of this outtage.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Securely Design and Build Cloud Applications</title>
+      <link>https://chamila.dev/blog/2025-08-13_how-to-build-secure-cloud-applications/</link>
+      <pubDate>Wed, 13 Aug 2025 14:11:38 +1200</pubDate>
+      <guid>https://chamila.dev/blog/2025-08-13_how-to-build-secure-cloud-applications/</guid>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/eDwrs9_Yf2o?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;In the last post/video, I tried to replicate the stupidity of (almost)&#xA;intentionally exposing your private user data as a public bucket/database.&#xA;While it felt great to reinforce my belief that Cloud is relatively safe by&#xA;itself, to reinforce my ego to know at least I&amp;rsquo;m not that stupid, I did&#xA;feel a little incomplete. I broke down what could&amp;rsquo;ve possibly gone wrong, but I&#xA;didn&amp;rsquo;t show how to fix it, or prevent that from happening.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Is it that easy to make stupid mistakes? - Trying to Reproduce the Tea App Situation</title>
-      <link>https://chamila.dev/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes-trying-to-reproduce-the-tea-app-situation/</link>
+      <link>https://chamila.dev/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes---trying-to-reproduce-the-tea-app-situation/</link>
       <pubDate>Tue, 05 Aug 2025 16:28:16 +1200</pubDate>
-      
-      <guid>https://chamila.dev/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes-trying-to-reproduce-the-tea-app-situation/</guid>
-      <description>Tea app getting hacked is an interesting case.
-It&amp;rsquo;s not technically a hack. No existing security measures were breached, there wasn&amp;rsquo;t any complicated social engineering, or zero-days or unpatched CVEs getting exploited. What happened is what&amp;rsquo;s called a Data Extraction. Data that should have been private was public, and naturally, people extracted it, twice!!
-Typically, when any solution worth its salt goes into production (i.e. subjected to government oversight, has some regulatory pressure, or has some critical impact on a business), it gets a risk evaluation, and Data Extraction is a key risk that gets focus.</description>
+      <guid>https://chamila.dev/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes---trying-to-reproduce-the-tea-app-situation/</guid>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/yzV3hzhNmc4?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;Tea app getting hacked is an interesting case.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s not technically a hack. No existing security measures were breached, there wasn&amp;rsquo;t any complicated&#xA;social engineering, or zero-days or unpatched CVEs getting exploited. What&#xA;happened is what&amp;rsquo;s called a Data Extraction. Data that should have been private&#xA;was public, and naturally, people extracted it, twice!!&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA)</title>
       <link>https://chamila.dev/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/</link>
       <pubDate>Mon, 10 Mar 2025 15:59:36 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/</guid>
-      <description>This is going to be multiple videos for various reasons. First video is below.
-   In this installment of the series on authenticating into AWS from K8s workloads, I&amp;rsquo;m going to go into details on another major approach that can be used. This approach is called IAM Roles for Service Accounts (IRSA), and that adds nothing to explaining what this approach is. If you remember from the first video, almost all approaches use IAM Roles that are mapped to Service Accounts somehow (unless you&amp;rsquo;re embedding IAM user credentials in the Pod definition, for the upteenth time, let me strongly advise you not to do that).</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This is going to be multiple videos for various reasons. First video is&#xA;below.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/-bgB6F-2GWw?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;In this installment of the series on authenticating into AWS from K8s&#xA;workloads, I&amp;rsquo;m going to go into details on another major approach that can be&#xA;used. This approach is called &lt;strong&gt;IAM Roles for Service Accounts (IRSA)&lt;/strong&gt;, and that&#xA;adds nothing to explaining what this approach is. If you remember from the first video,&#xA;almost all approaches use IAM Roles that are mapped to Service Accounts somehow&#xA;(unless you&amp;rsquo;re embedding IAM user credentials in the Pod definition, for the&#xA;upteenth time, let me strongly advise you not to do that).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS Authentication for K8s: EKS Pod Identities Deep Dive</title>
       <link>https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/</link>
       <pubDate>Sat, 01 Feb 2025 00:04:06 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/</guid>
-      <description>In the last article, I covered in brief, the solutions for the problem of authenticating into AWS from K8s workloads. This is the first detailed article (and the video) I promised I&amp;rsquo;ll follow up that with, going into to details on EKS Pod Identities. I&amp;rsquo;m hoping to make this the most detailed, most in-depth video on the topic, but this article would probably have less details, so I highly recommend watching the video.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/bDsy21eTXHw?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;In the last article, I covered in brief, the solutions for the problem of&#xA;authenticating into AWS from K8s workloads. This is the first detailed article&#xA;(and the video) I promised I&amp;rsquo;ll follow up that with, going into to details on&#xA;EKS Pod Identities. I&amp;rsquo;m hoping to make this the most detailed, most in-depth&#xA;video on the topic, but this article would probably have less details, so I&#xA;highly recommend watching the video. It also has a full demo on how to create&#xA;an EKS cluster for Pod Identities.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS Authentication for K8s: Introduction</title>
       <link>https://chamila.dev/blog/2025-01-27_aws-authentication-for-k8s-introduction/</link>
       <pubDate>Mon, 27 Jan 2025 00:01:44 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2025-01-27_aws-authentication-for-k8s-introduction/</guid>
-      <description>This is an introductory post on the problem of authenticating into AWS from K8s workloads, either from within AWS or from outside of it. I&amp;rsquo;m going to discuss three major approaches to this problem and compare them against each other. I&amp;rsquo;ll follow this up with more detailed articles (and videos) on each approach, where I&amp;rsquo;ll go into details as much as possible.
-Problem Statement The key problem I&amp;rsquo;m trying to tackle here is how to authenticate into AWS from workloads running in K8s.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/8Ym1tAZRyyM?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;This is an introductory post on the problem of authenticating into AWS from K8s&#xA;workloads, either from within AWS or from outside of it. I&amp;rsquo;m going to discuss&#xA;three major approaches to this problem and compare them against each other.&#xA;I&amp;rsquo;ll follow this up with more detailed articles (and videos) on each approach,&#xA;where I&amp;rsquo;ll go into details as much as possible.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why I don&#39;t like taking Remote Proctored Exams</title>
       <link>https://chamila.dev/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/</link>
       <pubDate>Thu, 16 Jan 2025 22:47:18 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/</guid>
-      <description>I recently renewed my Certified Kubernetes Security Specialty certification, and it reminded me, hard, why I don&amp;rsquo;t like taking remote proctored exams. This is going to be rant, probably not educative.
-All CNCF certification exams are remote proctored. This means that you book the exam online and then take it online at a place of your choosing. Sounds unbelievably simple right? There&amp;rsquo;s a reason why it&amp;rsquo;s unbelievable.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/-vXMQDMq4tU?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;I recently renewed my Certified Kubernetes Security Specialty certification,&#xA;and it reminded me, hard, why I don&amp;rsquo;t like taking remote proctored exams. This&#xA;is going to be rant, probably not educative.&lt;/p&gt;&#xA;&lt;p&gt;All CNCF certification exams are remote proctored. This means that you book the&#xA;exam online and then take it online at a place of your choosing. Sounds&#xA;unbelievably simple right? There&amp;rsquo;s a reason why it&amp;rsquo;s unbelievable.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Deep Dive in to AWS Resource Control Policies</title>
       <link>https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/</link>
       <pubDate>Sun, 15 Dec 2024 23:35:34 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-12-15_deep-dive-in-to-aws-resource-control-policies/</guid>
-      <description>This article is on one of the new features AWS released recently, called Resource Control Policies (RCPs).
-RCPs are a new way to enforce policies on data (resources) rather than principals in AWS. For principals, the way to enforce policies is to use Service Control Policies (SCPs), which if you&amp;rsquo;re already familiar with AWS would know plenty about. However, RCPs can still be a little confusing.
-What are RCPs?</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/dLA8R3M-cVU?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;This article is on one of the new features AWS released recently, called&#xA;&lt;a href=&#34;https://aws.amazon.com/blogs/aws/introducing-resource-control-policies-rcps-a-new-authorization-policy/&#34;&gt;Resource Control Policies&#xA;(RCPs)&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;RCPs are a new way to enforce policies on data (resources) rather than&#xA;principals in AWS. For principals, the way to enforce policies is to use&#xA;Service Control Policies (SCPs), which if you&amp;rsquo;re already familiar with AWS&#xA;would know plenty about. However, RCPs can still be a little confusing.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Becoming a CNCF Kubestronaut</title>
       <link>https://chamila.dev/blog/2024-11-17_becoming-a-cncf-kubestronaut/</link>
       <pubDate>Sun, 17 Nov 2024 23:06:10 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-11-17_becoming-a-cncf-kubestronaut/</guid>
-      <description>In early July this year, I became a Kubestronaut, the 2nd (or 3rd, I&amp;rsquo;m not exactly sure) in New Zealand.
-The Programme The CNCF Kubestronaut programme is a developer recognition programme launched by Cloud Native Computing Foundation. The aim of the programme is to appreciate the engineers who put &amp;ldquo;consistent effort into building skills and education&amp;rdquo; in Kubernetes (and related CNCF areas).
-It officially launched in 2024 February, but records show that the idea did start in late 2022.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/rr9x8ZWZnb8?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;In early July this year, I became a Kubestronaut, the 2nd (or 3rd, I&amp;rsquo;m not&#xA;exactly sure) in New Zealand.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-programme&#34;&gt;The Programme&lt;/h2&gt;&#xA;&lt;p&gt;The CNCF Kubestronaut programme is a developer recognition programme launched by Cloud Native Computing Foundation.&#xA;The aim of the programme is to appreciate the engineers who put &amp;ldquo;consistent effort into building skills and education&amp;rdquo; in Kubernetes (and related CNCF areas).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Completing 11 Professional Certifications in 8 Weeks</title>
       <link>https://chamila.dev/blog/2024-10-28_completing-11-professional-certifications-in-8-weeks/</link>
       <pubDate>Mon, 28 Oct 2024 21:36:19 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-10-28_completing-11-professional-certifications-in-8-weeks/</guid>
-      <description>I wanted to write these details down for a long time, but I wanted to wait until I received the Golden Jacket. In this article, I&amp;rsquo;m going to talk about how I planned, prepped for each exam, and some generalised lessons from my experience
-From end of May to mid of July, I studied for, and completed 11 professional certification exams. 9 out of those were AWS certifications, and the other two were the recently introduced CNCF foundational exams, Kubernetes and Cloud Native Associate (KCNA) and Kubernetes and Cloud native Secutiy Associate (KCSA).</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/d6TzRC6t-2Y?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;I wanted to write these details down for a long time, but I wanted to wait&#xA;until I received the Golden Jacket. In this article, I&amp;rsquo;m going to talk about&#xA;how I planned, prepped for each exam, and some generalised lessons from my experience&lt;/p&gt;&#xA;&lt;p&gt;From end of May to mid of July, I studied for, and completed 11 professional&#xA;certification exams. 9 out of those were AWS certifications, and the other two&#xA;were the recently introduced CNCF foundational exams, Kubernetes and Cloud&#xA;Native Associate (KCNA) and Kubernetes and Cloud native Secutiy Associate&#xA;(KCSA). I&amp;rsquo;m mostly going to talk about the AWS exams in this article.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Receiving my AWS Golden Jacket</title>
       <link>https://chamila.dev/blog/2024-10-13_receiving-my-aws-golden-jacket/</link>
       <pubDate>Sun, 13 Oct 2024 00:00:19 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-10-13_receiving-my-aws-golden-jacket/</guid>
-      <description>So this article and the video is my congratulating myself for getting the coveted AWS Golden Jacket.
-Seriously though, it is a really good feeling to finally have the physical jacket with me. Not that I can wear it during the coming spring and summer. To be honest though, not that I&amp;rsquo;ll be wearing this outside anyways. It&amp;rsquo;s so shiny that I&amp;rsquo;ll get pulled over for blinding other drivers.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/2biLefgNb04?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;So this article and the video is my congratulating myself for getting the&#xA;coveted AWS Golden Jacket.&lt;/p&gt;&#xA;&lt;p&gt;Seriously though, it is a really good feeling to finally have the physical&#xA;jacket with me. Not that I can wear it during the coming spring and summer. To&#xA;be honest though, not that I&amp;rsquo;ll be wearing this outside anyways. It&amp;rsquo;s so shiny&#xA;that I&amp;rsquo;ll get pulled over for blinding other drivers.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS Backup: Restoring Data and Automated Restore Testing</title>
       <link>https://chamila.dev/blog/2024-09-23_aws-backup-restoring-data-and-automated-restore-testing/</link>
       <pubDate>Mon, 23 Sep 2024 00:26:50 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-09-23_aws-backup-restoring-data-and-automated-restore-testing/</guid>
-      <description>Intro   I covered establishing a comprehensive cross-account backup strategy in AWS Organizations in the previous articles and videos.
-However, as an architect, one of the most frequent patterns I come across in the real world in this space is organisations having an imbalance of backup and recovery strategies. This is when there is a really detailed backup process that includes all the production resources in the backup jobs, with encrypted and replicated copies, but having minimum or even zero effort in testing recoverability of the backed up data and having playbooks for such scenarios.</description>
+      <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;&#xA;&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/IWHU6pQXJDg?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;I covered establishing a comprehensive cross-account backup strategy in AWS&#xA;Organizations in the previous articles and videos.&lt;/p&gt;&#xA;&lt;p&gt;However, as an architect, one of the most frequent patterns I come across in&#xA;the real world in this space is organisations having an imbalance of backup and&#xA;recovery strategies. This is when there is a really detailed backup process&#xA;that includes all the production resources in the backup jobs, with encrypted&#xA;and replicated copies, but having minimum or even zero effort in testing&#xA;recoverability of the backed up data and having playbooks for such scenarios.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS Backup Cross-Account Backups in AWS Web Console</title>
       <link>https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/</link>
       <pubDate>Sun, 11 Aug 2024 18:03:37 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/</guid>
-      <description>So my last post on AWS Backup uses a lot of Terraform code that I had written even before the post. When doing a video on the subject, I realised that for a beginner, explaining something like AWS Backup with Terraform presents two fronts to understand at the same time.
-So I&amp;rsquo;m following up with another video and a blog post that does the same demo but only using the AWS Web Console.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/iY8jwTfQCPU?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;So my last post on AWS Backup uses a lot of Terraform code that I had written&#xA;even before the post. When doing a video on the subject, I realised that for a&#xA;beginner, explaining something like AWS Backup with Terraform presents two&#xA;fronts to understand at the same time.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Using Multiple AWS CLI Profiles in the Rust AWS SDK</title>
       <link>https://chamila.dev/blog/2024-06-01_rust-profiles-in-aws-sdk/</link>
       <pubDate>Sat, 01 Jun 2024 05:34:43 +1200</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-06-01_rust-profiles-in-aws-sdk/</guid>
-      <description>I wrote a blog post on getting started with Rust AWS SDK a few months ago. I also started my youtube channel with a video on the same topic. If you haven&amp;rsquo;t yet seen it, my channel is sliced array (the name would probably change, but this is good enough for now).
-One of the comments asked about how to use different AWS CLI profiles in the Rust SDK, and I did a follow up video on the topic.</description>
+      <description>&lt;p&gt;I wrote a &lt;a href=&#34;https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/&#34;&gt;blog post on getting started with Rust AWS SDK a few months&#xA;ago&lt;/a&gt;. I&#xA;also started my youtube channel with a video on the same topic. If you haven&amp;rsquo;t&#xA;yet seen it, my channel is &lt;a href=&#34;https://www.youtube.com/channel/UCATSehvfY6mjOHbfYlH7z_A&#34;&gt;&lt;code&gt;sliced array&lt;/code&gt;&lt;/a&gt; (the name would probably change, but&#xA;this is good enough for now).&lt;/p&gt;&#xA;&lt;p&gt;One of the comments asked about how to use different &lt;a href=&#34;https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html&#34;&gt;AWS CLI&#xA;profiles&lt;/a&gt; in the&#xA;Rust SDK, and I did a follow up video on the topic. This post is a&#xA;supplementary post for that video.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Hit the ground Running with FinOps in AWS</title>
       <link>https://chamila.dev/blog/2024-05-31_aws-finops-basics/</link>
       <pubDate>Fri, 31 May 2024 09:48:59 +1200</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-05-31_aws-finops-basics/</guid>
-      <description>Sydney Harbour Bridge, about 9 years of build time   Understanding and managing Cloud Expenditure is an increasingly sought after topic with companies as the focus on Cloud Financial Management is increasing. Existing AWS customers with migrated workloads in the Cloud that are mature are looking to optimise their Cloud Costs and realise the dream of low-cost elasticity.
-At the same time, new projects that start their journey in the Cloud can also find themselves out of control of their Cloud Expenditure, without being able to control and react to unexpected spending patterns.</description>
+      <description>&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2024_05_31_aws_finops_banner.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Sydney Harbour Bridge, about 9 years of build time&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;Understanding and managing Cloud Expenditure is an increasingly sought after topic with companies as the focus on Cloud Financial Management is increasing. Existing AWS customers with migrated workloads in the Cloud that are mature are looking to optimise their Cloud Costs and realise the dream of low-cost elasticity.&lt;/p&gt;&#xA;&lt;p&gt;At the same time, new projects that start their journey in the Cloud can also find themselves out of control of their Cloud Expenditure, without being able to control and react to unexpected spending patterns. The main offering the Cloud, elasticity, that enables easy access to infrastructure that would otherwise take a long time to be provisioned, also provide an easy way accidentally end up with a large bill. A slight misconfiguration of the permission policies could allow a new developer to unintentionally rack up recurring Cloud costs.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS Multi-factor Authentication in Detail</title>
       <link>https://chamila.dev/blog/2024-04-03_aws-multi-factor-authentication-in-detail/</link>
       <pubDate>Wed, 03 Apr 2024 11:21:09 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-04-03_aws-multi-factor-authentication-in-detail/</guid>
-      <description>Multi-factor Authentication (MFA) is an easy way to enhance the security of your AWS cloud architecture with minimal work. It takes two minutes to enable, and minimizes the possibility of an account being compromised by tenfolds. This post and the associated video explores MFA in AWS and how to use it to control access to critical parts of your cloud architecture
-Single factor vs Multi factor The &amp;ldquo;multi&amp;rdquo; in MFA is as opposed to &amp;ldquo;single&amp;rdquo; factor authentication.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/_QegkHWsJSc?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;Multi-factor Authentication (MFA) is an easy way to enhance the security of your AWS cloud architecture with minimal work.&#xA;It takes two minutes to enable, and minimizes the possibility of an account being compromised by tenfolds.&#xA;This post and the associated video explores MFA in AWS and how to use it to control access to critical parts of your cloud architecture&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Deriving AWS Account ID from Access Key</title>
       <link>https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/</link>
       <pubDate>Mon, 11 Mar 2024 17:04:21 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/</guid>
-      <description>AWS Account IDs are interesting. They are not directly considered as sensitive, but on the other hand everyone seems to consider them as sensitive.
-It&amp;rsquo;s probably for good reason. You shouldn&amp;rsquo;t give out anything that isn&amp;rsquo;t needed to get work done, even if those data are not &amp;ldquo;sensitive&amp;rdquo; in particular. Your name isn&amp;rsquo;t sensitive in particular, but you don&amp;rsquo;t usually walk around with your name on your tshirt either.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/sXQ2NfMnt5k?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;AWS Account IDs are interesting. They are not directly considered as sensitive,&#xA;but on the other hand everyone seems to consider them as sensitive.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s probably for good reason. You shouldn&amp;rsquo;t give out anything that isn&amp;rsquo;t&#xA;needed to get work done, even if those data are not &amp;ldquo;sensitive&amp;rdquo; in particular.&#xA;Your name isn&amp;rsquo;t sensitive in particular, but you don&amp;rsquo;t usually walk around with your name on your tshirt either.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Setting Yubikey MFA for AWS CLI temporary credentials</title>
       <link>https://chamila.dev/blog/2024-01-18_setting-yubikey-mfa-for-aws-cli-temporary-credentials/</link>
       <pubDate>Thu, 18 Jan 2024 16:30:03 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-01-18_setting-yubikey-mfa-for-aws-cli-temporary-credentials/</guid>
-      <description>Walkway harness on a Redwood tree in Redwoods Tree Walk, Rotorua   It is a good practice to use temporary credentials in AWS instead of permanent IAM generated credentials that are long term and potentially leaked. AWS has different services that issue temporary credentials with given permission policies such as IAM Instance Profiles for EC2 instances, Lambda Execution Roles, ECS Task Roles, and IAM Roles Anywhere for those cases that require providing trusted access permissions to a process running outside of AWS.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2024-01-18_mfa_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Walkway harness on a Redwood tree in Redwoods Tree Walk, Rotorua&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;It is a good practice to use temporary credentials in AWS instead of permanent&#xA;IAM generated credentials that are long term and potentially leaked. AWS has&#xA;different services that issue temporary credentials with given permission&#xA;policies such as IAM Instance Profiles for EC2 instances, Lambda Execution&#xA;Roles, ECS Task Roles, and IAM Roles Anywhere for those cases that require&#xA;providing trusted access permissions to a process running outside of AWS.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Deploying Rust on Lambda</title>
       <link>https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/</link>
       <pubDate>Tue, 16 Jan 2024 12:57:07 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/</guid>
-      <description>Dead (not a professional opinion) Pine tree on the coastal California   Following up from the last post let&amp;rsquo;s explore how to use Rust in Lambda functions.
-AWS has introduced a neat cargo command to make life easier and focus on building the business logic rather than get bogged down in deployment details. This is the cargo lambda command. Installing the command is pretty straightforward on a linux environment.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2024-01-16_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Dead (not a professional opinion) Pine tree on the coastal California&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;Following up from the &lt;a href=&#34;https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/&#34;&gt;last post&lt;/a&gt;&#xA;let&amp;rsquo;s explore how to use Rust in Lambda functions.&lt;/p&gt;&#xA;&lt;p&gt;AWS has introduced a neat &lt;code&gt;cargo&lt;/code&gt; command to make life easier and focus on&#xA;building the business logic rather than get bogged down in deployment details.&#xA;This is the &lt;a href=&#34;https://www.cargo-lambda.info/guide/getting-started.html&#34;&gt;&lt;code&gt;cargo lambda&lt;/code&gt;&#xA;command&lt;/a&gt;. Installing&#xA;the command is pretty straightforward on a linux environment.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pip3 install cargo-lambda&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;One detail to note is that &lt;code&gt;cargo lambda&lt;/code&gt; command uses &lt;code&gt;zig&lt;/code&gt; toolchain to&#xA;facilitate cross compiling the Rust code. This is important because Rust in&#xA;Lambda runs on the OS only runtimes which run on &lt;a href=&#34;https://docs.aws.amazon.com/lambda/latest/dg/runtimes-provided.html&#34;&gt;Amazon Linux&#xA;versions&lt;/a&gt;.&#xA;So, unless you&amp;rsquo;re developing on a Linux workstation, chances are you&amp;rsquo;d probably&#xA;be cross compiling your code. &lt;code&gt;zig&lt;/code&gt; toolchain is used because it comes built in&#xA;with the &lt;code&gt;cargo-zigbuild&lt;/code&gt; crate. More information on cross-compiling and known&#xA;issues can be found &lt;a href=&#34;https://www.cargo-lambda.info/guide/cross-compiling.html&#34;&gt;on the&#xA;documentation&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Getting Started with AWS Rust SDK</title>
       <link>https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/</link>
       <pubDate>Mon, 15 Jan 2024 05:26:45 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/</guid>
-      <description>Some building in Washington DC. It&amp;#39;s just pretty, not related to Rust or AWS   AWS re:Invent 2023 announced the GA versions of the Rust and Kotlin SDKs. The SDK was in developer preview for sometime, and this release allows the use of it in production. Following is an introduction to the Rust SDK, its defaults, and a few detailed scenarios that are different from the default cases.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2024-01-15_aws_rust_sdk_header.jpg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Some building in Washington DC. It&amp;#39;s just pretty, not related to Rust or AWS&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;AWS re:Invent 2023 announced &lt;a href=&#34;https://aws.amazon.com/about-aws/whats-new/2023/11/aws-sdk-rust/&#34;&gt;the GA versions of the&#xA;Rust&lt;/a&gt; and&#xA;Kotlin SDKs. The SDK was in developer preview for sometime, and this release&#xA;allows the use of it in production. Following is an introduction to&#xA;the Rust SDK, its defaults, and a few detailed scenarios that are different&#xA;from the default cases.&lt;/p&gt;&#xA;&lt;p&gt;The working code for the following examples are in&#xA;&lt;a href=&#34;https://github.com/chamilad/aws-rust-hello-world&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Pi-hole Restore CLI Tool</title>
       <link>https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/</link>
       <pubDate>Mon, 19 Jun 2023 00:09:59 +1200</pubDate>
-      
       <guid>https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/</guid>
-      <description>A loading tunnel in Wrights Hill Fortress   I made a thing (this time more niche than the last project).
-I&amp;rsquo;ve been using Pi-hole as a DNS ad-blocker and an overall local DNS solution for about two years now. I lived dangerously for most of this time with only a single old Raspberry Pi 2 with Pi-hole in it as the sole DNS server for the local network.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2023-06-19_pihole_restore.png&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;A loading tunnel in Wrights Hill Fortress&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;I made a thing (this time more niche than the last project).&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been using Pi-hole as a DNS ad-blocker and an overall local DNS&#xA;solution for about two years now. I lived dangerously for most of this time&#xA;with only a single old Raspberry Pi 2 with Pi-hole in it as the sole DNS server for&#xA;the local network.&lt;/p&gt;&#xA;&lt;p&gt;That changed recently when I added another couple of Docker containers as&#xA;Pi-hole servers to the network.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Information Security Compliance in AWS Solutions</title>
       <link>https://chamila.dev/blog/2023-06-04_information-security-compliance-in-aws-solutions/</link>
       <pubDate>Sun, 04 Jun 2023 19:30:02 +1200</pubDate>
-      
       <guid>https://chamila.dev/blog/2023-06-04_information-security-compliance-in-aws-solutions/</guid>
-      <description>Information Security Compliance can be a tiring and complicated exercise for all parties involved. Making a solution compliant for the set of security standards and controls is a massive effort, especially if the architecting stage did not think about these requirements in the first place.
-It&amp;rsquo;s even more complex when it comes to proving the compliance level of the solution to internal or external auditors. The language InfoSec and Security Auditors speak is vastly different from the language used by engineers.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2023-06-04_compliance_header.png&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;Information Security Compliance can be a tiring and complicated exercise for all parties&#xA;involved. Making a solution compliant for the set of security standards and&#xA;controls is a massive effort, especially if the architecting stage did not&#xA;think about these requirements in the first place.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s even more complex when it comes to proving the compliance level of the&#xA;solution to internal or external auditors. The language InfoSec and Security&#xA;Auditors speak is vastly different from the language used by engineers.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Malware Protection on AWS</title>
       <link>https://chamila.dev/blog/2023-02-25_malware-protection-on-aws/</link>
       <pubDate>Sat, 25 Feb 2023 07:00:19 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2023-02-25_malware-protection-on-aws/</guid>
-      <description>Point Dorset, Wellington   Malware protection in compute workloads in AWS is a topic that I&amp;rsquo;ve been looking into recently. After working with security auditors for a few weeks (adding up a few months now), I was essentially forced to evaluate all the possible scenarios for malware protection in AWS for typical workloads.
-Typical Malware Protection Requirements The following key features can be identified as typical malware protection requirements for most solutions.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2023-02-25_aws-malware-protection-header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Point Dorset, Wellington&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;Malware protection in compute workloads in AWS is a topic that I&amp;rsquo;ve been&#xA;looking into recently. After working with security auditors for a few weeks&#xA;(adding up a few months now), I was essentially forced to evaluate all the&#xA;possible scenarios for malware protection in AWS for typical workloads.&lt;/p&gt;&#xA;&lt;h2 id=&#34;typical-malware-protection-requirements&#34;&gt;Typical Malware Protection Requirements&lt;/h2&gt;&#xA;&lt;p&gt;The following key features can be identified as typical malware protection&#xA;requirements for most solutions.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS Backup: Implementing a Simple Cross-Account Backup Strategy</title>
       <link>https://chamila.dev/blog/2023-02-20_aws-backup-implementing-a-simple-cross-account-backup-strategy/</link>
       <pubDate>Mon, 20 Feb 2023 00:15:44 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2023-02-20_aws-backup-implementing-a-simple-cross-account-backup-strategy/</guid>
-      <description>Kothmale Valley view near Ramboda    Following up from the last two1 blog posts2 on AWS Backup, this post focuses on a technical implementation of a simple backup strategy implementation for AWS Organizations.
- Let&amp;rsquo;s extend the last two posts on AWS Backup to an example.
-In this scenario, we have an AWS Organization with three accounts, management, production (prod), and central backup (backup). There is a DynamoDB table named tracking and an RDS MySQL instance named mydb that contains critical production data in the prod account.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2023-02-20-backups03_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Kothmale Valley view near Ramboda&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Following up from the last &lt;a href=&#34;https://chamila.dev/blog/2023-01-18_aws-backup-intro/&#34;&gt;two&lt;/a&gt;&lt;sub&gt;1&lt;/sub&gt; &lt;a href=&#34;https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/&#34;&gt;blog&#xA;posts&lt;/a&gt;&lt;sub&gt;2&lt;/sub&gt;&#xA;on AWS Backup, this post focuses on a technical implementation of a simple&#xA;backup strategy implementation for AWS Organizations.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s extend the last two posts on AWS Backup to an example.&lt;/p&gt;&#xA;&lt;p&gt;In this scenario, we have an AWS Organization with three accounts, management,&#xA;production (&lt;code&gt;prod&lt;/code&gt;), and central backup (&lt;code&gt;backup&lt;/code&gt;). There is a DynamoDB table&#xA;named &lt;code&gt;tracking&lt;/code&gt; and an RDS MySQL instance named &lt;code&gt;mydb&lt;/code&gt; that contains critical&#xA;production data in the &lt;code&gt;prod&lt;/code&gt; account. Backing up data with AWS Backup needs to&#xA;be set up for these two databases.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS Backup: Cross-Account Backups</title>
       <link>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</link>
       <pubDate>Mon, 13 Feb 2023 23:29:05 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2023-02-13_aws-backup-cross-account-backups/</guid>
-      <description>Mount Kaukau    Continuing from the previous article on introduction to AWS Backup
- Offsite Backups Let&amp;rsquo;s talk theory for a bit.
-Data protection in a given solution depends on how thoughtful the backup strategy is. While a simple Backup Plan in AWS Backup that periodically takes a backup of the database into the Account-local Vault could technically be considered as a backup strategy, it is not a good one.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2023-02-13_backups02_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Mount Kaukau&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Continuing from the previous article on &lt;a href=&#34;https://chamila.dev/blog/2023-01-18_aws-backup-intro/&#34;&gt;introduction to AWS&#xA;Backup&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;offsite-backups&#34;&gt;Offsite Backups&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s talk theory for a bit.&lt;/p&gt;&#xA;&lt;p&gt;Data protection in a given solution depends on how thoughtful the backup&#xA;strategy is. While a simple Backup Plan in AWS Backup that periodically takes a&#xA;backup of the database into the Account-local Vault could technically be&#xA;considered as a backup strategy, it is not a good one. For an effective and&#xA;resilient data protection policy, backups should exist in locations other than&#xA;the solution deployment, with access to them separated by network and access&#xA;levels.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS Backup: Introduction</title>
       <link>https://chamila.dev/blog/2023-01-18_aws-backup-intro/</link>
       <pubDate>Wed, 18 Jan 2023 09:14:05 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2023-01-18_aws-backup-intro/</guid>
-      <description>What else is better than a photo of water being backed up - Birchville Dam   AWS Backup AWS Backup is a service introduced a few years ago to centrally manage backup options for various AWS services that deal with data persistence. These include RDS, DynamoDB, EBS, EFS, EC2, S3, and Amazon FSx. What was earlier at best by processes and architecture reviews and audits in different services with different strategies can be consolidated into a single service with a single Console.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2023-01-18_backups01_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;What else is better than a photo of water being backed up - Birchville Dam&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;h2 id=&#34;aws-backup&#34;&gt;AWS Backup&lt;/h2&gt;&#xA;&lt;p&gt;AWS Backup is a service introduced a few years ago to centrally manage backup&#xA;options for various AWS services that deal with data persistence. These include&#xA;RDS, DynamoDB, EBS, EFS, EC2, S3, and Amazon FSx. What was earlier at best by&#xA;processes and architecture reviews and audits in different services with&#xA;different strategies can be consolidated into a single service with a single&#xA;Console. For example, what was earlier RDS specific backup design would be&#xA;collected into an AWS Backup Plan that aligns the specific RDS instance with&#xA;the rest of the data persistence in a solution without having to manually&#xA;compare different approaches for backup with different services.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution</title>
       <link>https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/</link>
       <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/</guid>
-      <description>Whanganui War Memorial Centre    Continuing comparison between Machine Learning and Software Development, from the previous article in the series.
- MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution   Differences between Software Development projects and Machine Learning projects were discussed in the previous articles.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2022-11-28_mlops_04_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Whanganui War Memorial Centre&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Continuing comparison between Machine Learning and Software Development, from&#xA;the &lt;a href=&#34;https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/&#34;&gt;previous article&lt;/a&gt; in the series.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/&#34;&gt;MLOps for Non-ML Engineers 01 - Introduction&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/&#34;&gt;MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/&#34;&gt;MLOps for Non-ML Engineers 03 - More Differences Between ML and SW&#xA;Dev&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution&lt;/li&gt;&#xA;&lt;/ol&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Differences between Software Development projects and Machine&#xA;Learning projects were discussed in the previous articles. Let&amp;rsquo;s look at ML Engineering&#xA;responsibilities and other unique aspects involved in a Machine Learning&#xA;project.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev</title>
       <link>https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/</link>
       <pubDate>Fri, 25 Nov 2022 06:37:25 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/</guid>
-      <description>Evans Bay, Wellington   How is Machine Learning Different?  Continuing comparison between Machine Learning and Software Development, from the previous article in the series.
- MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution   Source Version Control Software development and version controlling is virtually impossible to separate.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2022-11-25_mlops_03_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Evans Bay, Wellington&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;h2 id=&#34;how-is-machine-learning-different&#34;&gt;How is Machine Learning Different?&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Continuing comparison between Machine Learning and Software Development, from&#xA;the &lt;a href=&#34;https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/&#34;&gt;previous article&lt;/a&gt; in the series.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/&#34;&gt;MLOps for Non-ML Engineers 01 - Introduction&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/&#34;&gt;MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/&#34;&gt;MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project&#xA;Execution&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&lt;/blockquote&gt;&#xA;&lt;h3 id=&#34;source-version-control&#34;&gt;Source Version Control&lt;/h3&gt;&#xA;&lt;p&gt;Software development and version controlling is virtually impossible to&#xA;separate. Yes, there are still people who treat attaching source code to emails&#xA;and JIRA tickets as version control, and some developers may refuse to learn&#xA;git citing &amp;ldquo;separation of concerns&amp;rdquo; or whatever. The world is not perfect. But&#xA;overall, code progresses through the build and deployment lifecycle with version&#xA;control closely supporting it.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</title>
       <link>https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/</link>
       <pubDate>Tue, 22 Nov 2022 06:32:18 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/</guid>
-      <description>Lighthouse, Galle, Sri Lanka   How is Machine Learning Different?  Continuing comparison between Machine Learning and Software Development, from the previous article in the series.
- MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution   Understanding the solution Various iterations of design and architecture of a software development project usually determines the approach of the solution for a software engineering problem.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2022-11-22_mlops_02_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Lighthouse, Galle, Sri Lanka&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;h2 id=&#34;how-is-machine-learning-different&#34;&gt;How is Machine Learning Different?&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Continuing comparison between Machine Learning and Software Development, from&#xA;the &lt;a href=&#34;https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/&#34;&gt;previous article&lt;/a&gt; in the series.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/&#34;&gt;MLOps for Non-ML Engineers 01 - Introduction&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/&#34;&gt;MLOps for Non-ML Engineers 03 - More Differences Between ML and SW&#xA;Dev&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/&#34;&gt;MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project&#xA;Execution&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&lt;/blockquote&gt;&#xA;&lt;h3 id=&#34;understanding-the-solution&#34;&gt;Understanding the solution&lt;/h3&gt;&#xA;&lt;p&gt;Various iterations of design and architecture of a software development&#xA;project usually determines the approach of the solution for a software&#xA;engineering problem. As the design becomes more verbose, the higher the&#xA;likelihood that details can change based on new findings. These changes usually&#xA;have a low cost of switching, and do not impact the end product and the&#xA;development pipeline significantly. As much as initial understanding of key&#xA;requirments of the problem is important, approaches like Agile Methodology&#xA;try to avoid committing to a grand detailed design at the start of the project&#xA;and instead develops the solution and detailed design in iterations.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>MLOps for Non-ML Engineers 01 - Introduction</title>
       <link>https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/</link>
       <pubDate>Sat, 19 Nov 2022 05:49:28 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/</guid>
-      <description>Bixby Creek Bridge on CA-01 highway, Monterey, California    This is the first part of a series of posts on the topic.
- MLOps for Non-ML Engineers 01 - Introduction MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution   Last year I had an opportunity to work with a team of Data Scientists on developing an Enterprise AI/ML practice.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2022-11-19_mlops_01_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Bixby Creek Bridge on CA-01 highway, Monterey, California&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;This is the first part of a series of posts on the topic.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;MLOps for Non-ML Engineers 01 - Introduction&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/&#34;&gt;MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/&#34;&gt;MLOps for Non-ML Engineers 03 - More Differences Between ML and SW&#xA;Dev&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/&#34;&gt;MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project&#xA;Execution&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Last year I had an opportunity to work with a team of Data Scientists on&#xA;developing an Enterprise AI/ML practice. As someone who had not interacted at&#xA;development level with Machine Learning and AI before, I jumped on the chance&#xA;to learn something new and find a challenge on a new area. The following are a&#xA;couple of notes (more to myself) of key points I learnt as an engineer with only&#xA;software development and DevOps experience.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Rotating AWS Secrets Manager Secrets with Lambda</title>
       <link>https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/</link>
       <pubDate>Tue, 01 Nov 2022 07:09:49 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/</guid>
-      <description>Again, the only photo with me for now that&amp;#39;s closest to the theme, a spider weaving a trap near Manigala, Sri Lanka   Secrets Manager secret types AWS Secret Manager supports a several types of secrets. These are mainly to support effective secret management by integrating them closer with the AWS Services they support. These are mainly various types of database services offered by AWS, which is one of the key uses for using Secrets Manager to manage master credentials.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2022-11-01_secret_heading.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Again, the only photo with me for now that&amp;#39;s closest to the theme, a spider weaving a trap near Manigala, Sri Lanka&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;h2 id=&#34;secrets-manager-secret-types&#34;&gt;Secrets Manager secret types&lt;/h2&gt;&#xA;&lt;p&gt;AWS Secret Manager supports a several types of secrets. These are mainly to&#xA;support effective secret management by integrating them closer with the AWS&#xA;Services they support. These are mainly various types of database services&#xA;offered by AWS, which is one of the key uses for using Secrets Manager to&#xA;manage master credentials.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Automating Snowflake</title>
       <link>https://chamila.dev/blog/2021-11-12_automating-snowflake/</link>
       <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2021-11-12_automating-snowflake/</guid>
-      <description>Only photo with me for now that&amp;#39;s closest to the theme   I had an opportunity to work on automating a Snowflake workflow last year. The scenario involved a typical Snowflake based setup for a Data Warehouse where data would be ingested from an Azure Blob Storage or AWS S3 and stored on multiple databases. I&amp;rsquo;m not going to dive into intricate details, but I&amp;rsquo;d like to write down some of the approaches I wanted to take during this exercise.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2021_11_12_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Only photo with me for now that&amp;#39;s closest to the theme&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;I had an opportunity to work on automating a Snowflake workflow last year. The scenario involved a typical Snowflake based setup for a Data Warehouse where data would be ingested from an Azure Blob Storage or AWS S3 and stored on multiple databases. I&amp;rsquo;m not going to dive into intricate details, but I&amp;rsquo;d like to write down some of the approaches I wanted to take during this exercise. And yes, that makes this blog post way overdue.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>CI/CD for Apache Nifi 02: Automation with NipyAPI</title>
       <link>https://chamila.dev/blog/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</link>
       <pubDate>Sun, 18 Jul 2021 22:20:47 +1200</pubDate>
-      
       <guid>https://chamila.dev/blog/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/</guid>
-      <description>Wharf on a good day   In the earlier post on setting up Apache Nifi and Nifi Registry, two Nifi and Registry deployments set up and integrated with each other. This post will focus on automating the migrations between the two environments. Just to refresh, the following diagram shows what we are trying to achieve.
- Though this shows three environments, we have only taken the dev -&amp;gt; test step into consideration in the current and the previous posts.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2021-07-18_nifi_cicd_02_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Wharf on a good day&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;In the &lt;a href=&#34;https://chamila.dev/post/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/&#34;&gt;earlier post on setting up Apache Nifi and Nifi Registry&lt;/a&gt;, two Nifi and Registry deployments set up and integrated with each other. This post will focus on automating the migrations between the two environments. Just to refresh, the following diagram shows what we are trying to achieve.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2021-07-17_nifi_cicd_design.png&#34; alt=&#34;CI/CD design for Nifi&#34;&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Though this shows three environments, we have only taken the &lt;code&gt;dev&lt;/code&gt; -&amp;gt; &lt;code&gt;test&lt;/code&gt; step into consideration in the current and the previous posts. This is because once you automate the series of steps, it&amp;rsquo;s just a matter of pointing the script to the next step.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>CI/CD for Apache Nifi 01 - Introduction and Set up</title>
       <link>https://chamila.dev/blog/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</link>
       <pubDate>Sat, 17 Jul 2021 13:21:12 +1200</pubDate>
-      
       <guid>https://chamila.dev/blog/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/</guid>
-      <description>Harbour on a misty day    I&amp;rsquo;m getting back to writing after more than an year of a gap. A lot happened during this period, moved from one city to another, changed employers, but mostly, I think I switched my writing time for some PS4 time. At one point though, you come to accept that your best K/D is going to be 0.2 and you&amp;rsquo;re too old to get better.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2021-07-17_nifi_cicd_01_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Harbour on a misty day&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;I&amp;rsquo;m getting back to writing after more than an year of a gap. A lot happened during this period, moved from one city to another, changed employers, but mostly, I think I switched my writing time for some PS4 time. At one point though, you come to accept that your best K/D is going to be 0.2 and you&amp;rsquo;re too old to get better. In any case, I managed to do a few rounds of bug fixing to my &lt;a href=&#34;https://chamila.dev/post/2020-03-14_a-standalone-prometheus-exporter-for-kibana&#34;&gt;Kibana Prometheus Exporter&lt;/a&gt;, and learn a few things in an area I didn&amp;rsquo;t have that much of experience in, Big Data.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>A Standalone Prometheus Exporter for Kibana</title>
       <link>https://chamila.dev/blog/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</link>
       <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</guid>
-      <description>I wrote a Prometheus Exporter that converts and exposes some metrics from Kibana API. This was mostly inspired by an already existing Exporter, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.
-kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password The Exporter is pretty basic one written in less than 500 lines of collective Go code.</description>
+      <description>&lt;p&gt;I wrote a &lt;a href=&#34;https://github.com/chamilad/kibana-prometheus-exporter&#34;&gt;Prometheus Exporter that converts and exposes some metrics from Kibana API&lt;/a&gt;. This was mostly inspired by &lt;a href=&#34;https://github.com/pjhampton/kibana-prometheus-exporter/&#34;&gt;an already existing Exporter&lt;/a&gt;, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The Exporter is pretty basic one written in less than 500 lines of collective Go code. The following metrics are exposed to be scraped by Prometheus.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</title>
-      <link>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</link>
+      <link>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03---multi-tenancy-with-keycloak-and-kibana/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
-      
-      <guid>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/</guid>
-      <description>Horton Plains at sunrise, Sri Lanka    This is a continuation of the addendum to a series of articles on ELK on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The previous post on this series was about enabling SSO between Kibana and KeyCloak.</description>
+      <guid>https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03---multi-tenancy-with-keycloak-and-kibana/</guid>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2020-02-12_multitenant_sso_header.jpg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Horton Plains at sunrise, Sri Lanka&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;This is a continuation of the addendum to a series of articles on ELK on K8s.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a&#34;&gt;ElasticSearch on K8s: 01 — Basic Design&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/&#34;&gt;ElasticSearch on K8s: 02 — Log Collection with Filebeat&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/&#34;&gt;ElasticSearch on K8s: 03 - Log Enrichment with Logstash&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/&#34;&gt;ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/&#34;&gt;ElasticSearch on K8s: 05 - Visualization and Production Readying&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-26_elasticsearch-index-management/&#34;&gt;ElasticSearch Index Management&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/&#34;&gt;Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/&#34;&gt;Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/&#34;&gt;The previous post on this series&lt;/a&gt; was about enabling SSO between Kibana and KeyCloak. However, it did not address any concerns about multi-tenancy with SSO. This article aims to come up with a design for a multi-tenant SSO solution for Kibana with KeyCloak.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</title>
-      <link>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</link>
+      <link>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02---basic-sso-with-role-assignment/</link>
       <pubDate>Mon, 10 Feb 2020 20:26:46 +1300</pubDate>
-      
-      <guid>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/</guid>
-      <description>This is a continuation of the addendum to a series of articles on ELK on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  As discussed in the last article, I will try to lay out the configuration details of a usable SSO based authn/authr design for an ELK deployment.</description>
+      <guid>https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02---basic-sso-with-role-assignment/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2020-02-10_authn_authr_elk_02_header.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;This is a continuation of the addendum to a series of articles on ELK on K8s.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a&#34;&gt;ElasticSearch on K8s: 01 — Basic Design&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/&#34;&gt;ElasticSearch on K8s: 02 — Log Collection with Filebeat&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/&#34;&gt;ElasticSearch on K8s: 03 - Log Enrichment with Logstash&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/&#34;&gt;ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/&#34;&gt;ElasticSearch on K8s: 05 - Visualization and Production Readying&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-26_elasticsearch-index-management/&#34;&gt;ElasticSearch Index Management&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/&#34;&gt;Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/&#34;&gt;Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;As discussed in the last article, I will try to lay out the configuration details of a usable SSO based authn/authr design for an ELK deployment. Note that for certain features mentioned in this article to work, some features that are in the paid ElasticSearch tiers have to be available.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</title>
-      <link>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</link>
+      <link>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01---a-blueprint-for-multi-tenant-sso/</link>
       <pubDate>Wed, 27 Nov 2019 19:43:20 +1300</pubDate>
-      
-      <guid>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/</guid>
-      <description>Point Sur, Cali 01    I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s.</description>
+      <guid>https://chamila.dev/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01---a-blueprint-for-multi-tenant-sso/</guid>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2019-11-27_header.jpg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Point Sur, Cali 01&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a&#34;&gt;ElasticSearch on K8s: 01 — Basic Design&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/&#34;&gt;ElasticSearch on K8s: 02 — Log Collection with Filebeat&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/&#34;&gt;ElasticSearch on K8s: 03 - Log Enrichment with Logstash&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/&#34;&gt;ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/&#34;&gt;ElasticSearch on K8s: 05 - Visualization and Production Readying&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamilad.github.io/post/2019-11-26_elasticsearch-index-management/&#34;&gt;ElasticSearch Index Management&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/&#34;&gt;Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/&#34;&gt;Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;So far, the articles have been discussing points related to functional requirements of a Log Aggregation stack deployed on K8s. The functionalities involved ELK core functions and how to mix and match K8s features to get the best out of the core ELK features. After getting the stack to receive and store logs, there are parallels that should be addressed. User management is one these critical features that this article will be discussing about.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ElasticSearch Index Management</title>
       <link>https://chamila.dev/blog/2019-11-26_elasticsearch-index-management/</link>
       <pubDate>Tue, 26 Nov 2019 22:03:00 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-11-26_elasticsearch-index-management/</guid>
-      <description>The comms tower on top of Riverston, Sri Lanka   As the series on ElasticSearch deployment management in K8s is complete, I thought of writing down some of the Index Management tasks that I had to implement in order to reduce the manual work involved in cluster maintenance.
- Following is the series of posts on ElasticSearch on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  The following management steps are not mandatory to be implemented in a cluster to be production ready, however having them in place would greatly reduce some of the common headaches involved in an ELK stack management.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2019-11-26_elasticsearch-index-management_01.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;The comms tower on top of Riverston, Sri Lanka&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;As the series on ElasticSearch deployment management in K8s is complete, I thought of writing down some of the Index Management tasks that I had to implement in order to reduce the manual work involved in cluster maintenance.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Following is the series of posts on ElasticSearch on K8s.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a&#34;&gt;ElasticSearch on K8s: 01 — Basic Design&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/&#34;&gt;ElasticSearch on K8s: 02 — Log Collection with Filebeat&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/&#34;&gt;ElasticSearch on K8s: 03 - Log Enrichment with Logstash&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/&#34;&gt;ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/&#34;&gt;ElasticSearch on K8s: 05 - Visualization and Production Readying&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;ElasticSearch Index Management&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/&#34;&gt;Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/&#34;&gt;Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/&#34;&gt;Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;The following management steps are not mandatory to be implemented in a cluster to be production ready, however having them in place would greatly reduce some of the common headaches involved in an ELK stack management.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ElasticSearch on K8s: 05 - Visualization and Production Readying</title>
-      <link>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</link>
+      <link>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05---visualization-and-production-readying/</link>
       <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
-      
-      <guid>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying/</guid>
-      <description>Woolshed Hut on Mt. Somers    This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Visualization Kibana is a web application which can be used to query data from an ElasticSearch cluster.</description>
+      <guid>https://chamila.dev/blog/2019-11-25_elasticsearch-on-k8s-05---visualization-and-production-readying/</guid>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2019-11-25_elasticsearch-on-k8s-05_01.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Woolshed Hut on Mt. Somers&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;This is part of a series of short articles on setting up an ELK deployment on K8s.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a&#34;&gt;ElasticSearch on K8s: 01 — Basic Design&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/&#34;&gt;ElasticSearch on K8s: 02 — Log Collection with Filebeat&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/&#34;&gt;ElasticSearch on K8s: 03 - Log Enrichment with Logstash&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/&#34;&gt;ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;ElasticSearch on K8s: 05 - Visualization and Production Readying&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-26_elasticsearch-index-management/&#34;&gt;ElasticSearch Index Management&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/&#34;&gt;Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/&#34;&gt;Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/&#34;&gt;Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h1 id=&#34;visualization&#34;&gt;Visualization&lt;/h1&gt;&#xA;&lt;p&gt;Kibana is a web application which can be used to query data from an ElasticSearch cluster. It does so through issuing queries to the ElasticSearch cluster through the REST API. Additionally it also acts as a widget and dashboard server that can be used to visualize specific queries, as well as a management frontend that can perform several actions like role and user management that are a lot cumbersome to do so through the ElasticSearch REST API. Kibana itself doesn’t have a requirement for persistence as it uses ElasticSearch itself as a persistence layer.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch</title>
-      <link>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</link>
+      <link>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04---log-storage-and-search-with-elasticsearch/</link>
       <pubDate>Sat, 23 Nov 2019 16:01:40 +1300</pubDate>
-      
-      <guid>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/</guid>
-      <description>The morning shadow on the lower mountaineous plain beside Adam&amp;#39;s Peak, Sri Lanka    This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Storage and Indexing Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying.</description>
+      <guid>https://chamila.dev/blog/2019-11-23_elasticsearch-on-k8s-04---log-storage-and-search-with-elasticsearch/</guid>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2019-11-23_elasticsearch-on-k8s-04_01.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;The morning shadow on the lower mountaineous plain beside Adam&amp;#39;s Peak, Sri Lanka&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;This is part of a series of short articles on setting up an ELK deployment on K8s.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a&#34;&gt;ElasticSearch on K8s: 01 — Basic Design&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/&#34;&gt;ElasticSearch on K8s: 02 — Log Collection with Filebeat&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/&#34;&gt;ElasticSearch on K8s: 03 - Log Enrichment with Logstash&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying&#34;&gt;ElasticSearch on K8s: 05 - Visualization and Production Readying&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-26_elasticsearch-index-management/&#34;&gt;ElasticSearch Index Management&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/&#34;&gt;Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/&#34;&gt;Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/&#34;&gt;Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h1 id=&#34;storage-and-indexing&#34;&gt;Storage and Indexing&lt;/h1&gt;&#xA;&lt;p&gt;Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying. ElasticSearch is the tool of choice, the main attraction of the stack to be honest. It’s an efficient useful tool to store and index unstructured data. How ElasticSearch&amp;rsquo;s design (which is something that was done in a time when &lt;em&gt;Docker was not even invented yet&lt;/em&gt;) is matched to K8s is an interesting story of itself.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ElasticSearch on K8s: 03 - Log Enrichment with Logstash</title>
       <link>https://chamila.dev/blog/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</link>
       <pubDate>Fri, 22 Nov 2019 01:05:37 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/</guid>
-      <description>A stash of sugar cane ready to be processed into sugar and Arrack    This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Enrichment Now that the logs are being collected from the required sources, it’s time to start making some sense out of them.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2019-11-22_elasticsearch-on-k8s-03_01.jpeg#layoutOutsetCenter&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;A stash of sugar cane ready to be processed into sugar and Arrack&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;This is part of a series of short articles on setting up an ELK deployment on K8s.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a&#34;&gt;ElasticSearch on K8s: 01 — Basic Design&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/&#34;&gt;ElasticSearch on K8s: 02 — Log Collection with Filebeat&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;ElasticSearch on K8s: 03 - Log Enrichment with Logstash&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/&#34;&gt;ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying&#34;&gt;ElasticSearch on K8s: 05 - Visualization and Production Readying&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-26_elasticsearch-index-management/&#34;&gt;ElasticSearch Index Management&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/&#34;&gt;Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/&#34;&gt;Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/&#34;&gt;Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h1 id=&#34;log-enrichment&#34;&gt;Log Enrichment&lt;/h1&gt;&#xA;&lt;p&gt;Now that the logs are being collected from the required sources, it’s time to start making some sense out of them. This part of the process is called enrichment, and Logstash is the tool of choice in our stack.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Medium to Hugo</title>
       <link>https://chamila.dev/blog/2019-10-20_medium-to-hugo/</link>
       <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-10-20_medium-to-hugo/</guid>
-      <description>Taking a minor break from the &amp;ldquo;ElasticSearch on K8s&amp;rdquo; series
- tl;dr: I&amp;rsquo;m moving back to maintaining my own site rather than depending on Medium as a platform for technical blogging, because of various reasons. Also introducing a tool to convert from Medium to Hugo.
-A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;ve been writing blog posts for more than a decade now, on various platforms, SaaS ones to self-hosted solutions.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Taking a minor break from the &amp;ldquo;ElasticSearch on K8s&amp;rdquo; series&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: I&amp;rsquo;m moving back to maintaining my own site rather than depending on Medium as a platform for technical blogging, because of various reasons. Also introducing a tool to convert from Medium to Hugo.&lt;/p&gt;&#xA;&lt;h2 id=&#34;a-tale-of-not-making-up-my-mind&#34;&gt;A tale of not making up my mind&lt;/h2&gt;&#xA;&lt;p&gt;To start with somewhat of a boast, I&amp;rsquo;ve been writing blog posts for more than a decade now, on various platforms, SaaS ones to self-hosted solutions. Most of the posts are now nowhere to be seen since I cannot seem to make up my mind about where to keep my writings. I started some serious technical blogging about five years ago. That started with using Github Pages as a hosting service using Octopress as a site generator. After a while, getting exhausted on the themeing and waiting for the next Octopress version, I switched to Medium halfway through, importing all the posts.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ElasticSearch on K8s: 02 — Log Collection with Filebeat</title>
       <link>https://chamila.dev/blog/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</link>
       <pubDate>Sat, 21 Sep 2019 05:57:08 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</guid>
-      <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_0.jpeg#layoutOutsetCenter&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;This is part of a series of short articles on setting up an ELK deployment on K8s.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a&#34;&gt;ElasticSearch on K8s: 01 — Basic Design&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;ElasticSearch on K8s: 02 — Log Collection with Filebeat&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/&#34;&gt;ElasticSearch on K8s: 03 - Log Enrichment with Logstash&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/&#34;&gt;ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying&#34;&gt;ElasticSearch on K8s: 05 - Visualization and Production Readying&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-26_elasticsearch-index-management/&#34;&gt;ElasticSearch Index Management&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/&#34;&gt;Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/&#34;&gt;Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/&#34;&gt;Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;log-collection&#34;&gt;Log Collection&lt;/h3&gt;&#xA;&lt;p&gt;The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint. Let’s explore these three aspects in detail.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ElasticSearch on K8s: 01 — Basic Design</title>
       <link>https://chamila.dev/blog/2019-09-19_elasticsearch-on-k8s-01basic-design/</link>
       <pubDate>Thu, 19 Sep 2019 20:29:53 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-09-19_elasticsearch-on-k8s-01basic-design/</guid>
-      <description>A design for a useful ELK deployment on K8s Log aggregation in a K8s environment is something I have lightly touched upon previously in multiple occasions. However setting up a minimal but a reliable log aggregation stack on top of K8s could quickly become an evolutionary process with each step improving on the previous one (and of course, everyone thinks they can do log aggregation before they actually start to do so).</description>
+      <description>&lt;h4 id=&#34;a-design-for-a-useful-elk-deployment-onk8s&#34;&gt;A design for a useful ELK deployment on K8s&lt;/h4&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2019-09-19_elasticsearch-on-k8s-01basic-design_0.jpeg#layoutOutsetCenter&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Log aggregation in a K8s environment is something I have lightly touched upon previously in multiple occasions. However setting up a minimal but a reliable log aggregation stack on top of K8s could quickly become an evolutionary process with each step improving on the previous one (and of course, everyone thinks they can do log aggregation before they actually start to do so). The following is a pattern for ELK I came across while improving such a stack. While this pattern addresses most common requirements for a native K8s log aggregation stack, there could be better, more suitable patterns that you may have to consider when setting up solutions of your own.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Load Balancing and Reverse Proxying for Kubernetes Services</title>
       <link>https://chamila.dev/blog/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</link>
       <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</guid>
-      <description>Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic  Morning sunlight on Horton Plains National Park   In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.</description>
+      <description>&lt;h4 id=&#34;different-load-balancing-and-reverse-proxying-strategies-to-use-in-production-k8s-deployments-to-expose-services-to-outsidetraffic&#34;&gt;Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic&lt;/h4&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_0.jpeg#layoutOutsetCenter&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Morning sunlight on Horton Plains National Park&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Releasing DocBlock v0.1</title>
       <link>https://chamila.dev/blog/2019-02-15_releasing-docblock-v0.1/</link>
       <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-02-15_releasing-docblock-v0.1/</guid>
-      <description>A tool to automate technical content generation for configuration files Many months ago, a technical writer colleague of mine complained about how they were struggling to keep up with the frequent releases that the company was doing at the time. There were multiple products in their plate, with each having multiple configuration files (sometimes numbering more than 10). Although the configuration files overlapped within each product, because of the componentized platform the company had built the products upon, each product in theory could have different release versions of the components that used these configuration files.</description>
+      <description>&lt;h4 id=&#34;a-tool-to-automate-technical-content-generation-for-configuration-files&#34;&gt;A tool to automate technical content generation for configuration files&lt;/h4&gt;&#xA;&lt;p&gt;Many months ago, a technical writer colleague of mine complained about how they were struggling to keep up with the frequent releases that the company was doing at the time. There were multiple products in their plate, with each having multiple configuration files (sometimes numbering more than 10). Although the configuration files overlapped within each product, because of the componentized platform the company had built the products upon, each product in theory could have different release versions of the components that used these configuration files. All of these had to be documented into readable (and most importantly usable) technical content.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>How to Design a WSO2 Docker Image</title>
       <link>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</link>
       <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
-      <description>What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
-Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.</description>
+      <description>&lt;h4 id=&#34;what-should-be-your-concerns-for-wso2-ondocker&#34;&gt;What should be your concerns for WSO2 on Docker?&lt;/h4&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2018-12-24_how-to-design-a-wso2-docker-image_0.jpeg#layoutTextWidth&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://chamila.dev/thinking-of-moving-your-wso2-deployment-on-to-kubernetes-4e9a77b3377d&#34;&gt;Deploying WSO2 products on Containerized platforms&lt;/a&gt; is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on &lt;a href=&#34;https://github.com/wso2/docker-apim&#34;&gt;Docker&lt;/a&gt;, &lt;a href=&#34;https://github.com/wso2/kubernetes-apim/&#34;&gt;Kubernetes&lt;/a&gt;, &lt;a href=&#34;https://github.com/wso2/pivotal-cf-apim&#34;&gt;CloudFoundry&lt;/a&gt;, AWS ECS, and &lt;a href=&#34;https://github.com/wso2/dcos-apim&#34;&gt;Apache Mesos&lt;/a&gt;, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2018-12-24_how-to-design-a-wso2-docker-image_1.png#layoutTextWidth&#34;&gt;&lt;figcaption&gt;Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.com/api-management/install/)&lt;/figcaption&gt;&lt;/figure&gt;&#xA;&lt;p&gt;Docker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind. These approaches vary from an all files and configs pre-baked end to another end where almost everything, except a tiny helper layer, being mounted at Container run-time. However, not all these approaches are suitable for a WSO2 deployment, and figuring out these details can be a daunting task, especially at an earlier phase of the deployment. Therefore, it’s important to have a set of common &lt;strong&gt;guidelines&lt;/strong&gt;that can help determine which approach to take in each case. I emphasize the word &lt;strong&gt;guidelines&lt;/strong&gt; because these are only them, not hard rules or must-do’s in every deployment. There is freedom for the user to stray away, as long as the compromises made in doing so are understood.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Publishing WSO2 Logs to Splunk from a Containerized Deployment</title>
       <link>https://chamila.dev/blog/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</link>
       <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</guid>
-      <description>Or how to publish to Splunk from any Docker environment WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in &amp;lt;CARBON_HOME&amp;gt;/repository/conf folder, data in &amp;lt;CARBON_HOME&amp;gt;/repository/data, artifacts in &amp;lt;CARBON_HOME&amp;gt;/repository/deployment (or in &amp;lt;CARBON_HOME&amp;gt;/repository/tenants folder if you’re in to multi-tenancy). All the log files are written into &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.
-Log Aggregation All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.</description>
+      <description>&lt;h4 id=&#34;or-how-to-publish-to-splunk-from-any-docker-environment&#34;&gt;Or how to publish to Splunk from any Docker environment&lt;/h4&gt;&#xA;&lt;p&gt;WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in &amp;lt;CARBON_HOME&amp;gt;/repository/conf folder, data in &amp;lt;CARBON_HOME&amp;gt;/repository/data, artifacts in &amp;lt;CARBON_HOME&amp;gt;/repository/deployment (or in &amp;lt;CARBON_HOME&amp;gt;/repository/tenants folder if you’re in to multi-tenancy). All the log files are written into &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.&lt;/p&gt;&#xA;&lt;h4 id=&#34;log-aggregation&#34;&gt;Log Aggregation&lt;/h4&gt;&#xA;&lt;p&gt;All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder. For an example, for ELK this could be something like &lt;strong&gt;FileBeat&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>CI/CD APIs with WSO2 API Manager</title>
       <link>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</link>
       <pubDate>Sun, 25 Nov 2018 03:47:20 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</guid>
-      <description>How to do continuous integration and continuous delivery of APIs with WSO2 API Manager WSO2 API Manager, the only Open Source Leader in API Management Solutions in Forrester Wave, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.</description>
+      <description>&lt;h4 id=&#34;how-to-do-continuous-integration-and-continuous-delivery-of-apis-with-wso2-apimanager&#34;&gt;How to do continuous integration and continuous delivery of APIs with WSO2 API Manager&lt;/h4&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://wso2.com/api-management/&#34;&gt;WSO2 API Manager&lt;/a&gt;, the only &lt;a href=&#34;https://wso2.com/resources/analyst-reports/the-forrester-wave-api-management-solutions-q4-2018/?utm_source=bannerprodpg&amp;amp;utm_medium=mailer&amp;amp;utm_campaign=forrester_wave_apim_2018B2&#34;&gt;Open Source Leader in API Management Solutions in Forrester Wave&lt;/a&gt;, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>A Primer on Observability for Dynamic Organizations — Part 2</title>
       <link>https://chamila.dev/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</link>
       <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</guid>
-      <description>What should an Observability Framework address? In the previous post, we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design. Let’s explore the possibility of a structured approach for designing observable systems.
- Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls   Why should there be a structured approach?</description>
+      <description>&lt;h4 id=&#34;what-should-an-observability-framework-address&#34;&gt;What should an Observability Framework address?&lt;/h4&gt;&#xA;&lt;p&gt;In the previous post, &lt;a href=&#34;https://chamila.dev/a-primer-on-observability-for-dynamic-organizations-part-1-43c577ded1d3&#34;&gt;we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design&lt;/a&gt;. Let’s explore the possibility of a &lt;strong&gt;structured approach&lt;/strong&gt; for designing observable systems.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2_0.jpeg#layoutTextWidth&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;h4 id=&#34;why-should-there-be-a-structured-approach&#34;&gt;Why should there be a structured approach?&lt;/h4&gt;&#xA;&lt;p&gt;In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>A Primer on Observability for Dynamic Organizations — Part 1</title>
       <link>https://chamila.dev/blog/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/</link>
       <pubDate>Tue, 21 Aug 2018 04:29:46 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1/</guid>
-      <description>A introduction to the buzzword and the rationale for implementing it What is Observability? Before we dive in to the waters, we need to define what observability is. Let’s go for some tweets first.
-Monitoring is for operating software/systems
-Instrumentation is for writing software
-Observability is for understanding systems
-&amp;mdash; Charity Majors (@mipsytipsy) September 23, 2017  That’s Charity Majors, a well known voice on Observability and someone who has built a business doing it well.</description>
+      <description>&lt;h4 id=&#34;a-introduction-to-the-buzzword-and-the-rationale-for-implementing-it&#34;&gt;A introduction to the buzzword and the rationale for implementing it&lt;/h4&gt;&#xA;&lt;h3 id=&#34;what-is-observability&#34;&gt;What is Observability?&lt;/h3&gt;&#xA;&lt;p&gt;Before we dive in to the waters, we need to define what observability is. Let’s go for some tweets first.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Monitoring is for operating software/systems&lt;br&gt;Instrumentation is for writing software&lt;br&gt;Observability is for understanding systems&lt;/p&gt;&amp;mdash; Charity Majors (@mipsytipsy) &lt;a href=&#34;https://twitter.com/mipsytipsy/status/911711540008628224?ref_src=twsrc%5Etfw&#34;&gt;September 23, 2017&lt;/a&gt;&lt;/blockquote&gt;&#xA;&lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&#xA;&#xA;&#xA;&lt;p&gt;That’s &lt;a href=&#34;https://twitter.com/mipsytipsy/status/911711540008628224&#34;&gt;Charity Majors&lt;/a&gt;, a well known voice on Observability and someone who &lt;a href=&#34;https://www.honeycomb.io/&#34;&gt;has built a business&lt;/a&gt; doing it well.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>That Tricky Thing Called Automation</title>
       <link>https://chamila.dev/blog/2018-07-20_that-tricky-thing-called-automation/</link>
       <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-07-20_that-tricky-thing-called-automation/</guid>
-      <description>Automation of processes is something every serious organization should look into. The other option is to waste your precious human resources on tasks that are repetitive and hardly challenging. That is a depreciation in both man-hours and the employee morale. No one wants to keep on doing the same thing over and over again, especially if the tasks do not require the proper use of the human intellect.
-Automation enables the machine driven initiation and management of these tasks and sometimes can even help coordinate the use of manual intervention.</description>
+      <description>&lt;p&gt;Automation of processes is something every serious organization should look into. The other option is to waste your precious human resources on tasks that are repetitive and hardly challenging. That is a depreciation in both man-hours and the employee morale. No one wants to keep on doing the same thing over and over again, especially if the tasks do not require the proper use of the human intellect.&lt;/p&gt;&#xA;&lt;p&gt;Automation enables the machine driven initiation and management of these tasks and sometimes can even help coordinate the use of manual intervention. Therefore, any organization that doesn’t want to get stuck in the everyday details, automation of processes is a must.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>In Other Good News, Microsoft buys GitHub</title>
       <link>https://chamila.dev/blog/2018-06-05_in-other-good-news-microsoft-buys-github/</link>
       <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-06-05_in-other-good-news-microsoft-buys-github/</guid>
-      <description>Or why you should cool down with the anti-Microsoft rhetoric, at least for now
- Disclaimer: This is an opinionated article.
- What a historic moment! May be only second to the moment Windows incorporated the Linux Subsystem, one-time anti-open source giantbuys off may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years. And my Facebook feed (yes, I’m still friends with that guy) is filled with rants on how Microsoft will kill Open Source.</description>
+      <description>&lt;p&gt;Or why you should cool down with the anti-Microsoft rhetoric, at least for now&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Disclaimer: This is an opinionated article.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;What a historic moment! May be only second to the moment Windows &lt;a href=&#34;https://blog.jessfraz.com/post/windows-for-linux-nerds/&#34;&gt;incorporated the Linux Subsystem&lt;/a&gt;, one-time anti-open source giant&lt;a href=&#34;https://blog.github.com/2018-06-04-github-microsoft/&#34;&gt; buys off&lt;/a&gt; may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years. And my Facebook feed (yes, I’m still friends with that guy) is filled with rants on how Microsoft will kill Open Source.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Server Immutability</title>
       <link>https://chamila.dev/blog/2018-05-17_server-immutability/</link>
       <pubDate>Thu, 17 May 2018 08:19:19 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-05-17_server-immutability/</guid>
-      <description>Server Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.
-What is Immutability? Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image.</description>
+      <description>&lt;p&gt;Server Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.&lt;/p&gt;&#xA;&lt;h4 id=&#34;what-is-immutability&#34;&gt;What is Immutability?&lt;/h4&gt;&#xA;&lt;p&gt;Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Basic Process Metrics Collection and Visualization in Linux</title>
       <link>https://chamila.dev/blog/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</link>
       <pubDate>Tue, 15 May 2018 06:36:59 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</guid>
-      <description>When it comes to deployment observability there are multiple, comprehensive solutions that can handle almost any system of scale you throw at them. I said almost, because there are certain stories that do not require setting up a central monitoring server with satellite agents to collect and enrich data.
-For an example, consider a scenario where you’re troubleshooting a certain single process for a particular period of time. You want to collect the approximate CPU usage, approximate memory usage, light weight process (aka thread) count, and the TCP connection count.</description>
+      <description>&lt;p&gt;When it comes to deployment observability there are multiple, comprehensive solutions that can handle almost any system of scale you throw at them. I said almost, because there are certain stories that do not require setting up a central monitoring server with satellite agents to collect and enrich data.&lt;/p&gt;&#xA;&lt;p&gt;For an example, consider a scenario where you’re troubleshooting a certain single process for a particular period of time. You want to collect the approximate CPU usage, approximate memory usage, light weight process (aka thread) count, and the TCP connection count. You want these stats collected during the time period you’re conducting load test against the process.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>A little bit of Bashfu for a specific case of log analysis</title>
       <link>https://chamila.dev/blog/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</link>
       <pubDate>Tue, 01 May 2018 07:46:05 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-05-01_little-bit-of-bashfu-for-a-specific-case-of-log-analysis/</guid>
-      <description>This post is not about a solution to a generic issue. This post is about how I found some way to cut and assemble a large log file using a few Bash tools (and subliminally why Unix principle of implementing stuff may be the superior way).
-So today, there came a need to sort through a large access log file for a list of request counts for each key. It’s not just a key — request count relationship.</description>
+      <description>&lt;p&gt;This post is not about a solution to a generic issue. This post is about how I found some way to cut and assemble a large log file using a few Bash tools (and subliminally why Unix principle of implementing stuff may be the superior way).&lt;/p&gt;&#xA;&lt;p&gt;So today, there came a need to sort through a large access log file for a list of request counts for each key. It’s not just a key — request count relationship. To elaborate briefly,&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Sample: WSO2 EI Cache Mediator based Token Caching</title>
       <link>https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</link>
       <pubDate>Sun, 12 Nov 2017 14:30:44 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching/</guid>
-      <description>This post and the sample code are the results of a particular issue I had to tackle recently. Though the sample code is my own, the idea and the approach have many authors, arising from the collective knowledge on the WSO2 Middleware Stack.
- The Typical Case for Caching Token based authentication is not a new paradigm. The basic story is,
- Talk to a Identity Management Service and obtain a token based on a kind of authentication Call a service provider API, providing the token received in step #1 Service provider validates the token and acts on the privileges translated from the token  If at one point of your developer life, if you have invoked an API based on an access token, you are familiar with this scenario.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This post and the sample code are the results of a particular issue I had to tackle recently. Though the sample code is my own, the idea and the approach have many authors, arising from the collective knowledge on the WSO2 Middleware Stack.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h4 id=&#34;the-typical-case-forcaching&#34;&gt;The Typical Case for Caching&lt;/h4&gt;&#xA;&lt;p&gt;Token based authentication is not a new paradigm. The basic story is,&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Talk to a Identity Management Service and obtain a token based on a kind of authentication&lt;/li&gt;&#xA;&lt;li&gt;Call a service provider API, providing the token received in step #1&lt;/li&gt;&#xA;&lt;li&gt;Service provider validates the token and acts on the privileges translated from the token&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2017-11-12_sample-wso2-ei-cache-mediator-based-token-caching_0.jpeg#layoutOutsetLeft&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Subject Alternative Names in SSL Certificates</title>
       <link>https://chamila.dev/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/</link>
       <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/</guid>
-      <description>Or the SSL Cert Extension that saves your back during development
- I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Or the SSL Cert Extension that saves your back during development&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;I recently wrote an article on &lt;a href=&#34;https://chamila.dev/adding-a-self-signed-ssl-certificate-to-aws-acm-88a123a04301&#34;&gt;how to generate and upload a self-signed SSL Certificate&lt;/a&gt; to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Adding a Self-Signed SSL Certificate to AWS ACM</title>
       <link>https://chamila.dev/blog/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</link>
       <pubDate>Tue, 17 Oct 2017 18:56:28 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-10-17_adding-a-selfsigned-ssl-certificate-to-aws-acm/</guid>
-      <description>When setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.
-However if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following.</description>
+      <description>&lt;p&gt;When setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.&lt;/p&gt;&#xA;&lt;p&gt;However if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Let’s make your Docker Image better than 90% of existing ones</title>
       <link>https://chamila.dev/blog/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</link>
       <pubDate>Tue, 05 Sep 2017 18:50:34 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</guid>
-      <description>Or why you should always Label your Docker Image.
- Imagine this.
-You’re working on a new project, an exciting one that’s Container native. You’re almost done, and now at the stage where you want to build the Docker Image that ships your little project out to the public. You build on top of Alpine Linux, and pack your tool in to a nifty 80Mb Image that you tag latest and push to the public Docker Hub.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Or why you should always Label your Docker Image.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Imagine this.&lt;/p&gt;&#xA;&lt;p&gt;You’re working on a new project, an exciting one that’s Container native. You’re almost done, and now at the stage where you want to build the Docker Image that ships your little project out to the public. You build on top of Alpine Linux, and pack your tool in to a nifty 80Mb Image that you tag &lt;code&gt;latest&lt;/code&gt; and push to the public Docker Hub.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Docker Image Size Concerns Out of the Window — Squash with Confidence</title>
       <link>https://chamila.dev/blog/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</link>
       <pubDate>Tue, 22 Aug 2017 09:58:17 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</guid>
-      <description>Docker is finally bringing Squash support
-For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use --no-cache flag while building. The layered structure of a Docker image would spook out a beginner.
-Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved.</description>
+      <description>&lt;p&gt;Docker is finally bringing Squash support&lt;/p&gt;&#xA;&lt;p&gt;For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use &lt;code&gt;--no-cache&lt;/code&gt; flag while building. The layered structure of a Docker image would spook out a beginner.&lt;/p&gt;&#xA;&lt;p&gt;Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved. However, it’s often the case that overlaying file systems can introduce unnecessary image sizes, especially when the same file system locations are edited in different layers.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>HAProxy Config Syntax Highlighting</title>
       <link>https://chamila.dev/blog/2017-07-13_haproxy-config-syntax-highlighting/</link>
       <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-07-13_haproxy-config-syntax-highlighting/</guid>
-      <description>A brief post on getting this done on Atom and Vim.
-Atom Just install language-haproxy Atom plugin through either Atom UI or apm .
-apm install language-haproxy When opening an haproxy.cfg file, Atom will detect and highlight accordingly.
-Vim Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from VimAwesome. To enable this, just clone the Github repository, copy the .vim file inside syntax/ folder to $HOME/.</description>
+      <description>&lt;p&gt;A brief post on getting this done on Atom and Vim.&lt;/p&gt;&#xA;&lt;h4 id=&#34;atom&#34;&gt;Atom&lt;/h4&gt;&#xA;&lt;p&gt;Just install &lt;code&gt;language-haproxy&lt;/code&gt; Atom plugin through either Atom UI or &lt;code&gt;apm&lt;/code&gt; .&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apm install language-haproxy&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When opening an &lt;code&gt;haproxy.cfg&lt;/code&gt; file, Atom will detect and highlight accordingly.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2017-07-13_haproxy-config-syntax-highlighting_0.png#layoutTextWidth&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;h4 id=&#34;vim&#34;&gt;Vim&lt;/h4&gt;&#xA;&lt;p&gt;Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from &lt;a href=&#34;http://vimawesome.com/plugin/haproxy&#34;&gt;VimAwesome&lt;/a&gt;. To enable this, just clone the Github repository, copy the &lt;code&gt;.vim&lt;/code&gt; file inside &lt;code&gt;syntax/&lt;/code&gt; folder to &lt;code&gt;$HOME/.vim/syntax&lt;/code&gt; .&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Infrastructure as Code : AWS CloudFormation</title>
       <link>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</link>
       <pubDate>Mon, 03 Jul 2017 11:40:50 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
-      <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
-  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
- Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This blog post is based on a talk I did on AWS CloudFormation as an introduction.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;iframe src=&#34;https://www.slideshare.net/slideshow/embed_code/key/8br68UFQtb7qpF&#34; width=&#34;595&#34; height=&#34;485&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; &#34; allowfullscreen&gt; &lt;/iframe&gt;&#xA;&lt;h4 id=&#34;the-case-for-infrastructure-ascode&#34;&gt;The case for Infrastructure as Code&lt;/h4&gt;&#xA;&lt;p&gt;Imagine a typical deployment of a software stack. The process might look like the following.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Design solution architecture&lt;/li&gt;&#xA;&lt;li&gt;Estimate infrastructure specs&lt;/li&gt;&#xA;&lt;li&gt;Configure compute, network, and database resources manually&lt;/li&gt;&#xA;&lt;li&gt;Deploy the applications and prepare databases&lt;/li&gt;&#xA;&lt;li&gt;Test and ship&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Pretty simple from the looks of it doesn’t it? The catch is this. This is just half of the solution maintenance. There are several more scenarios involved that can quickly turn this in to a complex fragile piece of engineering.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Ballerina with Container Support</title>
       <link>https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/</link>
       <pubDate>Tue, 21 Feb 2017 06:48:33 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/</guid>
-      <description>WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the WSO2Con 2017 in San Fransisco. Ballerina is a general purpose language with a focus on integration and a visual approach to coding. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “Connectors” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2017-02-21_ballerina-with-container-support_0.png#layoutFillWidth&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the &lt;a href=&#34;http://us17.wso2con.com/&#34;&gt;WSO2Con 2017 in San Fransisco&lt;/a&gt;. Ballerina is a &lt;a href=&#34;http://ballerinalang.org/&#34;&gt;general purpose language with a focus on integration and a visual approach to coding&lt;/a&gt;. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “&lt;strong&gt;Connectors&lt;/strong&gt;” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Thinking of Moving Your WSO2 Deployment On to Kubernetes?</title>
       <link>https://chamila.dev/blog/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</link>
       <pubDate>Sun, 22 Jan 2017 19:25:15 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</guid>
-      <description>Moving from a Virtual Machine based deployment to a Container Clustering environment can be quite a few sleepless nights. Cloud deployment artifacts for WSO2 products would reduce this number by a few, because of their tried and tested nature. These include Dockerfiles, Puppet based configurations, Kubernetes and Mesos deployment artifacts. As easy as these artifacts make life easier during a redesign stage of an existing deployment, let us anyway walk through some points to keep in mind regarding a WSO2 deployment on top of Kubernetes.</description>
+      <description>&lt;p&gt;Moving from a Virtual Machine based deployment to a Container Clustering environment can be quite a few sleepless nights. Cloud deployment artifacts for WSO2 products would reduce this number by a few, because of their tried and tested nature. These include Dockerfiles, Puppet based configurations, Kubernetes and Mesos deployment artifacts. As easy as these artifacts make life easier during a redesign stage of an existing deployment, let us anyway walk through some points to keep in mind regarding a WSO2 deployment on top of Kubernetes.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>How to Upload a Carbon App (CAR File) to a Remote WSO2 Server</title>
       <link>https://chamila.dev/blog/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</link>
       <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</guid>
-      <description>Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.</description>
+      <description>&lt;p&gt;Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Monitoring WSO2 Logs with Elasticsearch, Logstash, and Kibana (or Grafana)</title>
       <link>https://chamila.dev/blog/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</link>
       <pubDate>Sat, 10 Sep 2016 21:26:48 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</guid>
-      <description>I’ve recently been doing some work involving analytics dashboards and the subject proved to be really interesting. It has a wide range starting from Big Data to UX. Starting at a point where you determine what kind of data is collected and what kind information you need to get out of the dashboard, going to data analysis and data processing (probably on top an engine like Apache Spark), it finalizes at the visualization stage which is really fun.</description>
+      <description>&lt;p&gt;I’ve recently been doing some work involving analytics dashboards and the subject proved to be really interesting. It has a wide range starting from Big Data to UX. Starting at a point where you determine what kind of data is collected and what kind information you need to get out of the dashboard, going to data analysis and data processing (probably on top an engine like Apache Spark), it finalizes at the visualization stage which is really fun.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Extracting memory and thread dumps from a running JRE based JVM</title>
       <link>https://chamila.dev/blog/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</link>
       <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2016-09-07_extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm/</guid>
-      <description>Almost every Java developer knows about jmapand jstack tools that come with the JDK. These provide functionality to extract heap and thread information of a running JVM instance. Easy.
-What if there’s a running JVM that has produced a deadlock and you want to take a thread dump while the process is running? You go in and run the following.
-jstack pid &amp;gt;&amp;gt; thread_dump.txt Turns out the system doesn’t know what jstack is.</description>
+      <description>&lt;p&gt;Almost every Java developer knows about &lt;strong&gt;jmap&lt;/strong&gt;and &lt;strong&gt;jstack&lt;/strong&gt; tools that come with the JDK. These provide functionality to extract heap and thread information of a running JVM instance. Easy.&lt;/p&gt;&#xA;&lt;p&gt;What if there’s a running JVM that has produced a deadlock and you want to take a thread dump while the process is running? You go in and run the following.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;jstack pid &amp;gt;&amp;gt; thread_dump.txt&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Turns out the system doesn’t know what &lt;strong&gt;jstack&lt;/strong&gt; is. You don’t panic, but you get a tiny sensation at the back of your head saying you’re not leaving early this Friday.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Running WSO2 Products on Kubernetes</title>
       <link>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</link>
       <pubDate>Tue, 09 Feb 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</guid>
-      <description>Running WSO2 Products on Kubernetes
- Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.
- It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!</description>
+      <description>&lt;p&gt;Running WSO2 Products on Kubernetes&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>BreadPool — a Thread Pool for Python</title>
       <link>https://chamila.dev/blog/2015-12-10_breadpool-a-thread-pool-for-python/</link>
       <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-12-10_breadpool-a-thread-pool-for-python/</guid>
-      <description>A thread pool is not a new concept. It’s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? Because the program wouldn’t be starting threads as it sees fit and somehow reach the maximum thread number soon. Simply said thread pools allows us to limit the number of threads spawned by our program execution. Trust me, you don’t want your code going to town spawning threads.</description>
+      <description>&lt;p&gt;A thread pool is not a new concept. It’s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? Because the program wouldn’t be starting threads as it sees fit and somehow reach the maximum thread number soon. Simply said thread pools allows us to limit the number of threads spawned by our program execution. Trust me, you don’t want your code going to town spawning threads. It comes back to bite you in your behind, sooner than you think.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Timing Out of Long Running Methods in Python</title>
       <link>https://chamila.dev/blog/2015-11-26_timing-out-of-long-running-methods-in-python/</link>
       <pubDate>Thu, 26 Nov 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-11-26_timing-out-of-long-running-methods-in-python/</guid>
-      <description>Sometimes there are conditions under which a function call could not return in a needed time period and would cause unexpected behavior. For example, a file read could take more time than anticipated and leave the code execution without proper control over what to do when such a situation occurs. This can be worse if the said function call directs to an external library which we can’t control.
-Python has a nifty module called signal which exposes UNIX Signal numbers and a way to register callbacks for each signal.</description>
+      <description>&lt;p&gt;Sometimes there are conditions under which a function call could not return in a needed time period and would cause unexpected behavior. For example, a file read could take more time than anticipated and leave the code execution without proper control over what to do when such a situation occurs. This can be worse if the said function call directs to an external library which we can’t control.&lt;/p&gt;&#xA;&lt;p&gt;Python has a nifty module called signal which exposes &lt;a href=&#34;https://en.wikipedia.org/wiki/Unix_signal#POSIX_signals&#34;&gt;UNIX Signal&lt;/a&gt; numbers and a way to register callbacks for each signal. Out of the UNIX Signals available, what interests us in this particular situation is the &lt;a href=&#34;http://linux.die.net/man/2/alarm&#34;&gt;SIGALRM&lt;/a&gt; signal which allows us to sort of wind out an OS level alarm clock that would send a signal to the calling process after the set number of seconds. We can make use of this functionality (only in UNIX of course) to set a timeout before a function call with the possibility to hang or take unexpected durations to finish.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Creating a Simple ActiveMQ Master/Slave Setup</title>
       <link>https://chamila.dev/blog/2015-11-17_creating-a-simple-activemq-masterslave-setup/</link>
       <pubDate>Tue, 17 Nov 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-11-17_creating-a-simple-activemq-masterslave-setup/</guid>
-      <description>ActiveMQ is a high performing message broker, however if clustering is needed, it supports a number of methods. Out of these, the Master/Slave is a pattern where the persistence layer is shared between multiple broker instances. A Single Master broker connects to the persistence, and the rest of the Slave brokers keep waiting to attain the lock on the persistence. If the Master node goes down the lock for the persistence is released and a Slave quickly acquires it, allowing a client to continue operation without any data loss.</description>
+      <description>&lt;p&gt;ActiveMQ is a high performing message broker, however if clustering is needed, it supports &lt;a href=&#34;http://activemq.apache.org/clustering.html&#34;&gt;a number of methods&lt;/a&gt;. Out of these, the &lt;a href=&#34;http://activemq.apache.org/masterslave.html&#34;&gt;Master/Slave&lt;/a&gt; is a pattern where the persistence layer is shared between multiple broker instances. A Single Master broker connects to the persistence, and the rest of the Slave brokers keep waiting to attain the lock on the persistence. If the Master node goes down the lock for the persistence is released and a Slave quickly acquires it, allowing a client to continue operation without any data loss. The clients should connect to the Master/Slave setup, using the failover: transport, or they should implement a manual failover mechanism to automatically connect to the next available broker when the first one goes down.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Support for ActiveMQ Master/Slave Failover in Apache Stratos Cartridge Agent</title>
       <link>https://chamila.dev/blog/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</link>
       <pubDate>Mon, 16 Nov 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</guid>
-      <description>In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to secure the message broker communication. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.
-ActiveMQ supports various types of clustering patterns. Out of these, Master/Slave is a deployment pattern where the message store is replicated or shared between the clustered brokers.</description>
+      <description>&lt;p&gt;In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to &lt;a href=&#34;https://chamila.dev/secure-message-broker-communication-in-apache-stratos-with-apache-activemq-609542eb8b81&#34;&gt;secure the message broker communication&lt;/a&gt;. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.&lt;/p&gt;&#xA;&lt;p&gt;ActiveMQ supports &lt;a href=&#34;http://activemq.apache.org/clustering.html&#34;&gt;various types of clustering patterns&lt;/a&gt;. Out of these, &lt;a href=&#34;http://activemq.apache.org/masterslave.html&#34;&gt;Master/Slave&lt;/a&gt; is a deployment pattern where the message store is replicated or shared between the clustered brokers. This makes it possible for a client to failover from the master to the slave in case the master broker goes down, and continue the communication without any data loss.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Secure Message Broker Communication in Apache Stratos With Apache ActiveMQ</title>
       <link>https://chamila.dev/blog/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</link>
       <pubDate>Sun, 11 Oct 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</guid>
-      <description>Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of communication between components such as the Cartridge Agent, Cloud Controller and the Autoscaler, as this allows a decoupled architecture for the components.
-When it comes to message brokers, authentication is a crucial part of securing the communication channel since if left unsecured, anyone with access to the message broker can subscribe to the topics and listen to the communication between the components.</description>
+      <description>&lt;p&gt;Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of communication between components such as the Cartridge Agent, Cloud Controller and the Autoscaler, as this allows a decoupled architecture for the components.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq_0.png#layoutTextWidth&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;When it comes to message brokers, authentication is a crucial part of securing the communication channel since if left unsecured, anyone with access to the message broker can subscribe to the topics and listen to the communication between the components. This can expose sensitive data easily and the system would be compromised in no time. The purpose of this article is to explain how to engage Username and Password based authentication with Apache ActiveMQ in Stratos.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Apache Stratos Cartridge Agent: Life Cycle Walkthough</title>
       <link>https://chamila.dev/blog/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</link>
       <pubDate>Sun, 22 Mar 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</guid>
-      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the &lt;a href=&#34;https://chamila.dev/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz&#34;&gt;first article&lt;/a&gt;?&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting. In this article we will discuss in detail, in which order these tasks are performed.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2</title>
       <link>https://chamila.dev/blog/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</link>
       <pubDate>Sat, 21 Mar 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</guid>
-      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the &lt;a href=&#34;https://chamila.dev/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz&#34;&gt;first article&lt;/a&gt;?&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the &lt;a href=&#34;http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-instance-configuration-by-puppet/&#34;&gt;last article&lt;/a&gt;, Puppet can be used to install, configure and start the Cartridge Agent. In this article, we will discuss how this is done in detail.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Apache Stratos Cartridge Agent: Day 0</title>
       <link>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-day-0/</link>
       <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-day-0/</guid>
-      <description>As the first post of a series of comprehensive guide to the Apache Stratos Cartridge Agent, let’s look at the Cartridge Agent contract. Keep tuned in and expect more detailed explanations on the instance and Cartridge Agent configuration, workflow, different Cartridge Agent implementations, their configurations and newly introduced plugin system in the Python implementation.
-When the instances are spawned in Apache Stratos, there are a few requirements that the particular instance should fulfill.</description>
+      <description>&lt;p&gt;As the first post of a series of comprehensive guide to the Apache Stratos Cartridge Agent, let’s look at the Cartridge Agent contract. Keep tuned in and expect more detailed explanations on the instance and Cartridge Agent configuration, workflow, different Cartridge Agent implementations, their configurations and newly introduced plugin system in the Python implementation.&lt;/p&gt;&#xA;&lt;p&gt;When the instances are spawned in Apache Stratos, there are a few requirements that the particular instance should fulfill. It should&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Apache Stratos Cartridge Agent: Instance Configuration by Puppet 1</title>
       <link>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</link>
       <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</guid>
-      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the &lt;a href=&#34;https://chamila.dev/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz&#34;&gt;first article&lt;/a&gt;?&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance. So how does the actual configuration of a spawned Virtual Machine happen? (We will discuss the exciting Kubernetes + Docker work flow separately)&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Thrift Communication in Apache Stratos</title>
       <link>https://chamila.dev/blog/2014-10-10_thrift-communication-in-apache-stratos/</link>
       <pubDate>Fri, 10 Oct 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2014-10-10_thrift-communication-in-apache-stratos/</guid>
-      <description>In Apache Stratos, data publishing over Thrift is done via streaming. It uses WSO2 Carbon’s Data Bridge to serialize data in to a stream and publish to a given IP address and a Port. The use of DataBridge is explained here.
-Stream Definition In order to publish data as a stream, the definition of the particular stream should be defined first. This is achieved using the org.wso2.carbon.databridge.commons.StreamDefinition class. The list of attributes that will be written to the stream is defined using a StreamDefinition object to be assigned to a particular DataPublisher.</description>
+      <description>&lt;p&gt;In Apache Stratos, data publishing over Thrift is done via streaming. It uses WSO2 Carbon’s Data Bridge to serialize data in to a stream and publish to a given IP address and a Port. The use of DataBridge is explained &lt;a href=&#34;http://wso2.com/library/articles/2012/07/creating-custom-agents-publish-events-bamcep/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h3 id=&#34;stream-definition&#34;&gt;Stream Definition&lt;/h3&gt;&#xA;&lt;p&gt;In order to publish data as a stream, the definition of the particular stream should be defined first. This is achieved using the &lt;strong&gt;org.wso2.carbon.databridge.commons.StreamDefinition&lt;/strong&gt; class. The list of attributes that will be written to the stream is defined using a StreamDefinition object to be assigned to a particular DataPublisher.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>PPPOE on VirtualBox</title>
       <link>https://chamila.dev/blog/2014-08-05_pppoe-on-virtualbox/</link>
       <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2014-08-05_pppoe-on-virtualbox/</guid>
-      <description>A quick note!
-If your internet connection comes as a PPPOE connection and it can’t be selected on the drop down list when “Bridged network” is selected on Network tab of the VM settings in VirtualBox. You can create a host-only network and configure a static ip for eth0 on the guest OS to make it accessible to outside.
-A host-only network virtualizes the network interface of the host OS and uses it as a loopback device to enable guest OS to communicate on their network and with the host[1].</description>
+      <description>&lt;p&gt;A quick note!&lt;/p&gt;&#xA;&lt;p&gt;If your internet connection comes as a PPPOE connection and it can’t be selected on the drop down list when “Bridged network” is selected on Network tab of the VM settings in VirtualBox. You can create a host-only network and configure a static ip for eth0 on the guest OS to make it accessible to outside.&lt;/p&gt;&#xA;&lt;p&gt;A host-only network virtualizes the network interface of the host OS and uses it as a loopback device to enable guest OS to communicate on their network and with the host&lt;a href=&#34;https://www.virtualbox.org/manual/ch06.html&#34;&gt;[1]&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Consuming a Service Secured by WSO2 ESB</title>
       <link>https://chamila.dev/blog/2014-07-19_consuming-a-service-secured-by-wso2-esb/</link>
       <pubDate>Sat, 19 Jul 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2014-07-19_consuming-a-service-secured-by-wso2-esb/</guid>
-      <description>In the last post I explained the steps needed, although somewhat minimal, to secure an unsecured backend service with WSO2 ESB. In this post I will continue on to the client side of the communication explaining the minimal client needed to communicate with the secure proxy service we created and take a peak at the action going on under the hood.
-UsernameToken Before we dive in to the client side code let’s take a look at the WS-Policy for the UsernameToken security we applied to our service.</description>
+      <description>&lt;p&gt;In the &lt;a href=&#34;https://chamila.dev/securing-a-web-service-with-wso2-esb-8e0495383f00#.eawqzbwgi&#34;&gt;last post&lt;/a&gt; I explained the steps needed, although somewhat minimal, to secure an unsecured backend service with WSO2 ESB. In this post I will continue on to the client side of the communication explaining the minimal client needed to communicate with the secure proxy service we created and take a peak at the action going on under the hood.&lt;/p&gt;&#xA;&lt;h3 id=&#34;usernametoken&#34;&gt;UsernameToken&lt;/h3&gt;&#xA;&lt;p&gt;Before we dive in to the client side code let’s take a look at the WS-Policy for the UsernameToken security we applied to our service.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Securing a Web Service With WSO2 ESB</title>
       <link>https://chamila.dev/blog/2014-07-18_securing-a-web-service-with-wso2-esb/</link>
       <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2014-07-18_securing-a-web-service-with-wso2-esb/</guid>
-      <description>WSO2 Enterprise Service Bus is one of the best performing implementations for the Enterprise market. In this article I will briefly go through what it takes to secure an unsecured backend web service using WSO2 ESB as a mediator.
-Security in Web Services is covered by the WS-Security standard. There are various policies such as simple username and password authentication and PKI certificates that can be used to secure a Web Service.</description>
+      <description>&lt;p&gt;WSO2 Enterprise Service Bus is one of the &lt;a href=&#34;http://blog.samisa.org/2014/02/wso2-esb-performance-round-75.html&#34;&gt;best performing implementations&lt;/a&gt; for the Enterprise market. In this article I will briefly go through what it takes to secure an unsecured backend web service using WSO2 ESB as a mediator.&lt;/p&gt;&#xA;&lt;p&gt;Security in Web Services is covered by the WS-Security standard. There are &lt;a href=&#34;http://docs.oasis-open.org/ws-sx/security-policy/examples/ws-sp-usecases-examples-cd-01.html&#34;&gt;various policies&lt;/a&gt; such as simple username and password authentication and PKI certificates that can be used to secure a Web Service. The policy that will be used is described using the WS-Policy standard.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Wireshark Crashing in Ubuntu</title>
       <link>https://chamila.dev/blog/2014-07-09_wireshark-crashing-in-ubuntu/</link>
       <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2014-07-09_wireshark-crashing-in-ubuntu/</guid>
-      <description>If you have customized your Ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu 14.04 and found the solution to be disabling overlay scrollbars that come as the default.
-To do this simply add an environment variable called LIBOVERLAY_SCROLLBAR with value0.
-export LIBOVERLAY_SCROLLBAR=0 Originally published at chamilad.github.io on July 9, 2014.
- Written on July 9, 2014 by chamila de alwis.</description>
+      <description>&lt;p&gt;If you have customized your Ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu 14.04 and found the solution to be disabling overlay scrollbars that come as the default.&lt;/p&gt;&#xA;&lt;p&gt;To do this simply add an environment variable called &lt;strong&gt;LIBOVERLAY_SCROLLBAR&lt;/strong&gt; with value&lt;strong&gt;0&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export LIBOVERLAY_SCROLLBAR=0&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Originally published at &lt;a href=&#34;http://chamilad.github.io/blog/2014/07/09/wireshark-crashing-in-ubuntu/&#34;&gt;chamilad.github.io&lt;/a&gt; on July 9, 2014.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Written on July 9, 2014 by chamila de alwis.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Creating a Web Service Using Apache Axis2</title>
       <link>https://chamila.dev/blog/2014-07-01_creating-a-web-service-using-apache-axis2/</link>
       <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2014-07-01_creating-a-web-service-using-apache-axis2/</guid>
-      <description>Prerequisites We need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let’s use Tomcat as a container. So in the following order
- Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7) Download and install Axis2 on Tomcat  Oracle JDK7 Download and extract the JDK tarball.</description>
+      <description>&lt;h3 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h3&gt;&#xA;&lt;p&gt;We need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let’s use Tomcat as a container. So in the following order&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Download and install Oracle JDK7&lt;/li&gt;&#xA;&lt;li&gt;Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7)&lt;/li&gt;&#xA;&lt;li&gt;Download and install Axis2 on Tomcat&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;oracle-jdk7&#34;&gt;Oracle JDK7&lt;/h3&gt;&#xA;&lt;p&gt;Download and extract the JDK tarball.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

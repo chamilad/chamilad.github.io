@@ -4,36 +4,30 @@
     <title>Automation on chamila.dev</title>
     <link>https://chamila.dev/tags/automation/</link>
     <description>Recent content in Automation on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Nov 2021 19:32:16 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Nov 2021 19:32:16 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/automation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Automating Snowflake</title>
       <link>https://chamila.dev/blog/2021-11-12_automating-snowflake/</link>
       <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2021-11-12_automating-snowflake/</guid>
-      <description>Only photo with me for now that&amp;#39;s closest to the theme   I had an opportunity to work on automating a Snowflake workflow last year. The scenario involved a typical Snowflake based setup for a Data Warehouse where data would be ingested from an Azure Blob Storage or AWS S3 and stored on multiple databases. I&amp;rsquo;m not going to dive into intricate details, but I&amp;rsquo;d like to write down some of the approaches I wanted to take during this exercise.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2021_11_12_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Only photo with me for now that&amp;#39;s closest to the theme&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;I had an opportunity to work on automating a Snowflake workflow last year. The scenario involved a typical Snowflake based setup for a Data Warehouse where data would be ingested from an Azure Blob Storage or AWS S3 and stored on multiple databases. I&amp;rsquo;m not going to dive into intricate details, but I&amp;rsquo;d like to write down some of the approaches I wanted to take during this exercise. And yes, that makes this blog post way overdue.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Releasing DocBlock v0.1</title>
       <link>https://chamila.dev/blog/2019-02-15_releasing-docblock-v0.1/</link>
       <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-02-15_releasing-docblock-v0.1/</guid>
-      <description>A tool to automate technical content generation for configuration files Many months ago, a technical writer colleague of mine complained about how they were struggling to keep up with the frequent releases that the company was doing at the time. There were multiple products in their plate, with each having multiple configuration files (sometimes numbering more than 10). Although the configuration files overlapped within each product, because of the componentized platform the company had built the products upon, each product in theory could have different release versions of the components that used these configuration files.</description>
+      <description>&lt;h4 id=&#34;a-tool-to-automate-technical-content-generation-for-configuration-files&#34;&gt;A tool to automate technical content generation for configuration files&lt;/h4&gt;&#xA;&lt;p&gt;Many months ago, a technical writer colleague of mine complained about how they were struggling to keep up with the frequent releases that the company was doing at the time. There were multiple products in their plate, with each having multiple configuration files (sometimes numbering more than 10). Although the configuration files overlapped within each product, because of the componentized platform the company had built the products upon, each product in theory could have different release versions of the components that used these configuration files. All of these had to be documented into readable (and most importantly usable) technical content.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>That Tricky Thing Called Automation</title>
       <link>https://chamila.dev/blog/2018-07-20_that-tricky-thing-called-automation/</link>
       <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-07-20_that-tricky-thing-called-automation/</guid>
-      <description>Automation of processes is something every serious organization should look into. The other option is to waste your precious human resources on tasks that are repetitive and hardly challenging. That is a depreciation in both man-hours and the employee morale. No one wants to keep on doing the same thing over and over again, especially if the tasks do not require the proper use of the human intellect.
-Automation enables the machine driven initiation and management of these tasks and sometimes can even help coordinate the use of manual intervention.</description>
+      <description>&lt;p&gt;Automation of processes is something every serious organization should look into. The other option is to waste your precious human resources on tasks that are repetitive and hardly challenging. That is a depreciation in both man-hours and the employee morale. No one wants to keep on doing the same thing over and over again, especially if the tasks do not require the proper use of the human intellect.&lt;/p&gt;&#xA;&lt;p&gt;Automation enables the machine driven initiation and management of these tasks and sometimes can even help coordinate the use of manual intervention. Therefore, any organization that doesn’t want to get stuck in the everyday details, automation of processes is a must.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

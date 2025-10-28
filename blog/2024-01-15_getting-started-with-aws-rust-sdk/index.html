@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -147,9 +147,9 @@
           </div>
         </header>
         <div class="post-content markdown-body">
-          <figure><img src="/blog/img/2024-01-15_aws_rust_sdk_header.jpg"/><figcaption>
-            <h4>Some building in Washington DC. It&#39;s just pretty, not related to Rust or AWS</h4>
-        </figcaption>
+          <figure><img src="/blog/img/2024-01-15_aws_rust_sdk_header.jpg"><figcaption>
+      <h4>Some building in Washington DC. It&#39;s just pretty, not related to Rust or AWS</h4>
+    </figcaption>
 </figure>
 
 <p>AWS re:Invent 2023 announced <a href="https://aws.amazon.com/about-aws/whats-new/2023/11/aws-sdk-rust/">the GA versions of the
@@ -188,23 +188,22 @@ it.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <blockquote>
 <p>The purpose of this post is to give a somewhat detailed introduction to the
-Rust AWS SDK. Teaching Rust or AWS are non-goals.</p>
-</blockquote>
+Rust AWS SDK. Teaching Rust or AWS are non-goals.</p></blockquote>
 <ol>
 <li>Rust + Cargo + basic Rust knowledge</li>
 <li>basic AWS knowledge</li>
 </ol>
 <p>Let&rsquo;s create a sample project for this scenario.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cargo new aws-rust-helloworld --bin
-<span style="color:#fff;font-weight:bold">cd</span> aws-rust-helloworld
-</code></pre></div><h2 id="set-up">Set up</h2>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cargo new aws-rust-helloworld --bin
+</span></span><span style="display:flex;"><span><span style="color:#89dceb">cd</span> aws-rust-helloworld
+</span></span></code></pre></div><h2 id="set-up">Set up</h2>
 <p>Before the SDK can be used, the dependencies have to be added to the project. This
 involves adding the common <code>aws-config</code> crate, the service specific
 <code>aws-sdk-cloudtrail</code> crate (or <code>aws-sdk-&lt;service&gt;</code> for any other service), and
 the async runtime <code>tokio</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cargo add aws-config aws-sdk-cloudtrail tokio <span style="color:#0ff;font-weight:bold">\
-</span><span style="color:#0ff;font-weight:bold"></span>  --features aws-config/behavior-version-latest,aws-config/behavior-version-latest,tokio/full
-</code></pre></div><p>Note that we specify <code>behavior-version-latest</code> feature for both <code>aws-config</code> and
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cargo add aws-config aws-sdk-cloudtrail tokio <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span><span style="color:#89b4fa"></span>  --features aws-config/behavior-version-latest,aws-config/behavior-version-latest,tokio/full
+</span></span></code></pre></div><p>Note that we specify <code>behavior-version-latest</code> feature for both <code>aws-config</code> and
 <code>aws-sdk-cloudtrail</code> crates as this would be needed for more customised
 scenarios than the default use case. Behavior version is a concept that helps
 the SDK to evolve without having to break API when AWS introduces changes to
@@ -212,11 +211,11 @@ how API communication is done.</p>
 <p>Note that the feature <code>full</code> is also enabled for <code>tokio</code> crate, as otherwise
 the async runtime will not be included.</p>
 <p>The <code>Cargo.toml</code> entries will look something similar to the following.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[dependencies]
-aws-config = { version= <span style="color:#0ff;font-weight:bold">&#34;1.1.1&#34;</span>, features = [<span style="color:#0ff;font-weight:bold">&#34;behavior-version-latest&#34;</span>] }
-aws-sdk-cloudtrail = <span style="color:#0ff;font-weight:bold">&#34;1.9.0&#34;</span>
-tokio = { version = <span style="color:#0ff;font-weight:bold">&#34;1&#34;</span>, features = [<span style="color:#0ff;font-weight:bold">&#34;full&#34;</span>] }
-</code></pre></div><h2 id="simple-client-scenario">Simple Client Scenario</h2>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[dependencies]
+</span></span><span style="display:flex;"><span>aws-config = { version= <span style="color:#a6e3a1">&#34;1.1.1&#34;</span>, features = [<span style="color:#a6e3a1">&#34;behavior-version-latest&#34;</span>] }
+</span></span><span style="display:flex;"><span>aws-sdk-cloudtrail = <span style="color:#a6e3a1">&#34;1.9.0&#34;</span>
+</span></span><span style="display:flex;"><span>tokio = { version = <span style="color:#a6e3a1">&#34;1&#34;</span>, features = [<span style="color:#a6e3a1">&#34;full&#34;</span>] }
+</span></span></code></pre></div><h2 id="simple-client-scenario">Simple Client Scenario</h2>
 <p>For the first example, let&rsquo;s initialise the client with credentials provided
 through environment variables. Afterwards, let&rsquo;s invoke the operations needed
 to get the above two tasks done.</p>
@@ -224,13 +223,13 @@ to get the above two tasks done.</p>
 initialise <code>tokio</code> runtime. The return type from this function is going to be
 a <code>std::result::Result</code> enum with error type being <code>aws_sdk_cloudtrail::Error</code>,
 so it has to be imported to the context.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#fff;font-weight:bold">use</span> aws_sdk_cloudtrail::Error;
-
-<span style="color:#0f0;font-weight:bold">#[tokio::main]</span>
-<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> main() -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
-    <span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>}
-</code></pre></div><p>As the first step, let&rsquo;s initialise the AWS client with configuration provided
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#cba6f7">use</span> aws_sdk_cloudtrail::Error;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#[tokio::main]</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#cba6f7">fn</span> <span style="color:#89b4fa">main</span>() -&gt; <span style="color:#89dceb">Result</span><span style="color:#89dceb;font-weight:bold">&lt;</span>(), Error<span style="color:#89dceb;font-weight:bold">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>}
+</span></span></code></pre></div><p>As the first step, let&rsquo;s initialise the AWS client with configuration provided
 through environment variables. Environment variables are <a href="https://docs.aws.amazon.com/sdk-for-rust/latest/dg/environment-variables.html">the same ones you&rsquo;d be
 familiar
 with</a>
@@ -243,8 +242,8 @@ to be provided.</p>
 </ol>
 <p>Populate these with the temporary credentials obtained through STS or (less ideally)
 permanent credentials generated in IAM.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#fff;font-weight:bold">let</span> shared_config = aws_config::load_from_env().<span style="color:#fff;font-weight:bold">await</span>;
-</code></pre></div><p>The function <code>load_from_env()</code> available in the <code>aws-config</code> crate goes through
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#f38ba8">let</span> shared_config <span style="color:#89dceb;font-weight:bold">=</span> aws_config::load_from_env().<span style="color:#cba6f7">await</span>;
+</span></span></code></pre></div><p>The function <code>load_from_env()</code> available in the <code>aws-config</code> crate goes through
 the default config lookup cycle (environment variables, config file locations
 etc) to determine the effective configuration for the AWS client context and
 returns the configuration struct of type <code>aws_config::SdkConfig</code> (to be
@@ -264,99 +263,98 @@ can be overridden with environment variables, config file entries, and others
 that are available through the default configuration chain.</p>
 <blockquote>
 <p>How these defaults are configured can be overridden as well. We&rsquo;ll explore a few use
-cases for this later in this post.</p>
-</blockquote>
+cases for this later in this post.</p></blockquote>
 <p>With this configuration struct, we can now build the specific client we want.
 For this, we need to import the appropriate Client implementation to the
 context.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">use</span> aws_sdk_cloudtrail::{Client, Error};
-<span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>
-
-<span style="color:#0f0;font-weight:bold">#[tokio::main]</span>
-<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> main() -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
-    <span style="color:#fff;font-weight:bold">let</span> shared_config = aws_config::load_from_env().<span style="color:#fff;font-weight:bold">await</span>;
-    <span style="color:#fff;font-weight:bold">let</span> client = Client::new(&amp;shared_config);
-}
-</code></pre></div><p>With the initialised client, let&rsquo;s perform the first step of listing the
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">use</span> aws_sdk_cloudtrail::{Client, Error};
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#[tokio::main]</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#cba6f7">fn</span> <span style="color:#89b4fa">main</span>() -&gt; <span style="color:#89dceb">Result</span><span style="color:#89dceb;font-weight:bold">&lt;</span>(), Error<span style="color:#89dceb;font-weight:bold">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> shared_config <span style="color:#89dceb;font-weight:bold">=</span> aws_config::load_from_env().<span style="color:#cba6f7">await</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> client <span style="color:#89dceb;font-weight:bold">=</span> Client::new(<span style="color:#89dceb;font-weight:bold">&amp;</span>shared_config);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With the initialised client, let&rsquo;s perform the first step of listing the
 existing Trails in the provided region.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">use</span> aws_sdk_cloudtrail::{Client, Error};
-<span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>
-
-<span style="color:#0f0;font-weight:bold">#[tokio::main]</span>
-<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> main() -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
-    <span style="color:#fff;font-weight:bold">let</span> shared_config = aws_config::load_from_env().<span style="color:#fff;font-weight:bold">await</span>;
-    <span style="color:#fff;font-weight:bold">let</span> client = Client::new(&amp;shared_config);
-
-    <span style="color:#fff;font-weight:bold">let</span> req = client.list_trails();
-    <span style="color:#fff;font-weight:bold">let</span> resp = req.send().<span style="color:#fff;font-weight:bold">await</span>?;
-
-    <span style="color:#fff;font-weight:bold">for</span> trail <span style="color:#fff;font-weight:bold">in</span> resp.trails() {
-        println!(<span style="color:#0ff;font-weight:bold">&#34;{}&#34;</span>, trail.name().unwrap());
-    }
-
-    <span style="color:#fff;font-weight:bold">Ok</span>(())
-}
-</code></pre></div><p>Compile and run this snippet in an authenticated AWS context to see the list of
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">use</span> aws_sdk_cloudtrail::{Client, Error};
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#[tokio::main]</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#cba6f7">fn</span> <span style="color:#89b4fa">main</span>() -&gt; <span style="color:#89dceb">Result</span><span style="color:#89dceb;font-weight:bold">&lt;</span>(), Error<span style="color:#89dceb;font-weight:bold">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> shared_config <span style="color:#89dceb;font-weight:bold">=</span> aws_config::load_from_env().<span style="color:#cba6f7">await</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> client <span style="color:#89dceb;font-weight:bold">=</span> Client::new(<span style="color:#89dceb;font-weight:bold">&amp;</span>shared_config);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> req <span style="color:#89dceb;font-weight:bold">=</span> client.list_trails();
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> resp <span style="color:#89dceb;font-weight:bold">=</span> req.send().<span style="color:#cba6f7">await</span><span style="color:#89dceb;font-weight:bold">?</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> trail <span style="color:#cba6f7">in</span> resp.trails() {
+</span></span><span style="display:flex;"><span>        <span style="color:#89b4fa">println!</span>(<span style="color:#a6e3a1">&#34;</span><span style="color:#a6e3a1">{}</span><span style="color:#a6e3a1">&#34;</span>, trail.name().unwrap());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb">Ok</span>(())
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Compile and run this snippet in an authenticated AWS context to see the list of
 Trails in the configured region. Credentials can be set through environment
 variables.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cargo run
-</code></pre></div><p>It&rsquo;s as easy as that. This kind of environment variable based configuration
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cargo run
+</span></span></code></pre></div><p>It&rsquo;s as easy as that. This kind of environment variable based configuration
 covers most of the use cases. Let&rsquo;s continue and get the second operation done.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">use</span> aws_sdk_cloudtrail::{
-    types::{LookupAttribute, LookupAttributeKey},
-    Client, Error,
-};
-<span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> read_only_attrib = LookupAttribute::builder()
-        .attribute_key(LookupAttributeKey::ReadOnly)
-        .attribute_value(<span style="color:#0ff;font-weight:bold">&#34;false&#34;</span>)
-        .build()
-        .unwrap();
-
-    <span style="color:#fff;font-weight:bold">let</span> lookup_events_req = client.lookup_events().lookup_attributes(read_only_attrib);
-    <span style="color:#fff;font-weight:bold">let</span> lookup_events_resp = lookup_events_req.send().<span style="color:#fff;font-weight:bold">await</span>?;
-<span style="color:#007f7f">//...
-</span></code></pre></div><p>The above code is the Rust equivalent of the following CLI command executed in
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">use</span> aws_sdk_cloudtrail::{
+</span></span><span style="display:flex;"><span>    types::{LookupAttribute, LookupAttributeKey},
+</span></span><span style="display:flex;"><span>    Client, Error,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#f38ba8">let</span> read_only_attrib <span style="color:#89dceb;font-weight:bold">=</span> LookupAttribute::builder()
+</span></span><span style="display:flex;"><span>        .attribute_key(LookupAttributeKey::ReadOnly)
+</span></span><span style="display:flex;"><span>        .attribute_value(<span style="color:#a6e3a1">&#34;false&#34;</span>)
+</span></span><span style="display:flex;"><span>        .build()
+</span></span><span style="display:flex;"><span>        .unwrap();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> lookup_events_req <span style="color:#89dceb;font-weight:bold">=</span> client.lookup_events().lookup_attributes(read_only_attrib);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> lookup_events_resp <span style="color:#89dceb;font-weight:bold">=</span> lookup_events_req.send().<span style="color:#cba6f7">await</span><span style="color:#89dceb;font-weight:bold">?</span>;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//...
+</span></span></span></code></pre></div><p>The above code is the Rust equivalent of the following CLI command executed in
 an authenticated AWS context.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws cloudtrail lookup-events --lookup-attributes AttributeKey=ReadOnly,AttributeValue=<span style="color:#fff;font-weight:bold">false</span>
-</code></pre></div><p>Note the builder pattern used for building the lookup attribute for the
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws cloudtrail lookup-events --lookup-attributes <span style="color:#f5e0dc">AttributeKey</span><span style="color:#89dceb;font-weight:bold">=</span>ReadOnly,AttributeValue<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89dceb">false</span>
+</span></span></code></pre></div><p>Note the builder pattern used for building the lookup attribute for the
 operation. Builder pattern is used throughout the SDK to provide an easy API to
 override specific details with minimal code duplication.</p>
 <p>Let&rsquo;s display the returned results of a successful execution
 <code>lookup_events_resp</code> in a tabular manner.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>    println!(<span style="color:#0ff;font-weight:bold">&#34;-----------------------------------------------------------------------------------------&#34;</span>);
-    println!(<span style="color:#0ff;font-weight:bold">&#34;|{:^30}|{:^35}|{:^20}|&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;event_id&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;username&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;event_time&#34;</span>);
-    println!(<span style="color:#0ff;font-weight:bold">&#34;-----------------------------------------------------------------------------------------&#34;</span>);
-    <span style="color:#fff;font-weight:bold">for</span> event <span style="color:#fff;font-weight:bold">in</span> lookup_events_resp.events() {
-        <span style="color:#fff;font-weight:bold">let</span> event_name = event.event_name().unwrap();
-
-        <span style="color:#007f7f">// some events do not contain a username
-</span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">let</span> username = <span style="color:#fff;font-weight:bold">if</span> event.username() != <span style="color:#fff;font-weight:bold">None</span> {
-            event.username().unwrap()
-        } <span style="color:#fff;font-weight:bold">else</span> {
-            <span style="color:#0ff;font-weight:bold">&#34;-&#34;</span>
-        };
-
-        <span style="color:#fff;font-weight:bold">let</span> event_time = event
-            .event_time()
-            .unwrap()
-            .fmt(DateTimeFormat::DateTime)
-            .unwrap();
-        <span style="color:#fff;font-weight:bold">let</span> event_time_formatted = event_time.as_str();
-
-        println!(<span style="color:#0ff;font-weight:bold">&#34;|{:&lt;30}|{:&lt;35}|{:&lt;20}|&#34;</span>, event_name, username, event_time_formatted,);
-    }
-    println!(<span style="color:#0ff;font-weight:bold">&#34;-----------------------------------------------------------------------------------------&#34;</span>);
-
-<span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>}
-</code></pre></div><p>This is a straightforward piece of code all things considered. The result of
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#89b4fa">println!</span>(<span style="color:#a6e3a1">&#34;-----------------------------------------------------------------------------------------&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">println!</span>(<span style="color:#a6e3a1">&#34;|</span><span style="color:#a6e3a1">{:^30}</span><span style="color:#a6e3a1">|</span><span style="color:#a6e3a1">{:^35}</span><span style="color:#a6e3a1">|</span><span style="color:#a6e3a1">{:^20}</span><span style="color:#a6e3a1">|&#34;</span>, <span style="color:#a6e3a1">&#34;event_id&#34;</span>, <span style="color:#a6e3a1">&#34;username&#34;</span>, <span style="color:#a6e3a1">&#34;event_time&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">println!</span>(<span style="color:#a6e3a1">&#34;-----------------------------------------------------------------------------------------&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> event <span style="color:#cba6f7">in</span> lookup_events_resp.events() {
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">let</span> event_name <span style="color:#89dceb;font-weight:bold">=</span> event.event_name().unwrap();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6c7086;font-style:italic">// some events do not contain a username
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>        <span style="color:#f38ba8">let</span> username <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">if</span> event.username() <span style="color:#89dceb;font-weight:bold">!=</span> <span style="color:#89dceb">None</span> {
+</span></span><span style="display:flex;"><span>            event.username().unwrap()
+</span></span><span style="display:flex;"><span>        } <span style="color:#cba6f7">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e3a1">&#34;-&#34;</span>
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">let</span> event_time <span style="color:#89dceb;font-weight:bold">=</span> event
+</span></span><span style="display:flex;"><span>            .event_time()
+</span></span><span style="display:flex;"><span>            .unwrap()
+</span></span><span style="display:flex;"><span>            .fmt(DateTimeFormat::DateTime)
+</span></span><span style="display:flex;"><span>            .unwrap();
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">let</span> event_time_formatted <span style="color:#89dceb;font-weight:bold">=</span> event_time.as_str();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#89b4fa">println!</span>(<span style="color:#a6e3a1">&#34;|</span><span style="color:#a6e3a1">{:&lt;30}</span><span style="color:#a6e3a1">|</span><span style="color:#a6e3a1">{:&lt;35}</span><span style="color:#a6e3a1">|</span><span style="color:#a6e3a1">{:&lt;20}</span><span style="color:#a6e3a1">|&#34;</span>, event_name, username, event_time_formatted,);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">println!</span>(<span style="color:#a6e3a1">&#34;-----------------------------------------------------------------------------------------&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>}
+</span></span></code></pre></div><p>This is a straightforward piece of code all things considered. The result of
 the <code>lookup_events()</code> function is <a href="https://docs.rs/aws-sdk-cloudtrail/latest/aws_sdk_cloudtrail/client/struct.Client.html#method.lookup_events">a
 builder</a>
 on which <code>send()</code> can be invoked to get <a href="https://docs.rs/aws-sdk-cloudtrail/latest/aws_sdk_cloudtrail/operation/lookup_events/builders/struct.LookupEventsFluentBuilder.html#method.send">a <code>LookupEventsOutput</code>
@@ -379,40 +377,40 @@ provide a sensible default value in the code itself if the default
 configuration chain doesn&rsquo;t provide a suitable value. In that case, we can go
 one step below the function used above <code>load_from_env()</code> and access the
 <code>ConfigLoader</code> struct and its functions.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#fff;font-weight:bold">use</span> aws_config::meta::region::RegionProviderChain;
-<span style="color:#fff;font-weight:bold">use</span> aws_sdk_cloudtrail::{
-    Client, Error,
-};
-
-<span style="color:#0f0;font-weight:bold">#[tokio::main]</span>
-<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> main() -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
-    <span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> shared_config = aws_config::from_env()
-        <span style="color:#007f7f">// hardcoding the region
-</span><span style="color:#007f7f"></span>        .region(<span style="color:#0ff;font-weight:bold">&#34;ap-southeast-2&#34;</span>)
-        .load()
-        .<span style="color:#fff;font-weight:bold">await</span>;
-    <span style="color:#fff;font-weight:bold">let</span> client = Client::new(&amp;shared_config);
-    <span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>}
-</code></pre></div><p>Or for the second case of providing a fallback value,</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#fff;font-weight:bold">use</span> aws_config::meta::region::RegionProviderChain;
-<span style="color:#fff;font-weight:bold">use</span> aws_sdk_cloudtrail::{
-    Client, Error,
-};
-
-<span style="color:#0f0;font-weight:bold">#[tokio::main]</span>
-<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> main() -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
-    <span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> shared_config = aws_config::from_env()
-        <span style="color:#007f7f">// hardcoding if the config isn&#39;t found in the default loading chain
-</span><span style="color:#007f7f"></span>        .region(RegionProviderChain::default_provider().or_else(<span style="color:#0ff;font-weight:bold">&#34;ap-southeast-2&#34;</span>))
-        .load()
-        .<span style="color:#fff;font-weight:bold">await</span>;
-    <span style="color:#fff;font-weight:bold">let</span> client = Client::new(&amp;shared_config);
-    <span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>}
-</code></pre></div><p>In the above example, <code>RegionProviderChain::default_provider()</code> still tries to
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#cba6f7">use</span> aws_config::meta::region::RegionProviderChain;
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">use</span> aws_sdk_cloudtrail::{
+</span></span><span style="display:flex;"><span>    Client, Error,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#[tokio::main]</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#cba6f7">fn</span> <span style="color:#89b4fa">main</span>() -&gt; <span style="color:#89dceb">Result</span><span style="color:#89dceb;font-weight:bold">&lt;</span>(), Error<span style="color:#89dceb;font-weight:bold">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#f38ba8">let</span> shared_config <span style="color:#89dceb;font-weight:bold">=</span> aws_config::from_env()
+</span></span><span style="display:flex;"><span>        <span style="color:#6c7086;font-style:italic">// hardcoding the region
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>        .region(<span style="color:#a6e3a1">&#34;ap-southeast-2&#34;</span>)
+</span></span><span style="display:flex;"><span>        .load()
+</span></span><span style="display:flex;"><span>        .<span style="color:#cba6f7">await</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> client <span style="color:#89dceb;font-weight:bold">=</span> Client::new(<span style="color:#89dceb;font-weight:bold">&amp;</span>shared_config);
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>}
+</span></span></code></pre></div><p>Or for the second case of providing a fallback value,</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#cba6f7">use</span> aws_config::meta::region::RegionProviderChain;
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">use</span> aws_sdk_cloudtrail::{
+</span></span><span style="display:flex;"><span>    Client, Error,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#[tokio::main]</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#cba6f7">fn</span> <span style="color:#89b4fa">main</span>() -&gt; <span style="color:#89dceb">Result</span><span style="color:#89dceb;font-weight:bold">&lt;</span>(), Error<span style="color:#89dceb;font-weight:bold">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#f38ba8">let</span> shared_config <span style="color:#89dceb;font-weight:bold">=</span> aws_config::from_env()
+</span></span><span style="display:flex;"><span>        <span style="color:#6c7086;font-style:italic">// hardcoding if the config isn&#39;t found in the default loading chain
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>        .region(RegionProviderChain::default_provider().or_else(<span style="color:#a6e3a1">&#34;ap-southeast-2&#34;</span>))
+</span></span><span style="display:flex;"><span>        .load()
+</span></span><span style="display:flex;"><span>        .<span style="color:#cba6f7">await</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> client <span style="color:#89dceb;font-weight:bold">=</span> Client::new(<span style="color:#89dceb;font-weight:bold">&amp;</span>shared_config);
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>}
+</span></span></code></pre></div><p>In the above example, <code>RegionProviderChain::default_provider()</code> still tries to
 load a value from the default configuration chain. <code>or_else()</code> makes sure a
 fallback value is provided if it fails. This is a good way to work with
 sensible defaults that can be overridden.</p>
@@ -436,35 +434,35 @@ struct.</p>
 <p>The structs and the associated functions for providing alternative credential
 providers are contained in a different crate named <code>aws-credential-types</code>. This
 dependency should be added for the following code snippets to work.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cargo add aws-credential-types
-</code></pre></div><p>One way of providing credentials is to directly build a <code>Credentials</code> struct using the
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cargo add aws-credential-types
+</span></span></code></pre></div><p>One way of providing credentials is to directly build a <code>Credentials</code> struct using the
 function <code>from_keys()</code>. This allows just hardcoding the credentials in the
 source code. This function is only available if <code>aws-credential-types</code> is added
 with <code>hardcoded-credentials</code> feature.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cargo add aws-credential-types --features hardcoded-credentials
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#007f7f">//..
-</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">use</span> aws_credential_types::Credentials;
-<span style="color:#fff;font-weight:bold">use</span> aws_sdk_cloudtrail::{
-    types::{LookupAttribute, LookupAttributeKey},
-    Client, Error,
-    Config,
-};
-<span style="color:#007f7f">//..
-</span><span style="color:#007f7f"></span>
-<span style="color:#0f0;font-weight:bold">#[tokio::main]</span>
-<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> main() -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
-    <span style="color:#007f7f">//..
-</span><span style="color:#007f7f"></span>    <span style="color:#007f7f">// IMPORTANT: demo only. DO NOT hardcode credentials!!!
-</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> credentials: Credentials = Credentials::from_keys(<span style="color:#0ff;font-weight:bold">&#34;ACCESS_KEY&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;SECRET_KEY&#34;</span>, <span style="color:#fff;font-weight:bold">Some</span>(<span style="color:#0ff;font-weight:bold">&#34;SESSION_TOKEN&#34;</span>.to_string()));
-    <span style="color:#fff;font-weight:bold">let</span> shared_config: Config = Config::builder()
-        .credentials_provider(credentials)
-        .region(Region::new(<span style="color:#0ff;font-weight:bold">&#34;ap-southeast-2&#34;</span>))
-        .build();
-
-    <span style="color:#fff;font-weight:bold">let</span> client: Client = Client::from_conf(config);
-    <span style="color:#007f7f">//..
-</span><span style="color:#007f7f"></span>}
-</code></pre></div><p>Note that this example is shown because I can&rsquo;t make up my mind to say &ldquo;never&rdquo;
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cargo add aws-credential-types --features hardcoded-credentials
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//..
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">use</span> aws_credential_types::Credentials;
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">use</span> aws_sdk_cloudtrail::{
+</span></span><span style="display:flex;"><span>    types::{LookupAttribute, LookupAttributeKey},
+</span></span><span style="display:flex;"><span>    Client, Error,
+</span></span><span style="display:flex;"><span>    Config,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//..
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#[tokio::main]</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#cba6f7">fn</span> <span style="color:#89b4fa">main</span>() -&gt; <span style="color:#89dceb">Result</span><span style="color:#89dceb;font-weight:bold">&lt;</span>(), Error<span style="color:#89dceb;font-weight:bold">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">//..
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#6c7086;font-style:italic">// IMPORTANT: demo only. DO NOT hardcode credentials!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#f38ba8">let</span> credentials: <span style="color:#f9e2af">Credentials</span> <span style="color:#89dceb;font-weight:bold">=</span> Credentials::from_keys(<span style="color:#a6e3a1">&#34;ACCESS_KEY&#34;</span>, <span style="color:#a6e3a1">&#34;SECRET_KEY&#34;</span>, <span style="color:#89dceb">Some</span>(<span style="color:#a6e3a1">&#34;SESSION_TOKEN&#34;</span>.to_string()));
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> shared_config: <span style="color:#f9e2af">Config</span> <span style="color:#89dceb;font-weight:bold">=</span> Config::builder()
+</span></span><span style="display:flex;"><span>        .credentials_provider(credentials)
+</span></span><span style="display:flex;"><span>        .region(Region::new(<span style="color:#a6e3a1">&#34;ap-southeast-2&#34;</span>))
+</span></span><span style="display:flex;"><span>        .build();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> client: <span style="color:#f9e2af">Client</span> <span style="color:#89dceb;font-weight:bold">=</span> Client::from_conf(config);
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">//..
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>}
+</span></span></code></pre></div><p>Note that this example is shown because I can&rsquo;t make up my mind to say &ldquo;never&rdquo;
 use it, although there&rsquo;s about 99.99% chance that you shouldn&rsquo;t use this
 function. Even <a href="https://docs.rs/aws-credential-types/latest/aws_credential_types/struct.Credentials.html">the documentation for <code>Credentials::from_keys()</code>
 mentions</a> that
@@ -488,54 +486,53 @@ the struct, which is ultimately a single function <code>provide_credentials()</c
 which returns a future that returns the credentials.</li>
 </ol>
 <blockquote>
-<p>For this approach, the feature <code>aws-credential-types/hardcoded-credentials</code> is not needed.</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">use</span> aws_credential_types::{
-    provider::{self, future, ProvideCredentials,},
-    Credentials,
-};
-<span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>
-<span style="color:#007f7f">// create the type for the custom credentials provider
-</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#[derive(Debug)]</span>
-<span style="color:#fff;font-weight:bold">struct</span> CustomCredentialsProvider;
-
-<span style="color:#007f7f">// implement the async logic to generate/retrieve credentials (ex:) from a secret store
-</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">impl</span> CustomCredentialsProvider {
-    <span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> load_credentials(&amp;self) -&gt; provider::<span style="color:#fff;font-weight:bold">Result</span> {
-        <span style="color:#007f7f">// IMPORTANT: demo only. DO NOT hardcode credentials!!!
-</span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">Ok</span>(Credentials::new(<span style="color:#0ff;font-weight:bold">&#34;ACCESS_KEY&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;SECRET_KEY&#34;</span>, <span style="color:#fff;font-weight:bold">Some</span>(<span style="color:#0ff;font-weight:bold">&#34;SESSION_TOKEN&#34;</span>.to_string()), <span style="color:#fff;font-weight:bold">None</span>, <span style="color:#0ff;font-weight:bold">&#34;CustomProvider&#34;</span>))
-    }
-}
-
-<span style="color:#007f7f">// implement ProvideCredentials and return a future for the credentials retrieval logic
-</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">impl</span> ProvideCredentials <span style="color:#fff;font-weight:bold">for</span> CustomCredentialsProvider {
-    <span style="color:#fff;font-weight:bold">fn</span> provide_credentials&lt;&#39;<span style="color:#007f7f">a</span>&gt;(&amp;&#39;<span style="color:#007f7f">a</span> self) -&gt; future::ProvideCredentials&lt;&#39;<span style="color:#007f7f">a</span>&gt; <span style="color:#fff;font-weight:bold">where</span> Self: &#39;<span style="color:#007f7f">a</span> {
-        future::ProvideCredentials::new(self.load_credentials())
-    }
-}
-</code></pre></div><p>Then use this as the Credentials Provider when building the config struct.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">use</span> aws_sdk_cloudtrail::{
-    types::{LookupAttribute, LookupAttributeKey},
-    Client, Error,
-    Config,
-};
-<span style="color:#007f7f">//..
-</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#[tokio::main]</span>
-<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">fn</span> main() -&gt; <span style="color:#fff;font-weight:bold">Result</span>&lt;(), Error&gt; {
-    <span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> shared_config: Config = Config::builder()
-        .credentials_provider(CustomCredentialsProvider)
-        .region(Region::new(<span style="color:#0ff;font-weight:bold">&#34;ap-southeast-2&#34;</span>))
-        .build();
-
-    <span style="color:#fff;font-weight:bold">let</span> client: Client = Client::from_conf(config);
-
-    <span style="color:#007f7f">//...
-</span><span style="color:#007f7f"></span>}
-</code></pre></div><h2 id="conclusion">Conclusion</h2>
+<p>For this approach, the feature <code>aws-credential-types/hardcoded-credentials</code> is not needed.</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">use</span> aws_credential_types::{
+</span></span><span style="display:flex;"><span>    provider::{<span style="color:#89dceb">self</span>, future, ProvideCredentials,},
+</span></span><span style="display:flex;"><span>    Credentials,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">// create the type for the custom credentials provider
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#6c7086;font-style:italic">#[derive(Debug)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">struct</span> <span style="color:#f9e2af">CustomCredentialsProvider</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">// implement the async logic to generate/retrieve credentials (ex:) from a secret store
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">impl</span> CustomCredentialsProvider {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">async</span> <span style="color:#cba6f7">fn</span> <span style="color:#89b4fa">load_credentials</span>(<span style="color:#89dceb;font-weight:bold">&amp;</span><span style="color:#89dceb">self</span>) -&gt; <span style="color:#f9e2af">provider</span>::<span style="color:#89dceb">Result</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#6c7086;font-style:italic">// IMPORTANT: demo only. DO NOT hardcode credentials!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>        <span style="color:#89dceb">Ok</span>(Credentials::new(<span style="color:#a6e3a1">&#34;ACCESS_KEY&#34;</span>, <span style="color:#a6e3a1">&#34;SECRET_KEY&#34;</span>, <span style="color:#89dceb">Some</span>(<span style="color:#a6e3a1">&#34;SESSION_TOKEN&#34;</span>.to_string()), <span style="color:#89dceb">None</span>, <span style="color:#a6e3a1">&#34;CustomProvider&#34;</span>))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">// implement ProvideCredentials and return a future for the credentials retrieval logic
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">impl</span> ProvideCredentials <span style="color:#cba6f7">for</span> CustomCredentialsProvider {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">fn</span> <span style="color:#89b4fa">provide_credentials</span><span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#89b4fa">&#39;a</span><span style="color:#89dceb;font-weight:bold">&gt;</span>(<span style="color:#89dceb;font-weight:bold">&amp;</span><span style="color:#89b4fa">&#39;a</span> <span style="color:#89dceb">self</span>) -&gt; <span style="color:#f9e2af">future</span>::ProvideCredentials<span style="color:#89dceb;font-weight:bold">&lt;</span><span style="color:#89b4fa">&#39;a</span><span style="color:#89dceb;font-weight:bold">&gt;</span> <span style="color:#cba6f7">where</span> <span style="color:#89dceb">Self</span>: <span style="color:#89b4fa">&#39;a</span> {
+</span></span><span style="display:flex;"><span>        future::ProvideCredentials::new(<span style="color:#89dceb">self</span>.load_credentials())
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Then use this as the Credentials Provider when building the config struct.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#cba6f7">use</span> aws_sdk_cloudtrail::{
+</span></span><span style="display:flex;"><span>    types::{LookupAttribute, LookupAttributeKey},
+</span></span><span style="display:flex;"><span>    Client, Error,
+</span></span><span style="display:flex;"><span>    Config,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">//..
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#6c7086;font-style:italic">#[tokio::main]</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">async</span> <span style="color:#cba6f7">fn</span> <span style="color:#89b4fa">main</span>() -&gt; <span style="color:#89dceb">Result</span><span style="color:#89dceb;font-weight:bold">&lt;</span>(), Error<span style="color:#89dceb;font-weight:bold">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>    <span style="color:#f38ba8">let</span> shared_config: <span style="color:#f9e2af">Config</span> <span style="color:#89dceb;font-weight:bold">=</span> Config::builder()
+</span></span><span style="display:flex;"><span>        .credentials_provider(CustomCredentialsProvider)
+</span></span><span style="display:flex;"><span>        .region(Region::new(<span style="color:#a6e3a1">&#34;ap-southeast-2&#34;</span>))
+</span></span><span style="display:flex;"><span>        .build();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">let</span> client: <span style="color:#f9e2af">Client</span> <span style="color:#89dceb;font-weight:bold">=</span> Client::from_conf(config);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>}
+</span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
 <p>Rust SDK for AWS is generated from the <a href="https://github.com/smithy-lang/smithy-rs">Smithy language definitions for the
 AWS API using <code>smithy-rs</code></a>. So
 reading the code itself, in rare cases, could be convoluted. AWS
@@ -550,18 +547,17 @@ documentation</a>.</p>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/">&lt; Pi-hole Restore CLI Tool</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/">Deploying Rust on Lambda &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2023-06-19_pi-hole-restore-cli-tool/">&lt; Pi-hole Restore CLI Tool</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/">Deploying Rust on Lambda &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

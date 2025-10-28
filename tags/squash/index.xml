@@ -4,19 +4,16 @@
     <title>Squash on chamila.dev</title>
     <link>https://chamila.dev/tags/squash/</link>
     <description>Recent content in Squash on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Aug 2017 09:58:17 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/squash/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:15:00 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/squash/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker Image Size Concerns Out of the Window — Squash with Confidence</title>
       <link>https://chamila.dev/blog/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</link>
       <pubDate>Tue, 22 Aug 2017 09:58:17 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</guid>
-      <description>Docker is finally bringing Squash support
-For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use --no-cache flag while building. The layered structure of a Docker image would spook out a beginner.
-Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved.</description>
+      <description>&lt;p&gt;Docker is finally bringing Squash support&lt;/p&gt;&#xA;&lt;p&gt;For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use &lt;code&gt;--no-cache&lt;/code&gt; flag while building. The layered structure of a Docker image would spook out a beginner.&lt;/p&gt;&#xA;&lt;p&gt;Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved. However, it’s often the case that overlaying file systems can introduce unnecessary image sizes, especially when the same file system locations are edited in different layers.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

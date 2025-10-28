@@ -4,17 +4,16 @@
     <title>Adminservice on chamila.dev</title>
     <link>https://chamila.dev/tags/adminservice/</link>
     <description>Recent content in Adminservice on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Sep 2016 00:49:13 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/adminservice/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:14:48 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/adminservice/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Upload a Carbon App (CAR File) to a Remote WSO2 Server</title>
       <link>https://chamila.dev/blog/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</link>
       <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/</guid>
-      <description>Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.</description>
+      <description>&lt;p&gt;Carbon Apps, or CAR Files are a deployable package consisting of WSO2 Product related artifacts. These artifacts can range from Synapse Sequences, Proxy Services, Registry items, to Dashboard Server Gadgets, Dashboards, Siddhi Execution Plans, to Tasks like Purging, NTask etc. For example, to group a set of artifacts to be deployed on WSO2 ESB, a CAR file can be used that has some Synapse Sequences, Proxy Services, APIs, and Endpoints. In essence, it’s a compressed Zip file with a different extension.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

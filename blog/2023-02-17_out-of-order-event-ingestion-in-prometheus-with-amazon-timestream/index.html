@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.151.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/blog/2023-02-17_out-of-order-event-ingestion-in-prometheus-with-amazon-timestream/" />
+  <link rel="canonical" href="http://localhost:1313/blog/2023-02-17_out-of-order-event-ingestion-in-prometheus-with-amazon-timestream/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Out of order event ingestion in Prometheus with Amazon Timestream",
+      "headline" : "Out of order event ingestion in Prometheus with Amazon Timestream",
+      "description" : "\u003cfigure\u003e\u003cimg src=\u0022\/blog\/img\/2023-01-18_backups01_header.jpeg\u0022\u003e\u003cfigcaption\u003e\n      \u003ch4\u003eWhat else is better than a photo of water being backed up\u003c\/h4\u003e\n    \u003c\/figcaption\u003e\n\u003c\/figure\u003e\n\n\u003ch2 id=\u0022prometheus\u0022\u003ePrometheus\u003c\/h2\u003e\n\u003cp\u003eWhat and use case\nstorage\nWAL and Append-only-ness\u003c\/p\u003e\n\u003ch2 id=\u0022amazon-timestream\u0022\u003eAmazon Timestream\u003c\/h2\u003e\n\u003cp\u003ewhat and use cases\u003c\/p\u003e\n\u003ch3 id=\u0022prometheus-integration\u0022\u003ePrometheus integration\u003c\/h3\u003e\n\u003cp\u003ewhy?\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003elonger retention\u003c\/li\u003e\n\u003cli\u003estorage for clustering - check if possible\u003c\/li\u003e\n\u003cli\u003eout of order ingestion\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003cp\u003ehow?\ntimestream-adapter provides the prometheus API for remote_write\nprometheus uses the adapter as a remote_write\ncons\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-02-17 00:04:22 \u002b1300 NZDT",
+      "dateModified" : "2023-02-17 00:04:22 \u002b1300 NZDT",
+      "url" : "http:\/\/localhost:1313\/blog\/2023-02-17_out-of-order-event-ingestion-in-prometheus-with-amazon-timestream\/",
+      "keywords" : [ "", ]
+  }
+</script>
+<title>Out of order event ingestion in Prometheus with Amazon Timestream - chamila.dev</title>
+  <meta property="og:title" content="Out of order event ingestion in Prometheus with Amazon Timestream - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="
+      What else is better than a photo of water being backed up
+    
+
+
+Prometheus
+What and use case
+storage
+WAL and Append-only-ness
+Amazon Timestream
+what and use cases
+Prometheus integration
+why?
+
+longer retention
+storage for clustering - check if possible
+out of order ingestion
+
+how?
+timestream-adapter provides the prometheus API for remote_write
+prometheus uses the adapter as a remote_write
+cons" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="http://localhost:1313/">chamila.dev</a> >
+      <a href="http://localhost:1313//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Out of order event ingestion in Prometheus with Amazon Timestream</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2023-02-17 00:04:22 NZDT">
+                17 Feb 2023
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~1 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#prometheus">Prometheus</a></li>
+    <li><a href="#amazon-timestream">Amazon Timestream</a>
+      <ul>
+        <li><a href="#prometheus-integration">Prometheus integration</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <figure><img src="/blog/img/2023-01-18_backups01_header.jpeg"><figcaption>
+      <h4>What else is better than a photo of water being backed up</h4>
+    </figcaption>
+</figure>
+
+<h2 id="prometheus">Prometheus</h2>
+<p>What and use case
+storage
+WAL and Append-only-ness</p>
+<h2 id="amazon-timestream">Amazon Timestream</h2>
+<p>what and use cases</p>
+<h3 id="prometheus-integration">Prometheus integration</h3>
+<p>why?</p>
+<ol>
+<li>longer retention</li>
+<li>storage for clustering - check if possible</li>
+<li>out of order ingestion</li>
+</ol>
+<p>how?
+timestream-adapter provides the prometheus API for remote_write
+prometheus uses the adapter as a remote_write
+cons</p>
+
+        </div>
+        <div class="prev-next row">
+  <div class="prev col-sm">
+    
+    <a href="http://localhost:1313/blog/2023-02-13_aws-backup-cross-account-backups/">&lt; AWS Backup: Cross-Account Backups</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="http://localhost:1313/blog/2023-02-20_aws-backup-implementing-a-simple-cross-account-backup-strategy/">AWS Backup: Implementing a Simple Cross-Account Backup Strategy &gt;</a>
+    
+  </div>
+</div>
+
+        
+
+        
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

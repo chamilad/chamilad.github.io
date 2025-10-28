@@ -4,37 +4,30 @@
     <title>Python on chamila.dev</title>
     <link>https://chamila.dev/tags/python/</link>
     <description>Recent content in Python on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Dec 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:14:40 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>BreadPool — a Thread Pool for Python</title>
       <link>https://chamila.dev/blog/2015-12-10_breadpool-a-thread-pool-for-python/</link>
       <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-12-10_breadpool-a-thread-pool-for-python/</guid>
-      <description>A thread pool is not a new concept. It’s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? Because the program wouldn’t be starting threads as it sees fit and somehow reach the maximum thread number soon. Simply said thread pools allows us to limit the number of threads spawned by our program execution. Trust me, you don’t want your code going to town spawning threads.</description>
+      <description>&lt;p&gt;A thread pool is not a new concept. It’s basically a gang of worker threads to whom a task would be given to be executed. Why thread pools? Because the program wouldn’t be starting threads as it sees fit and somehow reach the maximum thread number soon. Simply said thread pools allows us to limit the number of threads spawned by our program execution. Trust me, you don’t want your code going to town spawning threads. It comes back to bite you in your behind, sooner than you think.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Timing Out of Long Running Methods in Python</title>
       <link>https://chamila.dev/blog/2015-11-26_timing-out-of-long-running-methods-in-python/</link>
       <pubDate>Thu, 26 Nov 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-11-26_timing-out-of-long-running-methods-in-python/</guid>
-      <description>Sometimes there are conditions under which a function call could not return in a needed time period and would cause unexpected behavior. For example, a file read could take more time than anticipated and leave the code execution without proper control over what to do when such a situation occurs. This can be worse if the said function call directs to an external library which we can’t control.
-Python has a nifty module called signal which exposes UNIX Signal numbers and a way to register callbacks for each signal.</description>
+      <description>&lt;p&gt;Sometimes there are conditions under which a function call could not return in a needed time period and would cause unexpected behavior. For example, a file read could take more time than anticipated and leave the code execution without proper control over what to do when such a situation occurs. This can be worse if the said function call directs to an external library which we can’t control.&lt;/p&gt;&#xA;&lt;p&gt;Python has a nifty module called signal which exposes &lt;a href=&#34;https://en.wikipedia.org/wiki/Unix_signal#POSIX_signals&#34;&gt;UNIX Signal&lt;/a&gt; numbers and a way to register callbacks for each signal. Out of the UNIX Signals available, what interests us in this particular situation is the &lt;a href=&#34;http://linux.die.net/man/2/alarm&#34;&gt;SIGALRM&lt;/a&gt; signal which allows us to sort of wind out an OS level alarm clock that would send a signal to the calling process after the set number of seconds. We can make use of this functionality (only in UNIX of course) to set a timeout before a function call with the possibility to hang or take unexpected durations to finish.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Apache Stratos Cartridge Agent: Day 0</title>
       <link>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-day-0/</link>
       <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-day-0/</guid>
-      <description>As the first post of a series of comprehensive guide to the Apache Stratos Cartridge Agent, let’s look at the Cartridge Agent contract. Keep tuned in and expect more detailed explanations on the instance and Cartridge Agent configuration, workflow, different Cartridge Agent implementations, their configurations and newly introduced plugin system in the Python implementation.
-When the instances are spawned in Apache Stratos, there are a few requirements that the particular instance should fulfill.</description>
+      <description>&lt;p&gt;As the first post of a series of comprehensive guide to the Apache Stratos Cartridge Agent, let’s look at the Cartridge Agent contract. Keep tuned in and expect more detailed explanations on the instance and Cartridge Agent configuration, workflow, different Cartridge Agent implementations, their configurations and newly introduced plugin system in the Python implementation.&lt;/p&gt;&#xA;&lt;p&gt;When the instances are spawned in Apache Stratos, there are a few requirements that the particular instance should fulfill. It should&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

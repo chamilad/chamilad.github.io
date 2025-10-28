@@ -4,27 +4,23 @@
     <title>Programming on chamila.dev</title>
     <link>https://chamila.dev/tags/programming/</link>
     <description>Recent content in Programming on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Feb 2017 06:48:33 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:14:52 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ballerina with Container Support</title>
       <link>https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/</link>
       <pubDate>Tue, 21 Feb 2017 06:48:33 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/</guid>
-      <description>WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the WSO2Con 2017 in San Fransisco. Ballerina is a general purpose language with a focus on integration and a visual approach to coding. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “Connectors” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2017-02-21_ballerina-with-container-support_0.png#layoutFillWidth&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the &lt;a href=&#34;http://us17.wso2con.com/&#34;&gt;WSO2Con 2017 in San Fransisco&lt;/a&gt;. Ballerina is a &lt;a href=&#34;http://ballerinalang.org/&#34;&gt;general purpose language with a focus on integration and a visual approach to coding&lt;/a&gt;. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “&lt;strong&gt;Connectors&lt;/strong&gt;” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Timing Out of Long Running Methods in Python</title>
       <link>https://chamila.dev/blog/2015-11-26_timing-out-of-long-running-methods-in-python/</link>
       <pubDate>Thu, 26 Nov 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-11-26_timing-out-of-long-running-methods-in-python/</guid>
-      <description>Sometimes there are conditions under which a function call could not return in a needed time period and would cause unexpected behavior. For example, a file read could take more time than anticipated and leave the code execution without proper control over what to do when such a situation occurs. This can be worse if the said function call directs to an external library which we can’t control.
-Python has a nifty module called signal which exposes UNIX Signal numbers and a way to register callbacks for each signal.</description>
+      <description>&lt;p&gt;Sometimes there are conditions under which a function call could not return in a needed time period and would cause unexpected behavior. For example, a file read could take more time than anticipated and leave the code execution without proper control over what to do when such a situation occurs. This can be worse if the said function call directs to an external library which we can’t control.&lt;/p&gt;&#xA;&lt;p&gt;Python has a nifty module called signal which exposes &lt;a href=&#34;https://en.wikipedia.org/wiki/Unix_signal#POSIX_signals&#34;&gt;UNIX Signal&lt;/a&gt; numbers and a way to register callbacks for each signal. Out of the UNIX Signals available, what interests us in this particular situation is the &lt;a href=&#34;http://linux.die.net/man/2/alarm&#34;&gt;SIGALRM&lt;/a&gt; signal which allows us to sort of wind out an OS level alarm clock that would send a signal to the calling process after the set number of seconds. We can make use of this functionality (only in UNIX of course) to set a timeout before a function call with the possibility to hang or take unexpected durations to finish.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana",
       "headline" : "Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana",
-      "description" : "Horton Plains at sunrise, Sri Lanka This is a continuation of the addendum to a series of articles on ELK on K8s.\nElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana The previous post on this series was about enabling SSO between Kibana and KeyCloak.",
+      "description" : "\u003cfigure\u003e\u003cimg src=\u0022\/blog\/img\/2020-02-12_multitenant_sso_header.jpg\u0022\u003e\u003cfigcaption\u003e\n      \u003ch4\u003eHorton Plains at sunrise, Sri Lanka\u003c\/h4\u003e\n    \u003c\/figcaption\u003e\n\u003c\/figure\u003e\n\n\u003cblockquote\u003e\n\u003cp\u003eThis is a continuation of the addendum to a series of articles on ELK on K8s.\u003c\/p\u003e\u003c\/blockquote\u003e\n\u003col\u003e\n\u003cli\u003e\u003ca href=\u0022\/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a\u0022\u003eElasticSearch on K8s: 01 — Basic Design\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat\/\u0022\u003eElasticSearch on K8s: 02 — Log Collection with Filebeat\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash\/\u0022\u003eElasticSearch on K8s: 03 - Log Enrichment with Logstash\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch\/\u0022\u003eElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying\/\u0022\u003eElasticSearch on K8s: 05 - Visualization and Production Readying\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2019-11-26_elasticsearch-index-management\/\u0022\u003eElasticSearch Index Management\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso\/\u0022\u003eAuthentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment\/\u0022\u003eAuthentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003eAuthentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003cp\u003e\u003ca href=\u0022\/post\/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment\/\u0022\u003eThe previous post on this series\u003c\/a\u003e was about enabling SSO between Kibana and KeyCloak. However, it did not address any concerns about multi-tenancy with SSO. This article aims to come up with a design for a multi-tenant SSO solution for Kibana with KeyCloak.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,25 @@
 <title>Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana - chamila.dev</title>
   <meta property="og:title" content="Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="Horton Plains at sunrise, Sri Lanka This is a continuation of the addendum to a series of articles on ELK on K8s.
-ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana The previous post on this series was about enabling SSO between Kibana and KeyCloak." />
+  <meta name="description" content="
+      Horton Plains at sunrise, Sri Lanka
+    
+
+
+
+This is a continuation of the addendum to a series of articles on ELK on K8s.
+
+ElasticSearch on K8s: 01 — Basic Design
+ElasticSearch on K8s: 02 — Log Collection with Filebeat
+ElasticSearch on K8s: 03 - Log Enrichment with Logstash
+ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch
+ElasticSearch on K8s: 05 - Visualization and Production Readying
+ElasticSearch Index Management
+Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO
+Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment
+Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana
+
+The previous post on this series was about enabling SSO between Kibana and KeyCloak. However, it did not address any concerns about multi-tenancy with SSO. This article aims to come up with a design for a multi-tenant SSO solution for Kibana with KeyCloak." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -51,7 +68,8 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -61,7 +79,6 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -71,10 +88,10 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -154,14 +171,13 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
           </div>
         </header>
         <div class="post-content markdown-body">
-          <figure><img src="/blog/img/2020-02-12_multitenant_sso_header.jpg"/><figcaption>
-            <h4>Horton Plains at sunrise, Sri Lanka</h4>
-        </figcaption>
+          <figure><img src="/blog/img/2020-02-12_multitenant_sso_header.jpg"><figcaption>
+      <h4>Horton Plains at sunrise, Sri Lanka</h4>
+    </figcaption>
 </figure>
 
 <blockquote>
-<p>This is a continuation of the addendum to a series of articles on ELK on K8s.</p>
-</blockquote>
+<p>This is a continuation of the addendum to a series of articles on ELK on K8s.</p></blockquote>
 <ol>
 <li><a href="/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a">ElasticSearch on K8s: 01 — Basic Design</a></li>
 <li><a href="/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/">ElasticSearch on K8s: 02 — Log Collection with Filebeat</a></li>
@@ -177,16 +193,16 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 <h1 id="the-problem-of-multi-tenancy">The Problem of Multi-Tenancy</h1>
 <p>A multi-tenant deployment is <strong>one that can accommodate different organizational units of users (called <em>tenants</em>) during service utilization without compromising the logical separation between those units</strong>. Achieving this design is the responsibility of the deployment stack (including hardware and software). It could be either a fully separated multi-tenant system, where different organizational units (tenants) will be served out of different physical (or virtual) stacks of software, where the code is somewhat free from having knowledge on the multi-tenant complexities of the larger system, or an in-software multi-tenant design where the code itself if fully aware of tenancy in the request-response flow and handles partition of tenant data accordingly.</p>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_07.png" alt=""></p>
-<!-- raw HTML omitted -->
+<figcaption>Physically separate multi-tenancy</figcaption>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_08.png" alt=""></p>
-<!-- raw HTML omitted -->
+<figcaption>In-Software multi-tenancy</figcaption>
 <p>There are various pros and cons of both approaches, however physically separate multi-tenancy, being a simpler approach to implement at first, could easily become operational burden if not done correctly. It can also easily evolve (or devolve depending on the Ops perspective) into a serverless design if the software architecture can support it.</p>
 <h2 id="support-from-sp-and-idp">Support from SP and IDP</h2>
 <p>When it comes to the ELK stack, what should be tenant aware is Kibana, the main user interface of the stack. Kibana offers an in-software multi-tenancy model where a feature called <code>Spaces</code> along with ElasticSearch <code>Roles</code> act in combination to provide tenant specific experiences of Kibana. In other words, different tenants could have access to different Spaces in Kibana, that may provide isolation between tenants and avoid having to share the same set of data and configuration between tenants.</p>
 <p>On the other side of the process, KeyCloak has a well built-in model for multi-tenancy called <code>Realms</code> (that we already are familiar with after enabling single tenant SSO in the previous post). As the IDP, KeyCloak provides logical separation between tenants with this concept of Realms.</p>
 <p>We can simply map these two functionalities so that a set of users from one KeyCloak Realm are assumed to be of the same Tenant and assign them one or more Roles in Kibana (to be precise, ElasticSearch) so that they all have access to a single Space, and only to that Space. <strong>This is the basis of our multi-tenant design for Kibana</strong>. This results in a simple user model, where a single user may only be part of a single tenant. Note that there could be more complex user models with a single user having the ability to be part of different tenants. For the purposes of this article, a 1-1 mapping between a user and tenant is enough.</p>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_09.png" alt=""></p>
-<!-- raw HTML omitted -->
+<figcaption>Mapping Kibana Spaces to KeyCloak Realms</figcaption>
 <h2 id="tenant-discovery-and-the-lack-of-it">Tenant Discovery and the Lack of it</h2>
 <p>In theory, Kibana and KeyCloak having support for multi-tenancy should be the end of story. Unfortunately it is not. There is another part of multi-tenancy outside of just having support for logical separation. The initiating component of the multi-tenant design should be able to figure out which users belong to which tenants, using some distinguishing feature in the request. This is called <strong>tenant/realm discovery</strong>. For an example, this could be a design based on URL segments, where a user visiting <code>https://saas.my.org/tenant1/</code> is assumed to be part of the tenant <code>tenant1</code>. There are multiple other ways of doing realm discovery (ex: using a custom header or deriving information from standard headers, additional prompts where the user is allowed to specify the tenant they wish to be part of). Because this is such an open ended approach, different service providers may decide how they want to do tenant discovery on their own terms.</p>
 <p>As the Service Provider in this SSO scenario, Kibana is the main component of contact, that would initiate the SSO flow. This means, it should be Kibana that should start separating users to their respective tenants. If there was no authentication for Kibana, on visiting the UI, Kibana would present the list of Spaces to be selected. However, with authentication in place, by the time the Space selection interface is presented, the user should already be granted proper roles.</p>
@@ -197,13 +213,11 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 <p>A simpler approach for this may be the easiest one to implement. If the burden of the decision during tenant discovery can be pushed off to the end-user, the impact from the lack of software features can be mitigated. Therefore, when the user is redirected to KeyCloak, they should be able to decide which tenant to authenticate against. Kibana on the other hand, should also have a single point of contact for KeyCloak to send the users for authentication. In other words, an SSO facade that speaks SAML should be present between Kibana and KeyCloak. With KeyCloak&rsquo;s support for IDP Federation, this SAML facade can be another KeyCloak realm that acts as a proxy for the rest of the actual tenant realms.</p>
 <p>For an example, for a list of tenant realms named <code>org1</code>, <code>org2</code>, <code>org3</code>, KeyCloak can have another realm (let&rsquo;s call it the <code>federator realm</code>) to act as a facade, named <code>federator</code>. The realm <code>federator</code> will have the realms <code>org</code>, <code>org2</code>, and <code>org3</code> as pseudo-external IDPs, using OIDC as the communication protocol between <code>federator</code> and the tenant realms. For the <code>federator</code> realm, the external IDP configured to point to <code>org1</code> becomes a completely separate KeyCloak instance, even though the two realms act on the same CPU cycles on the same VM.</p>
 <blockquote>
-<p>IDP Federation is feature typically used to enable social authentication with public providers like Google, Twitter, or Facebook. However, because of standardized protocols like OIDC (on which the typical social providers usually build upon and end up with their custom protocols), any compliant provider could be an externally federated IDP. Since any KeyCloak realm is OIDC compliant, a self-referencing federation is like any other integration.</p>
-</blockquote>
+<p>IDP Federation is feature typically used to enable social authentication with public providers like Google, Twitter, or Facebook. However, because of standardized protocols like OIDC (on which the typical social providers usually build upon and end up with their custom protocols), any compliant provider could be an externally federated IDP. Since any KeyCloak realm is OIDC compliant, a self-referencing federation is like any other integration.</p></blockquote>
 <p>When a user visits a Client configuration on the <code>federator</code> realm to authenticate, they will be provided with a list of external IDPs to select. If the user is from <strong>organization1</strong> they can then select <code>org1</code> option from the list, after which they will be redirected again to a Client on the <code>org1</code> realm to be authenticated. After successful authentication, the user details will be sent back to the <code>federator</code> realm, which can send them again to the Service Provider that initiated the SSO flow.</p>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_05.png" alt=""></p>
 <blockquote>
-<p>The user interface provided to a user when visiting a Client for authentication is part of a KeyCloak Theme. With the default theme, the federated IDPs are rendered as selectable options. However a customized theme can easily modify this to be an additional textual input for the user to enter, if exposure of other realm names is a security concern.</p>
-</blockquote>
+<p>The user interface provided to a user when visiting a Client for authentication is part of a KeyCloak Theme. With the default theme, the federated IDPs are rendered as selectable options. However a customized theme can easily modify this to be an additional textual input for the user to enter, if exposure of other realm names is a security concern.</p></blockquote>
 <p>We have solved the problem of tenant discovery by essentially not choosing to do it programmatically.</p>
 <h3 id="implementation">Implementation</h3>
 <p>KeyCloak IDP federation is <a href="https://www.keycloak.org/docs/6.0/server_admin/#_identity_broker">a well documented feature</a>. The essence of implementing this is,</p>
@@ -213,10 +227,10 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 <li>Add the entry details created in #2 as a redirect URL in the OIDC client created in #1 to complete the plumbing</li>
 </ol>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_13.png" alt=""></p>
-<!-- raw HTML omitted -->
+<figcaption>OIDC Client configuration in the `org1` Tenant Realm</figcaption>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_11.png" alt="">
 <img src="/blog/img/2020-02-12_multitenant_sso_12.png" alt=""></p>
-<!-- raw HTML omitted -->
+<figcaption>IDP Federation configuration in the `federator` Realm</figcaption>
 <p>Doing these simple tasks will create the basic connectivity between the federated and the federating realms. A few things to note are,</p>
 <ol>
 <li>As mentioned above, the federation process happens here using OIDC as the protocol. However additionally SAML or OAuth2 could also be used as the federation protocol. For the authorization needs in our design, either OIDC or SAML is a must in this case.</li>
@@ -251,131 +265,129 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 <h5 id="elasticsearch-roles">ElasticSearch Roles</h5>
 <p>The following two roles, <code>roaccess</code> and <code>writeaccess</code> could be created in ElasticSearch to encapsulate the two levels of permissions the users would get.</p>
 <p><strong><code>roaccess</code></strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;applications&#34;</span>: [],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;transient_metadata&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;applications&#34;</span>: [],
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;transient_metadata&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;enabled&#34;</span>: <span style="color:#fab387">true</span>
 </span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;run_as&#34;</span>: [],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;cluster&#34;</span>: [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;monitor&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;run_as&#34;</span>: [],
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;cluster&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e3a1">&#34;monitor&#34;</span>
 </span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;indices&#34;</span>: [
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;indices&#34;</span>: [
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;privileges&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;read&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;monitor&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;view_index_metadata&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;privileges&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;read&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;monitor&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;view_index_metadata&#34;</span>
 </span></span><span style="display:flex;"><span>      ],
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;field_security&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;except&#34;</span>: [],
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;grant&#34;</span>: [
-</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;field_security&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;except&#34;</span>: [],
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;grant&#34;</span>: [
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e3a1">&#34;*&#34;</span>
 </span></span><span style="display:flex;"><span>        ]
 </span></span><span style="display:flex;"><span>      },
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;allow_restricted_indices&#34;</span>: <span style="color:#66d9ef">false</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;names&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;allow_restricted_indices&#34;</span>: <span style="color:#fab387">false</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;names&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;*&#34;</span>
 </span></span><span style="display:flex;"><span>      ]
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;metadata&#34;</span>: {}
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;metadata&#34;</span>: {}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong><code>writeaccess</code></strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;applications&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;applications&#34;</span>: [
 </span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;application&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;privileges&#34;</span>: [
-</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;application&#34;</span>: <span style="color:#a6e3a1">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;privileges&#34;</span>: [
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e3a1">&#34;*&#34;</span>
 </span></span><span style="display:flex;"><span>        ],
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;resources&#34;</span>: [
-</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;resources&#34;</span>: [
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e3a1">&#34;*&#34;</span>
 </span></span><span style="display:flex;"><span>        ]
 </span></span><span style="display:flex;"><span>      }
 </span></span><span style="display:flex;"><span>    ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;transient_metadata&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;transient_metadata&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;enabled&#34;</span>: <span style="color:#fab387">true</span>
 </span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;run_as&#34;</span>: [],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;cluster&#34;</span>: [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;monitor&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;run_as&#34;</span>: [],
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;cluster&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e3a1">&#34;monitor&#34;</span>
 </span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;indices&#34;</span>: [
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;indices&#34;</span>: [
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;privileges&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;all&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;privileges&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;all&#34;</span>
 </span></span><span style="display:flex;"><span>      ],
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;field_security&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;except&#34;</span>: [],
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;grant&#34;</span>: [
-</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;field_security&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;except&#34;</span>: [],
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;grant&#34;</span>: [
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e3a1">&#34;*&#34;</span>
 </span></span><span style="display:flex;"><span>        ]
 </span></span><span style="display:flex;"><span>      },
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;allow_restricted_indices&#34;</span>: <span style="color:#66d9ef">false</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;names&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;allow_restricted_indices&#34;</span>: <span style="color:#fab387">false</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;names&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;*&#34;</span>
 </span></span><span style="display:flex;"><span>      ]
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;metadata&#34;</span>: {}
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;metadata&#34;</span>: {}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><blockquote>
-<p>Note that due to frequent ElasticSearch and Kibana API changes, these definitions could slightly change.</p>
-</blockquote>
+<p>Note that due to frequent ElasticSearch and Kibana API changes, these definitions could slightly change.</p></blockquote>
 <h5 id="elasticsearch-role-mappings">ElasticSearch Role Mappings</h5>
 <p>With the name of the SAML attribute decided, we can create the following two role mappings, <code>roaccessmapping</code> and <code>writeaccessmapping</code> to map the above two roles to the authenticating users.</p>
 <p><strong><code>writeaccessmapping</code></strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;rules&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;all&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;rules&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;all&#34;</span>: [
 </span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;field&#34;</span>: {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;realm.name&#34;</span>: <span style="color:#e6db74">&#34;cloud-saml&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;field&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">&#34;realm.name&#34;</span>: <span style="color:#a6e3a1">&#34;cloud-saml&#34;</span>
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      },
 </span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;field&#34;</span>: {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;metadata.saml_kibanaAdmin&#34;</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;field&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">&#34;metadata.saml_kibanaAdmin&#34;</span>: <span style="color:#a6e3a1">&#34;true&#34;</span>
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      }
 </span></span><span style="display:flex;"><span>    ]
 </span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;roles&#34;</span>: [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;writeaccess&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;enabled&#34;</span>: <span style="color:#fab387">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;roles&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e3a1">&#34;writeaccess&#34;</span>
 </span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;metadata&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;metadata&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;version&#34;</span>: <span style="color:#fab387">1</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong><code>roaccessmapping</code></strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;rules&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;all&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;rules&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;all&#34;</span>: [
 </span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;field&#34;</span>: {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;realm.name&#34;</span>: <span style="color:#e6db74">&#34;cloud-saml&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;field&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">&#34;realm.name&#34;</span>: <span style="color:#a6e3a1">&#34;cloud-saml&#34;</span>
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      },
 </span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;field&#34;</span>: {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;metadata.saml_kibanaAdmin&#34;</span>: <span style="color:#e6db74">&#34;false&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;field&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">&#34;metadata.saml_kibanaAdmin&#34;</span>: <span style="color:#a6e3a1">&#34;false&#34;</span>
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      }
 </span></span><span style="display:flex;"><span>    ]
 </span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;roles&#34;</span>: [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;roaccess&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;enabled&#34;</span>: <span style="color:#fab387">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;roles&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e3a1">&#34;roaccess&#34;</span>
 </span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;metadata&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;metadata&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;version&#34;</span>: <span style="color:#fab387">1</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><blockquote>
-<p>Note the use of field name matching for the field <code>metadata.saml_kibanaAdmin</code>. This will result in the lookup of a SAML attribute in the SAML response with the friendly name of <code>kibanaAdmin</code>.</p>
-</blockquote>
+<p>Note the use of field name matching for the field <code>metadata.saml_kibanaAdmin</code>. This will result in the lookup of a SAML attribute in the SAML response with the friendly name of <code>kibanaAdmin</code>.</p></blockquote>
 <p>With the client side of the process complete, let&rsquo;s explore how to setup the user information so that the details that we are looking for end up in the SAML response.</p>
 <h5 id="keycloak-tenant-oidc-client-mapper">KeyCloak Tenant OIDC Client Mapper</h5>
 <p>As the source of truth, the tenant realm <code>org1</code> should start embedding the data needed to derive the information at the ElasticSearch side.</p>
@@ -383,30 +395,30 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 <p>We can start embedding all the client roles in the JWT in the OIDC Client, however for the sake of simplicity we can also embed another Claim that has the values <code>true</code> and <code>false</code> under the Claim name <code>kibanaAdmin</code>. For this we can use the Script Mapper, a feature in KeyCloak that lets us extend the functionality a bit.</p>
 <p>With a Script Mapper, we can use JavaScript to programmatically create or modify the Claims in the JWT. The JavaScript is executed using Nashorn runtime inside the JVM so there are certain changes from the common JavaScript dialect on how to access certain data embedded from the JVM runtime, however, including a custom boolean type Claim is a simple code.</p>
 <p>The Script Mapper attached to the OIDC Client for federation would look like the following.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Available variables: 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * user - the current user
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * realm - the current realm
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * token - the current token
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * userSession - the current userSession
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * keycloakSession - the current userSession
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> * Available variables: 
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> * user - the current user
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> * realm - the current realm
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> * token - the current token
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> * userSession - the current userSession
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> * keycloakSession - the current userSession
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> */</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">kibana_admin</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>kibana_admin <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">false</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// get all client roles for this client
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ArrayList</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Java</span>.<span style="color:#a6e22e">type</span>(<span style="color:#e6db74">&#34;java.util.ArrayList&#34;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">roles</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ArrayList</span>();
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">keycloakSession</span>.<span style="color:#a6e22e">getContext</span>().<span style="color:#a6e22e">getClient</span>();
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">forEach</span> <span style="color:#f92672">=</span> Array.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">forEach</span>;
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">forEach</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">getClientRoleMappings</span>(<span style="color:#a6e22e">client</span>).<span style="color:#a6e22e">toArray</span>(), <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">roleModel</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">roleModel</span>.<span style="color:#a6e22e">getName</span>() <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;kibana_admin&#34;</span>){
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">kibana_admin</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">// get all client roles for this client
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#f38ba8">var</span> ArrayList <span style="color:#89dceb;font-weight:bold">=</span> Java.type(<span style="color:#a6e3a1">&#34;java.util.ArrayList&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">var</span> roles <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> ArrayList();
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">var</span> client <span style="color:#89dceb;font-weight:bold">=</span> keycloakSession.getContext().getClient();
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">var</span> forEach <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89dceb">Array</span>.prototype.forEach;
+</span></span><span style="display:flex;"><span>forEach.call(user.getClientRoleMappings(client).toArray(), <span style="color:#f38ba8">function</span>(roleModel) {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (roleModel.getName() <span style="color:#89dceb;font-weight:bold">===</span> <span style="color:#a6e3a1">&#34;kibana_admin&#34;</span>){
+</span></span><span style="display:flex;"><span>        kibana_admin <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">true</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>});
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// set Claim 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">setOtherClaims</span>(<span style="color:#e6db74">&#34;kibanaAdmin&#34;</span>, <span style="color:#a6e22e">kibana_admin</span>);
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">// set Claim 
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>token.setOtherClaims(<span style="color:#a6e3a1">&#34;kibanaAdmin&#34;</span>, kibana_admin);
 </span></span></code></pre></div><p>After this Mapper gets evaluated, the JWT will contain a Claim named <code>kibanaAdmin</code> with either <code>true</code> or <code>false</code> set to the value.</p>
 <h5 id="keycloak-idp-and-saml-client-mappers">KeyCloak IDP and SAML Client Mappers</h5>
 <p>With the proper values in the incoming JWT, we can now programme the rest of the process to propagate it through federation into the SAML document.</p>
@@ -416,42 +428,42 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 <p><img src="/blog/img/2020-02-12_multitenant_sso_02.png" alt=""></p>
 <p>With all these in place, the final SAML response from KeyCloak should contain the following SAML Attribute, that can be evaluated by ElasticSearch.</p>
 <p>The value of <code>Response.Assertion.AttributeStatement[.FriendlyName == 'kibanaAdmin'].AttributeValue</code> will be what the above created ElasticSearch Role Mappings would be evaluating.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;samlp:Response</span> <span style="color:#a6e22e">xmlns:samlp=</span><span style="color:#e6db74">&#34;urn:oasis:names:tc:SAML:2.0:protocol&#34;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">xmlns:saml=</span><span style="color:#e6db74">&#34;urn:oasis:names:tc:SAML:2.0:assertion&#34;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">Destination=</span><span style="color:#e6db74">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#960050;background-color:#1e0010">...</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;saml:Issuer&gt;</span>https://keycloak.my.org/auth/realms/federator<span style="color:#f92672">&lt;/saml:Issuer&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;dsig:Signature</span> <span style="color:#a6e22e">xmlns:dsig=</span><span style="color:#e6db74">&#34;http://www.w3.org/2000/09/xmldsig#&#34;</span><span style="color:#f92672">&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#cba6f7">&lt;samlp:Response</span> <span style="color:#89b4fa">xmlns:samlp=</span><span style="color:#a6e3a1">&#34;urn:oasis:names:tc:SAML:2.0:protocol&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#89b4fa">xmlns:saml=</span><span style="color:#a6e3a1">&#34;urn:oasis:names:tc:SAML:2.0:assertion&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#89b4fa">Destination=</span><span style="color:#a6e3a1">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f38ba8">...</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&lt;saml:Issuer&gt;</span>https://keycloak.my.org/auth/realms/federator<span style="color:#cba6f7">&lt;/saml:Issuer&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&lt;dsig:Signature</span> <span style="color:#89b4fa">xmlns:dsig=</span><span style="color:#a6e3a1">&#34;http://www.w3.org/2000/09/xmldsig#&#34;</span><span style="color:#cba6f7">&gt;</span>
 </span></span><span style="display:flex;"><span>       ...
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/dsig:Signature&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&lt;/dsig:Signature&gt;</span>
 </span></span><span style="display:flex;"><span>    ...
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;saml:Assertion&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;saml:Issuer&gt;</span>https://keycloak.my.org/auth/realms/federator<span style="color:#f92672">&lt;/saml:Issuer&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;saml:Subject&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&lt;saml:Assertion&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&lt;saml:Issuer&gt;</span>https://keycloak.my.org/auth/realms/federator<span style="color:#cba6f7">&lt;/saml:Issuer&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&lt;saml:Subject&gt;</span>
 </span></span><span style="display:flex;"><span>            ...
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/saml:Subject&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;saml:Conditions&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&lt;/saml:Subject&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&lt;saml:Conditions&gt;</span>
 </span></span><span style="display:flex;"><span>            ...
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/saml:Conditions&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;saml:AuthnStatement&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&lt;/saml:Conditions&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&lt;saml:AuthnStatement&gt;</span>
 </span></span><span style="display:flex;"><span>            ...
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/saml:AuthnStatement&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;saml:AttributeStatement&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&lt;/saml:AuthnStatement&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&lt;saml:AttributeStatement&gt;</span>
 </span></span><span style="display:flex;"><span>            ...
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;saml:Attribute</span> <span style="color:#a6e22e">FriendlyName=</span><span style="color:#e6db74">&#34;kibanaAdmin&#34;</span>
-</span></span><span style="display:flex;"><span>                            <span style="color:#a6e22e">Name=</span><span style="color:#e6db74">&#34;kibanaAdmin&#34;</span>
-</span></span><span style="display:flex;"><span>                            <span style="color:#a6e22e">NameFormat=</span><span style="color:#e6db74">&#34;urn:oasis:names:tc:SAML:2.0:attrname-format:basic&#34;</span>
-</span></span><span style="display:flex;"><span>                            <span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;saml:AttributeValue</span> <span style="color:#a6e22e">xmlns:xs=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema&#34;</span>
-</span></span><span style="display:flex;"><span>                                     <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-</span></span><span style="display:flex;"><span>                                     <span style="color:#a6e22e">xsi:type=</span><span style="color:#e6db74">&#34;xs:string&#34;</span>
-</span></span><span style="display:flex;"><span>                                     <span style="color:#f92672">&gt;</span>true<span style="color:#f92672">&lt;/saml:AttributeValue&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/saml:Attribute&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&lt;saml:Attribute</span> <span style="color:#89b4fa">FriendlyName=</span><span style="color:#a6e3a1">&#34;kibanaAdmin&#34;</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#89b4fa">Name=</span><span style="color:#a6e3a1">&#34;kibanaAdmin&#34;</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#89b4fa">NameFormat=</span><span style="color:#a6e3a1">&#34;urn:oasis:names:tc:SAML:2.0:attrname-format:basic&#34;</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#cba6f7">&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">&lt;saml:AttributeValue</span> <span style="color:#89b4fa">xmlns:xs=</span><span style="color:#a6e3a1">&#34;http://www.w3.org/2001/XMLSchema&#34;</span>
+</span></span><span style="display:flex;"><span>                                     <span style="color:#89b4fa">xmlns:xsi=</span><span style="color:#a6e3a1">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span style="display:flex;"><span>                                     <span style="color:#89b4fa">xsi:type=</span><span style="color:#a6e3a1">&#34;xs:string&#34;</span>
+</span></span><span style="display:flex;"><span>                                     <span style="color:#cba6f7">&gt;</span>true<span style="color:#cba6f7">&lt;/saml:AttributeValue&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&lt;/saml:Attribute&gt;</span>
 </span></span><span style="display:flex;"><span>            ...
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/saml:AttributeStatement&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/saml:Assertion&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/samlp:Response&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&lt;/saml:AttributeStatement&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&lt;/saml:Assertion&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">&lt;/samlp:Response&gt;</span>
 </span></span></code></pre></div><p>This is a somewhat detailed example of how to do fine grained authorization based on information passed through federation in KeyCloak. Let&rsquo;s consider another scenario where authorization should be done to implement multi-tenancy.</p>
 <h3 id="tenant-separation">Tenant Separation</h3>
 <p>Since users can now be authorized into different levels of access, let&rsquo;s consider how to do that within the confinements of separate tenants.</p>
@@ -464,46 +476,46 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 </ol>
 <h4 id="keycloak-mappers-for-tenant-name">KeyCloak Mappers for Tenant Name</h4>
 <p>As we dynamically added a Claim in the JWT and propagated that through to the SAML document, we can dynamically add the original realm name. Another Script Mapper can be made use in this case too. This mapper would be far simpler than the earlier one, since we have access to the information we need as JavaScript variables injected by the JVM runtime.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Available variables: 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * user - the current user
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * realm - the current realm
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * token - the current token
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * userSession - the current userSession
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * keycloakSession - the current userSession
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> * Available variables: 
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> * user - the current user
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> * realm - the current realm
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> * token - the current token
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> * userSession - the current userSession
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> * keycloakSession - the current userSession
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"> */</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">setOtherClaims</span>(<span style="color:#e6db74">&#34;tenant&#34;</span>, <span style="color:#a6e22e">realm</span>.<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>token.setOtherClaims(<span style="color:#a6e3a1">&#34;tenant&#34;</span>, realm.getName());
 </span></span></code></pre></div><p>We&rsquo;ll propagate this Claim in the JWT using Attribute Importer and Mapper.</p>
 <p><img src="/blog/img/2020-02-12_multitenant_sso_03.png" alt="">
 <img src="/blog/img/2020-02-12_multitenant_sso_04.png" alt=""></p>
 <p>This should result in an additional SAML Attribute in the Attribute Statement section of the SAML response.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;saml:Attribute</span> <span style="color:#a6e22e">FriendlyName=</span><span style="color:#e6db74">&#34;tenant&#34;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">Name=</span><span style="color:#e6db74">&#34;tenant&#34;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">NameFormat=</span><span style="color:#e6db74">&#34;urn:oasis:names:tc:SAML:2.0:attrname-format:basic&#34;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;saml:AttributeValue</span> <span style="color:#a6e22e">xmlns:xs=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema&#34;</span>
-</span></span><span style="display:flex;"><span>                         <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-</span></span><span style="display:flex;"><span>                         <span style="color:#a6e22e">xsi:type=</span><span style="color:#e6db74">&#34;xs:string&#34;</span>
-</span></span><span style="display:flex;"><span>                         <span style="color:#f92672">&gt;</span>org1<span style="color:#f92672">&lt;/saml:AttributeValue&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/saml:Attribute&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#cba6f7">&lt;saml:Attribute</span> <span style="color:#89b4fa">FriendlyName=</span><span style="color:#a6e3a1">&#34;tenant&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#89b4fa">Name=</span><span style="color:#a6e3a1">&#34;tenant&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#89b4fa">NameFormat=</span><span style="color:#a6e3a1">&#34;urn:oasis:names:tc:SAML:2.0:attrname-format:basic&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&lt;saml:AttributeValue</span> <span style="color:#89b4fa">xmlns:xs=</span><span style="color:#a6e3a1">&#34;http://www.w3.org/2001/XMLSchema&#34;</span>
+</span></span><span style="display:flex;"><span>                         <span style="color:#89b4fa">xmlns:xsi=</span><span style="color:#a6e3a1">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span style="display:flex;"><span>                         <span style="color:#89b4fa">xsi:type=</span><span style="color:#a6e3a1">&#34;xs:string&#34;</span>
+</span></span><span style="display:flex;"><span>                         <span style="color:#cba6f7">&gt;</span>org1<span style="color:#cba6f7">&lt;/saml:AttributeValue&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">&lt;/saml:Attribute&gt;</span>
 </span></span></code></pre></div><h4 id="elasticsearch-changes-to-lookup-the-new-saml-attribute">ElasticSearch Changes to Lookup the New SAML Attribute</h4>
 <p>To read this SAML Attribute at the ElasticSearch side of things, we could follow the same approach as the earlier one. However, we can make use of an ElasticSearch SAML configuration, that let&rsquo;s us specify what should be translated as the <code>group</code> variable for a particular subject (i.e. authenticating user). Doing this instead of treating <code>tenant</code> as just another SAML Attribute makes certain sense, since it is the actual grouping factor for a KeyCloak user.</p>
 <p>To do this, we should edit the ElasticSearch SAML configuration that was added in the previous post, with a slight modification to the field <code>xpack.security.authc.realms.saml.cloud-saml.attributes.groups</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">xpack</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">security</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">authc</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">realms</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">saml</span>:
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">cloud-saml</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">order</span>: <span style="color:#ae81ff">2</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">attributes.principal</span>: <span style="color:#e6db74">&#34;email&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">attributes.groups</span>: <span style="color:#e6db74">&#34;tenant&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">idp.metadata.path</span>: <span style="color:#e6db74">&#34;/app/config/saml/metadata.xml&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">idp.entity_id</span>: <span style="color:#e6db74">&#34;https://keycloak.my.org/auth/realms/elastic&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">sp.entity_id</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">sp.acs</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">sp.logout</span>: <span style="color:#e6db74">&#34;https://kibana.my.org:443/logout&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#cba6f7">xpack</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">security</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">authc</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">realms</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">saml</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">cloud-saml</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">order</span>: <span style="color:#fab387">2</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">attributes.principal</span>: <span style="color:#a6e3a1">&#34;email&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">attributes.groups</span>: <span style="color:#a6e3a1">&#34;tenant&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">idp.metadata.path</span>: <span style="color:#a6e3a1">&#34;/app/config/saml/metadata.xml&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">idp.entity_id</span>: <span style="color:#a6e3a1">&#34;https://keycloak.my.org/auth/realms/elastic&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">sp.entity_id</span>: <span style="color:#a6e3a1">&#34;https://kibana.my.org:443/&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">sp.acs</span>: <span style="color:#a6e3a1">&#34;https://kibana.my.org:443/api/security/v1/saml&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">sp.logout</span>: <span style="color:#a6e3a1">&#34;https://kibana.my.org:443/logout&#34;</span>
 </span></span></code></pre></div><p>This would enable us to query for the <code>groups</code> field in the Role Mappings to figure out the Space specific Role to assign.</p>
 <p>For an example, for the tenant <code>org1</code>, the following two Role Mappings can be added to determine,</p>
 <ol>
@@ -511,152 +523,151 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 <li>whether the user should be able to do write operations on the tenant <code>org1</code></li>
 </ol>
 <p><strong>Write Access</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;rules&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;all&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;rules&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;all&#34;</span>: [
 </span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;field&#34;</span>: {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;realm.name&#34;</span>: <span style="color:#e6db74">&#34;cloud-saml&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;field&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">&#34;realm.name&#34;</span>: <span style="color:#a6e3a1">&#34;cloud-saml&#34;</span>
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      },
 </span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;field&#34;</span>: {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;groups&#34;</span>: <span style="color:#e6db74">&#34;org1&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;field&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">&#34;groups&#34;</span>: <span style="color:#a6e3a1">&#34;org1&#34;</span>
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      },
 </span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;field&#34;</span>: {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;metadata.saml_KibanaAdmin&#34;</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;field&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">&#34;metadata.saml_KibanaAdmin&#34;</span>: <span style="color:#a6e3a1">&#34;true&#34;</span>
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      }
 </span></span><span style="display:flex;"><span>    ]
 </span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;roles&#34;</span>: [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;org1writeaccess&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;enabled&#34;</span>: <span style="color:#fab387">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;roles&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e3a1">&#34;org1writeaccess&#34;</span>
 </span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;metadata&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;metadata&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;version&#34;</span>: <span style="color:#fab387">1</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong>Read-only Access</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;rules&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;all&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;rules&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;all&#34;</span>: [
 </span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;field&#34;</span>: {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;realm.name&#34;</span>: <span style="color:#e6db74">&#34;cloud-saml&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;field&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">&#34;realm.name&#34;</span>: <span style="color:#a6e3a1">&#34;cloud-saml&#34;</span>
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      },
 </span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;field&#34;</span>: {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;groups&#34;</span>: <span style="color:#e6db74">&#34;org1&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;field&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">&#34;groups&#34;</span>: <span style="color:#a6e3a1">&#34;org1&#34;</span>
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      },
 </span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;field&#34;</span>: {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;metadata.saml_KibanaAdmin&#34;</span>: <span style="color:#e6db74">&#34;false&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;field&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">&#34;metadata.saml_KibanaAdmin&#34;</span>: <span style="color:#a6e3a1">&#34;false&#34;</span>
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      }
 </span></span><span style="display:flex;"><span>    ]
 </span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;roles&#34;</span>: [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;org1roaccess&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;enabled&#34;</span>: <span style="color:#fab387">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;roles&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e3a1">&#34;org1roaccess&#34;</span>
 </span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;metadata&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;metadata&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;version&#34;</span>: <span style="color:#fab387">1</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>These evaluations will result in either of the following roles being assigned to the user.</p>
 <p><strong><code>org1writeaccess</code></strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;applications&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;applications&#34;</span>: [
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;application&#34;</span>: <span style="color:#e6db74">&#34;kibana-.kibana&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;privileges&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_discover.all&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_visualize.all&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_dashboard.all&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_dev_tools.all&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_indexPatterns.all&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_savedObjectsManagement.all&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;application&#34;</span>: <span style="color:#a6e3a1">&#34;kibana-.kibana&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;privileges&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;feature_discover.all&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;feature_visualize.all&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;feature_dashboard.all&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;feature_dev_tools.all&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;feature_indexPatterns.all&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;feature_savedObjectsManagement.all&#34;</span>
 </span></span><span style="display:flex;"><span>      ],
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;resources&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;space:org1&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;resources&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;space:org1&#34;</span>
 </span></span><span style="display:flex;"><span>      ]
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;transient_metadata&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;transient_metadata&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;enabled&#34;</span>: <span style="color:#fab387">true</span>
 </span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;run_as&#34;</span>: [],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;cluster&#34;</span>: [],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;indices&#34;</span>: [
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;run_as&#34;</span>: [],
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;cluster&#34;</span>: [],
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;indices&#34;</span>: [
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;privileges&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;all&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;privileges&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;all&#34;</span>
 </span></span><span style="display:flex;"><span>      ],
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;field_security&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;except&#34;</span>: [],
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;grant&#34;</span>: [
-</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;field_security&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;except&#34;</span>: [],
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;grant&#34;</span>: [
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e3a1">&#34;*&#34;</span>
 </span></span><span style="display:flex;"><span>        ]
 </span></span><span style="display:flex;"><span>      },
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;allow_restricted_indices&#34;</span>: <span style="color:#66d9ef">false</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;names&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;logstash*org1*&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;allow_restricted_indices&#34;</span>: <span style="color:#fab387">false</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;names&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;logstash*org1*&#34;</span>
 </span></span><span style="display:flex;"><span>      ]
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;metadata&#34;</span>: {}
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;metadata&#34;</span>: {}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong><code>org1roaccess</code></strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;applications&#34;</span>: [
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;applications&#34;</span>: [
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;application&#34;</span>: <span style="color:#e6db74">&#34;kibana-.kibana&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;privileges&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_discover.read&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_visualize.read&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_dashboard.read&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_indexPatterns.read&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_savedObjectsManagement.read&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;application&#34;</span>: <span style="color:#a6e3a1">&#34;kibana-.kibana&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;privileges&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;feature_discover.read&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;feature_visualize.read&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;feature_dashboard.read&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;feature_indexPatterns.read&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;feature_savedObjectsManagement.read&#34;</span>
 </span></span><span style="display:flex;"><span>      ],
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;resources&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;space:org1&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;resources&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;space:org1&#34;</span>
 </span></span><span style="display:flex;"><span>      ]
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;transient_metadata&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;transient_metadata&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;enabled&#34;</span>: <span style="color:#fab387">true</span>
 </span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;run_as&#34;</span>: [],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;cluster&#34;</span>: [],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;indices&#34;</span>: [
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;run_as&#34;</span>: [],
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;cluster&#34;</span>: [],
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;indices&#34;</span>: [
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;privileges&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;read&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;view_index_metadata&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;monitor&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;privileges&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;read&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;view_index_metadata&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;monitor&#34;</span>
 </span></span><span style="display:flex;"><span>      ],
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;field_security&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;except&#34;</span>: [],
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;grant&#34;</span>: [
-</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;field_security&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;except&#34;</span>: [],
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;grant&#34;</span>: [
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e3a1">&#34;*&#34;</span>
 </span></span><span style="display:flex;"><span>        ]
 </span></span><span style="display:flex;"><span>      },
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;allow_restricted_indices&#34;</span>: <span style="color:#66d9ef">false</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;names&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;logstash*org1*&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;allow_restricted_indices&#34;</span>: <span style="color:#fab387">false</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;names&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;logstash*org1*&#34;</span>
 </span></span><span style="display:flex;"><span>      ]
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;metadata&#34;</span>: {}
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;metadata&#34;</span>: {}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><blockquote>
-<p>Note how the roles restrict access to one Space named <code>org1</code> and only Indices that match the name pattern <code>logstash*org1*</code>.</p>
-</blockquote>
+<p>Note how the roles restrict access to one Space named <code>org1</code> and only Indices that match the name pattern <code>logstash*org1*</code>.</p></blockquote>
 <h1 id="conclusion">Conclusion</h1>
 <p>With the topics covered in the articles in this series so far, it should be a fairly straight forward exercise to design a custom multi-tenant SSO solution that doesn&rsquo;t require complex organization specific customizations. KeyCloak was used as a reference IDP in this scenario, however any IDP that</p>
 <ol>
@@ -688,18 +699,17 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02---basic-sso-with-role-assignment/">&lt; Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2020-03-14_a-standalone-prometheus-exporter-for-kibana/">A Standalone Prometheus Exporter for Kibana &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02---basic-sso-with-role-assignment/">&lt; Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2020-03-14_a-standalone-prometheus-exporter-for-kibana/">A Standalone Prometheus Exporter for Kibana &gt;</a>
+    
+  </div>
 </div>
-
 
         
 
@@ -726,8 +736,6 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
         
 
         <div class="site-footer">
-  
-
   <div class="sm-icons">
   <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
     <i class="fas fa-rss sm-icon"></i>
@@ -740,7 +748,7 @@ ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — L
   </a>
 </div>
 
-  
+  <span> All photos published on this site are copyrighted. </span>
   <div class="site-footer-item">
     Modified
     <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>

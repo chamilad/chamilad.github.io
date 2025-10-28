@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -150,15 +150,14 @@
           </div>
         </header>
         <div class="post-content markdown-body">
-          <figure><img src="/blog/img/2023-02-13_backups02_header.jpeg"/><figcaption>
-            <h4>Mount Kaukau</h4>
-        </figcaption>
+          <figure><img src="/blog/img/2023-02-13_backups02_header.jpeg"><figcaption>
+      <h4>Mount Kaukau</h4>
+    </figcaption>
 </figure>
 
 <blockquote>
 <p>Continuing from the previous article on <a href="/blog/2023-01-18_aws-backup-intro/">introduction to AWS
-Backup</a></p>
-</blockquote>
+Backup</a></p></blockquote>
 <h2 id="offsite-backups">Offsite Backups</h2>
 <p>Let&rsquo;s talk theory for a bit.</p>
 <p>Data protection in a given solution depends on how thoughtful the backup
@@ -248,8 +247,7 @@ cross-account backups needs to be supplemented with a fallback deployment for
 it to be considered a Disaster Recovery strategy. This
 can be a pilot light deployment in the secondary region, refreshed with each
 recovery point, or a passive (yet ready to be hydrated) database restored from the
-latest recovery point.</p>
-</blockquote>
+latest recovery point.</p></blockquote>
 <h2 id="encryption-in-backups">Encryption in Backups</h2>
 <p>As mentioned above, AWS Backup Vaults are encrypted with AWS KMS keys. The AWS
 managed <code>aws/backup</code> key will be useful for simple use cases, however for
@@ -294,43 +292,42 @@ that performs the copy operation.</p>
 DynamoDB table in the source account.</p>
 <blockquote>
 <p><code>yyyyyyyyyyyy</code> - source account number,
-<code>xxxxxxxxxxxx</code> - destination account number</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="font-weight:bold">&#34;Version&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;2012-10-17&#34;</span>,
-  <span style="font-weight:bold">&#34;Statement&#34;</span>: [
-    {
-      <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow source account Backup to decrypt data to be encrypted with Vault key&#34;</span>,
-      <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
-      <span style="font-weight:bold">&#34;Principal&#34;</span>: {
-        <span style="font-weight:bold">&#34;AWS&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;arn:aws:iam::yyyyyyyyyyyy:role/dynamodb-backup-role&#34;</span>
-      },
-      <span style="font-weight:bold">&#34;Action&#34;</span>: [
-        <span style="color:#0ff;font-weight:bold">&#34;kms:GenerateDataKey&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:DescribeKey&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:Decrypt&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:Encrypt&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:CreateGrant&#34;</span>
-      ],
-      <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;&lt;resource_arns&gt;&#34;</span>
-    },
-    {
-      <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow destination Backup to decrypt for Backup operations&#34;</span>,
-      <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
-      <span style="font-weight:bold">&#34;Principal&#34;</span>: {
-        <span style="font-weight:bold">&#34;AWS&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;arn:aws:iam::xxxxxxxxxxxx:role/aws-service-role/backup.amazonaws.com/AWSServiceRoleForBackup&#34;</span>
-      },
-      <span style="font-weight:bold">&#34;Action&#34;</span>: [
-        <span style="color:#0ff;font-weight:bold">&#34;kms:GenerateDataKey&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:DescribeKey&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:Decrypt&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:CreateGrant&#34;</span>
-      ],
-      <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;&lt;resource_arns&gt;&#34;</span>
-    }
-  ]
-}
-</code></pre></div><p>KMS Multi-region keys could also be useful here, however Key Policies have to
+<code>xxxxxxxxxxxx</code> - destination account number</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;Version&#34;</span>: <span style="color:#a6e3a1">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;Allow source account Backup to decrypt data to be encrypted with Vault key&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Principal&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;AWS&#34;</span>: <span style="color:#a6e3a1">&#34;arn:aws:iam::yyyyyyyyyyyy:role/dynamodb-backup-role&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:GenerateDataKey&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:DescribeKey&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:Decrypt&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:Encrypt&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:CreateGrant&#34;</span>
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Resource&#34;</span>: <span style="color:#a6e3a1">&#34;&lt;resource_arns&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;Allow destination Backup to decrypt for Backup operations&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Principal&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;AWS&#34;</span>: <span style="color:#a6e3a1">&#34;arn:aws:iam::xxxxxxxxxxxx:role/aws-service-role/backup.amazonaws.com/AWSServiceRoleForBackup&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:GenerateDataKey&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:DescribeKey&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:Decrypt&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:CreateGrant&#34;</span>
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Resource&#34;</span>: <span style="color:#a6e3a1">&#34;&lt;resource_arns&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>KMS Multi-region keys could also be useful here, however Key Policies have to
 be setup according to the above model.</p>
 <h2 id="restore-testing">Restore Testing</h2>
 <p>No backup strategy is complete without restore testing. Talk to any engineer
@@ -369,18 +366,17 @@ strategy.</p>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2023-01-18_aws-backup-intro/">&lt; AWS Backup: Introduction</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2023-02-20_aws-backup-implementing-a-simple-cross-account-backup-strategy/">AWS Backup: Implementing a Simple Cross-Account Backup Strategy &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2023-01-18_aws-backup-intro/">&lt; AWS Backup: Introduction</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2023-02-20_aws-backup-implementing-a-simple-cross-account-backup-strategy/">AWS Backup: Implementing a Simple Cross-Account Backup Strategy &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

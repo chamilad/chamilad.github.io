@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -161,9 +161,9 @@
           </div>
         </header>
         <div class="post-content markdown-body">
-          <figure><img src="/blog/img/2021_11_12_header.jpeg"/><figcaption>
-            <h4>Only photo with me for now that&#39;s closest to the theme</h4>
-        </figcaption>
+          <figure><img src="/blog/img/2021_11_12_header.jpeg"><figcaption>
+      <h4>Only photo with me for now that&#39;s closest to the theme</h4>
+    </figcaption>
 </figure>
 
 <p>I had an opportunity to work on automating a Snowflake workflow last year. The scenario involved a typical Snowflake based setup for a Data Warehouse where data would be ingested from an Azure Blob Storage or AWS S3 and stored on multiple databases. I&rsquo;m not going to dive into intricate details, but I&rsquo;d like to write down some of the approaches I wanted to take during this exercise. And yes, that makes this blog post way overdue.</p>
@@ -179,44 +179,44 @@
 <p>Therefore, a stable but flexible <code>variables.tf</code> was needed to be defined. This would need to allow for changing number of data warehouses, databases, schemas and other resources, while not forcing the business logic to duplicate for differences in the resource counts. At the same time, it should allow for different combinations of inputs to end up with the same state where possible (ex: it should be possible to define database role grants when defining a database structure, and it should also be possible to define new role grants and database attachments to the role grants later).</p>
 <p>Terraform Variables allow complex scenarios to be defined like this through the use of <code>list</code>, <code>map</code>, and <code>object</code> types. With the <code>object</code> type, we can define a structure for a single entity (a database), and then make use of <code>map</code> to add some flexibility into the variable structure.</p>
 <h5 id="single-database-object">Single <code>database</code> object</h5>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hcl" data-lang="hcl"><span style="color:#fff;font-weight:bold">variable</span> <span style="color:#0ff;font-weight:bold">&#34;database&#34;</span> {
-  type = <span style="color:#fff;font-weight:bold">object</span>({
-    comment        = <span style="color:#fff;font-weight:bold">string</span>,
-    retention_days = <span style="color:#fff;font-weight:bold">number</span>,
-    schemas = <span style="color:#fff;font-weight:bold">list</span>(<span style="color:#fff;font-weight:bold">object</span>({
-      name    = <span style="color:#fff;font-weight:bold">string</span>,
-      comment = <span style="color:#fff;font-weight:bold">string</span>,
-      privileges = <span style="color:#fff;font-weight:bold">list</span>(<span style="color:#fff;font-weight:bold">object</span>({
-        roles     = <span style="color:#fff;font-weight:bold">set</span>(<span style="color:#fff;font-weight:bold">string</span>),
-        privilege = <span style="color:#fff;font-weight:bold">string</span>,
-      })),
-    })),
-    privileges = <span style="color:#fff;font-weight:bold">list</span>(<span style="color:#fff;font-weight:bold">object</span>({
-      roles     = <span style="color:#fff;font-weight:bold">set</span>(<span style="color:#fff;font-weight:bold">string</span>),
-      privilege = <span style="color:#fff;font-weight:bold">string</span>,
-    })),
-  })
-}
-</code></pre></div><h5 id="flexible-databases-input">Flexible <code>databases</code> input</h5>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hcl" data-lang="hcl"><span style="color:#fff;font-weight:bold">variable</span> <span style="color:#0ff;font-weight:bold">&#34;databases&#34;</span> {
-  type = <span style="color:#fff;font-weight:bold">map</span>(<span style="color:#fff;font-weight:bold">object</span>({
-    comment        = <span style="color:#fff;font-weight:bold">string</span>,
-    retention_days = <span style="color:#fff;font-weight:bold">number</span>,
-    schemas = <span style="color:#fff;font-weight:bold">list</span>(<span style="color:#fff;font-weight:bold">object</span>({
-      name    = <span style="color:#fff;font-weight:bold">string</span>,
-      comment = <span style="color:#fff;font-weight:bold">string</span>,
-      privileges = <span style="color:#fff;font-weight:bold">list</span>(<span style="color:#fff;font-weight:bold">object</span>({
-        roles     = <span style="color:#fff;font-weight:bold">set</span>(<span style="color:#fff;font-weight:bold">string</span>),
-        privilege = <span style="color:#fff;font-weight:bold">string</span>,
-      })),
-    })),
-    privileges = <span style="color:#fff;font-weight:bold">list</span>(<span style="color:#fff;font-weight:bold">object</span>({
-      roles     = <span style="color:#fff;font-weight:bold">set</span>(<span style="color:#fff;font-weight:bold">string</span>),
-      privilege = <span style="color:#fff;font-weight:bold">string</span>,
-    })),
-  }))
-}
-</code></pre></div><p>This way, any number of databases can be defined with the same structure without having to mess around with the business logic of the infrastructure code. The same pattern goes for any other resource type, data warehouses, schemas, and resource monitors.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#cba6f7">variable</span> <span style="color:#a6e3a1">&#34;database&#34;</span> {
+</span></span><span style="display:flex;"><span>  type <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">object</span>({
+</span></span><span style="display:flex;"><span>    comment        <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">string</span>,
+</span></span><span style="display:flex;"><span>    retention_days <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">number</span>,
+</span></span><span style="display:flex;"><span>    schemas <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">list</span>(<span style="color:#cba6f7">object</span>({
+</span></span><span style="display:flex;"><span>      name    <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">string</span>,
+</span></span><span style="display:flex;"><span>      comment <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">string</span>,
+</span></span><span style="display:flex;"><span>      privileges <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">list</span>(<span style="color:#cba6f7">object</span>({
+</span></span><span style="display:flex;"><span>        roles     <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">set</span>(<span style="color:#cba6f7">string</span>),
+</span></span><span style="display:flex;"><span>        privilege <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">string</span>,
+</span></span><span style="display:flex;"><span>      })),
+</span></span><span style="display:flex;"><span>    })),
+</span></span><span style="display:flex;"><span>    privileges <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">list</span>(<span style="color:#cba6f7">object</span>({
+</span></span><span style="display:flex;"><span>      roles     <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">set</span>(<span style="color:#cba6f7">string</span>),
+</span></span><span style="display:flex;"><span>      privilege <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">string</span>,
+</span></span><span style="display:flex;"><span>    })),
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="flexible-databases-input">Flexible <code>databases</code> input</h5>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#cba6f7">variable</span> <span style="color:#a6e3a1">&#34;databases&#34;</span> {
+</span></span><span style="display:flex;"><span>  type <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">map</span>(<span style="color:#cba6f7">object</span>({
+</span></span><span style="display:flex;"><span>    comment        <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">string</span>,
+</span></span><span style="display:flex;"><span>    retention_days <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">number</span>,
+</span></span><span style="display:flex;"><span>    schemas <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">list</span>(<span style="color:#cba6f7">object</span>({
+</span></span><span style="display:flex;"><span>      name    <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">string</span>,
+</span></span><span style="display:flex;"><span>      comment <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">string</span>,
+</span></span><span style="display:flex;"><span>      privileges <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">list</span>(<span style="color:#cba6f7">object</span>({
+</span></span><span style="display:flex;"><span>        roles     <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">set</span>(<span style="color:#cba6f7">string</span>),
+</span></span><span style="display:flex;"><span>        privilege <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">string</span>,
+</span></span><span style="display:flex;"><span>      })),
+</span></span><span style="display:flex;"><span>    })),
+</span></span><span style="display:flex;"><span>    privileges <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">list</span>(<span style="color:#cba6f7">object</span>({
+</span></span><span style="display:flex;"><span>      roles     <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">set</span>(<span style="color:#cba6f7">string</span>),
+</span></span><span style="display:flex;"><span>      privilege <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">string</span>,
+</span></span><span style="display:flex;"><span>    })),
+</span></span><span style="display:flex;"><span>  }))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This way, any number of databases can be defined with the same structure without having to mess around with the business logic of the infrastructure code. The same pattern goes for any other resource type, data warehouses, schemas, and resource monitors.</p>
 <p>There is a small caveat here though. With the <code>object</code> type, you can&rsquo;t really define meaningful defaults for the fields inside the object definition. A <code>default</code> value can be defined, however, that will be for the whole object, i.e. no deep merging is done (at least at the time this code was written). No partially defined inputs survive the first round of parsing. A workaround here is to define the default value object as a different variable and merge the two at runtime as a <code>local</code>. However, when the <code>object</code> definition is wrapped with a <code>map</code>, this is impossible to do, at least not without seriously degrading the readability of the code. As evident from the above codelet, this is already somewhat complex to read through.</p>
 <h3 id="code-structure">Code Structure</h3>
 <p>With Terraform, there is enough flexibility to structure the code into different layers of modules. However, the most common pattern is to modularise the reusable components, define &ldquo;patterns&rdquo; that compose the modules together, with the final layer containing the environment specific details. This final layer becomes the root module that gets invoked with the <code>terraform</code> binary. The level of abstraction, or more accurately the depth of abstraction could vary, but this is almost always a pattern anyone ends up with, when they practice the radical notion of reusability (hint: it&rsquo;s not radical).</p>
@@ -304,18 +304,17 @@
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/">&lt; CI/CD for Apache Nifi 02: Automation with NipyAPI</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/">Rotating AWS Secrets Manager Secrets with Lambda &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2021-07-18_ci-cd-for-apache-nifi-02-automation-with-nipyapi/">&lt; CI/CD for Apache Nifi 02: Automation with NipyAPI</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/">Rotating AWS Secrets Manager Secrets with Lambda &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

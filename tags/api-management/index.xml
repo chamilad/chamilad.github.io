@@ -4,27 +4,23 @@
     <title>Api Management on chamila.dev</title>
     <link>https://chamila.dev/tags/api-management/</link>
     <description>Recent content in Api Management on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Dec 2018 16:49:16 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/api-management/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:15:37 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/api-management/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Design a WSO2 Docker Image</title>
       <link>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</link>
       <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
-      <description>What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
-Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.</description>
+      <description>&lt;h4 id=&#34;what-should-be-your-concerns-for-wso2-ondocker&#34;&gt;What should be your concerns for WSO2 on Docker?&lt;/h4&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2018-12-24_how-to-design-a-wso2-docker-image_0.jpeg#layoutTextWidth&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://chamila.dev/thinking-of-moving-your-wso2-deployment-on-to-kubernetes-4e9a77b3377d&#34;&gt;Deploying WSO2 products on Containerized platforms&lt;/a&gt; is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on &lt;a href=&#34;https://github.com/wso2/docker-apim&#34;&gt;Docker&lt;/a&gt;, &lt;a href=&#34;https://github.com/wso2/kubernetes-apim/&#34;&gt;Kubernetes&lt;/a&gt;, &lt;a href=&#34;https://github.com/wso2/pivotal-cf-apim&#34;&gt;CloudFoundry&lt;/a&gt;, AWS ECS, and &lt;a href=&#34;https://github.com/wso2/dcos-apim&#34;&gt;Apache Mesos&lt;/a&gt;, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2018-12-24_how-to-design-a-wso2-docker-image_1.png#layoutTextWidth&#34;&gt;&lt;figcaption&gt;Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.com/api-management/install/)&lt;/figcaption&gt;&lt;/figure&gt;&#xA;&lt;p&gt;Docker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind. These approaches vary from an all files and configs pre-baked end to another end where almost everything, except a tiny helper layer, being mounted at Container run-time. However, not all these approaches are suitable for a WSO2 deployment, and figuring out these details can be a daunting task, especially at an earlier phase of the deployment. Therefore, it’s important to have a set of common &lt;strong&gt;guidelines&lt;/strong&gt;that can help determine which approach to take in each case. I emphasize the word &lt;strong&gt;guidelines&lt;/strong&gt; because these are only them, not hard rules or must-do’s in every deployment. There is freedom for the user to stray away, as long as the compromises made in doing so are understood.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>CI/CD APIs with WSO2 API Manager</title>
       <link>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</link>
       <pubDate>Sun, 25 Nov 2018 03:47:20 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</guid>
-      <description>How to do continuous integration and continuous delivery of APIs with WSO2 API Manager WSO2 API Manager, the only Open Source Leader in API Management Solutions in Forrester Wave, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.</description>
+      <description>&lt;h4 id=&#34;how-to-do-continuous-integration-and-continuous-delivery-of-apis-with-wso2-apimanager&#34;&gt;How to do continuous integration and continuous delivery of APIs with WSO2 API Manager&lt;/h4&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://wso2.com/api-management/&#34;&gt;WSO2 API Manager&lt;/a&gt;, the only &lt;a href=&#34;https://wso2.com/resources/analyst-reports/the-forrester-wave-api-management-solutions-q4-2018/?utm_source=bannerprodpg&amp;amp;utm_medium=mailer&amp;amp;utm_campaign=forrester_wave_apim_2018B2&#34;&gt;Open Source Leader in API Management Solutions in Forrester Wave&lt;/a&gt;, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

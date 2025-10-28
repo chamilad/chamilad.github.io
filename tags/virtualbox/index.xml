@@ -4,19 +4,16 @@
     <title>Virtualbox on chamila.dev</title>
     <link>https://chamila.dev/tags/virtualbox/</link>
     <description>Recent content in Virtualbox on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Aug 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:14:05 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>PPPOE on VirtualBox</title>
       <link>https://chamila.dev/blog/2014-08-05_pppoe-on-virtualbox/</link>
       <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2014-08-05_pppoe-on-virtualbox/</guid>
-      <description>A quick note!
-If your internet connection comes as a PPPOE connection and it can’t be selected on the drop down list when “Bridged network” is selected on Network tab of the VM settings in VirtualBox. You can create a host-only network and configure a static ip for eth0 on the guest OS to make it accessible to outside.
-A host-only network virtualizes the network interface of the host OS and uses it as a loopback device to enable guest OS to communicate on their network and with the host[1].</description>
+      <description>&lt;p&gt;A quick note!&lt;/p&gt;&#xA;&lt;p&gt;If your internet connection comes as a PPPOE connection and it can’t be selected on the drop down list when “Bridged network” is selected on Network tab of the VM settings in VirtualBox. You can create a host-only network and configure a static ip for eth0 on the guest OS to make it accessible to outside.&lt;/p&gt;&#xA;&lt;p&gt;A host-only network virtualizes the network interface of the host OS and uses it as a loopback device to enable guest OS to communicate on their network and with the host&lt;a href=&#34;https://www.virtualbox.org/manual/ch06.html&#34;&gt;[1]&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

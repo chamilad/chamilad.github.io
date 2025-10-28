@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -154,12 +154,10 @@
         <div class="post-content markdown-body">
           <blockquote>
 <p>This is going to be multiple videos for various reasons. First video is
-below.</p>
-</blockquote>
-
+below.</p></blockquote>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/-bgB6F-2GWw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/-bgB6F-2GWw?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <p>In this installment of the series on authenticating into AWS from K8s
 workloads, I&rsquo;m going to go into details on another major approach that can be
@@ -261,32 +259,32 @@ to verify the tokens that K8s issues.</p>
 <p>Following are sample OpenID Configuration
 and signing key configuration responses you would see if you ping these two
 endpoints.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="font-weight:bold">&#34;issuer&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;https://kubernetes.default.svc.cluster.local&#34;</span>,
-  <span style="font-weight:bold">&#34;jwks_uri&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;https://172.20.0.2:6443/openid/v1/jwks&#34;</span>,
-  <span style="font-weight:bold">&#34;response_types_supported&#34;</span>: [
-    <span style="color:#0ff;font-weight:bold">&#34;id_token&#34;</span>
-  ],
-  <span style="font-weight:bold">&#34;subject_types_supported&#34;</span>: [
-    <span style="color:#0ff;font-weight:bold">&#34;public&#34;</span>
-  ],
-  <span style="font-weight:bold">&#34;id_token_signing_alg_values_supported&#34;</span>: [
-    <span style="color:#0ff;font-weight:bold">&#34;RS256&#34;</span>
-  ]
-}
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="font-weight:bold">&#34;keys&#34;</span>: [
-    {
-      <span style="font-weight:bold">&#34;use&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;sig&#34;</span>,
-      <span style="font-weight:bold">&#34;kty&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;RSA&#34;</span>,
-      <span style="font-weight:bold">&#34;kid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;JDsL136WibCBwUlFaU9_UpPYwYYONrM5xgBh85d_JC0&#34;</span>,
-      <span style="font-weight:bold">&#34;alg&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;RS256&#34;</span>,
-      <span style="font-weight:bold">&#34;n&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;4u1ye6SUKCCLcziQj4__uJI77U-RElqPqchgoCeU9OQHc7UugvuF2uqlMKgVK8qVm7Yb69TAvJ3bGD53MgsYTh0qqQTH8BjkLP0WCm4ri9QVrMzmJkJd5yW8ERJizEHks84nLKYv5DcCYyJVFWrd9eKnAAnQcDJVDSydG0mkhnjMzZOeb3gvibgzQ0hlmvgYKyeYMNR63KTJv-mKlyDeJS7sanyHSwBD1CE81-WFM61QuRC9hWwclpH33BaKuV9-URYHdcf0MVKrzBtwWVOXBBIIFVEZT_-Qi3CmcDXLy6-9R2R-dQjb1FWmfl6Cb6n3UFfCBYacQH1rZ8AiQkbCDw&#34;</span>,
-      <span style="font-weight:bold">&#34;e&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;AQAB&#34;</span>
-    }
-  ]
-}
-</code></pre></div><p>So in theory, all we have to do is to point AWS IAM Provider registration to
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;issuer&#34;</span>: <span style="color:#a6e3a1">&#34;https://kubernetes.default.svc.cluster.local&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;jwks_uri&#34;</span>: <span style="color:#a6e3a1">&#34;https://172.20.0.2:6443/openid/v1/jwks&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;response_types_supported&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e3a1">&#34;id_token&#34;</span>
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;subject_types_supported&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e3a1">&#34;public&#34;</span>
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;id_token_signing_alg_values_supported&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e3a1">&#34;RS256&#34;</span>
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;keys&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;use&#34;</span>: <span style="color:#a6e3a1">&#34;sig&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;kty&#34;</span>: <span style="color:#a6e3a1">&#34;RSA&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;kid&#34;</span>: <span style="color:#a6e3a1">&#34;JDsL136WibCBwUlFaU9_UpPYwYYONrM5xgBh85d_JC0&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;alg&#34;</span>: <span style="color:#a6e3a1">&#34;RS256&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;n&#34;</span>: <span style="color:#a6e3a1">&#34;4u1ye6SUKCCLcziQj4__uJI77U-RElqPqchgoCeU9OQHc7UugvuF2uqlMKgVK8qVm7Yb69TAvJ3bGD53MgsYTh0qqQTH8BjkLP0WCm4ri9QVrMzmJkJd5yW8ERJizEHks84nLKYv5DcCYyJVFWrd9eKnAAnQcDJVDSydG0mkhnjMzZOeb3gvibgzQ0hlmvgYKyeYMNR63KTJv-mKlyDeJS7sanyHSwBD1CE81-WFM61QuRC9hWwclpH33BaKuV9-URYHdcf0MVKrzBtwWVOXBBIIFVEZT_-Qi3CmcDXLy6-9R2R-dQjb1FWmfl6Cb6n3UFfCBYacQH1rZ8AiQkbCDw&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;e&#34;</span>: <span style="color:#a6e3a1">&#34;AQAB&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So in theory, all we have to do is to point AWS IAM Provider registration to
 these endpoints and the registration should be done, right?</p>
 <p>Not exactly (I keep using that phrase a lot).</p>
 <p>That could have been the case if the K8s Control Plane API was public for AWS
@@ -346,8 +344,7 @@ endpoints and write the stdout to files.</p>
 <p>If you don&rsquo;t have direct HTTP access to the control plane API, you can use
 <code>kubectl proxy</code> to start a local proxy server. Only the <code>API_ENDPOINT</code> value
 would change to reflect the proxy server URL which would be something like
-<code>http://127.0.0.1:8001</code>.</p>
-</blockquote>
+<code>http://127.0.0.1:8001</code>.</p></blockquote>
 <p>After downloading the <code>openid-configuration</code> file, modify the <code>.jwks_uri</code> field
 to reflect the S3 bucket HTTP URL. This is where any relying party should look
 for the keys, not the internal K8s URL.</p>
@@ -369,24 +366,24 @@ sensitive data, they will be only a bucket policy away from being exposed.
 Security is job zero innit</p>
 <p>I&rsquo;m going to add this bucket policy then to the bucket, which as granular as it
 can be.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-	<span style="font-weight:bold">&#34;Version&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;2012-10-17&#34;</span>,
-	<span style="font-weight:bold">&#34;Statement&#34;</span>: [
-		{
-			<span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;AllowOpenIDConfigPUBLICAccess&#34;</span>,
-			<span style="font-weight:bold">&#34;Resource&#34;</span>: [
-			    <span style="color:#0ff;font-weight:bold">&#34;arn:aws:s3:::772237238044736-k8s/prefix/.well-known/openid-configuration&#34;</span>,
-			    <span style="color:#0ff;font-weight:bold">&#34;arn:aws:s3:::772237238044736-k8s/prefix/openid/v1/jwks&#34;</span>
-			    ],
-			<span style="font-weight:bold">&#34;Principal&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>,
-			<span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
-			<span style="font-weight:bold">&#34;Action&#34;</span>: [
-			    <span style="color:#0ff;font-weight:bold">&#34;s3:GetObject&#34;</span>
-			    ]
-		}
-	]
-}
-</code></pre></div><p>After adding this policy, I&rsquo;m going to go back and &ldquo;close the door&rdquo;, and block
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#cba6f7">&#34;Version&#34;</span>: <span style="color:#a6e3a1">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#cba6f7">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;AllowOpenIDConfigPUBLICAccess&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#cba6f7">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>			    <span style="color:#a6e3a1">&#34;arn:aws:s3:::772237238044736-k8s/prefix/.well-known/openid-configuration&#34;</span>,
+</span></span><span style="display:flex;"><span>			    <span style="color:#a6e3a1">&#34;arn:aws:s3:::772237238044736-k8s/prefix/openid/v1/jwks&#34;</span>
+</span></span><span style="display:flex;"><span>			    ],
+</span></span><span style="display:flex;"><span>			<span style="color:#cba6f7">&#34;Principal&#34;</span>: <span style="color:#a6e3a1">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>			    <span style="color:#a6e3a1">&#34;s3:GetObject&#34;</span>
+</span></span><span style="display:flex;"><span>			    ]
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>After adding this policy, I&rsquo;m going to go back and &ldquo;close the door&rdquo;, and block
 any new bucket policy allowing new public access. It&rsquo;s good to practice these
 this even if you think you are not at risk. You are always at risk.</p>
 <p>Okay, so now that the OIDC discovery spec for the K8s cluster has been offset
@@ -441,8 +438,7 @@ over a TLS connection, and CertManager takes care of issueing certificates in
 such a scenario.</p>
 <blockquote>
 <p>I&rsquo;ve noticed some issues when installing CertManager from the static
-artefacts, and complete reinstallation seems to be the way to go.</p>
-</blockquote>
+artefacts, and complete reinstallation seems to be the way to go.</p></blockquote>
 <p>After CertManager is installed, we can go ahead and install the Webhook using
 the artefacts provided in the <a href="https://github.com/aws/amazon-eks-pod-identity-webhook#in-cluster">Webhook Github
 repository</a>.</p>
@@ -468,14 +464,12 @@ messy, and generally it&rsquo;s a good idea to keep things like mutating webhook
 in their own namespaces. To do this, a couple namespace values have to be
 changed in the artefacts in addition to another couple of places that has
 values like URLs and certificate names. I&rsquo;ll cover this briefly after the
-main part of the video.</p>
-</blockquote>
+main part of the video.</p></blockquote>
 <blockquote>
 <p>If there&rsquo;s an issue with the deployment, the resources can be deleted and
 recreated. However, the Secret that gets created after the Certificate is
 signed by CertManager does not get deleted if you use <code>kubectl delete -f &lt;file.yaml&gt;</code>. If you are redeploying the Webhook, make sure to delete the
-Secret <code>pod-identity-webhook-cert</code> manually.</p>
-</blockquote>
+Secret <code>pod-identity-webhook-cert</code> manually.</p></blockquote>
 <p>Wait until the Webhook pod comes up to Ready state and you&rsquo;re ready for your
 pods to be mutated.</p>
 <p>Now, the Webhook will get called on every Pod creation request. It will,</p>
@@ -495,8 +489,7 @@ tabs of the Service Account configuration in an in-memory cache, that it
 keeps refreshed after it starts. When a Pod creation request is passed to the
 mutating webhook, it looks up the Service Account from this cache to see if
 it&rsquo;s something that needs the above work. Of course, this detail isn&rsquo;t really
-necessary for an end-user (Cloud/DevOps engineer) to configure IRSA.</p>
-</blockquote>
+necessary for an end-user (Cloud/DevOps engineer) to configure IRSA.</p></blockquote>
 <p>Now we have a scalable method to inject specific details into the Pod to be
 able to perform an <code>AssumeRoleWithWebIdentity</code> call.</p>
 <p><img src="/blog/img/2025-03-10_04.png" alt="Mutating Webhook to Inject Environment Variables"></p>
@@ -518,28 +511,26 @@ that role.</p>
 <p>For this we are going to need the ARN of the Federated IDP we configured in
 IAM. As a first step, I&rsquo;m going to allow any token that is issued by this IDP
 to be a valid for assuming this role.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;AllowIRSAAssume&#34;</span>,
-    <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
-    <span style="font-weight:bold">&#34;Principal&#34;</span>: {
-        <span style="font-weight:bold">&#34;Federated&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;arn:aws:iam::528757791498:oidc-provider/772237238044736-k8s.s3.ap-southeast-2.amazonaws.com/prefix/&#34;</span>
-    },
-    <span style="font-weight:bold">&#34;Action&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;sts:AssumeRoleWithWebIdentity&#34;</span>
-}
-</code></pre></div><p>On the K8s side, we have to annotate the Service Account so that the Webhook
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;AllowIRSAAssume&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Principal&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;Federated&#34;</span>: <span style="color:#a6e3a1">&#34;arn:aws:iam::528757791498:oidc-provider/772237238044736-k8s.s3.ap-southeast-2.amazonaws.com/prefix/&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Action&#34;</span>: <span style="color:#a6e3a1">&#34;sts:AssumeRoleWithWebIdentity&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>On the K8s side, we have to annotate the Service Account so that the Webhook
 knows which value to set to <code>AWS_ROLE_ARN</code> environment variable. For this, the
 annotation <code>eks.amazonaws.com/role-arn</code> is used with the ARN of the role as the
 value.</p>
 <blockquote>
 <p>The default audience value of <code>awssts</code> can also be overridden per Service
-Account, using the annotation <code>eks.amazonaws.com/audience</code>.</p>
-</blockquote>
+Account, using the annotation <code>eks.amazonaws.com/audience</code>.</p></blockquote>
 <blockquote>
 <p>The annotation prefix <code>eks.amazonaws.com</code> is also configurable. If you&rsquo;re
 running your k8s cluster outside of EKS and this prefix bothers you, override
-it in the Webhook configuration using the flag <code>--annotation-prefix</code> flag.</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"></code></pre></div><p><img src="/blog/img/2025-03-10_05.png" alt="IAM Role and the Service Account"></p>
+it in the Webhook configuration using the flag <code>--annotation-prefix</code> flag.</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"></code></pre></div><p><img src="/blog/img/2025-03-10_05.png" alt="IAM Role and the Service Account"></p>
 <h3 id="creating-the-pod-and-testing-access">Creating the Pod and Testing Access</h3>
 <p>We&rsquo;ve finally completed IRSA configuration. Now let&rsquo;s test this setup by trying
 to access the specific object in S3 that our Role allows in its permissions.</p>
@@ -625,18 +616,17 @@ server manifest).</p>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/">&lt; AWS Authentication for K8s: EKS Pod Identities Deep Dive</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes-trying-to-reproduce-the-tea-app-situation/">Is it that easy to make stupid mistakes? - Trying to Reproduce the Tea App Situation &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/">&lt; AWS Authentication for K8s: EKS Pod Identities Deep Dive</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes---trying-to-reproduce-the-tea-app-situation/">Is it that easy to make stupid mistakes? - Trying to Reproduce the Tea App Situation &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

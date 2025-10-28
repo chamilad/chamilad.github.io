@@ -4,126 +4,93 @@
     <title>Docker on chamila.dev</title>
     <link>https://chamila.dev/tags/docker/</link>
     <description>Recent content in Docker on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Sep 2019 05:57:08 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:15:43 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ElasticSearch on K8s: 02 — Log Collection with Filebeat</title>
       <link>https://chamila.dev/blog/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</link>
       <pubDate>Sat, 21 Sep 2019 05:57:08 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/</guid>
-      <description>This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_0.jpeg#layoutOutsetCenter&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;This is part of a series of short articles on setting up an ELK deployment on K8s.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a&#34;&gt;ElasticSearch on K8s: 01 — Basic Design&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;ElasticSearch on K8s: 02 — Log Collection with Filebeat&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/&#34;&gt;ElasticSearch on K8s: 03 - Log Enrichment with Logstash&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch/&#34;&gt;ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying&#34;&gt;ElasticSearch on K8s: 05 - Visualization and Production Readying&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-26_elasticsearch-index-management/&#34;&gt;ElasticSearch Index Management&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/&#34;&gt;Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/&#34;&gt;Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://chamila.dev/post/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/&#34;&gt;Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;log-collection&#34;&gt;Log Collection&lt;/h3&gt;&#xA;&lt;p&gt;The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint. Let’s explore these three aspects in detail.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ElasticSearch on K8s: 01 — Basic Design</title>
       <link>https://chamila.dev/blog/2019-09-19_elasticsearch-on-k8s-01basic-design/</link>
       <pubDate>Thu, 19 Sep 2019 20:29:53 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-09-19_elasticsearch-on-k8s-01basic-design/</guid>
-      <description>A design for a useful ELK deployment on K8s Log aggregation in a K8s environment is something I have lightly touched upon previously in multiple occasions. However setting up a minimal but a reliable log aggregation stack on top of K8s could quickly become an evolutionary process with each step improving on the previous one (and of course, everyone thinks they can do log aggregation before they actually start to do so).</description>
+      <description>&lt;h4 id=&#34;a-design-for-a-useful-elk-deployment-onk8s&#34;&gt;A design for a useful ELK deployment on K8s&lt;/h4&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2019-09-19_elasticsearch-on-k8s-01basic-design_0.jpeg#layoutOutsetCenter&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Log aggregation in a K8s environment is something I have lightly touched upon previously in multiple occasions. However setting up a minimal but a reliable log aggregation stack on top of K8s could quickly become an evolutionary process with each step improving on the previous one (and of course, everyone thinks they can do log aggregation before they actually start to do so). The following is a pattern for ELK I came across while improving such a stack. While this pattern addresses most common requirements for a native K8s log aggregation stack, there could be better, more suitable patterns that you may have to consider when setting up solutions of your own.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Load Balancing and Reverse Proxying for Kubernetes Services</title>
       <link>https://chamila.dev/blog/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</link>
       <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</guid>
-      <description>Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic  Morning sunlight on Horton Plains National Park   In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.</description>
+      <description>&lt;h4 id=&#34;different-load-balancing-and-reverse-proxying-strategies-to-use-in-production-k8s-deployments-to-expose-services-to-outsidetraffic&#34;&gt;Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic&lt;/h4&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_0.jpeg#layoutOutsetCenter&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Morning sunlight on Horton Plains National Park&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>How to Design a WSO2 Docker Image</title>
       <link>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</link>
       <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-12-24_how-to-design-a-wso2-docker-image/</guid>
-      <description>What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
-Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.</description>
+      <description>&lt;h4 id=&#34;what-should-be-your-concerns-for-wso2-ondocker&#34;&gt;What should be your concerns for WSO2 on Docker?&lt;/h4&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2018-12-24_how-to-design-a-wso2-docker-image_0.jpeg#layoutTextWidth&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://chamila.dev/thinking-of-moving-your-wso2-deployment-on-to-kubernetes-4e9a77b3377d&#34;&gt;Deploying WSO2 products on Containerized platforms&lt;/a&gt; is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on &lt;a href=&#34;https://github.com/wso2/docker-apim&#34;&gt;Docker&lt;/a&gt;, &lt;a href=&#34;https://github.com/wso2/kubernetes-apim/&#34;&gt;Kubernetes&lt;/a&gt;, &lt;a href=&#34;https://github.com/wso2/pivotal-cf-apim&#34;&gt;CloudFoundry&lt;/a&gt;, AWS ECS, and &lt;a href=&#34;https://github.com/wso2/dcos-apim&#34;&gt;Apache Mesos&lt;/a&gt;, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2018-12-24_how-to-design-a-wso2-docker-image_1.png#layoutTextWidth&#34;&gt;&lt;figcaption&gt;Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.com/api-management/install/)&lt;/figcaption&gt;&lt;/figure&gt;&#xA;&lt;p&gt;Docker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind. These approaches vary from an all files and configs pre-baked end to another end where almost everything, except a tiny helper layer, being mounted at Container run-time. However, not all these approaches are suitable for a WSO2 deployment, and figuring out these details can be a daunting task, especially at an earlier phase of the deployment. Therefore, it’s important to have a set of common &lt;strong&gt;guidelines&lt;/strong&gt;that can help determine which approach to take in each case. I emphasize the word &lt;strong&gt;guidelines&lt;/strong&gt; because these are only them, not hard rules or must-do’s in every deployment. There is freedom for the user to stray away, as long as the compromises made in doing so are understood.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Publishing WSO2 Logs to Splunk from a Containerized Deployment</title>
       <link>https://chamila.dev/blog/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</link>
       <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/</guid>
-      <description>Or how to publish to Splunk from any Docker environment WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in &amp;lt;CARBON_HOME&amp;gt;/repository/conf folder, data in &amp;lt;CARBON_HOME&amp;gt;/repository/data, artifacts in &amp;lt;CARBON_HOME&amp;gt;/repository/deployment (or in &amp;lt;CARBON_HOME&amp;gt;/repository/tenants folder if you’re in to multi-tenancy). All the log files are written into &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.
-Log Aggregation All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.</description>
+      <description>&lt;h4 id=&#34;or-how-to-publish-to-splunk-from-any-docker-environment&#34;&gt;Or how to publish to Splunk from any Docker environment&lt;/h4&gt;&#xA;&lt;p&gt;WSO2 products follow a standard structure when it comes to configuration, data, artifacts, and logging. Configuration files are found in &amp;lt;CARBON_HOME&amp;gt;/repository/conf folder, data in &amp;lt;CARBON_HOME&amp;gt;/repository/data, artifacts in &amp;lt;CARBON_HOME&amp;gt;/repository/deployment (or in &amp;lt;CARBON_HOME&amp;gt;/repository/tenants folder if you’re in to multi-tenancy). All the log files are written into &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder.&lt;/p&gt;&#xA;&lt;h4 id=&#34;log-aggregation&#34;&gt;Log Aggregation&lt;/h4&gt;&#xA;&lt;p&gt;All log events are output as entries to files through Log4J. Because of this, when it’s time to attach WSO2 logging to a log aggregator, it’s a matter of incorporating a tailing file reader agent and directing it towards &amp;lt;CARBON_HOME&amp;gt;/repository/logs folder. For an example, for ELK this could be something like &lt;strong&gt;FileBeat&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>CI/CD APIs with WSO2 API Manager</title>
       <link>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</link>
       <pubDate>Sun, 25 Nov 2018 03:47:20 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</guid>
-      <description>How to do continuous integration and continuous delivery of APIs with WSO2 API Manager WSO2 API Manager, the only Open Source Leader in API Management Solutions in Forrester Wave, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.</description>
+      <description>&lt;h4 id=&#34;how-to-do-continuous-integration-and-continuous-delivery-of-apis-with-wso2-apimanager&#34;&gt;How to do continuous integration and continuous delivery of APIs with WSO2 API Manager&lt;/h4&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://wso2.com/api-management/&#34;&gt;WSO2 API Manager&lt;/a&gt;, the only &lt;a href=&#34;https://wso2.com/resources/analyst-reports/the-forrester-wave-api-management-solutions-q4-2018/?utm_source=bannerprodpg&amp;amp;utm_medium=mailer&amp;amp;utm_campaign=forrester_wave_apim_2018B2&#34;&gt;Open Source Leader in API Management Solutions in Forrester Wave&lt;/a&gt;, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Server Immutability</title>
       <link>https://chamila.dev/blog/2018-05-17_server-immutability/</link>
       <pubDate>Thu, 17 May 2018 08:19:19 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-05-17_server-immutability/</guid>
-      <description>Server Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.
-What is Immutability? Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image.</description>
+      <description>&lt;p&gt;Server Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.&lt;/p&gt;&#xA;&lt;h4 id=&#34;what-is-immutability&#34;&gt;What is Immutability?&lt;/h4&gt;&#xA;&lt;p&gt;Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Let’s make your Docker Image better than 90% of existing ones</title>
       <link>https://chamila.dev/blog/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</link>
       <pubDate>Tue, 05 Sep 2017 18:50:34 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/</guid>
-      <description>Or why you should always Label your Docker Image.
- Imagine this.
-You’re working on a new project, an exciting one that’s Container native. You’re almost done, and now at the stage where you want to build the Docker Image that ships your little project out to the public. You build on top of Alpine Linux, and pack your tool in to a nifty 80Mb Image that you tag latest and push to the public Docker Hub.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Or why you should always Label your Docker Image.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Imagine this.&lt;/p&gt;&#xA;&lt;p&gt;You’re working on a new project, an exciting one that’s Container native. You’re almost done, and now at the stage where you want to build the Docker Image that ships your little project out to the public. You build on top of Alpine Linux, and pack your tool in to a nifty 80Mb Image that you tag &lt;code&gt;latest&lt;/code&gt; and push to the public Docker Hub.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Docker Image Size Concerns Out of the Window — Squash with Confidence</title>
       <link>https://chamila.dev/blog/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</link>
       <pubDate>Tue, 22 Aug 2017 09:58:17 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-08-22_docker-image-size-concerns-out-of-the-window-squash-with-confidence/</guid>
-      <description>Docker is finally bringing Squash support
-For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use --no-cache flag while building. The layered structure of a Docker image would spook out a beginner.
-Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved.</description>
+      <description>&lt;p&gt;Docker is finally bringing Squash support&lt;/p&gt;&#xA;&lt;p&gt;For a while, Docker image size has been an interesting topic for discussion in the Containerization world, especially things like how if you’d observe silent image size increases if you don’t use &lt;code&gt;--no-cache&lt;/code&gt; flag while building. The layered structure of a Docker image would spook out a beginner.&lt;/p&gt;&#xA;&lt;p&gt;Typically, these layers would be handled in such a way that maximum optimization in terms of re-use and storage is achieved. However, it’s often the case that overlaying file systems can introduce unnecessary image sizes, especially when the same file system locations are edited in different layers.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Ballerina with Container Support</title>
       <link>https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/</link>
       <pubDate>Tue, 21 Feb 2017 06:48:33 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/</guid>
-      <description>WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the WSO2Con 2017 in San Fransisco. Ballerina is a general purpose language with a focus on integration and a visual approach to coding. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “Connectors” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2017-02-21_ballerina-with-container-support_0.png#layoutFillWidth&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;WSO2 unveiled its latest contribution to the world of integration, Ballerina, yesterday during the &lt;a href=&#34;http://us17.wso2con.com/&#34;&gt;WSO2Con 2017 in San Fransisco&lt;/a&gt;. Ballerina is a &lt;a href=&#34;http://ballerinalang.org/&#34;&gt;general purpose language with a focus on integration and a visual approach to coding&lt;/a&gt;. It’s strongly typed, integration friendly, and carries native support for a list of technologies such as support for REST, JSON, XML, Swagger, and “&lt;strong&gt;Connectors&lt;/strong&gt;” that communicate with Facebook, and Twitter etc. This write up will focus on Docker based Containerization of Ballerina programs.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Thinking of Moving Your WSO2 Deployment On to Kubernetes?</title>
       <link>https://chamila.dev/blog/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</link>
       <pubDate>Sun, 22 Jan 2017 19:25:15 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</guid>
-      <description>Moving from a Virtual Machine based deployment to a Container Clustering environment can be quite a few sleepless nights. Cloud deployment artifacts for WSO2 products would reduce this number by a few, because of their tried and tested nature. These include Dockerfiles, Puppet based configurations, Kubernetes and Mesos deployment artifacts. As easy as these artifacts make life easier during a redesign stage of an existing deployment, let us anyway walk through some points to keep in mind regarding a WSO2 deployment on top of Kubernetes.</description>
+      <description>&lt;p&gt;Moving from a Virtual Machine based deployment to a Container Clustering environment can be quite a few sleepless nights. Cloud deployment artifacts for WSO2 products would reduce this number by a few, because of their tried and tested nature. These include Dockerfiles, Puppet based configurations, Kubernetes and Mesos deployment artifacts. As easy as these artifacts make life easier during a redesign stage of an existing deployment, let us anyway walk through some points to keep in mind regarding a WSO2 deployment on top of Kubernetes.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Running WSO2 Products on Kubernetes</title>
       <link>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</link>
       <pubDate>Tue, 09 Feb 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</guid>
-      <description>Running WSO2 Products on Kubernetes
- Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.
- It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!</description>
+      <description>&lt;p&gt;Running WSO2 Products on Kubernetes&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

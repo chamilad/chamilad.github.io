@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.105.0">
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,7 +50,8 @@
   <link href="/fa/css/all.css" rel="stylesheet">
 
   
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
   
   <script>
     
@@ -60,7 +61,6 @@
 
   
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 
@@ -70,10 +70,10 @@
       <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div id="floating-menu-wrapper">
   <div id="floating-menu">
-    <button id="switch-to-dark" title="dark theme">
+    <button id="switch-to-dark">
       <i class="fas fa-moon"></i>
     </button>
-    <button id="switch-to-light" title="light theme" class="current-theme">
+    <button id="switch-to-light" class="current-theme">
       <i class="fas fa-sun"></i>
     </button>
   </div>
@@ -143,14 +143,13 @@
           </div>
         </header>
         <div class="post-content markdown-body">
-          <figure><img src="/blog/img/2019-11-27_header.jpg"/><figcaption>
-            <h4>Point Sur, Cali 01</h4>
-        </figcaption>
+          <figure><img src="/blog/img/2019-11-27_header.jpg"><figcaption>
+      <h4>Point Sur, Cali 01</h4>
+    </figcaption>
 </figure>
 
 <blockquote>
-<p>I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.</p>
-</blockquote>
+<p>I just completed a mini article series on details of deploying an ELK stack on K8s. Following are the links to the series.</p></blockquote>
 <ol>
 <li><a href="/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a">ElasticSearch on K8s: 01 — Basic Design</a></li>
 <li><a href="/post/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/">ElasticSearch on K8s: 02 — Log Collection with Filebeat</a></li>
@@ -169,16 +168,14 @@
 <p>Authorization makes sure that only the pre-determined controlled access is given to the authenticated users. For an example, there could be departmental separation to access logs, such that logs produced by systems related to <code>deptA</code> should only be viewable by users from <code>deptA</code> and the Ops personal from the internal platform team. Furthermore, this could also be broken down to read-only access, an access level with a subset of write operations, and an access level with ability to perform all write operations.</p>
 <p>When it comes to the ELK stack, both authentication and authorization is handled by features available from ElasticSearch. There are <strong>authentication realms</strong> that can be defined to make users authenticate before accessing indices. After authentication, there are <strong>roles</strong> and <strong>role mappings</strong> that can be used to authorize users into a correct set of permissions. All these features are available from a plugin named <code>XPack</code> that Elastic merged into the core product a few releases ago.</p>
 <blockquote>
-<p>Note that some features that are discussed in this articles are only available in paid tiers of the ELK subscription model.</p>
-</blockquote>
+<p>Note that some features that are discussed in this articles are only available in paid tiers of the ELK subscription model.</p></blockquote>
 <h2 id="need-for-sso">Need for SSO</h2>
 <p>By default, XPack allows to enable basic authentication as a way of user management for the ELK stack. However this means that the underlying user store will be on ElasticSearch and users will have to maintain separate accounts just to login to the logging platform. It would be good to reuse accounts that users have on the corporate platform (ex: the corporate LDAP store) for the logging platform authentication and authorization as well.</p>
 <p>This is where SSO comes into play. Single-Sign On will allow to use the accounts provided by the corporate Identity Provider (or any other external Identity Provider) for the authn/authr purposes of other service providers. XPack plugin also has authentication realms that allow to configure SSO relationships between ELK and other IDPs through standards such as SAML and OIDC. These authentication realms also provide means to map users from external IDPs to internal ElasticSearch roles based on pre-defined criteria.</p>
 <h2 id="multi-tenancy-in-elk">Multi-Tenancy in ELK</h2>
 <p><a href="/post/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash/">In the article related to Logstash and enrichment, an example strategy to divide incoming logs to different indices was discussed</a>. In a more established setup, this would naturally extend to a point where different tenants of the system will produce logs that will end up in different indices. When that happens, data access should also be segregated so that users are not able to view logs from other tenants. This could also end up with a more complex user model where there are several layers of access that have to be granted to users depending on the scope of their control.</p>
 <blockquote>
-<p>For an example, in a wider scoped setup, there could be tenant specific read-only roles (ex: for users like managers and HR), tenant specific admin roles (ex: for tenant specific support engineers), system wide read-only roles (ex: service provider&rsquo;s sales personnel), system-wide semi-admin roles (ex: service provider support engineers, pre-sales engineers), and super-admin roles (ex: service provider cloud engineers). Each of these roles have to be granted based on the attributes provided by the authentication system, be it the internal ElasticSearch user store or an external IDP.</p>
-</blockquote>
+<p>For an example, in a wider scoped setup, there could be tenant specific read-only roles (ex: for users like managers and HR), tenant specific admin roles (ex: for tenant specific support engineers), system wide read-only roles (ex: service provider&rsquo;s sales personnel), system-wide semi-admin roles (ex: service provider support engineers, pre-sales engineers), and super-admin roles (ex: service provider cloud engineers). Each of these roles have to be granted based on the attributes provided by the authentication system, be it the internal ElasticSearch user store or an external IDP.</p></blockquote>
 <h1 id="designing-a-solution">Designing a Solution</h1>
 <p>Based on the above requirements, a high-level design such as the following can be approached.</p>
 <p><img src="/blog/img/2019-11-27_elk_auth_01.jpg" alt=""></p>
@@ -198,18 +195,17 @@
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2019-11-26_elasticsearch-index-management/">&lt; ElasticSearch Index Management</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02---basic-sso-with-role-assignment/">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2019-11-26_elasticsearch-index-management/">&lt; ElasticSearch Index Management</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02---basic-sso-with-role-assignment/">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment &gt;</a>
+    
+  </div>
 </div>
-
 
         
 
@@ -236,8 +232,6 @@
         
 
         <div class="site-footer">
-  
-
   <div class="sm-icons">
   <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
     <i class="fas fa-rss sm-icon"></i>
@@ -250,7 +244,7 @@
   </a>
 </div>
 
-  
+  <span> All photos published on this site are copyrighted. </span>
   <div class="site-footer-item">
     Modified
     <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>

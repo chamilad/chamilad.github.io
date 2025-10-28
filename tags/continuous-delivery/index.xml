@@ -4,17 +4,16 @@
     <title>Continuous Delivery on chamila.dev</title>
     <link>https://chamila.dev/tags/continuous-delivery/</link>
     <description>Recent content in Continuous Delivery on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 25 Nov 2018 03:47:20 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/continuous-delivery/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:15:26 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/continuous-delivery/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CI/CD APIs with WSO2 API Manager</title>
       <link>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</link>
       <pubDate>Sun, 25 Nov 2018 03:47:20 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-11-25_cicd-apis-with-wso2-api-manager/</guid>
-      <description>How to do continuous integration and continuous delivery of APIs with WSO2 API Manager WSO2 API Manager, the only Open Source Leader in API Management Solutions in Forrester Wave, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.</description>
+      <description>&lt;h4 id=&#34;how-to-do-continuous-integration-and-continuous-delivery-of-apis-with-wso2-apimanager&#34;&gt;How to do continuous integration and continuous delivery of APIs with WSO2 API Manager&lt;/h4&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://wso2.com/api-management/&#34;&gt;WSO2 API Manager&lt;/a&gt;, the only &lt;a href=&#34;https://wso2.com/resources/analyst-reports/the-forrester-wave-api-management-solutions-q4-2018/?utm_source=bannerprodpg&amp;amp;utm_medium=mailer&amp;amp;utm_campaign=forrester_wave_apim_2018B2&#34;&gt;Open Source Leader in API Management Solutions in Forrester Wave&lt;/a&gt;, packs in a wide range of advanced API Management features that covers a number of end user stories. Through customization introduced to the extension points available throughout the product, WSO2 API Manager can be adopted to almost all API Management scenarios imaginable.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

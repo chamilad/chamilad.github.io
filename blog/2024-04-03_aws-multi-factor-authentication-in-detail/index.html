@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "AWS Multi-factor Authentication in Detail",
       "headline" : "AWS Multi-factor Authentication in Detail",
-      "description" : "Multi-factor Authentication (MFA) is an easy way to enhance the security of your AWS cloud architecture with minimal work. It takes two minutes to enable, and minimizes the possibility of an account being compromised by tenfolds. This post and the associated video explores MFA in AWS and how to use it to control access to critical parts of your cloud architecture\nSingle factor vs Multi factor The \u0026ldquo;multi\u0026rdquo; in MFA is as opposed to \u0026ldquo;single\u0026rdquo; factor authentication.",
+      "description" : "\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n      \u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/_QegkHWsJSc?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n    \u003c\/div\u003e\n\n\u003cp\u003eMulti-factor Authentication (MFA) is an easy way to enhance the security of your AWS cloud architecture with minimal work.\nIt takes two minutes to enable, and minimizes the possibility of an account being compromised by tenfolds.\nThis post and the associated video explores MFA in AWS and how to use it to control access to critical parts of your cloud architecture\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,13 @@
 <title>AWS Multi-factor Authentication in Detail - chamila.dev</title>
   <meta property="og:title" content="AWS Multi-factor Authentication in Detail - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="Multi-factor Authentication (MFA) is an easy way to enhance the security of your AWS cloud architecture with minimal work. It takes two minutes to enable, and minimizes the possibility of an account being compromised by tenfolds. This post and the associated video explores MFA in AWS and how to use it to control access to critical parts of your cloud architecture
-Single factor vs Multi factor The &ldquo;multi&rdquo; in MFA is as opposed to &ldquo;single&rdquo; factor authentication." />
+  <meta name="description" content="
+      
+    
+
+Multi-factor Authentication (MFA) is an easy way to enhance the security of your AWS cloud architecture with minimal work.
+It takes two minutes to enable, and minimizes the possibility of an account being compromised by tenfolds.
+This post and the associated video explores MFA in AWS and how to use it to control access to critical parts of your cloud architecture" />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -147,10 +152,9 @@ Single factor vs Multi factor The &ldquo;multi&rdquo; in MFA is as opposed to &l
           </div>
         </header>
         <div class="post-content markdown-body">
-          
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/_QegkHWsJSc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/_QegkHWsJSc?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <p>Multi-factor Authentication (MFA) is an easy way to enhance the security of your AWS cloud architecture with minimal work.
 It takes two minutes to enable, and minimizes the possibility of an account being compromised by tenfolds.
@@ -177,8 +181,7 @@ have&rdquo;, but this is not the only pattern.</p>
 <blockquote>
 <p>The term <strong>Two-factor Authentication</strong> or <strong>2FA</strong> is basically the same,
 except for fact that it only allows two, and exactly two factors. In my mind,
-<strong>MFA</strong> is the term, and <strong>2FA</strong> is to be left behind.</p>
-</blockquote>
+<strong>MFA</strong> is the term, and <strong>2FA</strong> is to be left behind.</p></blockquote>
 <p>Unless you took a big break from the Internet in late 2000s, you might have
 already used MFA in one or more online services you use. Most social media
 services enforce, or at least encourage MFA. If you&rsquo;ve been working with AWS
@@ -211,12 +214,10 @@ CLI (if you&rsquo;re using a virtual MFA device, only OATH-TOTP is involved).</p
 <blockquote>
 <p>I went into details about FIDO-U2F and OATH-TOTP usage in AWS in <a href="/blog/2024-01-18_setting-yubikey-mfa-for-aws-cli-temporary-credentials/">my previous
 post about enabling Yubikeys for AWS CLI and API
-operations</a></p>
-</blockquote>
-
+operations</a></p></blockquote>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/SC16gBxok-w" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/SC16gBxok-w?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <p>OATH-TOTP is a TOTP (Time based One Time Password) protocol, where a pre-shared
 secret is used along with the current time to generate a reproducible token.
@@ -232,8 +233,7 @@ the tokens for you. Major password managers provide the functionality where
 ALthe MFA token can also be generated by it (in my opinion, this is not
 advisable, because it provides a single place where both factors can be
 siphoned out, but there are arguments out there that are on the opposite
-side).</p>
-</blockquote>
+side).</p></blockquote>
 <p>FIDO-U2F on the other hand makes use of Public Key Cryptography, where the
 public keys of the user and the service are exchanged. The tokens are then
 generated and signed with the self public keys which are cryptographically
@@ -253,15 +253,13 @@ sequence to siphon the token off you. FIDO-U2F only goes through if the public
 key registered for the service matches the public key provided by the service
 that is asking for the token.</p>
 <blockquote>
-<p>Passkeys is also a protocol based on FIDO-U2F</p>
-</blockquote>
+<p>Passkeys is also a protocol based on FIDO-U2F</p></blockquote>
 <h2 id="mfa-in-aws">MFA in AWS</h2>
 <p>AWS supports MFA for IAM users and built-in SSO (IAM Identity Center) user store.</p>
 <blockquote>
 <p>Both these services can have users from federated identity providers, so MFA
 for those users is a matter for those external identity providers to
-implement.</p>
-</blockquote>
+implement.</p></blockquote>
 <p>It takes 2 minutes to enable MFA on both these places.</p>
 <h3 id="mfa-for-iam-users">MFA for IAM Users</h3>
 <p>In IAM, the place to enable MFA is in the &ldquo;Security Credentials&rdquo; tab for the
@@ -283,8 +281,7 @@ tokens for any other service you might be using.</p>
 <p>Don&rsquo;t use Google Authenticator! I have had success using
 <a href="https://getaegis.app/">Aegis</a>, and Open
 Source application that also provides the capability to backup the vault with
-a password.</p>
-</blockquote>
+a password.</p></blockquote>
 <p><img src="/blog/img/2024-04-03_iam2.png" alt="MFA options"></p>
 <h4 id="virtual-mfa">Virtual MFA</h4>
 <p>This uses the OATH-TOTP method I talked about, and provides the usual method of
@@ -296,19 +293,16 @@ and provide two consecutive tokens generated afterwards, to finish the process.<
 <blockquote>
 <p>Before selecting this option, or better, before buying a Yubikey, make sure
 it <a href="https://www.yubico.com/nz/store/compare/">supports both FIDO-U2F and OATH-TOTP</a>. The intersection of these two
-features cover only a limited set of devices.</p>
-</blockquote>
+features cover only a limited set of devices.</p></blockquote>
 <blockquote>
 <p>Also, Security Keys that use FIDO-U2F and WebAuthn standards has a limit of
 &ldquo;slots&rdquo; that can be used to store external service public keys. So this is
 essentially a limit on the number of relying parties you can use with (ex:) a
-single Yubikey. This is a direct disadvantage of security keys.</p>
-</blockquote>
+single Yubikey. This is a direct disadvantage of security keys.</p></blockquote>
 <blockquote>
 <p>Always try to buy security keys in pairs, and register both of them in the
 services you use. This way, if you lose the main physical device, you have a
-backup device to avoid getting locked out of your accounts.</p>
-</blockquote>
+backup device to avoid getting locked out of your accounts.</p></blockquote>
 <p>Select the &ldquo;Security Key&rdquo; <img src="/blog/img/2024-04-03_sso2.png" alt="Options in IIC"></p>
 <p><img src="/blog/img/2024-04-03_yk1.png" alt="Security Key option"></p>
 <p>In the next screen, connect your Yubikey and activate it.</p>
@@ -343,42 +337,42 @@ critical parts of your cloud architecture unless the credentials are generated w
 You can say if the request context doesn&rsquo;t have MFA authenticated don&rsquo;t allow certain API actions.</p>
 <p>Let&rsquo;s take a look at a sample.
 I&rsquo;m going to restrict <code>GetObject</code> action in an S3 bucket if the session context doesn&rsquo;t have MFA authentication details.</p>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="1"><a style="outline: none; text-decoration:none; color:inherit" href="#1"> 1</a>
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="2"><a style="outline: none; text-decoration:none; color:inherit" href="#2"> 2</a>
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="3"><a style="outline: none; text-decoration:none; color:inherit" href="#3"> 3</a>
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="4"><a style="outline: none; text-decoration:none; color:inherit" href="#4"> 4</a>
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="5"><a style="outline: none; text-decoration:none; color:inherit" href="#5"> 5</a>
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="6"><a style="outline: none; text-decoration:none; color:inherit" href="#6"> 6</a>
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="7"><a style="outline: none; text-decoration:none; color:inherit" href="#7"> 7</a>
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="8"><a style="outline: none; text-decoration:none; color:inherit" href="#8"> 8</a>
-</span><span style="display:block;width:100%;background-color:#191919"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="9"><a style="outline: none; text-decoration:none; color:inherit" href="#9"> 9</a>
-</span></span><span style="display:block;width:100%;background-color:#191919"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="10"><a style="outline: none; text-decoration:none; color:inherit" href="#10">10</a>
-</span></span><span style="display:block;width:100%;background-color:#191919"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="11"><a style="outline: none; text-decoration:none; color:inherit" href="#11">11</a>
-</span></span><span style="display:block;width:100%;background-color:#191919"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="12"><a style="outline: none; text-decoration:none; color:inherit" href="#12">12</a>
-</span></span><span style="display:block;width:100%;background-color:#191919"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="13"><a style="outline: none; text-decoration:none; color:inherit" href="#13">13</a>
-</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="14"><a style="outline: none; text-decoration:none; color:inherit" href="#14">14</a>
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="15"><a style="outline: none; text-decoration:none; color:inherit" href="#15">15</a>
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272" id="16"><a style="outline: none; text-decoration:none; color:inherit" href="#16">16</a>
+<div class="highlight"><div style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a>
+</span><span style="background-color:#45475a"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a>
+</span></span><span style="background-color:#45475a"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a>
+</span></span><span style="background-color:#45475a"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a>
+</span></span><span style="background-color:#45475a"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="12"><a style="outline:none;text-decoration:none;color:inherit" href="#12">12</a>
+</span></span><span style="background-color:#45475a"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="13"><a style="outline:none;text-decoration:none;color:inherit" href="#13">13</a>
+</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="14"><a style="outline:none;text-decoration:none;color:inherit" href="#14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="15"><a style="outline:none;text-decoration:none;color:inherit" href="#15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c" id="16"><a style="outline:none;text-decoration:none;color:inherit" href="#16">16</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="font-weight:bold">&#34;Version&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;2012-10-17&#34;</span>,
-    <span style="font-weight:bold">&#34;Statement&#34;</span>: [
-        {
-            <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Deny&#34;</span>,
-            <span style="font-weight:bold">&#34;Principal&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>,
-            <span style="font-weight:bold">&#34;Action&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;s3:GetObject&#34;</span>,
-            <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;arn:aws:s3:::butcher-5556667777888999-private/*&#34;</span>,
-<span style="display:block;width:100%;background-color:#191919">            <span style="font-weight:bold">&#34;Condition&#34;</span>: {
-</span><span style="display:block;width:100%;background-color:#191919">                <span style="font-weight:bold">&#34;BoolIfExists&#34;</span>: {
-</span><span style="display:block;width:100%;background-color:#191919">                    <span style="font-weight:bold">&#34;aws:MultiFactorAuthPresent&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;false&#34;</span>
-</span><span style="display:block;width:100%;background-color:#191919">                }
-</span><span style="display:block;width:100%;background-color:#191919">            }
-</span>        }
-    ]
-}</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Version&#34;</span>: <span style="color:#a6e3a1">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Deny&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Principal&#34;</span>: <span style="color:#a6e3a1">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Action&#34;</span>: <span style="color:#a6e3a1">&#34;s3:GetObject&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Resource&#34;</span>: <span style="color:#a6e3a1">&#34;arn:aws:s3:::butcher-5556667777888999-private/*&#34;</span>,
+</span></span><span style="display:flex; background-color:#45475a"><span>            <span style="color:#cba6f7">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex; background-color:#45475a"><span>                <span style="color:#cba6f7">&#34;BoolIfExists&#34;</span>: {
+</span></span><span style="display:flex; background-color:#45475a"><span>                    <span style="color:#cba6f7">&#34;aws:MultiFactorAuthPresent&#34;</span>: <span style="color:#a6e3a1">&#34;false&#34;</span>
+</span></span><span style="display:flex; background-color:#45475a"><span>                }
+</span></span><span style="display:flex; background-color:#45475a"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
 </div>
 </div>
 <p>The condition I am using here is <code>aws:MultiFactorAuthPresent</code>.
@@ -395,8 +389,7 @@ using a Security Key as your MFA device. My blog post that I linked above
 (and the video) on Yubikey usage goes into detail about it.</p>
 <p>If your MFA device is a Virtual Device, you don&rsquo;t have to worry about this.
 You&rsquo;re already using OATH-TOTP for both the Web Console MFA and the API call
-MFA.</p>
-</blockquote>
+MFA.</p></blockquote>
 <h4 id="testing-with-long-term-credentials-without-mfa">Testing with Long Term Credentials without MFA</h4>
 <p>My first attempt is to try and access this file through long term credentials. They
 don&rsquo;t have a <code>SessionContext</code> and in turn, no MFA auth details attached in the request context.
@@ -417,8 +410,7 @@ This is true even though my SSO user has an MFA device attached to it. This is b
 these screenshots. These accounts were sandbox accounts, and they are not
 active anymore. Don&rsquo;t look at my screenhots and be &ldquo;emboldened&rdquo; to blatantly
 post CloudTrail logs in public. They can contain highly sensitive details.</p>
-<p>Do as I say, not as I do. Please, and thank you!</p>
-</blockquote>
+<p>Do as I say, not as I do. Please, and thank you!</p></blockquote>
 <p>Even if I try to get temporary credentials from an <code>AssumeRole</code> operation in
 the CLI, I&rsquo;d still be getting the same response.</p>
 <p><img src="/blog/img/2024-04-03_api11.png" alt=""></p>
@@ -449,18 +441,17 @@ short-term, and generated with MFA details attached.</p>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/">&lt; Deriving AWS Account ID from Access Key</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-05-31_aws-finops-basics/">Hit the ground Running with FinOps in AWS &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-03-11_deriving-aws-account-id-from-access-key/">&lt; Deriving AWS Account ID from Access Key</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-05-31_aws-finops-basics/">Hit the ground Running with FinOps in AWS &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

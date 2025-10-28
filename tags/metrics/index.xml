@@ -4,18 +4,16 @@
     <title>Metrics on chamila.dev</title>
     <link>https://chamila.dev/tags/metrics/</link>
     <description>Recent content in Metrics on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Mar 2020 13:37:33 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/metrics/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 Mar 2020 13:37:33 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/metrics/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A Standalone Prometheus Exporter for Kibana</title>
       <link>https://chamila.dev/blog/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</link>
       <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</guid>
-      <description>I wrote a Prometheus Exporter that converts and exposes some metrics from Kibana API. This was mostly inspired by an already existing Exporter, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.
-kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password The Exporter is pretty basic one written in less than 500 lines of collective Go code.</description>
+      <description>&lt;p&gt;I wrote a &lt;a href=&#34;https://github.com/chamilad/kibana-prometheus-exporter&#34;&gt;Prometheus Exporter that converts and exposes some metrics from Kibana API&lt;/a&gt;. This was mostly inspired by &lt;a href=&#34;https://github.com/pjhampton/kibana-prometheus-exporter/&#34;&gt;an already existing Exporter&lt;/a&gt;, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The Exporter is pretty basic one written in less than 500 lines of collective Go code. The following metrics are exposed to be scraped by Prometheus.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

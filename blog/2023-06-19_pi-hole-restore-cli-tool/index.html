@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -140,9 +140,9 @@
           </div>
         </header>
         <div class="post-content markdown-body">
-          <figure><img src="/blog/img/2023-06-19_pihole_restore.png"/><figcaption>
-            <h4>A loading tunnel in Wrights Hill Fortress</h4>
-        </figcaption>
+          <figure><img src="/blog/img/2023-06-19_pihole_restore.png"><figcaption>
+      <h4>A loading tunnel in Wrights Hill Fortress</h4>
+    </figcaption>
 </figure>
 
 <p>I made a thing (this time more niche than the last project).</p>
@@ -165,8 +165,8 @@ to write a tool myself.</p>
 <p><a href="https://github.com/chamilad/pihole-restore/"><code>pihole_restore</code></a> is a CLI tool
 to import a pi-hole backup archive file to a running pi-hole instance. It is a
 pretty straight forward task, so nothing more to elaborate here.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pihole_restore -f pihole-backup.tar.gz
-</code></pre></div><p><img src="/blog/img/2023-06-19_pihole_restore_output.png" alt="pihole_restore"></p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pihole_restore -f pihole-backup.tar.gz
+</span></span></code></pre></div><p><img src="/blog/img/2023-06-19_pihole_restore_output.png" alt="pihole_restore"></p>
 <p>It also allows you to selectively restore only a few configurations, such as
 DNS entries, adlists etc. I&rsquo;ve essentially duplicated the functionality in the
 Web UI into a CLI.</p>
@@ -175,27 +175,26 @@ Web UI into a CLI.</p>
 scripts for the Web UI for the most part. This is especially true for the admin
 sub-command (<code>pihole -a</code>), where it just calls the PHP script directly as
 needed.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#007f7f"># the cli command</span>
-pihole -a teleporter
-
-<span style="color:#007f7f"># translates into</span>
-php <span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">${</span>webroot<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">/admin/scripts/pi-hole/php/teleporter.php&#34;</span>
-</code></pre></div><p>This is why creating a backup archive is possible through the CLI and not
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># the cli command</span>
+</span></span><span style="display:flex;"><span>pihole -a teleporter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># translates into</span>
+</span></span><span style="display:flex;"><span>php <span style="color:#a6e3a1">&#34;</span><span style="color:#a6e3a1">${</span><span style="color:#f5e0dc">webroot</span><span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">/admin/scripts/pi-hole/php/teleporter.php&#34;</span>
+</span></span></code></pre></div><p>This is why creating a backup archive is possible through the CLI and not
 restoring it. There&rsquo;s only one PHP script for both of these functions,
 <code>teleporter.php</code>. Only the backup code branch can be directly invoked through
 the <code>php</code> interpreter. The restore functionality is behind a decision based on
 a request variable (which is established by the server when the Web UI form is
 submitted).</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#fff;font-weight:bold">if</span> (isset($_POST[<span style="color:#0ff;font-weight:bold">&#39;action&#39;</span>])) {
-  <span style="color:#007f7f">// import configuration
-</span><span style="color:#007f7f"></span>} <span style="color:#fff;font-weight:bold">else</span> {
-  <span style="color:#007f7f">// backup configuration
-</span><span style="color:#007f7f"></span>}
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#cba6f7">if</span> (isset(<span style="color:#f5e0dc">$_POST</span>[<span style="color:#a6e3a1">&#39;action&#39;</span>])) {
+</span></span><span style="display:flex;"><span>  <span style="color:#6c7086;font-style:italic">// import configuration
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>} <span style="color:#cba6f7">else</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6c7086;font-style:italic">// backup configuration
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>}
+</span></span></code></pre></div><blockquote>
 <p>I first tried to see if I can wrangle <code>php</code> to somehow inject variables into
 the <code>$_REQUEST</code> object. It&rsquo;s been 12 years since I last touched PHP, but the PTSD
-kicked in pretty soon.</p>
-</blockquote>
+kicked in pretty soon.</p></blockquote>
 <p>After reading this part of the code base and finding the related scripts, it
 was a straightforward task to write a CLI tool. So I decided to complicate
 things and try to learn Rust while doing so.</p>
@@ -227,14 +226,14 @@ events, since <code>syncthing</code> first starts copying contents to a <code>.t
 then renames it). Once a file is detected, it runs <code>pihole_restore</code> with the
 new file as the input. <code>systemd-journal</code> logs help me debug if things don&rsquo;t go
 according to plan.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">inotifywait -q -m -e moved_to --format <span style="color:#0ff;font-weight:bold">&#39;%f&#39;</span> <span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">${</span>WATCH_DIR<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#34;</span> | <span style="color:#fff;font-weight:bold">while</span> <span style="color:#fff;font-weight:bold">read</span> f; <span style="color:#fff;font-weight:bold">do</span>
-  <span style="color:#fff;font-weight:bold">if</span> [[ $f == *.tar.gz ]]; <span style="color:#fff;font-weight:bold">then</span>
-    RUST_LOG=debug /usr/bin/pihole-restore -f <span style="color:#0ff;font-weight:bold">${</span>WATCH_DIR<span style="color:#0ff;font-weight:bold">}</span>/<span style="color:#0ff;font-weight:bold">${</span>f<span style="color:#0ff;font-weight:bold">}</span> -c
-  <span style="color:#fff;font-weight:bold">else</span>
-    <span style="color:#fff;font-weight:bold">echo</span> <span style="color:#0ff;font-weight:bold">&#34;not using this file: </span><span style="color:#0ff;font-weight:bold">${</span>f<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#34;</span>
-  <span style="color:#fff;font-weight:bold">fi</span>
-<span style="color:#fff;font-weight:bold">done</span>
-</code></pre></div><p>There were only a few assumptions made during development of this tool, so it
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>inotifywait -q -m -e moved_to --format <span style="color:#a6e3a1">&#39;%f&#39;</span> <span style="color:#a6e3a1">&#34;</span><span style="color:#a6e3a1">${</span><span style="color:#f5e0dc">WATCH_DIR</span><span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">&#34;</span> | <span style="color:#cba6f7">while</span> <span style="color:#89dceb">read</span> f; <span style="color:#cba6f7">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">if</span> <span style="color:#89dceb;font-weight:bold">[[</span> <span style="color:#f5e0dc">$f</span> <span style="color:#89dceb;font-weight:bold">==</span> *.tar.gz <span style="color:#89dceb;font-weight:bold">]]</span>; <span style="color:#cba6f7">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f5e0dc">RUST_LOG</span><span style="color:#89dceb;font-weight:bold">=</span>debug /usr/bin/pihole-restore -f <span style="color:#a6e3a1">${</span><span style="color:#f5e0dc">WATCH_DIR</span><span style="color:#a6e3a1">}</span>/<span style="color:#a6e3a1">${</span><span style="color:#f5e0dc">f</span><span style="color:#a6e3a1">}</span> -c
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">else</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;not using this file: </span><span style="color:#a6e3a1">${</span><span style="color:#f5e0dc">f</span><span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">done</span>
+</span></span></code></pre></div><p>There were only a few assumptions made during development of this tool, so it
 can work with almost any setup you can think of, as long as the workflow is through the
 CLI.</p>
 <h2 id="learnings">Learnings</h2>
@@ -253,18 +252,17 @@ on the release notes for now.</p>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2023-06-04_information-security-compliance-in-aws-solutions/">&lt; Information Security Compliance in AWS Solutions</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/">Getting Started with AWS Rust SDK &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2023-06-04_information-security-compliance-in-aws-solutions/">&lt; Information Security Compliance in AWS Solutions</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/">Getting Started with AWS Rust SDK &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.151.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/blog/draft__invalid-default-value-for-reglastupdatedtime/" />
+  <link rel="canonical" href="http://localhost:1313/blog/draft__invalid-default-value-for-reglastupdatedtime/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Invalid default value for ‘REG_LAST_UPDATED_TIME’",
+      "headline" : "Invalid default value for ‘REG_LAST_UPDATED_TIME’",
+      "description" : "\u003cp\u003eInvalid default value for ‘REG_LAST_UPDATED_TIME’\u003c\/p\u003e\n\u003cp\u003e[2016–10–03 13:40:13,175] INFO — AgentDS Successfully deployed Agent Client\nMon Oct 03 13:40:15 IST 2016 WARN: Establishing SSL connection without server’s identity verification is not recommended. According to MySQL 5.5.45\u002b, 5.6.26\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eand 5.7.6\u002b requirements SSL connection must be established by default if explicit option isn’t set. For compliance with existing applications not using SS\nL the verifyServerCertificate property is set to ‘false’. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide\ntruststore for server certificate verification.\n[2016–10–03 13:40:16,456] ERROR — Activator Cannot start User Manager Core bundle\njava.lang.Exception: Error in creating the database\n at org.wso2.carbon.user.core.common.DefaultRealmService.initializeDatabase(DefaultRealmService.java:338)\n at org.wso2.carbon.user.core.common.DefaultRealmService.\u003cinit\u003e(DefaultRealmService.java:88)\n at org.wso2.carbon.user.core.common.DefaultRealmService.\u003cinit\u003e(DefaultRealmService.java:112)\n at org.wso2.carbon.user.core.internal.Activator.startDeploy(Activator.java:68)\n at org.wso2.carbon.user.core.internal.BundleCheckActivator.start(BundleCheckActivator.java:61)\n at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)\n at java.security.AccessController.doPrivileged(Native Method)\n at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)\n at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)\n at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)\n at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:390)\n at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1176)\n at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)\n at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)\n at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)\n at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)\n at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)\n at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)\n at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)\n at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)\nCaused by: java.lang.Exception: Error occurred while executing : CREATE TABLE IF NOT EXISTS REG_RESOURCE_HISTORY ( REG_PATH_ID INTEGER NOT NULL, R\nEG_NAME VARCHAR(256), REG_VERSION INTEGER NOT NULL, REG_MEDIA_TYPE VARCHAR(500), REG_CREATOR VARCHAR(31) NOT NULL, REG_CREAT\nED_TIME TIMESTAMP NOT NULL, REG_LAST_UPDATOR VARCHAR(31), REG_LAST_UPDATED_TIME TIMESTAMP NOT NULL, REG_DESCRIPTION VARCHAR(1000), REG_CONTENT_\nID INTEGER, REG_DELETED SMALLINT, REG_TENANT_ID INTEGER DEFAULT 0, REG_UUID VARCHAR(100) NOT NULL, CONSTRAINT PK_REG_RESOURCE_HISTORY PRIMARY K\nEY(REG_VERSION, REG_TENANT_ID) )ENGINE INNODB\n at org.wso2.carbon.utils.dbcreator.DatabaseCreator.executeSQL(DatabaseCreator.java:169)\n at org.wso2.carbon.utils.dbcreator.DatabaseCreator.executeSQLScript(DatabaseCreator.java:325)\n at org.wso2.carbon.utils.dbcreator.DatabaseCreator.createRegistryDatabase(DatabaseCreator.java:61)\n at org.wso2.carbon.user.core.common.DefaultRealmService.initializeDatabase(DefaultRealmService.java:328)\n … 19 more\nCaused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Invalid default value for ‘REG_LAST_UPDATED_TIME’\n at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n at java.lang.reflect.Constructor.newInstance(Constructor.java:423)\n at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)\n at com.mysql.jdbc.Util.getInstance(Util.java:387)\n at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:942)\n at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3966)\n at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3902)\n at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2526)\n at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2673)\n at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)\n at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2503)\n at com.mysql.jdbc.StatementImpl.executeInternal(StatementImpl.java:839)\n at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:739)\n at org.wso2.carbon.utils.dbcreator.DatabaseCreator.executeSQL(DatabaseCreator.java:139)\n … 22 more\n[2016–10–03 13:40:26,271] INFO — TaglibUriRule TLD skipped. URI: \u003ca href=\u0022http:\/\/tiles.apache.org\/tags-tiles\u0022\u003ehttp:\/\/tiles.apache.org\/tags-tiles\u003c\/a\u003e is already defined\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003edrop database wso2um_db_apim;create database wso2um_db_apim;SET sql_mode=’ALLOW_INVALID_DATES’;\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2019",
+      "datePublished": "2019-10-19 18:15:46 \u002b1300 NZDT",
+      "dateModified" : "2019-10-19 18:15:46 \u002b1300 NZDT",
+      "url" : "http:\/\/localhost:1313\/blog\/draft__invalid-default-value-for-reglastupdatedtime\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Invalid default value for ‘REG_LAST_UPDATED_TIME’ - chamila.dev</title>
+  <meta property="og:title" content="Invalid default value for ‘REG_LAST_UPDATED_TIME’ - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Invalid default value for ‘REG_LAST_UPDATED_TIME’
+[2016–10–03 13:40:13,175] INFO — AgentDS Successfully deployed Agent Client
+Mon Oct 03 13:40:15 IST 2016 WARN: Establishing SSL connection without server’s identity verification is not recommended. According to MySQL 5.5.45&#43;, 5.6.26
+
+and 5.7.6&#43; requirements SSL connection must be established by default if explicit option isn’t set. For compliance with existing applications not using SS
+L the verifyServerCertificate property is set to ‘false’. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide
+truststore for server certificate verification.
+[2016–10–03 13:40:16,456] ERROR — Activator Cannot start User Manager Core bundle
+java.lang.Exception: Error in creating the database
+ at org.wso2.carbon.user.core.common.DefaultRealmService.initializeDatabase(DefaultRealmService.java:338)
+ at org.wso2.carbon.user.core.common.DefaultRealmService.(DefaultRealmService.java:88)
+ at org.wso2.carbon.user.core.common.DefaultRealmService.(DefaultRealmService.java:112)
+ at org.wso2.carbon.user.core.internal.Activator.startDeploy(Activator.java:68)
+ at org.wso2.carbon.user.core.internal.BundleCheckActivator.start(BundleCheckActivator.java:61)
+ at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+ at java.security.AccessController.doPrivileged(Native Method)
+ at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+ at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+ at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+ at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:390)
+ at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1176)
+ at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)
+ at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)
+ at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)
+ at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+ at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)
+ at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)
+ at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+ at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+Caused by: java.lang.Exception: Error occurred while executing : CREATE TABLE IF NOT EXISTS REG_RESOURCE_HISTORY ( REG_PATH_ID INTEGER NOT NULL, R
+EG_NAME VARCHAR(256), REG_VERSION INTEGER NOT NULL, REG_MEDIA_TYPE VARCHAR(500), REG_CREATOR VARCHAR(31) NOT NULL, REG_CREAT
+ED_TIME TIMESTAMP NOT NULL, REG_LAST_UPDATOR VARCHAR(31), REG_LAST_UPDATED_TIME TIMESTAMP NOT NULL, REG_DESCRIPTION VARCHAR(1000), REG_CONTENT_
+ID INTEGER, REG_DELETED SMALLINT, REG_TENANT_ID INTEGER DEFAULT 0, REG_UUID VARCHAR(100) NOT NULL, CONSTRAINT PK_REG_RESOURCE_HISTORY PRIMARY K
+EY(REG_VERSION, REG_TENANT_ID) )ENGINE INNODB
+ at org.wso2.carbon.utils.dbcreator.DatabaseCreator.executeSQL(DatabaseCreator.java:169)
+ at org.wso2.carbon.utils.dbcreator.DatabaseCreator.executeSQLScript(DatabaseCreator.java:325)
+ at org.wso2.carbon.utils.dbcreator.DatabaseCreator.createRegistryDatabase(DatabaseCreator.java:61)
+ at org.wso2.carbon.user.core.common.DefaultRealmService.initializeDatabase(DefaultRealmService.java:328)
+ … 19 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Invalid default value for ‘REG_LAST_UPDATED_TIME’
+ at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+ at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+ at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+ at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+ at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+ at com.mysql.jdbc.Util.getInstance(Util.java:387)
+ at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:942)
+ at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3966)
+ at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3902)
+ at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2526)
+ at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2673)
+ at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
+ at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2503)
+ at com.mysql.jdbc.StatementImpl.executeInternal(StatementImpl.java:839)
+ at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:739)
+ at org.wso2.carbon.utils.dbcreator.DatabaseCreator.executeSQL(DatabaseCreator.java:139)
+ … 22 more
+[2016–10–03 13:40:26,271] INFO — TaglibUriRule TLD skipped. URI: http://tiles.apache.org/tags-tiles is already defined
+
+drop database wso2um_db_apim;create database wso2um_db_apim;SET sql_mode=’ALLOW_INVALID_DATES’;" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="http://localhost:1313/">chamila.dev</a> >
+      <a href="http://localhost:1313//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Invalid default value for ‘REG_LAST_UPDATED_TIME’</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2019-10-19 18:15:46 NZDT">
+                19 Oct 2019
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~3 minutes
+            </div>
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents"></nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <p>Invalid default value for ‘REG_LAST_UPDATED_TIME’</p>
+<p>[2016–10–03 13:40:13,175] INFO — AgentDS Successfully deployed Agent Client
+Mon Oct 03 13:40:15 IST 2016 WARN: Establishing SSL connection without server’s identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26</p>
+<ul>
+<li>and 5.7.6+ requirements SSL connection must be established by default if explicit option isn’t set. For compliance with existing applications not using SS
+L the verifyServerCertificate property is set to ‘false’. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide
+truststore for server certificate verification.
+[2016–10–03 13:40:16,456] ERROR — Activator Cannot start User Manager Core bundle
+java.lang.Exception: Error in creating the database
+ at org.wso2.carbon.user.core.common.DefaultRealmService.initializeDatabase(DefaultRealmService.java:338)
+ at org.wso2.carbon.user.core.common.DefaultRealmService.<init>(DefaultRealmService.java:88)
+ at org.wso2.carbon.user.core.common.DefaultRealmService.<init>(DefaultRealmService.java:112)
+ at org.wso2.carbon.user.core.internal.Activator.startDeploy(Activator.java:68)
+ at org.wso2.carbon.user.core.internal.BundleCheckActivator.start(BundleCheckActivator.java:61)
+ at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+ at java.security.AccessController.doPrivileged(Native Method)
+ at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+ at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+ at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+ at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:390)
+ at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1176)
+ at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)
+ at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)
+ at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)
+ at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+ at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)
+ at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)
+ at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+ at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+Caused by: java.lang.Exception: Error occurred while executing : CREATE TABLE IF NOT EXISTS REG_RESOURCE_HISTORY ( REG_PATH_ID INTEGER NOT NULL, R
+EG_NAME VARCHAR(256), REG_VERSION INTEGER NOT NULL, REG_MEDIA_TYPE VARCHAR(500), REG_CREATOR VARCHAR(31) NOT NULL, REG_CREAT
+ED_TIME TIMESTAMP NOT NULL, REG_LAST_UPDATOR VARCHAR(31), REG_LAST_UPDATED_TIME TIMESTAMP NOT NULL, REG_DESCRIPTION VARCHAR(1000), REG_CONTENT_
+ID INTEGER, REG_DELETED SMALLINT, REG_TENANT_ID INTEGER DEFAULT 0, REG_UUID VARCHAR(100) NOT NULL, CONSTRAINT PK_REG_RESOURCE_HISTORY PRIMARY K
+EY(REG_VERSION, REG_TENANT_ID) )ENGINE INNODB
+ at org.wso2.carbon.utils.dbcreator.DatabaseCreator.executeSQL(DatabaseCreator.java:169)
+ at org.wso2.carbon.utils.dbcreator.DatabaseCreator.executeSQLScript(DatabaseCreator.java:325)
+ at org.wso2.carbon.utils.dbcreator.DatabaseCreator.createRegistryDatabase(DatabaseCreator.java:61)
+ at org.wso2.carbon.user.core.common.DefaultRealmService.initializeDatabase(DefaultRealmService.java:328)
+ … 19 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Invalid default value for ‘REG_LAST_UPDATED_TIME’
+ at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+ at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+ at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+ at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+ at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+ at com.mysql.jdbc.Util.getInstance(Util.java:387)
+ at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:942)
+ at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3966)
+ at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3902)
+ at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2526)
+ at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2673)
+ at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
+ at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2503)
+ at com.mysql.jdbc.StatementImpl.executeInternal(StatementImpl.java:839)
+ at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:739)
+ at org.wso2.carbon.utils.dbcreator.DatabaseCreator.executeSQL(DatabaseCreator.java:139)
+ … 22 more
+[2016–10–03 13:40:26,271] INFO — TaglibUriRule TLD skipped. URI: <a href="http://tiles.apache.org/tags-tiles">http://tiles.apache.org/tags-tiles</a> is already defined</li>
+</ul>
+<p>drop database wso2um_db_apim;create database wso2um_db_apim;SET sql_mode=’ALLOW_INVALID_DATES’;</p>
+<p>select @@SESSION.sql_mode;</p>
+<p>vi dbscripts/mysql.sql</p>
+<p>CREATE TABLE IF NOT EXISTS REG_RESOURCE (
+~ | 50 REG_PATH_ID INTEGER NOT NULL,
+~ | 51 REG_NAME VARCHAR(256),
+~ | 52 REG_VERSION INTEGER NOT NULL AUTO_INCREMENT,
+~ | 53 REG_MEDIA_TYPE VARCHAR(500),
+~ | 54 REG_CREATOR VARCHAR(31) NOT NULL,
+~ | 55 REG_CREATED_TIME TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+~ | 56 REG_LAST_UPDATOR VARCHAR(31),
+~ | 57 REG_LAST_UPDATED_TIME TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+~ | 58 REG_DESCRIPTION VARCHAR(1000),
+~ | 59 REG_CONTENT_ID INTEGER,
+~ | 60 REG_TENANT_ID INTEGER DEFAULT 0,
+~ | 61 REG_UUID VARCHAR(100) NOT NULL,
+~ | 62 CONSTRAINT PK_REG_RESOURCE PRIMARY KEY(REG_VERSION, REG_TENANT_ID)
+~ | 63 )ENGINE INNODB;</p>
+<p>70 CREATE TABLE IF NOT EXISTS REG_RESOURCE_HISTORY (
+~ | 71 REG_PATH_ID INTEGER NOT NULL,
+~ | 72 REG_NAME VARCHAR(256),
+~ | 73 REG_VERSION INTEGER NOT NULL,
+~ | 74 REG_MEDIA_TYPE VARCHAR(500),
+~ | 75 REG_CREATOR VARCHAR(31) NOT NULL,
+~ | 76 REG_CREATED_TIME TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+~ | 77 REG_LAST_UPDATOR VARCHAR(31),
+~ | 78 REG_LAST_UPDATED_TIME TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+~ | 79 REG_DESCRIPTION VARCHAR(1000),
+~ | 80 REG_CONTENT_ID INTEGER,
+~ | 81 REG_DELETED SMALLINT,
+~ | 82 REG_TENANT_ID INTEGER DEFAULT 0,
+~ | 83 REG_UUID VARCHAR(100) NOT NULL,
+~ | 84 CONSTRAINT PK_REG_RESOURCE_HISTORY PRIMARY KEY(REG_VERSION, REG_TENANT_ID)
+~ | 85 )ENGINE INNODB;</p>
+<p>mysql Ver 14.14 Distrib 5.7.15, for Linux (x86_64) using EditLine wrapper</p>
+<hr>
+<p>Written on  by .</p>
+<p>Originally published on <a href="">Medium</a></p>
+
+        </div>
+        <div class="prev-next row">
+  <div class="prev col-sm">
+    
+    <a href="http://localhost:1313/blog/draft__pilot-lighting-a-wso2-deployment-on-aws/">&lt; Pilot lighting a WSO2 deployment on AWS</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="http://localhost:1313/blog/draft__implementing-realm-discovery-for-sso-with-keycloak/">Implementing Realm Discovery for SSO with KeyCloak &gt;</a>
+    
+  </div>
+</div>
+
+        
+
+        
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

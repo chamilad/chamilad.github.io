@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Deep Dive in to AWS Resource Control Policies",
       "headline" : "Deep Dive in to AWS Resource Control Policies",
-      "description" : "This article is on one of the new features AWS released recently, called Resource Control Policies (RCPs).\nRCPs are a new way to enforce policies on data (resources) rather than principals in AWS. For principals, the way to enforce policies is to use Service Control Policies (SCPs), which if you\u0026rsquo;re already familiar with AWS would know plenty about. However, RCPs can still be a little confusing.\nWhat are RCPs?",
+      "description" : "\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n      \u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/dLA8R3M-cVU?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n    \u003c\/div\u003e\n\n\u003cp\u003eThis article is on one of the new features AWS released recently, called\n\u003ca href=\u0022https:\/\/aws.amazon.com\/blogs\/aws\/introducing-resource-control-policies-rcps-a-new-authorization-policy\/\u0022\u003eResource Control Policies\n(RCPs)\u003c\/a\u003e.\u003c\/p\u003e\n\u003cp\u003eRCPs are a new way to enforce policies on data (resources) rather than\nprincipals in AWS. For principals, the way to enforce policies is to use\nService Control Policies (SCPs), which if you\u0026rsquo;re already familiar with AWS\nwould know plenty about. However, RCPs can still be a little confusing.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,9 +36,17 @@
 <title>Deep Dive in to AWS Resource Control Policies - chamila.dev</title>
   <meta property="og:title" content="Deep Dive in to AWS Resource Control Policies - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="This article is on one of the new features AWS released recently, called Resource Control Policies (RCPs).
-RCPs are a new way to enforce policies on data (resources) rather than principals in AWS. For principals, the way to enforce policies is to use Service Control Policies (SCPs), which if you&rsquo;re already familiar with AWS would know plenty about. However, RCPs can still be a little confusing.
-What are RCPs?" />
+  <meta name="description" content="
+      
+    
+
+This article is on one of the new features AWS released recently, called
+Resource Control Policies
+(RCPs).
+RCPs are a new way to enforce policies on data (resources) rather than
+principals in AWS. For principals, the way to enforce policies is to use
+Service Control Policies (SCPs), which if you&rsquo;re already familiar with AWS
+would know plenty about. However, RCPs can still be a little confusing." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -143,10 +151,9 @@ What are RCPs?" />
           </div>
         </header>
         <div class="post-content markdown-body">
-          
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/dLA8R3M-cVU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/dLA8R3M-cVU?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <p>This article is on one of the new features AWS released recently, called
 <a href="https://aws.amazon.com/blogs/aws/introducing-resource-control-policies-rcps-a-new-authorization-policy/">Resource Control Policies
@@ -199,8 +206,7 @@ RCPs applied at the top of the hierarchy are inherited by child nodes.</p>
 <p>While RCPs can be applied at any level, it is advisable to start testing RCPs
 at a lower level, like a sandbox account, and then &ldquo;graduate&rdquo; them to proper
 level once tested. Otherwise, there&rsquo;s a chance that you&rsquo;ll break existing
-functionality of the systems deployed in AWS.</p>
-</blockquote>
+functionality of the systems deployed in AWS.</p></blockquote>
 <p>Because they both target the same problem space, SCPs and RCPS both can be used
 to tackle the same problem sometimes, but RCPs are mostly advisable to be
 deployed to build a &ldquo;data perimeter&rdquo; as AWS calls it. You can use RCPs to
@@ -249,15 +255,13 @@ to enable it. This action has no cost attached to it.</p>
 attached to the Organization Root. This has an umbrella Allow All statement,
 which makes sure that existing operations will not break, just by enabling
 the feature.
-<img src="/blog/img/2024-12-15_11.png" alt=""></p>
-</blockquote>
+<img src="/blog/img/2024-12-15_11.png" alt=""></p></blockquote>
 <p>What this statement does is to deny <code>kms:DescribeKey</code> permission to any
 principal if they are not from the <code>workload_a</code> account or if they are not an
 AWS Service.</p>
 <blockquote>
 <p>Using Allow statements in SCPs or RCPs <strong>do not grant</strong> permissions. They
-just enable granting that permission.</p>
-</blockquote>
+just enable granting that permission.</p></blockquote>
 <p>I then attach this RCP to the <code>workload_a</code> account.</p>
 <p><img src="/blog/img/2024-12-15_9.png" alt=""></p>
 <p>With this RCP attached, if I try to perform the above <code>kms describe-key</code> action
@@ -268,8 +272,7 @@ by the RCP.</p>
 <blockquote>
 <p>Having a RCP that denies a permission doesn&rsquo;t mean you can&rsquo;t apply resource
 policies that allow that specific permission. The RCP comes into play during
-the Policy Evaluation logic, not during the policy attachment to resources.</p>
-</blockquote>
+the Policy Evaluation logic, not during the policy attachment to resources.</p></blockquote>
 <h2 id="conclusion">Conclusion</h2>
 <ol>
 <li>Use RCPs to setup a &ldquo;data perimeter&rdquo;</li>
@@ -279,18 +282,17 @@ the Policy Evaluation logic, not during the policy attachment to resources.</p>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-11-17_becoming-a-cncf-kubestronaut/">&lt; Becoming a CNCF Kubestronaut</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/">Why I don&#39;t like taking Remote Proctored Exams &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-11-17_becoming-a-cncf-kubestronaut/">&lt; Becoming a CNCF Kubestronaut</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/">Why I don&#39;t like taking Remote Proctored Exams &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

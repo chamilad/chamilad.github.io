@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.151.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/blog/2025-10-18_temp-secure-cloud-design-notes/" />
+  <link rel="canonical" href="http://localhost:1313/blog/2025-10-18_temp-secure-cloud-design-notes/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "blog",
+      "name" : "temp: secure cloud design notes",
+      "headline" : "temp: secure cloud design notes",
+      "description" : "\u003ch2 id=\u0022architecture-and-design\u0022\u003eArchitecture and Design\u003c\/h2\u003e\n\u003cp\u003eSecure thinking begins before the first line of code is written. It\u0026rsquo;s that\nsimple, you don\u0026rsquo;t need to have developers in the room to develop a secure\narchitecture (although having experienced developers invoved in this step can\ncertainly help).\u003c\/p\u003e\n\u003cp\u003eA typical web applicaiton architecture looks like this.\u003c\/p\u003e\n\u003cp\u003etodo: 3 tier design here\u003c\/p\u003e\n\u003cp\u003eAt a really high level, there should be\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003euser authentication - Cognito with external user store (or built-in if\nyou\u0026rsquo;re aiming small)\u003c\/li\u003e\n\u003cli\u003erole based access control, for frontend, backend, and sometimes even at the\ndatabase - Cognito could help in some designs, mostly a software level detail\u003c\/li\u003e\n\u003cli\u003esecure secrets management - Secrets Manager, SSM Parameter Store\u003c\/li\u003e\n\u003cli\u003efine grain access control for the cloud resources - IAM roles, policies etc\u003c\/li\u003e\n\u003cli\u003enetwork partitioning private resources behind private subnets - any\ndeliberate VPC design, VPC Endpoints, S2S\/Client VPN options, Transit\nGateway etc\u003c\/li\u003e\n\u003cli\u003e(optional) CDN, WAF, DDoS protection - CloudFront, WAF, GuardDuty etc\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003cp\u003eThese are obviously deeper topics of their own to go into, but the details can\nvary based on business requirements of an actual product. In a general sense,\neach of these \u0026ldquo;features\u0026rdquo; can be applied to any stack, in any cloud provider.\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-10-18 16:47:56 \u002b1300 NZDT",
+      "dateModified" : "2025-10-18 16:47:56 \u002b1300 NZDT",
+      "url" : "http:\/\/localhost:1313\/blog\/2025-10-18_temp-secure-cloud-design-notes\/",
+      "keywords" : [ "", ]
+  }
+</script>
+<title>temp: secure cloud design notes - chamila.dev</title>
+  <meta property="og:title" content="temp: secure cloud design notes - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Architecture and Design
+Secure thinking begins before the first line of code is written. It&rsquo;s that
+simple, you don&rsquo;t need to have developers in the room to develop a secure
+architecture (although having experienced developers invoved in this step can
+certainly help).
+A typical web applicaiton architecture looks like this.
+todo: 3 tier design here
+At a really high level, there should be
+
+user authentication - Cognito with external user store (or built-in if
+you&rsquo;re aiming small)
+role based access control, for frontend, backend, and sometimes even at the
+database - Cognito could help in some designs, mostly a software level detail
+secure secrets management - Secrets Manager, SSM Parameter Store
+fine grain access control for the cloud resources - IAM roles, policies etc
+network partitioning private resources behind private subnets - any
+deliberate VPC design, VPC Endpoints, S2S/Client VPN options, Transit
+Gateway etc
+(optional) CDN, WAF, DDoS protection - CloudFront, WAF, GuardDuty etc
+
+These are obviously deeper topics of their own to go into, but the details can
+vary based on business requirements of an actual product. In a general sense,
+each of these &ldquo;features&rdquo; can be applied to any stack, in any cloud provider." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="http://localhost:1313/">chamila.dev</a> >
+      <a href="http://localhost:1313//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">temp: secure cloud design notes</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2025-10-18 16:47:56 NZDT">
+                18 Oct 2025
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~14 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#architecture-and-design">Architecture and Design</a></li>
+    <li><a href="#code">Code</a></li>
+    <li><a href="#supply-chain">Supply Chain</a></li>
+    <li><a href="#packaging">Packaging</a></li>
+    <li><a href="#infrastructure">Infrastructure</a></li>
+    <li><a href="#delivery">Delivery</a></li>
+    <li><a href="#operations">Operations</a></li>
+    <li><a href="#compliance">Compliance</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <h2 id="architecture-and-design">Architecture and Design</h2>
+<p>Secure thinking begins before the first line of code is written. It&rsquo;s that
+simple, you don&rsquo;t need to have developers in the room to develop a secure
+architecture (although having experienced developers invoved in this step can
+certainly help).</p>
+<p>A typical web applicaiton architecture looks like this.</p>
+<p>todo: 3 tier design here</p>
+<p>At a really high level, there should be</p>
+<ol>
+<li>user authentication - Cognito with external user store (or built-in if
+you&rsquo;re aiming small)</li>
+<li>role based access control, for frontend, backend, and sometimes even at the
+database - Cognito could help in some designs, mostly a software level detail</li>
+<li>secure secrets management - Secrets Manager, SSM Parameter Store</li>
+<li>fine grain access control for the cloud resources - IAM roles, policies etc</li>
+<li>network partitioning private resources behind private subnets - any
+deliberate VPC design, VPC Endpoints, S2S/Client VPN options, Transit
+Gateway etc</li>
+<li>(optional) CDN, WAF, DDoS protection - CloudFront, WAF, GuardDuty etc</li>
+</ol>
+<p>These are obviously deeper topics of their own to go into, but the details can
+vary based on business requirements of an actual product. In a general sense,
+each of these &ldquo;features&rdquo; can be applied to any stack, in any cloud provider.</p>
+<blockquote>
+<p>In this subtopic, I&rsquo;m only talking about the application architecture. There are
+lot more things to talk about when it comes to the actual cloud presence
+itself, I&rsquo;m covering those below.</p></blockquote>
+<p>The Architect (Cloud/Software/Solution) should be able to enforce these high
+level requirements along the rest of the product development lifecycle.
+Architecture and design isn&rsquo;t a task that gets involved only at the first
+steps, it&rsquo;s a technical leadership and guidance role that keeps product
+development within technical scope, business requirements,
+security, cost effectiveness, scalability, and other such non-functional
+requirements.</p>
+<p>In smaller operations, there&rsquo;s probably not going to be dedicated
+architects, usually more experienced and senior engineers performing this role
+and then switching hats into implementation. I&rsquo;d argue it&rsquo;s even easier to
+enforce standards and guidelines in this setup, because the target area of
+impact is much smaller than an enterprise setup. The best thing about
+guidelines and principles is that you can apply them even if all roles,
+architects, developers, devops, support, sales, and product management, are
+just one person. You don&rsquo;t need to be an established shop to implement least
+privilege principle in systems and cloud architecture.</p>
+<p>So when the first line of code is written, there should already be an
+idea about the security requirements of a product.</p>
+<p>I&rsquo;m not talking about a fully rendered software design with UML and pure
+object oriented classes figured out.</p>
+<p>The fact that secrets management is done in Secrets Manager, the fact that the database would not be
+directly accessible from a dev laptop, and the fact that the S3 bucket will
+need authentication and even VPN access in some cases would be known by the
+time software development starts.</p>
+<p>I know that smaller products do not get built in this perfect clean manner,
+where you don&rsquo;t focus on architecture in a detached manner. Most smaller products
+get iterated, starting from crappy code and sometimes ending with crappy code,
+I know this fact. But this doesn&rsquo;t mean that security boundaries cannot be
+setup at an early stage. Most web applications just need a boilerplate Cloud
+Security Model to start with. As long as you have the Cloud Security principles
+in mind, you can always tweak the finer details.</p>
+<p>So, developers should not be expecting to access the storage bucket directly
+without authorisation from the frontend. They should not be expecting to
+directly connect to the database from their laptops. They should have a clear
+idea about the RBAC approach the application will be taking, and they should
+not be expecting <code>AdministratorAccess</code> to production AWS Accounts.</p>
+<p>There are other application architectural considerations like TLS but I feel
+this has been talked about more than enough times. If you&rsquo;re on plaintext in
+2025, switch trades. You&rsquo;re not very good at this.</p>
+<p>More established work that can be done at this stage are,</p>
+<ol>
+<li>starting a risk register - more than cloud or software architecture, this
+should be done by any software product based business, focusing around the
+possible risks the business can face because of software product security
+issues. For an example, an accidental data leak should be marked as a high
+impact risk, and should have enough mitigations to make the residual risk
+small enough to be accepted. This would make governance of security
+principles easier. It also makes it easier to track the core reasons as to
+WHY certain principles are being applied, so that when those mitigations do
+get questioned later, the correact reasoning can be provided (ex: when a new
+product manager tries to make a storage bucket public, you can point him to
+the risk register and show that doing so would expose the business to a
+massive risk)</li>
+<li>developer documentation - I put this one in the &ldquo;good to have&rdquo; category
+because not all product development cycles can focus on maintaining
+documentation. However, clear and to the point documentation outlining key
+security principles and guidelines can help a lot, especially when decisions
+need to be supported by architecture practice.</li>
+<li>architectural sign-off - This is not really applicable to smaller
+operations, and especially not during initial product development. If your
+scale allows it, and if the slowness of the process is manageable, subsequent
+feature changes can be reviewed by architecture practice (person, role, etc)
+for vetting. Be warned though, this can easily go out of control, to the
+point where introducing even the slightest feature flag change could take
+months of architecture board meetings in large scale operations. So don&rsquo;t go
+crazy with this thinking.</li>
+</ol>
+<h2 id="code">Code</h2>
+<p>Writing secure code isn&rsquo;t really easy, it&rsquo;s not &ldquo;just start thinking secure
+code&rdquo;. It takes mostly experience to write intuitively secure code. However,
+some level of tooling, enforced policies, and senior engineers being involved
+can help here.</p>
+<p>There are various language specific tooling available that does static security
+scans of the code to mark code that might not be secure. Yes, there could be a
+certain percentage of false positives, however linters providing tips during
+development time is the best place to catch security issues (&ldquo;shift left&rdquo; and
+all that).</p>
+<p>Most web application backend code bases will need to be tightly coupled with
+the Cloud provider APIs they are hosted on. This is because most web applications do not have
+the business requirment of being cloud agnostic, so there&rsquo;s rarely a need to
+have an abstraction layer like Kubernetes. It&rsquo;s most likely that the code would know
+which service it is hosted on (ex: Lambda function specific optimisations etc).
+So it can be somewhat easier to write secure code with specific knowledge of
+the cloud platform in mind.</p>
+<p>For an example, instead of injecting secrets through environment variables, the
+code that runs on Lambda functions or ECS can directly read the secret off of
+Secrets Manager or Parameter Store. Doing so helps reduce the possibility of
+exposing sensitive configuration even if a certain role or a permission set
+gets compromised. If you&rsquo;re writing a cloud-native web application, it makes
+sense to go all-in than engineer for some far-in-the-future requirement to
+change cloud providers (or even &ldquo;move out of the cloud&rdquo;, whatever that means for
+a small bootstrapped web application).</p>
+<p>When invoking other AWS services, embedding long-lived AWS IAM credentials
+in the code was the most common security mistake made at some point. There
+should be enough friction against scenarios like this to reduce the likelihood
+of this happening. This means, least privilege developer access to AWS, static
+scan tools as pre-commit hooks, in build pipelines etc for secret scanning,
+alerts based on (ex:) CloudTrail if access tokens are created, using AWS IAM
+Identity Center short term credentials, and just in general, good software
+engineering practices like code reviews could help avoiding this common mistake
+easily.</p>
+<p>An obvious measure is to enforce code reviews, however they can be a bit
+unreliable as a sole gate against insecure code. Depending on the scale of the
+development team, you can easily run out of people and time to do code reviews,
+and complacency can play a huge role in letting insecure code. I&rsquo;ve done this
+myself in the past, approved code that was not good enough, just because I
+didn&rsquo;t have enough time to properly read the code. This is why code reviews
+shouldn&rsquo;t be the only measure against insecure code.</p>
+<p>You can build on this to do basic automated vulnerability testing with basic toolsets
+that&rsquo;ll pinpoint any obvious gaps or vulnerabilities your application.
+Better yet, you can pay a team of pen-testers to get this done in a
+waterproof way. Of course, if your app demands extremely sensitive data from
+users like ID cards, sexual preferences, you MUST do this independent security review.
+There&rsquo;s no way you would survive a compromise otherwise, legally speaking.</p>
+<h2 id="supply-chain">Supply Chain</h2>
+<p>A special focus should be made on supply chain security, especially these days
+where Gen-AI supported coding is everywhere. There&rsquo;s a lot of code that gets
+generated too quickly, so manual checking of libraries and their
+bug/security fix history is not realistic.</p>
+<p>There are a lot of examples of compromised upstream dependencies resulting in
+critical security incidents in software products. Especially in web applications where
+JS/React frontends and Python backends is the norm, there could be a huge list
+of dependencies to check, and doing this manually is not realistic at any
+scale.</p>
+<p>Fortunately this can be easily automated. You can easily generate an SBOM for a
+given commit/package and then have it scanned for known vulnerabilities. Like
+before, this is a separate topic on itself, so I&rsquo;m not going to go in to
+details here.</p>
+<p>AWS does have static and dynamic vulnerability scanning for
+Lambda functions, Container images, and other software artefacts in
+Amazon Inspector where you&rsquo;d also be able to generate and scan SBOMs. There are
+various third party tools that can be used here as well. You can incorporate
+these in the CI pipelines (and CD pipelines to gatekeep artefacts failing
+quality from being deployed) to make sure you can do this in a scalable (and
+also repeatable) manner.</p>
+<p>In short, securing (or to be precise, validating) your upstream software supply
+chain is almost a fully solved problem. What&rsquo;s not solved is people not using
+the tools and solutions available because of various excuses.</p>
+<h2 id="packaging">Packaging</h2>
+<p>Closely related to this is static vulnerability scanning and software
+attestations.</p>
+<p>For every code package generated, especially for backend services, (JAR/TAR
+file, binary executable;, Lambda layer, or Container image), static security scanning
+can be enabled either with AWS specific services or third party tools and
+services. This would make sure that you&rsquo;re rolling out fairly trusted code and
+configuration at a given point. There are loads of free tools to use for this,
+but as a service, Amazon Inspector can be used to scan for vulnerabilities.</p>
+<p>This would be fairly infrequent for typical web applications, because even
+backend code would rarely get published as libraries. However, you can still
+sign and publish software attestations if an additional layer of security and
+integrity is needed. This is somewhat unlikely in typical cloud-native web
+applications, however there could be scenarios where you would need to verify
+the integrity of the software artefacts you deploy in production. For an
+example, Lambda Code Signing in AWS can provide this capability where only
+signed trusted code would be deployed in Lambda. You can always aim for SLSA
+compliance as well, since most managed CI/CD services are SLSA L3 compliant.</p>
+<h2 id="infrastructure">Infrastructure</h2>
+<p>Cloud footprint security is a large topic. Taking AWS as the concrete
+implementation, we can talk about Landing Zone patterns, CloudTrail and
+Security Hub integration, Config based alerts and all those details. However
+for a small scale web application, these would be a bit of an overkill. You
+should probably start with a smaller scale landing zone in AWS with a basic
+Account structure to keep things separate and use features such as
+cross-account backup vaults, but the cost of the landing zone itself can go up
+pretty quickly if this isn&rsquo;t done carefully.</p>
+<p>At a minimum, you should have a best practice separation between different AWS
+accounts. You should separate dev, test, and production deployments using
+different AWS accounts. You should use Service Control Policies and Resource
+Control Policies to setup boundaries on those accounts. Like mentioned before,
+you should have separate roles for developers, devops, and admins, and you
+should be using AWS IAM Identity Center to its full potential.</p>
+<p>AWS IAM policies and other related features are basically your friend. Use
+permission boundaries to make sure you&rsquo;ve setup the maximum permission levels
+for different roles and personas. Use IAM Access Analyser to practice and
+improve Least Privilege access. And you can do all of this through code.</p>
+<p>If you&rsquo;re doing click-ops in 2025, this is probably not going to be the article
+that changes your mind. But in case you&rsquo;re ready to change your mind, hear me out.</p>
+<p>Write your infrastructure down. Yes, it&rsquo;s going to be hard at first, when you
+want to experiment. But after the PoC is done, spend some time to convert your
+deployment to Infrastructure-as-Code. It can be Terraform, CDK, CloudFormation,
+Pulumi or something else, the stack doesn&rsquo;t really matter. What matters is that
+you have a reviewable, version controlled, and analysable snapshot of your
+infrastructure configuration.</p>
+<p>This enables a whole lot of capabilities from the start. You can have static
+analysis tools that help you while writing IaC scripts (ex: <code>tfsec</code> for Terraform).
+You can have your pipeline enforce infrastructure standards on the code itself
+(<code>checkov</code> for Terraform and other tools). You can keep track of the changes
+that get applied on your environments. And you can control how infrastructure
+changes are applied from dev -&gt; test -&gt; to production.</p>
+<p>Just having this capability to block credentials from being committed, enforce
+TLS and encryption at rest, and I don&rsquo;t know, maybe block people from making
+buckets and databases public, is a huge step towards making your application
+secure.</p>
+<h2 id="delivery">Delivery</h2>
+<p>So you have your code, you have your cloud architecture, now lets get this code
+deployed on the cloud.</p>
+<p>This is where CI/CD comes in. I don&rsquo;t think my article needs to convince you to
+use automated CI/CD pipelines. If it does, stop spending time on LinkedIn and
+focus!!</p>
+<p>Standards mean nothing if you aren&rsquo;t enforcing them. That means also on
+yourself. Even if you&rsquo;re a single person startup working on a product, getting
+a CI/CD setup up and running on Github only takes a couple of hours at most. An
+automated CI/CD pipeline ensures that any software quality control, any build
+time security (and other) optimisations, security scanning, signing, and
+rolling out infrastructure changes is done precisely the same everytime a build
+and a deploy is done. There&rsquo;s a lot of moving parts here, enough to make really
+bad mistakes really easily if not automated. There is really no excuse for
+manual deployment in 2025, hell, even back in 2015.</p>
+<p>All of the steps I talked about earlier, static scanning, IaC policy
+enforcement, dependency scanning, and code and package signing <del>can be</del>
+should be automated using CI/CD pipelines. In fact, most of the third party
+tools directly support Github Actions, so it&rsquo;s just a matter of a few minutes
+to get all of this included in your pipeline.</p>
+<p>When it comes to deployment, obviously, you shouldn&rsquo;t be storing long term access tokens in Github, so use
+native features such as OIDC authentication for Github id-token to assign a
+suitable deployment role to your Github managed runners. As an additional step,
+you can have AWS based runners (EC2, ECS etc) registered in Github for a more
+secure setup, but most web applications don&rsquo;t need this.</p>
+<h2 id="operations">Operations</h2>
+<p>Okay, now you have deployed your code in the cloud. What&rsquo;s next?</p>
+<p>Next you have to keep it running. You have to keep an eye on resource usage,
+database performance, end user experience, and in general anything that smells
+fishy when it comes to security.</p>
+<p>You won&rsquo;t be able to do this effectively if you don&rsquo;t have a good enough view
+into your environment. This is why, in the above infrastructure section, I
+mentioned a suitable-sized Landing Zone. This would give you centralised
+logging, an audit trail, a suitable starter point for continous compliance with
+Config rules, and a compartmentalised account structure.</p>
+<p>Based on these, you can build a useful basis for operational and business
+alerts that you can respond to. AWS CloudWatch can help set all of this up,
+including alert notifications.</p>
+<p>For an example, you can have a Config rule that checks if all S3 buckets in
+your AWS Organization have public access blocked. When that rule fails because
+the owner of the company said &ldquo;just get it done&rdquo; when the developer told him
+&ldquo;making the bucket public is a bad idea&rdquo;, the whole company would know a
+security standard has been breached because there are alarms going off
+everywhere you look. Standards are useless until you start enforcing them.</p>
+<p>You should think about backup and restore, and you should think about
+automating it. This means frequent backups to the RDS instances and S3 buckets.
+It also means you&rsquo;re testing your capability to restore this backed up data if
+the need comes. AWS Backup has all the features you&rsquo;d need to get this setup in
+a pretty simple way.</p>
+<p>In general, all web applications would benefit from having standard DDoS
+protection on any cloud provider, however for some extended protection maybe
+needed. GuardDuty and GuardDuty advanced protection features would be helpful
+here. You can also have Web Application Firewall</p>
+<p>secure access
+audit trail
+logging
+backup, restore etc
+cyber defense</p>
+<h2 id="compliance">Compliance</h2>
+<p>due dilligence
+infosec audit
+continuous compliance</p>
+
+        </div>
+        <div class="prev-next row">
+  <div class="prev col-sm">
+    
+    <a href="http://localhost:1313/blog/2025-08-13_how-to-build-secure-cloud-applications/">&lt; How to Securely Design and Build Cloud Applications</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="http://localhost:1313/blog/2025-10-21_what-aws-outtage-really-means/">What AWS outtage really means &gt;</a>
+    
+  </div>
+</div>
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes---trying-to-reproduce-the-tea-app-situation/">Is it that easy to make stupid mistakes? - Trying to Reproduce the Tea App Situation</a></li>
+    
+    <li><a href="/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/">AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA)</a></li>
+    
+    <li><a href="/blog/2025-01-05_spending-four-weeks-without-coffee/">Spending four weeks without Coffee</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

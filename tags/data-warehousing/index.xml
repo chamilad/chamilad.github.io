@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>data warehousing on chamila.dev</title>
+    <title>Data Warehousing on chamila.dev</title>
     <link>https://chamila.dev/tags/data-warehousing/</link>
-    <description>Recent content in data warehousing on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Data Warehousing on chamila.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Nov 2021 19:32:16 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/data-warehousing/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Nov 2021 19:32:16 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/data-warehousing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Automating Snowflake</title>
       <link>https://chamila.dev/blog/2021-11-12_automating-snowflake/</link>
       <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2021-11-12_automating-snowflake/</guid>
-      <description>Only photo with me for now that&amp;#39;s closest to the theme   I had an opportunity to work on automating a Snowflake workflow last year. The scenario involved a typical Snowflake based setup for a Data Warehouse where data would be ingested from an Azure Blob Storage or AWS S3 and stored on multiple databases. I&amp;rsquo;m not going to dive into intricate details, but I&amp;rsquo;d like to write down some of the approaches I wanted to take during this exercise.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2021_11_12_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Only photo with me for now that&amp;#39;s closest to the theme&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;I had an opportunity to work on automating a Snowflake workflow last year. The scenario involved a typical Snowflake based setup for a Data Warehouse where data would be ingested from an Azure Blob Storage or AWS S3 and stored on multiple databases. I&amp;rsquo;m not going to dive into intricate details, but I&amp;rsquo;d like to write down some of the approaches I wanted to take during this exercise. And yes, that makes this blog post way overdue.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -4,18 +4,16 @@
     <title>Graph on chamila.dev</title>
     <link>https://chamila.dev/tags/graph/</link>
     <description>Recent content in Graph on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 May 2018 06:36:59 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/graph/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:15:17 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/graph/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Basic Process Metrics Collection and Visualization in Linux</title>
       <link>https://chamila.dev/blog/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</link>
       <pubDate>Tue, 15 May 2018 06:36:59 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/</guid>
-      <description>When it comes to deployment observability there are multiple, comprehensive solutions that can handle almost any system of scale you throw at them. I said almost, because there are certain stories that do not require setting up a central monitoring server with satellite agents to collect and enrich data.
-For an example, consider a scenario where you’re troubleshooting a certain single process for a particular period of time. You want to collect the approximate CPU usage, approximate memory usage, light weight process (aka thread) count, and the TCP connection count.</description>
+      <description>&lt;p&gt;When it comes to deployment observability there are multiple, comprehensive solutions that can handle almost any system of scale you throw at them. I said almost, because there are certain stories that do not require setting up a central monitoring server with satellite agents to collect and enrich data.&lt;/p&gt;&#xA;&lt;p&gt;For an example, consider a scenario where you’re troubleshooting a certain single process for a particular period of time. You want to collect the approximate CPU usage, approximate memory usage, light weight process (aka thread) count, and the TCP connection count. You want these stats collected during the time period you’re conducting load test against the process.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

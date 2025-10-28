@@ -4,19 +4,16 @@
     <title>Open Source on chamila.dev</title>
     <link>https://chamila.dev/tags/open-source/</link>
     <description>Recent content in Open Source on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jun 2018 06:00:19 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:15:20 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>In Other Good News, Microsoft buys GitHub</title>
       <link>https://chamila.dev/blog/2018-06-05_in-other-good-news-microsoft-buys-github/</link>
       <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-06-05_in-other-good-news-microsoft-buys-github/</guid>
-      <description>Or why you should cool down with the anti-Microsoft rhetoric, at least for now
- Disclaimer: This is an opinionated article.
- What a historic moment! May be only second to the moment Windows incorporated the Linux Subsystem, one-time anti-open source giantbuys off may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years. And my Facebook feed (yes, I’m still friends with that guy) is filled with rants on how Microsoft will kill Open Source.</description>
+      <description>&lt;p&gt;Or why you should cool down with the anti-Microsoft rhetoric, at least for now&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Disclaimer: This is an opinionated article.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;What a historic moment! May be only second to the moment Windows &lt;a href=&#34;https://blog.jessfraz.com/post/windows-for-linux-nerds/&#34;&gt;incorporated the Linux Subsystem&lt;/a&gt;, one-time anti-open source giant&lt;a href=&#34;https://blog.github.com/2018-06-04-github-microsoft/&#34;&gt; buys off&lt;/a&gt; may be the biggest open source platform that drove the eco-system, the ethos, and the practices for open source to a new level during past few years. And my Facebook feed (yes, I’m still friends with that guy) is filled with rants on how Microsoft will kill Open Source.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

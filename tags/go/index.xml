@@ -4,17 +4,16 @@
     <title>Go on chamila.dev</title>
     <link>https://chamila.dev/tags/go/</link>
     <description>Recent content in Go on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Feb 2019 18:17:04 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:15:40 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Releasing DocBlock v0.1</title>
       <link>https://chamila.dev/blog/2019-02-15_releasing-docblock-v0.1/</link>
       <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-02-15_releasing-docblock-v0.1/</guid>
-      <description>A tool to automate technical content generation for configuration files Many months ago, a technical writer colleague of mine complained about how they were struggling to keep up with the frequent releases that the company was doing at the time. There were multiple products in their plate, with each having multiple configuration files (sometimes numbering more than 10). Although the configuration files overlapped within each product, because of the componentized platform the company had built the products upon, each product in theory could have different release versions of the components that used these configuration files.</description>
+      <description>&lt;h4 id=&#34;a-tool-to-automate-technical-content-generation-for-configuration-files&#34;&gt;A tool to automate technical content generation for configuration files&lt;/h4&gt;&#xA;&lt;p&gt;Many months ago, a technical writer colleague of mine complained about how they were struggling to keep up with the frequent releases that the company was doing at the time. There were multiple products in their plate, with each having multiple configuration files (sometimes numbering more than 10). Although the configuration files overlapped within each product, because of the componentized platform the company had built the products upon, each product in theory could have different release versions of the components that used these configuration files. All of these had to be documented into readable (and most importantly usable) technical content.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

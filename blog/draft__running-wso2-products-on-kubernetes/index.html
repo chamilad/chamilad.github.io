@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.151.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/blog/draft__running-wso2-products-on-kubernetes/" />
+  <link rel="canonical" href="http://localhost:1313/blog/draft__running-wso2-products-on-kubernetes/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Running WSO2 Products on Kubernetes",
+      "headline" : "Running WSO2 Products on Kubernetes",
+      "description" : "\u003cp\u003eIt’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!\u003c\/p\u003e\n\u003ch3 id=\u0022youll-need-a-basic-understanding-of\u0022\u003eYou’ll need a basic understanding of\u003c\/h3\u003e\n\u003col\u003e\n\u003cli\u003e\u003ca href=\u0022https:\/\/docs.docker.com\/linux\/\u0022\u003eDocker\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022http:\/\/kubernetes.io\/gettingstarted\/\u0022\u003eKubernetes\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022https:\/\/puppet.com\/presentations\/getting-started-puppet\u0022\u003ePuppet\u003c\/a\u003e\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003ch3 id=\u0022checkout\u0022\u003eCheckout\u003c\/h3\u003e\n\u003cp\u003ethe following repositories.\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003eWSO2 Kubernetes Artifacts —  git clone \u003ca href=\u0022https:\/\/github.com\/wso2\/kubernetes-artifacts.git\u0022\u003ehttps:\/\/github.com\/wso2\/kubernetes-artifacts.git\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003eWSO2 Puppet Modules —  git clone \u003ca href=\u0022https:\/\/github.com\/wso2\/puppet-modules.git\u0022\u003ehttps:\/\/github.com\/wso2\/puppet-modules.git\u003c\/a\u003e\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003ch3 id=\u0022the-dockerimages\u0022\u003eThe Docker Images\u003c\/h3\u003e\n\u003cp\u003eWe need to build the WSO2 IS Docker image first. For this we can take a long method of configuring the IS instance manually and then creating the Docker image with that pack or we can just save some time and let Puppet do the work. The Dockerfiles in the \u003ca href=\u0022https:\/\/github.com\/wso2\/kubernetes-artifacts\u0022\u003eWSO2 Kubernetes Artifacts repository\u003c\/a\u003e make use of \u003ca href=\u0022https:\/\/github.com\/wso2\/puppet-modules\u0022\u003eWSO2 Puppet Modules\u003c\/a\u003e to configure the server inside the Docker image.\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2019",
+      "datePublished": "2019-10-19 18:15:46 \u002b1300 NZDT",
+      "dateModified" : "2019-10-19 18:15:46 \u002b1300 NZDT",
+      "url" : "http:\/\/localhost:1313\/blog\/draft__running-wso2-products-on-kubernetes\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Running WSO2 Products on Kubernetes - chamila.dev</title>
+  <meta property="og:title" content="Running WSO2 Products on Kubernetes - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!
+You’ll need a basic understanding of
+
+Docker
+Kubernetes
+Puppet
+
+Checkout
+the following repositories.
+
+WSO2 Kubernetes Artifacts —  git clone https://github.com/wso2/kubernetes-artifacts.git
+WSO2 Puppet Modules —  git clone https://github.com/wso2/puppet-modules.git
+
+The Docker Images
+We need to build the WSO2 IS Docker image first. For this we can take a long method of configuring the IS instance manually and then creating the Docker image with that pack or we can just save some time and let Puppet do the work. The Dockerfiles in the WSO2 Kubernetes Artifacts repository make use of WSO2 Puppet Modules to configure the server inside the Docker image." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="http://localhost:1313/">chamila.dev</a> >
+      <a href="http://localhost:1313//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Running WSO2 Products on Kubernetes</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2019-10-19 18:15:46 NZDT">
+                19 Oct 2019
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~10 minutes
+            </div>
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#youll-need-a-basic-understanding-of">You’ll need a basic understanding of</a></li>
+        <li><a href="#checkout">Checkout</a></li>
+        <li><a href="#the-dockerimages">The Docker Images</a></li>
+        <li><a href="#wso2-puppetmodules">WSO2 Puppet Modules</a></li>
+        <li><a href="#clustering">Clustering</a></li>
+        <li><a href="#copying-thepacks">Copying the Packs</a></li>
+        <li><a href="#building-the-dockerimage">Building the Docker image</a></li>
+        <li><a href="#base-image">Base Image</a></li>
+        <li><a href="#wso2-isimage">WSO2 IS Image</a></li>
+        <li><a href="#kubernetes-setup">Kubernetes Setup</a></li>
+        <li><a href="#kubernetes-vagrantsetup">Kubernetes Vagrant Setup</a></li>
+        <li><a href="#githubcompireskubernetes-vagrant-coreos-cluster">github.com/pires/kubernetes-vagrant-coreos-cluster</a></li>
+        <li><a href="#any-otheroptions">Any Other Options?</a></li>
+        <li><a href="#wso2-iscluster">WSO2 IS Cluster</a></li>
+        <li><a href="#load-dockerimage">Load Docker image</a></li>
+        <li><a href="#replication-controller">Replication Controller</a></li>
+        <li><a href="#kubernetes-service">Kubernetes Service</a></li>
+        <li><a href="#accessing-wso2is">Accessing WSO2 IS</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <p>It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!</p>
+<h3 id="youll-need-a-basic-understanding-of">You’ll need a basic understanding of</h3>
+<ol>
+<li><a href="https://docs.docker.com/linux/">Docker</a></li>
+<li><a href="http://kubernetes.io/gettingstarted/">Kubernetes</a></li>
+<li><a href="https://puppet.com/presentations/getting-started-puppet">Puppet</a></li>
+</ol>
+<h3 id="checkout">Checkout</h3>
+<p>the following repositories.</p>
+<ol>
+<li>WSO2 Kubernetes Artifacts —  git clone <a href="https://github.com/wso2/kubernetes-artifacts.git">https://github.com/wso2/kubernetes-artifacts.git</a></li>
+<li>WSO2 Puppet Modules —  git clone <a href="https://github.com/wso2/puppet-modules.git">https://github.com/wso2/puppet-modules.git</a></li>
+</ol>
+<h3 id="the-dockerimages">The Docker Images</h3>
+<p>We need to build the WSO2 IS Docker image first. For this we can take a long method of configuring the IS instance manually and then creating the Docker image with that pack or we can just save some time and let Puppet do the work. The Dockerfiles in the <a href="https://github.com/wso2/kubernetes-artifacts">WSO2 Kubernetes Artifacts repository</a> make use of <a href="https://github.com/wso2/puppet-modules">WSO2 Puppet Modules</a> to configure the server inside the Docker image.</p>
+<h3 id="wso2-puppetmodules">WSO2 Puppet Modules</h3>
+<p>Navigate to where you checked out <a href="https://github.com/wso2/puppet-modules">WSO2 Puppet Modules</a> and build (mvn clean install) to get the latest WSO2 Puppet modules distribution, inside target folder. You can alternatively get the latest released distribution from the releases page on the <a href="https://github.com/wso2/puppet-modules/releases">GitHub repository</a>.</p>
+<p>Now unzip the distribution to a place you prefer (Let’s call this <strong>&lt;PUPPET_HOME&gt;</strong> here after). It’s targeted to be unzipped directly to a Puppet Master folder (/etc/puppet/), so the structure of the decompressed folder looks similar to that of the inside of the Puppet Master folder.</p>
+<p>WSO2 Puppet Modules heavily make use of <a href="https://docs.puppetlabs.com/hiera/1/">Hiera</a> to separate data and templates from the actual Puppet logic of configuration of the server. Therefore, the only modification that has to be done, has to be done to the Hiera YAML files and optionally the templates.</p>
+<h3 id="clustering">Clustering</h3>
+<p>Let’s first change the clustering related data in Hiera. For this an understanding on how clustering for WSO2 products on Kubernetes is needed.</p>
+<p>The Kubernetes Membership Scheme for Carbon makes use of the Kubernetes API to lookup the IP addresses of the Pods that are already up for given Kubernetes Service. For an example, for WSO2 IS, provided that the Kubernetes Service for WSO2 IS is wso2is, the Kubernetes Membership Scheme will make an API call to the Kubernetes API Server to find out the IP addresses of the Pods that are running. It will then update the Hazelcast instance with this list of IPs and connect to those members. When new members start, the process repeats, and the existing members get notified of its existence via Hazelcast. This membership scheme is pluggable to Hazelcast starting from Carbon 4.4.1.</p>
+<p>With this understanding, lets make the changes required to enable Kubernetes Membership Scheme in WSO2 IS.</p>
+<ol>
+<li>Navigate to &lt;PUPPET_HOME&gt;/hieradata/dev/wso2/wso2is/5.1.0/ and open default.yaml with your text editor.</li>
+<li>Under wso2::clustering remove the wka related data and add the Kubernetes Membership Scheme data. The resulting section look something like the following.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#cba6f7">wso2::clustering </span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">enabled </span>: <span style="color:#fab387">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">#local_member_host : 127.0.0.1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">#local_member_port : 4000</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">membership_scheme </span>: kubernetes
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">#wka :</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic"># members :</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">#-</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">#hostname : localhost</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">#      port : 4000</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">#    -</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">#      hostname : localhost</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">#      port : 4001</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">#multicast :</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic">#  domain : wso2.carbon.domain</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">k8</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">k8_master</span>: http://172.17.8.101:8080
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">k8_namespace</span>: default
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">k8_services</span>: wso2is
+</span></span></code></pre></div><p>Note that <a href="http://172.17.8.101:8080">http://172.17.8.101:8080</a> is the Kubernetes API Server address. Furthermore, note that the value for k8_services reflects the Kubernetes Service name we are going to use later.</p>
+<ol>
+<li>We also need to add the Kubernetes Membership Scheme distribution to the &lt;WSO2_SERVER_HOME&gt;/repository/components/lib folder along with its dependencies. So let’s first build the Kubernetes Membership Scheme. Navigate to where you checked out <a href="https://github.com/wso2/kubernetes-artifacts">WSO2 Kubernetes Artifacts repository</a> and to the common/kubernetes-membership-scheme folder inside. Build the Kubernetes Membership Scheme by running mvn clean install. Copy the resulting JAR files to &lt;PUPPET_HOME&gt;/modules/wso2is/files/configs/repository/components/lib folder. Furthermore copy the following dependencies to the same place as well.</li>
+<li>Now let’s specify these files inside the default.yaml file, so Puppet would copy them to the respective places. Add the following entry to default.yaml.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#cba6f7">wso2::file_list </span>:
+</span></span><span style="display:flex;"><span>  - repository/components/lib/jackson-annotations-2.5.4.jar
+</span></span><span style="display:flex;"><span>  - repository/components/lib/jackson-core-2.5.4.jar
+</span></span><span style="display:flex;"><span>  - repository/components/lib/jackson-databind-2.5.4.jar
+</span></span><span style="display:flex;"><span>  - repository/components/lib/kubernetes-membership-scheme-1.0.0-SNAPSHOT.jar
+</span></span></code></pre></div><h3 id="copying-thepacks">Copying the Packs</h3>
+<ol>
+<li>Download <a href="http://wso2.com/products/identity-server/">WSO2 IS 5.1.0</a> and copy it to &lt;PUPPET_HOME&gt;/modules/wso2is/files/ folder.</li>
+<li>Download <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">JDK 1.7_80</a> and copy to &lt;PUPPET_HOME&gt;/modules/wso2base/files/ folder.</li>
+</ol>
+<h3 id="building-the-dockerimage">Building the Docker image</h3>
+<p>Navigate to where you checked out <a href="https://github.com/wso2/kubernetes-artifacts">WSO2 Kubernetes Artifacts repository</a>. We will be working inside this directory now.</p>
+<h3 id="base-image">Base Image</h3>
+<p>Docker images for WSO2 products make use of a base image called wso2/k8s-base which has to be built (or pulled from Docker Hub) before building the product images.</p>
+<ol>
+<li>List the Docker images in your machine.</li>
+</ol>
+<pre tabindex="0"><code>docker images
+</code></pre><p>If the list doesn’t contain wso2/k8s-base Docker image you have to build it first.</p>
+<ol>
+<li>Navigate to common/docker/base-image folder, and start the Docker image build by executing build.sh.</li>
+<li>Wait until the Docker build process completes and verify after by listing the Docker images (docker images) to check wso2/k8s-base is there.</li>
+</ol>
+<h3 id="wso2-isimage">WSO2 IS Image</h3>
+<p>Navigate to wso2is/docker/ folder. Inside you will see the Dockerfile and some Bash scripts which will make your life so much easier when it comes to building and rebuilding Docker images for test purposes.</p>
+<p>The build.sh builder script will be looking for the PUPPET_HOME environment variable. So before running build.sh point PUPPET_HOME to our Puppet home. Then run the build.sh file by providing the Docker image version to be built and the WSO2 Carbon profiles that should be built for this product. For WSO2 IS, there is only one Carbon profile, the default profile. So our commands will look like something as follows.</p>
+<pre tabindex="0"><code>export PUPPET_HOME=~/temp/puppet 
+./build.sh 1.0.0 ‘default’
+</code></pre><p>Use sudo when executing build.sh if your Docker daemon needs privileged access. Here the place where we unzipped our WSO2 Puppet distribution (and modified Hiera data accordingly) is ~/temp/puppet, and we need our Docker image to be tagged as version 1.0.0, and we only need to build the Docker image for the default Carbon profile for WSO2 IS. Specifying only default is optional.</p>
+<p>This will build the Docker image by configuring WSO2 IS using the PUPPET_HOME folder, and including the necessary ENTRPOINT scripts. List your docker images afterwards (docker images) and you will see something similar to the following.</p>
+<pre tabindex="0"><code>REPOSITORY               TAG                   IMAGE ID            CREATED             VIRTUAL SIZE
+wso2/is-5.1.0            1.0.0                 c8ab0b692142        19 hours ago        1.45 GB
+wso2/k8s-base            1.0.0                 2216147d6c98        22 hours ago        310.6 MB
+</code></pre><p>Next we deploy our Docker images on Kubernetes.</p>
+<h3 id="kubernetes-setup">Kubernetes Setup</h3>
+<p>It would greatly help if you already have a Kubernetes cluster deployed somewhere nearby. However, it’s safe to assume you’re reading this just to try out this work flow, and you don’t have a Kubernetes Cluster. In that case there are several easy options you can chose from.</p>
+<h3 id="kubernetes-vagrantsetup">Kubernetes Vagrant Setup</h3>
+<p><a href="http://kubernetes.io/v1.1/docs/getting-started-guides/vagrant.html">Kubernetes ships with its own Vagrantfile</a> which can make use of several Virtualization providers to quickly create a Kubernetes Cluster. You will be able to use VirtualBox as the provider and spawn a new Kubernetes cluster with one or more Nodes (previously Minions). However my personal experience with this has not been pleasant, because of the time it takes for the nodes to provision (SaltStack is used to provision the Fedora based nodes) and the issues it had when recreating the Cluster.</p>
+<h3 id="githubcompireskubernetes-vagrant-coreos-cluster">github.com/pires/kubernetes-vagrant-coreos-cluster</h3>
+<p><a href="https://github.com/pires/kubernetes-vagrant-coreos-cluster">This</a> is a similar setup as the above, but with several differences. First off, it uses CoreOS boxes for the Master and Node VMs. Second, it’s really easy to destroy and recreate a cluster, in case you feel like Stalin. I keep the following short run script to start the cluster.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#89dceb">export</span> <span style="color:#f5e0dc">NODES</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb">export</span> <span style="color:#f5e0dc">USE_KUBE_UI</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#89dceb">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vagrant up
+</span></span></code></pre></div><p>This starts a Kubernetes Cluster with one Master and one Node VM, with IPs 172.17.8.101 and 172.17.8.102 each respectively.</p>
+<h3 id="any-otheroptions">Any Other Options?</h3>
+<p>Well, I can copy paste the Kubernetes documentation here, or you can simply <a href="http://kubernetes.io/v1.1/docs/getting-started-guides/README.html">go there and read</a> the other options you have, which tend to demand a little bit of commitment. So if you’re afraid of that better stick to the Vagrant setups above.</p>
+<h3 id="wso2-iscluster">WSO2 IS Cluster</h3>
+<p>We built the Docker images, and now we have a Kubernetes Cluster. The next logical step is to go ahead and deploy the Docker image on top of the Kubernetes Cluster. To do that we need to do the following.</p>
+<ol>
+<li>Either upload the WSO2 IS Docker image to an accessible Docker registry or load it to the Nodes’ Docker registry (If you created a Vagrant setup for Kubernetes, the easier option would be to compress the WSO2 IS Docker image to a tar file, scp it to the Node/s and Load the tar to the local Docker registry)</li>
+<li>Deploy a Replication Controller for WSO2 IS Docker image, with a replica count.</li>
+<li>Deploy a Kubernetes Service for the WSO2 IS Pods</li>
+<li>???</li>
+<li>Profit</li>
+</ol>
+<h3 id="load-dockerimage">Load Docker image</h3>
+<p>Let’s load our Docker image to the Node/s. You can run the save.sh file inside wso2is/docker/ folder. It will save the Docker image to ~/docker/images/ folder as .tar file. Or you can simply call docker save and create the .tar file yourself.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker save wso2/is-5.1.0:1.0.0 &gt; wso2is-5.1.0-1.0.0.tar
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#insecure_private_key is the key to use to ssh inside the Vagrant boxes, 172.17.8.102 is the Node&#39;s IP</span>
+</span></span><span style="display:flex;"><span>scp -i ~/.vagrant.d/insecure_private_key wso2is-5.1.0-1.0.0.tar core@172.17.8.102:.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># ssh to the node and load the Docker image</span>
+</span></span><span style="display:flex;"><span>vagrant ssh node-01
+</span></span><span style="display:flex;"><span>docker load &lt; wso2is-5.1.0-1.0.0.tar
+</span></span><span style="display:flex;"><span>docker images <span style="color:#6c7086;font-style:italic"># to verify the image was loaded successfully</span>
+</span></span></code></pre></div><h3 id="replication-controller">Replication Controller</h3>
+<p>A Replication Controller makes sure that a specified number of Pods will always be there in the Cluster. We specify the Docker image to use, the number of replicas to maintain, and the labels that should be applied to the Pods. You can find the Replication Controller for WSO2 IS in wso2is/kubernetes/wso2is-controller.yaml. It looks something like the following.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#cba6f7">apiVersion</span>: v1
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">kind</span>: ReplicationController
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">name</span>: wso2is
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">name</span>: wso2is
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">replicas</span>: <span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">name</span>: wso2is
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">name</span>: wso2is
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#cba6f7">name</span>: wso2is
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">image</span>: wso2/is-5.1.0:1.0.0
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">ports</span>:
+</span></span><span style="display:flex;"><span>        -
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">containerPort</span>: <span style="color:#fab387">9763</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">protocol</span>: <span style="color:#a6e3a1">&#34;TCP&#34;</span>
+</span></span><span style="display:flex;"><span>        -
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">containerPort</span>: <span style="color:#fab387">9443</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">protocol</span>: <span style="color:#a6e3a1">&#34;TCP&#34;</span>
+</span></span><span style="display:flex;"><span>        -
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">containerPort</span>: <span style="color:#fab387">8000</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">protocol</span>: <span style="color:#a6e3a1">&#34;TCP&#34;</span>
+</span></span><span style="display:flex;"><span>        -
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">containerPort</span>: <span style="color:#fab387">10500</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">protocol</span>: <span style="color:#a6e3a1">&#34;TCP&#34;</span>
+</span></span></code></pre></div><p>Here, we have specified the image to use as wso2/is-5.1.0:1.0.0. If you built your image with a different name, change this value. Also, we have specified the number of replicas to be just one.</p>
+<p>Let’s deploy the Replication Controller. (If you used the Vagrant Setup, you can directly use the deploy.sh script included along with the Replication Controller in the same folder. It will also deploy the Service artifact and wait until the WSO2 IS server to come up, so for the purpose of understanding the process, let’s manually deploy the artifacts separately.)</p>
+<pre tabindex="0"><code>kubectl create -f wso2is-controller.yaml
+</code></pre><p>If you get an error like the following, it means that kubectl cannot find the Kubernetes API Server to communicate with it. So you have to point out where the API Server is to the kubectl.</p>
+<pre tabindex="0"><code>kubectl create -f wso2is-controller.yaml 
+error: couldn’t read version from server: Get http://localhost:8080/api: dial tcp 127.0.0.1:8080: connection refused 
+
+export KUBERNETES_MASTER=http://172.17.8.101:8080 
+#If your Kubernetes Master IP and Port is different, change this accordingly
+</code></pre><p>On the other hand if your system simply doesn’t have kubectl installed, you first need to <a href="http://kubernetes.io/v1.1/docs/user-guide/prereqs.html">install it</a>.</p>
+<p>If everything went right Kubernetes will spawn a Pod with a WSO2 IS container inside it, in one of the Nodes. You can get the list of Pods deployed by issueing kubectl get pods.</p>
+<h3 id="kubernetes-service">Kubernetes Service</h3>
+<p>To expose the WSO2 IS container from Kubernetes, we need to define a Service which maps the operational ports of the WSO2 IS container with ports on the Nodes. For this we need to specify a selector for the Pods that should be served through the Service and the port mapping. You can find the following Service definition in wso2is/kubernetes/wso2is-service.yaml file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#cba6f7">apiVersion</span>: v1
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">kind</span>: Service
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">name</span>: wso2is
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">name</span>: wso2is
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">type</span>: NodePort
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">sessionAffinity</span>: ClientIP
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">ports</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#6c7086;font-style:italic"># ports that this service should serve on</span>
+</span></span><span style="display:flex;"><span>    -
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">name</span>: <span style="color:#a6e3a1">&#39;servlet-http&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">port</span>: <span style="color:#fab387">9763</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">targetPort</span>: <span style="color:#fab387">9763</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">nodePort</span>: <span style="color:#fab387">32001</span>
+</span></span><span style="display:flex;"><span>    -
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">name</span>: <span style="color:#a6e3a1">&#39;servlet-https&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">port</span>: <span style="color:#fab387">9443</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">targetPort</span>: <span style="color:#fab387">9443</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">nodePort</span>: <span style="color:#fab387">32002</span>
+</span></span><span style="display:flex;"><span>    -
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">name</span>: <span style="color:#a6e3a1">&#39;kdc-server&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">port</span>: <span style="color:#fab387">8000</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">targetPort</span>: <span style="color:#fab387">8000</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">nodePort</span>: <span style="color:#fab387">32003</span>
+</span></span><span style="display:flex;"><span>    -
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">name</span>: <span style="color:#a6e3a1">&#39;thrift-entitlement&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">port</span>: <span style="color:#fab387">10500</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">targetPort</span>: <span style="color:#fab387">10500</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">nodePort</span>: <span style="color:#fab387">32004</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6c7086;font-style:italic"># label keys and values that must match in order to receive traffic for this service</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">name</span>: wso2is
+</span></span></code></pre></div><p>In this service we have exposed port 9443 of the WSO2 IS container through the port 32002 on the Node. Since the type of the Service is NodePort, the port 32002 on all of the Nodes will be mapped to the port 9443 of the container. Another interesting thing to note is that we have specified metadata:name as wso2is which is the same name we provided for k8_services when we configured the Kubernetes Membership Scheme earlier.</p>
+<p>Let’s deploy this Service.</p>
+<pre tabindex="0"><code>kubectl create -f wso2is-service.yaml 
+kubectl get svc
+</code></pre><h3 id="accessing-wso2is">Accessing WSO2 IS</h3>
+<p>Now we have a WSO2 IS container Cluster on Kubernetes. How are we going to access it? Simple. We just access any Node on the port 32002 to access the Carbon Console. For example, in the Vagrant Setup, we can access the Carbon console by going to <a href="https://172.17.8.102:32002/carbon.">https://172.17.8.102:32002/carbon.</a> You can read more about the <a href="http://kubernetes.io/v1.1/docs/user-guide/services.html#type-nodeport">NodePort</a> type Services to understand what is happening here.</p>
+<p>Originally published at <a href="http://chamilad.github.io/blog/2016/02/09/running-wso2-products-on-kubernetes/">chamilad.github.io</a> on February 9, 2016.</p>
+<hr>
+<p>Written on  by .</p>
+<p>Originally published on <a href="">Medium</a></p>
+
+        </div>
+        <div class="prev-next row">
+  <div class="prev col-sm">
+    
+    <a href="http://localhost:1313/blog/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat/">&lt; ElasticSearch on K8s: 02 — Log Collection with Filebeat</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="http://localhost:1313/blog/draft__reference-architecture-for-cicd-in-wso2/">Reference Architecture for CI/CD in WSO2 &gt;</a>
+    
+  </div>
+</div>
+
+        
+
+        
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

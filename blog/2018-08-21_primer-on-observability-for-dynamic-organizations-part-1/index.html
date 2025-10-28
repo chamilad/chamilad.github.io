@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "A Primer on Observability for Dynamic Organizations — Part 1",
       "headline" : "A Primer on Observability for Dynamic Organizations — Part 1",
-      "description" : "A introduction to the buzzword and the rationale for implementing it What is Observability? Before we dive in to the waters, we need to define what observability is. Let’s go for some tweets first.\nMonitoring is for operating software\/systems\nInstrumentation is for writing software\nObservability is for understanding systems\n\u0026mdash; Charity Majors (@mipsytipsy) September 23, 2017  That’s Charity Majors, a well known voice on Observability and someone who has built a business doing it well.",
+      "description" : "\u003ch4 id=\u0022a-introduction-to-the-buzzword-and-the-rationale-for-implementing-it\u0022\u003eA introduction to the buzzword and the rationale for implementing it\u003c\/h4\u003e\n\u003ch3 id=\u0022what-is-observability\u0022\u003eWhat is Observability?\u003c\/h3\u003e\n\u003cp\u003eBefore we dive in to the waters, we need to define what observability is. Let’s go for some tweets first.\u003c\/p\u003e\n\u003cblockquote class=\u0022twitter-tweet\u0022\u003e\u003cp lang=\u0022en\u0022 dir=\u0022ltr\u0022\u003eMonitoring is for operating software\/systems\u003cbr\u003eInstrumentation is for writing software\u003cbr\u003eObservability is for understanding systems\u003c\/p\u003e\u0026mdash; Charity Majors (@mipsytipsy) \u003ca href=\u0022https:\/\/twitter.com\/mipsytipsy\/status\/911711540008628224?ref_src=twsrc%5Etfw\u0022\u003eSeptember 23, 2017\u003c\/a\u003e\u003c\/blockquote\u003e\n\u003cscript async src=\u0022https:\/\/platform.twitter.com\/widgets.js\u0022 charset=\u0022utf-8\u0022\u003e\u003c\/script\u003e\n\n\n\u003cp\u003eThat’s \u003ca href=\u0022https:\/\/twitter.com\/mipsytipsy\/status\/911711540008628224\u0022\u003eCharity Majors\u003c\/a\u003e, a well known voice on Observability and someone who \u003ca href=\u0022https:\/\/www.honeycomb.io\/\u0022\u003ehas built a business\u003c\/a\u003e doing it well.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,11 +36,14 @@
 <title>A Primer on Observability for Dynamic Organizations — Part 1 - chamila.dev</title>
   <meta property="og:title" content="A Primer on Observability for Dynamic Organizations — Part 1 - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="A introduction to the buzzword and the rationale for implementing it What is Observability? Before we dive in to the waters, we need to define what observability is. Let’s go for some tweets first.
-Monitoring is for operating software/systems
-Instrumentation is for writing software
-Observability is for understanding systems
-&mdash; Charity Majors (@mipsytipsy) September 23, 2017  That’s Charity Majors, a well known voice on Observability and someone who has built a business doing it well." />
+  <meta name="description" content="A introduction to the buzzword and the rationale for implementing it
+What is Observability?
+Before we dive in to the waters, we need to define what observability is. Let’s go for some tweets first.
+Monitoring is for operating software/systemsInstrumentation is for writing softwareObservability is for understanding systems&mdash; Charity Majors (@mipsytipsy) September 23, 2017
+
+
+
+That’s Charity Majors, a well known voice on Observability and someone who has built a business doing it well." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -165,8 +168,7 @@ Observability is for understanding systems
 <figure><img src="/blog/img/2018-08-21_primer-on-observability-for-dynamic-organizations-part-1_1.jpeg#layoutTextWidth"><figcaption>Ha!</figcaption></figure>
 <p>So what is Observability then?</p>
 <blockquote>
-<p>Observability is the level of visibility that the system grants to an outside observer. It’s a property of a system, just like usability, availability, and scalability.</p>
-</blockquote>
+<p>Observability is the level of visibility that the system grants to an outside observer. It’s a property of a system, just like usability, availability, and scalability.</p></blockquote>
 <p>We talk about how a system is observable, just like how we talk about how a system is scalable.</p>
 <p>So it’s should be clear from this point onward that we are not talking about just a new technology stack, but how to enable this property for a system successfully.</p>
 <h4 id="why-talk-aboutit">Why talk about it?</h4>
@@ -177,8 +179,7 @@ Observability is for understanding systems
 <p>One truth that I have found to be always reliable about systems is that incidents are unavoidable. It’s a part of running a system and you manage incidents to maintain qualities like availability, usability, and fault tolerance at an acceptable level. Sticking to Service Level Agreements (SLAs) is the primary function of any system. This brings out an acceptable rate of errors and downtimes that we measure against a pre-defined set of numbers.</p>
 <p>Having accepted the fact that incidents are part of a system, it’s important to design the level of observability of a system to focus on incident resolution and root cause analysis. A designed system that collects information which when analyzed points to clear root causes of incidents without a doubt is far better (and manageable) than a system that tries to fanatically avoid incidents. Well understood root cause analysis reports improve system SLAs over-time far better than anticipated issues can. Incidents in their nature are hard to anticipate, therefore, even for a cleverly designed system, chances of some issue spiraling out to be a service level interruption is 100% over the course of the uptime. Interestingly this is why the sooner the volatility of a system is accepted, the better it can be designed to withstand it.</p>
 <blockquote>
-<p>Uptime is important. Post-mortems are importanter.</p>
-</blockquote>
+<p>Uptime is important. Post-mortems are importanter.</p></blockquote>
 <p>This is why designed observability of a system is helpful than an accidental one. The quality of the view inside should be a product of the experience running other systems (and their gaps). This however, introduces the familiar vicious cycle of not having enough experience to design a system to gain enough experience. Therefore, a set of guidelines for observable systems can help organizations hit the ground running even with minimum experience of running successful or faulty systems.</p>
 <h4 id="downfall-of-the-monolithic">Downfall of the Monolithic</h4>
 <p>Analyzing a monolithic application deployment is easy. This idea is relatively new because until Container Cluster Management and Microservices laid waste to the then established way of solution designing, we thought otherwise.</p>
@@ -191,18 +192,17 @@ Observability is for understanding systems
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2018-07-20_that-tricky-thing-called-automation/">&lt; That Tricky Thing Called Automation</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/">A Primer on Observability for Dynamic Organizations — Part 2 &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2018-07-20_that-tricky-thing-called-automation/">&lt; That Tricky Thing Called Automation</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/">A Primer on Observability for Dynamic Organizations — Part 2 &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

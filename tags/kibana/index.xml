@@ -4,27 +4,23 @@
     <title>Kibana on chamila.dev</title>
     <link>https://chamila.dev/tags/kibana/</link>
     <description>Recent content in Kibana on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Mar 2020 13:37:33 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/kibana/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 Mar 2020 13:37:33 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/kibana/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A Standalone Prometheus Exporter for Kibana</title>
       <link>https://chamila.dev/blog/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</link>
       <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2020-03-14_a-standalone-prometheus-exporter-for-kibana/</guid>
-      <description>I wrote a Prometheus Exporter that converts and exposes some metrics from Kibana API. This was mostly inspired by an already existing Exporter, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.
-kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password The Exporter is pretty basic one written in less than 500 lines of collective Go code.</description>
+      <description>&lt;p&gt;I wrote a &lt;a href=&#34;https://github.com/chamilad/kibana-prometheus-exporter&#34;&gt;Prometheus Exporter that converts and exposes some metrics from Kibana API&lt;/a&gt;. This was mostly inspired by &lt;a href=&#34;https://github.com/pjhampton/kibana-prometheus-exporter/&#34;&gt;an already existing Exporter&lt;/a&gt;, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The Exporter is pretty basic one written in less than 500 lines of collective Go code. The following metrics are exposed to be scraped by Prometheus.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Monitoring WSO2 Logs with Elasticsearch, Logstash, and Kibana (or Grafana)</title>
       <link>https://chamila.dev/blog/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</link>
       <pubDate>Sat, 10 Sep 2016 21:26:48 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2016-09-10_monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana/</guid>
-      <description>I’ve recently been doing some work involving analytics dashboards and the subject proved to be really interesting. It has a wide range starting from Big Data to UX. Starting at a point where you determine what kind of data is collected and what kind information you need to get out of the dashboard, going to data analysis and data processing (probably on top an engine like Apache Spark), it finalizes at the visualization stage which is really fun.</description>
+      <description>&lt;p&gt;I’ve recently been doing some work involving analytics dashboards and the subject proved to be really interesting. It has a wide range starting from Big Data to UX. Starting at a point where you determine what kind of data is collected and what kind information you need to get out of the dashboard, going to data analysis and data processing (probably on top an engine like Apache Spark), it finalizes at the visualization stage which is really fun.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

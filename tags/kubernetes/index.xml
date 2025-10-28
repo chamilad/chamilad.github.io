@@ -4,66 +4,51 @@
     <title>Kubernetes on chamila.dev</title>
     <link>https://chamila.dev/tags/kubernetes/</link>
     <description>Recent content in Kubernetes on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Feb 2025 00:04:06 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 Feb 2025 00:04:06 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AWS Authentication for K8s: EKS Pod Identities Deep Dive</title>
       <link>https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/</link>
       <pubDate>Sat, 01 Feb 2025 00:04:06 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/</guid>
-      <description>In the last article, I covered in brief, the solutions for the problem of authenticating into AWS from K8s workloads. This is the first detailed article (and the video) I promised I&amp;rsquo;ll follow up that with, going into to details on EKS Pod Identities. I&amp;rsquo;m hoping to make this the most detailed, most in-depth video on the topic, but this article would probably have less details, so I highly recommend watching the video.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/bDsy21eTXHw?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;In the last article, I covered in brief, the solutions for the problem of&#xA;authenticating into AWS from K8s workloads. This is the first detailed article&#xA;(and the video) I promised I&amp;rsquo;ll follow up that with, going into to details on&#xA;EKS Pod Identities. I&amp;rsquo;m hoping to make this the most detailed, most in-depth&#xA;video on the topic, but this article would probably have less details, so I&#xA;highly recommend watching the video. It also has a full demo on how to create&#xA;an EKS cluster for Pod Identities.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS Authentication for K8s: Introduction</title>
       <link>https://chamila.dev/blog/2025-01-27_aws-authentication-for-k8s-introduction/</link>
       <pubDate>Mon, 27 Jan 2025 00:01:44 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2025-01-27_aws-authentication-for-k8s-introduction/</guid>
-      <description>This is an introductory post on the problem of authenticating into AWS from K8s workloads, either from within AWS or from outside of it. I&amp;rsquo;m going to discuss three major approaches to this problem and compare them against each other. I&amp;rsquo;ll follow this up with more detailed articles (and videos) on each approach, where I&amp;rsquo;ll go into details as much as possible.
-Problem Statement The key problem I&amp;rsquo;m trying to tackle here is how to authenticate into AWS from workloads running in K8s.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/8Ym1tAZRyyM?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;This is an introductory post on the problem of authenticating into AWS from K8s&#xA;workloads, either from within AWS or from outside of it. I&amp;rsquo;m going to discuss&#xA;three major approaches to this problem and compare them against each other.&#xA;I&amp;rsquo;ll follow this up with more detailed articles (and videos) on each approach,&#xA;where I&amp;rsquo;ll go into details as much as possible.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why I don&#39;t like taking Remote Proctored Exams</title>
       <link>https://chamila.dev/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/</link>
       <pubDate>Thu, 16 Jan 2025 22:47:18 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2025-01-16_why-i-dont-like-taking-remote-proctored-exams/</guid>
-      <description>I recently renewed my Certified Kubernetes Security Specialty certification, and it reminded me, hard, why I don&amp;rsquo;t like taking remote proctored exams. This is going to be rant, probably not educative.
-All CNCF certification exams are remote proctored. This means that you book the exam online and then take it online at a place of your choosing. Sounds unbelievably simple right? There&amp;rsquo;s a reason why it&amp;rsquo;s unbelievable.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/-vXMQDMq4tU?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;I recently renewed my Certified Kubernetes Security Specialty certification,&#xA;and it reminded me, hard, why I don&amp;rsquo;t like taking remote proctored exams. This&#xA;is going to be rant, probably not educative.&lt;/p&gt;&#xA;&lt;p&gt;All CNCF certification exams are remote proctored. This means that you book the&#xA;exam online and then take it online at a place of your choosing. Sounds&#xA;unbelievably simple right? There&amp;rsquo;s a reason why it&amp;rsquo;s unbelievable.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Load Balancing and Reverse Proxying for Kubernetes Services</title>
       <link>https://chamila.dev/blog/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</link>
       <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services/</guid>
-      <description>Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic  Morning sunlight on Horton Plains National Park   In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.</description>
+      <description>&lt;h4 id=&#34;different-load-balancing-and-reverse-proxying-strategies-to-use-in-production-k8s-deployments-to-expose-services-to-outsidetraffic&#34;&gt;Different load balancing and reverse proxying strategies to use in Production K8s Deployments to expose services to outside traffic&lt;/h4&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2019-02-28_load-balancing-and-reverse-proxying-for-kubernetes-services_0.jpeg#layoutOutsetCenter&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Morning sunlight on Horton Plains National Park&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;In this post, I’m going to tackle a topic that any K8s novice would start to think about, once they have cleared the basic concepts. **How would one go about exposing the services deployed inside a K8s cluster to outside traffic?**The content and some of the diagrams I’ve used in the post are from an internal tech talk I conducted at WSO2.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Thinking of Moving Your WSO2 Deployment On to Kubernetes?</title>
       <link>https://chamila.dev/blog/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</link>
       <pubDate>Sun, 22 Jan 2017 19:25:15 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-01-22_thinking-of-moving-your-wso2-deployment-on-to-kubernetes/</guid>
-      <description>Moving from a Virtual Machine based deployment to a Container Clustering environment can be quite a few sleepless nights. Cloud deployment artifacts for WSO2 products would reduce this number by a few, because of their tried and tested nature. These include Dockerfiles, Puppet based configurations, Kubernetes and Mesos deployment artifacts. As easy as these artifacts make life easier during a redesign stage of an existing deployment, let us anyway walk through some points to keep in mind regarding a WSO2 deployment on top of Kubernetes.</description>
+      <description>&lt;p&gt;Moving from a Virtual Machine based deployment to a Container Clustering environment can be quite a few sleepless nights. Cloud deployment artifacts for WSO2 products would reduce this number by a few, because of their tried and tested nature. These include Dockerfiles, Puppet based configurations, Kubernetes and Mesos deployment artifacts. As easy as these artifacts make life easier during a redesign stage of an existing deployment, let us anyway walk through some points to keep in mind regarding a WSO2 deployment on top of Kubernetes.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Running WSO2 Products on Kubernetes</title>
       <link>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</link>
       <pubDate>Tue, 09 Feb 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</guid>
-      <description>Running WSO2 Products on Kubernetes
- Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.
- It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!</description>
+      <description>&lt;p&gt;Running WSO2 Products on Kubernetes&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

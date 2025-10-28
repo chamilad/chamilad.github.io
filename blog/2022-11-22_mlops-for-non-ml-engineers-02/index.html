@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -145,9 +145,9 @@
           </div>
         </header>
         <div class="post-content markdown-body">
-          <figure><img src="/blog/img/2022-11-22_mlops_02_header.jpeg"/><figcaption>
-            <h4>Lighthouse, Galle, Sri Lanka</h4>
-        </figcaption>
+          <figure><img src="/blog/img/2022-11-22_mlops_02_header.jpeg"><figcaption>
+      <h4>Lighthouse, Galle, Sri Lanka</h4>
+    </figcaption>
 </figure>
 
 <h2 id="how-is-machine-learning-different">How is Machine Learning Different?</h2>
@@ -161,8 +161,7 @@ the <a href="/blog/2022-11-19_mlops-for-non-ml-engineers/">previous article</a> 
 Dev</a></li>
 <li><a href="/blog/2022-11-28_mlops-for-non-ml-engineers-04/">MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project
 Execution</a></li>
-</ol>
-</blockquote>
+</ol></blockquote>
 <h3 id="understanding-the-solution">Understanding the solution</h3>
 <p>Various iterations of design and architecture of a software development
 project usually determines the approach of the solution for a software
@@ -218,14 +217,12 @@ what kind of labelling to be done on the datasets and how accurate labelling
 should be (ex: multiple labelling inputs per a class of objects). As far as I
 understand, Ground Truth is the most in detail service in this area, may be
 surpassed by a handful of other third party services that may not integrate with your
-AWS setup as neatly as Ground Truth does.</p>
-</blockquote>
+AWS setup as neatly as Ground Truth does.</p></blockquote>
 <blockquote>
 <p>In addition to manual labelling, Amazon SageMaker also offers <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-automated-labeling.html">automatic data
 labelling</a>
 which uses already built Machine Learning Models to do labelling (object
-detection, image classification etc).</p>
-</blockquote>
+detection, image classification etc).</p></blockquote>
 <p>As mentioned above, getting it right in EDA and Experimenting phases is critical
 for a Machine Learning project. Mistakes in these phases can result in the
 entire effort being scrapped and having to start again, which can mean the
@@ -240,8 +237,7 @@ AWS</a>, and the Amazon SageMaker SDK, so
 registering a particular training run as an Experiment is streamlined and easy
 to track afterwards. This is especially helpful if multiple members of the team
 are working on the same problem and are registering experiment runs on the same
-experiment version.</p>
-</blockquote>
+experiment version.</p></blockquote>
 <blockquote>
 <p>As far as training compute goes, Amazon SageMaker makes it easier to scale in and
 out the training process for Experimentation. More data and more compute can
@@ -250,16 +246,14 @@ algorithms</a> or a
 <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html">custom
 one</a>.
 Data can be distributed among multiple nodes or can be replicated fully between
-different training jobs.</p>
-</blockquote>
+different training jobs.</p></blockquote>
 <blockquote>
 <p>When it comes to trying out different solutions, Amazon SageMaker allows picking
 from a list of built-in algorithms or customise your model training to your
 needs by enabling custom container approach. Additionally, <a href="https://aws.amazon.com/blogs/machine-learning/use-the-amazon-sagemaker-local-mode-to-train-on-your-notebook-instance/">&ldquo;Local
 Mode&rdquo;</a>
 in SageMaker allows running containers built from your Docker image locally for
-quicker iterations during experimentation.</p>
-</blockquote>
+quicker iterations during experimentation.</p></blockquote>
 <h3 id="build-quality-metrics">Build Quality Metrics</h3>
 <p>If the result of each iteration of an ML build from the same source code (and the
 same version of the data set) can be different, how would we objectively
@@ -272,9 +266,9 @@ released.</p>
 predictions is not the ultimate metric to perfect. The typical example here is
 Fraud Detection. A Model with 100% accurate predictions is really easy to
 build.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#fff;font-weight:bold">def</span> is_fraud(t: TransactionMeta) -&gt; <span style="color:#fff;font-weight:bold">bool</span>:
-  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">True</span>
-</code></pre></div><p>With the above code, 100% all fraudulant transactions can be detected. However,
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#cba6f7">def</span> <span style="color:#89b4fa">is_fraud</span>(t: TransactionMeta) <span style="color:#89dceb;font-weight:bold">-&gt;</span> <span style="color:#89dceb">bool</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">return</span> <span style="color:#fab387">True</span>
+</span></span></code></pre></div><p>With the above code, 100% all fraudulant transactions can be detected. However,
 100% of legitimate transactions will also be marked as fraud and the bank would
 be out of business by the end of the week.</p>
 <p>For a successful Model, all of the following metrics should be understood.</p>
@@ -287,25 +281,25 @@ be out of business by the end of the week.</p>
 <p>For <strong>multi-class classification problems</strong> like these, Machine Learning uses a
 <strong>Confusion Matrix</strong> to better understand the effectiveness of the Model.</p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>Actual <code>Yes</code></th>
-<th>Actual <code>No</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Predicted <code>Yes</code></td>
-<td><strong>True Positive</strong></td>
-<td>False Positive</td>
-</tr>
-<tr>
-<td>Predicted <code>No</code></td>
-<td>False Negative</td>
-<td><strong>True Negative</strong></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>Actual <code>Yes</code></th>
+          <th>Actual <code>No</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Predicted <code>Yes</code></td>
+          <td><strong>True Positive</strong></td>
+          <td>False Positive</td>
+      </tr>
+      <tr>
+          <td>Predicted <code>No</code></td>
+          <td>False Negative</td>
+          <td><strong>True Negative</strong></td>
+      </tr>
+  </tbody>
 </table>
 <p>For this specific case, True Positive and True Negative percentage should be
 high and False Positive and False Negative cases should be low.</p>
@@ -400,23 +394,21 @@ available under tight access control.</p>
 <hr>
 <blockquote>
 <p>More comparison between Machine Learning and Software Development continued
-in the next article.</p>
-</blockquote>
+in the next article.</p></blockquote>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/">&lt; MLOps for Non-ML Engineers 01 - Introduction</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/">MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2022-11-19_mlops-for-non-ml-engineers/">&lt; MLOps for Non-ML Engineers 01 - Introduction</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2022-11-25_mlops-for-non-ml-engineers-03/">MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

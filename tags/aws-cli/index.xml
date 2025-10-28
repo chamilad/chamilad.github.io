@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>aws cli on chamila.dev</title>
+    <title>Aws Cli on chamila.dev</title>
     <link>https://chamila.dev/tags/aws-cli/</link>
-    <description>Recent content in aws cli on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Aws Cli on chamila.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Jun 2024 05:34:43 +1200</lastBuildDate><atom:link href="https://chamila.dev/tags/aws-cli/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 Jun 2024 05:34:43 +1200</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/aws-cli/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Using Multiple AWS CLI Profiles in the Rust AWS SDK</title>
       <link>https://chamila.dev/blog/2024-06-01_rust-profiles-in-aws-sdk/</link>
       <pubDate>Sat, 01 Jun 2024 05:34:43 +1200</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-06-01_rust-profiles-in-aws-sdk/</guid>
-      <description>I wrote a blog post on getting started with Rust AWS SDK a few months ago. I also started my youtube channel with a video on the same topic. If you haven&amp;rsquo;t yet seen it, my channel is sliced array (the name would probably change, but this is good enough for now).
-One of the comments asked about how to use different AWS CLI profiles in the Rust SDK, and I did a follow up video on the topic.</description>
+      <description>&lt;p&gt;I wrote a &lt;a href=&#34;https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/&#34;&gt;blog post on getting started with Rust AWS SDK a few months&#xA;ago&lt;/a&gt;. I&#xA;also started my youtube channel with a video on the same topic. If you haven&amp;rsquo;t&#xA;yet seen it, my channel is &lt;a href=&#34;https://www.youtube.com/channel/UCATSehvfY6mjOHbfYlH7z_A&#34;&gt;&lt;code&gt;sliced array&lt;/code&gt;&lt;/a&gt; (the name would probably change, but&#xA;this is good enough for now).&lt;/p&gt;&#xA;&lt;p&gt;One of the comments asked about how to use different &lt;a href=&#34;https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html&#34;&gt;AWS CLI&#xA;profiles&lt;/a&gt; in the&#xA;Rust SDK, and I did a follow up video on the topic. This post is a&#xA;supplementary post for that video.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

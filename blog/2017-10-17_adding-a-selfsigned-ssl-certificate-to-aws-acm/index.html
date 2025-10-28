@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Adding a Self-Signed SSL Certificate to AWS ACM",
       "headline" : "Adding a Self-Signed SSL Certificate to AWS ACM",
-      "description" : "When setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.\nHowever if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following.",
+      "description" : "\u003cp\u003eWhen setting up AWS Load Balancers (Classic Load Balancers or Application Load Balancers), after adding a HTTPS transport, an SSL Certificate should be added so that SSL termination can be done at the Load Balancer. Here, for development purposes, the certificate added can be a self-signed one.\u003c\/p\u003e\n\u003cp\u003eHowever if you try to upload a self-signed SSL Certificate to IAM or ACM using the AWS Web Console during Load Balancer creation, you will frequently come across an error similar to the following.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -142,8 +142,7 @@ However if you try to upload a self-signed SSL Certificate to IAM or ACM using t
 <p>After a few hours spanning through two days I had enough and had to find a better consistent way to upload a self-signed SSL certificate that worked always. Following is the gist of what I managed to scrape of the web and try myself.</p>
 <p>Following are the steps to generate a temporary self-signed certificate and to add it to AWS Certificate Manager.</p>
 <blockquote>
-<p>Note that these commands were verified in Ubuntu 16.04.</p>
-</blockquote>
+<p>Note that these commands were verified in Ubuntu 16.04.</p></blockquote>
 <ol>
 <li>Generate a private key. Be sure to provide valid (even though false) domain names when needed.</li>
 </ol>
@@ -174,18 +173,17 @@ However if you try to upload a self-signed SSL Certificate to IAM or ACM using t
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/">&lt; Let’s make your Docker Image better than 90% of existing ones</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/">Subject Alternative Names in SSL Certificates &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2017-09-05_lets-make-your-docker-image-better-than-90-percent-of-existing-ones/">&lt; Let’s make your Docker Image better than 90% of existing ones</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/">Subject Alternative Names in SSL Certificates &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

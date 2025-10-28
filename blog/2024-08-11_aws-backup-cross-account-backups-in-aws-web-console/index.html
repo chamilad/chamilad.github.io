@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "AWS Backup Cross-Account Backups in AWS Web Console",
       "headline" : "AWS Backup Cross-Account Backups in AWS Web Console",
-      "description" : "So my last post on AWS Backup uses a lot of Terraform code that I had written even before the post. When doing a video on the subject, I realised that for a beginner, explaining something like AWS Backup with Terraform presents two fronts to understand at the same time.\nSo I\u0026rsquo;m following up with another video and a blog post that does the same demo but only using the AWS Web Console.",
+      "description" : "\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n      \u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/iY8jwTfQCPU?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n    \u003c\/div\u003e\n\n\u003cp\u003eSo my last post on AWS Backup uses a lot of Terraform code that I had written\neven before the post. When doing a video on the subject, I realised that for a\nbeginner, explaining something like AWS Backup with Terraform presents two\nfronts to understand at the same time.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,14 @@
 <title>AWS Backup Cross-Account Backups in AWS Web Console - chamila.dev</title>
   <meta property="og:title" content="AWS Backup Cross-Account Backups in AWS Web Console - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="So my last post on AWS Backup uses a lot of Terraform code that I had written even before the post. When doing a video on the subject, I realised that for a beginner, explaining something like AWS Backup with Terraform presents two fronts to understand at the same time.
-So I&rsquo;m following up with another video and a blog post that does the same demo but only using the AWS Web Console." />
+  <meta name="description" content="
+      
+    
+
+So my last post on AWS Backup uses a lot of Terraform code that I had written
+even before the post. When doing a video on the subject, I realised that for a
+beginner, explaining something like AWS Backup with Terraform presents two
+fronts to understand at the same time." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -148,10 +154,9 @@ So I&rsquo;m following up with another video and a blog post that does the same 
           </div>
         </header>
         <div class="post-content markdown-body">
-          
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/iY8jwTfQCPU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/iY8jwTfQCPU?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <p>So my last post on AWS Backup uses a lot of Terraform code that I had written
 even before the post. When doing a video on the subject, I realised that for a
@@ -174,10 +179,9 @@ out of scope of this aritcle.</p>
 be the cross-account backup vault. If you&rsquo;re unfamiliar with cross-account
 backup concepts, refer to <a href="/blog/2023-02-13_aws-backup-cross-account-backups/">my earlier blog
 post</a> and the video on the subject.</p>
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/u1ohjqhzTvw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/u1ohjqhzTvw?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <p>I&rsquo;ll set up AWS Backup in <code>workload_a</code> to backup resources to the vault in the same
 account, and then make a copy of the backup in the cross-account vault in the
@@ -190,8 +194,7 @@ account, and then make a copy of the backup in the cross-account vault in the
 the following starting key policy.</p>
 <blockquote>
 <p>Dividing your KMS keys along the data classification system you have is
-always a good idea. A single key is being used here for demo purposes only.</p>
-</blockquote>
+always a good idea. A single key is being used here for demo purposes only.</p></blockquote>
 <p><img src="/blog/img/2024-08-11_backup5.png" alt=""></p>
 <p>A separate KMS key is used to encrypt the Backup Vault contents.</p>
 <p><img src="/blog/img/2024-08-11_backup6.png" alt=""></p>
@@ -220,8 +223,7 @@ it.</p>
 <blockquote>
 <p>The same policy has to be added to the source vaults if recovery points need
 to be copied across accounts. We&rsquo;ll do this when we get back to the
-<code>workload_a</code> account.</p>
-</blockquote>
+<code>workload_a</code> account.</p></blockquote>
 <p>After the vault is created, two information from this vault is needed for the
 Backup Plans to be successfully set up for cross-account backups.</p>
 <ol>
@@ -237,15 +239,13 @@ decrypt the content before copying them over.</li>
 <blockquote>
 <p>If this role cannot be found in IAM (which is highly unlikely if you&rsquo;re
 following this in order), visit the AWS Backup Console in that account.
-Chances are, AWS Backup hasn&rsquo;t been visited for this to be created yet.</p>
-</blockquote>
+Chances are, AWS Backup hasn&rsquo;t been visited for this to be created yet.</p></blockquote>
 <h3 id="creating-the-backup-plan">Creating the Backup Plan</h3>
 <p>Then it&rsquo;s time to create a Backup Plan so that the resources, the DynamoDB
 table, and the RDS instance, will be included in backup jobs.</p>
 <blockquote>
 <p>These concepts are discussed in depth in the previous articles I wrote and
-the videos I did on the topic.</p>
-</blockquote>
+the videos I did on the topic.</p></blockquote>
 <p>In the <code>workload_a</code> account, go to the Backup console, and select &ldquo;Create
 backup plan&rdquo; in &ldquo;Backup Plans&rdquo; section.</p>
 <p><img src="/blog/img/2024-08-11_backup14.png" alt=""></p>
@@ -319,35 +319,35 @@ service-linked Role for Backup in the <code>workload_a</code> account for the fi
 statement, and the ARN of the service-linked Role for Backup in the <code>prod</code>
 account that was copied in the step that created the
 vault in the <code>backup</code> account)</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Enable in account Backup service specific encryption&#34;</span>,
-    <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
-    <span style="font-weight:bold">&#34;Principal&#34;</span>: {
-        <span style="font-weight:bold">&#34;AWS&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;&lt;ARN of the service-linked role for Backup in workload_a account&gt;&#34;</span>
-    },
-    <span style="font-weight:bold">&#34;Action&#34;</span>: [
-        <span style="color:#0ff;font-weight:bold">&#34;kms:GenerateDataKey&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:DescribeKey&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:Decrypt&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:Encrypt&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:CreateGrant&#34;</span>
-    ],
-    <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
-}<span style="color:#f00">,</span>
-{
-    <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow cross-account backup service specific encryption&#34;</span>,
-    <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
-    <span style="font-weight:bold">&#34;Principal&#34;</span>: {
-        <span style="font-weight:bold">&#34;AWS&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;&lt;ARN of the service-linked role for Backup in backup account&gt;&#34;</span>
-    },
-    <span style="font-weight:bold">&#34;Action&#34;</span>: [
-        <span style="color:#0ff;font-weight:bold">&#34;kms:GenerateDataKey&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:DescribeKey&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:Decrypt&#34;</span>,
-        <span style="color:#0ff;font-weight:bold">&#34;kms:CreateGrant&#34;</span>
-    ],
-    <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>
-}<span style="color:#f00">,</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;Enable in account Backup service specific encryption&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Principal&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;AWS&#34;</span>: <span style="color:#a6e3a1">&#34;&lt;ARN of the service-linked role for Backup in workload_a account&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:GenerateDataKey&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:DescribeKey&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:Decrypt&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:Encrypt&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:CreateGrant&#34;</span>
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Resource&#34;</span>: <span style="color:#a6e3a1">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>}<span style="color:#f38ba8">,</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;Allow cross-account backup service specific encryption&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Principal&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;AWS&#34;</span>: <span style="color:#a6e3a1">&#34;&lt;ARN of the service-linked role for Backup in backup account&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:GenerateDataKey&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:DescribeKey&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:Decrypt&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e3a1">&#34;kms:CreateGrant&#34;</span>
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Resource&#34;</span>: <span style="color:#a6e3a1">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>}<span style="color:#f38ba8">,</span></span></span></code></pre></div>
 <h2 id="monitoring-backup-process">Monitoring Backup Process</h2>
 <p>Now that the vaults and the backup plans are created, and permissions are taken
 care of, AWS Backup will start executing Backup jobs in the scheduled window.
@@ -377,18 +377,17 @@ I&rsquo;ll follow this up with a video and an article on those areas soon.</p>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-06-01_rust-profiles-in-aws-sdk/">&lt; Using Multiple AWS CLI Profiles in the Rust AWS SDK</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-09-23_aws-backup-restoring-data-and-automated-restore-testing/">AWS Backup: Restoring Data and Automated Restore Testing &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-06-01_rust-profiles-in-aws-sdk/">&lt; Using Multiple AWS CLI Profiles in the Rust AWS SDK</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-09-23_aws-backup-restoring-data-and-automated-restore-testing/">AWS Backup: Restoring Data and Automated Restore Testing &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

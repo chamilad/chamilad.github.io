@@ -4,17 +4,16 @@
     <title>Secret Rotation on chamila.dev</title>
     <link>https://chamila.dev/tags/secret-rotation/</link>
     <description>Recent content in Secret Rotation on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Nov 2022 07:09:49 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/secret-rotation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Nov 2022 07:09:49 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/secret-rotation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rotating AWS Secrets Manager Secrets with Lambda</title>
       <link>https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/</link>
       <pubDate>Tue, 01 Nov 2022 07:09:49 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2022-11-01_rotating-aws-secrets-manager-secrets-with-lambda/</guid>
-      <description>Again, the only photo with me for now that&amp;#39;s closest to the theme, a spider weaving a trap near Manigala, Sri Lanka   Secrets Manager secret types AWS Secret Manager supports a several types of secrets. These are mainly to support effective secret management by integrating them closer with the AWS Services they support. These are mainly various types of database services offered by AWS, which is one of the key uses for using Secrets Manager to manage master credentials.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2022-11-01_secret_heading.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Again, the only photo with me for now that&amp;#39;s closest to the theme, a spider weaving a trap near Manigala, Sri Lanka&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;h2 id=&#34;secrets-manager-secret-types&#34;&gt;Secrets Manager secret types&lt;/h2&gt;&#xA;&lt;p&gt;AWS Secret Manager supports a several types of secrets. These are mainly to&#xA;support effective secret management by integrating them closer with the AWS&#xA;Services they support. These are mainly various types of database services&#xA;offered by AWS, which is one of the key uses for using Secrets Manager to&#xA;manage master credentials.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

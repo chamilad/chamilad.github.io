@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.151.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://chamila.dev/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes---trying-to-reproduce-the-tea-app-situation/" />
+  <link rel="canonical" href="https://chamila.dev/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes---trying-to-reproduce-the-tea-app-situation/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/chamila.dev\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Is it that easy to make stupid mistakes? - Trying to Reproduce the Tea App Situation",
+      "headline" : "Is it that easy to make stupid mistakes? - Trying to Reproduce the Tea App Situation",
+      "description" : "\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n      \u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/yzV3hzhNmc4?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n    \u003c\/div\u003e\n\n\u003cp\u003eTea app getting hacked is an interesting case.\u003c\/p\u003e\n\u003cp\u003eIt\u0026rsquo;s not technically a hack. No existing security measures were breached, there wasn\u0026rsquo;t any complicated\nsocial engineering, or zero-days or unpatched CVEs getting exploited. What\nhappened is what\u0026rsquo;s called a Data Extraction. Data that should have been private\nwas public, and naturally, people extracted it, twice!!\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-08-05 16:28:16 \u002b1200 NZST",
+      "dateModified" : "2025-08-05 16:28:16 \u002b1200 NZST",
+      "url" : "https:\/\/chamila.dev\/blog\/2025-08-05_is-it-that-easy-to-make-stupid-mistakes---trying-to-reproduce-the-tea-app-situation\/",
+      "keywords" : [ "", ]
+  }
+</script>
+<title>Is it that easy to make stupid mistakes? - Trying to Reproduce the Tea App Situation - chamila.dev</title>
+  <meta property="og:title" content="Is it that easy to make stupid mistakes? - Trying to Reproduce the Tea App Situation - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="
+      
+    
+
+Tea app getting hacked is an interesting case.
+It&rsquo;s not technically a hack. No existing security measures were breached, there wasn&rsquo;t any complicated
+social engineering, or zero-days or unpatched CVEs getting exploited. What
+happened is what&rsquo;s called a Data Extraction. Data that should have been private
+was public, and naturally, people extracted it, twice!!" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="https://chamila.dev/">chamila.dev</a> >
+      <a href="https://chamila.dev//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Is it that easy to make stupid mistakes? - Trying to Reproduce the Tea App Situation</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2025-08-05 16:28:16 NZST">
+                05 Aug 2025
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~7 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents"></nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/yzV3hzhNmc4?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+<p>Tea app getting hacked is an interesting case.</p>
+<p>It&rsquo;s not technically a hack. No existing security measures were breached, there wasn&rsquo;t any complicated
+social engineering, or zero-days or unpatched CVEs getting exploited. What
+happened is what&rsquo;s called a Data Extraction. Data that should have been private
+was public, and naturally, people extracted it, twice!!</p>
+<p>Typically, when any solution
+worth its salt goes into production (i.e. subjected to government oversight, has some regulatory
+pressure, or has some critical impact on a business), it
+gets a risk evaluation, and Data Extraction is a key risk that gets focus. For
+an example, it&rsquo;s usually why you don&rsquo;t get to use production data in test
+environments (however much the developers complain).</p>
+<p>But it turns out, no one at Tea ever thought of risk. There&rsquo;s
+even some rumours that say the whole app was vibe coded, which I&rsquo;m not sure is
+100% correct. But it is pretty clear that people in charge over there had no
+experience or qualifications to handle data as sensitive as the ones they
+requested from the users.</p>
+<p>The first hack happened because of a storage bucket that had public access
+enabled. I couldn&rsquo;t find exactly why the second hack happened, but it looks
+like the database was also publicly accessible.</p>
+<p>So as someone who&rsquo;s obsessed with software and cloud architecture, I was
+flabbergasted (no way I&rsquo;m saying this in the video) on how people keep making
+this mistake. Even a brief study of basic cloud architecture concepts
+grills you on why public access for resources that contain private data is a
+very bad idea. You don&rsquo;t have to be a genius to understand that just because a
+bucket name is randomised does not mean it&rsquo;s secure. You don&rsquo;t randomise the
+location of your windows and keep them open, hoping the thieves won&rsquo;t check
+every one of them.</p>
+<p>So, I kinda wanted to reproduce what happened at Tea. Although I don&rsquo;t know
+exactly what went down, I&rsquo;m going to make some assumptions.</p>
+<ol>
+<li>Some level of &ldquo;vibe-coding&rdquo; happened (undesigned code and systems)</li>
+<li>data was publicly available, either iterated or mass downloaded (it actually
+looks like there was a public descriptor file or payload that contained URLs
+of the files)</li>
+<li>Minimal security reviews were done (I can&rsquo;t believe NO security review was
+done, no one could be that stupid, right?&hellip; right?)</li>
+</ol>
+<p>So I went ahead and vibe coded a simple web app. It&rsquo;s a bare bones, login,
+upload photos, and view them back workflow.</p>
+<p><img src="/blog/img/2025-08-05_1.png" alt="Greentea Web App"></p>
+<blockquote>
+<p>The code is available at <a href="https://github.com/chamilad/greentea">my Github profile</a></p></blockquote>
+<p>The prompt I provided is something along the lines of <em>&ldquo;make a web app that a
+user can login and upload photos. They should be able to view the photos they
+uploaded. Use firebase as the backend. Vite+React as the frontend&rdquo;</em></p>
+<blockquote>
+<p>Tea used Firebase as the backend, and looks like both the database and the
+storage bucket was open for public access.</p></blockquote>
+<p>I&rsquo;m emphasising the fact that I &ldquo;vibe-coded&rdquo; this, because I want to show that
+there was no explicit software or cloud architecture design before the
+application. Just a couple of business requirements along with one technical
+directive to use Firebase and vite+react.</p>
+<p>What ended up getting generated was something like this.</p>
+<p><img src="/blog/img/2025-08-05_2.png" alt="Firebase Architecture"></p>
+<p>The model(s) pretty much got the code right in the first run (except for a
+couple of manual fixes), and I was soon posting images to my own gossip site.
+I was even provided really straightforward information on how to set access
+rules on the Storage Bucket and the Database.</p>
+<pre tabindex="0"><code>service firebase.storage {
+  match /b/{bucket}/o {
+    match /photos/{userId}/{allPaths=**} {
+      allow read, write: if request.auth != null &amp;&amp; request.auth.uid == userId;
+    }
+  }
+}
+</code></pre><p>In fact, when I was creating the Storage Bucket and the Database, Firebase itself locks down the
+resources with private-by-default rules.</p>
+<p><img src="/blog/img/2025-08-05_3.png" alt="Production Database Rules"></p>
+<p>You really can&rsquo;t go wrong with all the signals being sent your way. DON&rsquo;T OPEN
+THIS UP!</p>
+<p>Now I did notice that the code that was generated in the first run used
+<a href="https://firebase.google.com/docs/storage/web/download-files"><code>getDownloadURL()</code></a> to generate an authenticated temporary URL for a given
+storage object. This returns a URL that contains an opaque security token,
+which can be used by an unauthenticated user. This is similar to Signed URLs in
+S3 where the credentials that generate the URL are &ldquo;contained&rdquo; in the URL
+itself.</p>
+<blockquote>
+<p>Yes, yes, I know it&rsquo;s not the credentials themselves in the URL, out of scope
+for now.</p></blockquote>
+<p>So was that how the data got leaked? That can&rsquo;t be, because you need to be
+authenticated already to generate this URL, and then you need to iterate
+through every user login to get all the files.</p>
+<p>But I wanted to plug that hole (I think it can be argued that this is
+not a hole per se, but let&rsquo;s be secure anyways), so I switched to (or asked the
+model to switch to) using <code>getBlob()</code> or <code>getBytes()</code> functions that directly
+downloads the file, instead of generating a URL for the browser to load.</p>
+<p>There, a reasonably secure web app. Not so hard now, was it?</p>
+<blockquote>
+<p>Okay, if someone competent points Burp Suite at this, there&rsquo;s bound to be
+some pretty horrific findings, but let&rsquo;s go with the assumption that minimal
+security reviews were done. Someone could&rsquo;ve actually looked at the Network
+tab in the browser dev console.</p></blockquote>
+<p>Well, I was still not sure how a mind-bogglingly stupid mistake like keeping a
+Firebase Storage bucket public happened. I was careless, did minimal security
+review, and was still able to focus on potential issues, all within a couple of
+hours of vibe coding, reading documentation, and just general software
+engineering practice.</p>
+<blockquote>
+<p>Okay, again, granted, this &ldquo;experiment&rdquo; is flawed from the start, can&rsquo;t get
+rid of the bias against making the specific mistake, but I&rsquo;m not trying to be
+unbiased, I&rsquo;m trying to prove a point.</p></blockquote>
+<p>See, the general security practices are not bound to any Cloud provider
+implementation. You don&rsquo;t have to be a GCP/Firebase expert to understand that
+data classified as PII should not be available on a public bucket. In fact, the
+people who usually check for these kinds of gaps, information security
+auditors, tend to be less technical than regular softwre/cloud engineers. If
+anyone with an inkling of software security risks had one meeting with an
+engineer with a structured set of controls (ISO27001, CPRA anything!) to
+consider the risks the company faces with their engineering practices, this
+situation could have been avoided. It looks like the founders are based in
+California, so during funding no one who gave out their money did due
+diligence?</p>
+<p>I wanted to prove my point more. It doesn&rsquo;t matter which tech stack you use,
+security is security! I vibe coded the same app using AWS services, S3, Amplify,
+DynamoDB, AppSync, and Cognito.</p>
+<p><img src="/blog/img/2025-08-05_4.png" alt="Amplify Architecture"></p>
+<p><img src="/blog/img/2025-08-05_5.png" alt="Reusing jokes now"></p>
+<p>Amplify Storage <code>getUrl()</code> function is similar to <code>getDownloadURL()</code> function
+in Firebase, and generates a short lived S3 Signed URL to access the photos. I
+didn&rsquo;t bother locking down access to photos to each user, because that point is
+already driven into the wall. Just a matter of fixing the Bucket policy.</p>
+<p>There&rsquo;s some Cognito Identity Pool stuff happening that I would&rsquo;ve handled in
+the software, but for a vibe-coded app, this is still enough security to tick
+off most standard risks and controls.</p>
+<p>So what did we learn?</p>
+<p>First lesson is that security is not technical. You don&rsquo;t have to be someone
+who codes for a living to understand that PII in a public bucket is a very bad
+idea. In fact, I&rsquo;d even say, most coders are ill-equipped to understand this fact.</p>
+<p>Taking even a stricter position, I&rsquo;d say any public storage bucket is a bad
+idea from its inception. Unless the data you&rsquo;re going to put in that bucket
+should be available for any person on earth, <strong>you should not make a bucket
+publicly accessible</strong>. If you&rsquo;ve thought <em>maybe I should make the bucket
+public for this</em>, you&rsquo;ve already fucked up. Accept the fact, reverse, and fix
+course.</p>
+<p>AI is not going to fix stupid, no matter how many agents you put in charge with
+a &ldquo;spec&rdquo; in hand. Hire an architect, control the overeager product manager, and
+focus a bit on the legal and regulatory pressures your business faces.</p>
+<p>In fact, it&rsquo;s really hard to make a blunder like this in regular software
+engineering practices. The app I built is really simple, but for a more complex
+application there&rsquo;s bound to be &ldquo;a couple of more passes&rdquo; over this part of the
+architecture. So this decision to make the bucket and the database public has
+to be a deliberate decision, which means, some dumbass out there thought they&rsquo;d
+keep these resources public without the hackers finding out.</p>
+<blockquote>
+<p>I know the words I&rsquo;m using are a bit stronger than usual, but when you make
+photos with EXIF data from your users available for <strong>EVERYONE</strong> to download,
+some stern discussion is needed.</p></blockquote>
+<p>So remember kids, hire a good cloud architect and avoid potential jail time.</p>
+<p>That&rsquo;s it, no outro.</p>
+
+        </div>
+        <div class="prev-next row">
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/">&lt; AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA)</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2025-08-13_how-to-build-secure-cloud-applications/">How to Securely Design and Build Cloud Applications &gt;</a>
+    
+  </div>
+</div>
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2025-03-10_aws-authentication-for-k8s-iam-roles-for-service-accounts-irsa/">AWS Authentication for K8s: IAM Roles for Service Accounts (IRSA)</a></li>
+    
+    <li><a href="/blog/2024-11-17_becoming-a-cncf-kubestronaut/">Becoming a CNCF Kubestronaut</a></li>
+    
+    <li><a href="/blog/2024-10-28_completing-11-professional-certifications-in-8-weeks/">Completing 11 Professional Certifications in 8 Weeks</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="https://chamila.dev//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

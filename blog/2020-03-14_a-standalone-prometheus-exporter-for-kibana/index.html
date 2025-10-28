@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -135,124 +135,120 @@
         </header>
         <div class="post-content markdown-body">
           <p>I wrote a <a href="https://github.com/chamilad/kibana-prometheus-exporter">Prometheus Exporter that converts and exposes some metrics from Kibana API</a>. This was mostly inspired by <a href="https://github.com/pjhampton/kibana-prometheus-exporter/">an already existing Exporter</a>, that needs to be installed in Kibana as a Plugin. While that is a neat feature, managed ELK services like ElasticSearch Service by Elastic (commonly known as ElasticCloud) require another, more standalone approach.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password
-</code></pre></div><p>The Exporter is pretty basic one written in less than 500 lines of collective Go code. The following metrics are exposed to be scraped by Prometheus.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kibana-exporter -kibana.uri http://localhost:5601 -kibana.username elastic -kibana.password password
+</span></span></code></pre></div><p>The Exporter is pretty basic one written in less than 500 lines of collective Go code. The following metrics are exposed to be scraped by Prometheus.</p>
 <table>
-<thead>
-<tr>
-<th>Metric</th>
-<th>Description</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>kibana_status</code></td>
-<td>Kibana overall status</td>
-<td>Gauge</td>
-</tr>
-<tr>
-<td><code>kibana_concurrent_connections</code></td>
-<td>Kibana Concurrent Connections</td>
-<td>Gauge</td>
-</tr>
-<tr>
-<td><code>kibana_millis_uptime</code></td>
-<td>Kibana uptime in milliseconds</td>
-<td>Gauge</td>
-</tr>
-<tr>
-<td><code>kibana_heap_max_in_bytes</code></td>
-<td>Kibana Heap maximum in bytes</td>
-<td>Gauge</td>
-</tr>
-<tr>
-<td><code>kibana_heap_used_in_bytes</code></td>
-<td>Kibana Heap usage in bytes</td>
-<td>Gauge</td>
-</tr>
-<tr>
-<td><code>kibana_os_load_1m</code></td>
-<td>Kibana load average 1m</td>
-<td>Gauge</td>
-</tr>
-<tr>
-<td><code>kibana_os_load_5m</code></td>
-<td>Kibana load average 5m</td>
-<td>Gauge</td>
-</tr>
-<tr>
-<td><code>kibana_os_load_15m</code></td>
-<td>Kibana load average 15m</td>
-<td>Gauge</td>
-</tr>
-<tr>
-<td><code>kibana_response_average</code></td>
-<td>Kibana average response time in milliseconds</td>
-<td>Gauge</td>
-</tr>
-<tr>
-<td><code>kibana_response_max</code></td>
-<td>Kibana maximum response time in milliseconds</td>
-<td>Gauge</td>
-</tr>
-<tr>
-<td><code>kibana_requests_disconnects</code></td>
-<td>Kibana request disconnections count</td>
-<td>Gauge</td>
-</tr>
-<tr>
-<td><code>kibana_requests_total</code></td>
-<td>Kibana total request count</td>
-<td>Gauge</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Metric</th>
+          <th>Description</th>
+          <th>Type</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>kibana_status</code></td>
+          <td>Kibana overall status</td>
+          <td>Gauge</td>
+      </tr>
+      <tr>
+          <td><code>kibana_concurrent_connections</code></td>
+          <td>Kibana Concurrent Connections</td>
+          <td>Gauge</td>
+      </tr>
+      <tr>
+          <td><code>kibana_millis_uptime</code></td>
+          <td>Kibana uptime in milliseconds</td>
+          <td>Gauge</td>
+      </tr>
+      <tr>
+          <td><code>kibana_heap_max_in_bytes</code></td>
+          <td>Kibana Heap maximum in bytes</td>
+          <td>Gauge</td>
+      </tr>
+      <tr>
+          <td><code>kibana_heap_used_in_bytes</code></td>
+          <td>Kibana Heap usage in bytes</td>
+          <td>Gauge</td>
+      </tr>
+      <tr>
+          <td><code>kibana_os_load_1m</code></td>
+          <td>Kibana load average 1m</td>
+          <td>Gauge</td>
+      </tr>
+      <tr>
+          <td><code>kibana_os_load_5m</code></td>
+          <td>Kibana load average 5m</td>
+          <td>Gauge</td>
+      </tr>
+      <tr>
+          <td><code>kibana_os_load_15m</code></td>
+          <td>Kibana load average 15m</td>
+          <td>Gauge</td>
+      </tr>
+      <tr>
+          <td><code>kibana_response_average</code></td>
+          <td>Kibana average response time in milliseconds</td>
+          <td>Gauge</td>
+      </tr>
+      <tr>
+          <td><code>kibana_response_max</code></td>
+          <td>Kibana maximum response time in milliseconds</td>
+          <td>Gauge</td>
+      </tr>
+      <tr>
+          <td><code>kibana_requests_disconnects</code></td>
+          <td>Kibana request disconnections count</td>
+          <td>Gauge</td>
+      </tr>
+      <tr>
+          <td><code>kibana_requests_total</code></td>
+          <td>Kibana total request count</td>
+          <td>Gauge</td>
+      </tr>
+  </tbody>
 </table>
 <p>The Exporter is distributed as a statically linked binary that can be started with no dependencies. In addition to the binaries that can be found <a href="https://github.com/chamilad/kibana-prometheus-exporter/releases">on the GitHub releases page</a>, the Exporter is also distributed <a href="https://hub.docker.com/r/chamilad/kibana-prometheus-exporter">as a Docker image on Docker Hub</a>. How to use, report bugs, and contribute can be found on the <a href="https://github.com/chamilad/kibana-prometheus-exporter/blob/master/README.md">project README</a>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -p 9684:9684 -it chamilad/kibana-prometheus-exporter:v7.5.x.1 -kibana.username elastic -kibana.password password -kibana.uri https://elasticcloud.kibana.aws.found.io
-</code></pre></div><p>Additionally, definitions for a K8s Deployment and a Service is also provided that may be of help to quickly deploy this Exporter in a K8s environment. When done so, the following Prometheus scrape config can be used to collect metrics.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    - <span style="font-weight:bold">job_name</span>: <span style="color:#0ff;font-weight:bold">&#34;kibana&#34;</span>
-      <span style="font-weight:bold">scrape_interval</span>: 1m
-      <span style="font-weight:bold">metrics_path</span>: <span style="color:#0ff;font-weight:bold">&#34;/metrics&#34;</span>
-      <span style="font-weight:bold">kubernetes_sd_configs</span>:
-        - <span style="font-weight:bold">role</span>: service
-      <span style="font-weight:bold">relabel_configs</span>:
-        - <span style="font-weight:bold">source_labels</span>: [__meta_kubernetes_service_label_app]
-          <span style="font-weight:bold">regex</span>: <span style="color:#0ff;font-weight:bold">&#34;kibana-exporter&#34;</span>
-          <span style="font-weight:bold">action</span>: keep
-        - <span style="font-weight:bold">source_labels</span>: [__meta_kubernetes_namespace]
-          <span style="font-weight:bold">action</span>: replace
-          <span style="font-weight:bold">target_label</span>: kubernetes_namespace
-        - <span style="font-weight:bold">source_labels</span>: [__address__, __meta_kubernetes_service_annotation_prometheus_io_port]
-          <span style="font-weight:bold">target_label</span>: __address__
-          <span style="font-weight:bold">regex</span>: ([^:]+)(?::\d+)?;(\d+)
-          <span style="font-weight:bold">replacement</span>: $1:$2
-</code></pre></div><p>If you don&rsquo;t like my project, you can checkout others on the <a href="https://github.com/prometheus/prometheus/wiki/Default-port-allocations">Prometheus Exporter Collection page</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -p 9684:9684 -it chamilad/kibana-prometheus-exporter:v7.5.x.1 -kibana.username elastic -kibana.password password -kibana.uri https://elasticcloud.kibana.aws.found.io
+</span></span></code></pre></div><p>Additionally, definitions for a K8s Deployment and a Service is also provided that may be of help to quickly deploy this Exporter in a K8s environment. When done so, the following Prometheus scrape config can be used to collect metrics.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    - <span style="color:#cba6f7">job_name</span>: <span style="color:#a6e3a1">&#34;kibana&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">scrape_interval</span>: 1m
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">metrics_path</span>: <span style="color:#a6e3a1">&#34;/metrics&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">kubernetes_sd_configs</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#cba6f7">role</span>: service
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">relabel_configs</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#cba6f7">source_labels</span>: [__meta_kubernetes_service_label_app]
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">regex</span>: <span style="color:#a6e3a1">&#34;kibana-exporter&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">action</span>: keep
+</span></span><span style="display:flex;"><span>        - <span style="color:#cba6f7">source_labels</span>: [__meta_kubernetes_namespace]
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">action</span>: replace
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">target_label</span>: kubernetes_namespace
+</span></span><span style="display:flex;"><span>        - <span style="color:#cba6f7">source_labels</span>: [__address__, __meta_kubernetes_service_annotation_prometheus_io_port]
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">target_label</span>: __address__
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">regex</span>: ([^:]+)(?::\d+)?;(\d+)
+</span></span><span style="display:flex;"><span>          <span style="color:#cba6f7">replacement</span>: $1:$2
+</span></span></code></pre></div><p>If you don&rsquo;t like my project, you can checkout others on the <a href="https://github.com/prometheus/prometheus/wiki/Default-port-allocations">Prometheus Exporter Collection page</a>.</p>
 <p>Enjoy!</p>
 <blockquote>
-<p>Why did I write one? Especially in this day and age where Prometheus Client Libraries enable any code base to easily integrate <a href="https://github.com/prometheus/docs/blob/master/content/docs/instrumenting/exposition_formats.md">OpenMetrics format</a> into their metrics subsystem? Why doesn&rsquo;t Elastic expose their metrics in OpenMetrics format, or at least enable a configuration that a user can select out of?</p>
-</blockquote>
+<p>Why did I write one? Especially in this day and age where Prometheus Client Libraries enable any code base to easily integrate <a href="https://github.com/prometheus/docs/blob/master/content/docs/instrumenting/exposition_formats.md">OpenMetrics format</a> into their metrics subsystem? Why doesn&rsquo;t Elastic expose their metrics in OpenMetrics format, or at least enable a configuration that a user can select out of?</p></blockquote>
 <blockquote>
-<p><a href="https://github.com/elastic/beats/issues/7432">Looking at discussions that the user community and Elastic has had in the past</a> this topic can be seen to have gone off topic really quickly. Metricbeat, which doesn&rsquo;t offer any Prometheus output, is recommended as the way to collect ELK metrics. However, most deployments really don&rsquo;t want to use multiple solutions in their monitoring stack. I understand the value of tier differentiators, however, if you&rsquo;re producing <a href="https://www.elastic.co/blog/elasticsearch-observability-embracing-prometheus-and-openmetrics-standards-for-metrics">writings about &ldquo;embracing&rdquo; Prometheus</a>, you might as well meet halfway and provide integrations towards that side too.</p>
-</blockquote>
+<p><a href="https://github.com/elastic/beats/issues/7432">Looking at discussions that the user community and Elastic has had in the past</a> this topic can be seen to have gone off topic really quickly. Metricbeat, which doesn&rsquo;t offer any Prometheus output, is recommended as the way to collect ELK metrics. However, most deployments really don&rsquo;t want to use multiple solutions in their monitoring stack. I understand the value of tier differentiators, however, if you&rsquo;re producing <a href="https://www.elastic.co/blog/elasticsearch-observability-embracing-prometheus-and-openmetrics-standards-for-metrics">writings about &ldquo;embracing&rdquo; Prometheus</a>, you might as well meet halfway and provide integrations towards that side too.</p></blockquote>
 <blockquote>
-<p>As someone who would really like to integrate rather than code something new, writing a Prometheus Exporter is not fun (although coding itself is something I enjoy). That is why I felt this post should end with a rant.</p>
-</blockquote>
+<p>As someone who would really like to integrate rather than code something new, writing a Prometheus Exporter is not fun (although coding itself is something I enjoy). That is why I felt this post should end with a rant.</p></blockquote>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/">&lt; Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/">CI/CD for Apache Nifi 01 - Introduction and Set up &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03---multi-tenancy-with-keycloak-and-kibana/">&lt; Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2021-07-17_ci-cd-for-apache-nifi-01-intro-and-setup/">CI/CD for Apache Nifi 01 - Introduction and Set up &gt;</a>
+    
+  </div>
 </div>
-
 
         
 
@@ -262,11 +258,11 @@
   <h3>Related Posts</h3>
   <ul>
     
-    <li><a href="/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana/">Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</a></li>
+    <li><a href="/blog/2020-02-12_authentication-and-authorization-for-elasticsearch-03---multi-tenancy-with-keycloak-and-kibana/">Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana</a></li>
     
-    <li><a href="/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment/">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</a></li>
+    <li><a href="/blog/2020-02-10_authentication-and-authorization-for-elasticsearch-02---basic-sso-with-role-assignment/">Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment</a></li>
     
-    <li><a href="/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso/">Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</a></li>
+    <li><a href="/blog/2019-11-27_authentication-and-authorization-for-elasticsearch-01---a-blueprint-for-multi-tenant-sso/">Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO</a></li>
     
   </ul>
 </div>

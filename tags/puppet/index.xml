@@ -4,50 +4,37 @@
     <title>Puppet on chamila.dev</title>
     <link>https://chamila.dev/tags/puppet/</link>
     <description>Recent content in Puppet on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Jul 2017 11:40:50 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/puppet/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:14:53 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/puppet/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Infrastructure as Code : AWS CloudFormation</title>
       <link>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</link>
       <pubDate>Mon, 03 Jul 2017 11:40:50 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-07-03_infrastructure-as-code-aws-cloudformation/</guid>
-      <description>This blog post is based on a talk I did on AWS CloudFormation as an introduction.
-  The case for Infrastructure as Code Imagine a typical deployment of a software stack. The process might look like the following.
- Design solution architecture Estimate infrastructure specs Configure compute, network, and database resources manually Deploy the applications and prepare databases Test and ship  Pretty simple from the looks of it doesn’t it?</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This blog post is based on a talk I did on AWS CloudFormation as an introduction.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;iframe src=&#34;https://www.slideshare.net/slideshow/embed_code/key/8br68UFQtb7qpF&#34; width=&#34;595&#34; height=&#34;485&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; &#34; allowfullscreen&gt; &lt;/iframe&gt;&#xA;&lt;h4 id=&#34;the-case-for-infrastructure-ascode&#34;&gt;The case for Infrastructure as Code&lt;/h4&gt;&#xA;&lt;p&gt;Imagine a typical deployment of a software stack. The process might look like the following.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Design solution architecture&lt;/li&gt;&#xA;&lt;li&gt;Estimate infrastructure specs&lt;/li&gt;&#xA;&lt;li&gt;Configure compute, network, and database resources manually&lt;/li&gt;&#xA;&lt;li&gt;Deploy the applications and prepare databases&lt;/li&gt;&#xA;&lt;li&gt;Test and ship&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Pretty simple from the looks of it doesn’t it? The catch is this. This is just half of the solution maintenance. There are several more scenarios involved that can quickly turn this in to a complex fragile piece of engineering.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Running WSO2 Products on Kubernetes</title>
       <link>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</link>
       <pubDate>Tue, 09 Feb 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2016-02-09_running-wso2-products-on-kubernetes/</guid>
-      <description>Running WSO2 Products on Kubernetes
- Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.
- It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!</description>
+      <description>&lt;p&gt;Running WSO2 Products on Kubernetes&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Please note that the following article has ‘expired’ in terms of accuracy when it comes to the artifacts used and the way things are done. WSO2 has made many improvements on top the configurations mentioned below and how to manipulate those artifacts might have been changed since.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;It’s 2016. Kubernetes needs no introduction. Neither does WSO2, so let’s get to the point. Let’s run WSO2 Identity Server on Kubernetes!&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2</title>
       <link>https://chamila.dev/blog/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</link>
       <pubDate>Sat, 21 Mar 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</guid>
-      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the &lt;a href=&#34;https://chamila.dev/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz&#34;&gt;first article&lt;/a&gt;?&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the &lt;a href=&#34;http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-instance-configuration-by-puppet/&#34;&gt;last article&lt;/a&gt;, Puppet can be used to install, configure and start the Cartridge Agent. In this article, we will discuss how this is done in detail.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Apache Stratos Cartridge Agent: Instance Configuration by Puppet 1</title>
       <link>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</link>
       <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</guid>
-      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the &lt;a href=&#34;https://chamila.dev/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz&#34;&gt;first article&lt;/a&gt;?&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance. So how does the actual configuration of a spawned Virtual Machine happen? (We will discuss the exciting Kubernetes + Docker work flow separately)&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

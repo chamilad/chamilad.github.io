@@ -4,18 +4,16 @@
     <title>Thrift on chamila.dev</title>
     <link>https://chamila.dev/tags/thrift/</link>
     <description>Recent content in Thrift on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Oct 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/thrift/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:14:06 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/thrift/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Thrift Communication in Apache Stratos</title>
       <link>https://chamila.dev/blog/2014-10-10_thrift-communication-in-apache-stratos/</link>
       <pubDate>Fri, 10 Oct 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2014-10-10_thrift-communication-in-apache-stratos/</guid>
-      <description>In Apache Stratos, data publishing over Thrift is done via streaming. It uses WSO2 Carbon’s Data Bridge to serialize data in to a stream and publish to a given IP address and a Port. The use of DataBridge is explained here.
-Stream Definition In order to publish data as a stream, the definition of the particular stream should be defined first. This is achieved using the org.wso2.carbon.databridge.commons.StreamDefinition class. The list of attributes that will be written to the stream is defined using a StreamDefinition object to be assigned to a particular DataPublisher.</description>
+      <description>&lt;p&gt;In Apache Stratos, data publishing over Thrift is done via streaming. It uses WSO2 Carbon’s Data Bridge to serialize data in to a stream and publish to a given IP address and a Port. The use of DataBridge is explained &lt;a href=&#34;http://wso2.com/library/articles/2012/07/creating-custom-agents-publish-events-bamcep/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h3 id=&#34;stream-definition&#34;&gt;Stream Definition&lt;/h3&gt;&#xA;&lt;p&gt;In order to publish data as a stream, the definition of the particular stream should be defined first. This is achieved using the &lt;strong&gt;org.wso2.carbon.databridge.commons.StreamDefinition&lt;/strong&gt; class. The list of attributes that will be written to the stream is defined using a StreamDefinition object to be assigned to a particular DataPublisher.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

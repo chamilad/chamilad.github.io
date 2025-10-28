@@ -4,78 +4,58 @@
     <title>Apache Stratos on chamila.dev</title>
     <link>https://chamila.dev/tags/apache-stratos/</link>
     <description>Recent content in Apache Stratos on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Nov 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/apache-stratos/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:14:16 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/apache-stratos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Support for ActiveMQ Master/Slave Failover in Apache Stratos Cartridge Agent</title>
       <link>https://chamila.dev/blog/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</link>
       <pubDate>Mon, 16 Nov 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</guid>
-      <description>In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to secure the message broker communication. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.
-ActiveMQ supports various types of clustering patterns. Out of these, Master/Slave is a deployment pattern where the message store is replicated or shared between the clustered brokers.</description>
+      <description>&lt;p&gt;In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to &lt;a href=&#34;https://chamila.dev/secure-message-broker-communication-in-apache-stratos-with-apache-activemq-609542eb8b81&#34;&gt;secure the message broker communication&lt;/a&gt;. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.&lt;/p&gt;&#xA;&lt;p&gt;ActiveMQ supports &lt;a href=&#34;http://activemq.apache.org/clustering.html&#34;&gt;various types of clustering patterns&lt;/a&gt;. Out of these, &lt;a href=&#34;http://activemq.apache.org/masterslave.html&#34;&gt;Master/Slave&lt;/a&gt; is a deployment pattern where the message store is replicated or shared between the clustered brokers. This makes it possible for a client to failover from the master to the slave in case the master broker goes down, and continue the communication without any data loss.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Secure Message Broker Communication in Apache Stratos With Apache ActiveMQ</title>
       <link>https://chamila.dev/blog/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</link>
       <pubDate>Sun, 11 Oct 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</guid>
-      <description>Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of communication between components such as the Cartridge Agent, Cloud Controller and the Autoscaler, as this allows a decoupled architecture for the components.
-When it comes to message brokers, authentication is a crucial part of securing the communication channel since if left unsecured, anyone with access to the message broker can subscribe to the topics and listen to the communication between the components.</description>
+      <description>&lt;p&gt;Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of communication between components such as the Cartridge Agent, Cloud Controller and the Autoscaler, as this allows a decoupled architecture for the components.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq_0.png#layoutTextWidth&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;When it comes to message brokers, authentication is a crucial part of securing the communication channel since if left unsecured, anyone with access to the message broker can subscribe to the topics and listen to the communication between the components. This can expose sensitive data easily and the system would be compromised in no time. The purpose of this article is to explain how to engage Username and Password based authentication with Apache ActiveMQ in Stratos.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Apache Stratos Cartridge Agent: Life Cycle Walkthough</title>
       <link>https://chamila.dev/blog/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</link>
       <pubDate>Sun, 22 Mar 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-03-22_apache-stratos-cartridge-agent-life-cycle-walkthough/</guid>
-      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the &lt;a href=&#34;https://chamila.dev/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz&#34;&gt;first article&lt;/a&gt;?&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;The Cartridge Agent is (usually) the first service that starts in a spawned Cartridge instance. From that point onward, it is responsible for keeping the relevant services running, communicating with Stratos to subscribe and publish to message broker topics, processing received events, artifact distribution and health statistics reporting. In this article we will discuss in detail, in which order these tasks are performed.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Apache Stratos Cartridge Agent: Instance Configuration by Puppet 2</title>
       <link>https://chamila.dev/blog/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</link>
       <pubDate>Sat, 21 Mar 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-03-21_apache-stratos-cartridge-agent-instance-configuration-by-puppet-2/</guid>
-      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the last article, Puppet can be used to install, configure and start the Cartridge Agent.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the &lt;a href=&#34;https://chamila.dev/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz&#34;&gt;first article&lt;/a&gt;?&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;One of the main responsibilities of the Cartridge Agent is to start the services related the Cartridge type. To do this the Cartridge Agent should be configured with proper parameters. As we discussed in the &lt;a href=&#34;http://code.chamiladealwis.com/blog/2015/03/17/apache-stratos-cartridge-agent-instance-configuration-by-puppet/&#34;&gt;last article&lt;/a&gt;, Puppet can be used to install, configure and start the Cartridge Agent. In this article, we will discuss how this is done in detail.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Apache Stratos Cartridge Agent: Day 0</title>
       <link>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-day-0/</link>
       <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-day-0/</guid>
-      <description>As the first post of a series of comprehensive guide to the Apache Stratos Cartridge Agent, let’s look at the Cartridge Agent contract. Keep tuned in and expect more detailed explanations on the instance and Cartridge Agent configuration, workflow, different Cartridge Agent implementations, their configurations and newly introduced plugin system in the Python implementation.
-When the instances are spawned in Apache Stratos, there are a few requirements that the particular instance should fulfill.</description>
+      <description>&lt;p&gt;As the first post of a series of comprehensive guide to the Apache Stratos Cartridge Agent, let’s look at the Cartridge Agent contract. Keep tuned in and expect more detailed explanations on the instance and Cartridge Agent configuration, workflow, different Cartridge Agent implementations, their configurations and newly introduced plugin system in the Python implementation.&lt;/p&gt;&#xA;&lt;p&gt;When the instances are spawned in Apache Stratos, there are a few requirements that the particular instance should fulfill. It should&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Apache Stratos Cartridge Agent: Instance Configuration by Puppet 1</title>
       <link>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</link>
       <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-03-17_apache-stratos-cartridge-agent-instance-configuration-by-puppet-1/</guid>
-      <description>This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the first article?
- When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This is a part of a series of articles on Apache Stratos Cartridge Agent. If you feel like you’ve missed the memo, why not start from the &lt;a href=&#34;https://chamila.dev/apache-stratos-cartridge-agent-day-0-55536f74f021#.9avlnvbnz&#34;&gt;first article&lt;/a&gt;?&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;When an application is deployed in Apache Stratos, what happens is that for each cartridge in the application, an instance creation call is made to the configured IaaS via the Cloud Controller component. This call contains only the base image ID (in OpenStack this is an image UUID, in Amazon EC2 this is an AMI), the instance creation parameters like the instance flavor, security group etc and the payload of Stratos related information that is targeted to that particular instance. So how does the actual configuration of a spawned Virtual Machine happen? (We will discuss the exciting Kubernetes + Docker work flow separately)&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Thrift Communication in Apache Stratos</title>
       <link>https://chamila.dev/blog/2014-10-10_thrift-communication-in-apache-stratos/</link>
       <pubDate>Fri, 10 Oct 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2014-10-10_thrift-communication-in-apache-stratos/</guid>
-      <description>In Apache Stratos, data publishing over Thrift is done via streaming. It uses WSO2 Carbon’s Data Bridge to serialize data in to a stream and publish to a given IP address and a Port. The use of DataBridge is explained here.
-Stream Definition In order to publish data as a stream, the definition of the particular stream should be defined first. This is achieved using the org.wso2.carbon.databridge.commons.StreamDefinition class. The list of attributes that will be written to the stream is defined using a StreamDefinition object to be assigned to a particular DataPublisher.</description>
+      <description>&lt;p&gt;In Apache Stratos, data publishing over Thrift is done via streaming. It uses WSO2 Carbon’s Data Bridge to serialize data in to a stream and publish to a given IP address and a Port. The use of DataBridge is explained &lt;a href=&#34;http://wso2.com/library/articles/2012/07/creating-custom-agents-publish-events-bamcep/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h3 id=&#34;stream-definition&#34;&gt;Stream Definition&lt;/h3&gt;&#xA;&lt;p&gt;In order to publish data as a stream, the definition of the particular stream should be defined first. This is achieved using the &lt;strong&gt;org.wso2.carbon.databridge.commons.StreamDefinition&lt;/strong&gt; class. The list of attributes that will be written to the stream is defined using a StreamDefinition object to be assigned to a particular DataPublisher.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

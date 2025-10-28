@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Server Immutability",
       "headline" : "Server Immutability",
-      "description" : "Server Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.\nWhat is Immutability? Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image.",
+      "description" : "\u003cp\u003eServer Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.\u003c\/p\u003e\n\u003ch4 id=\u0022what-is-immutability\u0022\u003eWhat is Immutability?\u003c\/h4\u003e\n\u003cp\u003eImmutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -37,7 +37,8 @@
   <meta property="og:title" content="Server Immutability - chamila.dev" />
   <meta property="og:type" content="article" />
   <meta name="description" content="Server Immutability is an interesting concept that I managed to come across when I first started playing around with Containers. Interestingly, it’s often used in conjunction with Containerization because of the use of startup file systems (or Images). However Server Immutability is something that goes beyond simple Docker images.
-What is Immutability? Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image." />
+What is Immutability?
+Immutability, when it comes to server instances, is not changing a once deployed instance. Any change that should be done, has to be done in a new version of the instance image and the old running instances should be replaced with the instances spawned from the new image." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -176,8 +177,7 @@ What is Immutability? Immutability, when it comes to server instances, is not ch
 <p>Take a look at our deployment diagram. Do we know the maximum number of files allowed to be open on the nodes in the Component 1 cluster? We can open a shell to one of the nodes and get the number by issuing a command. But how do we know if it’s different or the same across the cluster?</p>
 <p>What if someone finds out the above number is not what is desired, changes it then and there (and somehow manages to replicate the action across the cluster), and cause a chain of events that lead up to a catastrophic production failure? Do we have a trail of the changes done to the configuration of the cluster (even if the changes are uniform across the nodes)? Are we able to find some kind of documentation which rationalizes the configuration change (or the number of configuration changes) done on the deployment? Wasn’t there a chance for a more senior person with more experience to advise on the change before it could be effectively applied to production?</p>
 <blockquote>
-<p>At a given moment can we get an understanding of the currently running specification without having to explore each node?</p>
-</blockquote>
+<p>At a given moment can we get an understanding of the currently running specification without having to explore each node?</p></blockquote>
 <p>Configuration Automation practices solve a part of this problem by codifying the component configuration steps. Properly set up process make sure that any change that has to be propagated to the live system is code reviewed, approved, and has gone through proper test and staging cycles.</p>
 <p>Adhering to Immutability forces the same to be done throughout the stack, from low level configurations to the higher level product artifacts. To produce starting points (base images, network configuration, load balancing) there should be some kind of written instruction set. These can be version controlled, reviewed, processed, tagged, and released.</p>
 <p>For Amazon, AWS CloudFormation, HashiCorp Packer, (and) or Terraform fulfills these requirements. They are designed to worked on through collaboration. This enforces practices similar to software development where easily identifiable issues are proactively found in the code before it’s rolled out to production.</p>
@@ -209,18 +209,17 @@ What is Immutability? Immutability, when it comes to server instances, is not ch
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/">&lt; Basic Process Metrics Collection and Visualization in Linux</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2018-06-05_in-other-good-news-microsoft-buys-github/">In Other Good News, Microsoft buys GitHub &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2018-05-15_basic-process-metrics-collection-and-visualization-in-linux/">&lt; Basic Process Metrics Collection and Visualization in Linux</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2018-06-05_in-other-good-news-microsoft-buys-github/">In Other Good News, Microsoft buys GitHub &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

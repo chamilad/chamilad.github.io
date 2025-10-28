@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Creating a Web Service Using Apache Axis2",
       "headline" : "Creating a Web Service Using Apache Axis2",
-      "description" : "Prerequisites We need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let’s use Tomcat as a container. So in the following order\n Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7) Download and install Axis2 on Tomcat  Oracle JDK7 Download and extract the JDK tarball.",
+      "description" : "\u003ch3 id=\u0022prerequisites\u0022\u003ePrerequisites\u003c\/h3\u003e\n\u003cp\u003eWe need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let’s use Tomcat as a container. So in the following order\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003eDownload and install Oracle JDK7\u003c\/li\u003e\n\u003cli\u003eDownload and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7)\u003c\/li\u003e\n\u003cli\u003eDownload and install Axis2 on Tomcat\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003ch3 id=\u0022oracle-jdk7\u0022\u003eOracle JDK7\u003c\/h3\u003e\n\u003cp\u003eDownload and extract the JDK tarball.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,15 @@
 <title>Creating a Web Service Using Apache Axis2 - chamila.dev</title>
   <meta property="og:title" content="Creating a Web Service Using Apache Axis2 - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="Prerequisites We need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let’s use Tomcat as a container. So in the following order
- Download and install Oracle JDK7 Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7) Download and install Axis2 on Tomcat  Oracle JDK7 Download and extract the JDK tarball." />
+  <meta name="description" content="Prerequisites
+We need Apache Axis2 running and a suitable container. You could also run Axis2 as a standalone server but for this let’s use Tomcat as a container. So in the following order
+
+Download and install Oracle JDK7
+Download and install Tomcat 7 (even 8 would do, but it seems as of now Tomcat 8 isn’t being supported by Eclipse, so let’s go with version 7)
+Download and install Axis2 on Tomcat
+
+Oracle JDK7
+Download and extract the JDK tarball." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -157,38 +164,36 @@
 </ol>
 <h3 id="oracle-jdk7">Oracle JDK7</h3>
 <p>Download and extract the JDK tarball.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget --no-check-certificate --no-cookies --header <span style="color:#0ff;font-weight:bold">&#34;Cookie: oraclelicense=accept-securebackup-cookie&#34;</span> http://download.oracle.com/otn-pub/java/jdk/7u60-b19/jdk-7u60-linux-x64.tar.gz
-tar zxvf jdk-7u60-linux-x64.tar.gz
-</code></pre></div><p>Add and modify the following lines in <strong>~/.profile</strong>or <strong>/etc/profile</strong> (for system wide application) to add <strong>JAVA_HOME</strong> environment variable and it’s <strong>bin</strong> folder to <strong>$PATH</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#fff;font-weight:bold">export</span> JAVA_HOME=/path/to/jdk/extraction
-<span style="color:#fff;font-weight:bold">export</span> PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
-</code></pre></div><p>Refresh the terminal session and check if Java is working.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#fff;font-weight:bold">source</span> ~/.profile
-java -version
-</code></pre></div><h3 id="tomcat-7">Tomcat 7</h3>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget --no-check-certificate --no-cookies --header <span style="color:#a6e3a1">&#34;Cookie: oraclelicense=accept-securebackup-cookie&#34;</span> http://download.oracle.com/otn-pub/java/jdk/7u60-b19/jdk-7u60-linux-x64.tar.gz
+</span></span><span style="display:flex;"><span>tar zxvf jdk-7u60-linux-x64.tar.gz
+</span></span></code></pre></div><p>Add and modify the following lines in <strong>~/.profile</strong>or <strong>/etc/profile</strong> (for system wide application) to add <strong>JAVA_HOME</strong> environment variable and it’s <strong>bin</strong> folder to <strong>$PATH</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#89dceb">export</span> <span style="color:#f5e0dc">JAVA_HOME</span><span style="color:#89dceb;font-weight:bold">=</span>/path/to/jdk/extraction
+</span></span><span style="display:flex;"><span><span style="color:#89dceb">export</span> <span style="color:#f5e0dc">PATH</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#f5e0dc">$PATH</span>:<span style="color:#f5e0dc">$HOME</span>/bin:<span style="color:#f5e0dc">$JAVA_HOME</span>/bin
+</span></span></code></pre></div><p>Refresh the terminal session and check if Java is working.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#89dceb">source</span> ~/.profile
+</span></span><span style="display:flex;"><span>java -version
+</span></span></code></pre></div><h3 id="tomcat-7">Tomcat 7</h3>
 <p>You could install tomcat through apt-get or manually.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt-get install tomcat7
-
-</code></pre></div><p>Or download and set paths manually.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget http://supergsego.com/apache/tomcat/tomcat-7/v7.0.54/bin/apache-tomcat-7.0.54.tar.gz
-tar zxvf apache-tomcat-7.0.54.tar.gz
-mv apache-tomcat-7.0.54 ~/dev/
-</code></pre></div><p>Add the <strong>$CATALINA_HOME</strong>environment var to the bash profile.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install tomcat7
+</span></span></code></pre></div><p>Or download and set paths manually.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget http://supergsego.com/apache/tomcat/tomcat-7/v7.0.54/bin/apache-tomcat-7.0.54.tar.gz
+</span></span><span style="display:flex;"><span>tar zxvf apache-tomcat-7.0.54.tar.gz
+</span></span><span style="display:flex;"><span>mv apache-tomcat-7.0.54 ~/dev/
+</span></span></code></pre></div><p>Add the <strong>$CATALINA_HOME</strong>environment var to the bash profile.</p>
 <p>Prefix the following line before exporting the <strong>$PATH</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#fff;font-weight:bold">export</span> CATALINA_HOME=$HOME/dev/apache-tomcat-7.0.54
-
-</code></pre></div><p>Server start/stop can be done by the scripts in the <strong>$CATALINA_HOME/bin</strong> folder.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#fff;font-weight:bold">cd</span> $CATALINA_HOME
-./bin/startup.sh
-</code></pre></div><h3 id="deploying-axis2">Deploying Axis2</h3>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#89dceb">export</span> <span style="color:#f5e0dc">CATALINA_HOME</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#f5e0dc">$HOME</span>/dev/apache-tomcat-7.0.54
+</span></span></code></pre></div><p>Server start/stop can be done by the scripts in the <strong>$CATALINA_HOME/bin</strong> folder.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#89dceb">cd</span> <span style="color:#f5e0dc">$CATALINA_HOME</span>
+</span></span><span style="display:flex;"><span>./bin/startup.sh
+</span></span></code></pre></div><h3 id="deploying-axis2">Deploying Axis2</h3>
 <p>Download Axis2 WAR distribution and copy the web archive file to the tomcat webapps root.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget http://apache.tradebit.com/pub//axis/axis2/java/core/1.6.2/axis2-1.6.2-war.zip
-unzip axis2-1.6.2-war.zip -d axis2-war
-cp axis2-war/axis2.war $CATALINA_HOME/webapps/
-<span style="color:#fff;font-weight:bold">cd</span> $CATALINA_HOME/bin
-./shutdown.sh
-./startup.sh
-</code></pre></div><p>In the browser go to <a href="http://localhost:8080/axis2">http://localhost:8080/axis2</a>. Axis2 welcome page should appear.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget http://apache.tradebit.com/pub//axis/axis2/java/core/1.6.2/axis2-1.6.2-war.zip
+</span></span><span style="display:flex;"><span>unzip axis2-1.6.2-war.zip -d axis2-war
+</span></span><span style="display:flex;"><span>cp axis2-war/axis2.war <span style="color:#f5e0dc">$CATALINA_HOME</span>/webapps/
+</span></span><span style="display:flex;"><span><span style="color:#89dceb">cd</span> <span style="color:#f5e0dc">$CATALINA_HOME</span>/bin
+</span></span><span style="display:flex;"><span>./shutdown.sh
+</span></span><span style="display:flex;"><span>./startup.sh
+</span></span></code></pre></div><p>In the browser go to <a href="http://localhost:8080/axis2">http://localhost:8080/axis2</a>. Axis2 welcome page should appear.</p>
 <h3 id="the-service">The Service</h3>
 <p>An Axis2 archive (of .aar extension) has a certain directory structure not so different from a Web Archive.</p>
 <pre tabindex="0"><code>.
@@ -202,104 +207,104 @@ cp axis2-war/axis2.war $CATALINA_HOME/webapps/
             └─── SimpleService.java
 </code></pre><p><strong>META-INF</strong> folder contains the services descriptor file. The other is the binary which implements the service.</p>
 <p>The service class itself is a plain old Java class which exposes the services it offers through public methods. My simple service would be the following.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#fff;font-weight:bold">package</span> com.chamiladealwis.ws.service;
-
-<span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">class</span> SimpleService
-{
-  <span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">int</span> add(<span style="color:#fff;font-weight:bold">int</span> num1, <span style="color:#fff;font-weight:bold">int</span> num2)
-  {
-      <span style="color:#fff;font-weight:bold">return</span> num1+num2;
-  }
-}
-</code></pre></div><p>SimpleService offers just one service named add which accepts two Integer parameters and returns the sum of them as an Integer.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#94e2d5">package</span> <span style="color:#fab387">com.chamiladealwis.ws.service</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">public</span> <span style="color:#f38ba8">class</span> <span style="color:#f9e2af">SimpleService</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">public</span> <span style="color:#f38ba8">int</span> <span style="color:#89b4fa">add</span>(<span style="color:#f38ba8">int</span> num1, <span style="color:#f38ba8">int</span> num2)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">return</span> num1<span style="color:#89dceb;font-weight:bold">+</span>num2;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>SimpleService offers just one service named add which accepts two Integer parameters and returns the sum of them as an Integer.</p>
 <p>Now this service needs a service descriptor which exposes the service class to Axis2 when asked.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="font-weight:bold">&lt;service&gt;</span>
-    <span style="font-weight:bold">&lt;parameter</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;ServiceClass&#34;</span> <span style="color:#007f7f">locked=</span><span style="color:#0ff;font-weight:bold">&#34;false&#34;</span><span style="font-weight:bold">&gt;</span>
-        com.chamiladealwis.ws.service.SimpleService
-    <span style="font-weight:bold">&lt;/parameter&gt;</span>
-    <span style="font-weight:bold">&lt;operation</span> <span style="color:#007f7f">name=</span><span style="color:#0ff;font-weight:bold">&#34;sayHello&#34;</span><span style="font-weight:bold">&gt;</span>
-        <span style="font-weight:bold">&lt;messageReceiver</span> <span style="color:#007f7f">class=</span><span style="color:#0ff;font-weight:bold">&#34;org.apache.axis2.rpc.receivers.RPCMessageReceiver&#34;</span> <span style="font-weight:bold">/&gt;</span>
-    <span style="font-weight:bold">&lt;/operation&gt;</span>
-
-<span style="font-weight:bold">&lt;/service&gt;</span>
-</code></pre></div><p>A parameter named ServiceClass is defined with value com.chamiladealwis.ws.service.SimpleService which the FQN of the Java class we just wrote.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#cba6f7">&lt;service&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&lt;parameter</span> <span style="color:#89b4fa">name=</span><span style="color:#a6e3a1">&#34;ServiceClass&#34;</span> <span style="color:#89b4fa">locked=</span><span style="color:#a6e3a1">&#34;false&#34;</span><span style="color:#cba6f7">&gt;</span>
+</span></span><span style="display:flex;"><span>        com.chamiladealwis.ws.service.SimpleService
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&lt;/parameter&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&lt;operation</span> <span style="color:#89b4fa">name=</span><span style="color:#a6e3a1">&#34;sayHello&#34;</span><span style="color:#cba6f7">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&lt;messageReceiver</span> <span style="color:#89b4fa">class=</span><span style="color:#a6e3a1">&#34;org.apache.axis2.rpc.receivers.RPCMessageReceiver&#34;</span> <span style="color:#cba6f7">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&lt;/operation&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">&lt;/service&gt;</span>
+</span></span></code></pre></div><p>A parameter named ServiceClass is defined with value com.chamiladealwis.ws.service.SimpleService which the FQN of the Java class we just wrote.</p>
 <p>Now compile sources, create the Axis2 archive and deploy it in the Axis Server.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#007f7f"># go to the root dir and compile the sources</span>
-javac com/chamiladealwis/ws/service/*.java
-
-<span style="color:#007f7f"># create the archive file</span>
-jar cvf SimpleService.aar *
-
-<span style="color:#007f7f"># copy the archive over to the Axis2 web root</span>
-cp SimpleService.aar $CATALINE_HOME/webapps/axis2/WEB-INF/services/
-
-<span style="color:#007f7f"># restart tomcat</span>
-<span style="color:#fff;font-weight:bold">cd</span> $CATALINA_HOME/bin
-./shutdown.sh
-./startup.sh
-</code></pre></div><p>Browse to <a href="http://localhost:8080/axis2/services/listServices">http://localhost:8080/axis2/services/listServices</a> in your browser and you will see SimpleService being listed as an available service with add as an operation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># go to the root dir and compile the sources</span>
+</span></span><span style="display:flex;"><span>javac com/chamiladealwis/ws/service/*.java
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># create the archive file</span>
+</span></span><span style="display:flex;"><span>jar cvf SimpleService.aar *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># copy the archive over to the Axis2 web root</span>
+</span></span><span style="display:flex;"><span>cp SimpleService.aar <span style="color:#f5e0dc">$CATALINE_HOME</span>/webapps/axis2/WEB-INF/services/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># restart tomcat</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb">cd</span> <span style="color:#f5e0dc">$CATALINA_HOME</span>/bin
+</span></span><span style="display:flex;"><span>./shutdown.sh
+</span></span><span style="display:flex;"><span>./startup.sh
+</span></span></code></pre></div><p>Browse to <a href="http://localhost:8080/axis2/services/listServices">http://localhost:8080/axis2/services/listServices</a> in your browser and you will see SimpleService being listed as an available service with add as an operation.</p>
 <p>Click on the link to SimpleService to view the WSDL file which will describe the service and it’s operation in an abstracted XML interpretation that can be used to create clients in any language to consume the service.</p>
 <h3 id="the-client">The Client</h3>
 <p>The client code has to make use of a “Stub” of the service which will act as a proxy and a communication agent. Axis2 binary distribution includes tools which can generate the Java stub using the WSDL file as the source.</p>
 <p>Download the Axis2 binary distribution, extract it and set <strong>AXIS2_HOME</strong> environment variable to its root. Add <strong>$AXIS2_HOME</strong> to <strong>$PATH</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget http://apache.spinellicreations.com//axis/axis2/java/core/1.6.2/axis2-1.6.2-bin.zip
-unzip axis2-1.6.2-bin.zip
-<span style="color:#fff;font-weight:bold">pwd</span>
-</code></pre></div><p>Add the <strong>$AXIS2_HOME</strong> variable before <strong>export****PATH</strong> line and modify <strong>$PATH</strong> to include <strong>$AXIS2_HOME/bin</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#fff;font-weight:bold">export</span> AXIS2_HOME=/path/to/axis2/binary/folder
-<span style="color:#fff;font-weight:bold">export</span> PATH=<span style="color:#0ff;font-weight:bold">&#34;</span>$PATH<span style="color:#0ff;font-weight:bold">:</span>$AXIS2_HOME<span style="color:#0ff;font-weight:bold">/bin&#34;</span>
-</code></pre></div><p>Now refresh terminal by sourcing the .profile file.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#fff;font-weight:bold">source</span> ~/.profile
-<span style="color:#fff;font-weight:bold">echo</span> $AXIS2_HOME
-</code></pre></div><p>Copy the WSDL path of the SimpleService, go to the directory you’re going to create your client code and execute the following.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./wsdl2java.sh -uri WSDL_PATH_OF_THE_SIMPLESERVICE -o client
-</code></pre></div><p>The WSDL path would be something similar to <a href="http://localhost:8080/axis2/services/SimpleService?wsdl.">http://localhost:8080/axis2/services/SimpleService?wsdl.</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget http://apache.spinellicreations.com//axis/axis2/java/core/1.6.2/axis2-1.6.2-bin.zip
+</span></span><span style="display:flex;"><span>unzip axis2-1.6.2-bin.zip
+</span></span><span style="display:flex;"><span><span style="color:#89dceb">pwd</span>
+</span></span></code></pre></div><p>Add the <strong>$AXIS2_HOME</strong> variable before <strong>export****PATH</strong> line and modify <strong>$PATH</strong> to include <strong>$AXIS2_HOME/bin</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#89dceb">export</span> <span style="color:#f5e0dc">AXIS2_HOME</span><span style="color:#89dceb;font-weight:bold">=</span>/path/to/axis2/binary/folder
+</span></span><span style="display:flex;"><span><span style="color:#89dceb">export</span> <span style="color:#f5e0dc">PATH</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;</span><span style="color:#f5e0dc">$PATH</span><span style="color:#a6e3a1">:</span><span style="color:#f5e0dc">$AXIS2_HOME</span><span style="color:#a6e3a1">/bin&#34;</span>
+</span></span></code></pre></div><p>Now refresh terminal by sourcing the .profile file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#89dceb">source</span> ~/.profile
+</span></span><span style="display:flex;"><span><span style="color:#89dceb">echo</span> <span style="color:#f5e0dc">$AXIS2_HOME</span>
+</span></span></code></pre></div><p>Copy the WSDL path of the SimpleService, go to the directory you’re going to create your client code and execute the following.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./wsdl2java.sh -uri WSDL_PATH_OF_THE_SIMPLESERVICE -o client
+</span></span></code></pre></div><p>The WSDL path would be something similar to <a href="http://localhost:8080/axis2/services/SimpleService?wsdl.">http://localhost:8080/axis2/services/SimpleService?wsdl.</a></p>
 <p>This will create the Java stub and the CallbackHandler classes. The CallbackHandler class can be extended to implement custom success and error callback executions. The Stub is the class of main importance here. It contains the Request and Response types of the operations available from the Service it was generated from and the skeletal methods that call to the target endpoint once invoked. We will use these members to call our simple service.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#fff;font-weight:bold">package</span> com.chamiladealwis.ws.client;
-
-<span style="color:#fff;font-weight:bold">import</span> java.rmi.RemoteException;
-
-<span style="color:#fff;font-weight:bold">import</span> org.apache.axis2.AxisFault;
-
-<span style="color:#fff;font-weight:bold">import</span> com.chamiladealwis.ws.client.SimpleServiceStub.Add;
-<span style="color:#fff;font-weight:bold">import</span> com.chamiladealwis.ws.client.SimpleServiceStub.AddResponse;
-
-<span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">class</span> SimpleClient
-{
-    <span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">static</span> <span style="color:#fff;font-weight:bold">void</span> main(String[] args)
-    {
-        <span style="color:#fff;font-weight:bold">try</span>
-        {
-            <span style="color:#007f7f">// Create the Stub object
-</span><span style="color:#007f7f"></span>            SimpleServiceStub serviceStub = <span style="color:#fff;font-weight:bold">new</span> SimpleServiceStub();
-
-            <span style="color:#007f7f">// Create the Request object. The request class is autogenerated
-</span><span style="color:#007f7f"></span>            <span style="color:#007f7f">// as an inner class of the Stub class.
-</span><span style="color:#007f7f"></span>            Add addReq = <span style="color:#fff;font-weight:bold">new</span> Add();
-
-            <span style="color:#007f7f">// Set parameters
-</span><span style="color:#007f7f"></span>            addReq.<span style="color:#007f7f">setNum1</span>(4);
-            addReq.<span style="color:#007f7f">setNum2</span>(8);
-
-            <span style="color:#007f7f">// Invoke method and get response as a response object
-</span><span style="color:#007f7f"></span>            AddResponse response = serviceStub.<span style="color:#007f7f">add</span>(addReq);
-
-            <span style="color:#007f7f">// Response object&#39;s get_return() returns the return of the remote 
-</span><span style="color:#007f7f"></span>            <span style="color:#007f7f">// method
-</span><span style="color:#007f7f"></span>            <span style="color:#fff;font-weight:bold">int</span> sum = response.<span style="color:#007f7f">get_return</span>();
-            System.<span style="color:#007f7f">out</span>.<span style="color:#007f7f">println</span>(<span style="color:#0ff;font-weight:bold">&#34;Sum : &#34;</span> + sum);
-        }
-        <span style="color:#fff;font-weight:bold">catch</span> (AxisFault e)
-        {
-            e.<span style="color:#007f7f">printStackTrace</span>();
-        }
-        <span style="color:#fff;font-weight:bold">catch</span> (RemoteException e)
-        {
-            e.<span style="color:#007f7f">printStackTrace</span>();
-        }
-    }
-}
-</code></pre></div><p>Let’s go through the client code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#94e2d5">package</span> <span style="color:#fab387">com.chamiladealwis.ws.client</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">java.rmi.RemoteException</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">org.apache.axis2.AxisFault</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">com.chamiladealwis.ws.client.SimpleServiceStub.Add</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">com.chamiladealwis.ws.client.SimpleServiceStub.AddResponse</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">public</span> <span style="color:#f38ba8">class</span> <span style="color:#f9e2af">SimpleClient</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">public</span> <span style="color:#f38ba8">static</span> <span style="color:#f38ba8">void</span> <span style="color:#89b4fa">main</span>(String<span style="color:#89dceb;font-weight:bold">[]</span> args)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">try</span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#6c7086;font-style:italic">// Create the Stub object</span>
+</span></span><span style="display:flex;"><span>            SimpleServiceStub serviceStub <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> SimpleServiceStub();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6c7086;font-style:italic">// Create the Request object. The request class is autogenerated</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6c7086;font-style:italic">// as an inner class of the Stub class.</span>
+</span></span><span style="display:flex;"><span>            Add addReq <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> Add();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6c7086;font-style:italic">// Set parameters</span>
+</span></span><span style="display:flex;"><span>            addReq.<span style="color:#89b4fa">setNum1</span>(4);
+</span></span><span style="display:flex;"><span>            addReq.<span style="color:#89b4fa">setNum2</span>(8);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6c7086;font-style:italic">// Invoke method and get response as a response object</span>
+</span></span><span style="display:flex;"><span>            AddResponse response <span style="color:#89dceb;font-weight:bold">=</span> serviceStub.<span style="color:#89b4fa">add</span>(addReq);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6c7086;font-style:italic">// Response object&#39;s get_return() returns the return of the remote </span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6c7086;font-style:italic">// method</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f38ba8">int</span> sum <span style="color:#89dceb;font-weight:bold">=</span> response.<span style="color:#89b4fa">get_return</span>();
+</span></span><span style="display:flex;"><span>            System.<span style="color:#89b4fa">out</span>.<span style="color:#89b4fa">println</span>(<span style="color:#a6e3a1">&#34;Sum : &#34;</span> <span style="color:#89dceb;font-weight:bold">+</span> sum);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">catch</span> (AxisFault e)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#89b4fa">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">catch</span> (RemoteException e)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#89b4fa">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Let’s go through the client code.</p>
 <p>Consuming an operation available through a Web Service consists of following steps.</p>
 <ul>
 <li>Create an object of the stub. All method calls will be invoked through this object.</li>
@@ -337,16 +342,15 @@ addReq.setNum2(8);
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2014-07-09_wireshark-crashing-in-ubuntu/">Wireshark Crashing in Ubuntu &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2014-07-09_wireshark-crashing-in-ubuntu/">Wireshark Crashing in Ubuntu &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

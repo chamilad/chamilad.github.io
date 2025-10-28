@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Deriving AWS Account ID from Access Key",
       "headline" : "Deriving AWS Account ID from Access Key",
-      "description" : "AWS Account IDs are interesting. They are not directly considered as sensitive, but on the other hand everyone seems to consider them as sensitive.\nIt\u0026rsquo;s probably for good reason. You shouldn\u0026rsquo;t give out anything that isn\u0026rsquo;t needed to get work done, even if those data are not \u0026ldquo;sensitive\u0026rdquo; in particular. Your name isn\u0026rsquo;t sensitive in particular, but you don\u0026rsquo;t usually walk around with your name on your tshirt either.",
+      "description" : "\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n      \u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/sXQ2NfMnt5k?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n    \u003c\/div\u003e\n\n\u003cp\u003eAWS Account IDs are interesting. They are not directly considered as sensitive,\nbut on the other hand everyone seems to consider them as sensitive.\u003c\/p\u003e\n\u003cp\u003eIt\u0026rsquo;s probably for good reason. You shouldn\u0026rsquo;t give out anything that isn\u0026rsquo;t\nneeded to get work done, even if those data are not \u0026ldquo;sensitive\u0026rdquo; in particular.\nYour name isn\u0026rsquo;t sensitive in particular, but you don\u0026rsquo;t usually walk around with your name on your tshirt either.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,15 @@
 <title>Deriving AWS Account ID from Access Key - chamila.dev</title>
   <meta property="og:title" content="Deriving AWS Account ID from Access Key - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="AWS Account IDs are interesting. They are not directly considered as sensitive, but on the other hand everyone seems to consider them as sensitive.
-It&rsquo;s probably for good reason. You shouldn&rsquo;t give out anything that isn&rsquo;t needed to get work done, even if those data are not &ldquo;sensitive&rdquo; in particular. Your name isn&rsquo;t sensitive in particular, but you don&rsquo;t usually walk around with your name on your tshirt either." />
+  <meta name="description" content="
+      
+    
+
+AWS Account IDs are interesting. They are not directly considered as sensitive,
+but on the other hand everyone seems to consider them as sensitive.
+It&rsquo;s probably for good reason. You shouldn&rsquo;t give out anything that isn&rsquo;t
+needed to get work done, even if those data are not &ldquo;sensitive&rdquo; in particular.
+Your name isn&rsquo;t sensitive in particular, but you don&rsquo;t usually walk around with your name on your tshirt either." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -146,10 +153,9 @@ It&rsquo;s probably for good reason. You shouldn&rsquo;t give out anything that 
           </div>
         </header>
         <div class="post-content markdown-body">
-          
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/sXQ2NfMnt5k" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/sXQ2NfMnt5k?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <p>AWS Account IDs are interesting. They are not directly considered as sensitive,
 but on the other hand everyone seems to consider them as sensitive.</p>
@@ -217,15 +223,15 @@ Based on findings from a few more testing rounds, he came up with the piece of c
 <p>However, his code actually had to consider the the 13th character, at index 12.
 What he did was to mask out the first bit of the base32 decoded value and multiply it by 2.
 If the character at index 12 was Q or more than Q in the base32 mapping, the resulting value had to be incremented by 1.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	offsetAccountIdStr, _ := baseconv.Convert(accessKeyId[<span style="color:#ff0;font-weight:bold">4</span>:<span style="color:#ff0;font-weight:bold">12</span>], base32AwsFlavour, base10)
-	offsetAccountId, _ := strconv.Atoi(offsetAccountIdStr)
-
-	accountId := <span style="color:#ff0;font-weight:bold">2</span> * (offsetAccountId - offset)
-
-	<span style="color:#fff;font-weight:bold">if</span> strings.Index(base32AwsFlavour, accessKeyId[<span style="color:#ff0;font-weight:bold">12</span>:<span style="color:#ff0;font-weight:bold">13</span>]) &gt;= strings.Index(base32AwsFlavour, <span style="color:#0ff;font-weight:bold">&#34;Q&#34;</span>) {
-		accountId++
-	}
-</code></pre></div><h3 id="improvements">Improvements</h3>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>	offsetAccountIdStr, _ <span style="color:#89dceb;font-weight:bold">:=</span> baseconv.<span style="color:#89b4fa">Convert</span>(accessKeyId[<span style="color:#fab387">4</span>:<span style="color:#fab387">12</span>], base32AwsFlavour, base10)
+</span></span><span style="display:flex;"><span>	offsetAccountId, _ <span style="color:#89dceb;font-weight:bold">:=</span> strconv.<span style="color:#89b4fa">Atoi</span>(offsetAccountIdStr)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	accountId <span style="color:#89dceb;font-weight:bold">:=</span> <span style="color:#fab387">2</span> <span style="color:#89dceb;font-weight:bold">*</span> (offsetAccountId <span style="color:#89dceb;font-weight:bold">-</span> offset)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#cba6f7">if</span> strings.<span style="color:#89b4fa">Index</span>(base32AwsFlavour, accessKeyId[<span style="color:#fab387">12</span>:<span style="color:#fab387">13</span>]) <span style="color:#89dceb;font-weight:bold">&gt;=</span> strings.<span style="color:#89b4fa">Index</span>(base32AwsFlavour, <span style="color:#a6e3a1">&#34;Q&#34;</span>) {
+</span></span><span style="display:flex;"><span>		accountId<span style="color:#89dceb;font-weight:bold">++</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span></code></pre></div><h3 id="improvements">Improvements</h3>
 <p>Tal took a look at this and figured out the account ID had actually been bit shifted before being base32 encoded.
 It might just be me, but I find it really cool that Tal was able to figure this out by looking at Aidan&rsquo;s code, because I spent a few hours &ldquo;reverse engineering&rdquo; this finding.</p>
 <p>So basically, what&rsquo;s happening here is this.
@@ -285,18 +291,17 @@ understand the details under to hood for effective security.</p>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-01-18_setting-yubikey-mfa-for-aws-cli-temporary-credentials/">&lt; Setting Yubikey MFA for AWS CLI temporary credentials</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-04-03_aws-multi-factor-authentication-in-detail/">AWS Multi-factor Authentication in Detail &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-01-18_setting-yubikey-mfa-for-aws-cli-temporary-credentials/">&lt; Setting Yubikey MFA for AWS CLI temporary credentials</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-04-03_aws-multi-factor-authentication-in-detail/">AWS Multi-factor Authentication in Detail &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

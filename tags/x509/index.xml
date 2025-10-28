@@ -4,18 +4,16 @@
     <title>X509 on chamila.dev</title>
     <link>https://chamila.dev/tags/x509/</link>
     <description>Recent content in X509 on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Nov 2017 14:26:50 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/x509/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:15:02 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/x509/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Subject Alternative Names in SSL Certificates</title>
       <link>https://chamila.dev/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/</link>
       <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-11-06_subject-alternative-names-in-ssl-certificates/</guid>
-      <description>Or the SSL Cert Extension that saves your back during development
- I recently wrote an article on how to generate and upload a self-signed SSL Certificate to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Or the SSL Cert Extension that saves your back during development&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;I recently wrote an article on &lt;a href=&#34;https://chamila.dev/adding-a-self-signed-ssl-certificate-to-aws-acm-88a123a04301&#34;&gt;how to generate and upload a self-signed SSL Certificate&lt;/a&gt; to AWS Certificate Manager. One of the cases I had missed to address there was the inconsistency of the Load Balancer and development domain names during the early phases of any project. This is a practical issue, fortunately that an extension in the SSL Certificate standard addresses.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

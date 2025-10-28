@@ -4,20 +4,16 @@
     <title>Wireshark on chamila.dev</title>
     <link>https://chamila.dev/tags/wireshark/</link>
     <description>Recent content in Wireshark on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Jul 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/wireshark/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:13:55 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/wireshark/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Wireshark Crashing in Ubuntu</title>
       <link>https://chamila.dev/blog/2014-07-09_wireshark-crashing-in-ubuntu/</link>
       <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2014-07-09_wireshark-crashing-in-ubuntu/</guid>
-      <description>If you have customized your Ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu 14.04 and found the solution to be disabling overlay scrollbars that come as the default.
-To do this simply add an environment variable called LIBOVERLAY_SCROLLBAR with value0.
-export LIBOVERLAY_SCROLLBAR=0 Originally published at chamilad.github.io on July 9, 2014.
- Written on July 9, 2014 by chamila de alwis.</description>
+      <description>&lt;p&gt;If you have customized your Ubuntu GTK theme, Wireshark would most likely crash as soon as scrollbars come in to play. I experienced this in Ubuntu 14.04 and found the solution to be disabling overlay scrollbars that come as the default.&lt;/p&gt;&#xA;&lt;p&gt;To do this simply add an environment variable called &lt;strong&gt;LIBOVERLAY_SCROLLBAR&lt;/strong&gt; with value&lt;strong&gt;0&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export LIBOVERLAY_SCROLLBAR=0&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Originally published at &lt;a href=&#34;http://chamilad.github.io/blog/2014/07/09/wireshark-crashing-in-ubuntu/&#34;&gt;chamilad.github.io&lt;/a&gt; on July 9, 2014.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Written on July 9, 2014 by chamila de alwis.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

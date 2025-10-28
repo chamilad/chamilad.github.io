@@ -4,19 +4,16 @@
     <title>Medium on chamila.dev</title>
     <link>https://chamila.dev/tags/medium/</link>
     <description>Recent content in Medium on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Oct 2019 18:24:16 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/medium/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Oct 2019 18:24:16 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/medium/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Medium to Hugo</title>
       <link>https://chamila.dev/blog/2019-10-20_medium-to-hugo/</link>
       <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2019-10-20_medium-to-hugo/</guid>
-      <description>Taking a minor break from the &amp;ldquo;ElasticSearch on K8s&amp;rdquo; series
- tl;dr: I&amp;rsquo;m moving back to maintaining my own site rather than depending on Medium as a platform for technical blogging, because of various reasons. Also introducing a tool to convert from Medium to Hugo.
-A tale of not making up my mind To start with somewhat of a boast, I&amp;rsquo;ve been writing blog posts for more than a decade now, on various platforms, SaaS ones to self-hosted solutions.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Taking a minor break from the &amp;ldquo;ElasticSearch on K8s&amp;rdquo; series&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: I&amp;rsquo;m moving back to maintaining my own site rather than depending on Medium as a platform for technical blogging, because of various reasons. Also introducing a tool to convert from Medium to Hugo.&lt;/p&gt;&#xA;&lt;h2 id=&#34;a-tale-of-not-making-up-my-mind&#34;&gt;A tale of not making up my mind&lt;/h2&gt;&#xA;&lt;p&gt;To start with somewhat of a boast, I&amp;rsquo;ve been writing blog posts for more than a decade now, on various platforms, SaaS ones to self-hosted solutions. Most of the posts are now nowhere to be seen since I cannot seem to make up my mind about where to keep my writings. I started some serious technical blogging about five years ago. That started with using Github Pages as a hosting service using Octopress as a site generator. After a while, getting exhausted on the themeing and waiting for the next Octopress version, I switched to Medium halfway through, importing all the posts.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

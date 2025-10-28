@@ -4,20 +4,16 @@
     <title>Haproxy on chamila.dev</title>
     <link>https://chamila.dev/tags/haproxy/</link>
     <description>Recent content in Haproxy on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Jul 2017 05:26:55 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/haproxy/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:14:57 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/haproxy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HAProxy Config Syntax Highlighting</title>
       <link>https://chamila.dev/blog/2017-07-13_haproxy-config-syntax-highlighting/</link>
       <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2017-07-13_haproxy-config-syntax-highlighting/</guid>
-      <description>A brief post on getting this done on Atom and Vim.
-Atom Just install language-haproxy Atom plugin through either Atom UI or apm .
-apm install language-haproxy When opening an haproxy.cfg file, Atom will detect and highlight accordingly.
-Vim Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from VimAwesome. To enable this, just clone the Github repository, copy the .vim file inside syntax/ folder to $HOME/.</description>
+      <description>&lt;p&gt;A brief post on getting this done on Atom and Vim.&lt;/p&gt;&#xA;&lt;h4 id=&#34;atom&#34;&gt;Atom&lt;/h4&gt;&#xA;&lt;p&gt;Just install &lt;code&gt;language-haproxy&lt;/code&gt; Atom plugin through either Atom UI or &lt;code&gt;apm&lt;/code&gt; .&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apm install language-haproxy&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When opening an &lt;code&gt;haproxy.cfg&lt;/code&gt; file, Atom will detect and highlight accordingly.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2017-07-13_haproxy-config-syntax-highlighting_0.png#layoutTextWidth&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;h4 id=&#34;vim&#34;&gt;Vim&lt;/h4&gt;&#xA;&lt;p&gt;Syntax highlighting in Vim for HAProxy configuration has been available for more than 10 years it seems from &lt;a href=&#34;http://vimawesome.com/plugin/haproxy&#34;&gt;VimAwesome&lt;/a&gt;. To enable this, just clone the Github repository, copy the &lt;code&gt;.vim&lt;/code&gt; file inside &lt;code&gt;syntax/&lt;/code&gt; folder to &lt;code&gt;$HOME/.vim/syntax&lt;/code&gt; .&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

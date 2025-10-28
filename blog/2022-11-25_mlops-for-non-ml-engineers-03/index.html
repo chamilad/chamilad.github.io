@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -145,9 +145,9 @@
           </div>
         </header>
         <div class="post-content markdown-body">
-          <figure><img src="/blog/img/2022-11-25_mlops_03_header.jpeg"/><figcaption>
-            <h4>Evans Bay, Wellington</h4>
-        </figcaption>
+          <figure><img src="/blog/img/2022-11-25_mlops_03_header.jpeg"><figcaption>
+      <h4>Evans Bay, Wellington</h4>
+    </figcaption>
 </figure>
 
 <h2 id="how-is-machine-learning-different">How is Machine Learning Different?</h2>
@@ -160,8 +160,7 @@ the <a href="/blog/2022-11-22_mlops-for-non-ml-engineers-02/">previous article</
 <li>MLOps for Non-ML Engineers 03 - More Differences Between ML and SW Dev</li>
 <li><a href="/blog/2022-11-28_mlops-for-non-ml-engineers-04/">MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project
 Execution</a></li>
-</ol>
-</blockquote>
+</ol></blockquote>
 <h3 id="source-version-control">Source Version Control</h3>
 <p>Software development and version controlling is virtually impossible to
 separate. Yes, there are still people who treat attaching source code to emails
@@ -200,8 +199,7 @@ in the code.</p>
 the apeal for the Data Scientists. Visualisations and long running sessions
 that are not usually part of software development have good support in the
 Notebooks. I like working on the IDE I&rsquo;m used to with the support features
-and the shortcuts that I have already trained with.</p>
-</blockquote>
+and the shortcuts that I have already trained with.</p></blockquote>
 <p>Version controlling Notebooks takes some effort. Each execution of the Notebook
 can produce a diff, and none of the other factors will not have changed. This
 is because the Cell outputs are saved in Notebook Markdown itself. Whether to
@@ -236,8 +234,7 @@ an earlier state, you may not have initiated a git repository at all.</p>
 <p>Various Cloud ML Platforms and PaaS products have streamlined their workflows
 to include these best practices to cover processes with features. They are
 general enough for team specific approaches to build on top of. User training
-and custom integrations would also help cover the gaps for each team.</p>
-</blockquote>
+and custom integrations would also help cover the gaps for each team.</p></blockquote>
 <p>Reviewing code changes to Notebooks is another concern. Notebooks are worked on
 as a rendered version of the Markdown it is serialised in, and a diff produced
 from the two Markdown versions isn&rsquo;t really helpful to a reviewer. There are
@@ -285,8 +282,7 @@ two (or more) Models are deployed to the same Endpoint with a traffic split.</p>
 <p>Different platforms support different methods of managing endpoint
 deployment. For an example, at the time of writing this, GCP Vertex offers
 easier management of traffic splits, where as Azure ML Platform provides more
-control with less ease of use.</p>
-</blockquote>
+control with less ease of use.</p></blockquote>
 <p>The Model Deployment Pipeline can focus on deployment aspect of the given Model
 version. However some teams implement Model deployment as a separate Notebook itself. This
 can be the approach for some use cases since Model testing can be ad-hoc to
@@ -300,8 +296,7 @@ the final model can do predictions. For an example, an inference request could
 contain raw data from a frontend which are not normalised, scaled, or one hot
 encoded. These could be incrementally done by different steps in the inference
 pipeline so that final model deployment code can be separate from data
-transformation.</p>
-</blockquote>
+transformation.</p></blockquote>
 <h3 id="change-management">Change Management</h3>
 <p>As discussed above, source code version control can be tricky itself. However
 it becomes more complex when it comes to release version management. In typical
@@ -336,8 +331,7 @@ to be different for various problem types and the scope of real world data the
 Model would work with.</p>
 <blockquote>
 <p>I can&rsquo;t quote anyone on this three month number, as I don&rsquo;t remember who I
-heard it from. Your results may vary.</p>
-</blockquote>
+heard it from. Your results may vary.</p></blockquote>
 <p>The process of <strong>Continuous Training</strong> is used to tackle this problem, where
 either source training data drift detection or Model inference accuracy
 reduction below a threshold, automatically triggers a training job. The new
@@ -350,8 +344,7 @@ Training</a>.
 You can point to a previously run training job and the dataset along with the
 trained Model and can result in a Model trained on the latest data with less
 time and resources spent on than a full retraining. This can be done for both
-built-in and custom algorithms.</p>
-</blockquote>
+built-in and custom algorithms.</p></blockquote>
 <hr>
 <p>With these differences in place, Machine Learning engineering distinguishes
 itself from what would be typical DevOps responsibilities. More time and
@@ -362,18 +355,17 @@ Engineer in a Data Science team in the next article.</p>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/">&lt; MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/">MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2022-11-22_mlops-for-non-ml-engineers-02/">&lt; MLOps for Non-ML Engineers 02 - Differences Between ML and SW Dev</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2022-11-28_mlops-for-non-ml-engineers-04/">MLOps for Non-ML Engineers 04 - Unique aspects of an ML Project Execution &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

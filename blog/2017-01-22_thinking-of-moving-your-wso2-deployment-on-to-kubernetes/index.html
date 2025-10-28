@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "Thinking of Moving Your WSO2 Deployment On to Kubernetes?",
       "headline" : "Thinking of Moving Your WSO2 Deployment On to Kubernetes?",
-      "description" : "Moving from a Virtual Machine based deployment to a Container Clustering environment can be quite a few sleepless nights. Cloud deployment artifacts for WSO2 products would reduce this number by a few, because of their tried and tested nature. These include Dockerfiles, Puppet based configurations, Kubernetes and Mesos deployment artifacts. As easy as these artifacts make life easier during a redesign stage of an existing deployment, let us anyway walk through some points to keep in mind regarding a WSO2 deployment on top of Kubernetes.",
+      "description" : "\u003cp\u003eMoving from a Virtual Machine based deployment to a Container Clustering environment can be quite a few sleepless nights. Cloud deployment artifacts for WSO2 products would reduce this number by a few, because of their tried and tested nature. These include Dockerfiles, Puppet based configurations, Kubernetes and Mesos deployment artifacts. As easy as these artifacts make life easier during a redesign stage of an existing deployment, let us anyway walk through some points to keep in mind regarding a WSO2 deployment on top of Kubernetes.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -202,28 +202,27 @@ wso2am-default-8280-service.yaml
 wso2am-default-9443-service.yaml
 wso2am-default-9763-service.yaml
 </code></pre><p>The Service definition for the default Carbon port <strong>9443</strong> looks like the following. Notice that Service name has been changed to resemble the port that it exposes.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">apiVersion</span>: v1
-<span style="font-weight:bold">kind</span>: Service
-<span style="font-weight:bold">metadata</span>:
-  <span style="font-weight:bold">annotations</span>:
-    <span style="font-weight:bold">serviceloadbalancer/lb.host</span>: mgt-gateway.am.wso2.com
-    <span style="font-weight:bold">serviceloadbalancer/lb.sslTerm</span>: <span style="color:#0ff;font-weight:bold">&#34;true&#34;</span>
-    <span style="font-weight:bold">serviceloadbalancer/lb.cookie-sticky-session</span>: <span style="color:#0ff;font-weight:bold">&#34;true&#34;</span>
-  <span style="font-weight:bold">labels</span>:
-    <span style="font-weight:bold">name</span>: wso2am-default
-    <span style="font-weight:bold">port</span>: wso2am-default-http-9443
-  <span style="font-weight:bold">name</span>: gateway-443
-<span style="font-weight:bold">spec</span>:
-  <span style="font-weight:bold">sessionAffinity</span>: ClientIP
-  <span style="font-weight:bold">ports</span>:
-    -
-      <span style="font-weight:bold">name</span>: <span style="color:#0ff;font-weight:bold">&#39;servlet-https&#39;</span>
-      <span style="font-weight:bold">port</span>: <span style="color:#ff0;font-weight:bold">443</span>
-      <span style="font-weight:bold">targetPort</span>: <span style="color:#ff0;font-weight:bold">9443</span>
-  <span style="font-weight:bold">selector</span>:
-    <span style="font-weight:bold">name</span>: wso2am-default
-
-</code></pre></div><p>Another observation from the above are the following two additional Service annotations.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#cba6f7">apiVersion</span>: v1
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">kind</span>: Service
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">serviceloadbalancer/lb.host</span>: mgt-gateway.am.wso2.com
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">serviceloadbalancer/lb.sslTerm</span>: <span style="color:#a6e3a1">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">serviceloadbalancer/lb.cookie-sticky-session</span>: <span style="color:#a6e3a1">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">name</span>: wso2am-default
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">port</span>: wso2am-default-http-9443
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">name</span>: gateway-443
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">sessionAffinity</span>: ClientIP
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">ports</span>:
+</span></span><span style="display:flex;"><span>    -
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">name</span>: <span style="color:#a6e3a1">&#39;servlet-https&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">port</span>: <span style="color:#fab387">443</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">targetPort</span>: <span style="color:#fab387">9443</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">name</span>: wso2am-default
+</span></span></code></pre></div><p>Another observation from the above are the following two additional Service annotations.</p>
 <ol>
 <li><strong>serviceloadbalancer/lb.sslTerm</strong> — If set to “true”, the Service Load Balancer will terminate SSL and perform backend communication without SSL verification.</li>
 <li><strong>serviceloadbalancer/lb.cookie-sticky-session</strong>— If set to “true” the Service Load Balancer will set and check a cookie to handle Session Affinity based on it.</li>
@@ -254,18 +253,17 @@ wso2am-default-9763-service.yaml
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/">&lt; How to Upload a Carbon App (CAR File) to a Remote WSO2 Server</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/">Ballerina with Container Support &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2016-09-17_how-to-upload-a-carbon-app-car-file-to-a-remote-wso2-server/">&lt; How to Upload a Carbon App (CAR File) to a Remote WSO2 Server</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2017-02-21_ballerina-with-container-support/">Ballerina with Container Support &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

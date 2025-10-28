@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>cargo on chamila.dev</title>
+    <title>Cargo on chamila.dev</title>
     <link>https://chamila.dev/tags/cargo/</link>
-    <description>Recent content in cargo on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Cargo on chamila.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Jan 2024 12:57:07 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/cargo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Jan 2024 12:57:07 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/cargo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Deploying Rust on Lambda</title>
       <link>https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/</link>
       <pubDate>Tue, 16 Jan 2024 12:57:07 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-01-16_deploying-rust-on-lambda/</guid>
-      <description>Dead (not a professional opinion) Pine tree on the coastal California   Following up from the last post let&amp;rsquo;s explore how to use Rust in Lambda functions.
-AWS has introduced a neat cargo command to make life easier and focus on building the business logic rather than get bogged down in deployment details. This is the cargo lambda command. Installing the command is pretty straightforward on a linux environment.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2024-01-16_header.jpeg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Dead (not a professional opinion) Pine tree on the coastal California&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;Following up from the &lt;a href=&#34;https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/&#34;&gt;last post&lt;/a&gt;&#xA;let&amp;rsquo;s explore how to use Rust in Lambda functions.&lt;/p&gt;&#xA;&lt;p&gt;AWS has introduced a neat &lt;code&gt;cargo&lt;/code&gt; command to make life easier and focus on&#xA;building the business logic rather than get bogged down in deployment details.&#xA;This is the &lt;a href=&#34;https://www.cargo-lambda.info/guide/getting-started.html&#34;&gt;&lt;code&gt;cargo lambda&lt;/code&gt;&#xA;command&lt;/a&gt;. Installing&#xA;the command is pretty straightforward on a linux environment.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pip3 install cargo-lambda&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;One detail to note is that &lt;code&gt;cargo lambda&lt;/code&gt; command uses &lt;code&gt;zig&lt;/code&gt; toolchain to&#xA;facilitate cross compiling the Rust code. This is important because Rust in&#xA;Lambda runs on the OS only runtimes which run on &lt;a href=&#34;https://docs.aws.amazon.com/lambda/latest/dg/runtimes-provided.html&#34;&gt;Amazon Linux&#xA;versions&lt;/a&gt;.&#xA;So, unless you&amp;rsquo;re developing on a Linux workstation, chances are you&amp;rsquo;d probably&#xA;be cross compiling your code. &lt;code&gt;zig&lt;/code&gt; toolchain is used because it comes built in&#xA;with the &lt;code&gt;cargo-zigbuild&lt;/code&gt; crate. More information on cross-compiling and known&#xA;issues can be found &lt;a href=&#34;https://www.cargo-lambda.info/guide/cross-compiling.html&#34;&gt;on the&#xA;documentation&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

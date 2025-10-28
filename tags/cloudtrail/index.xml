@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>cloudtrail on chamila.dev</title>
+    <title>Cloudtrail on chamila.dev</title>
     <link>https://chamila.dev/tags/cloudtrail/</link>
-    <description>Recent content in cloudtrail on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Cloudtrail on chamila.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jan 2024 05:26:45 +1300</lastBuildDate><atom:link href="https://chamila.dev/tags/cloudtrail/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Jan 2024 05:26:45 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/cloudtrail/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting Started with AWS Rust SDK</title>
       <link>https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/</link>
       <pubDate>Mon, 15 Jan 2024 05:26:45 +1300</pubDate>
-      
       <guid>https://chamila.dev/blog/2024-01-15_getting-started-with-aws-rust-sdk/</guid>
-      <description>Some building in Washington DC. It&amp;#39;s just pretty, not related to Rust or AWS   AWS re:Invent 2023 announced the GA versions of the Rust and Kotlin SDKs. The SDK was in developer preview for sometime, and this release allows the use of it in production. Following is an introduction to the Rust SDK, its defaults, and a few detailed scenarios that are different from the default cases.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2024-01-15_aws_rust_sdk_header.jpg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Some building in Washington DC. It&amp;#39;s just pretty, not related to Rust or AWS&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;AWS re:Invent 2023 announced &lt;a href=&#34;https://aws.amazon.com/about-aws/whats-new/2023/11/aws-sdk-rust/&#34;&gt;the GA versions of the&#xA;Rust&lt;/a&gt; and&#xA;Kotlin SDKs. The SDK was in developer preview for sometime, and this release&#xA;allows the use of it in production. Following is an introduction to&#xA;the Rust SDK, its defaults, and a few detailed scenarios that are different&#xA;from the default cases.&lt;/p&gt;&#xA;&lt;p&gt;The working code for the following examples are in&#xA;&lt;a href=&#34;https://github.com/chamilad/aws-rust-hello-world&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -4,18 +4,16 @@
     <title>Solution Architecture on chamila.dev</title>
     <link>https://chamila.dev/tags/solution-architecture/</link>
     <description>Recent content in Solution Architecture on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Oct 2018 06:44:38 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/solution-architecture/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:15:25 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/solution-architecture/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A Primer on Observability for Dynamic Organizations — Part 2</title>
       <link>https://chamila.dev/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</link>
       <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2/</guid>
-      <description>What should an Observability Framework address? In the previous post, we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design. Let’s explore the possibility of a structured approach for designing observable systems.
- Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls   Why should there be a structured approach?</description>
+      <description>&lt;h4 id=&#34;what-should-an-observability-framework-address&#34;&gt;What should an Observability Framework address?&lt;/h4&gt;&#xA;&lt;p&gt;In the previous post, &lt;a href=&#34;https://chamila.dev/a-primer-on-observability-for-dynamic-organizations-part-1-43c577ded1d3&#34;&gt;we measured the temperature of the water on what Observability is and why it should be a first class consideration in system design&lt;/a&gt;. Let’s explore the possibility of a &lt;strong&gt;structured approach&lt;/strong&gt; for designing observable systems.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2018-10-25_primer-on-observability-for-dynamic-organizationspart-2_0.jpeg#layoutTextWidth&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Massive industrial process of Sugar production where the mechanics are mostly literally behind 10-inch steel walls&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;h4 id=&#34;why-should-there-be-a-structured-approach&#34;&gt;Why should there be a structured approach?&lt;/h4&gt;&#xA;&lt;p&gt;In short, because Observability has to be designed into a system rather than be considered as an on-the-spot hack.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.151.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/blog/draft__clipboard/" />
+  <link rel="canonical" href="http://localhost:1313/blog/draft__clipboard/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Clipboard",
+      "headline" : "Clipboard",
+      "description" : "\u003ch3 id=\u0022elasticsearch-on-k8s-01basicdesign\u0022\u003eElasticSearch on K8s: 01 — Basic Design\u003c\/h3\u003e\n\u003cp\u003eHow to setup a minimal but useful Elastic Stack on K8s\u003c\/p\u003e\n\u003cp\u003e\u003cimg src=\u0022\/blog\/img\/draft__clipboard_0.jpeg#layoutOutsetCenter\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e\n\u003cp\u003eLog aggregation in a K8s environment is something I have lightly touched upon previously in multiple occasions. However setting up a minimal but a reliable log aggregation stack on top of K8s could quickly become an evolutionary process with each step improving on the previous one (and of course, everyone thinks they can do log aggregation before they actually start to do so). The following is a pattern for ELK I came across while improving such a stack. While this pattern addresses most common requirements for a native K8s log aggregation stack, there could be better, more suitable patterns that you may have to consider when setting up solutions of your own.\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2019",
+      "datePublished": "2019-10-19 18:15:46 \u002b1300 NZDT",
+      "dateModified" : "2019-10-19 18:15:46 \u002b1300 NZDT",
+      "url" : "http:\/\/localhost:1313\/blog\/draft__clipboard\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Clipboard - chamila.dev</title>
+  <meta property="og:title" content="Clipboard - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="ElasticSearch on K8s: 01 — Basic Design
+How to setup a minimal but useful Elastic Stack on K8s
+
+Log aggregation in a K8s environment is something I have lightly touched upon previously in multiple occasions. However setting up a minimal but a reliable log aggregation stack on top of K8s could quickly become an evolutionary process with each step improving on the previous one (and of course, everyone thinks they can do log aggregation before they actually start to do so). The following is a pattern for ELK I came across while improving such a stack. While this pattern addresses most common requirements for a native K8s log aggregation stack, there could be better, more suitable patterns that you may have to consider when setting up solutions of your own." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="http://localhost:1313/">chamila.dev</a> >
+      <a href="http://localhost:1313//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Clipboard</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2019-10-19 18:15:46 NZDT">
+                19 Oct 2019
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~24 minutes
+            </div>
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#elasticsearch-on-k8s-01basicdesign">ElasticSearch on K8s: 01 — Basic Design</a></li>
+        <li><a href="#birds-eyeview">Bird’s eye view</a></li>
+        <li><a href="#elk-stack-components">ELK Stack Components</a></li>
+        <li><a href="#gluing-the-stacktogether">Gluing the stack together</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <h3 id="elasticsearch-on-k8s-01basicdesign">ElasticSearch on K8s: 01 — Basic Design</h3>
+<p>How to setup a minimal but useful Elastic Stack on K8s</p>
+<p><img src="/blog/img/draft__clipboard_0.jpeg#layoutOutsetCenter" alt=""></p>
+<p>Log aggregation in a K8s environment is something I have lightly touched upon previously in multiple occasions. However setting up a minimal but a reliable log aggregation stack on top of K8s could quickly become an evolutionary process with each step improving on the previous one (and of course, everyone thinks they can do log aggregation before they actually start to do so). The following is a pattern for ELK I came across while improving such a stack. While this pattern addresses most common requirements for a native K8s log aggregation stack, there could be better, more suitable patterns that you may have to consider when setting up solutions of your own.</p>
+<h3 id="birds-eyeview">Bird’s eye view</h3>
+<h4 id="problem">Problem</h4>
+<p>To discuss a solution, let’s first define a sample problem.</p>
+<p>In our sample scenario, there is are one or more user managed (in contrast to provider managed) K8s clusters running on a popular Cloud Service Provider (ex: AWS EC2). The Nodes are created using different EC2 instance families. Deployment users (ex: infrastructure management team) has direct control over how the EC2 instances are managed.</p>
+<p>There are different applications running on the K8s cluster across different namespaces. For some apps, multi-tenancy is implemented using K8s Namespaces as a basis, and some have multi-tenancy built-in to the code so that a single cluster of apps could be aware of multiple tenants acting on them.</p>
+<p>The CNI could be the default <code>flannel</code> deployment or a more specialized customized deployment such as <code>weave</code> where network boundaries are implemented using NetworkPolicies.</p>
+<p>Storage Classes are defined for the Cloud Service Provider provided persistence options (ex: EBS).</p>
+<p><strong>The logs generated by different apps in different Namespaces should be aggregated and indexed for analysis. The aggregated logs should be available for a predefined set of users with SSO through the chosen IDP for the deployment.</strong></p>
+<h4 id="solution">Solution</h4>
+<p>The solution for the above problem is a stack that looks logically similar to the diagram below. The responsibility of this stack of tools is to collect, enrich, store and provide convenient access to the logs.</p>
+<p><img src="/blog/img/draft__clipboard_1.png#layoutOutsetCenter" alt=""></p>
+<p>Each component of the stack are deployed in the same K8s cluster from where the logs are collected (this isn’t a must, a different controller K8s cluster could be used for log aggregation altogether).</p>
+<p>In the above diagram, each blue box is a compute workload of the K8s native format <code>Pod</code> .</p>
+<p>Their life cycles are controlled by various K8s native controller implementations, <code>Deployment</code> , <code>StatefulSet</code> , or <code>DaemonSet</code> . These controllers are represented by grey boxes.</p>
+<p>The green boxes represent the K8s constructs that deal with data persistence. They include <code>PersistentVolumes</code> and <code>PersistentVolumeClaimTemplates</code> . They ultimately result in whatever the Cloud Service Provider specific implementations for storage, ex: EBS volumes for AWS.</p>
+<p>The white boxes represent the networking constructs in K8s that act as consistent naming and service discovery, namely <code>Services</code> . Various types of <code>Services</code> are used in this deployment depending on the requirement, that could include load balancing, consistent naming, or reverse proxying.</p>
+<p>Note that,</p>
+<ol>
+<li>Only Logstash and ElasticSearch processes need persistence</li>
+<li>Only Kibana is exposed to outside traffic</li>
+<li>ElasticSearch makes use of two types of Services</li>
+</ol>
+<p>In addition to the above, there could be components that make authentication and authorization happen. To keep the scope of this article series simple, they are not included in the basic setup.</p>
+<p>Let’s dive into the details of each component now to understand the function of each box in the above diagram and a few quirks of the design.</p>
+<h3 id="elk-stack-components">ELK Stack Components</h3>
+<p>A typical log collection stack consists of components for</p>
+<ol>
+<li>log collection</li>
+<li>log enrichment</li>
+<li>log storage and indexing</li>
+<li>visualization</li>
+</ol>
+<p>While various tools offered by both Elastic and other vendors could work together in the above layers, <a href="/monitoring-wso2-logs-with-elasticsearch-logstash-and-kibana-or-grafana-1f880f6ed056">most common tools used are</a>,</p>
+<ol>
+<li>some kind of a Beats agent, ex: filebeat</li>
+<li>Logstash</li>
+<li>ElasticSearch</li>
+<li>Kibana</li>
+</ol>
+<h4 id="log-collection">Log collection</h4>
+<p>The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint. Let’s explore these three aspects in detail.</p>
+<p>In a K8s environment, all logs of interest are produced as Docker Container logs that collect each Container’s <code>stdout</code>. These logs are persisted in each node, typically in <code>/var/lib/docker/containers/</code> folder.</p>
+<p>Various tools have functionality OOTB that can collect logs entries from these Container log files. In Filebeat’s case it is a matter of specifying the type of input for collection as <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/filebeat-input-docker.html"><code>docker</code></a>. What this does is to instruct Filebeat to collect the logs from the above mentioned Docker Container log file path.</p>
+<blockquote>
+<p>It should be noted that Elastic now favors <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/filebeat-input-container.html"><code>container</code></a> type to <code>docker</code> type, however the input parameters are more or less the same.</p></blockquote>
+<p>There are additional options that can be tweaked in order to modify the default behavior Filebeat uses to collect Docker logs. These include the <code>containers.ids</code> , <code>containers.stream</code> , and <code>json</code> . Filebeat documentation explains how these can be employed, however most defaults will do for the use case we are considering.</p>
+<p>This configuration will start collecting the Docker Container logs. However the resulting log event will only consist of the data collected off from the log file itself. There are other information that could be collected that could be meaningful at the end of the pipeline. For an example, it’s important to understand which Pod produced a particular log line on which specific AWS instance containing a specific tag. Although it may be possible to enrich each log event later by means of correlation, Filebeat provides <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/filtering-and-enhancing-data.html"><strong>Processors</strong></a>to configure enrichment easily.</p>
+<p>Two processors if importance in this setup are the <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/add-cloud-metadata.html">Cloud Metadata Processor </a>and the <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/add-kubernetes-metadata.html">K8s Metadata Processor</a>. Adding these to the configuration will make sure Cloud Service Provider specific details like the instance ID, region, and availability zone, and K8s cluster specific details like originating Pod name, Pod labels and Namespace are included in each resulting log event as Fields to be manipulated later (interestingly this is a form of log enrichment before we actually reach the tool designed to do log enrichment). These Fields will be highly useful to setup proper data segregation, search, and visualization.</p>
+<p>Now that how to collect logs is specified using a proper configuration, the locations to collect logs from has to be figured out.</p>
+<p>In this case, Filebeat has to be run in background in the compute Nodes that are running K8s. This has to be a constantly running process that repeatedly polls the log files for new inputs.</p>
+<p>We can start Filebeat as a typical Pod, may be as part of a Deployment. However, deploying Filebeat as a Deployment type opens up a critical hole in the design.</p>
+<p>While a Deployment may schedule its Pods as it wishes, based on resource availability and other factors such as taints and tolerances, that would result in some compute Nodes not having a Filebeat Pod running in them to collect the Docker logs. To make sure that a Filebeat Pod is scheduled on each and every Node another K8s construct called DaemonSet has to be used. A DaemonSet makes sure that the Filebeat Pods are scheduled in every Node with a count of 1.</p>
+<p>The configuration to mount to the Filebeat Pod may look like the one below. Again, this is a minimal configuration matching a minimal requirement set. It’s highly likely this will require modification before getting adapted to specific deployments</p>
+<p>TODO</p>
+<p>Now that how the logs should be collected and where log collection should happen are specified, the last piece of configuration to attach to the above is the destination for the logs that are read off from the Docker Container logs.</p>
+<p>In our stack defined above, this destination is the log enrichment layer, where Logstash is running. For Filebeat to publish logs to Logstash, the K8s Service for Logstash can be used. If Filebeat and Logstash are deployed in the same K8s Namespace, just the Service name <code>logstash</code> can be specified. If Logstash is in a different Namespace, the FQDN of <code>logstash.&lt;namespaces&gt;.svc.cluster.local</code> has to be used to resolve the Service name correctly.</p>
+<blockquote>
+<p>There will be more configuration to set up for a proper production deployment requirement. Let’s revisit them at the end, without complicating the explanation at this moment.</p></blockquote>
+<p>TODO: need for filebeat SA</p>
+<p><img src="/blog/img/draft__clipboard_2.png#layoutTextWidth" alt=""></p>
+<p>Note that we have not specified any persistence for the Filebeat Pods. Since Filebeat only does log collection to be sent off to enrichment, and since the logs can be retrieved from the source if needed (during a limited period of time), Pods do not need a persistence layer to retrieve data in the case of crashes.</p>
+<h4 id="log-enrichment">Log enrichment</h4>
+<p>Now that the logs are being collected from the required sources, it’s time to start making meaning out of them. This part of the process is called enrichment, and Logstash is the tool of choice in our stack.</p>
+<p>In brief, Logstash is a customizable pipeline that each incoming event goes through. A pipeline can have different types of <strong>inputs</strong>defined. <code>beats</code> is the type of input that we are interested in, that will allow our Filebeat agents to push collected logs to Logstash. Defining an input for <code>beats</code> opens up a port on the host Logstash is running on so that Filebeat agents are able to connect to that port and send over the logs.</p>
+<blockquote>
+<p>There are other types of inputs that can be defined, including <code>file</code> , <code>s3</code> , and <code>elasticsearch</code> being a few interesting ones <a href="https://www.elastic.co/guide/en/logstash/current/input-plugins.html">out of the list</a>.</p></blockquote>
+<p>Log events coming through these inputs are then fed into a pipeline of <strong>filters</strong>. These filters can modify, delete, clone, or hold (throttle) the log event based on the parameters provided in the filter configuration. The most important of these filters is the <code>grok</code> filter where the incoming log message could be split up to meaningful fields to make sense out of later.</p>
+<p>For an example, consider the following log line produced by an Nginx Pod.</p>
+<p>TODO</p>
+<p>The whole entry has a few meaningful pieces of information huddled together. These are,</p>
+<p>TODO</p>
+<p>This is the result of the default log pattern produced by Nginx, <code>COMBINEDHTTP</code> . Given the understanding of the log format, we can instruct Logstash to extract the fields out of each Nginx log line.</p>
+<p>How this happens is through the use of the <code>grok</code> filter. A pattern to match is given to <code>grok</code> that will try its best to parse the given line. The result is a map of values where keys are fields in the pattern provided to the <code>grok</code> filter, and the values are the matched values in the log line.</p>
+<p>Since all sorts of logs generated by different Pods could be fed through Filebeat, we can instruct Logstash to only apply the <code>grok</code> filter to the log events originating from Nginx Pods. We can do this since before publishing the log event, Filebeat has already enriched it with K8s metadata. We can conditionally apply the <code>grok</code> pattern only if <code>kubernetes.labels.appName</code> is equal to <code>nginx</code> (given that the Nginx Pod has a label <code>appName</code> with the value <code>nginx</code> ).</p>
+<p>The following information could be parsed from a Nginx log entry with Logstash.</p>
+<p>TODO</p>
+<p>After the enrichment of the events is done, they can be pushed off to storage. This is also done using a K8s Service that can be addressed just by name or the FQDN depending on the colocation of the respective Namespaces.</p>
+<p>This is specified on the <strong>output</strong> section of the Logstash configuration. Once again, there are different output plugins, but the one we are interested is <code>elasticsearch</code> with which we can push enriched logs to an ElasticSearch cluster. This could also be a basic-auth secured ElasticSearch cluster.</p>
+<p>While pushing logs to ElasticSearch, we could also instruct Logstash to push to different indices based on different factors. For an example, in a K8s setup, we could implement some kind of multi-tenancy based data segregation by sending logs from different K8s Namespaces to different ElasticSearch indices. Let’s discuss a sample scenario in another article.</p>
+<p><img src="/blog/img/draft__clipboard_3.png#layoutTextWidth" alt=""></p>
+<p>In terms of scheduling the Logstash processes, a Deployment could be used to schedule Pods of Logstash throughout the K8s cluster. This would give flexibility when scaling requirements kick in.</p>
+<blockquote>
+<p>You might have noticed that we have used a StatefulSet with persistence instead of a Deployment in the above diagram. Why this is, has to do with fault tolerance requirements production deployments may have. This is discussed in detail in the last section of this article, where the basic setup has to be modified in order to withstand production level loads.</p></blockquote>
+<h4 id="log-collection-andindexing">Log collection and indexing</h4>
+<p>Now that the logs are translated into a meaningful set of data, it’s time to store and index them for querying. ElasticSearch is the tool of choice, the main attraction of the stack to be honest. It’s an efficient useful tool to store and index unstructured data. How ElasticSearch design, which was done in a time of non-Container-Cluster-Management, is matched to K8s is an interesting story of itself.</p>
+<p>In its core, ElasticSearch is only a collection of carefully managed Apache Lucene instances. Each of these Lucene instances is called a <strong>Shard</strong> in ElasticSearch terms. Typically two of these Shards (one called a <strong>primary shard</strong>, the other the backup shard) is called an <strong>Index.</strong> ElasticSearch makes sure to never schedule both of the Shards of the Index in the same ElasticSearch node, to avoid data loss.</p>
+<blockquote>
+<p>I said “typically” because the number of shards per index could vary depending on user preferences. There was a time when 5 shards, 1 primary and 4 backups was suggested as a sensible default. Number of shards per index is best decided early in the design and deployment, as changing this later, when there are a large number of indices to change, would be a hassle.</p></blockquote>
+<p>Other than the number of Shards per index, ElasticSearch requires very little in terms of configuration to startup. However, just one ElasticSearch instance is not considered a healthy cluster, and given that the resource usage of the Shards go up proportionately to the number of requests (that could also go up fairly quickly as we’ll see later), it’s a good idea to scale out from the get go. Furthermore, scaling out an existing ElasticSearch cluster could result in a considerable downtime, since Shards may have to be rebalanced among the new instances of the cluster. So it is important to figure out the cluster requirements before the deployment.</p>
+<p>For our sample problem, a 2-node ElasticSearch cluster is enough, although better fault tolerance is achieved with odd numbered clusters, as odd numbers reduce the possibility of split-brain situations at most faulty scenarios. However, for the scope of this article, the configuration that would work for a 2-node cluster will also work for a 3-node cluster.</p>
+<p><img src="/blog/img/draft__clipboard_4.png#layoutTextWidth" alt=""></p>
+<p>The K8s controller used for the ElasticSearch deployment is a StatefulSet. This is because of the persistence and network consistency that the log persistence tool requires. StatefulSets will schedule Pods in a manner that makes sure in case of Pod downtimes the same resources will be allocated to the newly created Pods during healing. These include any persistent volumes. It also provides a consistent networking through the use of <strong>Headless Services</strong> where each Pod will have a standard consistent name to be reached. Each Pod is also started in a sequential manner where for a replica count of 3, the start sequence will be <code>pod-0</code> , <code>pod-1</code> , <code>pod-2</code> . Each subsequent Pod will wait until the previous Pod becomes live and running. Together these features provide a sane way of initializing a cluster where node membership is managed by well-known addresses rather than dynamic discovery. For ElasticSearch, the default membership scheme is a mix of the two.</p>
+<p>In the StatefulSet, we are also going to define a <code>PersistentVolumeClaimTemplate</code> which generates a <code>PersistentVolumeClaim</code> for each Pod scheduled by the StatefulSet. The allocated <code>PersistentVolume</code> will be mounted to the location which ElasticSearch considers as the data directory, where all data is stored. This is because data should survive beyond Pod lifecycles, or even StatefulSet lifecycles.</p>
+<p>In terms of networking, this setup use two K8s Services for ElasticSearch Pods. One is a typical <a href="/load-balancing-and-reverse-proxying-for-kubernetes-services-f03dd0efe80">ClusterIP Service</a> named <code>elasticsearch</code> that exposes the ElasticSearch HTTP port, which by default is <code>9200</code>. This can be used by outside processes (ex: Logstash, Kibana) to reach the ElasticSearch Pods in a load balanced manner. The IPs resolved for each call to the Service name could be the either of the Pod IP addresses.</p>
+<p>The other Service is a <strong>Headless Service</strong>, where the Endpoint objects are created based on Selectors that match the ElasticSearch Pod labels. This is used by the StatefulSet to provide stable network IDs to the Pods through the Service name. For an example, for the sample setup, with a Headless Service named <code>elasticsearch-headless</code> in the <code>default</code> namespace, the two Pods generated by the StatefulSet <code>elasticsearch </code>will be reachable through the FQDN <code>elasticsearch-0.elasticsearch-headless.default.svc.cluster.local</code> . These names can be used for the ElasticSearch configuration to bootstrap the cluster membership. The Headless Service attached to the StatefulSet will expose the clustering port of <code>9300</code> in addition to the HTTP port <code>9200</code> .</p>
+<p>ElasticSearch nodes can play different roles in a cluster depending on the configuration. These roles include,</p>
+<ol>
+<li>data</li>
+<li>ingest</li>
+<li>master</li>
+</ol>
+<p>In the sample setup we are discussing, both nodes are playing all the above roles. However, for a given cluster, there can be only one master node and all others nodes that hope to become one will have to be <strong>master eligible.</strong></p>
+<p>When an ElasticSearch cluster is first booted up, two tasks have to complete for a master node to be elected.</p>
+<ol>
+<li>cluster bootstrap (one time task that executes the first time the cluster nodes start up), where the first round of master eligible nodes (whose votes will be used for master election) are explicitly looked for</li>
+<li>discovery of master eligible nodes in the cluster, typically through a load balancing A record resolution</li>
+</ol>
+<p>For a K8s setup, the Headless Service features that were described will help to complete both of these tasks.</p>
+<ol>
+<li>In the K8s ElasticSearch setup we are considering, both Pods will be live (determined by the StatefulSet) so both Pods can be used as initial master eligible nodes. Since Headless Services provide consistent naming for both of the Pods, the names <code>elasticsearch-0</code> and <code>elasticsearch-1</code> can be used for the related setting <code>cluster.initial_master_nodes</code> . The cluster when starting up for the first time, will consider the votes of both of these Pods and proceed with the master election.</li>
+<li>When another master election comes (cluster restart, master going offline), there has to be a method to discover newly joined Pods which are master eligible. In this case, any new Pods created as a result of scaling out will have to be discovered in order for election process to proceed. This can be done through the use of the Headless Service name, which when resolved will return all the Pod addresses (in contrast to a typical ClusterIP Service which will return only the Cluster IP address when resolved). Therefore, for the related setting <code>discovery.seed_hosts</code> , the Headless Service name <code>elasticsearch-headless</code> can be provided.</li>
+</ol>
+<p>Since these names are known before the Pods are actually spawned, including them in a ConfigMap and making ElasticSearch Pods use that configuration is possible. This would not have been the case if a Deployment or a typical Service were used in place of the StatefulSet or the Headless Service.</p>
+<p>With the successful and healthy <code>GREEN</code> ElasticSearch cluster, the data pushed from Logstash will correctly be stored and indexed. Now these can be queried for all kinds of purposes, through either the ElasticSearch REST API or the visualization tool, Kibana.</p>
+<h4 id="visualization">Visualization</h4>
+<p>Kibana is a web application which can be used to query data from an ElasticSearch cluster. It does so through issuing queries to the ElasticSearch cluster through the REST API. Additionally it also acts as a widget and dashboard server that can be used to visualize specific queries, as well as a management frontend that can perform several actions like role and user management that are a lot cumbersome to do so through the ElasticSearch REST API. Kibana itself doesn’t have a requirement for persistence as it uses ElasticSearch itself as a persistence layer.</p>
+<p>Being a web application, Kibana is the only tool out of this stack that has to be exposed to outside traffic in typical conditions. Therefore, the attached <code>kibana</code> Service is linked to an Nginx Ingress which then can be exposed through a Cloud Service Provider load balancer.</p>
+<blockquote>
+<p>Exposing the stack to outside traffic inevitably means that some kind of application level authentication and authorization will have to be put in place. This will be discussed in a future article.</p></blockquote>
+<p><img src="/blog/img/draft__clipboard_5.png#layoutTextWidth" alt=""></p>
+<p>Since there are no special requirements for scheduling when it comes to Kibana, a typical K8s Deployment can be used to spawn Pods. As it turns out, this will also be the layer with the lowest user generated load (mostly because Kibana will be used during the time of an abnormal behavior in the system, which ideally should be rare, and because the bulk of the effective load for a request is done at the ElasticSearch layer). Furthermore, being stateless on its own (since ElasticSearch is its persistence), Kibana Pods can be scaled up and down as desired without having to worry about persistence requirement.</p>
+<h3 id="gluing-the-stacktogether">Gluing the stack together</h3>
+<p>Now that we have discussed each tool of the stack in detail, let’s take a closer look at how these components interact with each other.</p>
+<p>Looking back at the first diagram which shows the complete logical deployment of the stack, the interactions between the components can be broken down to the following.</p>
+<ol>
+<li>Filebeat talks to Logstash through the K8s Service <code>logstash</code> through port <code>5066</code> to push collected logs</li>
+<li>Logstash talks to ElasticSearch through the K8s Service <code>elasticsearch</code> through the port <code>9200</code> to push enriched logs</li>
+<li>ElasticSearch nodes in the cluster talk to each other using the K8s Headless Service <code>elasticsearch-headless</code> and the consistent Pod names through the port <code>9300</code> to form and maintain the cluster</li>
+<li>Kibana, when the user initiates access, talks to ElasticSearch through the K8s Service <code>elasticsearch</code> through the HTTP port <code>9200</code> to read and write data</li>
+</ol>
+<p>The definitions of the Services mentioned above should reflect this by exposing the correct ports for communication. Furthermore, any NetworkPolicy definitions put in place should allow ingress and egress traffic from the parties defined in the above interactions.</p>
+<p>For an example, when considering the interactions #2, #3, and #4, the NetworkPolicy attached to the ElasticSearch Pods should allow ingress traffic to port <code>9200</code> originating from labels attached to both Logstash and Kibana Pods. On the other hand, it should also restrict traffic to port <code>9300</code> so that only traffic originating from labels attached ElasticSearch.</p>
+<p><code>kibana</code> Service should be exposed to outside traffic using an <a href="/load-balancing-and-reverse-proxying-for-kubernetes-services-f03dd0efe80">Nginx Ingress and attached Cloud Service Provider load balancers</a>. The port that the Service should expose is <code>5601</code> .</p>
+<p>The above considerations should take care of most of the issues in connectivity between the Pods of the stack. However, this stack would not be ideal to be left out in the production environment. There will be layers that will easily buckle before sudden spikes or consistent high loads. They should be hardened in terms of fault tolerance.</p>
+<h4 id="buffering-at-logstash-layer-part01">Buffering at Logstash Layer (Part 01)</h4>
+<p>Filebeat and Logstash are essentially the content input and transformation layers of the stack. Therefore, naturally, the first line of defense against unwanted levels of input should be implemented at these layers. Implementing this at Filebeat could be simpler, excluding file patterns that may produce a large number of log lines per second, however that is not a proper adaptive defense against sources that unexpectedly send too large inputs, that otherwise may produce meaningful data. Therefore, it may be better to keep the complexity of buffering input away from Filebeat.</p>
+<p>Logstash on the other hand could get affected first by a spike of input. “<a href="https://www.elastic.co/guide/en/logstash/current/persistent-queues.html#persistent-queues-architecture">Persistent Queues</a>” (PQs) is a built-in feature for Logstash to tackle this exact problem. In brief, Logstash instances with PQs enabled will keep a configurable file based buffer (instead of a fixed in-memory buffer) for incoming events to be processed. Events will clear this buffer only after being fully processed (i.e. going through <strong>filter</strong>and/or <strong>output</strong>stages, based on <strong>ACK</strong>nowledging the event to Filebeat as processed). If the buffer is filled at a certain points (ex: by a spike of inputs from one of the Filebeat instances) that Logstash instance will stop accepting events for processing, until the buffer is cleared to queue more input. This method of back-pressuring inputs lets Logstash gracefully fail during a spike, without dropping events.</p>
+<p>PQs can be configured to have both a maximum event count and a maximum size on disk. Therefore, the buffer size can be experimented with to have the optimum size for managing back-pressure in a sensible manner.</p>
+<p>For PQs, durability is important, and therefore, storing the PQs on a Pod storage, which does not survive Pod lifecycles, defeats the purpose. PQs should be complemented with Persistent Storage for Logstash. The easiest way to handle this is to convert the Logstash K8s Deployment to a StatefulSet with a <code>PersistentVolumeClaimTemplate</code> . This will make sure that PQs are stored in volumes that will not go down with the Pod or even the StatefulSet controller. This is the reason why Logstash component is portrayed as a StatefulSet managed set of Pods in the initial diagram.</p>
+<p><img src="/blog/img/draft__clipboard_6.png#layoutTextWidth" alt=""></p>
+<blockquote>
+<p>This is only half of the work that can be done to throttle input at the Logstash layer. Let’s discuss the throttle filter approach in another article.</p></blockquote>
+<h4 id="keeping-elasticsearch-separate">Keeping ElasticSearch Separate</h4>
+<p>As mentioned in another section, ElasticSearch is the most resource intensive of the tools of this stack. Therefore, it is important to make sure that ElasticSearch Pods are getting adequate resources allocated to it and other non-related workloads are not affecting their performance drastically.</p>
+<p>The ideal way to do this is to make sure that</p>
+<ol>
+<li>ElasticSearch Pods get to be scheduled into special types of Nodes with resources matching required performance</li>
+<li>other workloads are not getting scheduled in those special types of Nodes</li>
+</ol>
+<p>The K8s native way to implement this is through<a href="https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/"> taints and tolerations</a>. The idea is to</p>
+<ol>
+<li>Spawn special Nodes to match the Pod replica count (ex: 2 in the sample case)</li>
+<li>Mark the Nodes with a taint which is a key-value label</li>
+<li>Mark the <code>elasticsearch</code> StatefulSet with tolerations that match the taint added to the Nodes</li>
+</ol>
+<p>This will make sure that only <code>elasticsearch</code> Pods that carry the matching tolerations, will get scheduled to the tainted Nodes.</p>
+<p>For an example, the Nodes that are supposed to host the ElasticSearch Pods can be tainted with the following.</p>
+<p>TODO:</p>
+<p>The <code>elasticsearch</code> StatefulSet should get the following tolerations.</p>
+<p>TODO:</p>
+<p>After this change is done the Nodes will only carry the required <code>kube-system</code> Pods and <code>elasticsearch-*</code> Pods that match the tolerations. However, Filebeat Pods should also be scheduled in these Nodes for log collection to be completed. Therefore, the above tolerations that were added to ElasticSearch StatefulSet should also be added to the Filebeat DaemonSet.</p>
+<figure><img src="/blog/img/draft__clipboard_7.png#layoutTextWidth"><figcaption>Physical distribution of Pods of the stack</figcaption></figure>
+<blockquote>
+<p>With this change, it’s important to match the zones that the PVs will be spawned with the zones that ElasticSearch Nodes will be spawned in. This can be done by defining a <code>StorageClass</code> with the provisioner set to the required one (ex: <code>gp2</code> ) and using <code>allowedTopologies</code> to match the zones. Otherwise, there will be scenarios where <code>elasticsearch</code> Pods will be restricted to Nodes that do not have PVs spawned in that respective zone, failing the scheduling phase.</p></blockquote>
+<p>TODO: storageclass definition with allowed topologies</p>
+<h4 id="managing-elasticsearch-jvm-parameters">Managing ElasticSearch JVM Parameters</h4>
+<p>ElasticSearch is a JVM. Being a memory intensive tool, it should be allocated enough memory so that</p>
+<ol>
+<li>frequency of Garbage Collection is as less as possible</li>
+<li>the Garbage Collection pause is as short as possible</li>
+</ol>
+<p>The JVM memory sizes (minimum and maximum) can be set through the use JVM configuration options provided by ElasticSearch. The exact values to set may vary on the type of the use. However as a best practice,</p>
+<ol>
+<li>match minimum and maximum heap sizes ( <code>Xms</code> and <code>Xmx</code> ) to reduce GC frequency early in the process uptime</li>
+<li>match the Pod memory requests and limits to the heap size</li>
+</ol>
+<p>Since ElasticSearch Pods will be scheduled alone in a Node (because of the taint-toleration match) the JVM doesn’t have to share memory with other processes. Therefore, the heap size can comfortably be expanded to be close to the full amount of memory available to the Virtual Machine. The Pod memory requests and limits can also match these values since it’s guaranteed the Pods will be allowed to spawn in those specific Nodes.</p>
+<h4 id="shard-count">Shard Count</h4>
+<p>One key factor that may affect the actual amount of memory to be allocated to the ElasticSearch cluster will be the total number of Shards required to be available.</p>
+<p>Each Index consists of at least 2 Shards. The total number of Shards in the cluster is restricted by the amount of memory available, along with the Shard specific factors such as Shard size. It’s a good idea to calculate the rough number of Shards required in the cluster, the general memory foot print of each Shard and then plan the amount of memory to be available to the cluster. A general rule of thumb would be to calculate around 30 Shards per 1GB of RAM, however this could easily change with.</p>
+<ol>
+<li>the size of the documents indexed</li>
+<li>the frequency of document ingestion</li>
+<li>the frequency of index rotation</li>
+</ol>
+<p>It should be noted that even with these considerations, the ElasticSearch cluster could still go OOM after a sudden, unexpected spike of input. This can be avoided by having necessary monitoring and alerting in place to know high memory usage in advance and scale the cluster as required.</p>
+<blockquote>
+<p>To calculate the number of Shards required to be running on a cluster, a data retention strategy should be defined. Let’s discuss how to do so in another article.</p></blockquote>
+<hr>
+<p>Written on  by .</p>
+<p>Originally published on <a href="">Medium</a></p>
+
+        </div>
+        <div class="prev-next row">
+  <div class="prev col-sm">
+    
+    <a href="http://localhost:1313/blog/draft__elasticsearch-on-k8s-authentication-and-authorization/">&lt; ElasticSearch on K8s: Authentication and Authorization</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="http://localhost:1313/blog/draft__carbon-file-uploader/">Carbon File Uploader &gt;</a>
+    
+  </div>
+</div>
+
+        
+
+        
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

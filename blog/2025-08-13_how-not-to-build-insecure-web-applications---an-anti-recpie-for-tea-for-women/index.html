@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.151.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/blog/2025-08-13_how-not-to-build-insecure-web-applications---an-anti-recpie-for-tea-for-women/" />
+  <link rel="canonical" href="http://localhost:1313/blog/2025-08-13_how-not-to-build-insecure-web-applications---an-anti-recpie-for-tea-for-women/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "blog",
+      "name" : "How to Securely Design and Build Cloud Applications",
+      "headline" : "How to Securely Design and Build Cloud Applications",
+      "description" : "After the Tea App for Women investigation I thought contributing to the solution",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-08-13 14:11:38 \u002b1200 NZST",
+      "dateModified" : "2025-08-13 14:11:38 \u002b1200 NZST",
+      "url" : "http:\/\/localhost:1313\/blog\/2025-08-13_how-not-to-build-insecure-web-applications---an-anti-recpie-for-tea-for-women\/",
+      "keywords" : [ "aws","cloud","security", ]
+  }
+</script>
+<title>How to Securely Design and Build Cloud Applications - chamila.dev</title>
+  <meta property="og:title" content="How to Securely Design and Build Cloud Applications - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="After the Tea App for Women investigation I thought contributing to the solution" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="http://localhost:1313/">chamila.dev</a> >
+      <a href="http://localhost:1313//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">How to Securely Design and Build Cloud Applications</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2025-08-13 14:11:38 NZST">
+                13 Aug 2025
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~13 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#principles-and-guidelines">Principles and Guidelines</a></li>
+    <li><a href="#rbac-and-least-privilege-principle">RBAC and Least Privilege Principle</a></li>
+    <li><a href="#defense-in-depth">Defense in Depth</a></li>
+    <li><a href="#segmented-path-to-production">Segmented Path to Production</a></li>
+    <li><a href="#data-classification-and-separation">Data Classification and Separation</a></li>
+    <li><a href="#practices">Practices</a>
+      <ul>
+        <li><a href="#config-as-code">Config as Code</a></li>
+        <li><a href="#secure-secrets-management">Secure Secrets Management</a></li>
+        <li><a href="#managed-observability">(Managed) Observability</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/eDwrs9_Yf2o?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+<p>In the last post/video, I tried to replicate the stupidity of (almost)
+intentionally exposing your private user data as a public bucket/database.
+While it felt great to reinforce my belief that Cloud is relatively safe by
+itself, to reinforce my ego to know at least I&rsquo;m not that stupid, I did
+feel a little incomplete. I broke down what could&rsquo;ve possibly gone wrong, but I
+didn&rsquo;t show how to fix it, or prevent that from happening.</p>
+<blockquote>
+<p>and apparently a new similar app, TeaOnHer has leaked user data in a similar
+manner. there&rsquo;s a joke about copying homework somewhere around here</p></blockquote>
+<p>So I thought of contributing to the solution, show how to not make insecure web
+applications, show how to put safeguards in, so that even if some guy fresh out
+of a sales stint in big-tech wanted to make a bucket public, wouldn&rsquo;t be able
+to do so without leaving a significant irreputable evidence trail admissable in
+court (that is for those who actually built Tea app). Why? Because being
+insecure is sometimes not just a simple a mistake but a more intentional
+decision, as I demonstrated in the last post. Telling people not to make
+mistakes is a start, but what you really need, are policies&hellip; and evidence
+trails.</p>
+<p>I&rsquo;m going to use a typical web application development scenario, from idea to production
+operation (100k user or whatever you small to medium scale metric you want to
+consider). I&rsquo;m going to
+base this on AWS, because AWS is what I&rsquo;m mostly familiar with. However, don&rsquo;t
+get me wrong, being in AWS isn&rsquo;t what makes you secure. Being secure
+is cloud agnostic, it&rsquo;s even code agnostic in most cases (yeah, I know I know,
+Rust makes it possible to avoid a whole class of security issues. Just stick
+with me here on the point).</p>
+<p>This is not an exhaustive list of stuff you can do to secure a small to medium
+web application, however this can be a pretty good place to start. I would even
+call this at 80%. Besides, I assure you, these Tea apps didn&rsquo;t leak their user
+data because they hadn&rsquo;t secured an obscure vulnerability, they leakd their
+data because they didn&rsquo;t care about even the most basic security principles.</p>
+<h2 id="principles-and-guidelines">Principles and Guidelines</h2>
+<p>Overall, we are going to focus on practicing the following.</p>
+<ol>
+<li>Role Based Access Control (RBAC)</li>
+<li>Least Privilege Principle</li>
+<li>Defense in Depth</li>
+<li>Segmented Path to Production - dev, test, and prod separated</li>
+<li>Data Classification and Separation - no prod data in test</li>
+</ol>
+<!-- 1. Network/Domain Segmentation -->
+<p>and enforce the following guidelines on development and operations.</p>
+<ol>
+<li>Config as Code (almost everything possible as code)</li>
+<li>Secure Secrets Management</li>
+<li>Some level of managed observability</li>
+</ol>
+<p>These principles and practices aren&rsquo;t going to make your application secure by
+themselves. They should be used together to build an overall secure posture for
+your application and deployment architecture. So, just having RBAC doesn&rsquo;t make
+sense if you don&rsquo;t implement Least Privilege Principle.</p>
+<h2 id="rbac-and-least-privilege-principle">RBAC and Least Privilege Principle</h2>
+<p>I picked these two together because they work together more closely than the
+others. They reinforce each other and cannot stand alone without each other.</p>
+<p>Role Based Access Control, or RBAC, means providing users access to your stack
+based on different roles that have been assigned to those users. Now, I&rsquo;m not
+going to go in to the whole RBAC vs ABAC (Attribute Based Access Control)
+comparison that seems to come naturally to these discussions. As a rule, for
+most small to medium Cloud Applications, RBAC is a good enough place to start
+with. You almost always, don&rsquo;t need to stat with ABAC unless you have a
+specific use case to addresss with ABAC.</p>
+<p>Least Privilege Principle means providing only
+the minimum necessary level of permissions to an actor in your environment.
+This could be end users on your web application, developers, devops, and other
+types of users who are developing and maintaining your application, or external
+users who might need access to your stack from time to time.</p>
+<p>For your end users, you define different types of roles based on the type of
+actions they need to perform on your application. Then for each of these roles,
+you define different permissions that define which level of access is granted
+to different resources in the application. For example, in an application like
+Tea for Women, users should be granted permissions to read and modify only the data
+that they produced, not the entire set of data produced by all users. There are
+various libraries and frameworks for different programming languages that
+help you implement a good RBAC and Least Privilege Principle.</p>
+<p>In AWS for example, you can define different permission policies in IAM
+Identity Center based on the types of users who would interact with your Cloud
+deployment, and attach those policies as Permission Sets for different
+Accounts. Going a step further, a given Role would need a higher level of
+permissions for one Account and just ReadOnly permissions for another Account
+(dev vs prod Accounts is a very good example here). You can easily implement
+this differentiation in IAM Identity Center because a Group or a User gets
+access to an Account with a specific Permission Set. So, different Accounts can
+be granted access with different Permission Sets.</p>
+<h2 id="defense-in-depth">Defense in Depth</h2>
+<p>I like the name of this principle.</p>
+<p>If I&rsquo;m not mistaken, this term comes from the military strategy of building
+multiple lines of defense when defending a certain part of the battle line. The
+deeper the defense line, more confident you can be of your strategy of holding
+back the enemy.</p>
+<p>The same goes for &ldquo;defending&rdquo; a Cloud Application.</p>
+<p>It&rsquo;s not enough that you&rsquo;ve enabled username and password authentication to
+protect your application, if you haven&rsquo;t blocked network level traffic to your
+database and your data buckets. It doesn&rsquo;t matter that you have blocked network
+level traffic to your data buckets, if you have provided global read and write
+permissions to all the data for each actor. It doesn&rsquo;t matter that you&rsquo;ve
+provided least privilege permissions, if your user authentication process doesn&rsquo;t use
+MFA.</p>
+<p>If it takes failure of only a single line of defense for the whole application
+to be compromised, then you don&rsquo;t really have a defensive strategy. Your
+strategy depends on pure luck. Security of a software product depends on
+multiple factors being built together. If you don&rsquo;t believe this, you only need
+to ask the French about the Maginot Line in 1940.</p>
+<p>I&rsquo;ve heard too many justifications on why you don&rsquo;t really need IP level
+restrictions because there&rsquo;s an authentication step anyway, or why you don&rsquo;t
+need MFA because there&rsquo;s an IP level restriction, when in truth, you really
+need both of these security measures for a truly secure application.</p>
+<!-- ## Network/Domain Segmentation -->
+<h2 id="segmented-path-to-production">Segmented Path to Production</h2>
+<p>This is something that I&rsquo;ve started seeing less and less in the wild, but I&rsquo;ve
+made a point of including it as a principle in this video. In 2025, almost
+everyone knows that you should have a clear separation between development and
+production environments.</p>
+<p>For a given software change, there should be a clear path to production, and
+that path should consist of enough testing before the change actually reaches
+production environment.</p>
+<p>This is not only to make change management easier, it makes sure that you&rsquo;re
+not accidentally rolling out a major security bug without adequate testing and
+oversight from people with responsibility.</p>
+<p>Although I should say, even though most projects and deployments do tend to
+have clearly separated environments, for example, in different AWS Accounts and
+VPCs, they tend to give <code>AdministratorAccess</code> to all of these environments to
+all the users in the project. Sure, this can make iterating easier during early
+development phases, but it can also quickly become a nightmare if you keep on
+doing that well after go-live date. People do what they can do, so if your
+&ldquo;line of defense&rdquo; against making manual changes in prod is a polite reminder
+during standup for the people with <code>AdministratorAccess</code>, that&rsquo;s going to be as
+effective as asking a cat not to hunt birds. You can only rely on policies to
+actually rely on people doing the right thing.</p>
+<blockquote>
+<p>Don&rsquo;t depend on good intentions, depend on controls! - someone, I can&rsquo;t remember who</p></blockquote>
+<h2 id="data-classification-and-separation">Data Classification and Separation</h2>
+<p>There will different types of data that will be produced by your application
+during its lifetime of production operation. You need to be able to define how
+sensitive these type of data so that you&rsquo;d be able to put in necessary security
+controls. If you don&rsquo;t do this classification, then you don&rsquo;t really have a
+basis to build security on, you don&rsquo;t have a justification on why a user&rsquo;s
+personally identifiable data should be more secure than a mass email that
+generated by your application.</p>
+<p>For an example, if you&rsquo;re asking for scans of government IDs from users, then
+these are clearly PII classified, so they should be protected at different
+levels with highest protections (encryption at rest, encryption in transit, least privilege permissions
+etc). The load balancer access logs that your web frontend generates should
+have a lower sensitivity than PII, although, they should still be protected
+from public access. That email of shame you send out after getting compromised
+and having all your user data leaked, that&rsquo;s going to be public knowledge, and
+doesn&rsquo;t really need to be protected at all.</p>
+<p>In AWS for example, you can start assigning different KMS keys for different
+classes of data for encryption at rest. You can define granular key policies,
+and then make sure that if a certain bucket is tagged with sensitive or PII
+classes without the specific keys being used for encryption, lights will go off
+in your dashboards, and an incident response can be kicked off.</p>
+<h2 id="practices">Practices</h2>
+<p>So, these principles are good enough for 80% of the use cases. But the
+challenge is not really applying them, it&rsquo;s continuing to apply them throughout
+the product lifecycle. You can easily start with clearly defined roles and
+least privilege permissions assigned to those roles, but it&rsquo;s going to be
+useless if anyone could log in to the AWS console, and assign
+<code>AdministratorAccess</code> to any role without any oversight.</p>
+<p>So I thought of discussing some key software development practices and
+guidelines that can be easily implemented in a cloud environment. Just a note,
+that these are not really cloud-specific practices, but operating in the public
+cloud makes practicing these really easy, that it&rsquo;s criminal not to do so.</p>
+<p>Like the principles above, these will work best together, and they should
+usually be incorporated into the software and cloud architecture from the
+beginning by the architect or whoever&rsquo;s in charge of the design.</p>
+<h3 id="config-as-code">Config as Code</h3>
+<p>If you have not heard of Infrastructure as Code in 2025, congratulations,
+you&rsquo;re not looking down possible layoffs. But also, if that&rsquo;s the case and if
+you&rsquo;re in software industry, why?</p>
+<p>Almost everything can be *-as-Code in the modern age. You got code as code
+(easy), Infrastructure as Code, Policy as Code, and even stupidity as code if
+you consider my github profile.</p>
+<p>Having resources like infrastructure and policies as code provides two key
+benefits to your software development process.</p>
+<ol>
+<li>Having reviewable and traceable artefacts that reflect what&rsquo;s deployed in
+your production environment</li>
+<li>Being able to control how changes are deployed in a very reproducible manner</li>
+</ol>
+<p>Taking my example above, if you&rsquo;re managing your IAM permission policies with
+IaC (Terraform, CloudFormation, OpenTofu, Pulumi, CDK, whatever is comfortable for you), then
+you can,</p>
+<ol>
+<li>make sure that any changes to the permission policies are reviewed and trace
+back when certain changes were introduced and why</li>
+<li>make sure when those changes are rolled out to the production environment,
+with human feedback and approval in the process</li>
+</ol>
+<p>Same goes for Policy as Code. You are ensuring that changes to these key
+controls are actually controlled, and no one actually needs to do click-ops to
+make changes in the environment. This beats having to write word documents for
+change requests, and having to trace through months old or even years old event
+logs to understand why Sean decided to make a bucket with sensitive data
+publicly accessible.</p>
+<p>You can easily start with IaC with various templates and modules in place to
+get started for most common Cloud Architectures, and if you&rsquo;re a software
+engineer, it&rsquo;s just a matter of learning a new DSL to get started with IaC.</p>
+<h3 id="secure-secrets-management">Secure Secrets Management</h3>
+<p>It&rsquo;s sad to see that even in 2025, people keep committing credentials to git in
+plaintext, when secure secrets management is just a hop away.</p>
+<p>Various software components will need to use sensitive data to interact with
+various other components. These could be database passwords or connection
+strings, API keys, secrets tokens, or just a string with high entropy needed to
+generate temporary keys. If you keep committing these to git in plaintext, then
+honestly, someone should have a word with about your career.</p>
+<p>In the public cloud, it&rsquo;s just a matter of using whatever the secrets
+management service to store these sensitive strings and data, and then retrieve
+them during runtime. For example, you can easily store API keys that you need
+to use to talk to a remote API, as a secret in AWS Secrets Manager, and read
+them during runtime. You can put a policy in Secrets Manager defining which
+actors can read the secret, and you can start doing this even during
+development, so this doesn&rsquo;t have to be a &ldquo;hardning&rdquo; step.</p>
+<p>Always start from the secrets management service as a habit, and you&rsquo;ll never
+commit a secret into git ever again.</p>
+<h3 id="managed-observability">(Managed) Observability</h3>
+<p>I&rsquo;ve written about Observability as a quality of a software product since 2018,
+and stuff has not changed a lot since then.</p>
+<p>You can&rsquo;t improve what you can&rsquo;t measure. You need to be able to see what your
+product does, both in terms of runtime data and the administration of the
+deployment. Observability commonly focuses on logs, metrics, and traces
+produced by the software product itself, but the events and logs produced by
+the activity on the infrasturcture itself should also be in scope for what
+you&rsquo;re planning to observe.</p>
+<p>For an example, you need to be able to see if there&rsquo;s an authenticated AWS
+principal, who&rsquo;s changing permission policies in your deployment in the odd
+hours of your time zone. You need to be able to get notified when that happens,
+and you need to be able to zero in on the traces of that activity.</p>
+<p>Why I&rsquo;ve included the term &ldquo;Managed&rdquo; in this practice is that observability
+stacks usually tend to be complex software products on their own. Operating in
+the cloud helps you reduce the complexity of an observability stack, by using
+services like CloudTrail, CloudWatch, and X-Ray, and not have to worry about
+the uptime of the observability stack itself.</p>
+<p>Also, service like CloudTrail, make sure that there&rsquo;s an immutable trail of
+audit logs on the controlplane activity (and some data plane activity as well
+in some cases), so a threat actor can&rsquo;t clean the traces of their activity if
+they actually breach your security controls.</p>
+<p>So the managed aspect of this observability stack (could be any combination in
+any public cloud provider) makes the barrier to implementing one in any type of
+software development practice. You can easily start writing your application
+logs to CloudWatch, you can push custom Metrics from your application to
+CloudWatch, build Alarms on those Metrics, you can easily push traces from your
+application to X-Ray, which will make it easier to improve your software
+performance, and enabling CloudTrail as an audit trail is a matter of couple of
+lines of code in Terraform or CloudFormation.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Obviously, these are not going to cover 100% of the use cases. Software
+requirements can be really complex. However, most cloud based web applications
+tend to be really similar in cloud architecture. And, these principals and
+practices don&rsquo;t really change based on the actual business requirements of the
+product.</p>
+<p>I&rsquo;ve noticed that people usually take wrong decisions when it comes to cloud
+architecture becuase they are unaware of the cloud capabilities or because they
+bring in incorrect mental models on how the cloud works from previous
+practices. With these fundamental principles, I hope I was able to change how
+you think about cloud software development security. If it did, then it&rsquo;s a
+matter of finding more information on how to implement concrete practices and
+architecture components for your specific design.</p>
+
+        </div>
+        <div class="prev-next row">
+  <div class="prev col-sm">
+    
+    <a href="http://localhost:1313/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes---trying-to-reproduce-the-tea-app-situation/">&lt; Is it that easy to make stupid mistakes? - Trying to Reproduce the Tea App Situation</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+  </div>
+</div>
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2024-03-11_deriving-aws-account-id-from-access-key/">Deriving AWS Account ID from Access Key</a></li>
+    
+    <li><a href="/blog/2025-02-01_aws-authentication-for-k8s-eks-pod-identities-deep-dive/">AWS Authentication for K8s: EKS Pod Identities Deep Dive</a></li>
+    
+    <li><a href="/blog/2025-01-27_aws-authentication-for-k8s-introduction/">AWS Authentication for K8s: Introduction</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

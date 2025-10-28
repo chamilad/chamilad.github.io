@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "How to Design a WSO2 Docker Image",
       "headline" : "How to Design a WSO2 Docker Image",
-      "description" : "What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.\nOptions available to obtain WSO2 products other than downloading the Zip file itself (https:\/\/wso2.",
+      "description" : "\u003ch4 id=\u0022what-should-be-your-concerns-for-wso2-ondocker\u0022\u003eWhat should be your concerns for WSO2 on Docker?\u003c\/h4\u003e\n\u003cp\u003e\u003cimg src=\u0022\/blog\/img\/2018-12-24_how-to-design-a-wso2-docker-image_0.jpeg#layoutTextWidth\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022\/thinking-of-moving-your-wso2-deployment-on-to-kubernetes-4e9a77b3377d\u0022\u003eDeploying WSO2 products on Containerized platforms\u003c\/a\u003e is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on \u003ca href=\u0022https:\/\/github.com\/wso2\/docker-apim\u0022\u003eDocker\u003c\/a\u003e, \u003ca href=\u0022https:\/\/github.com\/wso2\/kubernetes-apim\/\u0022\u003eKubernetes\u003c\/a\u003e, \u003ca href=\u0022https:\/\/github.com\/wso2\/pivotal-cf-apim\u0022\u003eCloudFoundry\u003c\/a\u003e, AWS ECS, and \u003ca href=\u0022https:\/\/github.com\/wso2\/dcos-apim\u0022\u003eApache Mesos\u003c\/a\u003e, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.\u003c\/p\u003e\n\u003cfigure\u003e\u003cimg src=\u0022\/blog\/img\/2018-12-24_how-to-design-a-wso2-docker-image_1.png#layoutTextWidth\u0022\u003e\u003cfigcaption\u003eOptions available to obtain WSO2 products other than downloading the Zip file itself (https:\/\/wso2.com\/api-management\/install\/)\u003c\/figcaption\u003e\u003c\/figure\u003e\n\u003cp\u003eDocker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind. These approaches vary from an all files and configs pre-baked end to another end where almost everything, except a tiny helper layer, being mounted at Container run-time. However, not all these approaches are suitable for a WSO2 deployment, and figuring out these details can be a daunting task, especially at an earlier phase of the deployment. Therefore, it’s important to have a set of common \u003cstrong\u003eguidelines\u003c\/strong\u003ethat can help determine which approach to take in each case. I emphasize the word \u003cstrong\u003eguidelines\u003c\/strong\u003e because these are only them, not hard rules or must-do’s in every deployment. There is freedom for the user to stray away, as long as the compromises made in doing so are understood.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,11 @@
 <title>How to Design a WSO2 Docker Image - chamila.dev</title>
   <meta property="og:title" content="How to Design a WSO2 Docker Image - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="What should be your concerns for WSO2 on Docker? Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
-Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2." />
+  <meta name="description" content="What should be your concerns for WSO2 on Docker?
+
+Deploying WSO2 products on Containerized platforms is a well-tested well-resourced activity. There are various resources available to deploy WSO2 products on Docker, Kubernetes, CloudFoundry, AWS ECS, and Apache Mesos, both officially and unofficially. However, designing a Docker image so that optimal non-functional traits like performance, operational efficiency, and security is a separate topic in itself.
+Options available to obtain WSO2 products other than downloading the Zip file itself (https://wso2.com/api-management/install/)
+Docker, being both a DSL and a utility tool for Container image packaging, can be written in several different ways keeping various operational goals in mind. These approaches vary from an all files and configs pre-baked end to another end where almost everything, except a tiny helper layer, being mounted at Container run-time. However, not all these approaches are suitable for a WSO2 deployment, and figuring out these details can be a daunting task, especially at an earlier phase of the deployment. Therefore, it’s important to have a set of common guidelinesthat can help determine which approach to take in each case. I emphasize the word guidelines because these are only them, not hard rules or must-do’s in every deployment. There is freedom for the user to stray away, as long as the compromises made in doing so are understood." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -176,8 +179,7 @@ Options available to obtain WSO2 products other than downloading the Zip file it
 <p>What official WSO2 Dockerfiles have followed to overcome this limitation is a simple one. The WSO2 pack is extracted before it’s being copied to the Docker image, in the Dockerfile context location. <a href="https://github.com/wso2/docker-apim/tree/master/dockerfiles/ubuntu/apim">The </a><a href="https://github.com/wso2/docker-apim/tree/master/dockerfiles/ubuntu/apim"><code>COPY</code></a><a href="https://github.com/wso2/docker-apim/tree/master/dockerfiles/ubuntu/apim"> instruction copies an extracted folder to the Docker image</a>. This approach removes the need to add a specific <code>RUN</code> instruction to extract and delete the zip file. Furthermore, any changes that have to be done to a product pack (e.g. change the theme configurations for WSO2 API Manager Publisher UI) can be done outside of the Docker image build process, saving both the build time and the image size.</p>
 <p>To add another small detail, when copying and configuring the WSO2 pack inside the Docker image, keep a note to do so in the same locations as a VM based deployment would do. For an example, if on your typical VM based WSO2 deployment, the product is running from <code>/opt/wso2am-2.6.0</code> with <code>/opt/wso2am</code> acting as an easy access symbolic link, do the same in the Docker image as well. This will make the life much more easier for the Ops work that involves setting up tasks like monitoring and logging, and post-incident troubleshooting.</p>
 <blockquote>
-<p>WSO2 products are also available as OS specific installers such as .deb or .rpm packages. In this case, they are installed to a specific location unique to the OS (e.g. <code>/usr/lib/WSO2</code> ).</p>
-</blockquote>
+<p>WSO2 products are also available as OS specific installers such as .deb or .rpm packages. In this case, they are installed to a specific location unique to the OS (e.g. <code>/usr/lib/WSO2</code> ).</p></blockquote>
 <p><strong>Presence of the JDK</strong>— As stated earlier, WSO2 products need a JDK implementation to be run. The supported JDKs can be found at the <a href="https://docs.wso2.com/display/compatibility/Tested+Operating+Systems+and+JDKs">documentation on compatibility</a>. For Docker images, this can be a JDK copied from outside, or a JDK already present in the parent image.</p>
 <p>Similar to the above description involving the WSO2 product, copying, extracting, and configuring the JDK could add undesirable size to the image. A similar solution could also be carried out for the JDK, however editing the JDK should be done with care <a href="https://blog.takipi.com/running-java-on-docker-youre-breaking-the-law/">not to violate the Oracle JDK</a>.</p>
 <p>A better approach would be to use <a href="https://hub.docker.com/_/openjdk/">an OpenJDK image as the parent image</a>. There are various Linux flavors supported in the list of tags available and it’s a simple <code>FROM</code> instruction as opposed to the combination of extract and <code>COPY</code> or even worse, a combination of <code>COPY</code>, <code>RUN</code>, and <code>ENV</code>.</p>
@@ -199,8 +201,7 @@ Options available to obtain WSO2 products other than downloading the Zip file it
 <figure><img src="/blog/img/2018-12-24_how-to-design-a-wso2-docker-image_8.png#layoutTextWidth"><figcaption>Creating a user and group named wso2carbon:wso2 and assigning access to WSO2 product location. The Dockerfile instruction USER sets wso2carbon as the process owner of the Container process from this instruction onwards</figcaption></figure>
 <p>Furthermore, when using the <code>COPY</code> instruction, the flag <code>--chown</code> can be used to set the ownership of the target location without having to add a separate <code>RUN</code> instruction to do so.</p>
 <blockquote>
-<p>**EDIT:**It should be noted that the important detail to implement is the specific UID and the GID for the non-privileged user. A specific UID and a GID makes sure that no clashes or unanticipated side effects occurring between users and groups on the host and the Containers. A known value also makes sure that privileges can be restricted on the host machine for that specific UID.</p>
-</blockquote>
+<p>**EDIT:**It should be noted that the important detail to implement is the specific UID and the GID for the non-privileged user. A specific UID and a GID makes sure that no clashes or unanticipated side effects occurring between users and groups on the host and the Containers. A known value also makes sure that privileges can be restricted on the host machine for that specific UID.</p></blockquote>
 <h4 id="run-time-details">Run-time Details</h4>
 <p>It’s most likely that there will be a thin bootstrap layer that acts as the main process of the Container. It will do some configurations, file manipulations, set environment variables, and finally will start the WSO2 Carbon server. It would be ideal to keep the list of bootstrap operations to a minimum to adhere to an agreed maximum Container startup time.</p>
 <p>The script should ideally pass any runtime arguments set at the Container runtime to the <code>wso2carbon.sh</code> process that it would invoke at the end. This enables scenarios like having to open up a remote debug port to a specific Container, without having to modify the Docker image itself.</p>
@@ -242,18 +243,17 @@ Options available to obtain WSO2 products other than downloading the Zip file it
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/">&lt; Publishing WSO2 Logs to Splunk from a Containerized Deployment</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2019-02-15_releasing-docblock-v0.1/">Releasing DocBlock v0.1 &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2018-11-28_publishing-wso2-logs-to-splunk-from-a-containerized-deployment/">&lt; Publishing WSO2 Logs to Splunk from a Containerized Deployment</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2019-02-15_releasing-docblock-v0.1/">Releasing DocBlock v0.1 &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

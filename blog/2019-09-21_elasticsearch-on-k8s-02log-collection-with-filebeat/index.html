@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "ElasticSearch on K8s: 02 — Log Collection with Filebeat",
       "headline" : "ElasticSearch on K8s: 02 — Log Collection with Filebeat",
-      "description" : "This is part of a series of short articles on setting up an ELK deployment on K8s.\n  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint.",
+      "description" : "\u003cp\u003e\u003cimg src=\u0022\/blog\/img\/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_0.jpeg#layoutOutsetCenter\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eThis is part of a series of short articles on setting up an ELK deployment on K8s.\u003c\/p\u003e\u003c\/blockquote\u003e\n\u003col\u003e\n\u003cli\u003e\u003ca href=\u0022\/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a\u0022\u003eElasticSearch on K8s: 01 — Basic Design\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003eElasticSearch on K8s: 02 — Log Collection with Filebeat\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2019-11-22_elasticsearch-on-k8s-03-log-enrichment-with-logstash\/\u0022\u003eElasticSearch on K8s: 03 - Log Enrichment with Logstash\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2019-11-23_elasticsearch-on-k8s-04-log-storage-and-search-with-elasticsearch\/\u0022\u003eElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2019-11-25_elasticsearch-on-k8s-05-visualization-and-production-readying\u0022\u003eElasticSearch on K8s: 05 - Visualization and Production Readying\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2019-11-26_elasticsearch-index-management\/\u0022\u003eElasticSearch Index Management\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2019-11-27_authentication-and-authorization-for-elasticsearch-01-a-blueprint-for-multi-tenant-sso\/\u0022\u003eAuthentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2020-02-10_authentication-and-authorization-for-elasticsearch-02-basic-sso-with-role-assignment\/\u0022\u003eAuthentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022\/post\/2020-02-12_authentication-and-authorization-for-elasticsearch-03-multi-tenancy-with-keycloak-and-kibana\/\u0022\u003eAuthentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana\u003c\/a\u003e\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003ch3 id=\u0022log-collection\u0022\u003eLog Collection\u003c\/h3\u003e\n\u003cp\u003eThe typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint. Let’s explore these three aspects in detail.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,22 @@
 <title>ElasticSearch on K8s: 02 — Log Collection with Filebeat - chamila.dev</title>
   <meta property="og:title" content="ElasticSearch on K8s: 02 — Log Collection with Filebeat - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="This is part of a series of short articles on setting up an ELK deployment on K8s.
-  ElasticSearch on K8s: 01 — Basic Design ElasticSearch on K8s: 02 — Log Collection with Filebeat ElasticSearch on K8s: 03 - Log Enrichment with Logstash ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch ElasticSearch on K8s: 05 - Visualization and Production Readying ElasticSearch Index Management Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana  Log Collection The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint." />
+  <meta name="description" content="
+
+This is part of a series of short articles on setting up an ELK deployment on K8s.
+
+ElasticSearch on K8s: 01 — Basic Design
+ElasticSearch on K8s: 02 — Log Collection with Filebeat
+ElasticSearch on K8s: 03 - Log Enrichment with Logstash
+ElasticSearch on K8s: 04 - Log Storage and Search with ElasticSearch
+ElasticSearch on K8s: 05 - Visualization and Production Readying
+ElasticSearch Index Management
+Authentication and Authorization for ElasticSearch: 01 - A Blueprint for Multi-tenant SSO
+Authentication and Authorization for ElasticSearch: 02 - Basic SSO with Role Assignment
+Authentication and Authorization for ElasticSearch: 03 - Multi-Tenancy with KeyCloak and Kibana
+
+Log Collection
+The typical task for a log collection tool is to collect a specified set of logs, from a specified set of locations, and offload them to a specified endpoint. Let’s explore these three aspects in detail." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -145,8 +159,7 @@
         <div class="post-content markdown-body">
           <p><img src="/blog/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_0.jpeg#layoutOutsetCenter" alt=""></p>
 <blockquote>
-<p>This is part of a series of short articles on setting up an ELK deployment on K8s.</p>
-</blockquote>
+<p>This is part of a series of short articles on setting up an ELK deployment on K8s.</p></blockquote>
 <ol>
 <li><a href="/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a">ElasticSearch on K8s: 01 — Basic Design</a></li>
 <li>ElasticSearch on K8s: 02 — Log Collection with Filebeat</li>
@@ -164,8 +177,7 @@
 <p>In a K8s environment, all logs of interest are generated as Docker Container logs that collect each Container’s <code>stdout</code>. These logs are persisted in the host node, typically in <code>/var/lib/docker/containers/</code> folder.</p>
 <p>Various tools have functionality OOTB that can collect logs entries from these Container log files. In Filebeat’s case it is a matter of specifying the type of input for collection as <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/filebeat-input-docker.html"><code>docker</code></a>. What this does is to instruct Filebeat to collect the logs from the above mentioned Docker Container logs.</p>
 <blockquote>
-<p>It should be noted that Elastic now favors <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/filebeat-input-container.html"><code>container</code></a> type to <code>docker</code> , however the input parameters are more or less the same.</p>
-</blockquote>
+<p>It should be noted that Elastic now favors <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/filebeat-input-container.html"><code>container</code></a> type to <code>docker</code> , however the input parameters are more or less the same.</p></blockquote>
 <p>There are additional options that can be used in order to modify the default behavior Filebeat uses to collect Docker logs. These include the <code>containers.ids</code> , <code>containers.stream</code> , and <code>json</code> . <a href="https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-input-docker.html">Filebeat documentation</a> explains how these can be employed, however most defaults will do for the use case we are considering.</p>
 <p>This configuration will start collecting the Docker Container logs. However the resulting log event will only consist of the data collected off from the log file itself. There are other information that could be collected at this moment that could be meaningful at the end of the pipeline. For an example, it’s important to understand which Pod produced a particular log line on which specific AWS instance containing a specific tag. Although it may be possible to enrich each log event later by means of correlation, Filebeat provides <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/filtering-and-enhancing-data.html"><strong>Processors</strong></a> to configure enrichment easily.</p>
 <p>Two processors of importance in this setup are the <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/add-cloud-metadata.html">Cloud Metadata Processor </a>and the <a href="https://www.elastic.co/guide/en/beats/filebeat/7.4/add-kubernetes-metadata.html">K8s Metadata Processor</a>. Adding these to the configuration will make sure Cloud Service Provider specific details like the instance ID, region, and availability zone (collected by talking to the Cloud Service Provider metadata service), and K8s cluster specific details like originating Pod name, Pod labels and Namespace (collected by talking to the K8s Master API) are included in each resulting log event as Fields to be manipulated later (interestingly this is a form of log enrichment before we actually reach the tool designed to do log enrichment). These Fields will be highly useful to setup proper data segregation, search, and visualization.</p>
@@ -179,39 +191,34 @@
 <p>Now that how the logs should be collected and where log collection should happen are specified, the last piece of configuration to attach to the above is the destination for the logs that are read off from the Docker Container logs.</p>
 <p>In<a href="/elasticsearch-on-k8s-01-basic-design-ecfdaccbb63a"> our stack defined in the sample problem</a>, this destination is the log enrichment layer, where Logstash is running. For Filebeat to publish logs to Logstash, the K8s Service for Logstash can be used. Because Filebeat is deployed in the <code>kube-system</code> Namespace in the sample code, Logstash will be in a different Namespace. Therefore, the FQDN of <code>logstash.&lt;namespaces&gt;.svc.cluster.local</code> has to be used to resolve the Service name correctly.</p>
 <blockquote>
-<p>Or this Logstash could be part of a central Admin Cluster that hosts all the Ops and Administrative components of the stack. In that case, Logstash endpoint should be the publicly (or org-internally) resolvable URL. Note that, other than Filebeat, the log collection layer, all other layers of the stack could be part of a separate admin cluster.</p>
-</blockquote>
+<p>Or this Logstash could be part of a central Admin Cluster that hosts all the Ops and Administrative components of the stack. In that case, Logstash endpoint should be the publicly (or org-internally) resolvable URL. Note that, other than Filebeat, the log collection layer, all other layers of the stack could be part of a separate admin cluster.</p></blockquote>
 <p>The configuration including all of the above aspects that will be included in the <code>filebeat.yml</code> configuration file would look like the following.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    <span style="font-weight:bold">filebeat.inputs</span>:
-    - <span style="font-weight:bold">type</span>: container
-      <span style="font-weight:bold">paths</span>:
-        - /var/log/containers/*.log
-      <span style="font-weight:bold">processors</span>:
-        - <span style="font-weight:bold">add_kubernetes_metadata</span>:
-            <span style="font-weight:bold">in_cluster</span>: <span style="color:#fff;font-weight:bold">true</span>
-    <span style="font-weight:bold">processors</span>:
-      - <span style="font-weight:bold">add_cloud_metadata</span>:
-      - <span style="font-weight:bold">add_host_metadata</span>:
-    <span style="font-weight:bold">output.logstash</span>:
-      <span style="font-weight:bold">hosts</span>: [<span style="color:#0ff;font-weight:bold">&#34;logstash.default.svc.cluster.local:5044&#34;</span>]
-</code></pre></div><p>This is a slightly modified version of the configuration that is <a href="https://www.elastic.co/guide/en/beats/filebeat/current/running-on-kubernetes.html%5B">provided by Elastic</a>. This is a minimal configuration matching a minimal requirement set. It’s highly likely this will require modification before getting adapted to specific deployments</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    <span style="color:#cba6f7">filebeat.inputs</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#cba6f7">type</span>: container
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">paths</span>:
+</span></span><span style="display:flex;"><span>        - /var/log/containers/*.log
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">processors</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#cba6f7">add_kubernetes_metadata</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">in_cluster</span>: <span style="color:#fab387">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">processors</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#cba6f7">add_cloud_metadata</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#cba6f7">add_host_metadata</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">output.logstash</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">hosts</span>: [<span style="color:#a6e3a1">&#34;logstash.default.svc.cluster.local:5044&#34;</span>]
+</span></span></code></pre></div><p>This is a slightly modified version of the configuration that is <a href="https://www.elastic.co/guide/en/beats/filebeat/current/running-on-kubernetes.html%5B">provided by Elastic</a>. This is a minimal configuration matching a minimal requirement set. It’s highly likely this will require modification before getting adapted to specific deployments</p>
 <figure><img src="/blog/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_2.png#layoutTextWidth"><figcaption>Filebeat DaemonSet and the Pod (in a single Node setup)</figcaption></figure>
 <blockquote>
-<p>There will be more configuration to set up for a proper production deployment requirement. These include,</p>
-</blockquote>
+<p>There will be more configuration to set up for a proper production deployment requirement. These include,</p></blockquote>
 <blockquote>
 <ol>
 <li>allowing Filebeat Pods to talk to the K8s Master API, and restricting the API calls to the specific set of endpoints and methods</li>
-</ol>
-</blockquote>
+</ol></blockquote>
 <blockquote>
 <ol start="2">
 <li>making sure Filebeat -&gt; Logstash communication is allowed through the NetworkPolicy definitions</li>
-</ol>
-</blockquote>
+</ol></blockquote>
 <blockquote>
-<p>These concerns are not discussed in this article series as the requirements around them could be specific to each deployment.</p>
-</blockquote>
+<p>These concerns are not discussed in this article series as the requirements around them could be specific to each deployment.</p></blockquote>
 <p>Following is the logical deployment and flow of data for the log collection layer.</p>
 <p><img src="/blog/img/2019-09-21_elasticsearch-on-k8s-02log-collection-with-filebeat_3.png#layoutTextWidth" alt=""></p>
 <p>Note that we have not specified any persistence for the Filebeat Pods. Since Filebeat only does log collection to be sent off to enrichment, and since the logs can be retrieved from the source if needed (during a limited period of time), Pods do not need a persistence layer to retrieve data in the case of crashes.</p>
@@ -223,18 +230,17 @@
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2019-09-19_elasticsearch-on-k8s-01basic-design/">&lt; ElasticSearch on K8s: 01 — Basic Design</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2019-10-20_medium-to-hugo/">Medium to Hugo &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2019-09-19_elasticsearch-on-k8s-01basic-design/">&lt; ElasticSearch on K8s: 01 — Basic Design</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2019-10-20_medium-to-hugo/">Medium to Hugo &gt;</a>
+    
+  </div>
 </div>
-
 
         
 

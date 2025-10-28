@@ -4,37 +4,30 @@
     <title>Activemq on chamila.dev</title>
     <link>https://chamila.dev/tags/activemq/</link>
     <description>Recent content in Activemq on chamila.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Nov 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://chamila.dev/tags/activemq/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Oct 2019 18:14:20 +1300</lastBuildDate>
+    <atom:link href="https://chamila.dev/tags/activemq/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creating a Simple ActiveMQ Master/Slave Setup</title>
       <link>https://chamila.dev/blog/2015-11-17_creating-a-simple-activemq-masterslave-setup/</link>
       <pubDate>Tue, 17 Nov 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-11-17_creating-a-simple-activemq-masterslave-setup/</guid>
-      <description>ActiveMQ is a high performing message broker, however if clustering is needed, it supports a number of methods. Out of these, the Master/Slave is a pattern where the persistence layer is shared between multiple broker instances. A Single Master broker connects to the persistence, and the rest of the Slave brokers keep waiting to attain the lock on the persistence. If the Master node goes down the lock for the persistence is released and a Slave quickly acquires it, allowing a client to continue operation without any data loss.</description>
+      <description>&lt;p&gt;ActiveMQ is a high performing message broker, however if clustering is needed, it supports &lt;a href=&#34;http://activemq.apache.org/clustering.html&#34;&gt;a number of methods&lt;/a&gt;. Out of these, the &lt;a href=&#34;http://activemq.apache.org/masterslave.html&#34;&gt;Master/Slave&lt;/a&gt; is a pattern where the persistence layer is shared between multiple broker instances. A Single Master broker connects to the persistence, and the rest of the Slave brokers keep waiting to attain the lock on the persistence. If the Master node goes down the lock for the persistence is released and a Slave quickly acquires it, allowing a client to continue operation without any data loss. The clients should connect to the Master/Slave setup, using the failover: transport, or they should implement a manual failover mechanism to automatically connect to the next available broker when the first one goes down.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Support for ActiveMQ Master/Slave Failover in Apache Stratos Cartridge Agent</title>
       <link>https://chamila.dev/blog/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</link>
       <pubDate>Mon, 16 Nov 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-11-16_support-for-activemq-masterslave-failover-in-apache-stratos-cartridge-agent/</guid>
-      <description>In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to secure the message broker communication. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.
-ActiveMQ supports various types of clustering patterns. Out of these, Master/Slave is a deployment pattern where the message store is replicated or shared between the clustered brokers.</description>
+      <description>&lt;p&gt;In Apache Stratos the message broker is a crucial point of operation upon which all components depend on. Recent Stratos releases included fixes to &lt;a href=&#34;https://chamila.dev/secure-message-broker-communication-in-apache-stratos-with-apache-activemq-609542eb8b81&#34;&gt;secure the message broker communication&lt;/a&gt;. The upcoming 4.1.5 release will contain a missing improvement for the Python Cartridge Agent related to message broker communication.&lt;/p&gt;&#xA;&lt;p&gt;ActiveMQ supports &lt;a href=&#34;http://activemq.apache.org/clustering.html&#34;&gt;various types of clustering patterns&lt;/a&gt;. Out of these, &lt;a href=&#34;http://activemq.apache.org/masterslave.html&#34;&gt;Master/Slave&lt;/a&gt; is a deployment pattern where the message store is replicated or shared between the clustered brokers. This makes it possible for a client to failover from the master to the slave in case the master broker goes down, and continue the communication without any data loss.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Secure Message Broker Communication in Apache Stratos With Apache ActiveMQ</title>
       <link>https://chamila.dev/blog/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</link>
       <pubDate>Sun, 11 Oct 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://chamila.dev/blog/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq/</guid>
-      <description>Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of communication between components such as the Cartridge Agent, Cloud Controller and the Autoscaler, as this allows a decoupled architecture for the components.
-When it comes to message brokers, authentication is a crucial part of securing the communication channel since if left unsecured, anyone with access to the message broker can subscribe to the topics and listen to the communication between the components.</description>
+      <description>&lt;p&gt;Apache Stratos relies heavily on message broker communication. In fact, message broker communication with message broker topics is the main method of communication between components such as the Cartridge Agent, Cloud Controller and the Autoscaler, as this allows a decoupled architecture for the components.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://chamila.dev/blog/img/2015-10-11_secure-message-broker-communication-in-apache-stratos-with-apache-activemq_0.png#layoutTextWidth&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;When it comes to message brokers, authentication is a crucial part of securing the communication channel since if left unsecured, anyone with access to the message broker can subscribe to the topics and listen to the communication between the components. This can expose sensitive data easily and the system would be compromised in no time. The purpose of this article is to explain how to engage Username and Password based authentication with Apache ActiveMQ in Stratos.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

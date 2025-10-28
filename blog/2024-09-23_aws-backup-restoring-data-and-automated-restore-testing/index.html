@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.151.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       "articleSection" : "blog",
       "name" : "AWS Backup: Restoring Data and Automated Restore Testing",
       "headline" : "AWS Backup: Restoring Data and Automated Restore Testing",
-      "description" : "Intro   I covered establishing a comprehensive cross-account backup strategy in AWS Organizations in the previous articles and videos.\nHowever, as an architect, one of the most frequent patterns I come across in the real world in this space is organisations having an imbalance of backup and recovery strategies. This is when there is a really detailed backup process that includes all the production resources in the backup jobs, with encrypted and replicated copies, but having minimum or even zero effort in testing recoverability of the backed up data and having playbooks for such scenarios.",
+      "description" : "\u003ch2 id=\u0022intro\u0022\u003eIntro\u003c\/h2\u003e\n\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n      \u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/IWHU6pQXJDg?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n    \u003c\/div\u003e\n\n\u003cp\u003eI covered establishing a comprehensive cross-account backup strategy in AWS\nOrganizations in the previous articles and videos.\u003c\/p\u003e\n\u003cp\u003eHowever, as an architect, one of the most frequent patterns I come across in\nthe real world in this space is organisations having an imbalance of backup and\nrecovery strategies. This is when there is a really detailed backup process\nthat includes all the production resources in the backup jobs, with encrypted\nand replicated copies, but having minimum or even zero effort in testing\nrecoverability of the backed up data and having playbooks for such scenarios.\u003c\/p\u003e",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -36,8 +36,19 @@
 <title>AWS Backup: Restoring Data and Automated Restore Testing - chamila.dev</title>
   <meta property="og:title" content="AWS Backup: Restoring Data and Automated Restore Testing - chamila.dev" />
   <meta property="og:type" content="article" />
-  <meta name="description" content="Intro   I covered establishing a comprehensive cross-account backup strategy in AWS Organizations in the previous articles and videos.
-However, as an architect, one of the most frequent patterns I come across in the real world in this space is organisations having an imbalance of backup and recovery strategies. This is when there is a really detailed backup process that includes all the production resources in the backup jobs, with encrypted and replicated copies, but having minimum or even zero effort in testing recoverability of the backed up data and having playbooks for such scenarios." />
+  <meta name="description" content="Intro
+
+      
+    
+
+I covered establishing a comprehensive cross-account backup strategy in AWS
+Organizations in the previous articles and videos.
+However, as an architect, one of the most frequent patterns I come across in
+the real world in this space is organisations having an imbalance of backup and
+recovery strategies. This is when there is a really detailed backup process
+that includes all the production resources in the backup jobs, with encrypted
+and replicated copies, but having minimum or even zero effort in testing
+recoverability of the backed up data and having playbooks for such scenarios." />
 
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
   <link rel="stylesheet"
@@ -147,10 +158,9 @@ However, as an architect, one of the most frequent patterns I come across in the
         </header>
         <div class="post-content markdown-body">
           <h2 id="intro">Intro</h2>
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/IWHU6pQXJDg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/IWHU6pQXJDg?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <p>I covered establishing a comprehensive cross-account backup strategy in AWS
 Organizations in the previous articles and videos.</p>
@@ -197,10 +207,9 @@ cross-account backup vault is.</p>
 be the cross-account backup vault. If you&rsquo;re unfamiliar with cross-account
 backup concepts, refer to <a href="/blog/2023-02-13_aws-backup-cross-account-backups/">my earlier blog
 post</a> and the video on the subject.</p>
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/u1ohjqhzTvw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/u1ohjqhzTvw?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <p>There is a DynamoDB table called <code>tracking</code> in the <code>workload_a</code> account. There is also an RDS instance called <code>mydb</code> in the same account.
 Both of these resources are encrypted at rest with the same KMS key.</p>
@@ -224,8 +233,7 @@ RDS instance because they represent the two kinds of resources that AWS Backup
 handles with different ways especially when it comes to encryption.</p>
 <blockquote>
 <p>Restoring a snapshot creates a new resource. Snapshots cannnot be restored
-into the same resource (to avoid data loss).</p>
-</blockquote>
+into the same resource (to avoid data loss).</p></blockquote>
 <h2 id="in-account-recovery-dynamodb">In-Account Recovery: DynamoDB</h2>
 <p>Data can be restored from either the resource backup lists or from the AWS
 Backup Console. For DynamoDB for example, the backups made either by AWS Backup
@@ -233,8 +241,7 @@ or DynamoDB itself are visible in the &ldquo;Backups&rdquo; tab in the DynamoDB 
 <img src="/blog/img/2024-09-23_2.png" alt=""></p>
 <blockquote>
 <p>Only the snapshots in the in-account vaults are visible here. No external
-vault based snapshots can be directly accessed by this account.</p>
-</blockquote>
+vault based snapshots can be directly accessed by this account.</p></blockquote>
 <p>The snapshots created by AWS Backup have the <code>arn:aws:backup:&lt;region&gt;</code> prefix
 whereas snapshots created by DynamoDB independantly will have the prefix of
 <code>arn:aws:dynamodb:&lt;region&gt;</code>.</p>
@@ -295,21 +302,21 @@ Jobs.</p>
 job to successfully happen, the target vault (what I called the <em>source vault</em> in
 the last article, yeah, it&rsquo;s a bit confusing) needs to have the proper vault
 policy.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="font-weight:bold">&#34;Version&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;2012-10-17&#34;</span>,
-  <span style="font-weight:bold">&#34;Statement&#34;</span>: [
-    {
-      <span style="font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow central account to copy into prod&#34;</span>,
-      <span style="font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Allow&#34;</span>,
-      <span style="font-weight:bold">&#34;Action&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;backup:CopyIntoBackupVault&#34;</span>,
-      <span style="font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;*&#34;</span>,
-      <span style="font-weight:bold">&#34;Principal&#34;</span>: {
-        <span style="font-weight:bold">&#34;AWS&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;arn:aws:iam::&lt;central account id&gt;:root&#34;</span>
-      }
-    }
-  ]
-}
-</code></pre></div><p>If this detail is unclear, please refer to my last post on this, where I
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;Version&#34;</span>: <span style="color:#a6e3a1">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;Allow central account to copy into prod&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Action&#34;</span>: <span style="color:#a6e3a1">&#34;backup:CopyIntoBackupVault&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Resource&#34;</span>: <span style="color:#a6e3a1">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#cba6f7">&#34;Principal&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;AWS&#34;</span>: <span style="color:#a6e3a1">&#34;arn:aws:iam::&lt;central account id&gt;:root&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If this detail is unclear, please refer to my last post on this, where I
 explain what a vault policy does and how this allows cross account copying of
 snapshots.</p>
 <p>To copy a snapshot to a vault in another account, go to the central account vault (in my case, it&rsquo;s in the <code>backup</code>
@@ -357,8 +364,7 @@ run.</p>
 <p>AWS recommends that restore testing is done on a non-prod separate account so
 that you wouldn&rsquo;t overwhelm limits and quotas and affect production workloads
 unintentionally. For this demo, I&rsquo;m going to use the same account, as this is
-a productionising detail.</p>
-</blockquote>
+a productionising detail.</p></blockquote>
 <p>Also select the vault and how the snapshots should be selected for restore
 testing. It can be either a random selection from a time frame, or the latest
 snapshot within that time.</p>
@@ -427,18 +433,17 @@ accurate up to date evidence of your work on achieving compliance</li>
 
         </div>
         <div class="prev-next row">
-	<div class="prev col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/">&lt; AWS Backup Cross-Account Backups in AWS Web Console</a>
-		
-	</div>        
-	<div class="next col-sm">
-	
-	<a href="https://chamila.dev/blog/2024-10-13_receiving-my-aws-golden-jacket/">Receiving my AWS Golden Jacket &gt;</a>
-		
-	</div>
+  <div class="prev col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-08-11_aws-backup-cross-account-backups-in-aws-web-console/">&lt; AWS Backup Cross-Account Backups in AWS Web Console</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="https://chamila.dev/blog/2024-10-13_receiving-my-aws-golden-jacket/">Receiving my AWS Golden Jacket &gt;</a>
+    
+  </div>
 </div>
-
 
         
 
