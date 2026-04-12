@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.151.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/blog/2025-12-14_stop-using-jump-hosts-for-ec2-windows-instances/" />
+  <link rel="canonical" href="http://localhost:1313/blog/2025-12-14_stop-using-jump-hosts-for-ec2-windows-instances/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Stop Using Jump Hosts for EC2 Windows Instances",
+      "headline" : "Stop Using Jump Hosts for EC2 Windows Instances",
+      "description" : "How to securely access private Windows EC2 instances",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-12-14 15:31:27 \u002b1300 NZDT",
+      "dateModified" : "2025-12-14 15:31:27 \u002b1300 NZDT",
+      "url" : "http:\/\/localhost:1313\/blog\/2025-12-14_stop-using-jump-hosts-for-ec2-windows-instances\/",
+      "keywords" : [ "", ]
+  }
+</script>
+<title>Stop Using Jump Hosts for EC2 Windows Instances - chamila.dev</title>
+  <meta property="og:title" content="Stop Using Jump Hosts for EC2 Windows Instances - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="How to securely access private Windows EC2 instances" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="http://localhost:1313/">chamila.dev</a> >
+      <a href="http://localhost:1313//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Stop Using Jump Hosts for EC2 Windows Instances</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2025-12-14 15:31:27 NZDT">
+                14 Dec 2025
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~9 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#scenario">Scenario</a></li>
+    <li><a href="#design">Design</a>
+      <ul>
+        <li><a href="#services-used">Services Used</a></li>
+        <li><a href="#design-in-detail">Design in Detail</a></li>
+        <li><a href="#implementation">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <p>For the most part of virtualisation and public IaaS Cloud existence, the
+pattern to access VMs that are in private networks has been to use a jump host,
+also known as Bastion hosts. This would be another VM, usually with less
+resources, and even less maintenance, that would be hosted in a public (or
+directly accessible) network that a user would first access, and then &ldquo;jump&rdquo; to
+the privately hosted VM because the public network or the instance would be
+whitelisted in the firewall rules to be able to access private resources.</p>
+<p><img src="/blog/img/2025-12-14_01.png" alt=""></p>
+<p>In AWS for example, to access EC2 instances in a private subnet, you would
+spawn a small, usually a <code>t3.micro</code> or <code>t3.small</code>, instance in a public
+network. You would whitelist the SSH/RDP access from this instance&rsquo;s Security
+Group in the target private EC2 instance&rsquo;s Security Group.</p>
+<p>But here&rsquo;s the kicker. To do this, you would have to store the access keys for
+the private instances in the so called Bastion instance. The best practice
+would be to adjust their permissions so that only the user would be able to
+read them, but in real world this almost never happens. Worst is when the same
+key pair is shared across the private instances and the bastion host.</p>
+<p>To add to this, now you have a full operating system and programs exposed to
+public Internet, with all sorts of vulnerabilities that this OS and the
+software carries. You can limit access by source IP addresses, however if you
+have people accessing this from different places, then that also quickly
+becomes an unmaintained whitelist.</p>
+<blockquote>
+<p>I&rsquo;m not going to focus on the cost factor, because if your use case can work
+with Burstable class instances, then with Spot pricing, the cost could almost
+negligible. However, from an optimisation point of view, this is compute that
+is always running, that doesn&rsquo;t need to be.</p></blockquote>
+<p>In this post I&rsquo;m going to talk about one pattern you can use to get rid of this
+operations heavy workflow, that would be a serious cybersecurity hole in your
+organisation. Note that this pattern may not be the only option when it comes
+to getting rid of public facing bastion hosts, but when it comes to being Cloud
+Native and Operationally Optimised (we are trying to be as much Well
+Architected as possible here), this approach takes the cake.</p>
+<h2 id="scenario">Scenario</h2>
+<p>Let&rsquo;s consider a typical setup that has a private EC2 instance. Note that I&rsquo;m
+talking about a Windows instance here. Accessing a Linux instance this way is
+even easier.</p>
+<blockquote>
+<p>In my current work, I&rsquo;m increasingly coming across Windows now. I&rsquo;m used to working on
+Linux systems more, so I&rsquo;m considering this an opportunity to learn Windows
+basics (other than being able to play games).</p></blockquote>
+<p>The bastion instance usage would require the following pattern.</p>
+<p><img src="/blog/img/2025-12-14_02.png" alt=""></p>
+<p>In short, a public subnet, an Internet Gateway, and an additional EC2 instance
+would have to be spun up for this pattern. This is without considering the
+operational and security overhead that comes with this baggage.</p>
+<p>Instead of this, we are going to use AWS managed services to directly access
+the instance with minimal operational overhead. And we are going to do that
+with least privilege principles and logging and monitoring in place.</p>
+<h2 id="design">Design</h2>
+<h3 id="services-used">Services Used</h3>
+<p>We are going to focus on following outcomes</p>
+<ol>
+<li>make use of managed services as much as possible</li>
+<li>enforce least privilege permissions</li>
+<li>reduce security vulnerabilities</li>
+<li>make use of being cloud-native as much as possible (operational efficiency)</li>
+</ol>
+<p>and going to use the following AWS services.</p>
+<h4 id="aws-organizations">AWS Organizations</h4>
+<p>This patterns assumes that your AWS footprint is a deliberate design with an
+Organization, a central Management account, and other services that contributes
+a Landing Zone of sorts. If your AWS footprint is a single Account or a couple
+of Accounts that are not managed by AWS Organizations and AWS IAM Identity
+Center, then there&rsquo;s a minimum basic set of work that needs to be done before
+this pattern can be implemented.</p>
+<h4 id="aws-iam-identity-center">AWS IAM Identity Center</h4>
+<p>Provides us a way to give different users least
+privilege access to different accounts. No need to share private keys
+around, in potentially insecure ways.</p>
+<h4 id="aws-systems-manager-ssm">AWS Systems Manager (SSM)</h4>
+<p>Specifically Fleet Manager. This provides us a way to
+connect to SSM Managed Instances without using bastion instance, public
+facing traffic, or key pairs. SSM also provides us a way to log activity and
+even record RDP sessions if needed.</p>
+<h4 id="cloudtrail">CloudTrail</h4>
+<p>This is an over-arching service that records everything that
+happens at the management plane (and even data plane if you need to) in AWS.
+In our scenario, CloudTrail gives us an immutable audit trail of who
+accessed which instance at which time which can be important if the privat
+instance needs that level of traceability.</p>
+<h3 id="design-in-detail">Design in Detail</h3>
+<p>In this design, the user is given least privilege access to the Account that
+hosts the EC2 instance so that they can access the Management Console and
+navigate to SSM Fleet Manager. In most instances, this is easier to do since
+the user would already be in the organisation&rsquo;s Identity Store (Entra ID,
+Active Directory, or
+some othe identity management solution). Even if the intended user is external
+(vendors, contractors etc), onboarding the user to the identity store is an
+established process.</p>
+<p>After accessing the specific account&rsquo;s management console, the user will
+navigate to SSM Fleet Manager, select the instance, and connect through the
+Fleet Manager RDP Session feature. This provides direct RDP access to the
+instance with two way clipboard sharing capability that can cover most use
+cases. The user will be able to do this without using a key pair or having to
+use usernames and passwords, only using the AWS IAM Identity Center identity
+(Single Sign-on option).</p>
+<p><img src="/blog/img/2025-12-14_04.png" alt=""></p>
+<blockquote>
+<p>At the moment, only Chrome and Edge browsers support two-way clipboard
+capability.</p></blockquote>
+<blockquote>
+<p>Also, some users may have trouble using the Single Sign-on option if their
+usernames are longer than 16 characters.</p></blockquote>
+<h3 id="implementation">Implementation</h3>
+<h4 id="users-access-to-management-console">User&rsquo;s access to management console</h4>
+<p>The first step is to provide the account access to the user. This is a
+straightforward, as long as the permission set needed is sorted out.</p>
+<p>If the use case is a typical job role, then the permission set can be one of
+the predefined AWS job role policies. For anything else, the bare minimum
+permissions needed to access the EC2 instance via SSM are as follows.</p>
+<blockquote>
+<p>The following policy restricts access to specific EC2 instances tagged with
+<code>application: myapplication</code>. Some permissions can be restricted to resources
+like this (ex: <code>ec2:GetPasswordData</code>), and some permissions do not apply to specific scopes (ex: <code>ec2:DescribeInstances</code>). The
+following policy is a result of trial and error after starting from the AWS
+documentation. Implementing this ensures minimal information is exposed to
+the user, and they are only allowed to access a specific instance out of a
+fleet of instances with potentially sensitive information.</p></blockquote>
+<blockquote>
+<p>In some situations this could be safely opened
+up to be any resource (<code>*</code>). However, it is always a good measure to implement least
+privileged access, and to reduce use of <code>*</code> as much as possible.</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Version&#34;</span>:<span style="color:#a6e3a1">&#34;2012-10-17&#34;</span>,              
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;SSO&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;sso:ListDirectoryAssociations*&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;identitystore:DescribeUser&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Resource&#34;</span>: <span style="color:#a6e3a1">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;EC2&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ec2:DescribeInstances&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ec2:GetPasswordData&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Resource&#34;</span>: <span style="color:#a6e3a1">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;EC2PasswordSpecific&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ec2:GetPasswordData&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">&#34;StringLike&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#cba6f7">&#34;ssm:resourceTag/application&#34;</span>: [
+</span></span><span style="display:flex;"><span>                        <span style="color:#a6e3a1">&#34;myapplication&#34;</span>
+</span></span><span style="display:flex;"><span>                    ]
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;arn:aws:ec2:ap-southeast-2:123456789012:instance/i-xxxxxxxxxxxxxxxxx&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;arn:aws:ssm:ap-southeast-2:123456789012:session/*&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;arn:aws:ssm:ap-southeast-2:123456789012:managed-instance/i-xxxxxxxxxxxxxxxxx&#34;</span>
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;SSM&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ssm:GetCommandInvocation&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ssm:GetInventorySchema&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ssm:GetServiceSetting&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ssm:DescribeInstanceProperties&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Resource&#34;</span>: <span style="color:#a6e3a1">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;TerminateSession&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ssm:TerminateSession&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Resource&#34;</span>: <span style="color:#a6e3a1">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">&#34;StringLike&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#cba6f7">&#34;ssm:resourceTag/aws:ssmmessages:session-id&#34;</span>: [
+</span></span><span style="display:flex;"><span>                        <span style="color:#a6e3a1">&#34;${aws:userName}&#34;</span>
+</span></span><span style="display:flex;"><span>                    ]
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;SSMStartSessionSpecific&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ssm:StartSession&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;arn:aws:ec2:ap-southeast-2:123456789012:instance/i-xxxxxxxxxxxxxxxxx&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;arn:aws:ssm:ap-southeast-2:123456789012:managed-instance/i-xxxxxxxxxxxxxxxxx&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">&#34;ForAnyValue:StringEquals&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#cba6f7">&#34;aws:CalledVia&#34;</span>: <span style="color:#a6e3a1">&#34;ssm-guiconnect.amazonaws.com&#34;</span>
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">&#34;StringLike&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#cba6f7">&#34;ssm:resourceTag/application&#34;</span>: [
+</span></span><span style="display:flex;"><span>                        <span style="color:#a6e3a1">&#34;myapplication&#34;</span>
+</span></span><span style="display:flex;"><span>                    ]
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;SSMStartSessionSpecificPortForwardingDoc&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ssm:StartSession&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;arn:aws:ssm:ap-southeast-2::document/AWS-StartPortForwardingSession&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#cba6f7">&#34;ForAnyValue:StringEquals&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#cba6f7">&#34;aws:CalledVia&#34;</span>: <span style="color:#a6e3a1">&#34;ssm-guiconnect.amazonaws.com&#34;</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;SSMSendCommand&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ssm:SendCommand&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;arn:aws:ec2:ap-southeast-2:123456789012:instance/i-xxxxxxxxxxxxxxxxx&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;arn:aws:ssm:ap-southeast-2:123456789012:managed-instance/i-xxxxxxxxxxxxxxxxx&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;arn:aws:ssm:ap-southeast-2::document/AWSSSO-CreateSSOUser&#34;</span>
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Sid&#34;</span>: <span style="color:#a6e3a1">&#34;GuiConnect&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Effect&#34;</span>: <span style="color:#a6e3a1">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ssm-guiconnect:CancelConnection&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ssm-guiconnect:GetConnection&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ssm-guiconnect:StartConnection&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e3a1">&#34;ssm-guiconnect:ListConnections&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">&#34;Resource&#34;</span>: <span style="color:#a6e3a1">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In brief, this policy allows the user to,</p>
+<ol>
+<li>List SSM managed instances in Fleet Manager</li>
+<li>Start an RDP session to the specific instance with a specific tag</li>
+</ol>
+<p>As mentioned above, care is taken to restrict these permissions to specific
+resources and users. This can initially be a pain to setup, as multiple passes
+are needed to nail down the exact scopes and resource conditions, however doing
+so makes sure no accidental data leaks will happen.</p>
+<h4 id="ec2-instance-profile">EC2 instance profile</h4>
+<p>The target instance should be a Managed EC2 instance for this method to be
+successful. In other words, the EC2 instance should be registered in SSM Fleet
+Manager through the SSM Agent.</p>
+<p>Most EC2 base images (AMIs) have the SSM agent pre-installed, so it&rsquo;s a matter
+of providing proper permissions to the instance to register in SSM to make it a
+Managed Instance. To do this, the managed Policy <code>AmazonSSMManagedInstanceCore</code>
+can be attached to the Instance Profile (ARN
+<code>arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore</code>).</p>
+<blockquote>
+<p>For this setup, the minimum SSM agent version supported is 3.0.222.0. This
+may be a limitation in older setups that cannot upgrade their instances.
+The Windows version also has minimum version constraints in this setup, so
+the design is more or less usable with reasonably up to date setup.</p></blockquote>
+<h4 id="auditing-and-traceability">Auditing and Traceability</h4>
+<p>With this approach, there are a couple of ways to trace how users interact with
+the VM.</p>
+<p>CloudTrail event <code>ssm:StartSession</code> can be used as a starter to trace the
+events surrounding a session initiation. This is a typical approach for any
+activity investigation in AWS. CloudTrail logs can be fed into a SIEM
+deployment to identify and react to unexpected instance access events by a
+security operations team easily.</p>
+<p>In addition to this, Fleet Manager itself offers a connection history view
+which helps to identify which instances were accessed by which user. This will
+be more useful to operators in the Cloud to retrieve information about past
+sessions.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>There are some downsides to this approach, like IAM Identity Center based SSO
+login providing more access than needed to the instances. However, for isolated
+instances that need access from outside the network, this approach is easy and
+fast to be implemented, since the only level of access you need to maintain is
+the access to AWS services. With the above example policy as a start, it is
+pretty easy to define a well isolated, well scoped policy for external users to
+access specific targeted instances.</p>
+
+        </div>
+        <div class="prev-next row">
+  <div class="prev col-sm">
+    
+    <a href="http://localhost:1313/blog/2025-10-29_how-to-survive-shai-hulud-and-other-supply-chain-attacks-in-aws/">&lt; How to survive Shai-Hulud and Other Supply Chain Attacks in AWS</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="http://localhost:1313/blog/2026-03-26_what-to-consider-when-setting-up-private-connectivity-to-aws/">What to consider when setting up private connectivity to AWS &gt;</a>
+    
+  </div>
+</div>
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2025-10-29_how-to-survive-shai-hulud-and-other-supply-chain-attacks-in-aws/">How to survive Shai-Hulud and Other Supply Chain Attacks in AWS</a></li>
+    
+    <li><a href="/blog/2025-10-21_what-aws-outtage-really-means/">What AWS outtage really means</a></li>
+    
+    <li><a href="/blog/2025-10-18_temp-secure-cloud-design-notes/">temp: secure cloud design notes</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>

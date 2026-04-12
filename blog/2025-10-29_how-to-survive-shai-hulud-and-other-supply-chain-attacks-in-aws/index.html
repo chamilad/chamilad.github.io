@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.151.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/blog/2025-10-29_how-to-survive-shai-hulud-and-other-supply-chain-attacks-in-aws/" />
+  <link rel="canonical" href="http://localhost:1313/blog/2025-10-29_how-to-survive-shai-hulud-and-other-supply-chain-attacks-in-aws/" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "blog",
+      "name" : "How to survive Shai-Hulud and Other Supply Chain Attacks in AWS",
+      "headline" : "How to survive Shai-Hulud and Other Supply Chain Attacks in AWS",
+      "description" : "\u003cp\u003eThese last few weeks, I\u0026rsquo;ve been working on a problem that had plaintext\ncredentials in the equation. Working on the security and design side of things\nmade me remember this news I saw a month or two ago about a credential stealing\nworm.\u003c\/p\u003e\n\u003cp\u003eAt first, this video was going to be a comprehensive guide to securing against\nthis worm, but the more I read about it, the more it becomes clear that the\nCloud credentials are only part of the puzzle and there\u0026rsquo;s not a lot to be done\nby a single dev or a small organisation to be ready for attacks like this. And\nobviously, the more paranoid I\u0026rsquo;ve become since.\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-10-29 00:00:12 \u002b1300 NZDT",
+      "dateModified" : "2025-10-29 00:00:12 \u002b1300 NZDT",
+      "url" : "http:\/\/localhost:1313\/blog\/2025-10-29_how-to-survive-shai-hulud-and-other-supply-chain-attacks-in-aws\/",
+      "keywords" : [ "", ]
+  }
+</script>
+<title>How to survive Shai-Hulud and Other Supply Chain Attacks in AWS - chamila.dev</title>
+  <meta property="og:title" content="How to survive Shai-Hulud and Other Supply Chain Attacks in AWS - chamila.dev" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="These last few weeks, I&rsquo;ve been working on a problem that had plaintext
+credentials in the equation. Working on the security and design side of things
+made me remember this news I saw a month or two ago about a credential stealing
+worm.
+At first, this video was going to be a comprehensive guide to securing against
+this worm, but the more I read about it, the more it becomes clear that the
+Cloud credentials are only part of the puzzle and there&rsquo;s not a lot to be done
+by a single dev or a small organisation to be ready for attacks like this. And
+obviously, the more paranoid I&rsquo;ve become since." />
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/light.css">
+  <link rel="stylesheet" href="/css/dark.css">
+  <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="chamila.dev">
+
+  <link href="/fa/css/all.css" rel="stylesheet">
+
+  
+  
+  
+  
+  <script>
+    
+
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+
+</head>
+
+
+<body class="theme-light">
+  <article class="post " id="article">
+    <div class="row">
+      <div class="container col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div id="floating-menu-wrapper">
+  <div id="floating-menu">
+    <button id="switch-to-dark">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="switch-to-light" class="current-theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</div>
+
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <span class="breadcrumbs">
+      <a href="http://localhost:1313/">chamila.dev</a> >
+      <a href="http://localhost:1313//blog"> journal </a> >
+    </span>
+    <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  </div>
+</header>
+<div class="row end-xs">
+   
+</div>
+
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">How to survive Shai-Hulud and Other Supply Chain Attacks in AWS</h1>
+          
+          <div class="row post-desc">
+            <div class="pub-date col-xs-6">
+              
+              <time class="post-date" datetime=" 2025-10-29 00:00:12 NZDT">
+                29 Oct 2025
+              </time>
+              
+            </div>
+            <div class="reading-time col-xs-6" title="approximate read time">
+              ~2 minutes
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="toc">
+            
+            <h4>Table of Contents:</h4>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-shai-hulud-is">What Shai-Hulud is</a></li>
+    <li><a href="#supply-chain-attacks">Supply Chain Attacks</a></li>
+    <li><a href="#surviving-shai-hulud-wormriding">Surviving Shai-Hulud, Wormriding</a></li>
+  </ul>
+</nav>
+            
+          </div>
+        </header>
+        <div class="post-content markdown-body">
+          <p>These last few weeks, I&rsquo;ve been working on a problem that had plaintext
+credentials in the equation. Working on the security and design side of things
+made me remember this news I saw a month or two ago about a credential stealing
+worm.</p>
+<p>At first, this video was going to be a comprehensive guide to securing against
+this worm, but the more I read about it, the more it becomes clear that the
+Cloud credentials are only part of the puzzle and there&rsquo;s not a lot to be done
+by a single dev or a small organisation to be ready for attacks like this. And
+obviously, the more paranoid I&rsquo;ve become since.</p>
+<p>so, instead of a comprehensive guide, let&rsquo;s just talk about Shai-hulud, the old
+man of the desert.</p>
+<h2 id="what-shai-hulud-is">What Shai-Hulud is</h2>
+<p>Shai-hulud is a malware that behaves like a worm, something that wreaks havoc,
+and multiplies at the same time. Despite its behaviour, I really like the name,
+Dune is one of my favourite sci-fi universes. I&rsquo;m even going through the
+prequals and sequals these days.</p>
+<p>Unfortunately, the name is the only thing to adore about this situation. For
+me, it&rsquo;s one of the scariest things in existence. The worm targets local
+developer environments, and it has a very real chance of gaining access through
+trusted established libraries.</p>
+<p>Let&rsquo;s go the whiteboard a minute, explore this worm, see it&rsquo;s destructive
+beauty in design.</p>
+<blockquote>
+<p>excalidraw session</p></blockquote>
+<h2 id="supply-chain-attacks">Supply Chain Attacks</h2>
+<h2 id="surviving-shai-hulud-wormriding">Surviving Shai-Hulud, Wormriding</h2>
+
+        </div>
+        <div class="prev-next row">
+  <div class="prev col-sm">
+    
+    <a href="http://localhost:1313/blog/2025-10-21_what-aws-outtage-really-means/">&lt; What AWS outtage really means</a>
+    
+  </div>
+  <div class="next col-sm">
+    
+    <a href="http://localhost:1313/blog/2025-12-14_stop-using-jump-hosts-for-ec2-windows-instances/">Stop Using Jump Hosts for EC2 Windows Instances &gt;</a>
+    
+  </div>
+</div>
+
+        
+
+        
+
+<div class="releated-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/blog/2025-10-21_what-aws-outtage-really-means/">What AWS outtage really means</a></li>
+    
+    <li><a href="/blog/2025-10-18_temp-secure-cloud-design-notes/">temp: secure cloud design notes</a></li>
+    
+    <li><a href="/blog/2025-08-05_is-it-that-easy-to-make-stupid-mistakes---trying-to-reproduce-the-tea-app-situation/">Is it that easy to make stupid mistakes? - Trying to Reproduce the Tea App Situation</a></li>
+    
+  </ul>
+</div>
+
+
+        
+        
+        
+        
+        
+
+        <div class="site-footer">
+  <div class="sm-icons">
+  <a href="http://localhost:1313//blog/index.xml" target="_blank" title="rss">
+    <i class="fas fa-rss sm-icon"></i>
+  </a>
+  <a href="https://github.com/chamilad" target="_blank" title="github">
+    <i class="fab fa-github sm-icon"></i>
+  </a>
+  <a href="https://fosstodon.org/@chamilad" target="_blank" title="fosstodon" rel="me">
+    <i class="fab fa-mastodon sm-icon"></i>
+  </a>
+</div>
+
+  <span> All photos published on this site are copyrighted. </span>
+  <div class="site-footer-item">
+    Modified
+    <a href="https://github.com/joway/hugo-theme-yinyang" target="_blank">YinYang</a>
+    theme
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+<script src="/js/theme.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  
+
+</body>
+
+</html>
