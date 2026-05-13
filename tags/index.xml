@@ -2,1116 +2,1116 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on chamila.dev</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://chamila.dev/tags/</link>
     <description>Recent content in Tags on chamila.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 13 Aug 2025 14:11:38 +1200</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://chamila.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Aws</title>
-      <link>http://localhost:1313/tags/aws/</link>
+      <link>https://chamila.dev/tags/aws/</link>
       <pubDate>Wed, 13 Aug 2025 14:11:38 +1200</pubDate>
-      <guid>http://localhost:1313/tags/aws/</guid>
+      <guid>https://chamila.dev/tags/aws/</guid>
       <description></description>
     </item>
     <item>
       <title>Cloud</title>
-      <link>http://localhost:1313/tags/cloud/</link>
+      <link>https://chamila.dev/tags/cloud/</link>
       <pubDate>Wed, 13 Aug 2025 14:11:38 +1200</pubDate>
-      <guid>http://localhost:1313/tags/cloud/</guid>
+      <guid>https://chamila.dev/tags/cloud/</guid>
       <description></description>
     </item>
     <item>
       <title>Security</title>
-      <link>http://localhost:1313/tags/security/</link>
+      <link>https://chamila.dev/tags/security/</link>
       <pubDate>Wed, 13 Aug 2025 14:11:38 +1200</pubDate>
-      <guid>http://localhost:1313/tags/security/</guid>
+      <guid>https://chamila.dev/tags/security/</guid>
       <description></description>
     </item>
     <item>
       <title>Authentication</title>
-      <link>http://localhost:1313/tags/authentication/</link>
+      <link>https://chamila.dev/tags/authentication/</link>
       <pubDate>Sat, 01 Feb 2025 00:04:06 +1300</pubDate>
-      <guid>http://localhost:1313/tags/authentication/</guid>
+      <guid>https://chamila.dev/tags/authentication/</guid>
       <description></description>
     </item>
     <item>
       <title>Iam</title>
-      <link>http://localhost:1313/tags/iam/</link>
+      <link>https://chamila.dev/tags/iam/</link>
       <pubDate>Sat, 01 Feb 2025 00:04:06 +1300</pubDate>
-      <guid>http://localhost:1313/tags/iam/</guid>
+      <guid>https://chamila.dev/tags/iam/</guid>
       <description></description>
     </item>
     <item>
       <title>Identity</title>
-      <link>http://localhost:1313/tags/identity/</link>
+      <link>https://chamila.dev/tags/identity/</link>
       <pubDate>Sat, 01 Feb 2025 00:04:06 +1300</pubDate>
-      <guid>http://localhost:1313/tags/identity/</guid>
+      <guid>https://chamila.dev/tags/identity/</guid>
       <description></description>
     </item>
     <item>
       <title>K8s</title>
-      <link>http://localhost:1313/tags/k8s/</link>
+      <link>https://chamila.dev/tags/k8s/</link>
       <pubDate>Sat, 01 Feb 2025 00:04:06 +1300</pubDate>
-      <guid>http://localhost:1313/tags/k8s/</guid>
+      <guid>https://chamila.dev/tags/k8s/</guid>
       <description></description>
     </item>
     <item>
       <title>Kubernetes</title>
-      <link>http://localhost:1313/tags/kubernetes/</link>
+      <link>https://chamila.dev/tags/kubernetes/</link>
       <pubDate>Sat, 01 Feb 2025 00:04:06 +1300</pubDate>
-      <guid>http://localhost:1313/tags/kubernetes/</guid>
+      <guid>https://chamila.dev/tags/kubernetes/</guid>
       <description></description>
     </item>
     <item>
       <title>Oidc</title>
-      <link>http://localhost:1313/tags/oidc/</link>
+      <link>https://chamila.dev/tags/oidc/</link>
       <pubDate>Sat, 01 Feb 2025 00:04:06 +1300</pubDate>
-      <guid>http://localhost:1313/tags/oidc/</guid>
+      <guid>https://chamila.dev/tags/oidc/</guid>
       <description></description>
     </item>
     <item>
       <title>Cncf</title>
-      <link>http://localhost:1313/tags/cncf/</link>
+      <link>https://chamila.dev/tags/cncf/</link>
       <pubDate>Thu, 16 Jan 2025 22:47:18 +1300</pubDate>
-      <guid>http://localhost:1313/tags/cncf/</guid>
+      <guid>https://chamila.dev/tags/cncf/</guid>
       <description></description>
     </item>
     <item>
       <title>Exam</title>
-      <link>http://localhost:1313/tags/exam/</link>
+      <link>https://chamila.dev/tags/exam/</link>
       <pubDate>Thu, 16 Jan 2025 22:47:18 +1300</pubDate>
-      <guid>http://localhost:1313/tags/exam/</guid>
+      <guid>https://chamila.dev/tags/exam/</guid>
       <description></description>
     </item>
     <item>
       <title>Backup</title>
-      <link>http://localhost:1313/tags/backup/</link>
+      <link>https://chamila.dev/tags/backup/</link>
       <pubDate>Mon, 23 Sep 2024 00:26:50 +1300</pubDate>
-      <guid>http://localhost:1313/tags/backup/</guid>
+      <guid>https://chamila.dev/tags/backup/</guid>
       <description></description>
     </item>
     <item>
       <title>CMK</title>
-      <link>http://localhost:1313/tags/cmk/</link>
+      <link>https://chamila.dev/tags/cmk/</link>
       <pubDate>Mon, 23 Sep 2024 00:26:50 +1300</pubDate>
-      <guid>http://localhost:1313/tags/cmk/</guid>
+      <guid>https://chamila.dev/tags/cmk/</guid>
       <description></description>
     </item>
     <item>
       <title>Disaster Recovery</title>
-      <link>http://localhost:1313/tags/disaster-recovery/</link>
+      <link>https://chamila.dev/tags/disaster-recovery/</link>
       <pubDate>Mon, 23 Sep 2024 00:26:50 +1300</pubDate>
-      <guid>http://localhost:1313/tags/disaster-recovery/</guid>
+      <guid>https://chamila.dev/tags/disaster-recovery/</guid>
       <description></description>
     </item>
     <item>
       <title>Encryption</title>
-      <link>http://localhost:1313/tags/encryption/</link>
+      <link>https://chamila.dev/tags/encryption/</link>
       <pubDate>Mon, 23 Sep 2024 00:26:50 +1300</pubDate>
-      <guid>http://localhost:1313/tags/encryption/</guid>
+      <guid>https://chamila.dev/tags/encryption/</guid>
       <description></description>
     </item>
     <item>
       <title>KMS</title>
-      <link>http://localhost:1313/tags/kms/</link>
+      <link>https://chamila.dev/tags/kms/</link>
       <pubDate>Mon, 23 Sep 2024 00:26:50 +1300</pubDate>
-      <guid>http://localhost:1313/tags/kms/</guid>
+      <guid>https://chamila.dev/tags/kms/</guid>
       <description></description>
     </item>
     <item>
       <title>Restore</title>
-      <link>http://localhost:1313/tags/restore/</link>
+      <link>https://chamila.dev/tags/restore/</link>
       <pubDate>Mon, 23 Sep 2024 00:26:50 +1300</pubDate>
-      <guid>http://localhost:1313/tags/restore/</guid>
+      <guid>https://chamila.dev/tags/restore/</guid>
       <description></description>
     </item>
     <item>
       <title>Aws Cli</title>
-      <link>http://localhost:1313/tags/aws-cli/</link>
+      <link>https://chamila.dev/tags/aws-cli/</link>
       <pubDate>Sat, 01 Jun 2024 05:34:43 +1200</pubDate>
-      <guid>http://localhost:1313/tags/aws-cli/</guid>
+      <guid>https://chamila.dev/tags/aws-cli/</guid>
       <description></description>
     </item>
     <item>
       <title>Rust</title>
-      <link>http://localhost:1313/tags/rust/</link>
+      <link>https://chamila.dev/tags/rust/</link>
       <pubDate>Sat, 01 Jun 2024 05:34:43 +1200</pubDate>
-      <guid>http://localhost:1313/tags/rust/</guid>
+      <guid>https://chamila.dev/tags/rust/</guid>
       <description></description>
     </item>
     <item>
       <title>Cloud Financial Management</title>
-      <link>http://localhost:1313/tags/cloud-financial-management/</link>
+      <link>https://chamila.dev/tags/cloud-financial-management/</link>
       <pubDate>Fri, 31 May 2024 09:48:59 +1200</pubDate>
-      <guid>http://localhost:1313/tags/cloud-financial-management/</guid>
+      <guid>https://chamila.dev/tags/cloud-financial-management/</guid>
       <description></description>
     </item>
     <item>
       <title>Cost Optmisation</title>
-      <link>http://localhost:1313/tags/cost-optmisation/</link>
+      <link>https://chamila.dev/tags/cost-optmisation/</link>
       <pubDate>Fri, 31 May 2024 09:48:59 +1200</pubDate>
-      <guid>http://localhost:1313/tags/cost-optmisation/</guid>
+      <guid>https://chamila.dev/tags/cost-optmisation/</guid>
       <description></description>
     </item>
     <item>
       <title>Finops</title>
-      <link>http://localhost:1313/tags/finops/</link>
+      <link>https://chamila.dev/tags/finops/</link>
       <pubDate>Fri, 31 May 2024 09:48:59 +1200</pubDate>
-      <guid>http://localhost:1313/tags/finops/</guid>
+      <guid>https://chamila.dev/tags/finops/</guid>
       <description></description>
     </item>
     <item>
       <title>Well-Architected</title>
-      <link>http://localhost:1313/tags/well-architected/</link>
+      <link>https://chamila.dev/tags/well-architected/</link>
       <pubDate>Fri, 31 May 2024 09:48:59 +1200</pubDate>
-      <guid>http://localhost:1313/tags/well-architected/</guid>
+      <guid>https://chamila.dev/tags/well-architected/</guid>
       <description></description>
     </item>
     <item>
       <title>Fido</title>
-      <link>http://localhost:1313/tags/fido/</link>
+      <link>https://chamila.dev/tags/fido/</link>
       <pubDate>Wed, 03 Apr 2024 11:21:09 +1300</pubDate>
-      <guid>http://localhost:1313/tags/fido/</guid>
+      <guid>https://chamila.dev/tags/fido/</guid>
       <description></description>
     </item>
     <item>
       <title>Mfa</title>
-      <link>http://localhost:1313/tags/mfa/</link>
+      <link>https://chamila.dev/tags/mfa/</link>
       <pubDate>Wed, 03 Apr 2024 11:21:09 +1300</pubDate>
-      <guid>http://localhost:1313/tags/mfa/</guid>
+      <guid>https://chamila.dev/tags/mfa/</guid>
       <description></description>
     </item>
     <item>
       <title>Totp</title>
-      <link>http://localhost:1313/tags/totp/</link>
+      <link>https://chamila.dev/tags/totp/</link>
       <pubDate>Wed, 03 Apr 2024 11:21:09 +1300</pubDate>
-      <guid>http://localhost:1313/tags/totp/</guid>
+      <guid>https://chamila.dev/tags/totp/</guid>
       <description></description>
     </item>
     <item>
       <title>Yubikey</title>
-      <link>http://localhost:1313/tags/yubikey/</link>
+      <link>https://chamila.dev/tags/yubikey/</link>
       <pubDate>Wed, 03 Apr 2024 11:21:09 +1300</pubDate>
-      <guid>http://localhost:1313/tags/yubikey/</guid>
+      <guid>https://chamila.dev/tags/yubikey/</guid>
       <description></description>
     </item>
     <item>
       <title>Cargo</title>
-      <link>http://localhost:1313/tags/cargo/</link>
+      <link>https://chamila.dev/tags/cargo/</link>
       <pubDate>Tue, 16 Jan 2024 12:57:07 +1300</pubDate>
-      <guid>http://localhost:1313/tags/cargo/</guid>
+      <guid>https://chamila.dev/tags/cargo/</guid>
       <description></description>
     </item>
     <item>
       <title>Lambda</title>
-      <link>http://localhost:1313/tags/lambda/</link>
+      <link>https://chamila.dev/tags/lambda/</link>
       <pubDate>Tue, 16 Jan 2024 12:57:07 +1300</pubDate>
-      <guid>http://localhost:1313/tags/lambda/</guid>
+      <guid>https://chamila.dev/tags/lambda/</guid>
       <description></description>
     </item>
     <item>
       <title>Cloudtrail</title>
-      <link>http://localhost:1313/tags/cloudtrail/</link>
+      <link>https://chamila.dev/tags/cloudtrail/</link>
       <pubDate>Mon, 15 Jan 2024 05:26:45 +1300</pubDate>
-      <guid>http://localhost:1313/tags/cloudtrail/</guid>
+      <guid>https://chamila.dev/tags/cloudtrail/</guid>
       <description></description>
     </item>
     <item>
       <title>PHP</title>
-      <link>http://localhost:1313/tags/php/</link>
+      <link>https://chamila.dev/tags/php/</link>
       <pubDate>Mon, 19 Jun 2023 00:09:59 +1200</pubDate>
-      <guid>http://localhost:1313/tags/php/</guid>
+      <guid>https://chamila.dev/tags/php/</guid>
       <description></description>
     </item>
     <item>
       <title>Pi-Hole</title>
-      <link>http://localhost:1313/tags/pi-hole/</link>
+      <link>https://chamila.dev/tags/pi-hole/</link>
       <pubDate>Mon, 19 Jun 2023 00:09:59 +1200</pubDate>
-      <guid>http://localhost:1313/tags/pi-hole/</guid>
+      <guid>https://chamila.dev/tags/pi-hole/</guid>
       <description></description>
     </item>
     <item>
       <title>Audit</title>
-      <link>http://localhost:1313/tags/audit/</link>
+      <link>https://chamila.dev/tags/audit/</link>
       <pubDate>Sun, 04 Jun 2023 19:30:02 +1200</pubDate>
-      <guid>http://localhost:1313/tags/audit/</guid>
+      <guid>https://chamila.dev/tags/audit/</guid>
       <description></description>
     </item>
     <item>
       <title>AWS Config</title>
-      <link>http://localhost:1313/tags/aws-config/</link>
+      <link>https://chamila.dev/tags/aws-config/</link>
       <pubDate>Sun, 04 Jun 2023 19:30:02 +1200</pubDate>
-      <guid>http://localhost:1313/tags/aws-config/</guid>
+      <guid>https://chamila.dev/tags/aws-config/</guid>
       <description></description>
     </item>
     <item>
       <title>ISO</title>
-      <link>http://localhost:1313/tags/iso/</link>
+      <link>https://chamila.dev/tags/iso/</link>
       <pubDate>Sun, 04 Jun 2023 19:30:02 +1200</pubDate>
-      <guid>http://localhost:1313/tags/iso/</guid>
+      <guid>https://chamila.dev/tags/iso/</guid>
       <description></description>
     </item>
     <item>
       <title>NZISM</title>
-      <link>http://localhost:1313/tags/nzism/</link>
+      <link>https://chamila.dev/tags/nzism/</link>
       <pubDate>Sun, 04 Jun 2023 19:30:02 +1200</pubDate>
-      <guid>http://localhost:1313/tags/nzism/</guid>
+      <guid>https://chamila.dev/tags/nzism/</guid>
       <description></description>
     </item>
     <item>
       <title>Amazon Inspector</title>
-      <link>http://localhost:1313/tags/amazon-inspector/</link>
+      <link>https://chamila.dev/tags/amazon-inspector/</link>
       <pubDate>Sat, 25 Feb 2023 07:00:19 +1300</pubDate>
-      <guid>http://localhost:1313/tags/amazon-inspector/</guid>
+      <guid>https://chamila.dev/tags/amazon-inspector/</guid>
       <description></description>
     </item>
     <item>
       <title>GuardDuty</title>
-      <link>http://localhost:1313/tags/guardduty/</link>
+      <link>https://chamila.dev/tags/guardduty/</link>
       <pubDate>Sat, 25 Feb 2023 07:00:19 +1300</pubDate>
-      <guid>http://localhost:1313/tags/guardduty/</guid>
+      <guid>https://chamila.dev/tags/guardduty/</guid>
       <description></description>
     </item>
     <item>
       <title>ISO27001</title>
-      <link>http://localhost:1313/tags/iso27001/</link>
+      <link>https://chamila.dev/tags/iso27001/</link>
       <pubDate>Sat, 25 Feb 2023 07:00:19 +1300</pubDate>
-      <guid>http://localhost:1313/tags/iso27001/</guid>
+      <guid>https://chamila.dev/tags/iso27001/</guid>
       <description></description>
     </item>
     <item>
       <title>Malware Protection</title>
-      <link>http://localhost:1313/tags/malware-protection/</link>
+      <link>https://chamila.dev/tags/malware-protection/</link>
       <pubDate>Sat, 25 Feb 2023 07:00:19 +1300</pubDate>
-      <guid>http://localhost:1313/tags/malware-protection/</guid>
+      <guid>https://chamila.dev/tags/malware-protection/</guid>
       <description></description>
     </item>
     <item>
       <title>Artificial Intelligence</title>
-      <link>http://localhost:1313/tags/artificial-intelligence/</link>
+      <link>https://chamila.dev/tags/artificial-intelligence/</link>
       <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
-      <guid>http://localhost:1313/tags/artificial-intelligence/</guid>
+      <guid>https://chamila.dev/tags/artificial-intelligence/</guid>
       <description></description>
     </item>
     <item>
       <title>DevOps</title>
-      <link>http://localhost:1313/tags/devops/</link>
+      <link>https://chamila.dev/tags/devops/</link>
       <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
-      <guid>http://localhost:1313/tags/devops/</guid>
+      <guid>https://chamila.dev/tags/devops/</guid>
       <description></description>
     </item>
     <item>
       <title>Machine Learning</title>
-      <link>http://localhost:1313/tags/machine-learning/</link>
+      <link>https://chamila.dev/tags/machine-learning/</link>
       <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
-      <guid>http://localhost:1313/tags/machine-learning/</guid>
+      <guid>https://chamila.dev/tags/machine-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>MLOps</title>
-      <link>http://localhost:1313/tags/mlops/</link>
+      <link>https://chamila.dev/tags/mlops/</link>
       <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
-      <guid>http://localhost:1313/tags/mlops/</guid>
+      <guid>https://chamila.dev/tags/mlops/</guid>
       <description></description>
     </item>
     <item>
       <title>Software Engineering</title>
-      <link>http://localhost:1313/tags/software-engineering/</link>
+      <link>https://chamila.dev/tags/software-engineering/</link>
       <pubDate>Mon, 28 Nov 2022 09:11:34 +1300</pubDate>
-      <guid>http://localhost:1313/tags/software-engineering/</guid>
+      <guid>https://chamila.dev/tags/software-engineering/</guid>
       <description></description>
     </item>
     <item>
       <title>SageMaker</title>
-      <link>http://localhost:1313/tags/sagemaker/</link>
+      <link>https://chamila.dev/tags/sagemaker/</link>
       <pubDate>Fri, 25 Nov 2022 06:37:25 +1300</pubDate>
-      <guid>http://localhost:1313/tags/sagemaker/</guid>
+      <guid>https://chamila.dev/tags/sagemaker/</guid>
       <description></description>
     </item>
     <item>
       <title>Secret Rotation</title>
-      <link>http://localhost:1313/tags/secret-rotation/</link>
+      <link>https://chamila.dev/tags/secret-rotation/</link>
       <pubDate>Tue, 01 Nov 2022 07:09:49 +1300</pubDate>
-      <guid>http://localhost:1313/tags/secret-rotation/</guid>
+      <guid>https://chamila.dev/tags/secret-rotation/</guid>
       <description></description>
     </item>
     <item>
       <title>Secrets Manager</title>
-      <link>http://localhost:1313/tags/secrets-manager/</link>
+      <link>https://chamila.dev/tags/secrets-manager/</link>
       <pubDate>Tue, 01 Nov 2022 07:09:49 +1300</pubDate>
-      <guid>http://localhost:1313/tags/secrets-manager/</guid>
+      <guid>https://chamila.dev/tags/secrets-manager/</guid>
       <description></description>
     </item>
     <item>
       <title>Automation</title>
-      <link>http://localhost:1313/tags/automation/</link>
+      <link>https://chamila.dev/tags/automation/</link>
       <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
-      <guid>http://localhost:1313/tags/automation/</guid>
+      <guid>https://chamila.dev/tags/automation/</guid>
       <description></description>
     </item>
     <item>
       <title>Data Warehousing</title>
-      <link>http://localhost:1313/tags/data-warehousing/</link>
+      <link>https://chamila.dev/tags/data-warehousing/</link>
       <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
-      <guid>http://localhost:1313/tags/data-warehousing/</guid>
+      <guid>https://chamila.dev/tags/data-warehousing/</guid>
       <description></description>
     </item>
     <item>
       <title>Database</title>
-      <link>http://localhost:1313/tags/database/</link>
+      <link>https://chamila.dev/tags/database/</link>
       <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
-      <guid>http://localhost:1313/tags/database/</guid>
+      <guid>https://chamila.dev/tags/database/</guid>
       <description></description>
     </item>
     <item>
       <title>Snowflake</title>
-      <link>http://localhost:1313/tags/snowflake/</link>
+      <link>https://chamila.dev/tags/snowflake/</link>
       <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
-      <guid>http://localhost:1313/tags/snowflake/</guid>
+      <guid>https://chamila.dev/tags/snowflake/</guid>
       <description></description>
     </item>
     <item>
       <title>Terraform</title>
-      <link>http://localhost:1313/tags/terraform/</link>
+      <link>https://chamila.dev/tags/terraform/</link>
       <pubDate>Fri, 12 Nov 2021 19:32:16 +1300</pubDate>
-      <guid>http://localhost:1313/tags/terraform/</guid>
+      <guid>https://chamila.dev/tags/terraform/</guid>
       <description></description>
     </item>
     <item>
       <title>Apache Nifi</title>
-      <link>http://localhost:1313/tags/apache-nifi/</link>
+      <link>https://chamila.dev/tags/apache-nifi/</link>
       <pubDate>Sun, 18 Jul 2021 22:20:47 +1200</pubDate>
-      <guid>http://localhost:1313/tags/apache-nifi/</guid>
+      <guid>https://chamila.dev/tags/apache-nifi/</guid>
       <description></description>
     </item>
     <item>
       <title>BigData</title>
-      <link>http://localhost:1313/tags/bigdata/</link>
+      <link>https://chamila.dev/tags/bigdata/</link>
       <pubDate>Sun, 18 Jul 2021 22:20:47 +1200</pubDate>
-      <guid>http://localhost:1313/tags/bigdata/</guid>
+      <guid>https://chamila.dev/tags/bigdata/</guid>
       <description></description>
     </item>
     <item>
       <title>Data Transformation</title>
-      <link>http://localhost:1313/tags/data-transformation/</link>
+      <link>https://chamila.dev/tags/data-transformation/</link>
       <pubDate>Sun, 18 Jul 2021 22:20:47 +1200</pubDate>
-      <guid>http://localhost:1313/tags/data-transformation/</guid>
+      <guid>https://chamila.dev/tags/data-transformation/</guid>
       <description></description>
     </item>
     <item>
       <title>ESB</title>
-      <link>http://localhost:1313/tags/esb/</link>
+      <link>https://chamila.dev/tags/esb/</link>
       <pubDate>Sat, 17 Jul 2021 13:21:12 +1200</pubDate>
-      <guid>http://localhost:1313/tags/esb/</guid>
+      <guid>https://chamila.dev/tags/esb/</guid>
       <description></description>
     </item>
     <item>
       <title>Kibana</title>
-      <link>http://localhost:1313/tags/kibana/</link>
+      <link>https://chamila.dev/tags/kibana/</link>
       <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
-      <guid>http://localhost:1313/tags/kibana/</guid>
+      <guid>https://chamila.dev/tags/kibana/</guid>
       <description></description>
     </item>
     <item>
       <title>Metrics</title>
-      <link>http://localhost:1313/tags/metrics/</link>
+      <link>https://chamila.dev/tags/metrics/</link>
       <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
-      <guid>http://localhost:1313/tags/metrics/</guid>
+      <guid>https://chamila.dev/tags/metrics/</guid>
       <description></description>
     </item>
     <item>
       <title>Monitoring</title>
-      <link>http://localhost:1313/tags/monitoring/</link>
+      <link>https://chamila.dev/tags/monitoring/</link>
       <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
-      <guid>http://localhost:1313/tags/monitoring/</guid>
+      <guid>https://chamila.dev/tags/monitoring/</guid>
       <description></description>
     </item>
     <item>
       <title>Prometheus</title>
-      <link>http://localhost:1313/tags/prometheus/</link>
+      <link>https://chamila.dev/tags/prometheus/</link>
       <pubDate>Sat, 14 Mar 2020 13:37:33 +1300</pubDate>
-      <guid>http://localhost:1313/tags/prometheus/</guid>
+      <guid>https://chamila.dev/tags/prometheus/</guid>
       <description></description>
     </item>
     <item>
       <title>Authorization</title>
-      <link>http://localhost:1313/tags/authorization/</link>
+      <link>https://chamila.dev/tags/authorization/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
-      <guid>http://localhost:1313/tags/authorization/</guid>
+      <guid>https://chamila.dev/tags/authorization/</guid>
       <description></description>
     </item>
     <item>
       <title>ElasticSearch</title>
-      <link>http://localhost:1313/tags/elasticsearch/</link>
+      <link>https://chamila.dev/tags/elasticsearch/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
-      <guid>http://localhost:1313/tags/elasticsearch/</guid>
+      <guid>https://chamila.dev/tags/elasticsearch/</guid>
       <description></description>
     </item>
     <item>
       <title>Federation</title>
-      <link>http://localhost:1313/tags/federation/</link>
+      <link>https://chamila.dev/tags/federation/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
-      <guid>http://localhost:1313/tags/federation/</guid>
+      <guid>https://chamila.dev/tags/federation/</guid>
       <description></description>
     </item>
     <item>
       <title>KeyCloak</title>
-      <link>http://localhost:1313/tags/keycloak/</link>
+      <link>https://chamila.dev/tags/keycloak/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
-      <guid>http://localhost:1313/tags/keycloak/</guid>
+      <guid>https://chamila.dev/tags/keycloak/</guid>
       <description></description>
     </item>
     <item>
       <title>Log Aggregation</title>
-      <link>http://localhost:1313/tags/log-aggregation/</link>
+      <link>https://chamila.dev/tags/log-aggregation/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
-      <guid>http://localhost:1313/tags/log-aggregation/</guid>
+      <guid>https://chamila.dev/tags/log-aggregation/</guid>
       <description></description>
     </item>
     <item>
       <title>Logging</title>
-      <link>http://localhost:1313/tags/logging/</link>
+      <link>https://chamila.dev/tags/logging/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
-      <guid>http://localhost:1313/tags/logging/</guid>
+      <guid>https://chamila.dev/tags/logging/</guid>
       <description></description>
     </item>
     <item>
       <title>Logstash</title>
-      <link>http://localhost:1313/tags/logstash/</link>
+      <link>https://chamila.dev/tags/logstash/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
-      <guid>http://localhost:1313/tags/logstash/</guid>
+      <guid>https://chamila.dev/tags/logstash/</guid>
       <description></description>
     </item>
     <item>
       <title>Multitenancy</title>
-      <link>http://localhost:1313/tags/multitenancy/</link>
+      <link>https://chamila.dev/tags/multitenancy/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
-      <guid>http://localhost:1313/tags/multitenancy/</guid>
+      <guid>https://chamila.dev/tags/multitenancy/</guid>
       <description></description>
     </item>
     <item>
       <title>Roles</title>
-      <link>http://localhost:1313/tags/roles/</link>
+      <link>https://chamila.dev/tags/roles/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
-      <guid>http://localhost:1313/tags/roles/</guid>
+      <guid>https://chamila.dev/tags/roles/</guid>
       <description></description>
     </item>
     <item>
       <title>Single Sign On</title>
-      <link>http://localhost:1313/tags/single-sign-on/</link>
+      <link>https://chamila.dev/tags/single-sign-on/</link>
       <pubDate>Wed, 12 Feb 2020 07:07:35 +1300</pubDate>
-      <guid>http://localhost:1313/tags/single-sign-on/</guid>
+      <guid>https://chamila.dev/tags/single-sign-on/</guid>
       <description></description>
     </item>
     <item>
       <title>ELKOnK8s</title>
-      <link>http://localhost:1313/tags/elkonk8s/</link>
+      <link>https://chamila.dev/tags/elkonk8s/</link>
       <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
-      <guid>http://localhost:1313/tags/elkonk8s/</guid>
+      <guid>https://chamila.dev/tags/elkonk8s/</guid>
       <description></description>
     </item>
     <item>
       <title>Filebeat</title>
-      <link>http://localhost:1313/tags/filebeat/</link>
+      <link>https://chamila.dev/tags/filebeat/</link>
       <pubDate>Mon, 25 Nov 2019 22:29:57 +1300</pubDate>
-      <guid>http://localhost:1313/tags/filebeat/</guid>
+      <guid>https://chamila.dev/tags/filebeat/</guid>
       <description></description>
     </item>
     <item>
       <title>Github</title>
-      <link>http://localhost:1313/tags/github/</link>
+      <link>https://chamila.dev/tags/github/</link>
       <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
-      <guid>http://localhost:1313/tags/github/</guid>
+      <guid>https://chamila.dev/tags/github/</guid>
       <description></description>
     </item>
     <item>
       <title>Hugo</title>
-      <link>http://localhost:1313/tags/hugo/</link>
+      <link>https://chamila.dev/tags/hugo/</link>
       <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
-      <guid>http://localhost:1313/tags/hugo/</guid>
+      <guid>https://chamila.dev/tags/hugo/</guid>
       <description></description>
     </item>
     <item>
       <title>Markdown</title>
-      <link>http://localhost:1313/tags/markdown/</link>
+      <link>https://chamila.dev/tags/markdown/</link>
       <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
-      <guid>http://localhost:1313/tags/markdown/</guid>
+      <guid>https://chamila.dev/tags/markdown/</guid>
       <description></description>
     </item>
     <item>
       <title>Medium</title>
-      <link>http://localhost:1313/tags/medium/</link>
+      <link>https://chamila.dev/tags/medium/</link>
       <pubDate>Sun, 20 Oct 2019 18:24:16 +1300</pubDate>
-      <guid>http://localhost:1313/tags/medium/</guid>
+      <guid>https://chamila.dev/tags/medium/</guid>
       <description></description>
     </item>
     <item>
       <title>Docker</title>
-      <link>http://localhost:1313/tags/docker/</link>
+      <link>https://chamila.dev/tags/docker/</link>
       <pubDate>Sat, 21 Sep 2019 05:57:08 +0000</pubDate>
-      <guid>http://localhost:1313/tags/docker/</guid>
+      <guid>https://chamila.dev/tags/docker/</guid>
       <description></description>
     </item>
     <item>
       <title>Ingress</title>
-      <link>http://localhost:1313/tags/ingress/</link>
+      <link>https://chamila.dev/tags/ingress/</link>
       <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ingress/</guid>
+      <guid>https://chamila.dev/tags/ingress/</guid>
       <description></description>
     </item>
     <item>
       <title>Load Balancing</title>
-      <link>http://localhost:1313/tags/load-balancing/</link>
+      <link>https://chamila.dev/tags/load-balancing/</link>
       <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
-      <guid>http://localhost:1313/tags/load-balancing/</guid>
+      <guid>https://chamila.dev/tags/load-balancing/</guid>
       <description></description>
     </item>
     <item>
       <title>Reverse Proxy</title>
-      <link>http://localhost:1313/tags/reverse-proxy/</link>
+      <link>https://chamila.dev/tags/reverse-proxy/</link>
       <pubDate>Thu, 28 Feb 2019 17:56:15 +0000</pubDate>
-      <guid>http://localhost:1313/tags/reverse-proxy/</guid>
+      <guid>https://chamila.dev/tags/reverse-proxy/</guid>
       <description></description>
     </item>
     <item>
       <title>Documentation</title>
-      <link>http://localhost:1313/tags/documentation/</link>
+      <link>https://chamila.dev/tags/documentation/</link>
       <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
-      <guid>http://localhost:1313/tags/documentation/</guid>
+      <guid>https://chamila.dev/tags/documentation/</guid>
       <description></description>
     </item>
     <item>
       <title>Gitlab</title>
-      <link>http://localhost:1313/tags/gitlab/</link>
+      <link>https://chamila.dev/tags/gitlab/</link>
       <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
-      <guid>http://localhost:1313/tags/gitlab/</guid>
+      <guid>https://chamila.dev/tags/gitlab/</guid>
       <description></description>
     </item>
     <item>
       <title>Go</title>
-      <link>http://localhost:1313/tags/go/</link>
+      <link>https://chamila.dev/tags/go/</link>
       <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
-      <guid>http://localhost:1313/tags/go/</guid>
+      <guid>https://chamila.dev/tags/go/</guid>
       <description></description>
     </item>
     <item>
       <title>Technical Writing</title>
-      <link>http://localhost:1313/tags/technical-writing/</link>
+      <link>https://chamila.dev/tags/technical-writing/</link>
       <pubDate>Fri, 15 Feb 2019 18:17:04 +0000</pubDate>
-      <guid>http://localhost:1313/tags/technical-writing/</guid>
+      <guid>https://chamila.dev/tags/technical-writing/</guid>
       <description></description>
     </item>
     <item>
       <title>Api Management</title>
-      <link>http://localhost:1313/tags/api-management/</link>
+      <link>https://chamila.dev/tags/api-management/</link>
       <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
-      <guid>http://localhost:1313/tags/api-management/</guid>
+      <guid>https://chamila.dev/tags/api-management/</guid>
       <description></description>
     </item>
     <item>
       <title>Containers</title>
-      <link>http://localhost:1313/tags/containers/</link>
+      <link>https://chamila.dev/tags/containers/</link>
       <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
-      <guid>http://localhost:1313/tags/containers/</guid>
+      <guid>https://chamila.dev/tags/containers/</guid>
       <description></description>
     </item>
     <item>
       <title>Wso2</title>
-      <link>http://localhost:1313/tags/wso2/</link>
+      <link>https://chamila.dev/tags/wso2/</link>
       <pubDate>Mon, 24 Dec 2018 16:49:16 +0000</pubDate>
-      <guid>http://localhost:1313/tags/wso2/</guid>
+      <guid>https://chamila.dev/tags/wso2/</guid>
       <description></description>
     </item>
     <item>
       <title>Aws Ecs</title>
-      <link>http://localhost:1313/tags/aws-ecs/</link>
+      <link>https://chamila.dev/tags/aws-ecs/</link>
       <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
-      <guid>http://localhost:1313/tags/aws-ecs/</guid>
+      <guid>https://chamila.dev/tags/aws-ecs/</guid>
       <description></description>
     </item>
     <item>
       <title>Log Analysis</title>
-      <link>http://localhost:1313/tags/log-analysis/</link>
+      <link>https://chamila.dev/tags/log-analysis/</link>
       <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
-      <guid>http://localhost:1313/tags/log-analysis/</guid>
+      <guid>https://chamila.dev/tags/log-analysis/</guid>
       <description></description>
     </item>
     <item>
       <title>Splunk</title>
-      <link>http://localhost:1313/tags/splunk/</link>
+      <link>https://chamila.dev/tags/splunk/</link>
       <pubDate>Wed, 28 Nov 2018 09:51:30 +0000</pubDate>
-      <guid>http://localhost:1313/tags/splunk/</guid>
+      <guid>https://chamila.dev/tags/splunk/</guid>
       <description></description>
     </item>
     <item>
       <title>Continuous Delivery</title>
-      <link>http://localhost:1313/tags/continuous-delivery/</link>
+      <link>https://chamila.dev/tags/continuous-delivery/</link>
       <pubDate>Sun, 25 Nov 2018 03:47:20 +0000</pubDate>
-      <guid>http://localhost:1313/tags/continuous-delivery/</guid>
+      <guid>https://chamila.dev/tags/continuous-delivery/</guid>
       <description></description>
     </item>
     <item>
       <title>Continuous Integration</title>
-      <link>http://localhost:1313/tags/continuous-integration/</link>
+      <link>https://chamila.dev/tags/continuous-integration/</link>
       <pubDate>Sun, 25 Nov 2018 03:47:20 +0000</pubDate>
-      <guid>http://localhost:1313/tags/continuous-integration/</guid>
+      <guid>https://chamila.dev/tags/continuous-integration/</guid>
       <description></description>
     </item>
     <item>
       <title>Cloud Computing</title>
-      <link>http://localhost:1313/tags/cloud-computing/</link>
+      <link>https://chamila.dev/tags/cloud-computing/</link>
       <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
-      <guid>http://localhost:1313/tags/cloud-computing/</guid>
+      <guid>https://chamila.dev/tags/cloud-computing/</guid>
       <description></description>
     </item>
     <item>
       <title>Observability</title>
-      <link>http://localhost:1313/tags/observability/</link>
+      <link>https://chamila.dev/tags/observability/</link>
       <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
-      <guid>http://localhost:1313/tags/observability/</guid>
+      <guid>https://chamila.dev/tags/observability/</guid>
       <description></description>
     </item>
     <item>
       <title>Solution Architecture</title>
-      <link>http://localhost:1313/tags/solution-architecture/</link>
+      <link>https://chamila.dev/tags/solution-architecture/</link>
       <pubDate>Thu, 25 Oct 2018 06:44:38 +0000</pubDate>
-      <guid>http://localhost:1313/tags/solution-architecture/</guid>
+      <guid>https://chamila.dev/tags/solution-architecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Microservices</title>
-      <link>http://localhost:1313/tags/microservices/</link>
+      <link>https://chamila.dev/tags/microservices/</link>
       <pubDate>Tue, 21 Aug 2018 04:29:46 +0000</pubDate>
-      <guid>http://localhost:1313/tags/microservices/</guid>
+      <guid>https://chamila.dev/tags/microservices/</guid>
       <description></description>
     </item>
     <item>
       <title>Process Improvement</title>
-      <link>http://localhost:1313/tags/process-improvement/</link>
+      <link>https://chamila.dev/tags/process-improvement/</link>
       <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
-      <guid>http://localhost:1313/tags/process-improvement/</guid>
+      <guid>https://chamila.dev/tags/process-improvement/</guid>
       <description></description>
     </item>
     <item>
       <title>Tooling</title>
-      <link>http://localhost:1313/tags/tooling/</link>
+      <link>https://chamila.dev/tags/tooling/</link>
       <pubDate>Fri, 20 Jul 2018 05:31:06 +0000</pubDate>
-      <guid>http://localhost:1313/tags/tooling/</guid>
+      <guid>https://chamila.dev/tags/tooling/</guid>
       <description></description>
     </item>
     <item>
       <title>Git</title>
-      <link>http://localhost:1313/tags/git/</link>
+      <link>https://chamila.dev/tags/git/</link>
       <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
-      <guid>http://localhost:1313/tags/git/</guid>
+      <guid>https://chamila.dev/tags/git/</guid>
       <description></description>
     </item>
     <item>
       <title>Linux</title>
-      <link>http://localhost:1313/tags/linux/</link>
+      <link>https://chamila.dev/tags/linux/</link>
       <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
-      <guid>http://localhost:1313/tags/linux/</guid>
+      <guid>https://chamila.dev/tags/linux/</guid>
       <description></description>
     </item>
     <item>
       <title>Microsoft</title>
-      <link>http://localhost:1313/tags/microsoft/</link>
+      <link>https://chamila.dev/tags/microsoft/</link>
       <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
-      <guid>http://localhost:1313/tags/microsoft/</guid>
+      <guid>https://chamila.dev/tags/microsoft/</guid>
       <description></description>
     </item>
     <item>
       <title>Open Source</title>
-      <link>http://localhost:1313/tags/open-source/</link>
+      <link>https://chamila.dev/tags/open-source/</link>
       <pubDate>Tue, 05 Jun 2018 06:00:19 +0000</pubDate>
-      <guid>http://localhost:1313/tags/open-source/</guid>
+      <guid>https://chamila.dev/tags/open-source/</guid>
       <description></description>
     </item>
     <item>
       <title>Immutability</title>
-      <link>http://localhost:1313/tags/immutability/</link>
+      <link>https://chamila.dev/tags/immutability/</link>
       <pubDate>Thu, 17 May 2018 08:19:19 +0000</pubDate>
-      <guid>http://localhost:1313/tags/immutability/</guid>
+      <guid>https://chamila.dev/tags/immutability/</guid>
       <description></description>
     </item>
     <item>
       <title>Gnuplot</title>
-      <link>http://localhost:1313/tags/gnuplot/</link>
+      <link>https://chamila.dev/tags/gnuplot/</link>
       <pubDate>Tue, 15 May 2018 06:36:59 +0000</pubDate>
-      <guid>http://localhost:1313/tags/gnuplot/</guid>
+      <guid>https://chamila.dev/tags/gnuplot/</guid>
       <description></description>
     </item>
     <item>
       <title>Graph</title>
-      <link>http://localhost:1313/tags/graph/</link>
+      <link>https://chamila.dev/tags/graph/</link>
       <pubDate>Tue, 15 May 2018 06:36:59 +0000</pubDate>
-      <guid>http://localhost:1313/tags/graph/</guid>
+      <guid>https://chamila.dev/tags/graph/</guid>
       <description></description>
     </item>
     <item>
       <title>Visualization</title>
-      <link>http://localhost:1313/tags/visualization/</link>
+      <link>https://chamila.dev/tags/visualization/</link>
       <pubDate>Tue, 15 May 2018 06:36:59 +0000</pubDate>
-      <guid>http://localhost:1313/tags/visualization/</guid>
+      <guid>https://chamila.dev/tags/visualization/</guid>
       <description></description>
     </item>
     <item>
       <title>Bash</title>
-      <link>http://localhost:1313/tags/bash/</link>
+      <link>https://chamila.dev/tags/bash/</link>
       <pubDate>Tue, 01 May 2018 07:46:05 +0000</pubDate>
-      <guid>http://localhost:1313/tags/bash/</guid>
+      <guid>https://chamila.dev/tags/bash/</guid>
       <description></description>
     </item>
     <item>
       <title>Grep</title>
-      <link>http://localhost:1313/tags/grep/</link>
+      <link>https://chamila.dev/tags/grep/</link>
       <pubDate>Tue, 01 May 2018 07:46:05 +0000</pubDate>
-      <guid>http://localhost:1313/tags/grep/</guid>
+      <guid>https://chamila.dev/tags/grep/</guid>
       <description></description>
     </item>
     <item>
       <title>Scripting</title>
-      <link>http://localhost:1313/tags/scripting/</link>
+      <link>https://chamila.dev/tags/scripting/</link>
       <pubDate>Tue, 01 May 2018 07:46:05 +0000</pubDate>
-      <guid>http://localhost:1313/tags/scripting/</guid>
+      <guid>https://chamila.dev/tags/scripting/</guid>
       <description></description>
     </item>
     <item>
       <title>Unix</title>
-      <link>http://localhost:1313/tags/unix/</link>
+      <link>https://chamila.dev/tags/unix/</link>
       <pubDate>Tue, 01 May 2018 07:46:05 +0000</pubDate>
-      <guid>http://localhost:1313/tags/unix/</guid>
+      <guid>https://chamila.dev/tags/unix/</guid>
       <description></description>
     </item>
     <item>
       <title>Caching</title>
-      <link>http://localhost:1313/tags/caching/</link>
+      <link>https://chamila.dev/tags/caching/</link>
       <pubDate>Sun, 12 Nov 2017 14:30:44 +0000</pubDate>
-      <guid>http://localhost:1313/tags/caching/</guid>
+      <guid>https://chamila.dev/tags/caching/</guid>
       <description></description>
     </item>
     <item>
       <title>Token Authentication</title>
-      <link>http://localhost:1313/tags/token-authentication/</link>
+      <link>https://chamila.dev/tags/token-authentication/</link>
       <pubDate>Sun, 12 Nov 2017 14:30:44 +0000</pubDate>
-      <guid>http://localhost:1313/tags/token-authentication/</guid>
+      <guid>https://chamila.dev/tags/token-authentication/</guid>
       <description></description>
     </item>
     <item>
       <title>DNS</title>
-      <link>http://localhost:1313/tags/dns/</link>
+      <link>https://chamila.dev/tags/dns/</link>
       <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
-      <guid>http://localhost:1313/tags/dns/</guid>
+      <guid>https://chamila.dev/tags/dns/</guid>
       <description></description>
     </item>
     <item>
       <title>Ssl</title>
-      <link>http://localhost:1313/tags/ssl/</link>
+      <link>https://chamila.dev/tags/ssl/</link>
       <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ssl/</guid>
+      <guid>https://chamila.dev/tags/ssl/</guid>
       <description></description>
     </item>
     <item>
       <title>Subject Alternative Name</title>
-      <link>http://localhost:1313/tags/subject-alternative-name/</link>
+      <link>https://chamila.dev/tags/subject-alternative-name/</link>
       <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
-      <guid>http://localhost:1313/tags/subject-alternative-name/</guid>
+      <guid>https://chamila.dev/tags/subject-alternative-name/</guid>
       <description></description>
     </item>
     <item>
       <title>X509</title>
-      <link>http://localhost:1313/tags/x509/</link>
+      <link>https://chamila.dev/tags/x509/</link>
       <pubDate>Mon, 06 Nov 2017 14:26:50 +0000</pubDate>
-      <guid>http://localhost:1313/tags/x509/</guid>
+      <guid>https://chamila.dev/tags/x509/</guid>
       <description></description>
     </item>
     <item>
       <title>Openssl</title>
-      <link>http://localhost:1313/tags/openssl/</link>
+      <link>https://chamila.dev/tags/openssl/</link>
       <pubDate>Tue, 17 Oct 2017 18:56:28 +0000</pubDate>
-      <guid>http://localhost:1313/tags/openssl/</guid>
+      <guid>https://chamila.dev/tags/openssl/</guid>
       <description></description>
     </item>
     <item>
       <title>Docker Hub</title>
-      <link>http://localhost:1313/tags/docker-hub/</link>
+      <link>https://chamila.dev/tags/docker-hub/</link>
       <pubDate>Tue, 05 Sep 2017 18:50:34 +0000</pubDate>
-      <guid>http://localhost:1313/tags/docker-hub/</guid>
+      <guid>https://chamila.dev/tags/docker-hub/</guid>
       <description></description>
     </item>
     <item>
       <title>Docker Label</title>
-      <link>http://localhost:1313/tags/docker-label/</link>
+      <link>https://chamila.dev/tags/docker-label/</link>
       <pubDate>Tue, 05 Sep 2017 18:50:34 +0000</pubDate>
-      <guid>http://localhost:1313/tags/docker-label/</guid>
+      <guid>https://chamila.dev/tags/docker-label/</guid>
       <description></description>
     </item>
     <item>
       <title>Label Schema</title>
-      <link>http://localhost:1313/tags/label-schema/</link>
+      <link>https://chamila.dev/tags/label-schema/</link>
       <pubDate>Tue, 05 Sep 2017 18:50:34 +0000</pubDate>
-      <guid>http://localhost:1313/tags/label-schema/</guid>
+      <guid>https://chamila.dev/tags/label-schema/</guid>
       <description></description>
     </item>
     <item>
       <title>Microbadger</title>
-      <link>http://localhost:1313/tags/microbadger/</link>
+      <link>https://chamila.dev/tags/microbadger/</link>
       <pubDate>Tue, 05 Sep 2017 18:50:34 +0000</pubDate>
-      <guid>http://localhost:1313/tags/microbadger/</guid>
+      <guid>https://chamila.dev/tags/microbadger/</guid>
       <description></description>
     </item>
     <item>
       <title>Squash</title>
-      <link>http://localhost:1313/tags/squash/</link>
+      <link>https://chamila.dev/tags/squash/</link>
       <pubDate>Tue, 22 Aug 2017 09:58:17 +0000</pubDate>
-      <guid>http://localhost:1313/tags/squash/</guid>
+      <guid>https://chamila.dev/tags/squash/</guid>
       <description></description>
     </item>
     <item>
       <title>Atom</title>
-      <link>http://localhost:1313/tags/atom/</link>
+      <link>https://chamila.dev/tags/atom/</link>
       <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
-      <guid>http://localhost:1313/tags/atom/</guid>
+      <guid>https://chamila.dev/tags/atom/</guid>
       <description></description>
     </item>
     <item>
       <title>Haproxy</title>
-      <link>http://localhost:1313/tags/haproxy/</link>
+      <link>https://chamila.dev/tags/haproxy/</link>
       <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
-      <guid>http://localhost:1313/tags/haproxy/</guid>
+      <guid>https://chamila.dev/tags/haproxy/</guid>
       <description></description>
     </item>
     <item>
       <title>Syntax</title>
-      <link>http://localhost:1313/tags/syntax/</link>
+      <link>https://chamila.dev/tags/syntax/</link>
       <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
-      <guid>http://localhost:1313/tags/syntax/</guid>
+      <guid>https://chamila.dev/tags/syntax/</guid>
       <description></description>
     </item>
     <item>
       <title>Vim</title>
-      <link>http://localhost:1313/tags/vim/</link>
+      <link>https://chamila.dev/tags/vim/</link>
       <pubDate>Thu, 13 Jul 2017 05:26:55 +0000</pubDate>
-      <guid>http://localhost:1313/tags/vim/</guid>
+      <guid>https://chamila.dev/tags/vim/</guid>
       <description></description>
     </item>
     <item>
       <title>Cloudformation</title>
-      <link>http://localhost:1313/tags/cloudformation/</link>
+      <link>https://chamila.dev/tags/cloudformation/</link>
       <pubDate>Mon, 03 Jul 2017 11:40:50 +0000</pubDate>
-      <guid>http://localhost:1313/tags/cloudformation/</guid>
+      <guid>https://chamila.dev/tags/cloudformation/</guid>
       <description></description>
     </item>
     <item>
       <title>Infrastructure as Code</title>
-      <link>http://localhost:1313/tags/infrastructure-as-code/</link>
+      <link>https://chamila.dev/tags/infrastructure-as-code/</link>
       <pubDate>Mon, 03 Jul 2017 11:40:50 +0000</pubDate>
-      <guid>http://localhost:1313/tags/infrastructure-as-code/</guid>
+      <guid>https://chamila.dev/tags/infrastructure-as-code/</guid>
       <description></description>
     </item>
     <item>
       <title>Puppet</title>
-      <link>http://localhost:1313/tags/puppet/</link>
+      <link>https://chamila.dev/tags/puppet/</link>
       <pubDate>Mon, 03 Jul 2017 11:40:50 +0000</pubDate>
-      <guid>http://localhost:1313/tags/puppet/</guid>
+      <guid>https://chamila.dev/tags/puppet/</guid>
       <description></description>
     </item>
     <item>
       <title>Integration</title>
-      <link>http://localhost:1313/tags/integration/</link>
+      <link>https://chamila.dev/tags/integration/</link>
       <pubDate>Tue, 21 Feb 2017 06:48:33 +0000</pubDate>
-      <guid>http://localhost:1313/tags/integration/</guid>
+      <guid>https://chamila.dev/tags/integration/</guid>
       <description></description>
     </item>
     <item>
       <title>Programming</title>
-      <link>http://localhost:1313/tags/programming/</link>
+      <link>https://chamila.dev/tags/programming/</link>
       <pubDate>Tue, 21 Feb 2017 06:48:33 +0000</pubDate>
-      <guid>http://localhost:1313/tags/programming/</guid>
+      <guid>https://chamila.dev/tags/programming/</guid>
       <description></description>
     </item>
     <item>
       <title>Adminservice</title>
-      <link>http://localhost:1313/tags/adminservice/</link>
+      <link>https://chamila.dev/tags/adminservice/</link>
       <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
-      <guid>http://localhost:1313/tags/adminservice/</guid>
+      <guid>https://chamila.dev/tags/adminservice/</guid>
       <description></description>
     </item>
     <item>
       <title>Carbonapp</title>
-      <link>http://localhost:1313/tags/carbonapp/</link>
+      <link>https://chamila.dev/tags/carbonapp/</link>
       <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
-      <guid>http://localhost:1313/tags/carbonapp/</guid>
+      <guid>https://chamila.dev/tags/carbonapp/</guid>
       <description></description>
     </item>
     <item>
       <title>Wsdl</title>
-      <link>http://localhost:1313/tags/wsdl/</link>
+      <link>https://chamila.dev/tags/wsdl/</link>
       <pubDate>Sat, 17 Sep 2016 00:49:13 +0000</pubDate>
-      <guid>http://localhost:1313/tags/wsdl/</guid>
+      <guid>https://chamila.dev/tags/wsdl/</guid>
       <description></description>
     </item>
     <item>
       <title>Heapdump</title>
-      <link>http://localhost:1313/tags/heapdump/</link>
+      <link>https://chamila.dev/tags/heapdump/</link>
       <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
-      <guid>http://localhost:1313/tags/heapdump/</guid>
+      <guid>https://chamila.dev/tags/heapdump/</guid>
       <description></description>
     </item>
     <item>
       <title>Java</title>
-      <link>http://localhost:1313/tags/java/</link>
+      <link>https://chamila.dev/tags/java/</link>
       <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
-      <guid>http://localhost:1313/tags/java/</guid>
+      <guid>https://chamila.dev/tags/java/</guid>
       <description></description>
     </item>
     <item>
       <title>Jmap</title>
-      <link>http://localhost:1313/tags/jmap/</link>
+      <link>https://chamila.dev/tags/jmap/</link>
       <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
-      <guid>http://localhost:1313/tags/jmap/</guid>
+      <guid>https://chamila.dev/tags/jmap/</guid>
       <description></description>
     </item>
     <item>
       <title>Jstack</title>
-      <link>http://localhost:1313/tags/jstack/</link>
+      <link>https://chamila.dev/tags/jstack/</link>
       <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
-      <guid>http://localhost:1313/tags/jstack/</guid>
+      <guid>https://chamila.dev/tags/jstack/</guid>
       <description></description>
     </item>
     <item>
       <title>Threaddump</title>
-      <link>http://localhost:1313/tags/threaddump/</link>
+      <link>https://chamila.dev/tags/threaddump/</link>
       <pubDate>Wed, 07 Sep 2016 22:30:52 +0000</pubDate>
-      <guid>http://localhost:1313/tags/threaddump/</guid>
+      <guid>https://chamila.dev/tags/threaddump/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>http://localhost:1313/tags/python/</link>
+      <link>https://chamila.dev/tags/python/</link>
       <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/python/</guid>
+      <guid>https://chamila.dev/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>Threading</title>
-      <link>http://localhost:1313/tags/threading/</link>
+      <link>https://chamila.dev/tags/threading/</link>
       <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/threading/</guid>
+      <guid>https://chamila.dev/tags/threading/</guid>
       <description></description>
     </item>
     <item>
       <title>Multi Threading</title>
-      <link>http://localhost:1313/tags/multi-threading/</link>
+      <link>https://chamila.dev/tags/multi-threading/</link>
       <pubDate>Thu, 26 Nov 2015 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/multi-threading/</guid>
+      <guid>https://chamila.dev/tags/multi-threading/</guid>
       <description></description>
     </item>
     <item>
       <title>Activemq</title>
-      <link>http://localhost:1313/tags/activemq/</link>
+      <link>https://chamila.dev/tags/activemq/</link>
       <pubDate>Tue, 17 Nov 2015 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/activemq/</guid>
+      <guid>https://chamila.dev/tags/activemq/</guid>
       <description></description>
     </item>
     <item>
       <title>Ha</title>
-      <link>http://localhost:1313/tags/ha/</link>
+      <link>https://chamila.dev/tags/ha/</link>
       <pubDate>Tue, 17 Nov 2015 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ha/</guid>
+      <guid>https://chamila.dev/tags/ha/</guid>
       <description></description>
     </item>
     <item>
       <title>Apache Stratos</title>
-      <link>http://localhost:1313/tags/apache-stratos/</link>
+      <link>https://chamila.dev/tags/apache-stratos/</link>
       <pubDate>Mon, 16 Nov 2015 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/apache-stratos/</guid>
+      <guid>https://chamila.dev/tags/apache-stratos/</guid>
       <description></description>
     </item>
     <item>
       <title>Scale</title>
-      <link>http://localhost:1313/tags/scale/</link>
+      <link>https://chamila.dev/tags/scale/</link>
       <pubDate>Sun, 22 Mar 2015 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/scale/</guid>
+      <guid>https://chamila.dev/tags/scale/</guid>
       <description></description>
     </item>
     <item>
       <title>Cartridge Agent</title>
-      <link>http://localhost:1313/tags/cartridge-agent/</link>
+      <link>https://chamila.dev/tags/cartridge-agent/</link>
       <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/cartridge-agent/</guid>
+      <guid>https://chamila.dev/tags/cartridge-agent/</guid>
       <description></description>
     </item>
     <item>
       <title>Cep</title>
-      <link>http://localhost:1313/tags/cep/</link>
+      <link>https://chamila.dev/tags/cep/</link>
       <pubDate>Fri, 10 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/cep/</guid>
+      <guid>https://chamila.dev/tags/cep/</guid>
       <description></description>
     </item>
     <item>
       <title>Thrift</title>
-      <link>http://localhost:1313/tags/thrift/</link>
+      <link>https://chamila.dev/tags/thrift/</link>
       <pubDate>Fri, 10 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/thrift/</guid>
+      <guid>https://chamila.dev/tags/thrift/</guid>
       <description></description>
     </item>
     <item>
       <title>Pppoe</title>
-      <link>http://localhost:1313/tags/pppoe/</link>
+      <link>https://chamila.dev/tags/pppoe/</link>
       <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/pppoe/</guid>
+      <guid>https://chamila.dev/tags/pppoe/</guid>
       <description></description>
     </item>
     <item>
       <title>Virtualbox</title>
-      <link>http://localhost:1313/tags/virtualbox/</link>
+      <link>https://chamila.dev/tags/virtualbox/</link>
       <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/virtualbox/</guid>
+      <guid>https://chamila.dev/tags/virtualbox/</guid>
       <description></description>
     </item>
     <item>
       <title>Axis2</title>
-      <link>http://localhost:1313/tags/axis2/</link>
+      <link>https://chamila.dev/tags/axis2/</link>
       <pubDate>Sat, 19 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/axis2/</guid>
+      <guid>https://chamila.dev/tags/axis2/</guid>
       <description></description>
     </item>
     <item>
       <title>Soap</title>
-      <link>http://localhost:1313/tags/soap/</link>
+      <link>https://chamila.dev/tags/soap/</link>
       <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/soap/</guid>
+      <guid>https://chamila.dev/tags/soap/</guid>
       <description></description>
     </item>
     <item>
       <title>Wso2esb</title>
-      <link>http://localhost:1313/tags/wso2esb/</link>
+      <link>https://chamila.dev/tags/wso2esb/</link>
       <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/wso2esb/</guid>
+      <guid>https://chamila.dev/tags/wso2esb/</guid>
       <description></description>
     </item>
     <item>
       <title>Ubuntu</title>
-      <link>http://localhost:1313/tags/ubuntu/</link>
+      <link>https://chamila.dev/tags/ubuntu/</link>
       <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ubuntu/</guid>
+      <guid>https://chamila.dev/tags/ubuntu/</guid>
       <description></description>
     </item>
     <item>
       <title>Wireshark</title>
-      <link>http://localhost:1313/tags/wireshark/</link>
+      <link>https://chamila.dev/tags/wireshark/</link>
       <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/wireshark/</guid>
+      <guid>https://chamila.dev/tags/wireshark/</guid>
       <description></description>
     </item>
     <item>
       <title>Wso2 Carbon</title>
-      <link>http://localhost:1313/tags/wso2-carbon/</link>
+      <link>https://chamila.dev/tags/wso2-carbon/</link>
       <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/wso2-carbon/</guid>
+      <guid>https://chamila.dev/tags/wso2-carbon/</guid>
       <description></description>
     </item>
   </channel>
